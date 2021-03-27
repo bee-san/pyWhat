@@ -16,6 +16,6 @@
   Description: null
   Rarity: 0.5
 - Name: Uniform Resource Locator (URL)
-  Regex: '''[-a-zA-Z0-9@:%._\\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\\+.~#?&\/=]*)'''
+  Regex: '[-a-zA-Z0-9@:%._\\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\\+.~#?&\/=]*)'
   Description: A Uniform Resource Location (URL) pointing to a web address.
   Rarity: 0.3
