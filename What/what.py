@@ -1,9 +1,10 @@
 import click
 import identifier
 
+
 @click.command()
 # @click.option('-t', '--text', help="The text you want to identify.", required=True)
-@click.argument('text_input', required=True)
+@click.argument("text_input", required=True)
 def main(text_input):
     """
     What - Identify what something is.\n
@@ -15,17 +16,25 @@ def main(text_input):
         * what "HTB{this is a flag}"
 
         * what "0x52908400098527886E0F7030069857D2E4169EE7"
-        
+
 
     """
-    r = regex_identifier.RegexIdentifier()
-    print("This is a " + r.check(text_input)[0]["Name"])
 
-class What:
+    what_obj = What_Object()
+    identified_output = what_obj.what_is_this(text_input)
+    
+    print(identified_output)
+
+
+class What_Object:
     def __init__(self):
-        self.id = identifier
+        self.id = identifier.Identifier()
 
-def what_is_this(text: str) -> dict:
+    def what_is_this(self, text: str) -> dict:
+        """
+        Returns a Python dictionary of everything that has been identified
+        """
+        return self.id.identify(text)
 
 
 if __name__ == "__main__":

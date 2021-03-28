@@ -1,6 +1,7 @@
 import re
 import yaml
 
+
 class RegexIdentifier:
     def __init__(self):
         with open("What/data.yaml", "r") as myfile:
@@ -10,6 +11,7 @@ class RegexIdentifier:
     def check(self, text):
         matches = []
         for reg in self.regexes:
-            if re.compile(reg["Regex"], re.UNICODE).search(text):
-                matches.append(reg)
+            matched_regex = re.compile(reg["Regex"], re.UNICODE).search(text)
+            if matched_regex:
+                matches.append({"Matched": matched_regex.group(), "Regex Pattern": reg})
         return matches
