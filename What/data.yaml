@@ -3,18 +3,22 @@
   Regex: ^0x[a-fA-F0-9]{40}
   Description: Ethereum Wallet Address
   Rarity: 1
+
 - Name: Bitcoin Wallet
   Regex: ^(bc1|[13])[a-zA-HJ-NP-Z0-9]{25,39}$
   Description: Bitcoin Wallet Address
   Rarity: 1
-- Name: Capture The Flag Flags
+
+- Name: Flag from Capture The Flag (CyberSecurity)
   Regex:  (?i)ctf{.*}|(?i)thm{.*}|(?i)tryhackme{.*}|(?i)hackthebox{.*}|(?i)flag{.*}|(?i)htb{.*}
   Description: Popular flag formats for Capture the Flag Events
   Rarity: 1
+
 - Name: Dogecoin Wallet Address
   Regex: ^D{1}[5-9A-HJ-NP-U]{1}[1-9A-HJ-NP-Za-km-z]{32}$
   Description: null
   Rarity: 0.5
+
 - Name: Uniform Resource Locator (URL)
   Regex: '[-a-zA-Z0-9@:%._\\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\\+.~#?&\/=]*)'
   Description: A Uniform Resource Location (URL) pointing to a web address.
