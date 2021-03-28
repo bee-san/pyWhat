@@ -15,25 +15,21 @@ def test_url():
     res = r.check("tryhackme.com")
     assert "Uniform Resource Locator (URL)" in res[0]["Name"]
 
-@pytest.mark.skip(reason="Fails Regex due to http://")
 def test_https():
     r = regex_identifier.RegexIdentifier()
     res = r.check("https://tryhackme.com")
     assert "Uniform Resource Locator (URL)" in res[0]["Name"]
 
-@pytest.mark.skip(reason="Fails Regex due to http://")
 def test_ip():
     r = regex_identifier.RegexIdentifier()
     res = r.check("http://10.1.1.1")
     assert "Uniform Resource Locator (URL)" in res[0]["Name"]
-
-@pytest.mark.skip(reason="Fails Regex due to http://")
+# @pytest.mark.skip(reason="Fails Regex due to http://")
 def test_ip2():
     r = regex_identifier.RegexIdentifier()
     res = r.check("http://0.0.0.0")
     assert "Uniform Resource Locator (URL)" in res[0]["Name"]
 
-@pytest.mark.skip(reason="Fails Regex due to http://")
 def test_internationak_url():
     r = regex_identifier.RegexIdentifier()
     res = r.check("http://папироска.рф")

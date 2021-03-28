@@ -10,6 +10,6 @@ class RegexIdentifier:
     def check(self, text):
         matches = []
         for reg in self.regexes:
-            if re.compile(reg["Regex"]).match(text):
+            if re.compile(reg["Regex"], re.UNICODE).search(text):
                 matches.append(reg)
         return matches
