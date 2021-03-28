@@ -16,5 +16,15 @@ def test_url():
 
 def test_ctf_flag():
     r = regex_identifier.RegexIdentifier()
-    res = r.check("THM{hello}")
+    res = r.check("thm{hello}")
     assert "Capture The Flag Flags" in res[0]["Name"]
+
+def test_ctf_flag_uppercase():
+    r = regex_identifier.RegexIdentifier()
+    res = r.check("FLAG{hello}")
+    assert "Capture The Flag Flags" in res[0]["Name"]
+
+def test_ethereum():
+    r = regex_identifier.RegexIdentifier()
+    res = r.check("0x52908400098527886E0F7030069857D2E4169EE7")
+    assert "Ethereum Wallet" in res[0]["Name"]

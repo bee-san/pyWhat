@@ -14,7 +14,7 @@
 },
 {
     "Name": "Capture The Flag Flags",
-    "Regex": "ctf{.*}|thm{.*}|tryhackme{.*}|hackthebox{.*}|flag{.*}|htb{.*}",
+    "Regex": "(?i)ctf{.*}|(?i)thm{.*}|(?i)tryhackme{.*}|(?i)hackthebox{.*}|(?i)flag{.*}|(?i)htb{.*}",
     "Description": "Popular flag formats for Capture the Flag Events",
     "Rarity": 1.0
 },
