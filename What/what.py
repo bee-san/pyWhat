@@ -1,9 +1,9 @@
 import click
 import identifier
+import printer
 
 
 @click.command()
-# @click.option('-t', '--text', help="The text you want to identify.", required=True)
 @click.argument("text_input", required=True)
 def main(text_input):
     """
@@ -22,8 +22,9 @@ def main(text_input):
 
     what_obj = What_Object()
     identified_output = what_obj.what_is_this(text_input)
-    
-    print(identified_output)
+
+    p = printer.Printing()
+    p.pretty_print(identified_output)
 
 
 class What_Object:

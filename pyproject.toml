@@ -9,6 +9,7 @@ license = "GPLv3"
 python = "^3.6"
 click = "^7.1.2"
 PyYAML = "^5.4.1"
+name-that-hash = "^1.6.0"
 
 [tool.poetry.dev-dependencies]
 
