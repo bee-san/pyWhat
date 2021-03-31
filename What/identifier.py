@@ -1,5 +1,5 @@
-from regex_identifier import RegexIdentifier
-from languageDetector import LanguageDetector
+from What.regex_identifier import RegexIdentifier
+from What.languageDetector import LanguageDetector
 
 
 class Identifier:

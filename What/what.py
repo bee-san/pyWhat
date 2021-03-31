@@ -1,6 +1,6 @@
 import click
-import identifier
-import printer
+from What import identifier
+from What import printer
 
 
 @click.command()
