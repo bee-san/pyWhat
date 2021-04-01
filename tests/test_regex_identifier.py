@@ -13,17 +13,20 @@ def test_regex_runs():
     res = r.check("DANHz6EQVoWyZ9rER56DwTXHWUxfkv9k2o")
     assert "Dogecoin Wallet Address" in res[0]["Regex Pattern"]["Name"]
 
+
 @pytest.mark.skip(reason="Fails Regex due to http://")
 def test_url():
     r = regex_identifier.RegexIdentifier()
     res = r.check("tryhackme.com")
     assert "Uniform Resource Locator (URL)" in res[0]["Regex Pattern"]["Name"]
 
+
 @pytest.mark.skip(reason="Fails Regex due to http://")
 def test_https():
     r = regex_identifier.RegexIdentifier()
     res = r.check("https://tryhackme.com")
     assert "Uniform Resource Locator (URL)" in res[0]["Regex Pattern"]["Name"]
+
 
 @pytest.mark.skip(reason="Fails Regex due to http://")
 def test_ip():
@@ -38,6 +41,7 @@ def test_ip2():
     res = r.check("http://0.0.0.0")
     assert "Uniform Resource Locator (URL)" in res[0]["Regex Pattern"]["Name"]
 
+
 @pytest.mark.skip(reason="Fails Regex due to http://")
 def test_internationak_url():
     r = regex_identifier.RegexIdentifier()
@@ -48,13 +52,17 @@ def test_internationak_url():
 def test_ctf_flag():
     r = regex_identifier.RegexIdentifier()
     res = r.check("thm{hello}")
-    assert "Flag from Capture The Flag (CyberSecurity)" in res[0]["Regex Pattern"]["Name"]
+    assert (
+        "Flag from Capture The Flag (CyberSecurity)" in res[0]["Regex Pattern"]["Name"]
+    )
 
 
 def test_ctf_flag_uppercase():
     r = regex_identifier.RegexIdentifier()
     res = r.check("FLAG{hello}")
-    assert "Flag from Capture The Flag (CyberSecurity)" in res[0]["Regex Pattern"]["Name"]
+    assert (
+        "Flag from Capture The Flag (CyberSecurity)" in res[0]["Regex Pattern"]["Name"]
+    )
 
 
 def test_ethereum():
