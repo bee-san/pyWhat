@@ -1,36 +1,36 @@
 - Description: Script or data to be passed to the program following the Shebang (Unix)shebang
     (#!)
   Filename Extension: null
-  Hexadecimal File Signature: 23 21
+  Hexadecimal File Signature: '2321'
   ISO 8859-1: 23 21
-  Popular: 1
+  Popular: 0
 - Description: Libpcap File Format
   Filename Extension: pcap
-  Hexadecimal File Signature: a1 b2 c3 d4 d4 c3 b2 a1
+  Hexadecimal File Signature: a1b2c3d4d4c3b2a1
   ISO 8859-1: a1 b2 c3 d4 d4 c3 b2 a1
   Popular: 0
   URL: https://wiki.wireshark.org/Development/LibpcapFileFormat#Global_Header
 - Description: PCAP Next Generation Dump File Format
   Filename Extension: pcapng
-  Hexadecimal File Signature: 0a 0d 0d 0a
+  Hexadecimal File Signature: 0a0d0d0a
   ISO 8859-1: null
   Popular: 0
   URL: 'https://www.winpcap.org/ntar/draft/PCAP-DumpFileFormat.html#sectionshb '
 - Description: RedHat Package Manager (RPM) package
   Filename Extension: rpm
-  Hexadecimal File Signature: ed ab ee db
+  Hexadecimal File Signature: edabeedb
   ISO 8859-1: ed ab ee db
   Popular: 0
   URL: 'ftp://ftp.tuwien.ac.at/.vhost/www.openpkg.org/doc/book/maximum-rpm.html/node26.html '
 - Description: SQLite Database
   Filename Extension: sqlitedbsqlitedb
-  Hexadecimal File Signature: 53 51 4c 69 74 65 20 66 6f 72 6d 61 74 20 33 00
+  Hexadecimal File Signature: 53514c69746520666f726d6174203300
   ISO 8859-1: SQLite format 3.
   Popular: 0
   URL: 'https://www.sqlite.org/fileformat.html '
 - Description: Amazon Kindle Update Package
   Filename Extension: bin
-  Hexadecimal File Signature: 53 50 30 31
+  Hexadecimal File Signature: '53503031'
   ISO 8859-1: SP01
   Popular: 0
   URL: 'https://github.com/NiLuJe/KindleTool '
@@ -43,208 +43,203 @@
   Popular: 0
 - Description: PalmPilot Database/Document File
   Filename Extension: PDB
-  Hexadecimal File Signature: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
-    00 00 00 00 00 00
+  Hexadecimal File Signature: '000000000000000000000000000000000000000000000000'
   ISO 8859-1: null
   Popular: 0
 - Description: Palm (PDA)Palm Desktop Calendar Archive
   Filename Extension: DBA
-  Hexadecimal File Signature: BE BA FE CA
+  Hexadecimal File Signature: BEBAFECA
   ISO 8859-1: BE BA FE CA
   Popular: 0
 - Description: Palm Desktop To Do Archive
   Filename Extension: DBA
-  Hexadecimal File Signature: 00 01 42 44
+  Hexadecimal File Signature: '00014244'
   ISO 8859-1: ..BD
   Popular: 0
 - Description: Palm Desktop Calendar Archive
   Filename Extension: TDA
-  Hexadecimal File Signature: 00 01 44 54
+  Hexadecimal File Signature: '00014454'
   ISO 8859-1: ..DT
   Popular: 0
 - Description: Telegram Desktop File
   Filename Extension: TDF$
-  Hexadecimal File Signature: 54 44 46 24
+  Hexadecimal File Signature: '54444624'
   ISO 8859-1: TDF$
   Popular: 0
 - Description: Telegram Desktop Encrypted File
   Filename Extension: TDEF
-  Hexadecimal File Signature: 54 44 45 46
+  Hexadecimal File Signature: '54444546'
   ISO 8859-1: TDEF
   Popular: 0
 - Description: Palm Desktop Data File (Microsoft AccessAccess format)
   Filename Extension: null
-  Hexadecimal File Signature: 00 01 00 00
+  Hexadecimal File Signature: '00010000'
   ISO 8859-1: 00 01 00 00
   Popular: 0
 - Description: Computer icon encoded in ICO (file format)ICO file format[http://msdn.microsoft.com/en-us/library/ms997538.aspx
     Icons] (at MSDN)
   Filename Extension: ico
-  Hexadecimal File Signature: 00 00 01 00
+  Hexadecimal File Signature: '00000100'
   ISO 8859-1: null
   Popular: 0
 - Description: 3rd Generation Partnership Project 3GPP and 3GPP2 multimedia files
   Filename Extension: 3gp3g2
-  Hexadecimal File Signature: 66 74 79 70 33 67
+  Hexadecimal File Signature: '667479703367'
   ISO 8859-1: ftyp3g
   Popular: 0
 - Description: compressed file (often Tar (file format)tar zip) using Lempel-Ziv-Welch
     algorithm
   Filename Extension: ztar.z
-  Hexadecimal File Signature: 1F 9D
+  Hexadecimal File Signature: 1F9D
   ISO 8859-1: null
   Popular: 0
 - Description: Compressed file (often tar zip) using LHA (file format)LZH algorithm
   Filename Extension: ztar.z
-  Hexadecimal File Signature: 1F A0
+  Hexadecimal File Signature: 1FA0
   ISO 8859-1: 1F A0
   Popular: 0
 - Description: File or Magnetic tape data storagetape containing a backup done with
     AmiBack on an Amiga. It typically is paired with an index file (idx) with the
     table of contents.
   Filename Extension: bac
-  Hexadecimal File Signature: 42 41 43 4B 4D 49 4B 45 44 49 53 4B
+  Hexadecimal File Signature: 4241434B4D494B454449534B
   ISO 8859-1: BACKMIKE DISK
   Popular: 0
 - Description: Compressed file using Bzip2 algorithm
   Filename Extension: bz2
-  Hexadecimal File Signature: 42 5A 68
+  Hexadecimal File Signature: 425A68
   ISO 8859-1: BZh
   Popular: 0
 - Description: Image file encoded in the Graphics Interchange Format (GIF)[http://www.w3.org/Graphics/GIF/spec-gif89a.txt
     GRAPHICS INTERCHANGE FORMAT(sm) Version 89a]
   Filename Extension: gif
-  Hexadecimal File Signature: 47 49 46 38 37 61 47 49 46 38 39 61
+  Hexadecimal File Signature: '474946383761474946383961'
   ISO 8859-1: GIF87a GIF89a
   Popular: 0
 - Description: Tagged Image File Format (TIFF)
   Filename Extension: tiftiff
-  Hexadecimal File Signature: 49 49 2A 00 (Endianness#Little-endianlittle-endian format)4D
-    4D 00 2A (Endianness#Big-endianbig-endian format)
+  Hexadecimal File Signature: 49492A00(Endianness#Little-endianlittle-endianformat)4D4D002A(Endianness#Big-endianbig-endianformat)
   ISO 8859-1: II*. MM.*
   Popular: 0
 - Description: Canon RAW Format Version 2 weburl
   Filename Extension: cr2
-  Hexadecimal File Signature: 49 49 2A 00 10 00 00 00 43 52
+  Hexadecimal File Signature: 49492A00100000004352
   ISO 8859-1: II*..... CR
   Popular: 0
   URL: http://filext.com/file-extension/CR2
 - Description: Eastman KodakKodak Cineon#Cineon file formatCineon image
   Filename Extension: cin
-  Hexadecimal File Signature: 80 2A 5F D7
+  Hexadecimal File Signature: 802A5FD7
   ISO 8859-1: .*_.
   Popular: 0
 - Description: Compressed file using [http://segaretro.org/Rob_Northen_compression
     Rob Northen Compression] (version 1 and 2) algorithm
   Filename Extension: null
-  Hexadecimal File Signature: 52 4E 43 01 52 4E 43 02
+  Hexadecimal File Signature: 524E4301524E4302
   ISO 8859-1: RNC.
   Popular: 0
 - Description: SMPTE Digital Picture ExchangeDPX image
   Filename Extension: dpx
-  Hexadecimal File Signature: 53 44 50 58 (Endianness#Big-endianbig-endian format)
-    58 50 44 53 (Endianness#Little-endianlittle-endian format)
+  Hexadecimal File Signature: 53445058(Endianness#Big-endianbig-endianformat)58504453(Endianness#Little-endianlittle-endianformat)
   ISO 8859-1: SDPX XPDS
   Popular: 0
 - Description: OpenEXROpenEXR image
   Filename Extension: exr
-  Hexadecimal File Signature: 76 2F 31 01
+  Hexadecimal File Signature: 762F3101
   ISO 8859-1: v/1.
   Popular: 0
 - Description: Better Portable Graphics format
   Filename Extension: bpg
-  Hexadecimal File Signature: 42 50 47 FB
+  Hexadecimal File Signature: 425047FB
   ISO 8859-1: BPGû
   Popular: 0
   URL: 'http://bellard.org/bpg/ '
 - Description: JPEG raw or in the JFIF or Exif file format
   Filename Extension: jpgjpeg
-  Hexadecimal File Signature: FF D8 FF DB FF D8 FF E0 00 10 4A 46 49 46 00 01 FF D8
-    FF EE FF D8 FF E1 ?? ?? 45 78 69 66 00 00
+  Hexadecimal File Signature: FFD8FFDBFFD8FFE000104A4649460001FFD8FFEEFFD8FFE1????457869660000
   ISO 8859-1: ÿØÿÛ ÿØÿà..JFIF.. ÿØÿî ÿØÿá..Exif..
   Popular: 0
 - Description: Interchange File FormatIFF ILBMInterleaved Bitmap Image
   Filename Extension: ilbmlbmibmiff
-  Hexadecimal File Signature: 46 4F 52 4D ?? ?? ?? ?? 49 4C 42 4D
+  Hexadecimal File Signature: 464F524D????????494C424D
   ISO 8859-1: FORM.... ILBM
   Popular: 0
 - Description: Interchange File FormatIFF 8SVX8-Bit Sampled Voice
   Filename Extension: 8svx8svsvxsndiff
-  Hexadecimal File Signature: 46 4F 52 4D ?? ?? ?? ?? 38 53 56 58
+  Hexadecimal File Signature: 464F524D????????38535658
   ISO 8859-1: FORM.... 8SVX
   Popular: 0
 - Description: Amiga Contiguous Bitmap
   Filename Extension: acbmiff
-  Hexadecimal File Signature: 46 4F 52 4D ?? ?? ?? ?? 41 43 42 4D
+  Hexadecimal File Signature: 464F524D????????4143424D
   ISO 8859-1: FORM.... ACBM
   Popular: 0
 - Description: Interchange File FormatIFF IFF Animated BitmapAnimated Bitmap
   Filename Extension: anbmiff
-  Hexadecimal File Signature: 46 4F 52 4D ?? ?? ?? ?? 41 4E 42 4D
+  Hexadecimal File Signature: 464F524D????????414E424D
   ISO 8859-1: FORM.... ANBM
   Popular: 0
 - Description: Interchange File FormatIFF IFF CEL AnimationCEL Animation
   Filename Extension: animiff
-  Hexadecimal File Signature: 46 4F 52 4D ?? ?? ?? ??  41 4E 49 4D
+  Hexadecimal File Signature: 464F524D????????414E494D
   ISO 8859-1: FORM.... ANIM
   Popular: 0
 - Description: Interchange File FormatIFF FaxFacsimile Image
   Filename Extension: faxxfaxiff
-  Hexadecimal File Signature: 46 4F 52 4D ?? ?? ?? ?? 46 41 58 58
+  Hexadecimal File Signature: 464F524D????????46415858
   ISO 8859-1: FORM.... FAXX
   Popular: 0
 - Description: Interchange File FormatIFF Formatted textFormatted Text
   Filename Extension: ftxtiff
-  Hexadecimal File Signature: 46 4F 52 4D ?? ?? ?? ?? 46 54 58 54
+  Hexadecimal File Signature: 464F524D????????46545854
   ISO 8859-1: FORM.... FTXT
   Popular: 0
 - Description: Interchange File FormatIFF IFF Simple Musical ScoreSimple Musical Score
   Filename Extension: smussmumusiff
-  Hexadecimal File Signature: 46 4F 52 4D ?? ?? ?? ?? 53 4D 55 53
+  Hexadecimal File Signature: 464F524D????????534D5553
   ISO 8859-1: FORM.... SMUS
   Popular: 0
 - Description: Interchange File FormatIFF IFF Musical ScoreMusical Score
   Filename Extension: cmusmusiff
-  Hexadecimal File Signature: 46 4F 52 4D ?? ?? ?? ?? 43 4D 55 53
+  Hexadecimal File Signature: 464F524D????????434D5553
   ISO 8859-1: FORM.... CMUS
   Popular: 0
 - Description: Interchange File FormatIFF YUVYUV Image
   Filename Extension: yuvnyuviff
-  Hexadecimal File Signature: 46 4F 52 4D ?? ?? ?? ?? 59 55 56 4E
+  Hexadecimal File Signature: 464F524D????????5955564E
   ISO 8859-1: FORM.... YUVN
   Popular: 0
 - Description: Amiga FantavisionFantavision Movie
   Filename Extension: iff
-  Hexadecimal File Signature: 46 4F 52 4D ?? ?? ?? ?? 46 41 4E 54
+  Hexadecimal File Signature: 464F524D????????46414E54
   ISO 8859-1: FORM.... FANT
   Popular: 0
 - Description: Audio Interchange File Format
   Filename Extension: aiffaifaifcsndiff
-  Hexadecimal File Signature: 46 4F 52 4D ?? ?? ?? ?? 41 49 46 46
+  Hexadecimal File Signature: 464F524D????????41494646
   ISO 8859-1: FORM.... AIFF
   Popular: 0
 - Description: Index file to a file or Magnetic tape data storagetape containing a
     backup done with AmiBack on an Amiga.
   Filename Extension: idx
-  Hexadecimal File Signature: 49 4E 44 58
+  Hexadecimal File Signature: 494E4458
   ISO 8859-1: INDX
   Popular: 0
 - Description: lzip compressed file
   Filename Extension: lz
-  Hexadecimal File Signature: 4C 5A 49 50
+  Hexadecimal File Signature: 4C5A4950
   ISO 8859-1: LZIP
   Popular: 0
 - Description: DOS MZ executable file format and its descendants (including New ExecutableNE
     and Portable ExecutablePE)
   Filename Extension: exedll
-  Hexadecimal File Signature: 4D 5A
+  Hexadecimal File Signature: 4D5A
   ISO 8859-1: null
   Popular: 0
 - Description: ZIP (file format)zip file format and formats based on it, such as EPUB,
     JAR (file format)JAR, OpenDocumentODF, Office Open XMLOOXML
   Filename Extension: zipaarapkdocxepub.ipaipajarkmzMozilla Archive Formatmaffodpodsodtpk3pk4pptxusdzvsdxxlsxXPInstallxpi
-  Hexadecimal File Signature: 50 4B 03 04 50 4B 05 06 (empty archive) 50 4B 07 08
-    (spanned archive)
+  Hexadecimal File Signature: 504B0304504B0506(emptyarchive)504B0708(spannedarchive)
   ISO 8859-1: PK..
   Popular: 0
 - Description: 'RAR (file format)RAR archive version 1.50 onwards web title=TechNote.txt:
@@ -252,28 +247,28 @@
     is actually considered as a fixed byte sequence: 0x52 0x61 0x72 0x21 0x1a 0x07
     0x00'
   Filename Extension: rar
-  Hexadecimal File Signature: 52 61 72 21 1A 07 00
+  Hexadecimal File Signature: 526172211A0700
   ISO 8859-1: Rar!...
   Popular: 0
 - Description: RAR (file format)RAR archive version 5.0 onwards
   Filename Extension: rar
-  Hexadecimal File Signature: 52 61 72 21 1A 07 01 00
+  Hexadecimal File Signature: 526172211A070100
   ISO 8859-1: Rar!....
   Popular: 0
   URL: 'http://www.rarlab.com/technote.htm '
 - Description: DOS ZM executable file format and its descendants (rare)
   Filename Extension: exe
-  Hexadecimal File Signature: 5A 4D
+  Hexadecimal File Signature: 5A4D
   ISO 8859-1: null
   Popular: 0
 - Description: Executable and Linkable Format
   Filename Extension: null
-  Hexadecimal File Signature: 7F 45 4C 46
+  Hexadecimal File Signature: 7F454C46
   ISO 8859-1: .ELF
   Popular: 0
 - Description: Image encoded in the Portable Network Graphics format weburl
   Filename Extension: png
-  Hexadecimal File Signature: 89 50 4E 47 0D 0A 1A 0A
+  Hexadecimal File Signature: 89504E470D0A1A0A
   ISO 8859-1: .PNG....
   Popular: 0
   URL: http://tools.ietf.org/html/rfc2083
@@ -284,268 +279,265 @@
   Popular: 0
 - Description: Java class file, Fat binary#AppleMach-O Fat Binary
   Filename Extension: class
-  Hexadecimal File Signature: CA FE BA BE
+  Hexadecimal File Signature: CAFEBABE
   ISO 8859-1: Êþº¾
   Popular: 0
 - Description: UTF-8 encoded Unicode byte order mark, commonly seen in text files.
   Filename Extension: null
-  Hexadecimal File Signature: EF BB BF
+  Hexadecimal File Signature: EFBBBF
   ISO 8859-1: ï»¿
   Popular: 0
 - Description: Mach-O binary (32-bit)
   Filename Extension: null
-  Hexadecimal File Signature: FE ED FA CE
+  Hexadecimal File Signature: FEEDFACE
   ISO 8859-1: null
   Popular: 0
 - Description: Mach-O binary (64-bit)
   Filename Extension: null
-  Hexadecimal File Signature: FE ED FA CF
+  Hexadecimal File Signature: FEEDFACF
   ISO 8859-1: null
   Popular: 0
 - Description: JKS [http://hg.openjdk.java.net/jdk10/jdk10/jdk/file/777356696811/src/java.base/share/classes/sun/security/provider/JavaKeyStore.java
     JavakeyStore]
   Filename Extension: null
-  Hexadecimal File Signature: FE ED FE ED
+  Hexadecimal File Signature: FEEDFEED
   ISO 8859-1: null
   Popular: 0
 - Description: Mach-O binary (reverse byte ordering scheme, 32-bit)ref name
   Filename Extension: null
-  Hexadecimal File Signature: CE FA ED FE
+  Hexadecimal File Signature: CEFAEDFE
   ISO 8859-1: null
   Popular: 0
   URL: '"apple.com">{{cite web'
 - Description: Mach-O binary (reverse byte ordering scheme, 64-bit)
   Filename Extension: null
-  Hexadecimal File Signature: CF FA ED FE
+  Hexadecimal File Signature: CFFAEDFE
   ISO 8859-1: null
   Popular: 0
 - Description: Byte-order mark for text file encoded in Endianness#Little-endianlittle-endian
     UTF-1616-bit Unicode Transfer Format
   Filename Extension: null
-  Hexadecimal File Signature: FF FE
+  Hexadecimal File Signature: FFFE
   ISO 8859-1: null
   Popular: 0
 - Description: Byte-order mark for text file encoded in little-endian UTF-3232-bit
     Unicode Transfer Format
   Filename Extension: null
-  Hexadecimal File Signature: FF FE 00 00
+  Hexadecimal File Signature: FFFE0000
   ISO 8859-1: null
   Popular: 0
 - Description: PostScriptPostScript document
   Filename Extension: ps
-  Hexadecimal File Signature: 25 21 50 53
+  Hexadecimal File Signature: '25215053'
   ISO 8859-1: '%!PS'
   Popular: 0
 - Description: Microsoft_Compiled_HTML_HelpMS Windows HtmlHelp Data
   Filename Extension: chm
-  Hexadecimal File Signature: 49 54 53 46 03 00 00 00 60 00 00 00
+  Hexadecimal File Signature: '495453460300000060000000'
   ISO 8859-1: ITSF....`...
   Popular: 0
 - Description: Portable Document FormatPDF document
   Filename Extension: pdf
-  Hexadecimal File Signature: 25 50 44 46 2d
+  Hexadecimal File Signature: 255044462d
   ISO 8859-1: '%PDF-'
   Popular: 0
   URL: https://github.com/file/file/blob/master/magic/Magdir/pdf
 - Description: Advanced Systems Format
   Filename Extension: asfwmawmv
-  Hexadecimal File Signature: 30 26 B2 75 8E 66 CF 11 A6 D9 00 AA 00 62 CE 6C
+  Hexadecimal File Signature: 3026B2758E66CF11A6D900AA0062CE6C
   ISO 8859-1: 0&²u.fÏ .¦Ù.ª.bÎl
   Popular: 0
   URL: 'http://www.digitalpreservation.gov/formats/fdd/fdd000067.shtml '
 - Description: System Deployment Image, a disk image format used by Microsoft
   Filename Extension: null
-  Hexadecimal File Signature: 24 53 44 49 30 30 30 31
+  Hexadecimal File Signature: '2453444930303031'
   ISO 8859-1: $SDI0001
   Popular: 0
 - Description: Ogg, an Open-source licenseopen source media container format
   Filename Extension: oggogaogv
-  Hexadecimal File Signature: 4F 67 67 53
+  Hexadecimal File Signature: 4F676753
   ISO 8859-1: OggS
   Popular: 0
 - Description: Photoshop Document file, Adobe Photoshop's native file format
   Filename Extension: psd
-  Hexadecimal File Signature: 38 42 50 53
+  Hexadecimal File Signature: '38425053'
   ISO 8859-1: 8BPS
   Popular: 0
 - Description: Waveform Audio File Format
   Filename Extension: wav
-  Hexadecimal File Signature: 52 49 46 46 ?? ?? ?? ?? 57 41 56 45
+  Hexadecimal File Signature: 52494646????????57415645
   ISO 8859-1: RIFF.... WAVE
   Popular: 0
 - Description: Audio Video Interleave video format
   Filename Extension: avi
-  Hexadecimal File Signature: 52 49 46 46 ?? ?? ?? ?? 41 56 49 20
+  Hexadecimal File Signature: 52494646????????41564920
   ISO 8859-1: RIFF.... AVI.
   Popular: 0
 - Description: MPEG-1 Layer 3 file without an ID3 tag or with an ID3v1 tag (which's
     appended at the end of the file)
   Filename Extension: mp3
-  Hexadecimal File Signature: FF FB FF F3 FF F2
+  Hexadecimal File Signature: FFFBFFF3FFF2
   ISO 8859-1: ÿû ÿó ÿò
   Popular: 0
 - Description: MP3 file with an ID3v2 container
   Filename Extension: mp3
-  Hexadecimal File Signature: 49 44 33
+  Hexadecimal File Signature: '494433'
   ISO 8859-1: ID3
   Popular: 0
 - Description: BMP file formatBMP file, a bitmap format used mostly in the Windows
     world
   Filename Extension: bmpdib
-  Hexadecimal File Signature: 42 4D
+  Hexadecimal File Signature: 424D
   ISO 8859-1: null
   Popular: 0
 - Description: ISO9660 CD/DVD image file weburl
   Filename Extension: iso
-  Hexadecimal File Signature: 43 44 30 30 31
+  Hexadecimal File Signature: '4344303031'
   ISO 8859-1: CD001
   Popular: 0
   URL: http://www.garykessler.net/library/file_sigs.html
 - Description: Flexible Image Transport System (FITS) weburl
   Filename Extension: fits
-  Hexadecimal File Signature: 53 49 4D 50 4C 45 20 20 3D 20 20 20 20 20 20 20 20 20
-    20 20 20 20 20 20 20 20 20 20 20 54
+  Hexadecimal File Signature: 53494D504C4520203D202020202020202020202020202020202020202054
   ISO 8859-1: SIMPLE   =                      T
   Popular: 0
   URL: http://www.digitalpreservation.gov/formats/fdd/fdd000317.shtml#sign
 - Description: Free Lossless Audio Codec weburl
   Filename Extension: flac
-  Hexadecimal File Signature: 66 4C 61 43
+  Hexadecimal File Signature: 664C6143
   ISO 8859-1: fLaC
   Popular: 0
   URL: 'http://flac.sourceforge.net/format.html#stream '
 - Description: MIDI#Standard MIDI filesMIDI sound file weburl
   Filename Extension: midmidi
-  Hexadecimal File Signature: 4D 54 68 64
+  Hexadecimal File Signature: 4D546864
   ISO 8859-1: MThd
   Popular: 0
   URL: http://filesignatures.net/index.php?search
 - Description: Compound File Binary Format, a container format used for document by
     older versions of Microsoft Office. weburl
   Filename Extension: docxlspptmsg
-  Hexadecimal File Signature: D0 CF 11 E0 A1 B1 1A E1
+  Hexadecimal File Signature: D0CF11E0A1B11AE1
   ISO 8859-1: null
   Popular: 0
   URL: http://social.msdn.microsoft.com/Forums/en-US/343d09e3-5fdf-4b4a-9fa6-8ccb37a35930/developing-a-tool-to-recognise-ms-office-file-types-doc-xls-mdb-ppt-?forum
 - Description: Dalvik (software)Dalvik Executable
   Filename Extension: dex
-  Hexadecimal File Signature: 64 65 78 0A 30 33 35 00
+  Hexadecimal File Signature: 6465780A30333500
   ISO 8859-1: dex.035.
   Popular: 0
 - Description: VMDK files weburl
   Filename Extension: vmdk
-  Hexadecimal File Signature: 4B 44 4D
+  Hexadecimal File Signature: 4B444D
   ISO 8859-1: KDM
   Popular: 0
   URL: https://www.vmware.com/support/ws55/doc/ws_learning_files_in_a_vm.html
 - Description: Google Chrome extension weburl
   Filename Extension: crx
-  Hexadecimal File Signature: 43 72 32 34
+  Hexadecimal File Signature: '43723234'
   ISO 8859-1: Cr24
   Popular: 0
   URL: http://developer.chrome.com/extensions/crx.html
 - Description: Adobe FreeHandFreeHand 8 document weburl
   Filename Extension: fh8
-  Hexadecimal File Signature: 41 47 44 33
+  Hexadecimal File Signature: '41474433'
   ISO 8859-1: AGD3
   Popular: 0
   URL: https://mail.python.org/pipermail/pythonmac-sig/2005-February/013028.html
 - Description: AppleWorks 5 document
   Filename Extension: cwk
-  Hexadecimal File Signature: 05 07 00 00 42 4F 42 4F 05 07 00 00 00 00 00 00 00 00
-    00 00 00 01
+  Hexadecimal File Signature: 05070000424F424F0507000000000000000000000001
   ISO 8859-1: '....BOBO ........ ....'
   Popular: 0
 - Description: AppleWorks 6 document
   Filename Extension: cwk
-  Hexadecimal File Signature: 06 07 E1 00 42 4F 42 4F 06 07 E1 00 00 00 00 00 00 00
-    00 00 00 01
+  Hexadecimal File Signature: 0607E100424F424F0607E10000000000000000000001
   ISO 8859-1: '....BOBO ........ ....'
   Popular: 0
 - Description: Roxio Roxio ToastToast disc image file, also some .dmg-files begin
     with same bytes
   Filename Extension: toast
-  Hexadecimal File Signature: 45 52 02 00 00 00 8B 45 52 02 00 00 00
+  Hexadecimal File Signature: 4552020000008B455202000000
   ISO 8859-1: ER.... ãER....
   Popular: 0
 - Description: Apple Disk Image file
   Filename Extension: dmg
-  Hexadecimal File Signature: 78 01 73 0D 62 62 60
+  Hexadecimal File Signature: 7801730D626260
   ISO 8859-1: x.s.bb`
   Popular: 0
 - Description: Xar (archiver)eXtensible ARchive format weburl
   Filename Extension: xar
-  Hexadecimal File Signature: 78 61 72 21
+  Hexadecimal File Signature: '78617221'
   ISO 8859-1: xar!
   Popular: 0
   URL: https://code.google.com/p/xar/wiki/xarformat
 - Description: Windows Files And Settings Transfer Repository weburl
   Filename Extension: dat
-  Hexadecimal File Signature: 50 4D 4F 43 43 4D 4F 43
+  Hexadecimal File Signature: 504D4F43434D4F43
   ISO 8859-1: PMOCCMOC
   Popular: 0
   URL: http://www.howtogeek.com/79820/easily-restore-your-computer-with-file-and-settings-transfer-wizard-xp-part-1/
 - Description: Nintendo Entertainment System ROM file weburl
   Filename Extension: nes
-  Hexadecimal File Signature: 4E 45 53 1A
+  Hexadecimal File Signature: 4E45531A
   ISO 8859-1: NES
   Popular: 0
   URL: http://sadistech.com/nesromtool/romdoc.html
 - Description: tar (computing)tar archive weburl
   Filename Extension: tar
-  Hexadecimal File Signature: 75 73 74 61 72 00 30 30 75 73 74 61 72 20 20 00
+  Hexadecimal File Signature: '75737461720030307573746172202000'
   ISO 8859-1: ustar.00 ustar  .
   Popular: 0
   URL: https://www.gnu.org/software/tar/manual/html_node/Standard.html
 - Description: OAR file archive format, where ?? is the format version.
   Filename Extension: oar
-  Hexadecimal File Signature: 4F 41 52 ??
+  Hexadecimal File Signature: 4F4152??
   ISO 8859-1: OAR.
   Popular: 0
 - Description: Open source portable voxel file weburl
   Filename Extension: tox
-  Hexadecimal File Signature: 74 6F 78 33
+  Hexadecimal File Signature: 746F7833
   ISO 8859-1: TOX
   Popular: 0
   URL: http://tox.land/uvox/man.html
 - Description: Magic Lantern (firmware)Magic Lantern Video file weburl
   Filename Extension: MLV
-  Hexadecimal File Signature: 4D 4C 56 49
+  Hexadecimal File Signature: 4D4C5649
   ISO 8859-1: MLVI
   Popular: 0
   URL: https://docs.google.com/spreadsheet/ccc?key
 - Description: Windows Update [http://www.microsoft.com/en-us/download/details.aspx?id
   Filename Extension: null
-  Hexadecimal File Signature: 44 43 4D 01 50 41 33 30
+  Hexadecimal File Signature: 44434D0150413330
   ISO 8859-1: DCM PA30
   Popular: 0
   URL: 1562 Binary Delta Compression]<ref>{{Cite web
 - Description: 7-Zip File Format
   Filename Extension: 7z
-  Hexadecimal File Signature: 37 7A BC AF 27 1C
+  Hexadecimal File Signature: 377ABCAF271C
   ISO 8859-1: 7z¼¯'
   Popular: 0
 - Description: GZIP compressed fileCite weburl
   Filename Extension: gztar.gz
-  Hexadecimal File Signature: 1F 8B
+  Hexadecimal File Signature: 1F8B
   ISO 8859-1: null
   Popular: 0
   URL: https://tools.ietf.org/html/rfc1952#page-6
 - Description: XZ UtilsXZ compression utility using Lempel–Ziv–Markov chain algorithmLZMA2
     compression
   Filename Extension: xztar.xz
-  Hexadecimal File Signature: FD 37 7A 58 5A 00
+  Hexadecimal File Signature: FD377A585A00
   ISO 8859-1: ²7zXZ..
   Popular: 0
 - Description: LZ4 (compression algorithm)LZ4 Frame Format weburl
   Filename Extension: lz4
-  Hexadecimal File Signature: 04 22 4D 18
+  Hexadecimal File Signature: 04224D18
   ISO 8859-1: ."M.
   Popular: 0
   URL: https://github.com/lz4/lz4/blob/dev/doc/lz4_Frame_format.md
 - Description: Microsoft Cabinet file
   Filename Extension: cab
-  Hexadecimal File Signature: 4D 53 43 46
+  Hexadecimal File Signature: 4D534346
   ISO 8859-1: MSCF
   Popular: 0
 - Description: Microsoft compressed file in Quantum compressionQuantum format, used
@@ -553,99 +545,99 @@
     distributed with earlier versions of Windows.
   Filename Extension: Various. (Replacing the last character of the original filename
     extension with an underscore, e.g. setup.exe becomes setup.ex_)
-  Hexadecimal File Signature: 53 5A 44 44 88 F0 27 33
+  Hexadecimal File Signature: 535A444488F02733
   ISO 8859-1: SZDD....
   Popular: 0
 - Description: Free Lossless Image Format
   Filename Extension: flif
-  Hexadecimal File Signature: 46 4C 49 46
+  Hexadecimal File Signature: 464C4946
   ISO 8859-1: FLIF
   Popular: 0
 - Description: Matroska media container, including WebM
   Filename Extension: mkvmkamksmk3dwebm
-  Hexadecimal File Signature: 1A 45 DF A3
+  Hexadecimal File Signature: 1A45DFA3
   ISO 8859-1: .Eß£
   Popular: 0
 - Description: '"SEAN : Session Analysis" Training file. Also used in compatible software
     "Rpw : Rowperfect for Windows" and "RP3W : ROWPERFECT3 for Windows".'
   Filename Extension: stg
-  Hexadecimal File Signature: 4D 49 4C 20
+  Hexadecimal File Signature: 4D494C20
   ISO 8859-1: MIL
   Popular: 0
 - Description: DjVu documentThe following byte is either 55 (U) for single-page or
     4D (M) for multi-page documents.
   Filename Extension: djvudjv
-  Hexadecimal File Signature: 41 54 26 54 46 4F 52 4D ?? ?? ?? ?? 44 4A 56
+  Hexadecimal File Signature: 41542654464F524D????????444A56
   ISO 8859-1: AT&TFORM....DJV
   Popular: 0
 - Description: DER encoded X.509 certificate
   Filename Extension: der
-  Hexadecimal File Signature: 30 82
+  Hexadecimal File Signature: '3082'
   ISO 8859-1: null
   Popular: 0
 - Description: DICOMDICOM Medical File Format
   Filename Extension: dcm
-  Hexadecimal File Signature: 44 49 43 4D
+  Hexadecimal File Signature: 4449434D
   ISO 8859-1: DICM
   Popular: 0
 - Description: '[https://www.w3.org/TR/2012/REC-WOFF-20121213/ WOFF File Format 1.0]'
   Filename Extension: woff
-  Hexadecimal File Signature: 77 4F 46 46
+  Hexadecimal File Signature: 774F4646
   ISO 8859-1: wOFF
   Popular: 0
 - Description: '[https://www.w3.org/TR/WOFF2/ WOFF File Format 2.0]'
   Filename Extension: woff2
-  Hexadecimal File Signature: 77 4F 46 32
+  Hexadecimal File Signature: 774F4632
   ISO 8859-1: wOF2
   Popular: 0
 - Description: XMLeXtensible Markup Language when using the ASCII character encoding
   Filename Extension: XML
-  Hexadecimal File Signature: 3c 3f 78 6d 6c 20
+  Hexadecimal File Signature: 3c3f786d6c20
   ISO 8859-1: ?xml
   Popular: 0
 - Description: WebAssembly binary formatCite weburl
   Filename Extension: wasm
-  Hexadecimal File Signature: 00 61 73 6d
+  Hexadecimal File Signature: 0061736d
   ISO 8859-1: .asm
   Popular: 0
   URL: https://github.com/WebAssembly/design/blob/master/BinaryEncoding.md#high-level-structure
 - Description: Lepton image compression formatLepton compressed JPEG imageCite weburl
   Filename Extension: lep
-  Hexadecimal File Signature: cf 84 01
+  Hexadecimal File Signature: cf8401
   ISO 8859-1: null
   Popular: 0
   URL: https://blogs.dropbox.com/tech/2016/07/lepton-image-compression-saving-22-losslessly-from-images-at-15mbs/
 - Description: flash .swf
   Filename Extension: swf
-  Hexadecimal File Signature: 43 57 53   46 57 53
+  Hexadecimal File Signature: '435753465753'
   ISO 8859-1: CWS FWS
   Popular: 0
 - Description: linux deb file
   Filename Extension: deb
-  Hexadecimal File Signature: 21 3C 61 72 63 68 3E
+  Hexadecimal File Signature: 213C617263683E
   ISO 8859-1: null
   Popular: 0
 - Description: Google WebP image file, where ?? ?? ?? ?? is the file size. More information
     on [https://developers.google.com/speed/webp/docs/riff_container#webp_file_header
     WebP File Header]
   Filename Extension: webp
-  Hexadecimal File Signature: 52 49 46 46 ?? ?? ?? ?? 57 45 42 50
+  Hexadecimal File Signature: 52494646????????57454250
   ISO 8859-1: RIFF.... WEBP
   Popular: 0
 - Description: U-Boot / uImage. Das U-Boot Universal Boot Loader.Cite weburl
   Filename Extension: null
-  Hexadecimal File Signature: 27 05 19 56
+  Hexadecimal File Signature: '27051956'
   ISO 8859-1: '''..V'
   Popular: 0
   URL: http://buffalo.nas-central.org/wiki/How_to_Extract_an_uImage
 - Description: Rich Text Format
   Filename Extension: rtf
-  Hexadecimal File Signature: 7B 5C 72 74 66 31
+  Hexadecimal File Signature: 7B5C72746631
   ISO 8859-1: \rtf1
   Popular: 0
 - Description: Microsoft Tape Format
   Filename Extension: null
-  Hexadecimal File Signature: 54 41 50 45
+  Hexadecimal File Signature: '54415045'
   ISO 8859-1: TAPE
   Popular: 0
 - Description: MPEG Transport Stream  (MPEG-2 Part 1)
@@ -656,18 +648,18 @@
 - Description: MPEG Program Stream  (MPEG-1 Part 1 (essentially identical) and MPEG-2
     Part 1)
   Filename Extension: m2p  vob
-  Hexadecimal File Signature: 00 00 01 BA
+  Hexadecimal File Signature: 000001BA
   ISO 8859-1: null
   Popular: 0
 - Description: MPEG Program Stream  MPEG Transport Stream  MPEG-1 video and MPEG-2
     video  (MPEG-1 Part 2 and MPEG-2 Part 2)
   Filename Extension: mpg mpeg
-  Hexadecimal File Signature: 00 00 01 BA4700 00 01 B3
+  Hexadecimal File Signature: 000001BA47000001B3
   ISO 8859-1: null
   Popular: 0
 - Description: ISO Base Media file (MPEG-4)
   Filename Extension: mp4
-  Hexadecimal File Signature: 00 00 00 18 66 74 79 70 69 73 6F 6D
+  Hexadecimal File Signature: 000000186674797069736F6D
   ISO 8859-1: ftypisom
   Popular: 0
 - Description: No Compression (no preset dictionary)  Best speed (no preset dictionary)  Default
@@ -675,298 +667,297 @@
     Compression (with preset dictionary)  Best speed (with preset dictionary)  Default
     Compression (with preset dictionary)  Best Compression (with preset dictionary)
   Filename Extension: zlib
-  Hexadecimal File Signature: 78 01 78 5E 78 9C 78 DA 78 20 78 7D 78 BB 78 F9
+  Hexadecimal File Signature: 7801785E789C78DA7820787D78BB78F9
   ISO 8859-1: null
   Popular: 0
 - Description: LZFSE - Lempel-Ziv style data compression algorithm using Finite State
     Entropy coding. OSS by Apple.Cite weburl
   Filename Extension: lzfse
-  Hexadecimal File Signature: 62 76 78 32
+  Hexadecimal File Signature: '62767832'
   ISO 8859-1: bvx2
   Popular: 0
   URL: https://github.com/lzfse/lzfse
 - Description: Apache ORC (Optimized Row Columnar) file format
   Filename Extension: orc
-  Hexadecimal File Signature: 4F 52 43
+  Hexadecimal File Signature: 4F5243
   ISO 8859-1: ORC
   Popular: 0
 - Description: Apache Avro binary file format
   Filename Extension: avro
-  Hexadecimal File Signature: 4F 62 6A 01
+  Hexadecimal File Signature: 4F626A01
   ISO 8859-1: Obj.
   Popular: 0
 - Description: RCFile columnar file format
   Filename Extension: rc
-  Hexadecimal File Signature: 53 45 51 36
+  Hexadecimal File Signature: '53455136'
   ISO 8859-1: SEQ6
   Popular: 0
 - Description: PhotoCap Object Templates
   Filename Extension: p25  obt
-  Hexadecimal File Signature: 65 87 78 56
+  Hexadecimal File Signature: '65877856'
   ISO 8859-1: e.xV
   Popular: 0
 - Description: PhotoCap Vector
   Filename Extension: pcv
-  Hexadecimal File Signature: 55 55 aa aa
+  Hexadecimal File Signature: 5555aaaa
   ISO 8859-1: null
   Popular: 0
 - Description: PhotoCap Template
   Filename Extension: pbt  pdt  pea  peb  pet  pgt  pict  pjt  pkt  pmt
-  Hexadecimal File Signature: 78 56 34
+  Hexadecimal File Signature: '785634'
   ISO 8859-1: xV4
   Popular: 0
 - Description: Apache Parquet columnar file format
   Filename Extension: null
-  Hexadecimal File Signature: 50 41 52 31
+  Hexadecimal File Signature: '50415231'
   ISO 8859-1: PAR1
   Popular: 0
 - Description: E-mu_EmaxEmulator Emaxsynth samples
   Filename Extension: ez2
-  Hexadecimal File Signature: 45 4D 58 32
+  Hexadecimal File Signature: 454D5832
   ISO 8859-1: EMX2
   Popular: 0
 - Description: E-mu_Emulator#The_Emulator_IIIEmulator III synth samples
   Filename Extension: ez3 iso
-  Hexadecimal File Signature: 45 4D 55 33
+  Hexadecimal File Signature: 454D5533
   ISO 8859-1: EMU3
   Popular: 0
 - Description: Lua (programming language)Lua bytecode web title
   Filename Extension: luac
-  Hexadecimal File Signature: 1B 4C 75 61
+  Hexadecimal File Signature: 1B4C7561
   ISO 8859-1: .Lua
   Popular: 0
   URL: 'Lua 5.2 Bytecode and Virtual Machine '
 - Description: macOS file AliasCite weburl
   Filename Extension: alias
-  Hexadecimal File Signature: 62 6F 6F 6B 00 00 00 00 6D 61 72 6B 00 00 00 00
+  Hexadecimal File Signature: 626F6F6B000000006D61726B00000000
   ISO 8859-1: 62 6F 6F 6B 00 00 00 00 6D 61 72 6B 00 00 00 00
   Popular: 0
   URL: https://www.forensicswiki.org/wiki/Mac_OS_X#Burn_Folder
 - Description: Microsoft Zone Identifier for [https://technet.microsoft.com/en-us/windows/ms537183(v
   Filename Extension: Identifier
-  Hexadecimal File Signature: 5B 5A 6F 6E 65 54 72 61 6E 73 66 65 72 5D
+  Hexadecimal File Signature: 5B5A6F6E655472616E736665725D
   ISO 8859-1: '[ZoneTransfer]'
   Popular: 0
   URL: vs.60) URL Security Zones]<ref>{{Cite web
 - Description: Email Message var5Cite weburl
   Filename Extension: eml
-  Hexadecimal File Signature: 52 65 63 65 69 76 65 64
+  Hexadecimal File Signature: '5265636569766564'
   ISO 8859-1: 'Received:'
   Popular: 0
   URL: http://file-extension.net/seeker/program_extension_message
 - Description: Tableau Datasource
   Filename Extension: tde
-  Hexadecimal File Signature: 20 02 01 62 A0 1E AB 07 02 00 00 00
+  Hexadecimal File Signature: 20020162A01EAB0702000000
   ISO 8859-1: 20 02 01 62 A0 1E AB 07 02 00 00 00
   Popular: 0
 - Description: KDB file
   Filename Extension: kdb
-  Hexadecimal File Signature: 37 48 03 02 00 00 00 00 58 35 30 39 4B 45 59
+  Hexadecimal File Signature: 3748030200000000583530394B4559
   ISO 8859-1: 37 48 03 02 00 00 00 00 58 35 30 39 4B 45 59
   Popular: 0
 - Description: PGP file Cite weburl
   Filename Extension: pgp
-  Hexadecimal File Signature: 85 ?? ?? 03
+  Hexadecimal File Signature: 85????03
   ISO 8859-1: 85 ?? ?? 03
   Popular: 0
   URL: https://security.stackexchange.com/a/144555/12109
 - Description: Zstandard compressed fileCite weburl
   Filename Extension: zst
-  Hexadecimal File Signature: 28 B5 2F FD
+  Hexadecimal File Signature: 28B52FFD
   ISO 8859-1: 28 B5 2F FD
   Popular: 0
   URL: https://tools.ietf.org/html/rfc8478#section-3.1.1
 - Description: QuickZip rs compressed archiveCite weburl
   Filename Extension: rs
-  Hexadecimal File Signature: 52 53 56 4B 44 41 54 41
+  Hexadecimal File Signature: 5253564B44415441
   ISO 8859-1: 52 53 56 4B 44 41 54 41
   Popular: 0
   URL: https://filext.com/file-extension/RS
 - Description: Smile (data interchange format)Smile file
   Filename Extension: sml
-  Hexadecimal File Signature: 3A 29 0A
+  Hexadecimal File Signature: 3A290A
   ISO 8859-1: 3A 29 0A
   Popular: 0
 - Description: Preferred Executable Format
   Filename Extension: null
-  Hexadecimal File Signature: 4A 6F 79 21
+  Hexadecimal File Signature: 4A6F7921
   ISO 8859-1: 4A 6F 79 21
   Popular: 0
 - Description: SubRip File
   Filename Extension: srt
-  Hexadecimal File Signature: 31 0A 30 30
+  Hexadecimal File Signature: 310A3030
   ISO 8859-1: 31 0A 30 30
   Popular: 0
 - Description: VPK file, used to store game data for some Source Engine games
   Filename Extension: vpk
-  Hexadecimal File Signature: 34 12 AA 55
+  Hexadecimal File Signature: 3412AA55
   ISO 8859-1: 34 12 AA 55
   Popular: 0
 - Description: Adobe Shockwave
   Filename Extension: dcr
-  Hexadecimal File Signature: 58 46 49 52
+  Hexadecimal File Signature: '58464952'
   ISO 8859-1: 58 46 49 52
   Popular: 0
 - Description: ACE (compressed file format)
   Filename Extension: ace
-  Hexadecimal File Signature: 2A 2A 41 43 45 2A 3A
+  Hexadecimal File Signature: 2A2A4143452A3A
   ISO 8859-1: 2A 2A 41 43 45 2A 2A
   Popular: 0
 - Description: ARJ
   Filename Extension: arj
-  Hexadecimal File Signature: 60 EA
+  Hexadecimal File Signature: 60EA
   ISO 8859-1: 60 RA
   Popular: 0
 - Description: InstallShield CAB Archive File
   Filename Extension: cab
-  Hexadecimal File Signature: 49 53 63 28
+  Hexadecimal File Signature: '49536328'
   ISO 8859-1: 49 53 63 28
   Popular: 0
 - Description: Windows 3.1x Compressed File
   Filename Extension: ??_
-  Hexadecimal File Signature: 4B 57 41 4A
+  Hexadecimal File Signature: 4B57414A
   ISO 8859-1: 4B 57 41 4A
   Popular: 0
 - Description: Windows 9x Compressed File
   Filename Extension: ??_
-  Hexadecimal File Signature: 53 5A 44 44
+  Hexadecimal File Signature: 535A4444
   ISO 8859-1: 53 5A 44 44
   Popular: 0
 - Description: Zoo (file format)
   Filename Extension: zoo
-  Hexadecimal File Signature: 5A 4F 4F
+  Hexadecimal File Signature: 5A4F4F
   ISO 8859-1: 5A 4F 4F
   Popular: 0
 - Description: Portable bitmap
   Filename Extension: pbm
-  Hexadecimal File Signature: 50 31 0A
+  Hexadecimal File Signature: 50310A
   ISO 8859-1: 50 31 0A
   Popular: 0
 - Description: Portable Gray Map
   Filename Extension: pgm
-  Hexadecimal File Signature: 50 32 0A
+  Hexadecimal File Signature: 50320A
   ISO 8859-1: 50 32 0A
   Popular: 0
 - Description: Portable Pixmap
   Filename Extension: ppm
-  Hexadecimal File Signature: 50 33 0A
+  Hexadecimal File Signature: 50330A
   ISO 8859-1: 50 33 0A
   Popular: 0
 - Description: Windows Metafile
   Filename Extension: wmf
-  Hexadecimal File Signature: D7 CD C6 9A
+  Hexadecimal File Signature: D7CDC69A
   ISO 8859-1: D7 CD C6 9A
   Popular: 0
 - Description: XCF (file format)
   Filename Extension: xcf
-  Hexadecimal File Signature: 67 69 6D 70 20 78 63 66
+  Hexadecimal File Signature: 67696D7020786366
   ISO 8859-1: 67 69 6D 70 20 78 63 66
   Popular: 0
 - Description: X PixMap
   Filename Extension: xpm
-  Hexadecimal File Signature: 2F 2A 20 58 50 4D 20 2A 2F
+  Hexadecimal File Signature: 2F2A2058504D202A2F
   ISO 8859-1: 2F 2A 20 58 50 4D 20 2A 2F
   Popular: 0
 - Description: Advanced Forensics Format
   Filename Extension: aff
-  Hexadecimal File Signature: 41 46 46
+  Hexadecimal File Signature: '414646'
   ISO 8859-1: 41 46 46
   Popular: 0
 - Description: EnCase EWF version 2 format
   Filename Extension: Ex01
-  Hexadecimal File Signature: 45 56 46 32
+  Hexadecimal File Signature: '45564632'
   ISO 8859-1: 45 56 46 32
   Popular: 0
 - Description: EnCase EWF version 1 format
   Filename Extension: e01
-  Hexadecimal File Signature: 45 56 46
+  Hexadecimal File Signature: '455646'
   ISO 8859-1: 45 56 46
   Popular: 0
 - Description: qcow file format
   Filename Extension: qcow
-  Hexadecimal File Signature: 51 46 49
+  Hexadecimal File Signature: '514649'
   ISO 8859-1: 51 46 49
   Popular: 0
 - Description: Animated cursor
   Filename Extension: ani
-  Hexadecimal File Signature: 52 49 46 46 ?? ?? ?? ?? 41 43 4F 4E
+  Hexadecimal File Signature: 52494646????????41434F4E
   ISO 8859-1: RIFF.... ACON
   Popular: 0
 - Description: Compact Disc Digital Audio
   Filename Extension: cda
-  Hexadecimal File Signature: 52 49 46 46 ?? ?? ?? ?? 43 44 44 41
+  Hexadecimal File Signature: 52494646????????43444441
   ISO 8859-1: RIFF.... CDDA
   Popular: 0
 - Description: Qualcomm PureVoice file format
   Filename Extension: qcp
-  Hexadecimal File Signature: 52 49 46 46 ?? ?? ?? ?? 51 4C 43 4D
+  Hexadecimal File Signature: 52494646????????514C434D
   ISO 8859-1: RIFF.... QLCM
   Popular: 0
 - Description: Macromedia Director file format
   Filename Extension: dir
-  Hexadecimal File Signature: 58 46 49 52 ?? ?? ?? ?? 33 39 56 4D
+  Hexadecimal File Signature: 58464952????????3339564D
   ISO 8859-1: XFIR.... 39VM
   Popular: 0
 - Description: Flash Video file
   Filename Extension: flv
-  Hexadecimal File Signature: 46 4C 56
+  Hexadecimal File Signature: 464C56
   ISO 8859-1: 46 4C 56
   Popular: 0
 - Description: VirtualBox Virtual Hard Disk file format
   Filename Extension: vdi
-  Hexadecimal File Signature: 3C 3C 3C 20 4F 72 61 63 6C 65 20 56 4D 20 56 69 72 74
-    75 61 6C 42 6F 78 20 44 69 73 6B 20 49 6D 61 67 65 20 3E 3E 3E
+  Hexadecimal File Signature: 3C3C3C204F7261636C6520564D205669727475616C426F78204469736B20496D616765203E3E3E
   ISO 8859-1: 3C 3C 3C 20 4F 72 61 63 6C 65 20 56 4D 20 56 69 72 74 75 61 6C 42 6F
     78 20 44 69 73 6B 20 49 6D 61 67 65 20 3E 3E 3E
   Popular: 0
 - Description: Windows Virtual PC Virtual Hard Disk file format
   Filename Extension: vhd
-  Hexadecimal File Signature: 63 6F 6E 6E 65 63 74 69 78
+  Hexadecimal File Signature: 636F6E6E6563746978
   ISO 8859-1: 63 6F 6E 6E 65 63 74 69 78
   Popular: 0
 - Description: Windows Virtual PC Windows 8 Virtual Hard Disk file format
   Filename Extension: vhdx
-  Hexadecimal File Signature: 76 68 64 78 66 69 6C 65
+  Hexadecimal File Signature: 7668647866696C65
   ISO 8859-1: 76 68 64 78 66 69 6C 65
   Popular: 0
 - Description: compressed ISO image
   Filename Extension: isz
-  Hexadecimal File Signature: 49 73 5A 21
+  Hexadecimal File Signature: 49735A21
   ISO 8859-1: 49 73 5A 21
   Popular: 0
 - Description: Direct Access Archive PowerISO
   Filename Extension: daa
-  Hexadecimal File Signature: 44 41 41
+  Hexadecimal File Signature: '444141'
   ISO 8859-1: 44 41 41
   Popular: 0
 - Description: Windows Event Viewer file format
   Filename Extension: evt
-  Hexadecimal File Signature: 4C 66 4C 65
+  Hexadecimal File Signature: 4C664C65
   ISO 8859-1: 4C 66 4C 65
   Popular: 0
 - Description: Windows 3.x Program Manager Program Group file format
   Filename Extension: grp
-  Hexadecimal File Signature: 50 4D 43 43
+  Hexadecimal File Signature: 504D4343
   ISO 8859-1: 50 4D 43 43
   Popular: 0
 - Description: ICC profile
   Filename Extension: icm
-  Hexadecimal File Signature: 4B 43 4D 53
+  Hexadecimal File Signature: 4B434D53
   ISO 8859-1: 4B 43 4D 53
   Popular: 0
 - Description: Windows Registry file
   Filename Extension: dat
-  Hexadecimal File Signature: 72 65 67 66
+  Hexadecimal File Signature: '72656766'
   ISO 8859-1: 72 65 67 66
   Popular: 0
 - Description: Microsoft Outlook Personal Storage Table file
   Filename Extension: pst
-  Hexadecimal File Signature: 21 42 44 4E
+  Hexadecimal File Signature: 2142444E
   ISO 8859-1: 21 42 44 4E
   Popular: 0
 - Description: 3D model compressed with Google DracoCite weblast
   Filename Extension: drc
-  Hexadecimal File Signature: 44 52 41 43 4F
+  Hexadecimal File Signature: 445241434F
   ISO 8859-1: 44 52 41 43 4F
   Popular: 0
   URL: ''

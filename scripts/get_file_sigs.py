@@ -39,7 +39,7 @@ populars = set(["23 21"])
 
 for i in range(1, len(to_iter)):
     to_insert = {}
-    to_insert["Hexadecimal File Signature"] = cleanhtml(to_iter[i][0])
+    to_insert["Hexadecimal File Signature"] = cleanhtml(to_iter[i][0]).replace(" ", "")
     check_iso = cleanhtml(to_iter[i][1])
     if len(set(check_iso)) <= 2:
         to_insert["ISO 8859-1"] = None
@@ -71,7 +71,7 @@ for i in range(1, len(to_iter)):
         to_insert["Popular"] = 0
     to_dump.append(to_insert)
 
-with open('file_signatures.yaml', 'w') as ym:
+with open("file_signatures.yaml", "w") as ym:
     yaml.dump(to_dump, ym, allow_unicode=True)
 
 

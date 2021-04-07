@@ -11,7 +11,12 @@ class RegexIdentifier:
     def check(self, text):
         matches = []
         for reg in self.regexes:
-            matched_regex = re.compile(reg["Regex"], re.UNICODE).search(text)
+            matched_regex = re.findall(reg["Regex"], text, re.UNICODE)
+
             if matched_regex:
-                matches.append({"Matched": matched_regex.group(), "Regex Pattern": reg})
+                for i in matched_regex:
+                    matches.append({"Matched": i, "Regex Pattern": reg})
         return matches
+
+    def clean_text(self, text):
+        return text.replace("\n", "").replace("\t", "")

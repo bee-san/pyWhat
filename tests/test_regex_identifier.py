@@ -13,7 +13,6 @@ def test_regex_runs():
     res = r.check("DANHz6EQVoWyZ9rER56DwTXHWUxfkv9k2o")
     assert "Dogecoin Wallet Address" in res[0]["Regex Pattern"]["Name"]
 
-
 @pytest.mark.skip(reason="Fails Regex due to http://")
 def test_url():
     r = regex_identifier.RegexIdentifier()
@@ -21,21 +20,18 @@ def test_url():
     assert "Uniform Resource Locator (URL)" in res[0]["Regex Pattern"]["Name"]
 
 
-@pytest.mark.skip(reason="Fails Regex due to http://")
+
 def test_https():
     r = regex_identifier.RegexIdentifier()
     res = r.check("https://tryhackme.com")
     assert "Uniform Resource Locator (URL)" in res[0]["Regex Pattern"]["Name"]
 
 
-@pytest.mark.skip(reason="Fails Regex due to http://")
 def test_ip():
     r = regex_identifier.RegexIdentifier()
     res = r.check("http://10.1.1.1")
     assert "Uniform Resource Locator (URL)" in res[0]["Regex Pattern"]["Name"]
 
-
-@pytest.mark.skip(reason="Fails Regex due to http://")
 def test_ip2():
     r = regex_identifier.RegexIdentifier()
     res = r.check("http://0.0.0.0")
