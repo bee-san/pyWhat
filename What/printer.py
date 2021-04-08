@@ -19,7 +19,8 @@ class Printing:
                 prob_language += f" [red]{i.lang}[/red] {round(i.prob * 100)}% probability"
 
         to_out = ""
-        to_out += f"[bold #D7Afff]Possible language (ISO-639-1 code):[/bold #D7Afff]{prob_language}.\n"
+        if prob_language:
+            to_out += f"[bold #D7Afff]Possible language (ISO-639-1 code):[/bold #D7Afff]{prob_language}.\n"
 
         if text["File Signatures"]:
             to_out += "\n"

@@ -49,7 +49,7 @@ def test_ctf_flag():
     r = regex_identifier.RegexIdentifier()
     res = r.check("thm{hello}")
     assert (
-        "Flag from Capture The Flag (CyberSecurity)" in res[0]["Regex Pattern"]["Name"]
+        "TryHackMe Flag Format" in res[0]["Regex Pattern"]["Name"]
     )
 
 
@@ -57,7 +57,7 @@ def test_ctf_flag_uppercase():
     r = regex_identifier.RegexIdentifier()
     res = r.check("FLAG{hello}")
     assert (
-        "Flag from Capture The Flag (CyberSecurity)" in res[0]["Regex Pattern"]["Name"]
+        "CTF Flag" in res[0]["Regex Pattern"]["Name"]
     )
 
 
@@ -71,3 +71,30 @@ def test_bitcoin():
     r = regex_identifier.RegexIdentifier()
     res = r.check("1KFHE7w8BhaENAswwryaoccDb6qcT6DbYY")
     assert "Bitcoin" in res[0]["Regex Pattern"]["Name"]
+
+def test_visa():
+    r = regex_identifier.RegexIdentifier()
+    res = r.check("4111111111111111")
+    assert "Visa" in res[0]["Regex Pattern"]["Name"]
+
+def test_master_Card():
+    r = regex_identifier.RegexIdentifier()
+    res = r.check("5500000000000004")
+    assert "MasterCard" in res[0]["Regex Pattern"]["Name"]
+
+def test_american_express():
+    r = regex_identifier.RegexIdentifier()
+    res = r.check("340000000000009")
+    assert "American Express" in res[0]["Regex Pattern"]["Name"]
+
+def test_american_diners_club():
+    r = regex_identifier.RegexIdentifier()
+    res = r.check("30000000000004")
+    assert "Diners Club Card" in res[0]["Regex Pattern"]["Name"]
+
+
+def test_american_diners_discover():
+    r = regex_identifier.RegexIdentifier()
+    res = r.check("6011000000000004")
+    assert "Discover" in res[0]["Regex Pattern"]["Name"]
+ 

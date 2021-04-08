@@ -96,3 +96,33 @@ def test_arg_parsing2():
     result = runner.invoke(main, ["http://10.1.1.1"])
     assert result.exit_code == 0
     assert re.findall('URL', str(result.output))
+
+def test_file_fixture_visa():
+    runner = CliRunner()
+    result = runner.invoke(main, ["fixtures/file"])
+    assert result.exit_code == 0
+    assert re.findall('Visa', str(result.output))
+
+def test_file_fixture_master_card():
+    runner = CliRunner()
+    result = runner.invoke(main, ["fixtures/file"])
+    assert result.exit_code == 0
+    assert re.findall('MasterCard', str(result.output))
+
+def test_file_fixture_master_amex():
+    runner = CliRunner()
+    result = runner.invoke(main, ["fixtures/file"])
+    assert result.exit_code == 0
+    assert re.findall('American Express', str(result.output))
+
+def test_file_fixture_master_diners():
+    runner = CliRunner()
+    result = runner.invoke(main, ["fixtures/file"])
+    assert result.exit_code == 0
+    assert re.findall('Diners Club Card', str(result.output))
+
+def test_file_fixture_discover():
+    runner = CliRunner()
+    result = runner.invoke(main, ["fixtures/file"])
+    assert result.exit_code == 0
+    assert re.findall('Discover', str(result.output))
