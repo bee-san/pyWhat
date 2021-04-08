@@ -1,5 +1,0 @@
----
-- Name: null
-  Description: "Script or data to be passed to the program following the shebang (#!)"
-  Hex_Signature: "23 21"
-  ISO 8859-1: "#!"

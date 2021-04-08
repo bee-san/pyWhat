@@ -4,7 +4,7 @@ import yaml
 
 class RegexIdentifier:
     def __init__(self):
-        with open("What/data.yaml", "r") as myfile:
+        with open("Data/regex.yaml", "r") as myfile:
             data = myfile.read()
             self.regexes = yaml.load(data, Loader=yaml.FullLoader)
 
