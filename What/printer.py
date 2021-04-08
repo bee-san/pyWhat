@@ -16,7 +16,9 @@ class Printing:
         prob_language = ""
         if languages:
             for i in languages:
-                prob_language += f" [red]{i.lang}[/red] {round(i.prob * 100)}% probability"
+                prob_language += (
+                    f" [red]{i.lang}[/red] {round(i.prob * 100)}% probability"
+                )
 
         to_out = ""
         if prob_language:
@@ -30,7 +32,9 @@ class Printing:
 
         if text["Regexes"]:
             to_out += f"\n[bold #D7Afff]Possible Identification[/bold #D7Afff]"
-            table = Table(show_header=True, header_style="bold #D7Afff", show_lines=True)
+            table = Table(
+                show_header=True, header_style="bold #D7Afff", show_lines=True
+            )
             table.add_column("Matched Text")
             table.add_column("Identified as")
             table.add_column("Description")
@@ -56,10 +60,12 @@ class Printing:
         explorers = {
             "Ethereum Wallet": "https://etherscan.io/address/",
             "Dogecoin Wallet Address": "https://dogechain.info/address/",
-            "Bitcoin Wallet": "https://www.blockchain.com/btc/address/"
+            "Bitcoin Wallet": "https://www.blockchain.com/btc/address/",
         }
         if text in explorers:
-            return "Click here to see the address on the blockchain " + explorers[text] + matched
+            return (
+                "Click here to see the address on the blockchain "
+                + explorers[text]
+                + matched
+            )
         return None
-
-        
