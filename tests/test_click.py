@@ -1,6 +1,7 @@
 from click.testing import CliRunner
 from What.what import main
 import re
+import pytest
 
 
 def test_hello_world():
@@ -151,3 +152,34 @@ def test_file_fixture_usernamepassword():
     result = runner.invoke(main, ["fixtures/file"])
     assert result.exit_code == 0
     assert re.findall("Username", str(result.output))
+
+def test_file_fixture_email():
+    runner = CliRunner()
+    result = runner.invoke(main, ["fixtures/file"])
+    assert result.exit_code == 0
+    assert re.findall("Email", str(result.output))
+
+def test_file_fixture_youtube():
+    runner = CliRunner()
+    result = runner.invoke(main, ["fixtures/file"])
+    assert result.exit_code == 0
+    assert re.findall("YouTube", str(result.output))
+
+def test_file_fixture_youtube_id():
+    runner = CliRunner()
+    result = runner.invoke(main, ["fixtures/file"])
+    assert result.exit_code == 0
+    assert re.findall("YouTube", str(result.output))
+
+@pytest.mark.skip(reason="Matches on https://")
+def test_file_fixture_ip():
+    runner = CliRunner()
+    result = runner.invoke(main, ["fixtures/file"])
+    assert result.exit_code == 0
+    assert re.findall("Internet Protocol", str(result.output))
+
+def test_file_fixture_ssn():
+    runner = CliRunner()
+    result = runner.invoke(main, ["fixtures/file"])
+    assert result.exit_code == 0
+    assert re.findall("Social", str(result.output))

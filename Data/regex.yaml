@@ -15,16 +15,31 @@
   Regex:  "(?i)thm{.*}|(?i)tryhackme{.*}"
   Description: Capture The Flag at https://tryhackme.com
   Rarity: 1
+  Tags: ["Cyber Security"]
 
 - Name: HackTheBox Flag Format
   Regex:  "(?i)hackthebox{.*}|(?i)htb{.*}"
   Description: Capture The Flag at https://hackthebox.eu
   Rarity: 1
+  Tags: ["Cyber Security"]
 
 - Name: CTF Flag
   Regex:  "(?i)flag{.*}|(?i)ctf{.*}"
   Description: General Capture The Flag Event's Flag
   Rarity: 1
+  Tags: ["Cyber Security"]
+
+- Name: YouTube Video
+  Regex: https?:\/\/(?:youtu\.be\/|(?:[a-z]{2,3}\.)?youtube\.com\/watch(?:\?|#\!)v=)([\w-]{11})
+  Description: null
+  Rarity: 1
+  Tags: ["Media"]
+
+- Name: Uniform Resource Locator (URL)
+  Regex: '(https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|www\.[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9]+\.[^\s]{2,}|www\.[a-zA-Z0-9]+\.[^\s]{2,})'
+  Description: A Uniform Resource Location (URL) pointing to a web address.
+  Rarity: 1
+  Tags: ["Identifiers"]
 
 - Name: Dogecoin Wallet Address
   Regex: "D{1}[5-9A-HJ-NP-U]{1}[1-9A-HJ-NP-Za-km-z]{32}"
@@ -116,18 +131,32 @@
   Rarity: 0.5
   Tags: ['Credit Card', 'Finance']
 
-- Name: Union Pay Card
-  Regex: '(62[0-9]{14,17})'
-  Description: 'Credit Card Number'
+- Name: Email Address
+  Regex: (?:[\w!#$%&'*+=?^_\/{|}`~-]+(?:\.[\w!#$%&'*+=?^_`{|}~-]+)*)@(?:(?:\w(?:\w*\w)?\.)+\w(?:\w*\w)?)
+  Description: null
   Rarity: 0.5
-  Tags: ['Credit Card', 'Finance']
+  Tags: ['Identifiers', 'Credentials']
 
-- Name: Uniform Resource Locator (URL)
-  Regex: '(https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|www\.[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9]+\.[^\s]{2,}|www\.[a-zA-Z0-9]+\.[^\s]{2,})'
-  Description: A Uniform Resource Location (URL) pointing to a web address.
-  Rarity: 0.3
+- Name: YouTube Video ID
+  Regex: ([\w-]{11})
+  Description: null
+  Rarity: 0.4
+  Tags: ['Media']
+
+- Name: Internet Protocol (IP) Address
+  Regex: aisidjasjaidoasozi8812813ijkj
+  Description: Universal address pointing to an entity on the web.
+  Rarity: 0.4
+  Tags: ['Identifiers']
+
+- Name: American Social Security Number
+  Regex: '[0-9]{3}-[0-9]{2}-[0-9]{4}'
+  Description: "https://en.wikipedia.org/wiki/Social_Security_number"
+  rarity: 0.2
+  Tags: ["Credentials", "Password", "Username"]
 
 - Name: Username Password Combination
   Regex: .{1,30}:.{1,250}
   Description: The password may be a hash, so double check with Name-That-Hash!
   rarity: 0.2
+  Tags: ["Credentials", "Password", "Username"]

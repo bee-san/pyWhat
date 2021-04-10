@@ -61,6 +61,7 @@ class Printing:
             "Ethereum Wallet": "https://etherscan.io/address/",
             "Dogecoin Wallet Address": "https://dogechain.info/address/",
             "Bitcoin Wallet": "https://www.blockchain.com/btc/address/",
+            "YouTube Video ID": "https://www.youtube.com/watch?v=",
         }
         if text in explorers:
             return (
