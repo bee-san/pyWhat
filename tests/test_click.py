@@ -145,3 +145,9 @@ def test_file_fixture_discover():
     result = runner.invoke(main, ["fixtures/file"])
     assert result.exit_code == 0
     assert re.findall("Discover", str(result.output))
+
+def test_file_fixture_usernamepassword():
+    runner = CliRunner()
+    result = runner.invoke(main, ["fixtures/file"])
+    assert result.exit_code == 0
+    assert re.findall("Username", str(result.output))
