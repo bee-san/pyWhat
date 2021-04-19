@@ -28,5 +28,9 @@ Say you have a `.pcap` file from a network attack. `What` can identify this and 
 
 With `what`, you can identify the important things in the pcap in seconds, not minutes.
 
+## Anything
 
+Anytime you have a file and you want to find structured data in it that's useful, `What` is for you.
+
+Or if you come across some piece of text and you don't know what it is, `What` will tell you.
 
