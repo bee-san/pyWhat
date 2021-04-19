@@ -84,7 +84,7 @@ dev = ["codecov (>=2.0.15)", "colorama (>=0.3.4)", "flake8 (>=3.7.7)", "tox (>=3
 
 [[package]]
 name = "name-that-hash"
-version = "1.6.0"
+version = "1.7.0"
 description = "The Modern Hash Identifcation System"
 category = "main"
 optional = false
@@ -93,7 +93,7 @@ python-versions = ">=3.6,<4.0"
 [package.dependencies]
 click = ">=7.1.2,<8.0.0"
 loguru = ">=0.5.3,<0.6.0"
-rich = ">=9.9.0,<10.0.0"
+rich = ">=9.9,<11.0"
 
 [[package]]
 name = "pygments"
@@ -151,7 +151,7 @@ dev = ["pytest (>=4.6.2)", "black (>=19.3b0)"]
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.6"
-content-hash = "4b324fb4f880c9eb80dc238f52fdafe1ea13f091ef3ab3d3a80f2af92dc93e62"
+content-hash = "5d03b2d5918465593d7916c6f294d801b24700b05fb4f0eab4aae77a99cc2c9e"
 
 [metadata.files]
 aiocontextvars = [
@@ -199,8 +199,8 @@ loguru = [
     {file = "loguru-0.5.3.tar.gz", hash = "sha256:b28e72ac7a98be3d28ad28570299a393dfcd32e5e3f6a353dec94675767b6319"},
 ]
 name-that-hash = [
-    {file = "name-that-hash-1.6.0.tar.gz", hash = "sha256:9bdaf62f8a35bd90a07e43a2f4100d73c6ab0c175029133fb0b151df8ecca24c"},
-    {file = "name_that_hash-1.6.0-py3-none-any.whl", hash = "sha256:14b8b179eacb4564f5119ae0e17ccf26075ae93d26069629f4966ee4a80f4d56"},
+    {file = "name-that-hash-1.7.0.tar.gz", hash = "sha256:5cd44c60bc4230f4dfa086365cfac47846f8d327c63dfe53ae54dc3d534dfbdc"},
+    {file = "name_that_hash-1.7.0-py3-none-any.whl", hash = "sha256:5acd34bd0bff322f4de1852b73240e3b8aa0fb649f7f35a2ef85cb117f599058"},
 ]
 pygments = [
     {file = "Pygments-2.8.1-py3-none-any.whl", hash = "sha256:534ef71d539ae97d4c3a4cf7d6f110f214b0e687e92f9cb9d2a3b0d3101289c8"},

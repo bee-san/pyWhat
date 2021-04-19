@@ -123,6 +123,7 @@ def test_youtube_id():
     r = regex_identifier.RegexIdentifier()
     res = r.check("ScOAntcCa78")
     assert "YouTube" in res[0]["Regex Pattern"]["Name"]
+
 def test_ssn():
     r = regex_identifier.RegexIdentifier()
     res = r.check("001-01-0001")

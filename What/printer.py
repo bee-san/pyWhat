@@ -29,6 +29,9 @@ class Printing:
             to_out += f"[bold #D7Afff]File Identified[/bold #D7Afff] with Magic Numbers {text['File Signatures']['ISO 8859-1']}."
             to_out += f"\n[bold #D7Afff]File Description:[/bold #D7Afff] {text['File Signatures']['Description']}."
             to_out += "\n"
+        console.print(to_out)
+        to_out = ""
+
 
         if text["Regexes"]:
             to_out += f"\n[bold #D7Afff]Possible Identification[/bold #D7Afff]"
@@ -50,8 +53,15 @@ class Printing:
                     description,
                 )
             console.print(to_out, table)
-            return 0
-        console.print(to_out)
+        if text["Hashes"]:
+            to_out = f"\n[bold #D7Afff]Hashes Identified[/bold #D7Afff]"
+            table = Table(
+                show_header=True, header_style="bold #D7Afff", show_lines=True
+            )
+            table.add_column("Matched Text")
+            table.add_column("Possible Hash Type")
+            table.add_column("Description")
+        
 
     def print_json(self, text: dict):
         return json.dumps(text, indent=4)
@@ -65,7 +75,7 @@ class Printing:
         }
         if text in explorers:
             return (
-                "Click here to see the address on the blockchain "
+                "Click here to analyse in the browser "
                 + explorers[text]
                 + matched
             )

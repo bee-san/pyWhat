@@ -1,6 +1,7 @@
 from What.regex_identifier import RegexIdentifier
 from What.languageDetector import LanguageDetector
 from What.magic_numbers import FileSignatures
+from What.nameThatHash import Nth
 import os.path
 
 
@@ -9,6 +10,7 @@ class Identifier:
         self.regex_id = RegexIdentifier()
         self.lang_detect = LanguageDetector()
         self.file_sig = FileSignatures()
+        self.name_that_hash = Nth()
 
     def identify(self, text: str) -> dict:
         identify_obj = {}
@@ -26,6 +28,11 @@ class Identifier:
 
         identify_obj["Language"] = self.lang_detect.detect_what_lang(text)
         identify_obj["Regexes"] = self.regex_id.check(text)
+        # get_hashes takes a list of hashes, we split to give it a list
+        identify_obj["Hashes"] = self.name_that_hash.get_hashes(text.split())
+        print("\n")
+        print(identify_obj["Hashes"])
+        print("\n")
 
         return identify_obj
 

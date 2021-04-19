@@ -6,4 +6,10 @@ class Nth:
         pass
 
     def get_hashes(self, text: str) -> dict:
-        return runner.api_return_hashes_as_dict([hashes])
+        print("\n")
+        print("Text is " + str(text))
+        to_ret =  runner.api_return_hashes_as_dict(text)
+        print("\n")
+        import pprint
+        pprint.pprint(to_ret)
+        return to_ret
