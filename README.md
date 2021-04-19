@@ -9,8 +9,24 @@ Please place your Regex into the YAML file in sorted order of rarity.
 
 # Use Cases
 
+## Wannacry
+
 You come across a new piece of malware called WantToCry. You think back to Wannacry and remember it was stopped because a researcher found a kill-switch in the code.
 
 When a domain, hardcoded into Wannacry, was registered the virus would stop.
 
 You use `What` to identify all the domains in the malware, and use a domain registrar API to register all the domains. If Wannacry happens again, you can stop it in minutes - not weeks.
+
+## Faster Analysis of Pcap files
+
+Say you have a `.pcap` file from a network attack. `What` can identify this and quickly find you:
+* All hashes
+* Credit card numbers
+* Cryptocurrency addresses
+* Social Security Numbers
+* and much more.
+
+With `what`, you can identify the important things in the pcap in seconds, not minutes.
+
+
+
