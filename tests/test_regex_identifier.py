@@ -99,34 +99,38 @@ def test_american_diners_discover():
     res = r.check("6011000000000004")
     assert "Discover" in res[0]["Regex Pattern"]["Name"]
 
+
 def test_username():
     r = regex_identifier.RegexIdentifier()
     res = r.check("james:S3cr37_P@$$W0rd")
     assert "Username Password Combination" in res[0]["Regex Pattern"]["Name"]
+
 
 def test_email():
     r = regex_identifier.RegexIdentifier()
     res = r.check("github@skerritt.blog")
     assert "Email" in res[0]["Regex Pattern"]["Name"]
 
+
 def test_youtube():
     r = regex_identifier.RegexIdentifier()
     res = r.check("https://www.youtube.com/watch?v=ScOAntcCa78")
     assert "YouTube" in res[0]["Regex Pattern"]["Name"]
+
 
 def test_youtube2():
     r = regex_identifier.RegexIdentifier()
     res = r.check("asdasdhttps://www.youtube.com/watch?v=ScOAntcCa78dasda")
     assert "YouTube" in res[0]["Regex Pattern"]["Name"]
 
+
 def test_youtube_id():
     r = regex_identifier.RegexIdentifier()
     res = r.check("ScOAntcCa78")
     assert "YouTube" in res[0]["Regex Pattern"]["Name"]
 
+
 def test_ssn():
     r = regex_identifier.RegexIdentifier()
     res = r.check("001-01-0001")
     assert "Social" in str(res)
-
-    

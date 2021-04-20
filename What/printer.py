@@ -32,7 +32,6 @@ class Printing:
         console.print(to_out)
         to_out = ""
 
-
         if text["Regexes"]:
             to_out += f"\n[bold #D7Afff]Possible Identification[/bold #D7Afff]"
             table = Table(
@@ -61,7 +60,14 @@ class Printing:
             table.add_column("Matched Text")
             table.add_column("Possible Hash Type")
             table.add_column("Description")
-        
+            for hash_text in text["Hashes"].keys():
+                for types in text["Hashes"][hash_text]:
+                    table.add_row(
+                        hash_text,
+                        types["name"],
+                        types["description"],
+                    )
+            console.print(to_out, table)
 
     def print_json(self, text: dict):
         return json.dumps(text, indent=4)
@@ -74,9 +80,5 @@ class Printing:
             "YouTube Video ID": "https://www.youtube.com/watch?v=",
         }
         if text in explorers:
-            return (
-                "Click here to analyse in the browser "
-                + explorers[text]
-                + matched
-            )
+            return "Click here to analyse in the browser " + explorers[text] + matched
         return None

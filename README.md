@@ -1,5 +1,19 @@
+<p align='center'>
+<img src='images_for_README/logo.png'>
+<i>The easiest way to identify anything</i>
+</p>
+
+# logo
+
+badges
+
+
+
 # id
 Identify anything.
+
+
+
 
 # Adding Regex
 **Rarity**
