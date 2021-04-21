@@ -1,7 +1,7 @@
-from What.regex_identifier import RegexIdentifier
-from What.languageDetector import LanguageDetector
-from What.magic_numbers import FileSignatures
-from What.nameThatHash import Nth
+from PyWhat.regex_identifier import RegexIdentifier
+from PyWhat.languageDetector import LanguageDetector
+from PyWhat.magic_numbers import FileSignatures
+from PyWhat.nameThatHash import Nth
 import os.path
 
 

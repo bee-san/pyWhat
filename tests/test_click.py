@@ -1,5 +1,5 @@
 from click.testing import CliRunner
-from What.what import main
+from PyWhat.what import main
 import re
 import pytest
 
