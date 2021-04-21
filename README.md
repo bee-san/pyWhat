@@ -1,7 +1,7 @@
 <p align='center'>
 <img src='images_for_README/logo.png'>
-<p align="center">➡️ <a href="http://discord.skerritt.blog">Discord</a>
-<i>The easiest way to identify anything</i>
+<p align="center">➡️ <a href="http://discord.skerritt.blog">Discord</a> ⬅️<br>
+<i>The easiest way to identify anything</i><br>
 <code>pip3 install pywhat && pywhat --help</code>
 </p>
 
