@@ -1,13 +1,16 @@
 <p align='center'>
 <img src='images_for_README/logo.png'>
+<p align="center">➡️ <a href="http://discord.skerritt.blog">Discord</a>
 <i>The easiest way to identify anything</i>
+<code>pip3 install pywhat && pywhat --help</code>
 </p>
 
-# logo
+<p align="center">
+  <img alt="Discord" src="https://img.shields.io/discord/754001738184392704"> <img alt="PyPI - Downloads" src="https://pepy.tech/badge/pywhat/month">  <img alt="Twitter Follow" src="https://img.shields.io/twitter/follow/bee_sec_san?style=social"> <img alt="PyPI - Python Version" src="https://img.shields.io/pypi/pyversions/pywhat"> <img alt="PyPI" src="https://img.shields.io/pypi/v/pywhat">
+</p>
+<hr>
 
-badges
-
-
+# 🤔 What is this?
 
 # id
 Identify anything.
