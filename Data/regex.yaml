@@ -138,7 +138,13 @@
   Tags: ['Identifiers', 'Credentials']
 
 - Name: YouTube Video ID
-  Regex: ([\w-]{11})
+  Regex: '[0-9A-Za-z_-]{10}[048AEIMQUYcgkosw]{1}'
+  Description: null
+  Rarity: 0.4
+  Tags: ['Media']
+
+- Name: YouTube Channel ID
+  Regex: UC[0-9A-Za-z_-]{21}[AQgw]{1}
   Description: null
   Rarity: 0.4
   Tags: ['Media']

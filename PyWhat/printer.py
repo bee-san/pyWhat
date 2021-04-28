@@ -1,4 +1,5 @@
 import json
+
 from rich.console import Console
 from rich.table import Table
 
@@ -33,7 +34,7 @@ class Printing:
         to_out = ""
 
         if text["Regexes"]:
-            to_out += f"\n[bold #D7Afff]Possible Identification[/bold #D7Afff]"
+            to_out += "\n[bold #D7Afff]Possible Identification[/bold #D7Afff]"
             table = Table(
                 show_header=True, header_style="bold #D7Afff", show_lines=True
             )
@@ -53,7 +54,7 @@ class Printing:
                 )
             console.print(to_out, table)
         if text["Hashes"]:
-            to_out = f"\n[bold #D7Afff]Hashes Identified[/bold #D7Afff]"
+            to_out = "\n[bold #D7Afff]Hashes Identified[/bold #D7Afff]"
             table = Table(
                 show_header=True, header_style="bold #D7Afff", show_lines=True
             )
@@ -78,6 +79,7 @@ class Printing:
             "Dogecoin Wallet Address": "https://dogechain.info/address/",
             "Bitcoin Wallet": "https://www.blockchain.com/btc/address/",
             "YouTube Video ID": "https://www.youtube.com/watch?v=",
+            "YouTube Channel ID": "https://www.youtube.com/channel/",
         }
         if text in explorers:
             return "Click here to analyse in the browser " + explorers[text] + matched
