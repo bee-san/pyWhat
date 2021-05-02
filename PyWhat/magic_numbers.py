@@ -1,16 +1,19 @@
 import binascii
+import os
 
 import yaml
 
 
 class FileSignatures:
     def __init__(self):
-        with open("PyWhat/Data/file_signatures.yaml", "r", encoding="utf8") as myfile:
+        path = "Data\\file_signatures.yaml"
+        fullpath = os.path.join(os.path.dirname(os.path.abspath(__file__)), path)
+        with open(fullpath, "r", encoding="utf8", errors="ignore") as myfile:
             data = myfile.read()
             self.file_sigs = yaml.load(data, Loader=yaml.FullLoader)
 
     def open_file_loc(self, file_loc):
-        with open(file_loc, "r") as myfile:
+        with open(file_loc, "r", encoding="utf8", errors="ignore") as myfile:
             r = myfile.read()
         return r
 
