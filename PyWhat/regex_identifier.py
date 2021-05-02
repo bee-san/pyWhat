@@ -6,7 +6,7 @@ import yaml
 
 class RegexIdentifier:
     def __init__(self):
-        path = "Data\\regex.yaml"
+        path = "Data/regex.yaml"
         fullpath = os.path.join(os.path.dirname(os.path.abspath(__file__)), path)
         with open(fullpath, "r") as myfile:
             data = myfile.read()
