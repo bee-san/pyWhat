@@ -6,7 +6,7 @@ import yaml
 
 class FileSignatures:
     def __init__(self):
-        path = "Data\\file_signatures.yaml"
+        path = "Data/file_signatures.yaml"
         fullpath = os.path.join(os.path.dirname(os.path.abspath(__file__)), path)
         with open(fullpath, "r", encoding="utf8", errors="ignore") as myfile:
             data = myfile.read()
