@@ -1,5 +1,3 @@
-import os
-
 import click
 from PyWhat import identifier, printer
 
@@ -37,7 +35,6 @@ class What_Object:
         Returns a Python dictionary of everything that has been identified
         """
         return self.id.identify(text)
-
 
 
 if __name__ == "__main__":

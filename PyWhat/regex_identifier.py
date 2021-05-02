@@ -1,10 +1,14 @@
+import os
 import re
+
 import yaml
 
 
 class RegexIdentifier:
     def __init__(self):
-        with open("PyWhat/Data/regex.yaml", "r") as myfile:
+        path = "Data/regex.yaml"
+        fullpath = os.path.join(os.path.dirname(os.path.abspath(__file__)), path)
+        with open(fullpath, "r") as myfile:
             data = myfile.read()
             self.regexes = yaml.load(data, Loader=yaml.FullLoader)
 
