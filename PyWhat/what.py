@@ -39,7 +39,6 @@ class What_Object:
         return self.id.identify(text)
 
 
-os.chdir(os.path.dirname(os.path.abspath(__file__)))
 
 if __name__ == "__main__":
     main()
