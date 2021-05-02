@@ -30,9 +30,6 @@ class Identifier:
         identify_obj["Regexes"] = self.regex_id.check(text)
         # get_hashes takes a list of hashes, we split to give it a list
         identify_obj["Hashes"] = self.name_that_hash.get_hashes(text.split())
-        print("\n")
-        print(identify_obj["Hashes"])
-        print("\n")
 
         return identify_obj
 

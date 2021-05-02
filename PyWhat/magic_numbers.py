@@ -5,7 +5,7 @@ import yaml
 
 class FileSignatures:
     def __init__(self):
-        with open("Data/file_signatures.yaml", "r", encoding="utf8") as myfile:
+        with open("PyWhat/Data/file_signatures.yaml", "r", encoding="utf8") as myfile:
             data = myfile.read()
             self.file_sigs = yaml.load(data, Loader=yaml.FullLoader)
 
