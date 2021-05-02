@@ -1,10 +1,11 @@
 import binascii
+
 import yaml
 
 
 class FileSignatures:
     def __init__(self):
-        with open("Data/file_signatures.yaml", "r") as myfile:
+        with open("Data/file_signatures.yaml", "r", encoding="utf8") as myfile:
             data = myfile.read()
             self.file_sigs = yaml.load(data, Loader=yaml.FullLoader)
 
