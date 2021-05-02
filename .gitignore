@@ -23,7 +23,6 @@ __pycache__/
 *.py[cod]
 *$py.class
 tests/__pycache__/
-tests/__*
 
 # C extensions
 *.so
