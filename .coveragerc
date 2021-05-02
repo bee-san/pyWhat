@@ -1,0 +1,3 @@
+[run]
+source = search_that_hash
+omit = *migrations*, *tests*, ".nox*"

@@ -9,7 +9,7 @@ license = "GPLv3"
 python = "^3.6"
 click = "^7.1.2"
 PyYAML = "^5.4.1"
-name-that-hash = "^1.7.0"
+name_that_hash = "^1.7.0"
 langdetect = "^1.0.8"
 
 [tool.poetry.dev-dependencies]
