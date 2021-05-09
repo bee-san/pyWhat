@@ -10,6 +10,8 @@
 </p>
 <hr>
 
+# TODO make image cropped
+
 # 🤔 `What` is this?
 
 <GIF HERE>
