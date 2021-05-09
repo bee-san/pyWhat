@@ -10,23 +10,21 @@
 </p>
 <hr>
 
-# 🤔 What is this?
+# 🤔 `What` is this?
 
-# id
-Identify anything.
+<GIF HERE>
 
+Imagine this: You come across some mysterious text 🧙‍♂️ `⊑⟒⌰⌰⍜ ⋔⊬ ⋏⏃⋔⟒ ⟟⌇ ⋏⍜⏁ ⍜⋏⟒ ⏁` and you wonder what it is. What do you do?
 
+Well, with `what` all you have to do is ask `what "⊑⟒⌰⌰⍜ ⋔⊬ ⋏⏃⋔⟒ ⟟⌇ ⋏⍜⏁ ⍜⋏⟒ ⏁"` and `what` will tell you!
 
+`what`'s job is to identify _what_ something is. Whether it be a file or text! Or even the hex of a file! What about text _within_ files? We have that too! `what` is recursive, it will identify **everything** in text and more! 
 
-# Adding Regex
-**Rarity**
-How unlikely is it to be a false-positive? 1 for very unlikely, 0 for very likely.
+# ⚙ Use Cases
 
-Please place your Regex into the YAML file in sorted order of rarity.
+## 🦠 Wannacry
 
-# Use Cases
-
-## Wannacry
+< Use wannacry binary and show a real world example? https://github.com/ytisf/theZoo/blob/master/malwares/Binaries/Ransomware.WannaCry/Ransomware.WannaCry.zip >
 
 You come across a new piece of malware called WantToCry. You think back to Wannacry and remember it was stopped because a researcher found a kill-switch in the code.
 
@@ -34,7 +32,7 @@ When a domain, hardcoded into Wannacry, was registered the virus would stop.
 
 You use `What` to identify all the domains in the malware, and use a domain registrar API to register all the domains. If Wannacry happens again, you can stop it in minutes - not weeks.
 
-## Faster Analysis of Pcap files
+## 🦈 Faster Analysis of Pcap files
 
 Say you have a `.pcap` file from a network attack. `What` can identify this and quickly find you:
 * All hashes
@@ -45,7 +43,7 @@ Say you have a `.pcap` file from a network attack. `What` can identify this and 
 
 With `what`, you can identify the important things in the pcap in seconds, not minutes.
 
-## Anything
+## 🌌 Anything
 
 Anytime you have a file and you want to find structured data in it that's useful, `What` is for you.
 

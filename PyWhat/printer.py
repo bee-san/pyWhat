@@ -53,6 +53,9 @@ class Printing:
                     description,
                 )
             console.print(to_out, table)
+        """
+        # This is commented out because there's too many possible hash idenfications
+        # This is fixed by https://github.com/HashPals/Name-That-Hash/issues/89
         if text["Hashes"]:
             to_out = "\n[bold #D7Afff]Hashes Identified[/bold #D7Afff]"
             table = Table(
@@ -69,6 +72,7 @@ class Printing:
                         types["description"],
                     )
             console.print(to_out, table)
+        """
 
     def print_json(self, text: dict):
         return json.dumps(text, indent=4)
