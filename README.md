@@ -26,7 +26,7 @@ Well, with `what` all you have to do is ask `what "5f4dcc3b5aa765d61d8327deb882c
 
 ## 🦠 Wannacry
 
-< Use wannacry binary and show a real world example? https://github.com/ytisf/theZoo/blob/master/malwares/Binaries/Ransomware.WannaCry/Ransomware.WannaCry.zip >
+![](images_for_README/Screenshot%202021-05-09%20162158.png)
 
 You come across a new piece of malware called WantToCry. You think back to Wannacry and remember it was stopped because a researcher found a kill-switch in the code.
 

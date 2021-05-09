@@ -18,6 +18,7 @@ class RegexIdentifier:
             matched_regex = re.findall(reg["Regex"], text, re.UNICODE)
 
             if matched_regex:
+                print(matched_regex)
                 for i in matched_regex:
                     matches.append({"Matched": i, "Regex Pattern": reg})
         return matches
