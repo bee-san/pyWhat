@@ -152,7 +152,7 @@ def test_file_fixture_usernamepassword():
     runner = CliRunner()
     result = runner.invoke(main, ["fixtures/file"])
     assert result.exit_code == 0
-    assert re.findall("Username", str(result.output))
+    assert re.findall("Key", str(result.output))
 
 
 def test_file_fixture_email():
@@ -189,3 +189,11 @@ def test_file_fixture_ssn():
     result = runner.invoke(main, ["fixtures/file"])
     assert result.exit_code == 0
     assert re.findall("Social", str(result.output))
+
+
+def test_file_pcap():
+    runner = CliRunner()
+    result = runner.invoke(main, ["fixtures/FollowTheLeader.pcap"])
+    assert result.exit_code == 0
+    print(result.output)
+    assert re.findall("Host:", str(result.output))

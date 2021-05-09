@@ -34,6 +34,8 @@ You use `What` to identify all the domains in the malware, and use a domain regi
 
 ## 🦈 Faster Analysis of Pcap files
 
+<GIF OF PCAP HERE>
+
 Say you have a `.pcap` file from a network attack. `What` can identify this and quickly find you:
 * All hashes
 * Credit card numbers
