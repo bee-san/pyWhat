@@ -14,7 +14,7 @@
 
 # 🤔 `What` is this?
 
-<GIF HERE>
+![](images_for_README/main_demo.gif)
 
 Imagine this: You come across some mysterious text 🧙‍♂️ `5f4dcc3b5aa765d61d8327deb882cf99` and you wonder what it is. What do you do?
 
@@ -36,7 +36,7 @@ You use `What` to identify all the domains in the malware, and use a domain regi
 
 ## 🦈 Faster Analysis of Pcap files
 
-<GIF OF PCAP HERE>
+![](images_for_README/pcap_demo.gif)
 
 Say you have a `.pcap` file from a network attack. `What` can identify this and quickly find you:
 * All hashes
@@ -53,3 +53,6 @@ Anytime you have a file and you want to find structured data in it that's useful
 
 Or if you come across some piece of text and you don't know what it is, `What` will tell you.
 
+# 👾 Contributing
+
+`what` not only thrives on contributors, but can't exist without them! If you want to add a new regex to check for things, you can read our documentation [here](https://github.com/bee-san/what/wiki/Adding-your-own-Regex)

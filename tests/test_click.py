@@ -175,8 +175,6 @@ def test_file_fixture_youtube_id():
     assert result.exit_code == 0
     assert re.findall("YouTube", str(result.output))
 
-
-@pytest.mark.skip(reason="Matches on https://")
 def test_file_fixture_ip():
     runner = CliRunner()
     result = runner.invoke(main, ["fixtures/file"])
