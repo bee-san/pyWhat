@@ -3,6 +3,7 @@ import requests
 import json
 import re
 import yaml
+import json
 
 
 def cleanhtml(raw_html):
@@ -71,9 +72,8 @@ for i in range(1, len(to_iter)):
         to_insert["Popular"] = 0
     to_dump.append(to_insert)
 
-with open("file_signatures.yaml", "w") as ym:
-    yaml.dump(to_dump, ym, allow_unicode=True)
-
+with open("file_signatures.json", "w") as outfile:
+    json.dump(to_dump, outfile, indent=4)
 
 # https://en.wikipedia.org/api/rest_v1/page/html/List_of_file_signatures
 

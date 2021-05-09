@@ -103,7 +103,7 @@ def test_american_diners_discover():
 def test_username():
     r = regex_identifier.RegexIdentifier()
     res = r.check("james:S3cr37_P@$$W0rd")
-    assert "Username Password Combination" in res[0]["Regex Pattern"]["Name"]
+    assert "Key:Value" in res[0]["Regex Pattern"]["Name"]
 
 
 def test_email():

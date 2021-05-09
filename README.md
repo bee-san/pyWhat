@@ -14,11 +14,11 @@
 
 <GIF HERE>
 
-Imagine this: You come across some mysterious text 🧙‍♂️ `⊑⟒⌰⌰⍜ ⋔⊬ ⋏⏃⋔⟒ ⟟⌇ ⋏⍜⏁ ⍜⋏⟒ ⏁` and you wonder what it is. What do you do?
+Imagine this: You come across some mysterious text 🧙‍♂️ `5f4dcc3b5aa765d61d8327deb882cf99` and you wonder what it is. What do you do?
 
-Well, with `what` all you have to do is ask `what "⊑⟒⌰⌰⍜ ⋔⊬ ⋏⏃⋔⟒ ⟟⌇ ⋏⍜⏁ ⍜⋏⟒ ⏁"` and `what` will tell you!
+Well, with `what` all you have to do is ask `what "5f4dcc3b5aa765d61d8327deb882cf99"` and `what` will tell you!
 
-`what`'s job is to identify _what_ something is. Whether it be a file or text! Or even the hex of a file! What about text _within_ files? We have that too! `what` is recursive, it will identify **everything** in text and more! 
+`what`'s job is to **identify _what_ something is.** Whether it be a file or text! Or even the hex of a file! What about text _within_ files? We have that too! `what` is recursive, it will identify **everything** in text and more! 
 
 # ⚙ Use Cases
 

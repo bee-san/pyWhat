@@ -1,16 +1,15 @@
 import binascii
 import os
 
-import yaml
+import json
 
 
 class FileSignatures:
     def __init__(self):
-        path = "Data/file_signatures.yaml"
+        path = "Data/file_signatures.json"
         fullpath = os.path.join(os.path.dirname(os.path.abspath(__file__)), path)
         with open(fullpath, "r", encoding="utf8", errors="ignore") as myfile:
-            data = myfile.read()
-            self.file_sigs = yaml.load(data, Loader=yaml.FullLoader)
+            self.file_sigs = json.load(myfile)
 
     def open_file_loc(self, file_loc):
         with open(file_loc, "r", encoding="utf8", errors="ignore") as myfile:

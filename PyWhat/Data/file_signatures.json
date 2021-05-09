@@ -1,0 +1,1297 @@
+[
+    {
+        "Hexadecimal File Signature": "2321",
+        "ISO 8859-1": "23 21",
+        "Filename Extension": null,
+        "Description": "Script or data to be passed to the program following the Shebang (Unix)shebang (#!)",
+        "Popular": 0
+    },
+    {
+        "Hexadecimal File Signature": "a1b2c3d4d4c3b2a1",
+        "ISO 8859-1": "a1 b2 c3 d4 d4 c3 b2 a1",
+        "Filename Extension": "pcap",
+        "URL": "https://wiki.wireshark.org/Development/LibpcapFileFormat#Global_Header",
+        "Description": "Libpcap File Format",
+        "Popular": 0
+    },
+    {
+        "Hexadecimal File Signature": "0a0d0d0a",
+        "ISO 8859-1": null,
+        "Filename Extension": "pcapng",
+        "URL": "https://www.winpcap.org/ntar/draft/PCAP-DumpFileFormat.html#sectionshb ",
+        "Description": "PCAP Next Generation Dump File Format",
+        "Popular": 0
+    },
+    {
+        "Hexadecimal File Signature": "edabeedb",
+        "ISO 8859-1": "ed ab ee db",
+        "Filename Extension": "rpm",
+        "URL": "ftp://ftp.tuwien.ac.at/.vhost/www.openpkg.org/doc/book/maximum-rpm.html/node26.html ",
+        "Description": "RedHat Package Manager (RPM) package",
+        "Popular": 0
+    },
+    {
+        "Hexadecimal File Signature": "53514c69746520666f726d6174203300",
+        "ISO 8859-1": "SQLite format 3.",
+        "Filename Extension": "sqlitedbsqlitedb",
+        "URL": "https://www.sqlite.org/fileformat.html ",
+        "Description": "SQLite Database",
+        "Popular": 0
+    },
+    {
+        "Hexadecimal File Signature": "53503031",
+        "ISO 8859-1": "SP01",
+        "Filename Extension": "bin",
+        "URL": "https://github.com/NiLuJe/KindleTool ",
+        "Description": "Amazon Kindle Update Package",
+        "Popular": 0
+    },
+    {
+        "Hexadecimal File Signature": "00",
+        "ISO 8859-1": null,
+        "Filename Extension": "PICPIFSEAYTR",
+        "Description": "IBM Storyboard bitmap file Windows Program information fileProgram Information File Mac StuffItStuffit Self-Extracting Archive IRIS Optical character recognitionOCR data file",
+        "Popular": 0
+    },
+    {
+        "Hexadecimal File Signature": "000000000000000000000000000000000000000000000000",
+        "ISO 8859-1": null,
+        "Filename Extension": "PDB",
+        "Description": "PalmPilot Database/Document File",
+        "Popular": 0
+    },
+    {
+        "Hexadecimal File Signature": "BEBAFECA",
+        "ISO 8859-1": "BE BA FE CA",
+        "Filename Extension": "DBA",
+        "Description": "Palm (PDA)Palm Desktop Calendar Archive",
+        "Popular": 0
+    },
+    {
+        "Hexadecimal File Signature": "00014244",
+        "ISO 8859-1": "..BD",
+        "Filename Extension": "DBA",
+        "Description": "Palm Desktop To Do Archive",
+        "Popular": 0
+    },
+    {
+        "Hexadecimal File Signature": "00014454",
+        "ISO 8859-1": "..DT",
+        "Filename Extension": "TDA",
+        "Description": "Palm Desktop Calendar Archive",
+        "Popular": 0
+    },
+    {
+        "Hexadecimal File Signature": "54444624",
+        "ISO 8859-1": "TDF$",
+        "Filename Extension": "TDF$",
+        "Description": "Telegram Desktop File",
+        "Popular": 0
+    },
+    {
+        "Hexadecimal File Signature": "54444546",
+        "ISO 8859-1": "TDEF",
+        "Filename Extension": "TDEF",
+        "Description": "Telegram Desktop Encrypted File",
+        "Popular": 0
+    },
+    {
+        "Hexadecimal File Signature": "00010000",
+        "ISO 8859-1": "00 01 00 00",
+        "Filename Extension": null,
+        "Description": "Palm Desktop Data File (Microsoft AccessAccess format)",
+        "Popular": 0
+    },
+    {
+        "Hexadecimal File Signature": "00000100",
+        "ISO 8859-1": null,
+        "Filename Extension": "ico",
+        "Description": "Computer icon encoded in ICO (file format)ICO file format[http://msdn.microsoft.com/en-us/library/ms997538.aspx Icons] (at MSDN)",
+        "Popular": 0
+    },
+    {
+        "Hexadecimal File Signature": "667479703367",
+        "ISO 8859-1": "ftyp3g",
+        "Filename Extension": "3gp3g2",
+        "Description": "3rd Generation Partnership Project 3GPP and 3GPP2 multimedia files",
+        "Popular": 0
+    },
+    {
+        "Hexadecimal File Signature": "1F9D",
+        "ISO 8859-1": null,
+        "Filename Extension": "ztar.z",
+        "Description": "compressed file (often Tar (file format)tar zip) using Lempel-Ziv-Welch algorithm",
+        "Popular": 0
+    },
+    {
+        "Hexadecimal File Signature": "1FA0",
+        "ISO 8859-1": "1F A0",
+        "Filename Extension": "ztar.z",
+        "Description": "Compressed file (often tar zip) using LHA (file format)LZH algorithm",
+        "Popular": 0
+    },
+    {
+        "Hexadecimal File Signature": "4241434B4D494B454449534B",
+        "ISO 8859-1": "BACKMIKE DISK",
+        "Filename Extension": "bac",
+        "Description": "File or Magnetic tape data storagetape containing a backup done with AmiBack on an Amiga. It typically is paired with an index file (idx) with the table of contents.",
+        "Popular": 0
+    },
+    {
+        "Hexadecimal File Signature": "425A68",
+        "ISO 8859-1": "BZh",
+        "Filename Extension": "bz2",
+        "Description": "Compressed file using Bzip2 algorithm",
+        "Popular": 0
+    },
+    {
+        "Hexadecimal File Signature": "474946383761474946383961",
+        "ISO 8859-1": "GIF87a GIF89a",
+        "Filename Extension": "gif",
+        "Description": "Image file encoded in the Graphics Interchange Format (GIF)[http://www.w3.org/Graphics/GIF/spec-gif89a.txt GRAPHICS INTERCHANGE FORMAT(sm) Version 89a]",
+        "Popular": 0
+    },
+    {
+        "Hexadecimal File Signature": "49492A00(Endianness#Little-endianlittle-endianformat)4D4D002A(Endianness#Big-endianbig-endianformat)",
+        "ISO 8859-1": "II*. MM.*",
+        "Filename Extension": "tiftiff",
+        "Description": "Tagged Image File Format (TIFF)",
+        "Popular": 0
+    },
+    {
+        "Hexadecimal File Signature": "49492A00100000004352",
+        "ISO 8859-1": "II*..... CR",
+        "Filename Extension": "cr2",
+        "URL": "http://filext.com/file-extension/CR2",
+        "Description": "Canon RAW Format Version 2 weburl",
+        "Popular": 0
+    },
+    {
+        "Hexadecimal File Signature": "802A5FD7",
+        "ISO 8859-1": ".*_.",
+        "Filename Extension": "cin",
+        "Description": "Eastman KodakKodak Cineon#Cineon file formatCineon image",
+        "Popular": 0
+    },
+    {
+        "Hexadecimal File Signature": "524E4301524E4302",
+        "ISO 8859-1": "RNC.",
+        "Filename Extension": null,
+        "Description": "Compressed file using [http://segaretro.org/Rob_Northen_compression Rob Northen Compression] (version 1 and 2) algorithm",
+        "Popular": 0
+    },
+    {
+        "Hexadecimal File Signature": "53445058(Endianness#Big-endianbig-endianformat)58504453(Endianness#Little-endianlittle-endianformat)",
+        "ISO 8859-1": "SDPX XPDS",
+        "Filename Extension": "dpx",
+        "Description": "SMPTE Digital Picture ExchangeDPX image",
+        "Popular": 0
+    },
+    {
+        "Hexadecimal File Signature": "762F3101",
+        "ISO 8859-1": "v/1.",
+        "Filename Extension": "exr",
+        "Description": "OpenEXROpenEXR image",
+        "Popular": 0
+    },
+    {
+        "Hexadecimal File Signature": "425047FB",
+        "ISO 8859-1": "BPG\u00fb",
+        "Filename Extension": "bpg",
+        "URL": "http://bellard.org/bpg/ ",
+        "Description": "Better Portable Graphics format",
+        "Popular": 0
+    },
+    {
+        "Hexadecimal File Signature": "FFD8FFDBFFD8FFE000104A4649460001FFD8FFEEFFD8FFE1????457869660000",
+        "ISO 8859-1": "\u00ff\u00d8\u00ff\u00db \u00ff\u00d8\u00ff\u00e0..JFIF.. \u00ff\u00d8\u00ff\u00ee \u00ff\u00d8\u00ff\u00e1..Exif..",
+        "Filename Extension": "jpgjpeg",
+        "Description": "JPEG raw or in the JFIF or Exif file format",
+        "Popular": 0
+    },
+    {
+        "Hexadecimal File Signature": "464F524D????????494C424D",
+        "ISO 8859-1": "FORM.... ILBM",
+        "Filename Extension": "ilbmlbmibmiff",
+        "Description": "Interchange File FormatIFF ILBMInterleaved Bitmap Image",
+        "Popular": 0
+    },
+    {
+        "Hexadecimal File Signature": "464F524D????????38535658",
+        "ISO 8859-1": "FORM.... 8SVX",
+        "Filename Extension": "8svx8svsvxsndiff",
+        "Description": "Interchange File FormatIFF 8SVX8-Bit Sampled Voice",
+        "Popular": 0
+    },
+    {
+        "Hexadecimal File Signature": "464F524D????????4143424D",
+        "ISO 8859-1": "FORM.... ACBM",
+        "Filename Extension": "acbmiff",
+        "Description": "Amiga Contiguous Bitmap",
+        "Popular": 0
+    },
+    {
+        "Hexadecimal File Signature": "464F524D????????414E424D",
+        "ISO 8859-1": "FORM.... ANBM",
+        "Filename Extension": "anbmiff",
+        "Description": "Interchange File FormatIFF IFF Animated BitmapAnimated Bitmap",
+        "Popular": 0
+    },
+    {
+        "Hexadecimal File Signature": "464F524D????????414E494D",
+        "ISO 8859-1": "FORM.... ANIM",
+        "Filename Extension": "animiff",
+        "Description": "Interchange File FormatIFF IFF CEL AnimationCEL Animation",
+        "Popular": 0
+    },
+    {
+        "Hexadecimal File Signature": "464F524D????????46415858",
+        "ISO 8859-1": "FORM.... FAXX",
+        "Filename Extension": "faxxfaxiff",
+        "Description": "Interchange File FormatIFF FaxFacsimile Image",
+        "Popular": 0
+    },
+    {
+        "Hexadecimal File Signature": "464F524D????????46545854",
+        "ISO 8859-1": "FORM.... FTXT",
+        "Filename Extension": "ftxtiff",
+        "Description": "Interchange File FormatIFF Formatted textFormatted Text",
+        "Popular": 0
+    },
+    {
+        "Hexadecimal File Signature": "464F524D????????534D5553",
+        "ISO 8859-1": "FORM.... SMUS",
+        "Filename Extension": "smussmumusiff",
+        "Description": "Interchange File FormatIFF IFF Simple Musical ScoreSimple Musical Score",
+        "Popular": 0
+    },
+    {
+        "Hexadecimal File Signature": "464F524D????????434D5553",
+        "ISO 8859-1": "FORM.... CMUS",
+        "Filename Extension": "cmusmusiff",
+        "Description": "Interchange File FormatIFF IFF Musical ScoreMusical Score",
+        "Popular": 0
+    },
+    {
+        "Hexadecimal File Signature": "464F524D????????5955564E",
+        "ISO 8859-1": "FORM.... YUVN",
+        "Filename Extension": "yuvnyuviff",
+        "Description": "Interchange File FormatIFF YUVYUV Image",
+        "Popular": 0
+    },
+    {
+        "Hexadecimal File Signature": "464F524D????????46414E54",
+        "ISO 8859-1": "FORM.... FANT",
+        "Filename Extension": "iff",
+        "Description": "Amiga FantavisionFantavision Movie",
+        "Popular": 0
+    },
+    {
+        "Hexadecimal File Signature": "464F524D????????41494646",
+        "ISO 8859-1": "FORM.... AIFF",
+        "Filename Extension": "aiffaifaifcsndiff",
+        "Description": "Audio Interchange File Format",
+        "Popular": 0
+    },
+    {
+        "Hexadecimal File Signature": "494E4458",
+        "ISO 8859-1": "INDX",
+        "Filename Extension": "idx",
+        "Description": "Index file to a file or Magnetic tape data storagetape containing a backup done with AmiBack on an Amiga.",
+        "Popular": 0
+    },
+    {
+        "Hexadecimal File Signature": "4C5A4950",
+        "ISO 8859-1": "LZIP",
+        "Filename Extension": "lz",
+        "Description": "lzip compressed file",
+        "Popular": 0
+    },
+    {
+        "Hexadecimal File Signature": "4D5A",
+        "ISO 8859-1": null,
+        "Filename Extension": "exedll",
+        "Description": "DOS MZ executable file format and its descendants (including New ExecutableNE and Portable ExecutablePE)",
+        "Popular": 0
+    },
+    {
+        "Hexadecimal File Signature": "504B0304504B0506(emptyarchive)504B0708(spannedarchive)",
+        "ISO 8859-1": "PK..",
+        "Filename Extension": "zipaarapkdocxepub.ipaipajarkmzMozilla Archive Formatmaffodpodsodtpk3pk4pptxusdzvsdxxlsxXPInstallxpi",
+        "Description": "ZIP (file format)zip file format and formats based on it, such as EPUB, JAR (file format)JAR, OpenDocumentODF, Office Open XMLOOXML",
+        "Popular": 0
+    },
+    {
+        "Hexadecimal File Signature": "526172211A0700",
+        "ISO 8859-1": "Rar!...",
+        "Filename Extension": "rar",
+        "Description": "RAR (file format)RAR archive version 1.50 onwards web title=TechNote.txt: RAR version 4.00 - Technical information date=2010-12-01 quote=The marker block is actually considered as a fixed byte sequence: 0x52 0x61 0x72 0x21 0x1a 0x07 0x00",
+        "Popular": 0
+    },
+    {
+        "Hexadecimal File Signature": "526172211A070100",
+        "ISO 8859-1": "Rar!....",
+        "Filename Extension": "rar",
+        "URL": "http://www.rarlab.com/technote.htm ",
+        "Description": "RAR (file format)RAR archive version 5.0 onwards",
+        "Popular": 0
+    },
+    {
+        "Hexadecimal File Signature": "5A4D",
+        "ISO 8859-1": null,
+        "Filename Extension": "exe",
+        "Description": "DOS ZM executable file format and its descendants (rare)",
+        "Popular": 0
+    },
+    {
+        "Hexadecimal File Signature": "7F454C46",
+        "ISO 8859-1": ".ELF",
+        "Filename Extension": null,
+        "Description": "Executable and Linkable Format",
+        "Popular": 0
+    },
+    {
+        "Hexadecimal File Signature": "89504E470D0A1A0A",
+        "ISO 8859-1": ".PNG....",
+        "Filename Extension": "png",
+        "URL": "http://tools.ietf.org/html/rfc2083",
+        "Description": "Image encoded in the Portable Network Graphics format weburl",
+        "Popular": 0
+    },
+    {
+        "Hexadecimal File Signature": "C9",
+        "ISO 8859-1": null,
+        "Filename Extension": "com",
+        "Description": "COM file (CP/M)CP/M 3 and higher with overlays",
+        "Popular": 0
+    },
+    {
+        "Hexadecimal File Signature": "CAFEBABE",
+        "ISO 8859-1": "\u00ca\u00fe\u00ba\u00be",
+        "Filename Extension": "class",
+        "Description": "Java class file, Fat binary#AppleMach-O Fat Binary",
+        "Popular": 0
+    },
+    {
+        "Hexadecimal File Signature": "EFBBBF",
+        "ISO 8859-1": "\u00ef\u00bb\u00bf",
+        "Filename Extension": null,
+        "Description": "UTF-8 encoded Unicode byte order mark, commonly seen in text files.",
+        "Popular": 0
+    },
+    {
+        "Hexadecimal File Signature": "FEEDFACE",
+        "ISO 8859-1": null,
+        "Filename Extension": null,
+        "Description": "Mach-O binary (32-bit)",
+        "Popular": 0
+    },
+    {
+        "Hexadecimal File Signature": "FEEDFACF",
+        "ISO 8859-1": null,
+        "Filename Extension": null,
+        "Description": "Mach-O binary (64-bit)",
+        "Popular": 0
+    },
+    {
+        "Hexadecimal File Signature": "FEEDFEED",
+        "ISO 8859-1": null,
+        "Filename Extension": null,
+        "Description": "JKS [http://hg.openjdk.java.net/jdk10/jdk10/jdk/file/777356696811/src/java.base/share/classes/sun/security/provider/JavaKeyStore.java JavakeyStore]",
+        "Popular": 0
+    },
+    {
+        "Hexadecimal File Signature": "CEFAEDFE",
+        "ISO 8859-1": null,
+        "Filename Extension": null,
+        "URL": "\"apple.com\">{{cite web",
+        "Description": "Mach-O binary (reverse byte ordering scheme, 32-bit)ref name",
+        "Popular": 0
+    },
+    {
+        "Hexadecimal File Signature": "CFFAEDFE",
+        "ISO 8859-1": null,
+        "Filename Extension": null,
+        "Description": "Mach-O binary (reverse byte ordering scheme, 64-bit)",
+        "Popular": 0
+    },
+    {
+        "Hexadecimal File Signature": "FFFE",
+        "ISO 8859-1": null,
+        "Filename Extension": null,
+        "Description": "Byte-order mark for text file encoded in Endianness#Little-endianlittle-endian UTF-1616-bit Unicode Transfer Format",
+        "Popular": 0
+    },
+    {
+        "Hexadecimal File Signature": "FFFE0000",
+        "ISO 8859-1": null,
+        "Filename Extension": null,
+        "Description": "Byte-order mark for text file encoded in little-endian UTF-3232-bit Unicode Transfer Format",
+        "Popular": 0
+    },
+    {
+        "Hexadecimal File Signature": "25215053",
+        "ISO 8859-1": "%!PS",
+        "Filename Extension": "ps",
+        "Description": "PostScriptPostScript document",
+        "Popular": 0
+    },
+    {
+        "Hexadecimal File Signature": "495453460300000060000000",
+        "ISO 8859-1": "ITSF....`...",
+        "Filename Extension": "chm",
+        "Description": "Microsoft_Compiled_HTML_HelpMS Windows HtmlHelp Data",
+        "Popular": 0
+    },
+    {
+        "Hexadecimal File Signature": "255044462d",
+        "ISO 8859-1": "%PDF-",
+        "Filename Extension": "pdf",
+        "URL": "https://github.com/file/file/blob/master/magic/Magdir/pdf",
+        "Description": "Portable Document FormatPDF document",
+        "Popular": 0
+    },
+    {
+        "Hexadecimal File Signature": "3026B2758E66CF11A6D900AA0062CE6C",
+        "ISO 8859-1": "0&\u00b2u.f\u00cf .\u00a6\u00d9.\u00aa.b\u00cel",
+        "Filename Extension": "asfwmawmv",
+        "URL": "http://www.digitalpreservation.gov/formats/fdd/fdd000067.shtml ",
+        "Description": "Advanced Systems Format",
+        "Popular": 0
+    },
+    {
+        "Hexadecimal File Signature": "2453444930303031",
+        "ISO 8859-1": "$SDI0001",
+        "Filename Extension": null,
+        "Description": "System Deployment Image, a disk image format used by Microsoft",
+        "Popular": 0
+    },
+    {
+        "Hexadecimal File Signature": "4F676753",
+        "ISO 8859-1": "OggS",
+        "Filename Extension": "oggogaogv",
+        "Description": "Ogg, an Open-source licenseopen source media container format",
+        "Popular": 0
+    },
+    {
+        "Hexadecimal File Signature": "38425053",
+        "ISO 8859-1": "8BPS",
+        "Filename Extension": "psd",
+        "Description": "Photoshop Document file, Adobe Photoshop's native file format",
+        "Popular": 0
+    },
+    {
+        "Hexadecimal File Signature": "52494646????????57415645",
+        "ISO 8859-1": "RIFF.... WAVE",
+        "Filename Extension": "wav",
+        "Description": "Waveform Audio File Format",
+        "Popular": 0
+    },
+    {
+        "Hexadecimal File Signature": "52494646????????41564920",
+        "ISO 8859-1": "RIFF.... AVI.",
+        "Filename Extension": "avi",
+        "Description": "Audio Video Interleave video format",
+        "Popular": 0
+    },
+    {
+        "Hexadecimal File Signature": "FFFBFFF3FFF2",
+        "ISO 8859-1": "\u00ff\u00fb \u00ff\u00f3 \u00ff\u00f2",
+        "Filename Extension": "mp3",
+        "Description": "MPEG-1 Layer 3 file without an ID3 tag or with an ID3v1 tag (which's appended at the end of the file)",
+        "Popular": 0
+    },
+    {
+        "Hexadecimal File Signature": "494433",
+        "ISO 8859-1": "ID3",
+        "Filename Extension": "mp3",
+        "Description": "MP3 file with an ID3v2 container",
+        "Popular": 0
+    },
+    {
+        "Hexadecimal File Signature": "424D",
+        "ISO 8859-1": null,
+        "Filename Extension": "bmpdib",
+        "Description": "BMP file formatBMP file, a bitmap format used mostly in the Windows world",
+        "Popular": 0
+    },
+    {
+        "Hexadecimal File Signature": "4344303031",
+        "ISO 8859-1": "CD001",
+        "Filename Extension": "iso",
+        "URL": "http://www.garykessler.net/library/file_sigs.html",
+        "Description": "ISO9660 CD/DVD image file weburl",
+        "Popular": 0
+    },
+    {
+        "Hexadecimal File Signature": "53494D504C4520203D202020202020202020202020202020202020202054",
+        "ISO 8859-1": "SIMPLE   =                      T",
+        "Filename Extension": "fits",
+        "URL": "http://www.digitalpreservation.gov/formats/fdd/fdd000317.shtml#sign",
+        "Description": "Flexible Image Transport System (FITS) weburl",
+        "Popular": 0
+    },
+    {
+        "Hexadecimal File Signature": "664C6143",
+        "ISO 8859-1": "fLaC",
+        "Filename Extension": "flac",
+        "URL": "http://flac.sourceforge.net/format.html#stream ",
+        "Description": "Free Lossless Audio Codec weburl",
+        "Popular": 0
+    },
+    {
+        "Hexadecimal File Signature": "4D546864",
+        "ISO 8859-1": "MThd",
+        "Filename Extension": "midmidi",
+        "URL": "http://filesignatures.net/index.php?search",
+        "Description": "MIDI#Standard MIDI filesMIDI sound file weburl",
+        "Popular": 0
+    },
+    {
+        "Hexadecimal File Signature": "D0CF11E0A1B11AE1",
+        "ISO 8859-1": null,
+        "Filename Extension": "docxlspptmsg",
+        "URL": "http://social.msdn.microsoft.com/Forums/en-US/343d09e3-5fdf-4b4a-9fa6-8ccb37a35930/developing-a-tool-to-recognise-ms-office-file-types-doc-xls-mdb-ppt-?forum",
+        "Description": "Compound File Binary Format, a container format used for document by older versions of Microsoft Office. weburl",
+        "Popular": 0
+    },
+    {
+        "Hexadecimal File Signature": "6465780A30333500",
+        "ISO 8859-1": "dex.035.",
+        "Filename Extension": "dex",
+        "Description": "Dalvik (software)Dalvik Executable",
+        "Popular": 0
+    },
+    {
+        "Hexadecimal File Signature": "4B444D",
+        "ISO 8859-1": "KDM",
+        "Filename Extension": "vmdk",
+        "URL": "https://www.vmware.com/support/ws55/doc/ws_learning_files_in_a_vm.html",
+        "Description": "VMDK files weburl",
+        "Popular": 0
+    },
+    {
+        "Hexadecimal File Signature": "43723234",
+        "ISO 8859-1": "Cr24",
+        "Filename Extension": "crx",
+        "URL": "http://developer.chrome.com/extensions/crx.html",
+        "Description": "Google Chrome extension weburl",
+        "Popular": 0
+    },
+    {
+        "Hexadecimal File Signature": "41474433",
+        "ISO 8859-1": "AGD3",
+        "Filename Extension": "fh8",
+        "URL": "https://mail.python.org/pipermail/pythonmac-sig/2005-February/013028.html",
+        "Description": "Adobe FreeHandFreeHand 8 document weburl",
+        "Popular": 0
+    },
+    {
+        "Hexadecimal File Signature": "05070000424F424F0507000000000000000000000001",
+        "ISO 8859-1": "....BOBO ........ ....",
+        "Filename Extension": "cwk",
+        "Description": "AppleWorks 5 document",
+        "Popular": 0
+    },
+    {
+        "Hexadecimal File Signature": "0607E100424F424F0607E10000000000000000000001",
+        "ISO 8859-1": "....BOBO ........ ....",
+        "Filename Extension": "cwk",
+        "Description": "AppleWorks 6 document",
+        "Popular": 0
+    },
+    {
+        "Hexadecimal File Signature": "4552020000008B455202000000",
+        "ISO 8859-1": "ER.... \u00e3ER....",
+        "Filename Extension": "toast",
+        "Description": "Roxio Roxio ToastToast disc image file, also some .dmg-files begin with same bytes",
+        "Popular": 0
+    },
+    {
+        "Hexadecimal File Signature": "7801730D626260",
+        "ISO 8859-1": "x.s.bb`",
+        "Filename Extension": "dmg",
+        "Description": "Apple Disk Image file",
+        "Popular": 0
+    },
+    {
+        "Hexadecimal File Signature": "78617221",
+        "ISO 8859-1": "xar!",
+        "Filename Extension": "xar",
+        "URL": "https://code.google.com/p/xar/wiki/xarformat",
+        "Description": "Xar (archiver)eXtensible ARchive format weburl",
+        "Popular": 0
+    },
+    {
+        "Hexadecimal File Signature": "504D4F43434D4F43",
+        "ISO 8859-1": "PMOCCMOC",
+        "Filename Extension": "dat",
+        "URL": "http://www.howtogeek.com/79820/easily-restore-your-computer-with-file-and-settings-transfer-wizard-xp-part-1/",
+        "Description": "Windows Files And Settings Transfer Repository weburl",
+        "Popular": 0
+    },
+    {
+        "Hexadecimal File Signature": "4E45531A",
+        "ISO 8859-1": "NES",
+        "Filename Extension": "nes",
+        "URL": "http://sadistech.com/nesromtool/romdoc.html",
+        "Description": "Nintendo Entertainment System ROM file weburl",
+        "Popular": 0
+    },
+    {
+        "Hexadecimal File Signature": "75737461720030307573746172202000",
+        "ISO 8859-1": "ustar.00 ustar  .",
+        "Filename Extension": "tar",
+        "URL": "https://www.gnu.org/software/tar/manual/html_node/Standard.html",
+        "Description": "tar (computing)tar archive weburl",
+        "Popular": 0
+    },
+    {
+        "Hexadecimal File Signature": "4F4152??",
+        "ISO 8859-1": "OAR.",
+        "Filename Extension": "oar",
+        "Description": "OAR file archive format, where ?? is the format version.",
+        "Popular": 0
+    },
+    {
+        "Hexadecimal File Signature": "746F7833",
+        "ISO 8859-1": "TOX",
+        "Filename Extension": "tox",
+        "URL": "http://tox.land/uvox/man.html",
+        "Description": "Open source portable voxel file weburl",
+        "Popular": 0
+    },
+    {
+        "Hexadecimal File Signature": "4D4C5649",
+        "ISO 8859-1": "MLVI",
+        "Filename Extension": "MLV",
+        "URL": "https://docs.google.com/spreadsheet/ccc?key",
+        "Description": "Magic Lantern (firmware)Magic Lantern Video file weburl",
+        "Popular": 0
+    },
+    {
+        "Hexadecimal File Signature": "44434D0150413330",
+        "ISO 8859-1": "DCM PA30",
+        "Filename Extension": null,
+        "URL": "1562 Binary Delta Compression]<ref>{{Cite web",
+        "Description": "Windows Update [http://www.microsoft.com/en-us/download/details.aspx?id",
+        "Popular": 0
+    },
+    {
+        "Hexadecimal File Signature": "377ABCAF271C",
+        "ISO 8859-1": "7z\u00bc\u00af'",
+        "Filename Extension": "7z",
+        "Description": "7-Zip File Format",
+        "Popular": 0
+    },
+    {
+        "Hexadecimal File Signature": "1F8B",
+        "ISO 8859-1": null,
+        "Filename Extension": "gztar.gz",
+        "URL": "https://tools.ietf.org/html/rfc1952#page-6",
+        "Description": "GZIP compressed fileCite weburl",
+        "Popular": 0
+    },
+    {
+        "Hexadecimal File Signature": "FD377A585A00",
+        "ISO 8859-1": "\u00b27zXZ..",
+        "Filename Extension": "xztar.xz",
+        "Description": "XZ UtilsXZ compression utility using Lempel\u2013Ziv\u2013Markov chain algorithmLZMA2 compression",
+        "Popular": 0
+    },
+    {
+        "Hexadecimal File Signature": "04224D18",
+        "ISO 8859-1": ".\"M.",
+        "Filename Extension": "lz4",
+        "URL": "https://github.com/lz4/lz4/blob/dev/doc/lz4_Frame_format.md",
+        "Description": "LZ4 (compression algorithm)LZ4 Frame Format weburl",
+        "Popular": 0
+    },
+    {
+        "Hexadecimal File Signature": "4D534346",
+        "ISO 8859-1": "MSCF",
+        "Filename Extension": "cab",
+        "Description": "Microsoft Cabinet file",
+        "Popular": 0
+    },
+    {
+        "Hexadecimal File Signature": "535A444488F02733",
+        "ISO 8859-1": "SZDD....",
+        "Filename Extension": "Various. (Replacing the last character of the original filename extension with an underscore, e.g. setup.exe becomes setup.ex_)",
+        "Description": "Microsoft compressed file in Quantum compressionQuantum format, used prior to Windows XP.  File can be decompressed using Extract.exe or Expand.exe distributed with earlier versions of Windows.",
+        "Popular": 0
+    },
+    {
+        "Hexadecimal File Signature": "464C4946",
+        "ISO 8859-1": "FLIF",
+        "Filename Extension": "flif",
+        "Description": "Free Lossless Image Format",
+        "Popular": 0
+    },
+    {
+        "Hexadecimal File Signature": "1A45DFA3",
+        "ISO 8859-1": ".E\u00df\u00a3",
+        "Filename Extension": "mkvmkamksmk3dwebm",
+        "Description": "Matroska media container, including WebM",
+        "Popular": 0
+    },
+    {
+        "Hexadecimal File Signature": "4D494C20",
+        "ISO 8859-1": "MIL",
+        "Filename Extension": "stg",
+        "Description": "\"SEAN : Session Analysis\" Training file. Also used in compatible software \"Rpw : Rowperfect for Windows\" and \"RP3W : ROWPERFECT3 for Windows\".",
+        "Popular": 0
+    },
+    {
+        "Hexadecimal File Signature": "41542654464F524D????????444A56",
+        "ISO 8859-1": "AT&TFORM....DJV",
+        "Filename Extension": "djvudjv",
+        "Description": "DjVu documentThe following byte is either 55 (U) for single-page or 4D (M) for multi-page documents.",
+        "Popular": 0
+    },
+    {
+        "Hexadecimal File Signature": "3082",
+        "ISO 8859-1": null,
+        "Filename Extension": "der",
+        "Description": "DER encoded X.509 certificate",
+        "Popular": 0
+    },
+    {
+        "Hexadecimal File Signature": "4449434D",
+        "ISO 8859-1": "DICM",
+        "Filename Extension": "dcm",
+        "Description": "DICOMDICOM Medical File Format",
+        "Popular": 0
+    },
+    {
+        "Hexadecimal File Signature": "774F4646",
+        "ISO 8859-1": "wOFF",
+        "Filename Extension": "woff",
+        "Description": "[https://www.w3.org/TR/2012/REC-WOFF-20121213/ WOFF File Format 1.0]",
+        "Popular": 0
+    },
+    {
+        "Hexadecimal File Signature": "774F4632",
+        "ISO 8859-1": "wOF2",
+        "Filename Extension": "woff2",
+        "Description": "[https://www.w3.org/TR/WOFF2/ WOFF File Format 2.0]",
+        "Popular": 0
+    },
+    {
+        "Hexadecimal File Signature": "3c3f786d6c20",
+        "ISO 8859-1": "?xml",
+        "Filename Extension": "XML",
+        "Description": "XMLeXtensible Markup Language when using the ASCII character encoding",
+        "Popular": 0
+    },
+    {
+        "Hexadecimal File Signature": "0061736d",
+        "ISO 8859-1": ".asm",
+        "Filename Extension": "wasm",
+        "URL": "https://github.com/WebAssembly/design/blob/master/BinaryEncoding.md#high-level-structure",
+        "Description": "WebAssembly binary formatCite weburl",
+        "Popular": 0
+    },
+    {
+        "Hexadecimal File Signature": "cf8401",
+        "ISO 8859-1": null,
+        "Filename Extension": "lep",
+        "URL": "https://blogs.dropbox.com/tech/2016/07/lepton-image-compression-saving-22-losslessly-from-images-at-15mbs/",
+        "Description": "Lepton image compression formatLepton compressed JPEG imageCite weburl",
+        "Popular": 0
+    },
+    {
+        "Hexadecimal File Signature": "435753465753",
+        "ISO 8859-1": "CWS FWS",
+        "Filename Extension": "swf",
+        "Description": "flash .swf",
+        "Popular": 0
+    },
+    {
+        "Hexadecimal File Signature": "213C617263683E",
+        "ISO 8859-1": null,
+        "Filename Extension": "deb",
+        "Description": "linux deb file",
+        "Popular": 0
+    },
+    {
+        "Hexadecimal File Signature": "52494646????????57454250",
+        "ISO 8859-1": "RIFF.... WEBP",
+        "Filename Extension": "webp",
+        "Description": "Google WebP image file, where ?? ?? ?? ?? is the file size. More information on [https://developers.google.com/speed/webp/docs/riff_container#webp_file_header WebP File Header]",
+        "Popular": 0
+    },
+    {
+        "Hexadecimal File Signature": "27051956",
+        "ISO 8859-1": "'..V",
+        "Filename Extension": null,
+        "URL": "http://buffalo.nas-central.org/wiki/How_to_Extract_an_uImage",
+        "Description": "U-Boot / uImage. Das U-Boot Universal Boot Loader.Cite weburl",
+        "Popular": 0
+    },
+    {
+        "Hexadecimal File Signature": "7B5C72746631",
+        "ISO 8859-1": "\\rtf1",
+        "Filename Extension": "rtf",
+        "Description": "Rich Text Format",
+        "Popular": 0
+    },
+    {
+        "Hexadecimal File Signature": "54415045",
+        "ISO 8859-1": "TAPE",
+        "Filename Extension": null,
+        "Description": "Microsoft Tape Format",
+        "Popular": 0
+    },
+    {
+        "Hexadecimal File Signature": "47",
+        "ISO 8859-1": null,
+        "Filename Extension": "ts tsv  tsa",
+        "Description": "MPEG Transport Stream  (MPEG-2 Part 1)",
+        "Popular": 0
+    },
+    {
+        "Hexadecimal File Signature": "000001BA",
+        "ISO 8859-1": null,
+        "Filename Extension": "m2p  vob",
+        "Description": "MPEG Program Stream  (MPEG-1 Part 1 (essentially identical) and MPEG-2 Part 1)",
+        "Popular": 0
+    },
+    {
+        "Hexadecimal File Signature": "000001BA47000001B3",
+        "ISO 8859-1": null,
+        "Filename Extension": "mpg mpeg",
+        "Description": "MPEG Program Stream  MPEG Transport Stream  MPEG-1 video and MPEG-2 video  (MPEG-1 Part 2 and MPEG-2 Part 2)",
+        "Popular": 0
+    },
+    {
+        "Hexadecimal File Signature": "000000186674797069736F6D",
+        "ISO 8859-1": "ftypisom",
+        "Filename Extension": "mp4",
+        "Description": "ISO Base Media file (MPEG-4)",
+        "Popular": 0
+    },
+    {
+        "Hexadecimal File Signature": "7801785E789C78DA7820787D78BB78F9",
+        "ISO 8859-1": null,
+        "Filename Extension": "zlib",
+        "Description": "No Compression (no preset dictionary)  Best speed (no preset dictionary)  Default Compression (no preset dictionary)  Best Compression (no preset dictionary)  No Compression (with preset dictionary)  Best speed (with preset dictionary)  Default Compression (with preset dictionary)  Best Compression (with preset dictionary)",
+        "Popular": 0
+    },
+    {
+        "Hexadecimal File Signature": "62767832",
+        "ISO 8859-1": "bvx2",
+        "Filename Extension": "lzfse",
+        "URL": "https://github.com/lzfse/lzfse",
+        "Description": "LZFSE - Lempel-Ziv style data compression algorithm using Finite State Entropy coding. OSS by Apple.Cite weburl",
+        "Popular": 0
+    },
+    {
+        "Hexadecimal File Signature": "4F5243",
+        "ISO 8859-1": "ORC",
+        "Filename Extension": "orc",
+        "Description": "Apache ORC (Optimized Row Columnar) file format",
+        "Popular": 0
+    },
+    {
+        "Hexadecimal File Signature": "4F626A01",
+        "ISO 8859-1": "Obj.",
+        "Filename Extension": "avro",
+        "Description": "Apache Avro binary file format",
+        "Popular": 0
+    },
+    {
+        "Hexadecimal File Signature": "53455136",
+        "ISO 8859-1": "SEQ6",
+        "Filename Extension": "rc",
+        "Description": "RCFile columnar file format",
+        "Popular": 0
+    },
+    {
+        "Hexadecimal File Signature": "65877856",
+        "ISO 8859-1": "e.xV",
+        "Filename Extension": "p25  obt",
+        "Description": "PhotoCap Object Templates",
+        "Popular": 0
+    },
+    {
+        "Hexadecimal File Signature": "5555aaaa",
+        "ISO 8859-1": null,
+        "Filename Extension": "pcv",
+        "Description": "PhotoCap Vector",
+        "Popular": 0
+    },
+    {
+        "Hexadecimal File Signature": "785634",
+        "ISO 8859-1": "xV4",
+        "Filename Extension": "pbt  pdt  pea  peb  pet  pgt  pict  pjt  pkt  pmt",
+        "Description": "PhotoCap Template",
+        "Popular": 0
+    },
+    {
+        "Hexadecimal File Signature": "50415231",
+        "ISO 8859-1": "PAR1",
+        "Filename Extension": null,
+        "Description": "Apache Parquet columnar file format",
+        "Popular": 0
+    },
+    {
+        "Hexadecimal File Signature": "454D5832",
+        "ISO 8859-1": "EMX2",
+        "Filename Extension": "ez2",
+        "Description": "E-mu_EmaxEmulator Emaxsynth samples",
+        "Popular": 0
+    },
+    {
+        "Hexadecimal File Signature": "454D5533",
+        "ISO 8859-1": "EMU3",
+        "Filename Extension": "ez3 iso",
+        "Description": "E-mu_Emulator#The_Emulator_IIIEmulator III synth samples",
+        "Popular": 0
+    },
+    {
+        "Hexadecimal File Signature": "1B4C7561",
+        "ISO 8859-1": ".Lua",
+        "Filename Extension": "luac",
+        "URL": "Lua 5.2 Bytecode and Virtual Machine ",
+        "Description": "Lua (programming language)Lua bytecode web title",
+        "Popular": 0
+    },
+    {
+        "Hexadecimal File Signature": "626F6F6B000000006D61726B00000000",
+        "ISO 8859-1": "62 6F 6F 6B 00 00 00 00 6D 61 72 6B 00 00 00 00",
+        "Filename Extension": "alias",
+        "URL": "https://www.forensicswiki.org/wiki/Mac_OS_X#Burn_Folder",
+        "Description": "macOS file AliasCite weburl",
+        "Popular": 0
+    },
+    {
+        "Hexadecimal File Signature": "5B5A6F6E655472616E736665725D",
+        "ISO 8859-1": "[ZoneTransfer]",
+        "Filename Extension": "Identifier",
+        "URL": "vs.60) URL Security Zones]<ref>{{Cite web",
+        "Description": "Microsoft Zone Identifier for [https://technet.microsoft.com/en-us/windows/ms537183(v",
+        "Popular": 0
+    },
+    {
+        "Hexadecimal File Signature": "5265636569766564",
+        "ISO 8859-1": "Received:",
+        "Filename Extension": "eml",
+        "URL": "http://file-extension.net/seeker/program_extension_message",
+        "Description": "Email Message var5Cite weburl",
+        "Popular": 0
+    },
+    {
+        "Hexadecimal File Signature": "20020162A01EAB0702000000",
+        "ISO 8859-1": "20 02 01 62 A0 1E AB 07 02 00 00 00",
+        "Filename Extension": "tde",
+        "Description": "Tableau Datasource",
+        "Popular": 0
+    },
+    {
+        "Hexadecimal File Signature": "3748030200000000583530394B4559",
+        "ISO 8859-1": "37 48 03 02 00 00 00 00 58 35 30 39 4B 45 59",
+        "Filename Extension": "kdb",
+        "Description": "KDB file",
+        "Popular": 0
+    },
+    {
+        "Hexadecimal File Signature": "85????03",
+        "ISO 8859-1": "85 ?? ?? 03",
+        "Filename Extension": "pgp",
+        "URL": "https://security.stackexchange.com/a/144555/12109",
+        "Description": "PGP file Cite weburl",
+        "Popular": 0
+    },
+    {
+        "Hexadecimal File Signature": "28B52FFD",
+        "ISO 8859-1": "28 B5 2F FD",
+        "Filename Extension": "zst",
+        "URL": "https://tools.ietf.org/html/rfc8478#section-3.1.1",
+        "Description": "Zstandard compressed fileCite weburl",
+        "Popular": 0
+    },
+    {
+        "Hexadecimal File Signature": "5253564B44415441",
+        "ISO 8859-1": "52 53 56 4B 44 41 54 41",
+        "Filename Extension": "rs",
+        "URL": "https://filext.com/file-extension/RS",
+        "Description": "QuickZip rs compressed archiveCite weburl",
+        "Popular": 0
+    },
+    {
+        "Hexadecimal File Signature": "3A290A",
+        "ISO 8859-1": "3A 29 0A",
+        "Filename Extension": "sml",
+        "Description": "Smile (data interchange format)Smile file",
+        "Popular": 0
+    },
+    {
+        "Hexadecimal File Signature": "4A6F7921",
+        "ISO 8859-1": "4A 6F 79 21",
+        "Filename Extension": null,
+        "Description": "Preferred Executable Format",
+        "Popular": 0
+    },
+    {
+        "Hexadecimal File Signature": "310A3030",
+        "ISO 8859-1": "31 0A 30 30",
+        "Filename Extension": "srt",
+        "Description": "SubRip File",
+        "Popular": 0
+    },
+    {
+        "Hexadecimal File Signature": "3412AA55",
+        "ISO 8859-1": "34 12 AA 55",
+        "Filename Extension": "vpk",
+        "Description": "VPK file, used to store game data for some Source Engine games",
+        "Popular": 0
+    },
+    {
+        "Hexadecimal File Signature": "58464952",
+        "ISO 8859-1": "58 46 49 52",
+        "Filename Extension": "dcr",
+        "Description": "Adobe Shockwave",
+        "Popular": 0
+    },
+    {
+        "Hexadecimal File Signature": "2A2A4143452A3A",
+        "ISO 8859-1": "2A 2A 41 43 45 2A 2A",
+        "Filename Extension": "ace",
+        "Description": "ACE (compressed file format)",
+        "Popular": 0
+    },
+    {
+        "Hexadecimal File Signature": "60EA",
+        "ISO 8859-1": "60 RA",
+        "Filename Extension": "arj",
+        "Description": "ARJ",
+        "Popular": 0
+    },
+    {
+        "Hexadecimal File Signature": "49536328",
+        "ISO 8859-1": "49 53 63 28",
+        "Filename Extension": "cab",
+        "Description": "InstallShield CAB Archive File",
+        "Popular": 0
+    },
+    {
+        "Hexadecimal File Signature": "4B57414A",
+        "ISO 8859-1": "4B 57 41 4A",
+        "Filename Extension": "??_",
+        "Description": "Windows 3.1x Compressed File",
+        "Popular": 0
+    },
+    {
+        "Hexadecimal File Signature": "535A4444",
+        "ISO 8859-1": "53 5A 44 44",
+        "Filename Extension": "??_",
+        "Description": "Windows 9x Compressed File",
+        "Popular": 0
+    },
+    {
+        "Hexadecimal File Signature": "5A4F4F",
+        "ISO 8859-1": "5A 4F 4F",
+        "Filename Extension": "zoo",
+        "Description": "Zoo (file format)",
+        "Popular": 0
+    },
+    {
+        "Hexadecimal File Signature": "50310A",
+        "ISO 8859-1": "50 31 0A",
+        "Filename Extension": "pbm",
+        "Description": "Portable bitmap",
+        "Popular": 0
+    },
+    {
+        "Hexadecimal File Signature": "50320A",
+        "ISO 8859-1": "50 32 0A",
+        "Filename Extension": "pgm",
+        "Description": "Portable Gray Map",
+        "Popular": 0
+    },
+    {
+        "Hexadecimal File Signature": "50330A",
+        "ISO 8859-1": "50 33 0A",
+        "Filename Extension": "ppm",
+        "Description": "Portable Pixmap",
+        "Popular": 0
+    },
+    {
+        "Hexadecimal File Signature": "D7CDC69A",
+        "ISO 8859-1": "D7 CD C6 9A",
+        "Filename Extension": "wmf",
+        "Description": "Windows Metafile",
+        "Popular": 0
+    },
+    {
+        "Hexadecimal File Signature": "67696D7020786366",
+        "ISO 8859-1": "67 69 6D 70 20 78 63 66",
+        "Filename Extension": "xcf",
+        "Description": "XCF (file format)",
+        "Popular": 0
+    },
+    {
+        "Hexadecimal File Signature": "2F2A2058504D202A2F",
+        "ISO 8859-1": "2F 2A 20 58 50 4D 20 2A 2F",
+        "Filename Extension": "xpm",
+        "Description": "X PixMap",
+        "Popular": 0
+    },
+    {
+        "Hexadecimal File Signature": "414646",
+        "ISO 8859-1": "41 46 46",
+        "Filename Extension": "aff",
+        "Description": "Advanced Forensics Format",
+        "Popular": 0
+    },
+    {
+        "Hexadecimal File Signature": "45564632",
+        "ISO 8859-1": "45 56 46 32",
+        "Filename Extension": "Ex01",
+        "Description": "EnCase EWF version 2 format",
+        "Popular": 0
+    },
+    {
+        "Hexadecimal File Signature": "455646",
+        "ISO 8859-1": "45 56 46",
+        "Filename Extension": "e01",
+        "Description": "EnCase EWF version 1 format",
+        "Popular": 0
+    },
+    {
+        "Hexadecimal File Signature": "514649",
+        "ISO 8859-1": "51 46 49",
+        "Filename Extension": "qcow",
+        "Description": "qcow file format",
+        "Popular": 0
+    },
+    {
+        "Hexadecimal File Signature": "52494646????????41434F4E",
+        "ISO 8859-1": "RIFF.... ACON",
+        "Filename Extension": "ani",
+        "Description": "Animated cursor",
+        "Popular": 0
+    },
+    {
+        "Hexadecimal File Signature": "52494646????????43444441",
+        "ISO 8859-1": "RIFF.... CDDA",
+        "Filename Extension": "cda",
+        "Description": "Compact Disc Digital Audio",
+        "Popular": 0
+    },
+    {
+        "Hexadecimal File Signature": "52494646????????514C434D",
+        "ISO 8859-1": "RIFF.... QLCM",
+        "Filename Extension": "qcp",
+        "Description": "Qualcomm PureVoice file format",
+        "Popular": 0
+    },
+    {
+        "Hexadecimal File Signature": "58464952????????3339564D",
+        "ISO 8859-1": "XFIR.... 39VM",
+        "Filename Extension": "dir",
+        "Description": "Macromedia Director file format",
+        "Popular": 0
+    },
+    {
+        "Hexadecimal File Signature": "464C56",
+        "ISO 8859-1": "46 4C 56",
+        "Filename Extension": "flv",
+        "Description": "Flash Video file",
+        "Popular": 0
+    },
+    {
+        "Hexadecimal File Signature": "3C3C3C204F7261636C6520564D205669727475616C426F78204469736B20496D616765203E3E3E",
+        "ISO 8859-1": "3C 3C 3C 20 4F 72 61 63 6C 65 20 56 4D 20 56 69 72 74 75 61 6C 42 6F 78 20 44 69 73 6B 20 49 6D 61 67 65 20 3E 3E 3E",
+        "Filename Extension": "vdi",
+        "Description": "VirtualBox Virtual Hard Disk file format",
+        "Popular": 0
+    },
+    {
+        "Hexadecimal File Signature": "636F6E6E6563746978",
+        "ISO 8859-1": "63 6F 6E 6E 65 63 74 69 78",
+        "Filename Extension": "vhd",
+        "Description": "Windows Virtual PC Virtual Hard Disk file format",
+        "Popular": 0
+    },
+    {
+        "Hexadecimal File Signature": "7668647866696C65",
+        "ISO 8859-1": "76 68 64 78 66 69 6C 65",
+        "Filename Extension": "vhdx",
+        "Description": "Windows Virtual PC Windows 8 Virtual Hard Disk file format",
+        "Popular": 0
+    },
+    {
+        "Hexadecimal File Signature": "49735A21",
+        "ISO 8859-1": "49 73 5A 21",
+        "Filename Extension": "isz",
+        "Description": "Compressed ISO image",
+        "Popular": 0
+    },
+    {
+        "Hexadecimal File Signature": "444141",
+        "ISO 8859-1": "44 41 41",
+        "Filename Extension": "daa",
+        "Description": "Direct Access Archive PowerISO",
+        "Popular": 0
+    },
+    {
+        "Hexadecimal File Signature": "4C664C65",
+        "ISO 8859-1": "4C 66 4C 65",
+        "Filename Extension": "evt",
+        "Description": "Windows Event Viewer file format",
+        "Popular": 0
+    },
+    {
+        "Hexadecimal File Signature": "504D4343",
+        "ISO 8859-1": "50 4D 43 43",
+        "Filename Extension": "grp",
+        "Description": "Windows 3.x Program Manager Program Group file format",
+        "Popular": 0
+    },
+    {
+        "Hexadecimal File Signature": "4B434D53",
+        "ISO 8859-1": "4B 43 4D 53",
+        "Filename Extension": "icm",
+        "Description": "ICC profile",
+        "Popular": 0
+    },
+    {
+        "Hexadecimal File Signature": "72656766",
+        "ISO 8859-1": "72 65 67 66",
+        "Filename Extension": "dat",
+        "Description": "Windows Registry file",
+        "Popular": 0
+    },
+    {
+        "Hexadecimal File Signature": "2142444E",
+        "ISO 8859-1": "21 42 44 4E",
+        "Filename Extension": "pst",
+        "Description": "Microsoft Outlook Personal Storage Table file",
+        "Popular": 0
+    },
+    {
+        "Hexadecimal File Signature": "445241434F",
+        "ISO 8859-1": "44 52 41 43 4F",
+        "Filename Extension": "drc",
+        "URL": "",
+        "Description": "3D model compressed with Google DracoCite weblast",
+        "Popular": 0
+    },
+    {
+        "Hexadecimal File Signature": "47524942",
+        "ISO 8859-1": "47 52 49 42",
+        "Filename Extension": "grib grib2",
+        "Description": "Gridded data (commonly weather observations or forecasts) in the World Meteorological OrganizationWMO GRIB or GRIB2 formathttps://www.wmo.int/pages/prog/www/WDM/Guides/Guide-binary-2.html",
+        "Popular": 0
+    },
+    {
+        "Hexadecimal File Signature": "424C454E444552",
+        "ISO 8859-1": "BLENDER",
+        "Filename Extension": "blend",
+        "URL": "2015-04-18",
+        "Description": "Blender File FormatCite webdate",
+        "Popular": 0
+    }
+]
