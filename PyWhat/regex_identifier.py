@@ -13,7 +13,6 @@ class RegexIdentifier:
             self.regexes = json.load(myfile)
 
     def check(self, text):
-        print(text)
         matches = []
         for txt in text:
             for reg in self.regexes:
@@ -21,7 +20,7 @@ class RegexIdentifier:
 
                 if matched_regex:
                     matches.append({"Matched": matched_regex.group(0), "Regex Pattern": reg})
-        print(matches)
+
         return matches
 
     def clean_text(self, text):

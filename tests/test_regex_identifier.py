@@ -26,6 +26,15 @@ def test_https():
     res = r.check(["https://tryhackme.com"])
     assert "Uniform Resource Locator (URL)" in res[0]["Regex Pattern"]["Name"]
 
+def test_coords():
+    r = regex_identifier.RegexIdentifier()
+    res = r.check(["52.6169586, -1.9779857"])
+    assert "Map Coordinates" in res[0]["Regex Pattern"]["Name"]
+
+def test_coords2():
+    r = regex_identifier.RegexIdentifier()
+    res = r.check(["53.76297,-1.9388732"])
+    assert "Map Coordinates" in res[0]["Regex Pattern"]["Name"]
 
 def test_ip():
     r = regex_identifier.RegexIdentifier()
