@@ -13,7 +13,7 @@ class FileSignatures:
 
     def open_file_loc(self, file_loc):
         with open(file_loc, "r", encoding="utf8", errors="ignore") as myfile:
-            r = myfile.read()
+            r = myfile.readlines()
         return r
 
     def open_binary_scan_magic_nums(self, file_loc):

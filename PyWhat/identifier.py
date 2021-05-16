@@ -20,6 +20,8 @@ class Identifier:
             magic_numbers = self.file_sig.open_binary_scan_magic_nums(text)
             text = self.file_sig.open_file_loc(text)
             identify_obj["File Signatures"] = magic_numbers
+        else:
+            text = [text]
 
         if not magic_numbers:
             # If file doesn't exist, check to see if the inputted text is
@@ -29,7 +31,7 @@ class Identifier:
         identify_obj["Language"] = self.lang_detect.detect_what_lang(text)
         identify_obj["Regexes"] = self.regex_id.check(text)
         # get_hashes takes a list of hashes, we split to give it a list
-        identify_obj["Hashes"] = self.name_that_hash.get_hashes(text.split())
+        # identify_obj["Hashes"] = self.name_that_hash.get_hashes(text.split())
 
         return identify_obj
 

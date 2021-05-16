@@ -6,7 +6,7 @@ import pytest
 
 def test_hello_world():
     runner = CliRunner()
-    result = runner.invoke(main, ["1981328391THM{this is a flag}asdasda"])
+    result = runner.invoke(main, ["THM{this is a flag}"])
     assert result.exit_code == 0
     assert "THM{" in result.output
 
@@ -89,7 +89,7 @@ def test_file_fixture12():
     runner = CliRunner()
     result = runner.invoke(main, ["fixtures/file"])
     assert result.exit_code == 0
-    assert re.findall("blockchain", str(result.output))
+    assert re.findall("Ethereum", str(result.output))
 
 
 def test_file_fixture13():
@@ -147,7 +147,7 @@ def test_file_fixture_discover():
     assert result.exit_code == 0
     assert re.findall("Discover", str(result.output))
 
-
+@pytest.mark.skip("Key:value turned off")
 def test_file_fixture_usernamepassword():
     runner = CliRunner()
     result = runner.invoke(main, ["fixtures/file"])
@@ -175,6 +175,7 @@ def test_file_fixture_youtube_id():
     assert result.exit_code == 0
     assert re.findall("YouTube", str(result.output))
 
+
 def test_file_fixture_ip():
     runner = CliRunner()
     result = runner.invoke(main, ["fixtures/file"])
@@ -188,10 +189,9 @@ def test_file_fixture_ssn():
     assert result.exit_code == 0
     assert re.findall("Social", str(result.output))
 
-
+@pytest.mark.skip("Key:value turned off")
 def test_file_pcap():
     runner = CliRunner()
     result = runner.invoke(main, ["fixtures/FollowTheLeader.pcap"])
     assert result.exit_code == 0
-    print(result.output)
     assert re.findall("Host:", str(result.output))

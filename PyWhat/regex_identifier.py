@@ -14,13 +14,13 @@ class RegexIdentifier:
 
     def check(self, text):
         matches = []
-        for reg in self.regexes:
-            matched_regex = re.findall(reg["Regex"], text, re.UNICODE)
+        for txt in text:
+            for reg in self.regexes:
+                matched_regex = re.findall(reg["Regex"], txt, re.UNICODE)
 
-            if matched_regex:
-                print(matched_regex)
-                for i in matched_regex:
-                    matches.append({"Matched": i, "Regex Pattern": reg})
+                if matched_regex:
+                    for i in matched_regex:
+                        matches.append({"Matched": i, "Regex Pattern": reg})
         return matches
 
     def clean_text(self, text):

@@ -30,7 +30,8 @@ class Printing:
             to_out += f"[bold #D7Afff]File Identified[/bold #D7Afff] with Magic Numbers {text['File Signatures']['ISO 8859-1']}."
             to_out += f"\n[bold #D7Afff]File Description:[/bold #D7Afff] {text['File Signatures']['Description']}."
             to_out += "\n"
-        console.print(to_out)
+        if to_out:
+            console.print(to_out)
         to_out = ""
 
         if text["Regexes"]:
@@ -42,8 +43,8 @@ class Printing:
             table.add_column("Identified as")
             table.add_column("Description")
             for i in text["Regexes"]:
-                matched = i["Matched"]
-                name = i["Regex Pattern"]["Name"]
+                matched = str(i["Matched"])
+                name = str(i["Regex Pattern"]["Name"])
                 description = self.get_crypto_links(name, matched)
                 if not description:
                     description = i["Regex Pattern"]["Description"]
