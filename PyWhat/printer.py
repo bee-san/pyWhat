@@ -32,6 +32,7 @@ class Printing:
             to_out += "\n"
         if to_out:
             console.print(to_out)
+
         to_out = ""
 
         if text["Regexes"]:
@@ -54,6 +55,8 @@ class Printing:
                     description,
                 )
             console.print(to_out, table)
+        else:
+            console.print("[bold #D7Afff]Could not find anything of interest.[/bold #D7Afff]")
         """
         # This is commented out because there's too many possible hash idenfications
         # This is fixed by https://github.com/HashPals/Name-That-Hash/issues/89

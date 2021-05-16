@@ -13,14 +13,15 @@ class RegexIdentifier:
             self.regexes = json.load(myfile)
 
     def check(self, text):
+        print(text)
         matches = []
         for txt in text:
             for reg in self.regexes:
-                matched_regex = re.findall(reg["Regex"], txt, re.UNICODE)
+                matched_regex = re.search(reg["Regex"], txt, re.UNICODE)
 
                 if matched_regex:
-                    for i in matched_regex:
-                        matches.append({"Matched": i, "Regex Pattern": reg})
+                    matches.append({"Matched": matched_regex.group(0), "Regex Pattern": reg})
+        print(matches)
         return matches
 
     def clean_text(self, text):

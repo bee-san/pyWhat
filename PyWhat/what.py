@@ -18,9 +18,9 @@ def main(text_input):
 
 
     """
-
+    
     what_obj = What_Object()
-    identified_output = what_obj.what_is_this(text_input)
+    identified_output = what_obj.what_is_this(text_input)   
 
     p = printer.Printing()
     p.pretty_print(identified_output)

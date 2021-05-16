@@ -10,6 +10,15 @@
        ]
     },
     {
+       "Name":"Map Coordinates",
+       "Regex":"^(-?\\d+(\\.\\d+)?),\\s*(-?\\d+(\\.\\d+)?)$",
+       "Description":"A map location",
+       "Rarity": 0.5,
+       "Tags": [
+          "Geo-location"
+       ]
+    },
+    {
        "Name": "Bitcoin Wallet",
        "Regex": "^[13][a-km-zA-HJ-NP-Z1-9]{25,34}$",
        "Description": "Bitcoin Wallet Address",
