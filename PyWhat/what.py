@@ -1,5 +1,5 @@
 import click
-from PyWhat import identifier, printer
+from pywhat import identifier, printer
 
 
 @click.command()

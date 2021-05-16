@@ -1,5 +1,5 @@
 import pytest
-from PyWhat import regex_identifier
+from pywhat import regex_identifier
 
 
 def test_regex_successfully_parses():

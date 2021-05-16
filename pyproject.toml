@@ -1,6 +1,6 @@
 [tool.poetry]
-name = "PyWhat"
-version = "0.1.27"
+name = "pywhat"
+version = "0.1.28"
 description = "What is that thing?"
 authors = ["Bee <github@skerritt.blog>"]
 license = "GPLv3"
@@ -19,5 +19,5 @@ requires = ["poetry-core>=1.0.0"]
 build-backend = "poetry.core.masonry.api"
 
 [tool.poetry.scripts]
-pywhat = "PyWhat.what:main"
-what = "PyWhat.what:main"
+pywhat = "pywhat.what:main"
+what = "pywhat.what:main"

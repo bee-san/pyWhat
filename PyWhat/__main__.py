@@ -1,7 +1,7 @@
 #! /usr/bin/env python3
 
 """
-Name That Hash: Name the hash type.
+pywhat: Identify Anything.
 """
 
 import sys
@@ -24,6 +24,6 @@ if __name__ == "__main__":
         )
         sys.exit(1)
 
-    from PyWhat import what
+    from pywhat import what
 
     what.main()

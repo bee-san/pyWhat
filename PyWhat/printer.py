@@ -1,6 +1,6 @@
 import json
 
-from rich.console import Console
+from rich.console import Console, OverflowMethod
 from rich.table import Table
 
 
@@ -39,12 +39,12 @@ class Printing:
             table = Table(
                 show_header=True, header_style="bold #D7Afff", show_lines=True
             )
-            table.add_column("Matched Text")
-            table.add_column("Identified as")
-            table.add_column("Description")
+            table.add_column("Matched Text", overflow="fold")
+            table.add_column("Identified as", overflow="fold")
+            table.add_column("Description", overflow="fold")
             for i in text["Regexes"]:
-                matched = str(i["Matched"])
-                name = str(i["Regex Pattern"]["Name"])
+                matched = i["Matched"]
+                name = i["Regex Pattern"]["Name"]
                 description = self.get_crypto_links(name, matched)
                 if not description:
                     description = i["Regex Pattern"]["Description"]

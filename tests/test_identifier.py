@@ -1,4 +1,4 @@
-from PyWhat import identifier
+from pywhat import identifier
 
 
 def test_identifier_works():

@@ -1,4 +1,4 @@
-from PyWhat import languageDetector
+from pywhat import languageDetector
 
 
 def test_regex_successfully_parses():
