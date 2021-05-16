@@ -65,9 +65,9 @@
        ]
     },
     {
-      "Name":"Map Coordinates",
+      "Name":"Latitude & Longitude coordinates",
       "Regex":"^(-?\\d+(\\.\\d+)?),\\s*(-?\\d+(\\.\\d+)?)$",
-      "Description":"A map location",
+      "Description":"Latitude / Longitude coordinate system for geo-locating",
       "Rarity": 0.5,
       "Tags": [
          "Geo-location"

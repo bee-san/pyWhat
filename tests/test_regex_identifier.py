@@ -20,7 +20,6 @@ def test_url():
     res = r.check(["tryhackme.com"])
     assert "Uniform Resource Locator (URL)" in res[0]["Regex Pattern"]["Name"]
 
-
 def test_https():
     r = regex_identifier.RegexIdentifier()
     res = r.check(["https://tryhackme.com"])
