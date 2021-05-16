@@ -19,7 +19,9 @@ class RegexIdentifier:
                 matched_regex = re.search(reg["Regex"], txt, re.UNICODE)
 
                 if matched_regex:
-                    matches.append({"Matched": matched_regex.group(0), "Regex Pattern": reg})
+                    matches.append(
+                        {"Matched": matched_regex.group(0), "Regex Pattern": reg}
+                    )
 
         return matches
 
