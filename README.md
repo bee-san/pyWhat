@@ -10,8 +10,6 @@
 </p>
 <hr>
 
-# TODO make image cropped
-
 # 🤔 `What` is this?
 
 ![](images_for_README/main_demo.gif)
