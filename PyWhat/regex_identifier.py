@@ -1,8 +1,6 @@
+import json
 import os
 import re
-
-import yaml
-import json
 
 
 class RegexIdentifier:
@@ -16,12 +14,17 @@ class RegexIdentifier:
         matches = []
         for txt in text:
             for reg in self.regexes:
-                matched_regex = re.findall(reg["Regex"], txt, re.UNICODE)
+                matched_regex = re.search(reg["Regex"], txt, re.UNICODE)
 
                 if matched_regex:
-                    for i in matched_regex:
-                        matches.append({"Matched": i, "Regex Pattern": reg})
+                    matches.append(
+                        {
+                            "Matched": self.clean_text(matched_regex.group(0)),
+                            "Regex Pattern": reg,
+                        }
+                    )
+
         return matches
 
     def clean_text(self, text):
-        return text.replace("\n", "").replace("\t", "")
+        return re.sub(r"[\x00-\x1f\x7f-\x9f]", "", text)
