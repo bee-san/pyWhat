@@ -1,8 +1,6 @@
+import json
 import os
 import re
-
-import yaml
-import json
 
 
 class RegexIdentifier:
@@ -20,10 +18,13 @@ class RegexIdentifier:
 
                 if matched_regex:
                     matches.append(
-                        {"Matched": matched_regex.group(0), "Regex Pattern": reg}
+                        {
+                            "Matched": self.clean_text(matched_regex.group(0)),
+                            "Regex Pattern": reg,
+                        }
                     )
 
         return matches
 
     def clean_text(self, text):
-        return text.replace("\n", "").replace("\t", "")
+        return re.sub(r"[\x00-\x1f\x7f-\x9f]", "", text)
