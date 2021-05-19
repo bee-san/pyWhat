@@ -90,7 +90,8 @@ class Printing:
             "Bitcoin Wallet": "https://www.blockchain.com/btc/address/",
             "YouTube Video ID": "https://www.youtube.com/watch?v=",
             "YouTube Channel ID": "https://www.youtube.com/channel/",
+            "Latitude & Longitude Coordinates": "https://google.com/maps/place/"
         }
         if text in explorers:
-            return "Click here to analyse in the browser " + explorers[text] + matched
+            return "Click here to analyse in the browser " + explorers[text] + matched.replace(" ", "")
         return None

@@ -65,8 +65,8 @@
        ]
     },
     {
-      "Name":"Latitude & Longitude coordinates",
-      "Regex":"^(-?\\d+(\\.\\d+)?),\\s*(-?\\d+(\\.\\d+)?)$",
+      "Name":"Latitude & Longitude Coordinates",
+      "Regex":"^[-+]?([1-8]?\\d(\\.\\d+)?|90(\\.0+)?),\\s*[-+]?(180(\\.0+)?|((1[0-7]\\d)|([1-9]?\\d))(\\.\\d+)?)$",
       "Description":"Latitude / Longitude coordinate system for geo-locating",
       "Rarity": 0.5,
       "Tags": [
