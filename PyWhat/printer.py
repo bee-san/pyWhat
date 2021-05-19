@@ -40,7 +40,7 @@ class Printing:
             table = Table(
                 show_header=True, header_style="bold #D7Afff", show_lines=True
             )
-            table.add_column("Matched Text")
+            table.add_column("Matched Text", overflow="fold")
             table.add_column("Identified as")
             table.add_column("Description")
             for i in text["Regexes"]:
@@ -90,7 +90,7 @@ class Printing:
             "Bitcoin Wallet": "https://www.blockchain.com/btc/address/",
             "YouTube Video ID": "https://www.youtube.com/watch?v=",
             "YouTube Channel ID": "https://www.youtube.com/channel/",
-            "Latitude & Longitude Coordinates": "https://google.com/maps/place/"
+            "Latitude & Longitude Coordinates": "https://www.google.com/maps/place/",
         }
         if text in explorers:
             return "Click here to analyse in the browser " + explorers[text] + matched.replace(" ", "")
