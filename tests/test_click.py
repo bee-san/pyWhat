@@ -147,6 +147,7 @@ def test_file_fixture_discover():
     assert result.exit_code == 0
     assert re.findall("Discover", str(result.output))
 
+
 @pytest.mark.skip("Key:value turned off")
 def test_file_fixture_usernamepassword():
     runner = CliRunner()
@@ -188,6 +189,7 @@ def test_file_fixture_ssn():
     result = runner.invoke(main, ["fixtures/file"])
     assert result.exit_code == 0
     assert re.findall("Social", str(result.output))
+
 
 @pytest.mark.skip("Key:value turned off")
 def test_file_pcap():

@@ -20,20 +20,24 @@ def test_url():
     res = r.check(["tryhackme.com"])
     assert "Uniform Resource Locator (URL)" in res[0]["Regex Pattern"]["Name"]
 
+
 def test_https():
     r = regex_identifier.RegexIdentifier()
     res = r.check(["https://tryhackme.com"])
     assert "Uniform Resource Locator (URL)" in res[0]["Regex Pattern"]["Name"]
+
 
 def test_lat_long():
     r = regex_identifier.RegexIdentifier()
     res = r.check(["52.6169586, -1.9779857"])
     assert "Latitude & Longitude Coordinates" in res[0]["Regex Pattern"]["Name"]
 
+
 def test_lat_long2():
     r = regex_identifier.RegexIdentifier()
     res = r.check(["53.76297,-1.9388732"])
     assert "Latitude & Longitude Coordinates" in res[0]["Regex Pattern"]["Name"]
+
 
 def test_ip():
     r = regex_identifier.RegexIdentifier()

@@ -27,6 +27,6 @@ if __name__ == "__main__":
     from pywhat import what
 
     if len(sys.argv) == 1:
-        what.main(['--help'])
+        what.main(["--help"])
 
     what.main()

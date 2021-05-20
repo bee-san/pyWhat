@@ -2,9 +2,11 @@ import click
 from pywhat import identifier, printer
 
 
-@click.command(context_settings=dict(
-    ignore_unknown_options=True,
-))
+@click.command(
+    context_settings=dict(
+        ignore_unknown_options=True,
+    )
+)
 @click.argument("text_input", required=True)
 def main(text_input):
     """
@@ -12,7 +14,7 @@ def main(text_input):
 
     Made by Bee https://twitter.com/bee_sec_san\n
 
-    https://github.com/bee-san\n 
+    https://github.com/bee-san\n
 
     Examples:
 
@@ -21,7 +23,7 @@ def main(text_input):
         * what "0x52908400098527886E0F7030069857D2E4169EE7"
 
         * what -- 52.6169586, -1.9779857
-    
+
     Your text must either be in quotation marks, or use the POSIX standard of "--" to mean "anything after -- is textual input".
 
     """
