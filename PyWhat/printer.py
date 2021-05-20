@@ -42,7 +42,7 @@ class Printing:
             )
             table.add_column("Matched Text", overflow="fold")
             table.add_column("Identified as", overflow="fold")
-            table.add_column("Description", overflow="fold")
+            table.add_column("Description")
             for i in text["Regexes"]:
                 matched = i["Matched"]
                 name = i["Regex Pattern"]["Name"]

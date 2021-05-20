@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "pywhat"
-version = "0.2.00"
+version = "0.2.1"
 description = "What is that thing?"
 authors = ["Bee <github@skerritt.blog>"]
 license = "GPLv3"
