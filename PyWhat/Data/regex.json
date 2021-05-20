@@ -65,6 +65,15 @@
        ]
     },
     {
+      "Name":"Latitude & Longitude Coordinates",
+      "Regex":"^[-+]?([1-8]?\\d(\\.\\d+)?|90(\\.0+)?),\\s*[-+]?(180(\\.0+)?|((1[0-7]\\d)|([1-9]?\\d))(\\.\\d+)?)$",
+      "Description":"Latitude / Longitude coordinate system for geo-locating",
+      "Rarity": 0.5,
+      "Tags": [
+         "Geo-location"
+      ]
+   },
+    {
        "Name": "Dogecoin Wallet Address",
        "Regex": "^D{1}[5-9A-HJ-NP-U]{1}[1-9A-HJ-NP-Za-km-z]{32}$",
        "Description": null,
