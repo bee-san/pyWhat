@@ -56,7 +56,7 @@ class Printing:
                 )
             console.print(to_out, table)
         
-        if not text["Regexes"] and not text["Language"]
+        if not text["Regexes"] and not text["Language"]:
             console.print(
                 "[bold #D7Afff]Could not find anything of interest.[/bold #D7Afff]"
             )
