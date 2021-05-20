@@ -1,0 +1,11 @@
+    {
+       "Name": "Key:Value",
+       "Regex": ".{4,30}:[ ]?.{5,250}",
+       "Description": "Typically username:password or key:value",
+       "rarity": 0.2,
+       "Tags": [
+          "Credentials",
+          "Password",
+          "Username"
+       ]
+    }
