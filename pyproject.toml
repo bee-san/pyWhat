@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "pywhat"
-version = "0.1.28"
+version = "0.2.00"
 description = "What is that thing?"
 authors = ["Bee <github@skerritt.blog>"]
 license = "GPLv3"
@@ -8,7 +8,6 @@ license = "GPLv3"
 [tool.poetry.dependencies]
 python = "^3.6"
 click = "^7.1.2"
-PyYAML = "^5.4.1"
 name_that_hash = "^1.7.0"
 langdetect = "^1.0.8"
 
