@@ -16,7 +16,7 @@ class Identifier:
         identify_obj = {}
 
         magic_numbers = None
-        if api and self.file_exists(text):
+        if not api and self.file_exists(text):
             magic_numbers = self.file_sig.open_binary_scan_magic_nums(text)
             text = self.file_sig.open_file_loc(text)
             identify_obj["File Signatures"] = magic_numbers
