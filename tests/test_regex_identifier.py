@@ -41,19 +41,19 @@ def test_lat_long2():
 
 def test_lat_long3():
     r = regex_identifier.RegexIdentifier()
-    res = r.check(['77° 30\' 29.9988" N'])
+    res = r.check(['77\u00B0 30\' 29.9988" N'])
     assert "Latitude & Longitude Coordinates" in res[0]["Regex Pattern"]["Name"]
 
 
 def test_lat_long4():
     r = regex_identifier.RegexIdentifier()
-    res = r.check(["N 32° 53.733 W 096° 48.358"])
+    res = r.check(["N 32\u00B0 53.733 W 096\u00B0 48.358"])
     assert "Latitude & Longitude Coordinates" in res[0]["Regex Pattern"]["Name"]
 
 
 def test_lat_long5():
     r = regex_identifier.RegexIdentifier()
-    res = r.check(["41°24\'12.2\" N 2°10\'26.5\" E"])
+    res = r.check(["41\u00B024\'12.2\" N 2\u00B010\'26.5\" E"])
     assert "Latitude & Longitude Coordinates" in res[0]["Regex Pattern"]["Name"]
 
 
