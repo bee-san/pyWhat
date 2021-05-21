@@ -1,6 +1,6 @@
 [
     {
-       "Name": "Ethereum Wallet",
+       "Name": "Ethereum (ETH) Wallet Address",
        "Regex": "^0x[a-fA-F0-9]{40}$",
        "Description": "Ethereum Wallet Address",
        "Rarity": 1,
@@ -10,7 +10,7 @@
        ]
     },
     {
-       "Name": "Bitcoin Wallet",
+       "Name": "Bitcoin (BTC) Wallet Address",
        "Regex": "^[13][a-km-zA-HJ-NP-Z1-9]{25,34}$",
        "Description": "Bitcoin Wallet Address",
        "Rarity": 1,
@@ -66,7 +66,7 @@
     },
     {
       "Name":"Latitude & Longitude Coordinates",
-      "Regex":"^[-+]?([1-8]?\\d(\\.\\d+)?|90(\\.0+)?),\\s*[-+]?(180(\\.0+)?|((1[0-7]\\d)|([1-9]?\\d))(\\.\\d+)?)$",
+      "Regex":"^((N|W|S|E)\\s?\\d+\\s?\\°?\\s?\\d+\\.?\\d*\\s?\\'?\\s?\\d*\\.?\\,?\\d*?\"?\\s?){1,2}$|^(\\d+\\s?\\°\\s?\\d+\\s?\\'\\s?\\d+\\.?\\,?\\d{0,}?\"\\s?(N|W|S|E)\\s?){1,2}$|^([-+]?([0-8]?\\d+\\.\\d{4,}|90(\\.0+)?),\\s*[-+]?(180(\\.0+)?|((1[0-7]\\d)|([1-9]?\\d))(\\.\\d+)?))$",
       "Description":"Latitude / Longitude coordinate system for geo-locating",
       "Rarity": 0.5,
       "Tags": [
@@ -74,8 +74,48 @@
       ]
    },
     {
-       "Name": "Dogecoin Wallet Address",
+       "Name": "Dogecoin (DOGE) Wallet Address",
        "Regex": "^D{1}[5-9A-HJ-NP-U]{1}[1-9A-HJ-NP-Za-km-z]{32}$",
+       "Description": null,
+       "Rarity": 0.5,
+       "Tags": [
+          "Cryptocurrency",
+          "Finance"
+       ]
+    },
+    {
+       "Name": "Monero (XMR) Wallet Address",
+       "Regex": "^4([0-9]|[A-B])[a-zA-Z0-9]{93}$",
+       "Description": null,
+       "Rarity": 0.5,
+       "Tags": [
+          "Cryptocurrency",
+          "Finance"
+       ]
+    },
+    {
+       "Name": "Litecoin (LTC) Wallet Address",
+       "Regex": "^(L|M)[a-zA-Z0-9]{33}$",
+       "Description": null,
+       "Rarity": 0.5,
+       "Tags": [
+          "Cryptocurrency",
+          "Finance"
+       ]
+    },
+    {
+       "Name": "Bitcoin Cash (BCH) Wallet Address",
+       "Regex": "^bitcoincash:[a-zA-Z0-9]{42}$",
+       "Description": null,
+       "Rarity": 0.5,
+       "Tags": [
+          "Cryptocurrency",
+          "Finance"
+       ]
+    },
+    {
+       "Name": "Ripple (XRP) Wallet Address",
+       "Regex": "^r[a-zA-Z0-9]{33}$",
        "Description": null,
        "Rarity": 0.5,
        "Tags": [
@@ -251,10 +291,20 @@
        ]
     },
     {
-       "Name": "Internet Protocol (IP) Address",
-       "Regex": "(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)",
+       "Name": "Internet Protocol (IP) Address version 4",
+       "Regex": "(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)(:[0-9]{1,5})?",
        "Description": "Universal address pointing to an entity on the web.",
        "Rarity": 0.4,
+       "Tags": [
+          "Identifiers",
+          "Networking"
+       ]
+    },
+    {
+       "Name": "Internet Protocol (IP) Address version 6",
+       "Regex": "\\[?(([0-9a-fA-F]{1,4}:){7,7}[0-9a-fA-F]{1,4}|([0-9a-fA-F]{4}:){1,7}:|([0-9a-fA-F]{1,4}:){1,6}:[0-9a-fA-F]{1,4}|([0-9a-fA-F]{1,4}:){1,5}(:[0-9a-fA-F]{1,4}){1,2}|([0-9a-fA-F]{1,4}:){1,4}(:[0-9a-fA-F]{1,4}){1,3}|([0-9a-fA-F]{1,4}:){1,3}(:[0-9a-fA-F]{1,4}){1,4}|([0-9a-fA-F]{1,4}:){1,2}(:[0-9a-fA-F]{1,4}){1,5}|[0-9a-fA-F]{1,4}:((:[0-9a-fA-F]{1,4}){1,6})|:((:[0-9a-fA-F]{1,4}){1,7}|:)|fe80:(:[0-9a-fA-F]{0,4}){0,4}%[0-9a-zA-Z]{1,}|::(ffff(:0{1,4}){0,1}:){0,1}((25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])\\.){3,3}(25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])|([0-9a-fA-F]{1,4}:){1,4}:((25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])\\.){3,3}(25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9]))\\]?(:[0-9]{1,5})?",
+       "Description": "Universal address pointing to an entity on the web.",
+       "Rarity": 1.0,
        "Tags": [
           "Identifiers",
           "Networking"

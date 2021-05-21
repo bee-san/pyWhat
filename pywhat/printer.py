@@ -87,9 +87,12 @@ class Printing:
 
     def get_crypto_links(self, text, matched):
         explorers = {
-            "Ethereum Wallet": "https://etherscan.io/address/",
-            "Dogecoin Wallet Address": "https://dogechain.info/address/",
-            "Bitcoin Wallet": "https://www.blockchain.com/btc/address/",
+            "Ethereum (ETH) Wallet Address": "https://etherscan.io/address/",
+            "Dogecoin (DOGE) Wallet Address": "https://dogechain.info/address/",
+            "Bitcoin (BTC) Wallet Address": "https://www.blockchain.com/btc/address/",
+            "Litecoin (LTC) Wallet Address": "https://live.blockcypher.com/ltc/address/",
+            "Bitcoin Cash (BCH) Wallet Address": "https://explorer.bitcoin.com/bch/address/",
+            "Ripple (XRP) Wallet Address": "https://xrpscan.com/account/",
             "YouTube Video ID": "https://www.youtube.com/watch?v=",
             "YouTube Channel ID": "https://www.youtube.com/channel/",
             "Latitude & Longitude Coordinates": "https://www.google.com/maps/place/",
