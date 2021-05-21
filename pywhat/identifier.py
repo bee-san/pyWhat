@@ -12,11 +12,11 @@ class Identifier:
         self.file_sig = FileSignatures()
         self.name_that_hash = Nth()
 
-    def identify(self, text: str) -> dict:
+    def identify(self, text: str, api=False) -> dict:
         identify_obj = {}
 
         magic_numbers = None
-        if self.file_exists(text):
+        if api and self.file_exists(text):
             magic_numbers = self.file_sig.open_binary_scan_magic_nums(text)
             text = self.file_sig.open_file_loc(text)
             identify_obj["File Signatures"] = magic_numbers
