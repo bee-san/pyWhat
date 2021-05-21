@@ -51,6 +51,8 @@ Anytime you have a file and you want to find structured data in it that's useful
 
 Or if you come across some piece of text and you don't know what it is, `What` will tell you.
 
+**File Opening** You can pass in a file path by `what "this/is/a/file/path"`. What is smart enough to figure out it's a file!
+
 # 👾 Contributing
 
 `what` not only thrives on contributors, but can't exist without them! If you want to add a new regex to check for things, you can read our documentation [here](https://github.com/bee-san/what/wiki/Adding-your-own-Regex)
