@@ -1,8 +1,9 @@
 [
     {
-       "Name": "Ethereum Wallet",
+       "Name": "Ethereum Wallet Address",
        "Regex": "^0x[a-fA-F0-9]{40}$",
-       "Description": "Ethereum Wallet Address",
+       "Description": null,
+       "URL": "https://etherscan.io/address/",
        "Rarity": 1,
        "Tags": [
           "Cryptocurrency",
@@ -10,7 +11,7 @@
        ]
     },
     {
-       "Name": "Access-Control-Allow-Headers",
+       "Name": "Access-Control-Allow-Header",
        "Regex": "Access-Control-Allow: [a-zA-Z0-9\\-*]",
        "Description": "Used for Cross-Origin Resource Sharing (CORS)",
        "Rarity": 1,
@@ -18,12 +19,12 @@
          "Networking",
          "Website"
       ]
-
     },
     {
        "Name": "Bitcoin Wallet",
        "Regex": "^[13][a-km-zA-HJ-NP-Z1-9]{25,34}$",
-       "Description": "Bitcoin Wallet Address",
+       "Description": null,
+       "URL": "https://www.blockchain.com/btc/address/",
        "Rarity": 1,
        "Tags": [
           "Cryptocurrency",
@@ -49,9 +50,9 @@
        ]
     },
     {
-       "Name": "CTF Flag",
+       "Name": "Capture The Flag (CTF) Flag",
        "Regex": "(?i)flag{.*}|ctf{.*}|ctfa{.*}",
-       "Description": "General Capture The Flag Event's Flag",
+       "Description": null,
        "Rarity": 1,
        "Tags": [
           "Cyber Security"
@@ -78,7 +79,8 @@
     {
       "Name":"Latitude & Longitude Coordinates",
       "Regex":"^[-+]?([1-8]?\\d(\\.\\d+)?|90(\\.0+)?),\\s*[-+]?(180(\\.0+)?|((1[0-7]\\d)|([1-9]?\\d))(\\.\\d+)?)$",
-      "Description":"Latitude / Longitude coordinate system for geo-locating",
+      "Description": null,
+      "URL": "https://www.google.com/maps/place/",
       "Rarity": 0.5,
       "Tags": [
          "Geo-location"
@@ -88,6 +90,7 @@
        "Name": "Dogecoin Wallet Address",
        "Regex": "^D{1}[5-9A-HJ-NP-U]{1}[1-9A-HJ-NP-Za-km-z]{32}$",
        "Description": null,
+       "URL": "https://dogechain.info/address/",
        "Rarity": 0.5,
        "Tags": [
           "Cryptocurrency",
@@ -95,9 +98,9 @@
        ]
     },
     {
-       "Name": "American Express",
+       "Name": "American Express Card Number",
        "Regex": "^3[47][0-9]{13}$",
-       "Description": "Credit Card Number",
+       "Description": null,
        "Rarity": 0.5,
        "Tags": [
           "Credit Card",
@@ -105,9 +108,9 @@
        ]
     },
     {
-       "Name": "BCGlobal",
+       "Name": "BCGlobal Card Number",
        "Regex": "^(6541|6556)[0-9]{12}$",
-       "Description": "Credit Card Number",
+       "Description": null,
        "Rarity": 0.5,
        "Tags": [
           "Credit Card",
@@ -115,9 +118,9 @@
        ]
     },
     {
-       "Name": "Carte Blanche Card",
+       "Name": "Carte Blanche Card Number",
        "Regex": "^389[0-9]{11}$",
-       "Description": "Credit Card Number",
+       "Description": null,
        "Rarity": 0.5,
        "Tags": [
           "Credit Card",
@@ -125,9 +128,9 @@
        ]
     },
     {
-       "Name": "Diners Club Card",
+       "Name": "Diners Club Card Number",
        "Regex": "^3(?:0[0-5]|[68][0-9])[0-9]{11}$",
-       "Description": "Credit Card Number",
+       "Description": null,
        "Rarity": 0.5,
        "Tags": [
           "Credit Card",
@@ -135,9 +138,9 @@
        ]
     },
     {
-       "Name": "Discover Card",
+       "Name": "Discover Card Number",
        "Regex": "^65[4-9][0-9]{13}|64[4-9][0-9]{13}|6011[0-9]{12}|(622(?:12[6-9]|1[3-9][0-9]|[2-8][0-9][0-9]|9[01][0-9]|92[0-5])[0-9]{10})$",
-       "Description": "Credit Card Number",
+       "Description": null,
        "Rarity": 0.5,
        "Tags": [
           "Credit Card",
@@ -145,9 +148,9 @@
        ]
     },
     {
-       "Name": "MasterCard",
+       "Name": "MasterCard Number",
        "Regex": "^(?:5[1-5][0-9]{2}|222[1-9]|22[3-9][0-9]|2[3-6][0-9]{2}|27[01][0-9]|2720)[0-9]{12}$",
-       "Description": "Payment Issuer for Bank Cards",
+       "Description": null,
        "Rarity": 0.5,
        "Tags": [
           "Credit Card",
@@ -155,9 +158,9 @@
        ]
     },
     {
-       "Name": "Maestro Card",
+       "Name": "Maestro Card Number",
        "Regex": "^(5018|5020|5038|6304|6759|6761|6763)[0-9]{8,15}$",
-       "Description": "Credit Card Number",
+       "Description": null,
        "Rarity": 0.5,
        "Tags": [
           "Credit Card",
@@ -165,9 +168,9 @@
        ]
     },
     {
-       "Name": "Visa",
+       "Name": "Visa Card Number",
        "Regex": "^4[0-9]{12}(?:[0-9]{3})?",
-       "Description": "Credit Card Number",
+       "Description": null,
        "Rarity": 0.5,
        "Tags": [
           "Credit Card",
@@ -175,9 +178,9 @@
        ]
     },
     {
-       "Name": "Insta Payment Card",
+       "Name": "Insta Payment Card Number",
        "Regex": "^63[7-9][0-9]{13}$",
-       "Description": "Credit Card Number",
+       "Description": null,
        "Rarity": 0.5,
        "Tags": [
           "Credit Card",
@@ -185,9 +188,9 @@
        ]
     },
     {
-       "Name": "JCB Card",
+       "Name": "JCB Card Number",
        "Regex": "^(?:2131|1800|35\\d{3})\\d{11}$",
-       "Description": "Credit Card Number",
+       "Description": null,
        "Rarity": 0.5,
        "Tags": [
           "Credit Card",
@@ -195,9 +198,9 @@
        ]
     },
     {
-       "Name": "Korean Local Card",
+       "Name": "Korean Local Card Number",
        "Regex": "^9[0-9]{15}$",
-       "Description": "Credit Card Number",
+       "Description": null,
        "Rarity": 0.5,
        "Tags": [
           "Credit Card",
@@ -205,18 +208,18 @@
        ]
     },
     {
-       "Name": "Laser Card",
+       "Name": "Laser Card Number",
        "Regex": "^(6304|6706|6709|6771)[0-9]{12,15}$",
-       "Description": "Credit Card Number",
+       "Description": null,
        "Rarity": 0.5,
        "Tags": [
           "Credit Card"
        ]
     },
     {
-       "Name": "Solo Card",
+       "Name": "Solo Card Number",
        "Regex": "^(6334|6767)[0-9]{12}|(6334|6767)[0-9]{14}|(6334|6767)[0-9]{15}$",
-       "Description": "Credit Card Number",
+       "Description": null,
        "Rarity": 0.5,
        "Tags": [
           "Credit Card",
@@ -224,9 +227,9 @@
        ]
     },
     {
-       "Name": "Switch Card",
+       "Name": "Switch Card Number",
        "Regex": "^(4903|4905|4911|4936|6333|6759)[0-9]{12}|(4903|4905|4911|4936|6333|6759)[0-9]{14}|(4903|4905|4911|4936|6333|6759)[0-9]{15}|564182[0-9]{10}|564182[0-9]{12}|564182[0-9]{13}|633110[0-9]{10}|633110[0-9]{12}|633110[0-9]{13}$",
-       "Description": "Credit Card Number",
+       "Description": null,
        "Rarity": 0.5,
        "Tags": [
           "Credit Card",
@@ -247,6 +250,7 @@
        "Name": "YouTube Video ID",
        "Regex": "^[0-9A-Za-z_-]{10}[048AEIMQUYcgkosw]{1}$",
        "Description": null,
+       "URL": "https://www.youtube.com/watch?v=",
        "Rarity": 0.4,
        "Tags": [
           "Media"
@@ -256,6 +260,7 @@
        "Name": "YouTube Channel ID",
        "Regex": "^UC[0-9A-Za-z_-]{21}[AQgw]{1}$",
        "Description": null,
+       "URL": "https://www.youtube.com/channel/",
        "Rarity": 0.4,
        "Tags": [
           "Media"
@@ -274,7 +279,7 @@
     {
        "Name": "American Social Security Number",
        "Regex": "^[0-9]{3}-[0-9]{2}-[0-9]{4}$",
-       "Description": "https://en.wikipedia.org/wiki/Social_Security_number",
+       "Description": "American Identification Number https://en.wikipedia.org/wiki/Social_Security_number",
        "rarity": 0.2,
        "Tags": [
           "Credentials",

@@ -205,6 +205,7 @@ def test_file_coords():
     assert result.exit_code == 0
     assert re.findall("Latitude", str(result.output))
 
+
 def test_file_cors():
     runner = CliRunner()
     result = runner.invoke(main, ["Access-Control-Allow: *"])

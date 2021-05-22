@@ -46,21 +46,41 @@ class Printing:
             for i in text["Regexes"]:
                 matched = i["Matched"]
                 name = i["Regex Pattern"]["Name"]
-                description = self.get_crypto_links(name, matched)
-                if not description:
-                    description = i["Regex Pattern"]["Description"]
-                table.add_row(
-                    matched,
-                    name,
-                    description,
-                )
+                description = None
+
+                if "URL" in i["Regex Pattern"]:
+                    description = (
+                        "Click here to analyse in the browser "
+                        + i["Regex Pattern"]["URL"]
+                        + matched.replace(" ", "")
+                    )
+                
+                if i["Regex Pattern"]["Description"]:
+                    if description:
+                        description = (
+                            description + "\n" + i["Regex Pattern"]["Description"]
+                        )
+                    else:
+                        description = i["Regex Pattern"]["Description"]
+                if description:
+                    table.add_row(
+                        matched,
+                        name,
+                        description,
+                    )
+                else:
+                    table.add_row(
+                        matched,
+                        name,
+                        "None",
+                    )
             console.print(to_out, table)
-        
+
         if not text["Regexes"] and not text["Language"]:
             console.print(
                 "[bold #D7Afff]Could not find anything of interest.[/bold #D7Afff]"
             )
-        
+
         """
         # This is commented out because there's too many possible hash idenfications
         # This is fixed by https://github.com/HashPals/Name-That-Hash/issues/89
@@ -84,16 +104,3 @@ class Printing:
 
     def print_json(self, text: dict):
         return json.dumps(text, indent=4)
-
-    def get_crypto_links(self, text, matched):
-        explorers = {
-            "Ethereum Wallet": "https://etherscan.io/address/",
-            "Dogecoin Wallet Address": "https://dogechain.info/address/",
-            "Bitcoin Wallet": "https://www.blockchain.com/btc/address/",
-            "YouTube Video ID": "https://www.youtube.com/watch?v=",
-            "YouTube Channel ID": "https://www.youtube.com/channel/",
-            "Latitude & Longitude Coordinates": "https://www.google.com/maps/place/",
-        }
-        if text in explorers:
-            return "Click here to analyse in the browser " + explorers[text] + matched.replace(" ", "")
-        return None
