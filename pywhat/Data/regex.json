@@ -10,6 +10,17 @@
        ]
     },
     {
+       "Name": "Access-Control-Allow-Headers",
+       "Regex": "Access-Control-Allow: [a-zA-Z0-9\\-*]",
+       "Description": "Used for Cross-Origin Resource Sharing (CORS)",
+       "Rarity": 1,
+       "Tags": [
+         "Networking",
+         "Website"
+      ]
+
+    },
+    {
        "Name": "Bitcoin Wallet",
        "Regex": "^[13][a-km-zA-HJ-NP-Z1-9]{25,34}$",
        "Description": "Bitcoin Wallet Address",

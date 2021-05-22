@@ -147,3 +147,8 @@ def test_ssn():
     r = regex_identifier.RegexIdentifier()
     res = r.check(["001-01-0001"])
     assert "Social" in str(res)
+
+def test_cors():
+    r = regex_identifier.RegexIdentifier()
+    res = r.check(["Access-Control-Allow: *"])
+    assert "Access" in str(res)
