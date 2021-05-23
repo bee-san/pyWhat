@@ -47,6 +47,7 @@ def test_lat_long3():
 
 def test_lat_long4():
     r = regex_identifier.RegexIdentifier()
+    # degree symbol has to be a unicode character, otherwise Windows will not understand it
     res = r.check(["N 32\u00B0 53.733 W 096\u00B0 48.358"])
     assert "Latitude & Longitude Coordinates" in res[0]["Regex Pattern"]["Name"]
 
@@ -67,6 +68,12 @@ def test_ip():
     r = regex_identifier.RegexIdentifier()
     res = r.check(["http://10.1.1.1"])
     assert "Internet Protocol (IP) Address Version 4" in res[0]["Regex Pattern"]["Name"]
+
+
+def test_ip_not_url():
+    r = regex_identifier.RegexIdentifier()
+    res = r.check(["http://10.1.1.1"])
+    assert "URL" not in res[0]
 
 
 def test_ip2():
@@ -200,6 +207,12 @@ def test_youtube_id():
     r = regex_identifier.RegexIdentifier()
     res = r.check(["dQw4w9WgXcQ"])
     assert "YouTube" in res[0]["Regex Pattern"]["Name"]
+
+
+def test_youtube_id():
+    r = regex_identifier.RegexIdentifier()
+    res = r.check(["078-05-1120"])
+    assert "YouTube" not in res[0]
 
 
 def test_ssn():

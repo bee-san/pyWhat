@@ -68,15 +68,6 @@
        ]
     },
     {
-       "Name": "Uniform Resource Locator (URL)",
-       "Regex": "(?i)^(?:(?:(?:https?|ftp):)?\/\/)(?:\\S+(?::\\S*)?@?)?(?:(?!(?:10|127)(?:\\.\\d{1,3}){3})(?!(?:169\\.254|192\\.168)(?:\\.\\d{1,3}){2})(?!172\\.(?:1[6-9]|2\\d|3[0-1])(?:\\.\\d{1,3}){2})(?:[1-9]\\d?|1\\d\\d|2[01]\\d|22[0-3])(?:\\.(?:1?\\d{1,2}|2[0-4]\\d|25[0-5])){2}(?:\\.(?:[1-9]\\d?|1\\d\\d|2[0-4]\\d|25[0-4]))|(?:(?:[a-z0-9\u00a1-\uffff][a-z0-9\u00a1-\uffff_-]{0,62})?[a-z0-9\u00a1-\uffff]?\\.?)+?(?:[a-z\u00a1-\uffff]+\\.?))(?::\\d{2,5})?(?:[\/?#]\\S*)?$",
-       "Description": null,
-       "Rarity": 1,
-       "Tags": [
-          "Identifiers"
-       ]
-    },
-    {
        "Name": "Bitcoin Cash (BCH) Wallet Address",
        "Regex": "(?i)^bitcoincash:[a-z0-9]{42}$",
        "Description": null,
@@ -90,9 +81,29 @@
     {
        "Name": "Internet Protocol (IP) Address Version 6",
        "Regex": "\\[?(?:(?:[0-9a-f]{1,4}:){7,7}[0-9a-f]{1,4}|([0-9a-f]{4}:){1,7}:|([0-9a-f]{1,4}:){1,6}:[0-9a-f]{1,4}|([0-9a-f]{1,4}:){1,5}(:[0-9a-f]{1,4}){1,2}|([0-9a-f]{1,4}:){1,4}(:[0-9a-f]{1,4}){1,3}|([0-9a-f]{1,4}:){1,3}(:[0-9a-f]{1,4}){1,4}|([0-9a-fA]{1,4}:){1,2}(:[0-9a-f]{1,4}){1,5}|[0-9a-f]{1,4}:((:[0-9a-f]{1,4}){1,6})|:((:[0-9a-f]{1,4}){1,7}|:)|fe80:(:[0-9a-f]{0,4}){0,4}%[0-9a-z]{1,}|::(ffff(:0{1,4}){0,1}:){0,1}((25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])\\.){3,3}(25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])|(?:[0-9a-f]{1,4}:){1,4}:(?:(25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])\\.){3,3}(25[0-5]|(?:2[0-4]|1{0,1}[0-9]){0,1}[0-9]))\\]?(?::[0-9]{1,5})?",
-       "Description": "Universal address pointing to an entity on the web.",
+       "Description": null,
        "URL": "https://www.shodan.io/host/",
        "Rarity": 1,
+       "Tags": [
+          "Identifiers",
+          "Networking"
+       ]
+    },
+    {
+       "Name": "Uniform Resource Locator (URL)",
+       "Regex": "(?i)^(?:(?:(?:https?|ftp):)?\/\/)(?:\\S+(?::\\S*)?@?)?(?:(?!(?:10|127)(?:\\.\\d{1,3}){3})(?!(?:169\\.254|192\\.168)(?:\\.\\d{1,3}){2})(?!172\\.(?:1[6-9]|2\\d|3[0-1])(?:\\.\\d{1,3}){2})(?:[1-9]\\d?|1\\d\\d|2[01]\\d|22[0-3])(?:\\.(?:1?\\d{1,2}|2[0-4]\\d|25[0-5])){2}(?:\\.(?:[1-9]\\d?|1\\d\\d|2[0-4]\\d|25[0-4]))|(?:(?:[a-z0-9\u00a1-\uffff][a-z0-9\u00a1-\uffff_-]{0,62})?[a-z0-9\u00a1-\uffff]?\\.?)+?(?:[a-z\u00a1-\uffff]+\\.?))(?::\\d{2,5})?(?:[\/?#]\\S*)?$",
+       "Description": null,
+       "Rarity": 0.7,
+       "Tags": [
+          "Identifiers"
+       ]
+    },
+    {
+       "Name": "Internet Protocol (IP) Address Version 4",
+       "Regex": "(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)(?::[0-9]{1,5})?",
+       "Description": null,
+       "URL": "https://www.shodan.io/host/",
+       "Rarity": 0.7,
        "Tags": [
           "Identifiers",
           "Networking"
@@ -303,16 +314,6 @@
        ]
     },
     {
-       "Name": "YouTube Video ID",
-       "Regex": "^(?=.*[0-9])(?=.*[A-Z])(?=.*[a-z])[0-9A-Za-z_-]{10}[048AEIMQUYcgkosw]{1}$",
-       "Description": null,
-       "URL": "https://www.youtube.com/watch?v=",
-       "Rarity": 0.5,
-       "Tags": [
-          "Media"
-       ]
-    },
-    {
        "Name": "YouTube Channel ID",
        "Regex": "^UC[0-9A-Za-z_-]{21}[AQgw]{1}$",
        "Description": null,
@@ -323,14 +324,13 @@
        ]
     },
     {
-       "Name": "Internet Protocol (IP) Address Version 4",
-       "Regex": "(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)(?::[0-9]{1,5})?",
+       "Name": "YouTube Video ID",
+       "Regex": "^(?=.*[A-Z])(?=.*[a-z])[0-9A-Za-z_-]{10}[048AEIMQUYcgkosw]{1}$",
        "Description": null,
-       "URL": "https://www.shodan.io/host/",
-       "Rarity": 0.4,
+       "URL": "https://www.youtube.com/watch?v=",
+       "Rarity": 0.2,
        "Tags": [
-          "Identifiers",
-          "Networking"
+          "Media"
        ]
     },
     {
