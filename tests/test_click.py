@@ -108,7 +108,7 @@ def test_arg_parsing2():
     runner = CliRunner()
     result = runner.invoke(main, ["http://10.1.1.1"])
     assert result.exit_code == 0
-    assert re.findall("URL", str(result.output))
+    assert re.findall("Internet Protocol", str(result.output))
 
 
 def test_file_fixture_visa():
@@ -175,11 +175,32 @@ def test_file_fixture_youtube_id():
     assert re.findall("YouTube", str(result.output))
 
 
-def test_file_fixture_ip():
+def test_file_fixture_ip4():
     runner = CliRunner()
     result = runner.invoke(main, ["fixtures/file"])
     assert result.exit_code == 0
-    assert re.findall("Internet Protocol", str(result.output))
+    assert re.findall("Address Version 4", str(result.output))
+
+
+def test_file_fixture_ip4_shodan():
+    runner = CliRunner()
+    result = runner.invoke(main, ["118.103.238.230"])
+    assert result.exit_code == 0
+    assert re.findall("shodan", str(result.output))
+
+
+def test_file_fixture_ip6():
+    runner = CliRunner()
+    result = runner.invoke(main, ["fixtures/file"])
+    assert result.exit_code == 0
+    assert re.findall("Address Version 6", str(result.output))
+
+
+def test_file_fixture_ip6_shodan():
+    runner = CliRunner()
+    result = runner.invoke(main, ["2001:0db8:85a3:0000:0000:8a2e:0370:7334"])
+    assert result.exit_code == 0
+    assert re.findall("shodan", str(result.output))
 
 
 def test_file_fixture_ssn():
@@ -202,6 +223,55 @@ def test_file_coords():
     result = runner.invoke(main, ["52.6169586, -1.9779857"])
     assert result.exit_code == 0
     assert re.findall("Latitude", str(result.output))
+
+
+def test_file_fixture_ltc():
+    runner = CliRunner()
+    result = runner.invoke(main, ["fixtures/file"])
+    assert result.exit_code == 0
+    assert re.findall("Litecoin", str(result.output))
+
+
+def test_file_fixture_ltc2():
+    runner = CliRunner()
+    result = runner.invoke(main, ["fixtures/file"])
+    assert result.exit_code == 0
+    assert re.findall("live.block", str(result.output))
+
+
+def test_file_fixture_bch():
+    runner = CliRunner()
+    result = runner.invoke(main, ["fixtures/file"])
+    assert result.exit_code == 0
+    assert re.findall("Bitcoin Cash", str(result.output))
+
+
+def test_file_fixture_bch2():
+    runner = CliRunner()
+    result = runner.invoke(main, ["bitcoincash:qzlg6uvceehgzgtz6phmvy8gtdqyt6vf359at4n3lq"])
+    assert result.exit_code == 0
+    assert re.findall("blockchain", str(result.output))
+
+
+def test_file_fixture_xrp():
+    runner = CliRunner()
+    result = runner.invoke(main, ["fixtures/file"])
+    assert result.exit_code == 0
+    assert re.findall("Ripple", str(result.output))
+
+
+def test_file_fixture_xrp2():
+    runner = CliRunner()
+    result = runner.invoke(main, ["fixtures/file"])
+    assert result.exit_code == 0
+    assert re.findall("xrpscan", str(result.output))
+
+
+def test_file_fixture_xmr():
+    runner = CliRunner()
+    result = runner.invoke(main, ["fixtures/file"])
+    assert result.exit_code == 0
+    assert re.findall("Monero", str(result.output))
 
 
 def test_file_cors():

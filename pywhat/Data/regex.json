@@ -1,7 +1,7 @@
 [
     {
-       "Name": "Ethereum Wallet Address",
-       "Regex": "^0x[a-fA-F0-9]{40}$",
+       "Name": "Ethereum (ETH) Wallet Address",
+       "Regex": "(?i)^0x[a-f0-9]{40}$",
        "Description": null,
        "URL": "https://etherscan.io/address/",
        "Rarity": 1,
@@ -12,7 +12,7 @@
     },
     {
        "Name": "Access-Control-Allow-Header",
-       "Regex": "Access-Control-Allow: [a-zA-Z0-9\\-*]",
+       "Regex": "(?i)Access-Control-Allow: [a-z0-9\\-*]",
        "Description": "Used for [#CAE4F1][link=https://en.wikipedia.org/wiki/Cross-origin_resource_sharing]Cross-Origin Resource Sharing (CORS)[/link][/#CAE4F1]",
        "Rarity": 1,
        "Tags": [
@@ -21,7 +21,7 @@
       ]
     },
     {
-       "Name": "Bitcoin Wallet",
+       "Name": "Bitcoin (₿) Wallet Address",
        "Regex": "^[13][a-km-zA-HJ-NP-Z1-9]{25,34}$",
        "Description": null,
        "URL": "https://www.blockchain.com/btc/address/",
@@ -69,7 +69,7 @@
     },
     {
        "Name": "Uniform Resource Locator (URL)",
-       "Regex": "(https?:\\/\\/(?:www\\.|(?!www))[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\\.[^\\s]{2,}|www\\.[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\\.[^\\s]{2,}|https?:\\/\\/(?:www\\.|(?!www))[a-zA-Z0-9]+\\.[^\\s]{2,}|www\\.[a-zA-Z0-9]+\\.[^\\s]{2,})",
+       "Regex": "(?i)^(?:(?:(?:https?|ftp):)?\/\/)(?:\\S+(?::\\S*)?@?)?(?:(?!(?:10|127)(?:\\.\\d{1,3}){3})(?!(?:169\\.254|192\\.168)(?:\\.\\d{1,3}){2})(?!172\\.(?:1[6-9]|2\\d|3[0-1])(?:\\.\\d{1,3}){2})(?:[1-9]\\d?|1\\d\\d|2[01]\\d|22[0-3])(?:\\.(?:1?\\d{1,2}|2[0-4]\\d|25[0-5])){2}(?:\\.(?:[1-9]\\d?|1\\d\\d|2[0-4]\\d|25[0-4]))|(?:(?:[a-z0-9\u00a1-\uffff][a-z0-9\u00a1-\uffff_-]{0,62})?[a-z0-9\u00a1-\uffff]?\\.?)+?(?:[a-z\u00a1-\uffff]+\\.?))(?::\\d{2,5})?(?:[\/?#]\\S*)?$",
        "Description": null,
        "Rarity": 1,
        "Tags": [
@@ -77,21 +77,76 @@
        ]
     },
     {
-      "Name":"Latitude & Longitude Coordinates",
-      "Regex":"^[-+]?([1-8]?\\d(\\.\\d+)?|90(\\.0+)?),\\s*[-+]?(180(\\.0+)?|((1[0-7]\\d)|([1-9]?\\d))(\\.\\d+)?)$",
-      "plural_name": true,
-      "Description": null,
-      "URL": "https://www.google.com/maps/place/",
-      "Rarity": 0.5,
-      "Tags": [
-         "Geo-location"
-      ]
-   },
+       "Name": "Bitcoin Cash (BCH) Wallet Address",
+       "Regex": "(?i)^bitcoincash:[a-z0-9]{42}$",
+       "Description": null,
+       "URL": "https://www.blockchain.com/bch/address/",
+       "Rarity": 1,
+       "Tags": [
+          "Cryptocurrency",
+          "Finance"
+       ]
+    },
     {
-       "Name": "Dogecoin Wallet Address",
+       "Name": "Internet Protocol (IP) Address Version 6",
+       "Regex": "\\[?(?:(?:[0-9a-f]{1,4}:){7,7}[0-9a-f]{1,4}|([0-9a-f]{4}:){1,7}:|([0-9a-f]{1,4}:){1,6}:[0-9a-f]{1,4}|([0-9a-f]{1,4}:){1,5}(:[0-9a-f]{1,4}){1,2}|([0-9a-f]{1,4}:){1,4}(:[0-9a-f]{1,4}){1,3}|([0-9a-f]{1,4}:){1,3}(:[0-9a-f]{1,4}){1,4}|([0-9a-fA]{1,4}:){1,2}(:[0-9a-f]{1,4}){1,5}|[0-9a-f]{1,4}:((:[0-9a-f]{1,4}){1,6})|:((:[0-9a-f]{1,4}){1,7}|:)|fe80:(:[0-9a-f]{0,4}){0,4}%[0-9a-z]{1,}|::(ffff(:0{1,4}){0,1}:){0,1}((25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])\\.){3,3}(25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])|(?:[0-9a-f]{1,4}:){1,4}:(?:(25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])\\.){3,3}(25[0-5]|(?:2[0-4]|1{0,1}[0-9]){0,1}[0-9]))\\]?(?::[0-9]{1,5})?",
+       "Description": "Universal address pointing to an entity on the web.",
+       "URL": "https://www.shodan.io/host/",
+       "Rarity": 1,
+       "Tags": [
+          "Identifiers",
+          "Networking"
+       ]
+    },
+    {
+       "Name":"Latitude & Longitude Coordinates",
+       "Regex":"(?i)^(?:(?:N|W|S|E)\\s?\\d+\\s?\\u00B0?\\s?\\d+\\.?\\d*\\s?\\'?\\s?\\d*\\.?\\,?\\d*?\"?\\s?){1,2}$|^(?:\\d+\\s?\\u00B0\\s?\\d+\\s?\\'\\s?\\d+\\.?\\,?\\d{0,}?\"\\s?(?:N|W|S|E)\\s?){1,2}$|^(?:[-+]?(?:[0-8]?\\d+\\.\\d{4,}|90(?:\\.0+)?),\\s*[-+]?(?:180(?:\\.0+)?|(?:(?:1[0-7]\\d)|(?:[1-9]?\\d))(?:\\.\\d+)?))$",
+       "plural_name": true,
+       "Description": null,
+       "URL": "https://www.google.com/maps/place/",
+       "Rarity": 0.5,
+       "Tags": [
+          "Geo-location"
+      ]
+    },
+    {
+       "Name": "Dogecoin (DOGE) Wallet Address",
        "Regex": "^D{1}[5-9A-HJ-NP-U]{1}[1-9A-HJ-NP-Za-km-z]{32}$",
        "Description": null,
        "URL": "https://dogechain.info/address/",
+       "Rarity": 0.5,
+       "Tags": [
+          "Cryptocurrency",
+          "Finance"
+       ]
+    },
+    {
+       "Name": "Monero (XMR) Wallet Address",
+       "Regex": "(?i)^4(?:[0-9]|[A-B])[a-z0-9]{93}$",
+       "Description": null,
+       "URL": "https://dogechain.info/address/",
+       "Rarity": 0.5,
+       "Tags": [
+          "Cryptocurrency",
+          "Finance"
+       ]
+    },
+    {
+       "Name": "Litecoin (LTC) Wallet Address",
+       "Regex": "(?i)^(?:L|M)[a-z0-9]{33}$",
+       "Description": null,
+       "URL": "https://live.blockcypher.com/ltc/address/",
+       "Rarity": 0.5,
+       "Tags": [
+          "Cryptocurrency",
+          "Finance"
+       ]
+    },
+    {
+       "Name": "Ripple (XRP) Wallet Address",
+       "Regex": "(?i)^r[a-z0-9]{33}$",
+       "Description": null,
+       "URL": "https://xrpscan.com/account/",
        "Rarity": 0.5,
        "Tags": [
           "Cryptocurrency",
@@ -239,7 +294,7 @@
     },
     {
        "Name": "Email Address",
-       "Regex": "(^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\\.[a-zA-Z0-9-.]+$)",
+       "Regex": "(?i)(^[a-z0-9_.+-]+@[a-z0-9-]+\\.[a-z0-9-.]+$)",
        "Description": null,
        "Rarity": 0.5,
        "Tags": [
@@ -249,10 +304,10 @@
     },
     {
        "Name": "YouTube Video ID",
-       "Regex": "^[0-9A-Za-z_-]{10}[048AEIMQUYcgkosw]{1}$",
+       "Regex": "^(?=.*[0-9])(?=.*[A-Z])(?=.*[a-z])[0-9A-Za-z_-]{10}[048AEIMQUYcgkosw]{1}$",
        "Description": null,
        "URL": "https://www.youtube.com/watch?v=",
-       "Rarity": 0.4,
+       "Rarity": 0.5,
        "Tags": [
           "Media"
        ]
@@ -268,9 +323,10 @@
        ]
     },
     {
-       "Name": "Internet Protocol (IP) Address",
-       "Regex": "(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)",
+       "Name": "Internet Protocol (IP) Address Version 4",
+       "Regex": "(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)(?::[0-9]{1,5})?",
        "Description": null,
+       "URL": "https://www.shodan.io/host/",
        "Rarity": 0.4,
        "Tags": [
           "Identifiers",
