@@ -279,7 +279,7 @@
     {
        "Name": "American Social Security Number",
        "Regex": "^[0-9]{3}-[0-9]{2}-[0-9]{4}$",
-       "Description": "American Identification Number https://en.wikipedia.org/wiki/Social_Security_number",
+       "Description": "An American Identification Number https://en.wikipedia.org/wiki/Social_Security_number",
        "rarity": 0.2,
        "Tags": [
           "Credentials",
