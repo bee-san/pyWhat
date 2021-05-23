@@ -29,3 +29,5 @@ ScOAntcCa78
 <h1> hello </h2>
 127.0.0.1
 github@skerritt.blog
+
+Access-Control-Allow-Headers: *

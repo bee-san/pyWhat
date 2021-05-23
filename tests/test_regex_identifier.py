@@ -103,7 +103,7 @@ def test_ctf_flag():
 def test_ctf_flag_uppercase():
     r = regex_identifier.RegexIdentifier()
     res = r.check(["FLAG{hello}"])
-    assert "CTF Flag" in res[0]["Regex Pattern"]["Name"]
+    assert "Capture The Flag (CTF) Flag" in res[0]["Regex Pattern"]["Name"]
 
 
 def test_ethereum():
@@ -207,3 +207,9 @@ def test_ssn():
     r = regex_identifier.RegexIdentifier()
     res = r.check(["001-01-0001"])
     assert "Social" in str(res)
+
+
+def test_cors():
+    r = regex_identifier.RegexIdentifier()
+    res = r.check(["Access-Control-Allow: *"])
+    assert "Access" in str(res)
