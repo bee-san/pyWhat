@@ -15,7 +15,6 @@ def test_file_fixture():
     runner = CliRunner()
     result = runner.invoke(main, ["fixtures/file"])
     assert result.exit_code == 0
-    assert re.findall("web", str(result.output))
     assert re.findall("thm", str(result.output))
     assert re.findall("Ethereum", str(result.output))
     assert "Dogecoin" in result.output
@@ -25,7 +24,6 @@ def test_file_fixture2():
     runner = CliRunner()
     result = runner.invoke(main, ["fixtures/file"])
     assert result.exit_code == 0
-    assert re.findall("web", str(result.output))
     assert "Dogecoin" in result.output
 
 
