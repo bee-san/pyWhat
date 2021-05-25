@@ -161,6 +161,13 @@ def test_file_fixture_email():
     assert re.findall("Email", str(result.output))
 
 
+def test_file_fixture_email2():
+    runner = CliRunner()
+    result = runner.invoke(main, ["firstname+lastname@example.com"])
+    assert result.exit_code == 0
+    assert re.findall("Email", str(result.output))
+
+
 def test_file_fixture_youtube():
     runner = CliRunner()
     result = runner.invoke(main, ["fixtures/file"])
