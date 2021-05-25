@@ -191,6 +191,24 @@ def test_email():
     assert "Email" in res[0]["Regex Pattern"]["Name"]
 
 
+def test_email2():
+    r = regex_identifier.RegexIdentifier()
+    res = r.check(["firstname+lastname@example.com"])
+    assert "Email" in res[0]["Regex Pattern"]["Name"]
+
+
+def test_email3():
+    r = regex_identifier.RegexIdentifier()
+    res = r.check(["john.smith@[123.123.123.123]"])
+    assert "Email" in res[1]["Regex Pattern"]["Name"]
+
+
+def test_email4():
+    r = regex_identifier.RegexIdentifier()
+    res = r.check(["email@example@example.com"])
+    assert "Email" not in res
+
+
 def test_youtube():
     r = regex_identifier.RegexIdentifier()
     res = r.check(["https://www.youtube.com/watch?v=ScOAntcCa78"])
