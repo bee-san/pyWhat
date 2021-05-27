@@ -88,7 +88,7 @@
     },
     {
       "Name": "Amazon Web Services Simple Storage (AWS S3) URL",
-      "Regex": "^[https://]*s3\\.amazonaws.com[\/]+.*$|[a-zA-Z0-9_-]*\\.s3\\.amazonaws.com/.*$",
+      "Regex": "(?i)^[https://]*s3\\.amazonaws.com[\/]+.*$|[a-zA-Z0-9_-]*\\.s3\\.amazonaws.com/.*$",
       "Description": null,
       "Rarity": 1,
       "Tags": [
@@ -98,7 +98,7 @@
    },    
    {
       "Name": "Amazon Web Services Simple Storage (AWS S3) Internal URL",
-      "Regex": "^s3://([^/]+)/(.*?([^/]+)/?)$",
+      "Regex": "(?i)^s3://([^/]+)/(.*?([^/]+)/?)$",
       "Description": "Internal URL, only accessible via the virtual private cloud.",
       "Rarity": 1,
       "Tags": [
@@ -120,7 +120,7 @@
     },    
     {
       "Name": "Amazon Resource Name (ARN)",
-      "Regex": "^arn:(?P<Partition>[^:\n]*):(?P<Service>[^:\n]*):(?P<Region>[^:\n]*):(?P<AccountID>[^:\n]*):(?P<Ignore>(?P<ResourceType>[^:\/\n]*)[:\/])?(?P<Resource>.*)$",
+      "Regex": "(?i)^arn:(?P<Partition>[^:\n]*):(?P<Service>[^:\n]*):(?P<Region>[^:\n]*):(?P<AccountID>[^:\n]*):(?P<Ignore>(?P<ResourceType>[^:\/\n]*)[:\/])?(?P<Resource>.*)$",
       "plural_name": false,
       "Description": null,
       "Rarity": 0.8,
