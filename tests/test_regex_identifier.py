@@ -227,7 +227,7 @@ def test_youtube_id():
     assert "YouTube" in res[0]["Regex Pattern"]["Name"]
 
 
-def test_youtube_id():
+def test_youtube_id2():
     r = regex_identifier.RegexIdentifier()
     res = r.check(["078-05-1120"])
     assert "YouTube" not in res[0]
