@@ -11,19 +11,7 @@ class Printing:
     def pretty_print(self, text: dict):
         console = Console(highlight=False)
 
-        languages = text["Language"]
-
-        # calculate probability of each language
-        prob_language = ""
-        if languages:
-            for i in languages:
-                prob_language += (
-                    f" [red]{i.lang}[/red] {round(i.prob * 100)}% probability"
-                )
-
         to_out = ""
-        if prob_language:
-            to_out += f"[bold #D7Afff]Possible language (ISO-639-1 code):[/bold #D7Afff]{prob_language}.\n"
 
         if text["File Signatures"]:
             to_out += "\n"
@@ -32,8 +20,6 @@ class Printing:
             to_out += "\n"
         if to_out:
             console.print(to_out)
-
-        to_out = ""
 
         if text["Regexes"]:
             to_out += "\n[bold #D7Afff]Possible Identification[/bold #D7Afff]"
@@ -75,11 +61,8 @@ class Printing:
                         "None",
                     )
             console.print(to_out, table)
-
-        if not text["Regexes"] and not text["Language"]:
-            console.print(
-                "[bold #D7Afff]Could not find anything of interest.[/bold #D7Afff]"
-            )
+        if to_out == "":
+            console.print("Nothing found!")
 
         """
         # This is commented out because there's too many possible hash idenfications
