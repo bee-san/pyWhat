@@ -286,3 +286,51 @@ def test_file_cors():
     result = runner.invoke(main, ["Access-Control-Allow: *"])
     assert result.exit_code == 0
     assert re.findall("Access", str(result.output))
+
+def test_file_jwt():
+    runner = CliRunner()
+    result = runner.invoke(main, ["eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c"])
+    assert result.exit_code == 0
+    assert re.findall("JWT", str(result.output))
+
+def test_file_s3():
+    runner = CliRunner()
+    result = runner.invoke(main, ["http://s3.amazonaws.com/bucket/"])
+    assert result.exit_code == 0
+    assert re.findall("S3", str(result.output))
+
+def test_file_s3_2():
+    runner = CliRunner()
+    result = runner.invoke(main, ["s3://bucket/path/key"])
+    assert result.exit_code == 0
+    assert re.findall("S3", str(result.output))
+
+def test_file_s3_3():
+    runner = CliRunner()
+    result = runner.invoke(main, ["s3://bucket/path/directory/"])
+    assert result.exit_code == 0
+    assert re.findall("S3", str(result.output))
+
+def test_file_arn():
+    runner = CliRunner()
+    result = runner.invoke(main, ["arn:partition:service:region:account-id:resource"])
+    assert result.exit_code == 0
+    assert re.findall("ARN", str(result.output))
+
+def test_file_arn2():
+    runner = CliRunner()
+    result = runner.invoke(main, ["arn:partition:service:region:account-id:resourcetype/resource"])
+    assert result.exit_code == 0
+    assert re.findall("ARN", str(result.output))
+
+def test_file_arn3():
+    runner = CliRunner()
+    result = runner.invoke(main, ["arn:partition:service:region:account-id:resourcetype:resource"])
+    assert result.exit_code == 0
+    assert re.findall("ARN", str(result.output))
+
+def test_file_arn4():
+    runner = CliRunner()
+    result = runner.invoke(main, ["arn:aws:s3:::my_corporate_bucket/Development/*"])
+    assert result.exit_code == 0
+    assert re.findall("ARN", str(result.output))
