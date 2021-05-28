@@ -219,18 +219,21 @@ def test_phone_number2():
     r = regex_identifier.RegexIdentifier()
     res = r.check(["+1-202-555-0156"])
     assert "Phone Number" in res[0]["Regex Pattern"]["Name"]
+    assert "United States" in res[0]["Regex Pattern"]["Description"]
 
 
 def test_phone_number3():
     r = regex_identifier.RegexIdentifier()
     res = r.check(["+662025550156"])
     assert "Phone Number" in res[0]["Regex Pattern"]["Name"]
+    assert "Thailand" in res[0]["Regex Pattern"]["Description"]
 
 
 def test_phone_number4():
     r = regex_identifier.RegexIdentifier()
     res = r.check(["+356 202 555 0156"])
     assert "Phone Number" in res[0]["Regex Pattern"]["Name"]
+    assert "Malta" in res[0]["Regex Pattern"]["Description"]
 
 
 def test_youtube():
