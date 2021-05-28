@@ -1,6 +1,4 @@
 import json
-import os
-import re
 
 from rich.console import Console
 from rich.table import Table
@@ -43,25 +41,6 @@ class Printing:
                         + matched.replace(" ", "")
                     )
 
-                if "Phone Number" in i["Regex Pattern"]["Name"]:
-                    number = re.sub(r"[-() ]", "", matched)
-                    codes_path = "Data/phone_codes.json"
-                    codes_fullpath = os.path.join(
-                        os.path.dirname(os.path.abspath(__file__)), codes_path)
-                    with open(codes_fullpath) as f:
-                        codes = json.load(f)
-
-                    locations = []
-                    for code in codes:
-                        if number.startswith(code["dial_code"]):
-                            locations.append(code["name"])
-                    if len(locations):
-                        description = (
-                            "Location(s)"
-                            + ": "
-                            + ", ".join(locations)
-                        )
-                
                 if i["Regex Pattern"]["Description"]:
                     if description:
                         description = (
