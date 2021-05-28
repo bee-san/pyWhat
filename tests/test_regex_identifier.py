@@ -209,6 +209,30 @@ def test_email4():
     assert "Email" not in res
 
 
+def test_phone_numer():
+    r = regex_identifier.RegexIdentifier()
+    res = r.check(["202-555-0178"])
+    assert "Phone Number" in res[0]["Regex Pattern"]["Name"]
+
+
+def test_phone_numer2():
+    r = regex_identifier.RegexIdentifier()
+    res = r.check(["+1-202-555-0156"])
+    assert "Phone Number" in res[0]["Regex Pattern"]["Name"]
+
+
+def test_phone_numer3():
+    r = regex_identifier.RegexIdentifier()
+    res = r.check(["+662025550156"])
+    assert "Phone Number" in res[0]["Regex Pattern"]["Name"]
+
+
+def test_phone_numer4():
+    r = regex_identifier.RegexIdentifier()
+    res = r.check(["+356 202 555 0156"])
+    assert "Phone Number" in res[0]["Regex Pattern"]["Name"]
+
+
 def test_youtube():
     r = regex_identifier.RegexIdentifier()
     res = r.check(["https://www.youtube.com/watch?v=ScOAntcCa78"])
