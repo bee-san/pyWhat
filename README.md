@@ -51,7 +51,9 @@ Anytime you have a file and you want to find structured data in it that's useful
 
 Or if you come across some piece of text and you don't know what it is, `What` will tell you.
 
-**File Opening** You can pass in a file path by `what "this/is/a/file/path"`. What is smart enough to figure out it's a file!
+**File Opening** You can pass in a file path by `what "this/is/a/file/path"`. `What` is smart enough to figure out it's a file!
+
+What about the whole **directory**? `What` can handle that too! It will **recursively** search for files and ouput everything you need!
 
 # 🍕 API
 
