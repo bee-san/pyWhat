@@ -1,4 +1,5 @@
 import json
+import os
 
 from rich.console import Console
 from rich.table import Table
@@ -14,12 +15,13 @@ class Printing:
         to_out = ""
 
         if text["File Signatures"]:
-            to_out += "\n"
-            to_out += f"[bold #D7Afff]File Identified[/bold #D7Afff] with Magic Numbers {text['File Signatures']['ISO 8859-1']}."
-            to_out += f"\n[bold #D7Afff]File Description:[/bold #D7Afff] {text['File Signatures']['Description']}."
-            to_out += "\n"
-        if to_out:
-            console.print(to_out)
+            for key, value in text["File Signatures"].items():
+                if value:
+                    key = os.path.basename(key)
+                    to_out += "\n"
+                    to_out += f"[bold #D7Afff]File Identified[/bold #D7Afff]: [bold]{key}[/bold] with Magic Numbers {value['ISO 8859-1']}."
+                    to_out += f"\n[bold #D7Afff]File Description:[/bold #D7Afff] {value['Description']}."
+                    to_out += "\n"
 
         if text["Regexes"]:
             to_out += "\n[bold #D7Afff]Possible Identification[/bold #D7Afff]"
