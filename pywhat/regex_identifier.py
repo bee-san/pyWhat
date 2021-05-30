@@ -2,18 +2,17 @@ import json
 import os
 import re
 
+from pywhat.filtration_distribution.distribution import Distribution
+
 
 class RegexIdentifier:
-    def __init__(self):
-        path = "Data/regex.json"
-        fullpath = os.path.join(os.path.dirname(os.path.abspath(__file__)), path)
-        with open(fullpath, "r") as myfile:
-            self.regexes = json.load(myfile)
+    def __init__(self, filters_dict = {"Tags": "Networking"}):
+        self.distribution = Distribution(filters_dict)
 
     def check(self, text):
         matches = []
         for txt in text:
-            for reg in self.regexes:
+            for reg in self.distribution.get_regexes():
                 matched_regex = re.search(reg["Regex"], txt, re.UNICODE)
 
                 if matched_regex:
