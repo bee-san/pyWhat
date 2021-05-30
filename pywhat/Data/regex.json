@@ -387,6 +387,17 @@
        ]
     },
     {
+       "Name": "Phone Number",
+       "Regex": "^\\s*(?:\\+?(\\d{1,3}))?[-. (]*(\\d{3})[-. )]*(\\d{3})[-. ]*(\\d{4})(?: *x(\\d+))?\\s*$",
+       "plural_name": false,
+       "Description": null,
+       "Rarity": 0.5,
+       "Tags": [
+          "Identifiers",
+          "Credentials"
+       ]
+    },
+    {
        "Name": "YouTube Channel ID",
        "Regex": "^UC[0-9A-Za-z_-]{21}[AQgw]{1}$",
        "plural_name": false,
