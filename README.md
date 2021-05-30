@@ -62,6 +62,10 @@ Or if you come across some piece of text and you don't know what it is, `What` w
 
 **File Opening** You can pass in a file path by `what "this/is/a/file/path"`. What is smart enough to figure out it's a file!
 
+# 🍕 API
+
+PyWhat has an API! Click here [https://github.com/bee-san/pyWhat/wiki/API](https://github.com/bee-san/pyWhat/wiki/API) to read about it.
+
 # 👾 Contributing
 
 `what` not only thrives on contributors, but can't exist without them! If you want to add a new regex to check for things, you can read our documentation [here](https://github.com/bee-san/what/wiki/Adding-your-own-Regex)
