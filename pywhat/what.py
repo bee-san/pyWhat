@@ -10,7 +10,7 @@ from pywhat import identifier, printer
 @click.argument("text_input", required=True)
 def main(text_input):
     """
-    What - Identify what something is.\n
+    pyWhat - Identify what something is.\n
 
     Made by Bee https://twitter.com/bee_sec_san\n
 
@@ -25,6 +25,13 @@ def main(text_input):
         * what -- 52.6169586, -1.9779857
 
     Your text must either be in quotation marks, or use the POSIX standard of "--" to mean "anything after -- is textual input".
+
+
+    pyWhat can also search files or even the whole directory with recursion:
+
+        * what secret.txt
+
+        * what "this/is/a/path"
 
     """
 
