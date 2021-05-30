@@ -10,7 +10,7 @@ class Identifier:
         self.file_sig = FileSignatures()
         self.name_that_hash = Nth()
 
-    def identify(self, text: str, api=False) -> dict:
+    def identify(self, text: str, min_rarity=0, max_rarity=1, api=False) -> dict:
         identify_obj = {}
 
         magic_numbers = None
@@ -25,7 +25,14 @@ class Identifier:
             # If file doesn't exist, check to see if the inputted text is
             # a file in hex format
             identify_obj["File Signatures"] = self.file_sig.check_magic_nums(text)
-        identify_obj["Regexes"] = self.regex_id.check(text)
+
+        regexes = self.regex_id.check(text)
+        identify_obj["Regexes"] = []
+
+        for regex in regexes:
+            if min_rarity <= regex["Regex Pattern"]["Rarity"] <= max_rarity:
+                identify_obj["Regexes"].append(regex)
+
         # get_hashes takes a list of hashes, we split to give it a list
         # identify_obj["Hashes"] = self.name_that_hash.get_hashes(text.split())
 
