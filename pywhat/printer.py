@@ -40,7 +40,7 @@ class Printing:
                         + i["Regex Pattern"]["URL"]
                         + matched.replace(" ", "")
                     )
-                
+
                 if i["Regex Pattern"]["Description"]:
                     if description:
                         description = (
