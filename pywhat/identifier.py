@@ -10,7 +10,7 @@ class Identifier:
         self.file_sig = FileSignatures()
         self.name_that_hash = Nth()
 
-    def identify(self, text: str, api=False) -> dict:
+    def identify(self, text: str, api=False, filters_dict = {"Tags": "Networking"}) -> dict:
         identify_obj = {}
 
         magic_numbers = None

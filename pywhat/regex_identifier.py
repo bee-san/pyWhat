@@ -6,7 +6,7 @@ from pywhat.filtration_distribution.distribution import Distribution
 
 
 class RegexIdentifier:
-    def __init__(self, filters_dict = {"Tags": "Networking"}):
+    def __init__(self, filters_dict):
         self.distribution = Distribution(filters_dict)
 
     def check(self, text):
