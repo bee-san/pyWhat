@@ -15,11 +15,7 @@ class Identifier:
         for regex in self.regex_id.regexes:
             self.tags.update(regex["Tags"])
 
-    def identify(self, text: str,
-                 min_rarity=0, max_rarity=1,
-                 included_tags: Optional[List[str]] = None,
-                 excluded_tags: Optional[List[str]] = None,
-                 api=False) -> dict:
+    def identify(self, text: str, api=False, filters_dict = {"Tags": "Networking"}) -> dict:
         identify_obj = {}
 
         magic_numbers = None
