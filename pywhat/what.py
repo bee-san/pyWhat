@@ -1,5 +1,17 @@
+import sys
+
 import click
+from rich.console import Console
+
 from pywhat import identifier, printer
+
+
+def print_tags(ctx, value):
+    if value:
+        id = identifier.Identifier()
+        console = Console()
+        console.print("[bold #D7Afff]" + "\n".join(id.tags) + "[/bold #D7Afff]")
+        sys.exit()
 
 
 @click.command(
@@ -8,6 +20,7 @@ from pywhat import identifier, printer
     )
 )
 @click.argument("text_input", required=True)
+@click.option("--tags", is_flag=True, expose_value=False, callback=print_tags, help="Show available tags and exit.")
 def main(text_input):
     """
     What - Identify what something is.\n

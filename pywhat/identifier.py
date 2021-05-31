@@ -1,7 +1,9 @@
-from pywhat.regex_identifier import RegexIdentifier
+import os.path
+from typing import Optional
+
 from pywhat.magic_numbers import FileSignatures
 from pywhat.nameThatHash import Nth
-import os.path
+from pywhat.regex_identifier import RegexIdentifier
 
 
 class Identifier:
@@ -9,8 +11,15 @@ class Identifier:
         self.regex_id = RegexIdentifier()
         self.file_sig = FileSignatures()
         self.name_that_hash = Nth()
+        self.tags = set()
+        for regex in self.regex_id.regexes:
+            self.tags.update(regex["Tags"])
 
-    def identify(self, text: str, min_rarity=0, max_rarity=1, api=False) -> dict:
+    def identify(self, text: str,
+                 min_rarity=0, max_rarity=1,
+                 included_tags: Optional[list[str]] = None,
+                 excluded_tags: Optional[list[str]] = None,
+                 api=False) -> dict:
         identify_obj = {}
 
         magic_numbers = None
@@ -28,9 +37,14 @@ class Identifier:
 
         regexes = self.regex_id.check(text)
         identify_obj["Regexes"] = []
+        used_tags = (
+            set(self.tags) if included_tags is None else set(included_tags))
+        if excluded_tags is not None:
+            used_tags -= set(excluded_tags)
 
         for regex in regexes:
-            if min_rarity <= regex["Regex Pattern"]["Rarity"] <= max_rarity:
+            if (min_rarity <= regex["Regex Pattern"]["Rarity"] <= max_rarity and
+                used_tags & set(regex["Regex Pattern"]["Tags"])):
                 identify_obj["Regexes"].append(regex)
 
         # get_hashes takes a list of hashes, we split to give it a list
