@@ -1,5 +1,5 @@
 import os.path
-from typing import Optional
+from typing import List, Optional
 
 from pywhat.magic_numbers import FileSignatures
 from pywhat.nameThatHash import Nth
@@ -17,8 +17,8 @@ class Identifier:
 
     def identify(self, text: str,
                  min_rarity=0, max_rarity=1,
-                 included_tags: Optional[list[str]] = None,
-                 excluded_tags: Optional[list[str]] = None,
+                 included_tags: Optional[List[str]] = None,
+                 excluded_tags: Optional[List[str]] = None,
                  api=False) -> dict:
         identify_obj = {}
 
