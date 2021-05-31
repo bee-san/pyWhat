@@ -6,9 +6,6 @@ from rich.table import Table
 
 
 class Printing:
-    def __init__(self):
-        pass
-
     def pretty_print(self, text: dict):
         console = Console(highlight=False)
 

@@ -1,7 +1,6 @@
 import binascii
-import os
-
 import json
+import os
 
 
 class FileSignatures:

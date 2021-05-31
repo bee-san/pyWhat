@@ -1,8 +1,10 @@
-from pywhat.regex_identifier import RegexIdentifier
-from pywhat.magic_numbers import FileSignatures
-from pywhat.nameThatHash import Nth
 import os.path
 import glob
+
+from pywhat.magic_numbers import FileSignatures
+from pywhat.nameThatHash import Nth
+from pywhat.regex_identifier import RegexIdentifier
+
 
 class Identifier:
     def __init__(self):
