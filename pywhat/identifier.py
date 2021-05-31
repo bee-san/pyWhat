@@ -39,12 +39,13 @@ class Identifier:
         identify_obj["Regexes"] = []
         used_tags = (
             set(self.tags) if included_tags is None else set(included_tags))
-        if excluded_tags is not None:
-            used_tags -= set(excluded_tags)
+        unused_tags = (set() if excluded_tags is None else set(excluded_tags))
 
         for regex in regexes:
             if (min_rarity <= regex["Regex Pattern"]["Rarity"] <= max_rarity and
-                used_tags & set(regex["Regex Pattern"]["Tags"])):
+                used_tags & set(regex["Regex Pattern"]["Tags"]) and
+                not unused_tags & set(regex["Regex Pattern"]["Tags"])
+                ):
                 identify_obj["Regexes"].append(regex)
 
         # get_hashes takes a list of hashes, we split to give it a list
