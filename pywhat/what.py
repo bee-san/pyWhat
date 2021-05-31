@@ -18,9 +18,9 @@ def main(text_input):
 
     Examples:
 
-        * what "HTB{this is a flag}"
+        * what 'HTB{this is a flag}'
 
-        * what "0x52908400098527886E0F7030069857D2E4169EE7"
+        * what '0x52908400098527886E0F7030069857D2E4169EE7'
 
         * what -- 52.6169586, -1.9779857
 
@@ -29,9 +29,9 @@ def main(text_input):
 
     pyWhat can also search files or even the whole directory with recursion:
 
-        * what secret.txt
+        * what 'secret.txt'
 
-        * what "this/is/a/path"
+        * what 'this/is/a/path'
 
     """
 

@@ -15,40 +15,33 @@ class Identifier:
     def identify(self, text: str, api=False) -> dict:
         identify_obj = {}
         magic_numbers = {}
-        file_text = []
+        file_text = {}
 
-        if not api and (os.path.isdir(text) == True or os.path.isfile(text) == True):
-            if os.path.isdir(text):
-                # if input is a directory, recursively search for all of the files
-                # and append each content of a file to file_text
+        def get_file_data(filepath):
+            short_name = os.path.basename(filepath)
+            magic_numbers[short_name] = self.file_sig.open_binary_scan_magic_nums(filepath)
+            file_text[short_name] = self.file_sig.open_file_loc(filepath)
 
-                for myfile in glob.iglob(text + "**/**", recursive=True):
-                    if os.path.isfile(myfile):
-                        magic_numbers[myfile] = self.file_sig.open_binary_scan_magic_nums(myfile)
-                        file_text.append(self.file_sig.open_file_loc(myfile))
+            # if file doesn't exist, check to see if the inputted text is
+            # a file in hex format
+            if not magic_numbers[short_name]:
+                magic_numbers[short_name] = self.file_sig.check_magic_nums(filepath)
 
-            if os.path.isfile(text):
-                # if input is a file
-                magic_numbers[text] = self.file_sig.open_binary_scan_magic_nums(text)
-                file_text.append(self.file_sig.open_file_loc(text))
 
-            # flatten file_text as it may be a nested list
-            clean_list = []
-            for item in file_text:
-                clean_list.extend(item)
+        if os.path.isdir(text):
+            # if input is a directory, recursively search for all of the files
+            for myfile in glob.iglob(text + "**/**", recursive=True):
+                if os.path.isfile(myfile):
+                    get_file_data(myfile)
+
+        elif os.path.isfile(text):
+            get_file_data(text)
 
         else:
-            clean_list = [text]
+            file_text["None"] = [text]
 
-
-        for key, value in magic_numbers.items():
-            # If file doesn't exist, check to see if the inputted text is
-            # a file in hex format
-            if not value:
-                value = self.file_sig.check_magic_nums(key)
         identify_obj["File Signatures"] = magic_numbers
-
-        identify_obj["Regexes"] = self.regex_id.check(clean_list)
+        identify_obj["Regexes"] = self.regex_id.check(file_text)
         # get_hashes takes a list of hashes, we split to give it a list
         # identify_obj["Hashes"] = self.name_that_hash.get_hashes(text.split())
 
