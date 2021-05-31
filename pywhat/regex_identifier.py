@@ -8,7 +8,7 @@ class RegexIdentifier:
     def __init__(self):
         path = "Data/regex.json"
         fullpath = os.path.join(os.path.dirname(os.path.abspath(__file__)), path)
-        with open(fullpath, "r") as myfile:
+        with open(fullpath, "r", encoding="utf8") as myfile:
             self.regexes = json.load(myfile)
 
     def check(self, text):
