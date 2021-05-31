@@ -9,8 +9,8 @@ class Filter:
             int = set_tags.intersection(tags)
             print(tags)
             print(int)
-            has_tag = True if len(int) > 0 else False
-            has_no_bad_tags = True if len(set_tags.intersection(dont_include)) == 0 else False
+            has_tag = bool(int)
+            has_no_bad_tags = bool(set_tags.intersection(dont_include))
             if has_tag and has_no_bad_tags:
                 out += i
         return out 

@@ -1,21 +1,23 @@
 import os.path
 from typing import List, Optional
 
+from pywhat.filtration_distribution.distribution import Distribution
 from pywhat.magic_numbers import FileSignatures
 from pywhat.nameThatHash import Nth
 from pywhat.regex_identifier import RegexIdentifier
 
 
 class Identifier:
-    def __init__(self):
-        self.regex_id = RegexIdentifier()
+    def __init__(self, distribution: Optional[Distribution] = None):
+        if distribution is None:
+            self.distribution = Distribution()
+        else:
+            self.distribution = distribution
+        self.regex_id = RegexIdentifier(self.distribution)
         self.file_sig = FileSignatures()
         self.name_that_hash = Nth()
-        self.tags = set()
-        for regex in self.regex_id.regexes:
-            self.tags.update(regex["Tags"])
 
-    def identify(self, text: str, api=False, filters_dict = {"Tags": "Networking"}) -> dict:
+    def identify(self, text: str, api=False) -> dict:
         identify_obj = {}
 
         magic_numbers = None
@@ -31,18 +33,7 @@ class Identifier:
             # a file in hex format
             identify_obj["File Signatures"] = self.file_sig.check_magic_nums(text)
 
-        regexes = self.regex_id.check(text)
-        identify_obj["Regexes"] = []
-        used_tags = (
-            set(self.tags) if included_tags is None else set(included_tags))
-        unused_tags = (set() if excluded_tags is None else set(excluded_tags))
-
-        for regex in regexes:
-            if (min_rarity <= regex["Regex Pattern"]["Rarity"] <= max_rarity and
-                used_tags & set(regex["Regex Pattern"]["Tags"]) and
-                not unused_tags & set(regex["Regex Pattern"]["Tags"])
-                ):
-                identify_obj["Regexes"].append(regex)
+        identify_obj["Regexes"] = self.regex_id.check(text)
 
         # get_hashes takes a list of hashes, we split to give it a list
         # identify_obj["Hashes"] = self.name_that_hash.get_hashes(text.split())

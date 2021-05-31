@@ -2,13 +2,17 @@ import copy
 import json
 import os
 import re
+from typing import Optional
 
 from pywhat.filtration_distribution.distribution import Distribution
 
 
 class RegexIdentifier:
-    def __init__(self, filters_dict):
-        self.distribution = Distribution(filters_dict)
+    def __init__(self, distribution: Optional[Distribution] = None):
+        if distribution is None:
+            self.distribution = Distribution()
+        else:
+            self.distribution = distribution
 
     def check(self, text):
         matches = []

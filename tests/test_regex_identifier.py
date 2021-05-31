@@ -4,8 +4,8 @@ from pywhat import regex_identifier
 
 def test_regex_successfully_parses():
     r = regex_identifier.RegexIdentifier()
-    print(r.regexes)
-    assert "Name" in r.regexes[0]
+    print(r.distribution.get_regexes)
+    assert "Name" in r.distribution.get_regexes()[0]
 
 
 def test_regex_runs():

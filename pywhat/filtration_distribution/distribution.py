@@ -1,9 +1,10 @@
+import json
 import os
 from pathlib import Path
-import json
-
+from typing import Optional
 
 from pywhat.filtration_distribution.filter import Filter
+
 
 class Distribution:
     """
@@ -14,7 +15,7 @@ class Distribution:
     * {"Tags": ["Networking"]}
     """
 
-    def __init__(self, filters_dict: dict):
+    def __init__(self, filters_dict: Optional[dict] = None):
         # Load the regex
         path = "Data/regex.json"
         fullpath = os.path.join(Path(__file__).resolve().parent.parent, path)
