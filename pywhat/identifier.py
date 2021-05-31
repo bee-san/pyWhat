@@ -1,7 +1,8 @@
-from pywhat.regex_identifier import RegexIdentifier
+import os.path
+
 from pywhat.magic_numbers import FileSignatures
 from pywhat.nameThatHash import Nth
-import os.path
+from pywhat.regex_identifier import RegexIdentifier
 
 
 class Identifier:
