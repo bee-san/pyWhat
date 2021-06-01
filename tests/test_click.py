@@ -3,6 +3,11 @@ from pywhat.what import main
 import re
 import pytest
 
+def test_nothing_found():
+    runner = CliRunner()
+    result = runner.invoke(main, [""])
+    assert result.exit_code == 0
+    assert "Nothing found!" in result.output
 
 def test_hello_world():
     runner = CliRunner()
@@ -101,7 +106,7 @@ def test_arg_parsing():
     runner = CliRunner()
     result = runner.invoke(main, ["1KFHE7w8BhaENAswwryaoccDb6qcT6DbYY"])
     assert result.exit_code == 0
-    assert re.findall("blockc", str(result.output))
+    assert re.findall("blockchain", str(result.output))
 
 
 def test_arg_parsing2():
@@ -188,12 +193,12 @@ def test_file_fixture_youtube_id():
     assert result.exit_code == 0
     assert re.findall("YouTube", str(result.output))
 
-@pytest.mark.skip("Test does not work because of table overflow")
+
 def test_file_fixture_ip4():
     runner = CliRunner()
-    result = runner.invoke(main, ["fixtures/file"])
+    result = runner.invoke(main, ["118.103.238.230"])
     assert result.exit_code == 0
-    assert "4" in str(result.output)
+    assert re.findall("Address Version 4", str(result.output))
 
 
 def test_file_fixture_ip4_shodan():
@@ -202,10 +207,10 @@ def test_file_fixture_ip4_shodan():
     assert result.exit_code == 0
     assert re.findall("shodan", str(result.output))
 
-@pytest.mark.skip("Test does not work because of table overflow")
+
 def test_file_fixture_ip6():
     runner = CliRunner()
-    result = runner.invoke(main, ["fixtures/file"])
+    result = runner.invoke(main, ["2001:0db8:85a3:0000:0000:8a2e:0370:7334"])
     assert result.exit_code == 0
     assert re.findall("Address Version 6", str(result.output))
 

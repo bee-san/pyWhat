@@ -16,7 +16,6 @@ class Identifier:
         identify_obj = {}
         identify_obj["File Signatures"] = {}
         identify_obj["Regexes"] = {}
-        magic_numbers = []
 
         if os.path.isdir(input):
             # if input is a directory, recursively search for all of the files
@@ -49,13 +48,11 @@ class Identifier:
 
         else:
             text = [input]
-
-            identify_obj["File Signatures"]["text"] = magic_numbers
             identify_obj["Regexes"]["text"] = self.regex_id.check(text)
 
 
         for key, value in list(identify_obj["Regexes"].items()):
-            # if matches value is empty, remove it from the dict
+            # if there was not a match, remove file/text from the dictionary
             if value == []:
                 del identify_obj["Regexes"][key]
 

@@ -26,7 +26,10 @@ class Printing:
             table.add_column("Matched Text", overflow="fold")
             table.add_column("Identified as", overflow="fold")
             table.add_column("Description")
-            table.add_column("Filename", overflow="fold")
+
+            if list(text["Regexes"].keys())[0] != "text":
+                # if the input is only text, do not add filename column
+                table.add_column("Filename", overflow="fold")
 
             for key, value in text["Regexes"].items():
                 for i in value:
@@ -54,19 +57,21 @@ class Printing:
                         else:
                             description = i["Regex Pattern"]["Description"]
 
-                    if description:
+                    if not description:
+                        description = "None"
+
+                    if key != "text":
                         table.add_row(
                             matched,
                             name,
                             description,
-                            filename
+                            filename,
                         )
                     else:
                         table.add_row(
                             matched,
                             name,
-                            "None",
-                            filename
+                            description,
                         )
 
             console.print(to_out, table)
