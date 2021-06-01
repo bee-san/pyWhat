@@ -32,7 +32,7 @@ class Distribution:
         # Load the regex
         path = "Data/regex.json"
         fullpath = os.path.join(os.path.dirname(os.path.abspath(__file__)), path)
-        with open(fullpath, "r", encoding="utf8") as myfile:
+        with open(fullpath, "r", encoding="utf-8") as myfile:
             self._regexes = json.load(myfile)
         self.filter()
 

@@ -30,7 +30,7 @@ class RegexIdentifier:
                         codes_path = "Data/phone_codes.json"
                         codes_fullpath = os.path.join(
                             os.path.dirname(os.path.abspath(__file__)), codes_path)
-                        with open(codes_fullpath, "r", encoding="utf8") as myfile:
+                        with open(codes_fullpath, "r", encoding="utf-8") as myfile:
                             codes = json.load(myfile)
 
                         locations = []
