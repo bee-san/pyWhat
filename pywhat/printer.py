@@ -33,7 +33,11 @@ class Printing:
                     matched = i["Matched"]
                     name = i["Regex Pattern"]["Name"]
                     description = None
-                    filename = key
+
+                    if key == "text":
+                        filename = "None"
+                    else:
+                        filename = key
 
                     if "URL" in i["Regex Pattern"]:
                         description = (

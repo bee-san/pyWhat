@@ -12,37 +12,51 @@ class Identifier:
         self.file_sig = FileSignatures()
         self.name_that_hash = Nth()
 
-    def identify(self, text: str, api=False) -> dict:
+    def identify(self, input: str, api=False) -> dict:
         identify_obj = {}
-        magic_numbers = {}
-        file_text = {}
+        identify_obj["File Signatures"] = {}
+        identify_obj["Regexes"] = {}
+        magic_numbers = []
 
-        def get_file_data(filepath):
-            short_name = os.path.basename(filepath)
-            magic_numbers[short_name] = self.file_sig.open_binary_scan_magic_nums(filepath)
-            file_text[short_name] = self.file_sig.open_file_loc(filepath)
+        if os.path.isdir(input):
+            # if input is a directory, recursively search for all of the files
+            for myfile in glob.iglob(input + "**/**", recursive=True):
+                if os.path.isfile(myfile):
+                    magic_numbers = self.file_sig.open_binary_scan_magic_nums(myfile)
+                    text = self.file_sig.open_file_loc(myfile)
+
+                    if not magic_numbers:
+                        magic_numbers = self.file_sig.check_magic_nums(myfile)
+
+                    short_name = os.path.basename(myfile)
+                    identify_obj["File Signatures"][short_name] = magic_numbers
+                    identify_obj["Regexes"][short_name] = self.regex_id.check(text)
+
+
+        elif os.path.isfile(input):
+            short_name = os.path.basename(input)
+            magic_numbers = self.file_sig.open_binary_scan_magic_nums(input)
+            text = self.file_sig.open_file_loc(input)
 
             # if file doesn't exist, check to see if the inputted text is
             # a file in hex format
-            if not magic_numbers[short_name]:
-                magic_numbers[short_name] = self.file_sig.check_magic_nums(filepath)
+            if not magic_numbers:
+                magic_numbers = self.file_sig.check_magic_nums(text)
 
-
-        if os.path.isdir(text):
-            # if input is a directory, recursively search for all of the files
-            for myfile in glob.iglob(text + "**/**", recursive=True):
-                if os.path.isfile(myfile):
-                    get_file_data(myfile)
-
-        elif os.path.isfile(text):
-            get_file_data(text)
+            short_name = os.path.basename(input)
+            identify_obj["File Signatures"][short_name] = magic_numbers
+            identify_obj["Regexes"][short_name] = self.regex_id.check(text)
 
         else:
-            file_text["None"] = [text]
+            text = [input]
 
-        identify_obj["File Signatures"] = magic_numbers
-        identify_obj["Regexes"] = self.regex_id.check(file_text)
-        # get_hashes takes a list of hashes, we split to give it a list
-        # identify_obj["Hashes"] = self.name_that_hash.get_hashes(text.split())
+            identify_obj["File Signatures"]["text"] = magic_numbers
+            identify_obj["Regexes"]["text"] = self.regex_id.check(text)
+
+
+        for key, value in list(identify_obj["Regexes"].items()):
+            # if matches value is empty, remove it from the dict
+            if value == []:
+                del identify_obj["Regexes"][key]
 
         return identify_obj

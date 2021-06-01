@@ -12,46 +12,43 @@ class RegexIdentifier:
             self.regexes = json.load(myfile)
 
     def check(self, text):
-        matches = {}
-        for key, value in text.items():
-            for txt in value:
-                for reg in self.regexes:
-                    matched_regex = re.search(reg["Regex"], txt, re.UNICODE)
+        matches = []
+        for string in text:
+            for reg in self.regexes:
 
-                    if matched_regex:
-                        # necessary, when checking phone
-                        # numbers from file that may contain non-international numbers
-                        reg = copy.copy(reg)
-                        matched = self.clean_text(matched_regex.group(0))
+                matched_regex = re.search(reg["Regex"], string, re.UNICODE)
 
-                        if "Phone Number" in reg["Name"]:
-                            number = re.sub(r"[-() ]", "", matched)
-                            codes_path = "Data/phone_codes.json"
-                            codes_fullpath = os.path.join(
-                                os.path.dirname(os.path.abspath(__file__)), codes_path)
-                            with open(codes_fullpath) as f:
-                                codes = json.load(f)
+                if matched_regex:
+                    # necessary, when checking phone
+                    # numbers from file that may contain non-international numbers
+                    reg = copy.copy(reg)
+                    matched = self.clean_text(matched_regex.group(0))
 
-                            locations = []
-                            for code in codes:
-                                if number.startswith(code["dial_code"]):
-                                    locations.append(code["name"])
-                            if len(locations):
-                                reg["Description"] = (
-                                    "Location(s)"
-                                    + ": "
-                                    + ", ".join(locations)
-                                )
+                    if "Phone Number" in reg["Name"]:
+                        number = re.sub(r"[-() ]", "", matched)
+                        codes_path = "Data/phone_codes.json"
+                        codes_fullpath = os.path.join(
+                            os.path.dirname(os.path.abspath(__file__)), codes_path)
+                        with open(codes_fullpath) as f:
+                            codes = json.load(f)
 
-                        if key not in matches:
-                            matches[key] = []
+                        locations = []
+                        for code in codes:
+                            if number.startswith(code["dial_code"]):
+                                locations.append(code["name"])
+                        if len(locations):
+                            reg["Description"] = (
+                                "Location(s)"
+                                + ": "
+                                + ", ".join(locations)
+                            )
 
-                        matches[key].append(
-                            {
-                                "Matched": matched,
-                                "Regex Pattern": reg,
-                            }
-                        )
+                    matches.append(
+                        {
+                            "Matched": matched,
+                            "Regex Pattern": reg,
+                        }
+                    )
 
         return matches
 
