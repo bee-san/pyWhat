@@ -4,20 +4,19 @@ import os
 import re
 from typing import Optional
 
-from pywhat.filtration_distribution.distribution import Distribution
+from pywhat.distribution import Distribution
 
 
 class RegexIdentifier:
-    def __init__(self, distribution: Optional[Distribution] = None):
-        if distribution is None:
-            self.distribution = Distribution()
-        else:
-            self.distribution = distribution
+    def __init__(self):
+        self.distribution = Distribution()
 
-    def check(self, text):
+    def check(self, text, distribution: Optional[Distribution] = None):
+        if distribution is None:
+            distribution = self.distribution
         matches = []
         for txt in text:
-            for reg in self.distribution.get_regexes():
+            for reg in distribution.get_regexes():
                 matched_regex = re.search(reg["Regex"], txt, re.UNICODE)
 
                 if matched_regex:

@@ -3,15 +3,15 @@ import sys
 import click
 from rich.console import Console
 
-from pywhat import identifier, printer
-from pywhat.filtration_distribution.distribution import Distribution
+from pywhat import helper, identifier, printer
+from pywhat.distribution import Distribution
 
 
 def print_tags(ctx, opts, value):
     if value:
-        id = identifier.Identifier()
+        tags = sorted(helper.AvailableTags().get_tags())
         console = Console()
-        console.print("[bold #D7Afff]" + "\n".join(id.tags) + "[/bold #D7Afff]")
+        console.print("[bold #D7Afff]" + "\n".join(tags) + "[/bold #D7Afff]")
         sys.exit()
 
 
@@ -55,7 +55,11 @@ def main(text_input, rarity, include_tags, exclude_tags):
 
     """
 
-    """
+    min_rarity = 0
+    max_rarity = 1
+    included_tags = []
+    excluded_tags = []
+
     if rarity is not None:
         rarities = rarity.split(":")
         if len(rarities) != 2:
@@ -69,13 +73,13 @@ def main(text_input, rarity, include_tags, exclude_tags):
         except ValueError:
             print("Invalid rarity argument (float expected)")
             sys.exit(1)
-
     if include_tags is not None:
         included_tags = list(map(str.strip, include_tags.split(',')))
     if exclude_tags is not None:
         excluded_tags = list(map(str.strip, exclude_tags.split(',')))
-    """
-    distribution = Distribution()
+    distribution = Distribution(
+        {"Tags": included_tags, "ExcludeTags": excluded_tags,
+        "MinRarity": min_rarity, "MaxRarity": max_rarity})
     what_obj = What_Object(distribution)
     identified_output = what_obj.what_is_this(text_input)
 

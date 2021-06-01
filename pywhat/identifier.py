@@ -1,7 +1,7 @@
 import os.path
 from typing import List, Optional
 
-from pywhat.filtration_distribution.distribution import Distribution
+from pywhat.distribution import Distribution
 from pywhat.magic_numbers import FileSignatures
 from pywhat.nameThatHash import Nth
 from pywhat.regex_identifier import RegexIdentifier
@@ -13,11 +13,14 @@ class Identifier:
             self.distribution = Distribution()
         else:
             self.distribution = distribution
-        self.regex_id = RegexIdentifier(self.distribution)
+        self.regex_id = RegexIdentifier()
         self.file_sig = FileSignatures()
         self.name_that_hash = Nth()
 
-    def identify(self, text: str, api=False) -> dict:
+    def identify(self, text: str, distribution: Distribution = None,
+                 api=False) -> dict:
+        if distribution is None:
+            distribution = self.distribution
         identify_obj = {}
 
         magic_numbers = None
@@ -33,7 +36,7 @@ class Identifier:
             # a file in hex format
             identify_obj["File Signatures"] = self.file_sig.check_magic_nums(text)
 
-        identify_obj["Regexes"] = self.regex_id.check(text)
+        identify_obj["Regexes"] = self.regex_id.check(text, distribution)
 
         # get_hashes takes a list of hashes, we split to give it a list
         # identify_obj["Hashes"] = self.name_that_hash.get_hashes(text.split())
