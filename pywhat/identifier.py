@@ -51,9 +51,14 @@ class Identifier:
             identify_obj["Regexes"]["text"] = self.regex_id.check(text)
 
 
-        for key, value in list(identify_obj["Regexes"].items()):
-            # if there was not a match, remove file/text from the dictionary
-            if value == []:
-                del identify_obj["Regexes"][key]
+        for key, value in list(identify_obj.items()):
+            for filename, result in list(identify_obj[key].items()):
+                # if there are zero matches for this file/text, remove it from the dictionary
+                if result == [] or not result:
+                    del identify_obj[key][filename]
+
+            # if there are zero regex or file signature matches, set it to None
+            if len(identify_obj[key]) == 0:
+                identify_obj[key] = None
 
         return identify_obj
