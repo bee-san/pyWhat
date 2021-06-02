@@ -15,3 +15,11 @@ class AvailableTags():
 
     def get_tags(self):
         return self.tags
+
+
+class InvalidTag(Exception):
+    """
+    This exception should be raised when Distribution() gets a filter
+    containing non-existent tags.
+    """
+    pass

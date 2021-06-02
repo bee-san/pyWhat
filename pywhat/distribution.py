@@ -2,7 +2,7 @@ import json
 import os
 from typing import Optional
 
-from pywhat.helper import AvailableTags
+from pywhat.helper import AvailableTags, InvalidTag
 
 
 class Distribution:
@@ -29,14 +29,19 @@ class Distribution:
         if len(self._dict["Tags"]) == 0:
             self._dict["Tags"] = tags
 
-        # Load the regex
+        if not self._dict["Tags"].issubset(tags) or not self._dict["ExcludeTags"].issubset(tags):
+            raise InvalidTag("Passed filter contains tags that are not used by 'what'")
+
+        self._load_regexes()
+
+    def _load_regexes(self):
         path = "Data/regex.json"
         fullpath = os.path.join(os.path.dirname(os.path.abspath(__file__)), path)
         with open(fullpath, "r", encoding="utf-8") as myfile:
             self._regexes = json.load(myfile)
-        self.filter()
+        self._filter()
 
-    def filter(self):
+    def _filter(self):
         temp_regexes = []
         min_rarity = self._dict["MinRarity"]
         max_rarity = self._dict["MaxRarity"]
@@ -52,3 +57,49 @@ class Distribution:
 
     def get_regexes(self):
         return list(self._regexes)
+
+    def __repr__(self):
+        return f"Distribution({self._dict})"
+
+    def __and__(self, other):
+        if type(self) != type(other):
+            return NotImplemented
+        tags = self._dict["Tags"] & other._dict["Tags"]
+        exclude_tags = self._dict["ExcludeTags"] & other._dict["ExcludeTags"]
+        min_rarity = max(self._dict["MinRarity"], other._dict["MinRarity"])
+        max_rarity = min(self._dict["MaxRarity"], other._dict["MaxRarity"])
+        return Distribution(
+            {"Tags": tags, "ExcludeTags": exclude_tags,
+            "MinRarity": min_rarity, "MaxRarity": max_rarity})
+
+    def __or__(self, other):
+        if type(self) != type(other):
+            return NotImplemented
+        tags = self._dict["Tags"] | other._dict["Tags"]
+        exclude_tags = self._dict["ExcludeTags"] | other._dict["ExcludeTags"]
+        min_rarity = min(self._dict["MinRarity"], other._dict["MinRarity"])
+        max_rarity = max(self._dict["MaxRarity"], other._dict["MaxRarity"])
+        return Distribution(
+            {"Tags": tags, "ExcludeTags": exclude_tags,
+            "MinRarity": min_rarity, "MaxRarity": max_rarity})
+
+
+    def __iand__(self, other):
+        if type(self) != type(other):
+            return NotImplemented
+        self._dict["Tags"] &= other._dict["Tags"]
+        self._dict["ExcludeTags"] &= other._dict["ExcludeTags"]
+        self._dict["MinRarity"] = max(self._dict["MinRarity"], other._dict["MinRarity"])
+        self._dict["MaxRarity"] = min(self._dict["MaxRarity"], other._dict["MaxRarity"])
+        self._load_regexes()
+        return self
+
+    def __ior__(self, other):
+        if type(self) != type(other):
+            return NotImplemented
+        self._dict["Tags"] |= other._dict["Tags"]
+        self._dict["ExcludeTags"] |= other._dict["ExcludeTags"]
+        self._dict["MinRarity"] = min(self._dict["MinRarity"], other._dict["MinRarity"])
+        self._dict["MaxRarity"] = max(self._dict["MaxRarity"], other._dict["MaxRarity"])
+        self._load_regexes()
+        return self

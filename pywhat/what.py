@@ -77,9 +77,16 @@ def main(text_input, rarity, include_tags, exclude_tags):
         included_tags = list(map(str.strip, include_tags.split(',')))
     if exclude_tags is not None:
         excluded_tags = list(map(str.strip, exclude_tags.split(',')))
-    distribution = Distribution(
-        {"Tags": included_tags, "ExcludeTags": excluded_tags,
-        "MinRarity": min_rarity, "MaxRarity": max_rarity})
+        
+    try:
+        distribution = Distribution(
+            {"Tags": included_tags, "ExcludeTags": excluded_tags,
+            "MinRarity": min_rarity, "MaxRarity": max_rarity})
+    except helper.InvalidTag:
+        print("Passed tags are not valid.\n" \
+            "You can check available tags by using: 'pywhat --tags'")
+        sys.exit(1)
+
     what_obj = What_Object(distribution)
     identified_output = what_obj.what_is_this(text_input)
 
