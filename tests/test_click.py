@@ -269,7 +269,7 @@ def test_file_fixture_bch2():
     runner = CliRunner()
     result = runner.invoke(main, ["bitcoincash:qzlg6uvceehgzgtz6phmvy8gtdqyt6vf359at4n3lq"])
     assert result.exit_code == 0
-    assert re.findall("block", str(result.output))
+    assert re.findall("blockchain", str(result.output))
 
 
 def test_file_fixture_xrp():
