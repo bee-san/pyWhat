@@ -2,7 +2,7 @@ import json
 import os
 
 import pytest
-from pywhat import AvailableTags, Distribution
+from pywhat import pywhat_tags, Distribution
 from pywhat.helper import InvalidTag
 
 
@@ -83,7 +83,7 @@ def test_distribution5():
         regexes = json.load(myfile)
     assert dist._dict["MinRarity"] == 0.3
     assert dist._dict["MaxRarity"] == 1
-    assert dist._dict["Tags"] == AvailableTags().get_tags()
+    assert dist._dict["Tags"] == pywhat_tags
     assert dist._dict["ExcludeTags"] == {"Identifiers", "Media"}
 
     for regex in regexes:
@@ -106,7 +106,7 @@ def test_distribution6():
         regexes = json.load(myfile)
     assert dist._dict["MinRarity"] == 0.3
     assert dist._dict["MaxRarity"] == 1
-    assert dist._dict["Tags"] == AvailableTags().get_tags()
+    assert dist._dict["Tags"] == pywhat_tags
     assert dist._dict["ExcludeTags"] == {"Identifiers", "Media"}
 
     for regex in regexes:

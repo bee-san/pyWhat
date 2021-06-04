@@ -17,10 +17,10 @@ class Identifier:
         self._file_sig = FileSignatures()
         self._name_that_hash = Nth()
 
-    def identify(self, text: str, distribution: Distribution = None,
+    def identify(self, text: str, dist: Distribution = None,
                  api=False) -> dict:
-        if distribution is None:
-            distribution = self.distribution
+        if dist is None:
+            dist = self.distribution
         identify_obj = {}
 
         magic_numbers = None
@@ -36,7 +36,7 @@ class Identifier:
             # a file in hex format
             identify_obj["File Signatures"] = self._file_sig.check_magic_nums(text)
 
-        identify_obj["Regexes"] = self._regex_id.check(text, distribution)
+        identify_obj["Regexes"] = self._regex_id.check(text, dist)
 
         # get_hashes takes a list of hashes, we split to give it a list
         # identify_obj["Hashes"] = self._name_that_hash.get_hashes(text.split())

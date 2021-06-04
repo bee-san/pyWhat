@@ -1,7 +1,9 @@
-from click.testing import CliRunner
-from pywhat.what import main
 import re
+
 import pytest
+from click.testing import CliRunner
+from pywhat import pywhat_tags
+from pywhat.what import main
 
 
 def test_hello_world():
@@ -10,6 +12,22 @@ def test_hello_world():
     assert result.exit_code == 0
     assert "THM{" in result.output
 
+
+def test_filtration():
+    runner = CliRunner()
+    result = runner.invoke(main, ["--rarity", "0.5:", "--include_tags", "Identifiers,Media", "fixtures/file"])
+    assert result.exit_code == 0
+    assert "THM{" in result.output
+    assert "ETH" in result.output
+
+
+def test_tag_printing():
+    runner = CliRunner()
+    result = runner.invoke(main, "--tags")
+    assert result.exit_code == 0
+    for tag in pywhat_tags:
+        assert tag in result.output
+        
 
 def test_file_fixture():
     runner = CliRunner()

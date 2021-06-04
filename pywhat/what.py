@@ -3,16 +3,45 @@ import sys
 import click
 from rich.console import Console
 
-from pywhat import helper, identifier, printer
+from pywhat import identifier, printer
 from pywhat.distribution import Distribution
+from pywhat.helper import AvailableTags, InvalidTag
 
 
 def print_tags(ctx, opts, value):
     if value:
-        tags = sorted(helper.AvailableTags().get_tags())
+        tags = sorted(AvailableTags().get_tags())
         console = Console()
         console.print("[bold #D7Afff]" + "\n".join(tags) + "[/bold #D7Afff]")
         sys.exit()
+
+
+def parse_options(rarity, include_tags, exclude_tags):
+    filter = dict()
+    if rarity is not None:
+        rarities = rarity.split(":")
+        if len(rarities) != 2:
+            print("Invalid rarity range format ('min:max' expected)")
+            sys.exit(1)
+        try:
+            if not rarities[0].isspace() and rarities[0]:
+                filter["MinRarity"] = float(rarities[0])
+            if not rarities[1].isspace() and rarities[1]:
+                filter["MaxRarity"] = float(rarities[1])
+        except ValueError:
+            print("Invalid rarity argument (float expected)")
+            sys.exit(1)
+    if include_tags is not None:
+        filter["Tags"] = list(map(str.strip, include_tags.split(',')))
+    if exclude_tags is not None:
+        filter["ExcludeTags"] = list(map(str.strip, exclude_tags.split(',')))
+        
+    try:
+        distribution = Distribution(filter)
+    except InvalidTag:
+        print("Passed tags are not valid.\n" \
+            "You can check available tags by using: 'pywhat --tags'")
+        sys.exit(1)
 
 
 @click.command(
@@ -55,39 +84,9 @@ def main(text_input, rarity, include_tags, exclude_tags):
 
     """
 
-    min_rarity = 0
-    max_rarity = 1
-    included_tags = list(helper.AvailableTags().get_tags())
-    excluded_tags = []
-
-    if rarity is not None:
-        rarities = rarity.split(":")
-        if len(rarities) != 2:
-            print("Invalid rarity range format ('min:max' expected)")
-            sys.exit(1)
-        try:
-            if not rarities[0].isspace() and rarities[0]:
-                min_rarity = float(rarities[0])
-            if not rarities[1].isspace() and rarities[1]:
-                max_rarity = float(rarities[1])
-        except ValueError:
-            print("Invalid rarity argument (float expected)")
-            sys.exit(1)
-    if include_tags is not None:
-        included_tags = list(map(str.strip, include_tags.split(',')))
-    if exclude_tags is not None:
-        excluded_tags = list(map(str.strip, exclude_tags.split(',')))
-        
-    try:
-        distribution = Distribution(
-            {"Tags": included_tags, "ExcludeTags": excluded_tags,
-            "MinRarity": min_rarity, "MaxRarity": max_rarity})
-    except helper.InvalidTag:
-        print("Passed tags are not valid.\n" \
-            "You can check available tags by using: 'pywhat --tags'")
-        sys.exit(1)
-
-    what_obj = What_Object(distribution)
+    what_obj = What_Object(
+        parse_options(rarity, include_tags, exclude_tags)
+    )
     identified_output = what_obj.what_is_this(text_input)
 
     p = printer.Printing()

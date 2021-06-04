@@ -12,7 +12,7 @@ class Distribution:
 
     Example filters:
     * {"Tags": ["Networking"]}
-    * {"Tags": ["Identifiers"], "ExcludeTags": ["Credentials"], "MinRarity":0.6}
+    * {"Tags": ["Identifiers"], "ExcludeTags": ["Credentials"], "MinRarity": 0.6}
     """
 
     def __init__(self, filters_dict: Optional[dict] = None):
