@@ -28,8 +28,10 @@ class Identifier:
 
         for string in search:
             if os.path.isfile(string):
+                short_name = os.path.basename(string)
                 magic_numbers = self.file_sig.open_binary_scan_magic_nums(string)
                 text = self.file_sig.open_file_loc(string)
+                text.append(short_name)
                 regex = self.regex_id.check(text)
                 short_name = os.path.basename(string)
 

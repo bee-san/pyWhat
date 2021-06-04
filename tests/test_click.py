@@ -196,7 +196,7 @@ def test_file_fixture_youtube_id():
 
 def test_file_fixture_ip4():
     runner = CliRunner()
-    result = runner.invoke(main, ["118.103.238.230"])
+    result = runner.invoke(main, ["fixtures/file"])
     assert result.exit_code == 0
     assert re.findall("Address Version 4", str(result.output))
 
@@ -210,7 +210,7 @@ def test_file_fixture_ip4_shodan():
 
 def test_file_fixture_ip6():
     runner = CliRunner()
-    result = runner.invoke(main, ["2001:0db8:85a3:0000:0000:8a2e:0370:7334"])
+    result = runner.invoke(main, ["fixtures/file"])
     assert result.exit_code == 0
     assert re.findall("Address Version 6", str(result.output))
 

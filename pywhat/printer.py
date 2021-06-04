@@ -27,8 +27,8 @@ class Printing:
             table.add_column("Identified as", overflow="fold")
             table.add_column("Description")
 
-            if list(text["Regexes"].keys())[0] != "text" and len(text["Regexes"]) != 1:
-                # if input is only text or only one file, do not add a filename column
+            if len(text["Regexes"]) > 1:
+                # if there is only one file (or input is text), do not add a filename column
                 table.add_column("Filename", overflow="fold")
 
             for key, value in text["Regexes"].items():
@@ -60,7 +60,7 @@ class Printing:
                     if not description:
                         description = "None"
 
-                    if key == "text" or len(text["Regexes"]) == 1:
+                    if len(text["Regexes"]) == 1:
                         table.add_row(
                             matched,
                             name,
