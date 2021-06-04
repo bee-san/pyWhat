@@ -57,7 +57,7 @@ def main(text_input, rarity, include_tags, exclude_tags):
 
     min_rarity = 0
     max_rarity = 1
-    included_tags = []
+    included_tags = list(helper.AvailableTags().get_tags())
     excluded_tags = []
 
     if rarity is not None:

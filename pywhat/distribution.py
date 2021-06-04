@@ -26,9 +26,6 @@ class Distribution:
         self._dict["MinRarity"] = filters_dict.setdefault("MinRarity", 0)
         self._dict["MaxRarity"] = filters_dict.setdefault("MaxRarity", 1)
 
-        if len(self._dict["Tags"]) == 0:
-            self._dict["Tags"] = tags
-
         if not self._dict["Tags"].issubset(tags) or not self._dict["ExcludeTags"].issubset(tags):
             raise InvalidTag("Passed filter contains tags that are not used by 'what'")
 
@@ -57,6 +54,9 @@ class Distribution:
 
     def get_regexes(self):
         return list(self._regexes)
+
+    def get_filter(self):
+        return dict(self._dict)
 
     def __repr__(self):
         return f"Distribution({self._dict})"
@@ -87,19 +87,9 @@ class Distribution:
     def __iand__(self, other):
         if type(self) != type(other):
             return NotImplemented
-        self._dict["Tags"] &= other._dict["Tags"]
-        self._dict["ExcludeTags"] &= other._dict["ExcludeTags"]
-        self._dict["MinRarity"] = max(self._dict["MinRarity"], other._dict["MinRarity"])
-        self._dict["MaxRarity"] = min(self._dict["MaxRarity"], other._dict["MaxRarity"])
-        self._load_regexes()
-        return self
+        return self & other
 
     def __ior__(self, other):
         if type(self) != type(other):
             return NotImplemented
-        self._dict["Tags"] |= other._dict["Tags"]
-        self._dict["ExcludeTags"] |= other._dict["ExcludeTags"]
-        self._dict["MinRarity"] = min(self._dict["MinRarity"], other._dict["MinRarity"])
-        self._dict["MaxRarity"] = max(self._dict["MaxRarity"], other._dict["MaxRarity"])
-        self._load_regexes()
-        return self
+        return self | other
