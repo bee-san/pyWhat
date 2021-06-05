@@ -6,10 +6,7 @@ import os.path
 class AvailableTags():
     def __init__(self):
         self.tags = set()
-        path = "Data/regex.json"
-        fullpath = os.path.join(os.path.dirname(os.path.abspath(__file__)), path)
-        with open(fullpath, "r", encoding="utf-8") as myfile:
-            regexes = json.load(myfile)
+        regexes = load_regexes()
         for regex in regexes:
             self.tags.update(regex["Tags"])
 
@@ -23,3 +20,11 @@ class InvalidTag(Exception):
     containing non-existent tags.
     """
     pass
+
+
+
+def load_regexes() -> list:
+    path = "Data/regex.json"
+    fullpath = os.path.join(os.path.dirname(os.path.abspath(__file__)), path)
+    with open(fullpath, "r", encoding="utf-8") as myfile:
+        return json.load(myfile)

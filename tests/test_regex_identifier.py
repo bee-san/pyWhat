@@ -4,7 +4,6 @@ from pywhat import regex_identifier
 
 def test_regex_successfully_parses():
     r = regex_identifier.RegexIdentifier()
-    print(r.distribution.get_regexes)
     assert "Name" in r.distribution.get_regexes()[0]
 
 

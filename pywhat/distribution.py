@@ -1,8 +1,6 @@
-import json
-import os
 from typing import Optional
 
-from pywhat.helper import AvailableTags, InvalidTag
+from pywhat.helper import AvailableTags, InvalidTag, load_regexes
 
 
 class Distribution:
@@ -29,13 +27,7 @@ class Distribution:
         if not self._dict["Tags"].issubset(tags) or not self._dict["ExcludeTags"].issubset(tags):
             raise InvalidTag("Passed filter contains tags that are not used by 'what'")
 
-        self._load_regexes()
-
-    def _load_regexes(self):
-        path = "Data/regex.json"
-        fullpath = os.path.join(os.path.dirname(os.path.abspath(__file__)), path)
-        with open(fullpath, "r", encoding="utf-8") as myfile:
-            self._regexes = json.load(myfile)
+        self._regexes = load_regexes()
         self._filter()
 
     def _filter(self):
