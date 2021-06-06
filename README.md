@@ -53,6 +53,8 @@ Or if you come across some piece of text and you don't know what it is, `What` w
 
 **File Opening** You can pass in a file path by `what "this/is/a/file/path"`. What is smart enough to figure out it's a file!
 
+**Filtration** You can filter output by using `what --rarity 0.2:0.8 --include_tags tag1,tag2 TEXT`. Use `what --help` to get more information.
+
 # 🍕 API
 
 PyWhat has an API! Click here [https://github.com/bee-san/pyWhat/wiki/API](https://github.com/bee-san/pyWhat/wiki/API) to read about it.

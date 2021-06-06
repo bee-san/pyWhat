@@ -424,7 +424,7 @@
        "Regex": "^[0-9]{3}-[0-9]{2}-[0-9]{4}$",
        "plural_name": false,
        "Description": "An [#CAE4F1][link=https://en.wikipedia.org/wiki/Social_Security_number]American Identification Number[/link][/#CAE4F1]",
-       "rarity": 0.2,
+       "Rarity": 0.2,
        "Tags": [
           "Credentials",
           "Password",
