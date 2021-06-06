@@ -1,6 +1,6 @@
 import os.path
 import glob
-from typing import List, Optional
+from typing import Optional
 
 from pywhat.distribution import Distribution
 from pywhat.magic_numbers import FileSignatures

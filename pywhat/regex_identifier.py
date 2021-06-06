@@ -17,14 +17,13 @@ class RegexIdentifier:
         matches = []
 
         for string in text:
-            for reg in self.regexes:
-
+            for reg in distribution.get_regexes():
                 matched_regex = re.search(reg["Regex"], string, re.UNICODE)
 
                 if matched_regex:
-                    # necessary, when checking phone
-                    # numbers from file that may contain non-international numbers
-                    reg = copy.copy(reg)
+                    reg = copy.copy(reg) # necessary, when checking phone
+                                         # numbers from file that may contain
+                                         # non-international numbers
                     matched = self.clean_text(matched_regex.group(0))
 
                     if "Phone Number" in reg["Name"]:
