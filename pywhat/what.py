@@ -43,6 +43,8 @@ def parse_options(rarity, include_tags, exclude_tags):
             "You can check available tags by using: 'pywhat --tags'")
         sys.exit(1)
 
+    return distribution
+
 
 @click.command(
     context_settings=dict(
@@ -50,10 +52,10 @@ def parse_options(rarity, include_tags, exclude_tags):
     )
 )
 @click.argument("text_input", required=True)
-@click.option("--tags", is_flag=True, expose_value=False, callback=print_tags, help="Show available tags and exit.")
-@click.option("--rarity", help="Filter by rarity.")
-@click.option("--include_tags", help="Only print entries with included tags.")
-@click.option("--exclude_tags", help="Exclude tags.")
+@click.option("-t", "--tags", is_flag=True, expose_value=False, callback=print_tags, help="Show available tags and exit.")
+@click.option("-r", "--rarity", help="Filter by rarity. This is in the range of 0:1. To filter only items past 0.5, use 0.5: with the colon on the end.")
+@click.option("-i", "--include_tags", help="Only print entries with included tags.")
+@click.option("-e", "--exclude_tags", help="Exclude tags.")
 def main(text_input, rarity, include_tags, exclude_tags):
     """
     What - Identify what something is.\n

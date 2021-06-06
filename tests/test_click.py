@@ -17,8 +17,11 @@ def test_filtration():
     runner = CliRunner()
     result = runner.invoke(main, ["--rarity", "0.5:", "--include_tags", "Identifiers,Media", "fixtures/file"])
     assert result.exit_code == 0
-    assert "THM{" in result.output
-    assert "ETH" in result.output
+    assert "THM{" not in result.output
+    assert "ETH" not in result.output
+    assert "Email Address" in result.output
+    assert "IP" in result.output
+    assert "URL" in result.output
 
 
 def test_tag_printing():
