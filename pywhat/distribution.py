@@ -1,6 +1,6 @@
 from typing import Optional
 
-from pywhat.helper import AvailableTags, InvalidTag, load_regexes
+from pywhat.helper import AvailableTags, CaseInsensitiveSet, InvalidTag, load_regexes
 
 
 class Distribution:
@@ -14,16 +14,15 @@ class Distribution:
     """
 
     def __init__(self, filters_dict: Optional[dict] = None):
-        tags = AvailableTags().get_tags()
+        tags = CaseInsensitiveSet(AvailableTags().get_tags())
         self._dict = dict()
         if filters_dict is None:
             filters_dict = dict()
 
-        self._dict["Tags"] = set(filters_dict.setdefault("Tags", tags))
-        self._dict["ExcludeTags"] = set(filters_dict.setdefault("ExcludeTags", set()))
+        self._dict["Tags"] = CaseInsensitiveSet(filters_dict.setdefault("Tags", tags))
+        self._dict["ExcludeTags"] = CaseInsensitiveSet(filters_dict.setdefault("ExcludeTags", set()))
         self._dict["MinRarity"] = filters_dict.setdefault("MinRarity", 0)
         self._dict["MaxRarity"] = filters_dict.setdefault("MaxRarity", 1)
-
         if not self._dict["Tags"].issubset(tags) or not self._dict["ExcludeTags"].issubset(tags):
             raise InvalidTag("Passed filter contains tags that are not used by 'what'")
 

@@ -3,7 +3,7 @@ import os
 
 import pytest
 from pywhat import pywhat_tags, Distribution
-from pywhat.helper import InvalidTag, load_regexes
+from pywhat.helper import CaseInsensitiveSet, InvalidTag, load_regexes
 
 
 def test_distribution():
@@ -37,8 +37,8 @@ def test_distribution3():
     regexes = load_regexes()
     assert dist._dict["MinRarity"] == 0.4
     assert dist._dict["MaxRarity"] == 0.8
-    assert dist._dict["Tags"] == {"Networking"}
-    assert dist._dict["ExcludeTags"] == set()
+    assert dist._dict["Tags"] == CaseInsensitiveSet(["Networking"])
+    assert dist._dict["ExcludeTags"] == CaseInsensitiveSet()
 
     for regex in regexes:
         if 0.4 <= regex["Rarity"] <= 0.8 and "Networking" in regex["Tags"]:
@@ -53,8 +53,8 @@ def test_distribution4():
     regexes = load_regexes()
     assert dist._dict["MinRarity"] == 0.4
     assert dist._dict["MaxRarity"] == 0.8
-    assert dist._dict["Tags"] == {"Networking"}
-    assert dist._dict["ExcludeTags"] == set()
+    assert dist._dict["Tags"] == CaseInsensitiveSet(["Networking"])
+    assert dist._dict["ExcludeTags"] == CaseInsensitiveSet()
 
     for regex in regexes:
         if 0.4 <= regex["Rarity"] <= 0.8 and "Networking" in regex["Tags"]:
@@ -68,8 +68,8 @@ def test_distribution5():
     regexes = load_regexes()
     assert dist._dict["MinRarity"] == 0.3
     assert dist._dict["MaxRarity"] == 1
-    assert dist._dict["Tags"] == pywhat_tags
-    assert dist._dict["ExcludeTags"] == {"Identifiers", "Media"}
+    assert dist._dict["Tags"] == CaseInsensitiveSet(pywhat_tags)
+    assert dist._dict["ExcludeTags"] == CaseInsensitiveSet(["Identifiers", "Media"])
 
     for regex in regexes:
         if (
@@ -88,8 +88,8 @@ def test_distribution6():
     regexes = load_regexes()
     assert dist._dict["MinRarity"] == 0.3
     assert dist._dict["MaxRarity"] == 1
-    assert dist._dict["Tags"] == pywhat_tags
-    assert dist._dict["ExcludeTags"] == {"Identifiers", "Media"}
+    assert dist._dict["Tags"] == CaseInsensitiveSet(pywhat_tags)
+    assert dist._dict["ExcludeTags"] == CaseInsensitiveSet(["Identifiers", "Media"])
 
     for regex in regexes:
         if (
