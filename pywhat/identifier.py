@@ -41,7 +41,7 @@ class Identifier:
                 magic_numbers = self._file_sig.open_binary_scan_magic_nums(string)
                 text = self._file_sig.open_file_loc(string)
                 text.append(short_name)
-                regex = self._regex_id.check(text)
+                regex = self._regex_id.check(text, dist)
                 short_name = os.path.basename(string)
 
                 if not magic_numbers:
@@ -51,7 +51,7 @@ class Identifier:
                     identify_obj["File Signatures"][short_name] = magic_numbers
             else:
                 short_name = "text"
-                regex = self._regex_id.check(search)
+                regex = self._regex_id.check(search, dist)
 
             if regex:
                 identify_obj["Regexes"][short_name] = regex
