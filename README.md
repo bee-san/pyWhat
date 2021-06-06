@@ -55,6 +55,8 @@ Or if you come across some piece of text and you don't know what it is, `What` w
 
 What about the whole **directory**? `What` can handle that too! It will **recursively** search for files and ouput everything you need!
 
+**Filtration** You can filter output by using `what --rarity 0.2:0.8 --include_tags tag1,tag2 TEXT`. Use `what --help` to get more information.
+
 # 🍕 API
 
 PyWhat has an API! Click here [https://github.com/bee-san/pyWhat/wiki/API](https://github.com/bee-san/pyWhat/wiki/API) to read about it.
@@ -62,3 +64,6 @@ PyWhat has an API! Click here [https://github.com/bee-san/pyWhat/wiki/API](https
 # 👾 Contributing
 
 `what` not only thrives on contributors, but can't exist without them! If you want to add a new regex to check for things, you can read our documentation [here](https://github.com/bee-san/what/wiki/Adding-your-own-Regex)
+
+We ask contributors to join the Discord for quicker discussions, but it's not needed:
+<img alt="Discord" src="https://img.shields.io/discord/754001738184392704">

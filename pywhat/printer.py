@@ -10,7 +10,7 @@ class Printing:
 
         to_out = ""
 
-        if text["File Signatures"]:
+        if text["File Signatures"] and text["Regexes"]:
             for key, value in text["File Signatures"].items():
                 if value:
                     to_out += "\n"

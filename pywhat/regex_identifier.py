@@ -2,17 +2,20 @@ import copy
 import json
 import os
 import re
+from typing import Optional
+
+from pywhat.distribution import Distribution
 
 
 class RegexIdentifier:
     def __init__(self):
-        path = "Data/regex.json"
-        fullpath = os.path.join(os.path.dirname(os.path.abspath(__file__)), path)
-        with open(fullpath, "r", encoding="utf8") as myfile:
-            self.regexes = json.load(myfile)
+        self.distribution = Distribution()
 
-    def check(self, text):
+    def check(self, text, distribution: Optional[Distribution] = None):
+        if distribution is None:
+            distribution = self.distribution
         matches = []
+
         for string in text:
             for reg in self.regexes:
 
@@ -29,8 +32,8 @@ class RegexIdentifier:
                         codes_path = "Data/phone_codes.json"
                         codes_fullpath = os.path.join(
                             os.path.dirname(os.path.abspath(__file__)), codes_path)
-                        with open(codes_fullpath) as f:
-                            codes = json.load(f)
+                        with open(codes_fullpath, "r", encoding="utf-8") as myfile:
+                            codes = json.load(myfile)
 
                         locations = []
                         for code in codes:

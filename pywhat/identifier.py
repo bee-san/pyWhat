@@ -1,18 +1,27 @@
 import os.path
 import glob
+from typing import List, Optional
 
+from pywhat.distribution import Distribution
 from pywhat.magic_numbers import FileSignatures
 from pywhat.nameThatHash import Nth
 from pywhat.regex_identifier import RegexIdentifier
 
 
 class Identifier:
-    def __init__(self):
-        self.regex_id = RegexIdentifier()
-        self.file_sig = FileSignatures()
-        self.name_that_hash = Nth()
+    def __init__(self, distribution: Optional[Distribution] = None):
+        if distribution is None:
+            self.distribution = Distribution()
+        else:
+            self.distribution = distribution
+        self._regex_id = RegexIdentifier()
+        self._file_sig = FileSignatures()
+        self._name_that_hash = Nth()
 
-    def identify(self, input: str) -> dict:
+    def identify(self, input: str, dist: Distribution = None,
+                 api=False) -> dict:
+        if dist is None:
+            dist = self.distribution
         identify_obj = {}
         identify_obj["File Signatures"] = {}
         identify_obj["Regexes"] = {}
@@ -29,20 +38,20 @@ class Identifier:
         for string in search:
             if os.path.isfile(string):
                 short_name = os.path.basename(string)
-                magic_numbers = self.file_sig.open_binary_scan_magic_nums(string)
-                text = self.file_sig.open_file_loc(string)
+                magic_numbers = self._file_sig.open_binary_scan_magic_nums(string)
+                text = self._file_sig.open_file_loc(string)
                 text.append(short_name)
-                regex = self.regex_id.check(text)
+                regex = self._regex_id.check(text)
                 short_name = os.path.basename(string)
 
                 if not magic_numbers:
-                    magic_numbers = self.file_sig.check_magic_nums(string)
+                    magic_numbers = self._file_sig.check_magic_nums(string)
 
                 if magic_numbers:
                     identify_obj["File Signatures"][short_name] = magic_numbers
             else:
                 short_name = "text"
-                regex = self.regex_id.check(search)
+                regex = self._regex_id.check(search)
 
             if regex:
                 identify_obj["Regexes"][short_name] = regex
