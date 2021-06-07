@@ -27,8 +27,8 @@ class Printing:
             table.add_column("Identified as", overflow="fold")
             table.add_column("Description")
 
-            if len(text["Regexes"]) > 1:
-                # if there is only one file (or input is text), do not add a filename column
+            if list(text["Regexes"].keys())[0] == text:
+                # if input was text, do not add a filename column
                 table.add_column("Filename", overflow="fold")
 
             for key, value in text["Regexes"].items():
@@ -36,11 +36,7 @@ class Printing:
                     matched = i["Matched"]
                     name = i["Regex Pattern"]["Name"]
                     description = None
-
-                    if key == "text":
-                        filename = "None"
-                    else:
-                        filename = key
+                    filename = key
 
                     if "URL" in i["Regex Pattern"]:
                         description = (
@@ -60,7 +56,7 @@ class Printing:
                     if not description:
                         description = "None"
 
-                    if len(text["Regexes"]) == 1:
+                    if key == "text":
                         table.add_row(
                             matched,
                             name,
