@@ -1,26 +1,46 @@
 import os.path
-from typing import List, Optional
+from typing import Callable, Optional
 
 from pywhat.distribution import Distribution
+from pywhat.helper import keys
 from pywhat.magic_numbers import FileSignatures
 from pywhat.nameThatHash import Nth
 from pywhat.regex_identifier import RegexIdentifier
 
 
 class Identifier:
-    def __init__(self, distribution: Optional[Distribution] = None):
-        if distribution is None:
+    def __init__(
+        self,
+        *,
+        dist: Optional[Distribution] = None,
+        key: Callable = keys.rarity,
+        reverse=False,
+    ):
+        if dist is None:
             self.distribution = Distribution()
         else:
-            self.distribution = distribution
+            self.distribution = dist
         self._regex_id = RegexIdentifier()
         self._file_sig = FileSignatures()
         self._name_that_hash = Nth()
+        self._key = key
+        self._reverse = reverse
 
-    def identify(self, text: str, dist: Distribution = None,
-                 api=False) -> dict:
+    def identify(
+        self,
+        text: str,
+        *,
+        dist: Distribution = None,
+        key: Optional[Callable] = None,
+        reverse: Optional[bool] = None,
+        api=False,
+    ) -> dict:
         if dist is None:
             dist = self.distribution
+        if key is None:
+            key = self._key
+        if reverse is None:
+            reverse = self._reverse
         identify_obj = {}
 
         magic_numbers = None
@@ -36,7 +56,9 @@ class Identifier:
             # a file in hex format
             identify_obj["File Signatures"] = self._file_sig.check_magic_nums(text)
 
-        identify_obj["Regexes"] = self._regex_id.check(text, dist)
+        identify_obj["Regexes"] = sorted(
+            self._regex_id.check(text, dist), key=key, reverse=reverse
+        )
 
         # get_hashes takes a list of hashes, we split to give it a list
         # identify_obj["Hashes"] = self._name_that_hash.get_hashes(text.split())

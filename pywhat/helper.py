@@ -2,6 +2,7 @@
 import collections.abc
 import json
 import os.path
+from collections import namedtuple
 
 
 class AvailableTags:
@@ -57,3 +58,9 @@ class CaseInsensitiveSet(collections.abc.Set):
             if value not in other:
                 return False
         return True
+
+keys = namedtuple("keys", ["name", "rarity", "matched"], defaults=[
+    lambda match: match["Regex Pattern"]["Name"],
+    lambda match: match["Regex Pattern"]["Rarity"],
+    lambda match: match["Matched"]
+])()
