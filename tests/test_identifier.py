@@ -36,3 +36,12 @@ def test_identifier_filtration2():
     for regex in regexes:
         assert "Identifiers" in regex["Regex Pattern"]["Tags"]
         assert regex["Regex Pattern"]["Rarity"] >= 0.6
+
+
+def test_only_text():
+    r = identifier.Identifier()
+    out = r.identify("fixtures/file", True)
+    assert None == out["Regexes"]
+
+    out = r.identify("THM{7281j}}", True)
+    assert "TryHackMe Flag Format" in out["Regexes"]["text"][0]["Regex Pattern"]["Name"]

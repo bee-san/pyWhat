@@ -38,7 +38,7 @@ class RegexIdentifier:
                         for code in codes:
                             if number.startswith(code["dial_code"]):
                                 locations.append(code["name"])
-                        if len(locations):
+                        if len(locations) > 0:
                             reg["Description"] = (
                                 "Location(s)"
                                 + ": "

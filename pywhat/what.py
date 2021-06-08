@@ -85,7 +85,7 @@ def main(text_input, rarity, include_tags, exclude_tags):
     Your text must either be in quotation marks, or use the POSIX standard of "--" to mean "anything after -- is textual input".
 
 
-    pyWhat can also search files or even the whole directory with recursion:
+    pyWhat can also search files or even a whole directory with recursion:
 
         * what 'secret.txt'
 

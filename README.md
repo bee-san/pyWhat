@@ -53,7 +53,7 @@ Or if you come across some piece of text and you don't know what it is, `What` w
 
 **File Opening** You can pass in a file path by `what 'this/is/a/file/path'`. `What` is smart enough to figure out it's a file!
 
-What about the whole **directory**? `What` can handle that too! It will **recursively** search for files and ouput everything you need!
+What about a whole **directory**? `What` can handle that too! It will **recursively** search for files and output everything you need!
 
 **Filtration** You can filter output by using `what --rarity 0.2:0.8 --include_tags tag1,tag2 TEXT`. Use `what --help` to get more information.
 

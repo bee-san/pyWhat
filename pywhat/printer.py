@@ -25,7 +25,7 @@ class Printing:
             )
             table.add_column("Matched Text", overflow="fold")
             table.add_column("Identified as", overflow="fold")
-            table.add_column("Description")
+            table.add_column("Description", overflow="fold")
 
             if list(text["Regexes"].keys())[0] == text:
                 # if input was text, do not add a filename column
@@ -40,7 +40,7 @@ class Printing:
 
                     if "URL" in i["Regex Pattern"]:
                         description = (
-                            "Click here to analyse in the browser "
+                            "Click here to analyse in the browser\n"
                             + i["Regex Pattern"]["URL"]
                             + matched.replace(" ", "")
                         )

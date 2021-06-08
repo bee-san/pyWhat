@@ -1,5 +1,5 @@
-import os.path
 import glob
+import os.path
 from typing import Optional
 
 from pywhat.distribution import Distribution
@@ -18,25 +18,22 @@ class Identifier:
         self._file_sig = FileSignatures()
         self._name_that_hash = Nth()
 
-    def identify(self, input: str, dist: Distribution = None,
-                 api=False) -> dict:
+    def identify(self, text: str, only_text = False, dist: Distribution = None) -> dict:
         if dist is None:
             dist = self.distribution
-        identify_obj = {}
-        identify_obj["File Signatures"] = {}
-        identify_obj["Regexes"] = {}
+        identify_obj = {"File Signatures": {}, "Regexes":{}}
         search = []
 
-        if os.path.isdir(input):
+        if not only_text and os.path.isdir(text):
             # if input is a directory, recursively search for all of the files
-            for myfile in glob.iglob(input + "**/**", recursive=True):
+            for myfile in glob.iglob(text + "**/**", recursive=True):
                 if os.path.isfile(myfile):
                     search.append(myfile)
         else:
-            search = [input]
+            search = [text]
 
         for string in search:
-            if os.path.isfile(string):
+            if not only_text and os.path.isfile(string):
                 short_name = os.path.basename(string)
                 magic_numbers = self._file_sig.open_binary_scan_magic_nums(string)
                 text = self._file_sig.open_file_loc(string)
