@@ -104,7 +104,7 @@ def main(text_input, rarity, include_tags, exclude_tags):
 
 class What_Object:
     def __init__(self, distribution):
-        self.id = identifier.Identifier(distribution)
+        self.id = identifier.Identifier(dist=distribution)
 
     def what_is_this(
         self, text: str) -> dict:
