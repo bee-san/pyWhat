@@ -6,7 +6,7 @@
 </p>
 
 <p align="center">
-  <img alt="Discord" src="https://img.shields.io/discord/754001738184392704"> <img alt="PyPI - Downloads" src="https://pepy.tech/badge/pywhat/month">  <img alt="Twitter Follow" src="https://img.shields.io/twitter/follow/bee_sec_san?style=social"> <img alt="PyPI - Python Version" src="https://img.shields.io/pypi/pyversions/pywhat"> <img alt="PyPI" src="https://img.shields.io/pypi/v/pywhat">
+  <a href="http://discord.skerritt.blog"><img alt="Discord" src="https://img.shields.io/discord/754001738184392704"></a> <a href="https://pypi.org/project/pywhat/"><img alt="PyPI - Downloads" src="https://pepy.tech/badge/pywhat/month"></a>  <a href="https://twitter.com/bee_sec_san"><img alt="Twitter Follow" src="https://img.shields.io/twitter/follow/bee_sec_san?style=social"></a> <a href="https://pypi.org/project/pywhat/"><img alt="PyPI - Python Version" src="https://img.shields.io/pypi/pyversions/pywhat"></a> <a href="https://pypi.org/project/pywhat/"><img alt="PyPI" src="https://img.shields.io/pypi/v/pywhat"></a>
 </p>
 <hr>
 
@@ -51,7 +51,9 @@ Anytime you have a file and you want to find structured data in it that's useful
 
 Or if you come across some piece of text and you don't know what it is, `What` will tell you.
 
-**File Opening** You can pass in a file path by `what "this/is/a/file/path"`. What is smart enough to figure out it's a file!
+**File Opening** You can pass in a file path by `what 'this/is/a/file/path'`. `What` is smart enough to figure out it's a file!
+
+What about a whole **directory**? `What` can handle that too! It will **recursively** search for files and output everything you need!
 
 **Filtration** You can filter output by using `what --rarity 0.2:0.8 --include_tags tag1,tag2 TEXT`. Use `what --help` to get more information.
 

@@ -1,3 +1,4 @@
+import glob
 import os.path
 from typing import Callable, Optional
 
@@ -14,7 +15,7 @@ class Identifier:
         *,
         dist: Optional[Distribution] = None,
         key: Callable = Keys.NONE,
-        reverse=False,
+        reverse=False
     ):
         if dist is None:
             self.distribution = Distribution()
@@ -30,10 +31,10 @@ class Identifier:
         self,
         text: str,
         *,
+        only_text=False,
         dist: Distribution = None,
         key: Optional[Callable] = None,
-        reverse: Optional[bool] = None,
-        api=False,
+        reverse: Optional[bool] = None
     ) -> dict:
         if dist is None:
             dist = self.distribution
@@ -41,29 +42,46 @@ class Identifier:
             key = self._key
         if reverse is None:
             reverse = self._reverse
-        identify_obj = {}
+        identify_obj = {"File Signatures": {}, "Regexes": {}}
+        search = []
 
-        magic_numbers = None
-        if not api and self._file_exists(text):
-            magic_numbers = self._file_sig.open_binary_scan_magic_nums(text)
-            text = self._file_sig.open_file_loc(text)
-            identify_obj["File Signatures"] = magic_numbers
+        if not only_text and os.path.isdir(text):
+            # if input is a directory, recursively search for all of the files
+            for myfile in glob.iglob(text + "**/**", recursive=True):
+                if os.path.isfile(myfile):
+                    search.append(myfile)
         else:
-            text = [text]
+            search = [text]
 
-        if not magic_numbers:
-            # If file doesn't exist, check to see if the inputted text is
-            # a file in hex format
-            identify_obj["File Signatures"] = self._file_sig.check_magic_nums(text)
+        for string in search:
+            if not only_text and os.path.isfile(string):
+                short_name = os.path.basename(string)
+                magic_numbers = self._file_sig.open_binary_scan_magic_nums(string)
+                text = self._file_sig.open_file_loc(string)
+                text.append(short_name)
+                regex = self._regex_id.check(text, dist)
+                short_name = os.path.basename(string)
 
-        identify_obj["Regexes"] = self._regex_id.check(text, dist)
+                if not magic_numbers:
+                    magic_numbers = self._file_sig.check_magic_nums(string)
+
+                if magic_numbers:
+                    identify_obj["File Signatures"][short_name] = magic_numbers
+            else:
+                short_name = "text"
+                regex = self._regex_id.check(search, dist)
+
+            if regex:
+                identify_obj["Regexes"][short_name] = regex
+
+        for key_, value in identify_obj.items():
+            # if there are zero regex or file signature matches, set it to None
+            if len(identify_obj[key_]) == 0:
+                identify_obj[key_] = None
+
         if key != Keys.NONE:
-            identify_obj["Regexes"] = sorted(identify_obj["Regexes"], key=key, reverse=reverse)
-
-        # get_hashes takes a list of hashes, we split to give it a list
-        # identify_obj["Hashes"] = self._name_that_hash.get_hashes(text.split())
+            identify_obj["Regexes"][short_name] = sorted(
+                identify_obj["Regexes"][short_name], key=key, reverse=reverse
+            )
 
         return identify_obj
-
-    def _file_exists(self, text):
-        return os.path.isfile(text)
