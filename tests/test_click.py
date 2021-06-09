@@ -5,6 +5,11 @@ from click.testing import CliRunner
 from pywhat import pywhat_tags
 from pywhat.what import main
 
+def test_nothing_found():
+    runner = CliRunner()
+    result = runner.invoke(main, [""])
+    assert result.exit_code == 0
+    assert "Nothing found!" in result.output
 
 def test_hello_world():
     runner = CliRunner()
@@ -212,7 +217,7 @@ def test_file_fixture_youtube_id():
 
 def test_file_fixture_ip4():
     runner = CliRunner()
-    result = runner.invoke(main, ["fixtures/file"])
+    result = runner.invoke(main, ["118.103.238.230"])
     assert result.exit_code == 0
     assert re.findall("Address Version 4", str(result.output))
 
@@ -226,7 +231,7 @@ def test_file_fixture_ip4_shodan():
 
 def test_file_fixture_ip6():
     runner = CliRunner()
-    result = runner.invoke(main, ["fixtures/file"])
+    result = runner.invoke(main, ["2001:0db8:85a3:0000:0000:8a2e:0370:7334"])
     assert result.exit_code == 0
     assert re.findall("Address Version 6", str(result.output))
 

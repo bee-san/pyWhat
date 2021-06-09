@@ -35,7 +35,7 @@ def parse_options(rarity, include_tags, exclude_tags):
         filter["Tags"] = list(map(str.strip, include_tags.split(',')))
     if exclude_tags is not None:
         filter["ExcludeTags"] = list(map(str.strip, exclude_tags.split(',')))
-        
+
     try:
         distribution = Distribution(filter)
     except InvalidTag:
@@ -58,7 +58,7 @@ def parse_options(rarity, include_tags, exclude_tags):
 @click.option("-e", "--exclude_tags", help="Exclude tags.")
 def main(text_input, rarity, include_tags, exclude_tags):
     """
-    What - Identify what something is.\n
+    pyWhat - Identify what something is.\n
 
     Made by Bee https://twitter.com/bee_sec_san\n
 
@@ -69,20 +69,27 @@ def main(text_input, rarity, include_tags, exclude_tags):
             Only print entries with rarity in range [min,max]. min and max can be omitted.\n
         --include_tags list\n
             Only include entries containing at least one tag in a list. List is a comma separated list.\n
-        --include_tags list\n
+        --exclude_tags list\n
             Exclude specified tags. List is a comma separated list.\n
 
     Examples:
 
-        * what "HTB{this is a flag}"
+        * what 'HTB{this is a flag}'
 
-        * what "0x52908400098527886E0F7030069857D2E4169EE7"
+        * what '0x52908400098527886E0F7030069857D2E4169EE7'
 
         * what -- 52.6169586, -1.9779857
 
         * what --rarity 0.6: myEmail@host.org
 
     Your text must either be in quotation marks, or use the POSIX standard of "--" to mean "anything after -- is textual input".
+
+
+    pyWhat can also search files or even a whole directory with recursion:
+
+        * what 'secret.txt'
+
+        * what 'this/is/a/path'
 
     """
 

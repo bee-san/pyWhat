@@ -15,9 +15,10 @@ class RegexIdentifier:
         if distribution is None:
             distribution = self.distribution
         matches = []
-        for txt in text:
+
+        for string in text:
             for reg in distribution.get_regexes():
-                matched_regex = re.search(reg["Regex"], txt, re.UNICODE)
+                matched_regex = re.search(reg["Regex"], string, re.UNICODE)
 
                 if matched_regex:
                     reg = copy.copy(reg) # necessary, when checking phone
@@ -37,7 +38,7 @@ class RegexIdentifier:
                         for code in codes:
                             if number.startswith(code["dial_code"]):
                                 locations.append(code["name"])
-                        if len(locations):
+                        if len(locations) > 0:
                             reg["Description"] = (
                                 "Location(s)"
                                 + ": "
