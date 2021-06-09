@@ -2,7 +2,7 @@ import os.path
 from typing import Callable, Optional
 
 from pywhat.distribution import Distribution
-from pywhat.helper import keys
+from pywhat.helper import Keys
 from pywhat.magic_numbers import FileSignatures
 from pywhat.nameThatHash import Nth
 from pywhat.regex_identifier import RegexIdentifier
@@ -13,7 +13,7 @@ class Identifier:
         self,
         *,
         dist: Optional[Distribution] = None,
-        key: Callable = keys.rarity,
+        key: Callable = Keys.NONE,
         reverse=False,
     ):
         if dist is None:
@@ -56,9 +56,9 @@ class Identifier:
             # a file in hex format
             identify_obj["File Signatures"] = self._file_sig.check_magic_nums(text)
 
-        identify_obj["Regexes"] = sorted(
-            self._regex_id.check(text, dist), key=key, reverse=reverse
-        )
+        identify_obj["Regexes"] = self._regex_id.check(text, dist)
+        if key != Keys.NONE:
+            identify_obj["Regexes"] = sorted(identify_obj["Regexes"], key=key, reverse=reverse)
 
         # get_hashes takes a list of hashes, we split to give it a list
         # identify_obj["Hashes"] = self._name_that_hash.get_hashes(text.split())

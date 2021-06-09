@@ -1,7 +1,7 @@
 import re
 from pywhat import identifier
 from pywhat.distribution import Distribution
-from pywhat.helper import keys
+from pywhat.helper import Keys
 
 
 def test_identifier_works():
@@ -31,18 +31,14 @@ def test_identifier_filtration2():
 
 
 def test_identifier_sorting():
-    r = identifier.Identifier(key=keys.name, reverse=True)
-    out = r.identify("fixtures/file", key=keys.rarity, reverse=False)
-    prev = None
-    for match in out["Regexes"]:
-        if prev is not None:
-            assert prev <= match["Regex Pattern"]["Rarity"]
-        prev = match["Regex Pattern"]["Rarity"]
+    r = identifier.Identifier(key=Keys.NAME, reverse=True)
+    out = r.identify("fixtures/file")
+    assert out["Regexes"]
 
 
 def test_identifier_sorting2():
     r = identifier.Identifier()
-    out = r.identify("fixtures/file", reverse=True)
+    out = r.identify("fixtures/file", key=Keys.RARITY, reverse=True)
     prev = None
     for match in out["Regexes"]:
         if prev is not None:
@@ -52,7 +48,7 @@ def test_identifier_sorting2():
 
 def test_identifier_sorting3():
     r = identifier.Identifier()
-    out = r.identify("fixtures/file", key=keys.name)
+    out = r.identify("fixtures/file", key=Keys.NAME)
     prev = None
     for match in out["Regexes"]:
         if prev is not None:
@@ -61,7 +57,7 @@ def test_identifier_sorting3():
 
 
 def test_identifier_sorting4():
-    r = identifier.Identifier(key=keys.name, reverse=True)
+    r = identifier.Identifier(key=Keys.NAME, reverse=True)
     out = r.identify("fixtures/file")
     prev = None
     for match in out["Regexes"]:
@@ -72,7 +68,7 @@ def test_identifier_sorting4():
 
 def test_identifier_sorting5():
     r = identifier.Identifier()
-    out = r.identify("fixtures/file", key=keys.matched)
+    out = r.identify("fixtures/file", key=Keys.MATCHED)
     prev = None
     for match in out["Regexes"]:
         if prev is not None:
@@ -82,7 +78,7 @@ def test_identifier_sorting5():
 
 def test_identifier_sorting6():
     r = identifier.Identifier()
-    out = r.identify("fixtures/file", key=keys.matched, reverse=True)
+    out = r.identify("fixtures/file", key=Keys.MATCHED, reverse=True)
     prev = None
     for match in out["Regexes"]:
         if prev is not None:

@@ -2,7 +2,7 @@
 import collections.abc
 import json
 import os.path
-from collections import namedtuple
+from enum import Enum, auto
 
 
 class AvailableTags:
@@ -59,8 +59,9 @@ class CaseInsensitiveSet(collections.abc.Set):
                 return False
         return True
 
-keys = namedtuple("keys", ["name", "rarity", "matched"], defaults=[
-    lambda match: match["Regex Pattern"]["Name"],
-    lambda match: match["Regex Pattern"]["Rarity"],
-    lambda match: match["Matched"]
-])()
+
+class Keys(Enum):
+    NAME = lambda match: match["Regex Pattern"]["Name"]
+    RARITY = lambda match: match["Regex Pattern"]["Rarity"]
+    MATCHED = lambda match: match["Matched"]
+    NONE = auto()
