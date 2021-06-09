@@ -1,11 +1,12 @@
 import json
+import os
 
 from rich.console import Console
 from rich.table import Table
 
 
 class Printing:
-    def pretty_print(self, text: dict):
+    def pretty_print(self, text: dict, text_input):
         console = Console(highlight=False)
 
         to_out = ""
@@ -27,8 +28,8 @@ class Printing:
             table.add_column("Identified as", overflow="fold")
             table.add_column("Description", overflow="fold")
 
-            if list(text["Regexes"].keys())[0] == text:
-                # if input was text, do not add a filename column
+            if os.path.isdir(text_input):
+                # if input is a folder, add a filename column
                 table.add_column("Filename", overflow="fold")
 
             for key, value in text["Regexes"].items():
@@ -56,18 +57,18 @@ class Printing:
                     if not description:
                         description = "None"
 
-                    if key == "text":
+                    if os.path.isdir(text_input):
                         table.add_row(
                             matched,
                             name,
                             description,
+                            filename,
                         )
                     else:
                         table.add_row(
                             matched,
                             name,
                             description,
-                            filename,
                         )
 
             console.print(to_out, table)
