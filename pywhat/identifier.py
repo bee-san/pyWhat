@@ -1,27 +1,48 @@
 import glob
 import os.path
-from typing import Optional
+from typing import Callable, Optional
 
 from pywhat.distribution import Distribution
+from pywhat.helper import Keys
 from pywhat.magic_numbers import FileSignatures
 from pywhat.nameThatHash import Nth
 from pywhat.regex_identifier import RegexIdentifier
 
 
 class Identifier:
-    def __init__(self, distribution: Optional[Distribution] = None):
-        if distribution is None:
+    def __init__(
+        self,
+        *,
+        dist: Optional[Distribution] = None,
+        key: Callable = Keys.NONE,
+        reverse=False
+    ):
+        if dist is None:
             self.distribution = Distribution()
         else:
-            self.distribution = distribution
+            self.distribution = dist
         self._regex_id = RegexIdentifier()
         self._file_sig = FileSignatures()
         self._name_that_hash = Nth()
+        self._key = key
+        self._reverse = reverse
 
-    def identify(self, text: str, only_text = False, dist: Distribution = None) -> dict:
+    def identify(
+        self,
+        text: str,
+        *,
+        only_text=False,
+        dist: Distribution = None,
+        key: Optional[Callable] = None,
+        reverse: Optional[bool] = None
+    ) -> dict:
         if dist is None:
             dist = self.distribution
-        identify_obj = {"File Signatures": {}, "Regexes":{}}
+        if key is None:
+            key = self._key
+        if reverse is None:
+            reverse = self._reverse
+        identify_obj = {"File Signatures": {}, "Regexes": {}}
         search = []
 
         if not only_text and os.path.isdir(text):
@@ -53,9 +74,14 @@ class Identifier:
             if regex:
                 identify_obj["Regexes"][short_name] = regex
 
-        for key, value in identify_obj.items():
+        for key_, value in identify_obj.items():
             # if there are zero regex or file signature matches, set it to None
-            if len(identify_obj[key]) == 0:
-                identify_obj[key] = None
+            if len(identify_obj[key_]) == 0:
+                identify_obj[key_] = None
+
+        if key != Keys.NONE:
+            identify_obj["Regexes"][short_name] = sorted(
+                identify_obj["Regexes"][short_name], key=key, reverse=reverse
+            )
 
         return identify_obj

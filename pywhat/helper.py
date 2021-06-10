@@ -2,6 +2,7 @@
 import collections.abc
 import json
 import os.path
+from enum import Enum, auto
 
 
 class AvailableTags:
@@ -57,3 +58,10 @@ class CaseInsensitiveSet(collections.abc.Set):
             if value not in other:
                 return False
         return True
+
+
+class Keys(Enum):
+    NAME = lambda match: match["Regex Pattern"]["Name"]
+    RARITY = lambda match: match["Regex Pattern"]["Rarity"]
+    MATCHED = lambda match: match["Matched"]
+    NONE = auto()
