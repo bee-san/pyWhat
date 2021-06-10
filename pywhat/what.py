@@ -99,7 +99,7 @@ def main(text_input, rarity, include_tags, exclude_tags):
     identified_output = what_obj.what_is_this(text_input)
 
     p = printer.Printing()
-    p.pretty_print(identified_output)
+    p.pretty_print(identified_output, text_input)
 
 
 class What_Object:
