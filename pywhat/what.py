@@ -80,7 +80,7 @@ def main(text_input, rarity, include_tags, exclude_tags):
 
         * what -- 52.6169586, -1.9779857
 
-        * what --rarity 0.6: myEmail@host.org
+        * what --rarity 0.6: 'myEmail@host.org'
 
     Your text must either be in quotation marks, or use the POSIX standard of "--" to mean "anything after -- is textual input".
 

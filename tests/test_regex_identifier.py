@@ -153,9 +153,21 @@ def test_visa():
     assert "Visa" in res[0]["Regex Pattern"]["Name"]
 
 
+def test_visa_spaces():
+    r = regex_identifier.RegexIdentifier()
+    res = r.check(["4607 0000 0000 0009"])
+    assert "Visa" in res[0]["Regex Pattern"]["Name"]
+
+
 def test_master_Card():
     r = regex_identifier.RegexIdentifier()
     res = r.check(["5500000000000004"])
+    assert "MasterCard" in res[0]["Regex Pattern"]["Name"]
+
+
+def test_master_card_spaces():
+    r = regex_identifier.RegexIdentifier()
+    res = r.check(["5555 5555 5555 4444"])
     assert "MasterCard" in res[0]["Regex Pattern"]["Name"]
 
 
@@ -165,16 +177,46 @@ def test_american_express():
     assert "American Express" in res[0]["Regex Pattern"]["Name"]
 
 
+def test_american_express_spaces():
+    r = regex_identifier.RegexIdentifier()
+    res = r.check(["3714 4963 5398 431"])
+    assert "American Express" in res[0]["Regex Pattern"]["Name"]
+
+
 def test_american_diners_club():
     r = regex_identifier.RegexIdentifier()
     res = r.check(["30000000000004"])
     assert "Diners Club Card" in res[0]["Regex Pattern"]["Name"]
 
 
-def test_american_diners_discover():
+def test_american_diners_club_spaces():
+    r = regex_identifier.RegexIdentifier()
+    res = r.check(["3056 9309 0259 04"])
+    assert "Diners Club Card" in res[0]["Regex Pattern"]["Name"]
+
+
+def test_discover_card():
     r = regex_identifier.RegexIdentifier()
     res = r.check(["6011000000000004"])
     assert "Discover" in res[0]["Regex Pattern"]["Name"]
+
+
+def test_discover_card_spaces():
+    r = regex_identifier.RegexIdentifier()
+    res = r.check(["6011 1111 1111 1117"])
+    assert "Discover" in res[0]["Regex Pattern"]["Name"]
+
+
+def test_maestro_card():
+    r = regex_identifier.RegexIdentifier()
+    res = r.check(["5038146401278870"])
+    assert "Maestro" in res[0]["Regex Pattern"]["Name"]
+
+
+def test_maestro_card_spaces():
+    r = regex_identifier.RegexIdentifier()
+    res = r.check(["6759 6498 2643 8453"])
+    assert "Maestro" in res[0]["Regex Pattern"]["Name"]
 
 
 @pytest.mark.skip("Key:value is turned off")
