@@ -19,6 +19,12 @@ def test_url():
     assert "Uniform Resource Locator (URL)" in res[0]["Regex Pattern"]["Name"]
 
 
+def test_url_2():
+    r = regex_identifier.RegexIdentifier()
+    res = r.check(["http://username:password@example.com/"])
+    assert "Uniform Resource Locator (URL)" in res[0]["Regex Pattern"]["Name"]
+
+
 def test_invalid_tld():
     r = regex_identifier.RegexIdentifier()
     res = r.check(["tryhackme.comm"])
