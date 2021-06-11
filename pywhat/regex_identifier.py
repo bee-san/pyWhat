@@ -5,7 +5,6 @@ import re
 from typing import Optional
 
 from pywhat.distribution import Distribution
-from scripts.get_tlds import get_tlds
 
 
 class RegexIdentifier:
@@ -16,7 +15,9 @@ class RegexIdentifier:
         if distribution is None:
             distribution = self.distribution
         matches = []
-        tlds =  get_tlds()
+
+        with open("pywhat/Data/tld_list.txt", "r") as file:
+            tlds = file.read()
 
         for string in text:
             for reg in distribution.get_regexes():
