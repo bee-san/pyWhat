@@ -2,7 +2,6 @@ import wikitextparser as wtp
 import requests
 import json
 import re
-import yaml
 import json
 
 

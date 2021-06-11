@@ -13,11 +13,16 @@ def test_regex_runs():
     assert "Dogecoin (DOGE) Wallet Address" in res[0]["Regex Pattern"]["Name"]
 
 
-@pytest.mark.skip(reason="Fails Regex due to http://")
 def test_url():
     r = regex_identifier.RegexIdentifier()
     res = r.check(["tryhackme.com"])
     assert "Uniform Resource Locator (URL)" in res[0]["Regex Pattern"]["Name"]
+
+
+def test_invalid_tld():
+    r = regex_identifier.RegexIdentifier()
+    res = r.check(["tryhackme.comm"])
+    assert "Uniform Resource Locator (URL)" not in res
 
 
 def test_https():
@@ -93,9 +98,16 @@ def test_ip4():
     assert "[2001:db8::1]:8080" in res[0]["Matched"]
 
 
-def test_internationak_url():
+@pytest.mark.skip(reason="Fails because not a valid TLD. If presented in punycode, it works.")
+def test_international_url():
     r = regex_identifier.RegexIdentifier()
     res = r.check(["http://папироска.рф"])
+    assert "Uniform Resource Locator (URL)" in res[0]["Regex Pattern"]["Name"]
+
+
+def test_same_international_url_in_punycode():
+    r = regex_identifier.RegexIdentifier()
+    res = r.check(["https://xn--80aaxitdbjk.xn--p1ai/"])
     assert "Uniform Resource Locator (URL)" in res[0]["Regex Pattern"]["Name"]
 
 

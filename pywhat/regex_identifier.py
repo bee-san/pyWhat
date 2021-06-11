@@ -5,6 +5,7 @@ import re
 from typing import Optional
 
 from pywhat.distribution import Distribution
+from scripts.get_tlds import get_tlds
 
 
 class RegexIdentifier:
@@ -15,9 +16,14 @@ class RegexIdentifier:
         if distribution is None:
             distribution = self.distribution
         matches = []
+        tlds =  get_tlds()
 
         for string in text:
             for reg in distribution.get_regexes():
+                if reg["Name"] == "Uniform Resource Locator (URL)":
+                    # add all valid TLDs to the URL regex
+                    reg["Regex"] = reg["Regex"].replace("TLD", tlds)
+
                 matched_regex = re.search(reg["Regex"], string, re.UNICODE)
 
                 if matched_regex:
