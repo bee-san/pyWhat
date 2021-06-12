@@ -30,7 +30,7 @@ class Printing:
 
             if os.path.isdir(text_input):
                 # if input is a folder, add a filename column
-                table.add_column("Filename", overflow="fold")
+                table.add_column("File", overflow="fold")
 
             for key, value in text["Regexes"].items():
                 for i in value:

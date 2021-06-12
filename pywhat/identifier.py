@@ -47,20 +47,23 @@ class Identifier:
 
         if not only_text and os.path.isdir(text):
             # if input is a directory, recursively search for all of the files
-            for myfile in glob.iglob(text + "**/**", recursive=True):
+            for myfile in glob.iglob(text + "/**", recursive=True):
                 if os.path.isfile(myfile):
-                    search.append(myfile)
+                    search.append(os.path.abspath(myfile))
         else:
             search = [text]
 
         for string in search:
             if not only_text and os.path.isfile(string):
-                short_name = os.path.basename(string)
+                if os.path.isdir(text):
+                    short_name = string.replace(os.path.abspath(text), "")
+                else:
+                    short_name = os.path.basename(string)
+
                 magic_numbers = self._file_sig.open_binary_scan_magic_nums(string)
-                text = self._file_sig.open_file_loc(string)
-                text.append(short_name)
-                regex = self._regex_id.check(text, dist)
-                short_name = os.path.basename(string)
+                contents = self._file_sig.open_file_loc(string)
+                contents.append(os.path.basename(string))
+                regex = self._regex_id.check(contents, dist)
 
                 if not magic_numbers:
                     magic_numbers = self._file_sig.check_magic_nums(string)
