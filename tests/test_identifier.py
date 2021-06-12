@@ -1,14 +1,12 @@
-import json
 import re
 
 from pywhat import identifier
 from pywhat.distribution import Distribution
-from pywhat.helper import Keys
+from pywhat.helper import Keys, load_regexes
 
 
 def test_check_keys_in_json():
-    with open("pywhat/Data/regex.json", "r") as file:
-        database = json.load(file)
+    database = load_regexes()
 
     for entry in database:
         keys = list(entry.keys())
