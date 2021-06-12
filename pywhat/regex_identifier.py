@@ -16,15 +16,8 @@ class RegexIdentifier:
             distribution = self.distribution
         matches = []
 
-        with open("pywhat/Data/tld_list.txt", "r") as file:
-            tlds = file.read()
-
         for string in text:
             for reg in distribution.get_regexes():
-                if reg["Name"] == "Uniform Resource Locator (URL)":
-                    # add all valid TLDs to the URL regex
-                    reg["Regex"] = reg["Regex"].replace("TLD", tlds)
-
                 matched_regex = re.search(reg["Regex"], string, re.UNICODE)
 
                 if matched_regex:
