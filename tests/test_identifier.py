@@ -116,6 +116,6 @@ def test_only_text():
 def test_recursion():
     r = identifier.Identifier()
     out = r.identify("fixtures")
-    assert "ETH" in out["Regexes"]["/file"][0]["Regex Pattern"]["Name"]
+    assert "ETH" in out["Regexes"][list(out["Regexes"].keys())[1]][0]["Regex Pattern"]["Name"]
 
-    assert "URL" in out["Regexes"]["/test/file"][0]["Regex Pattern"]["Name"]
+    assert "URL" in out["Regexes"][list(out["Regexes"].keys())[0]][0]["Regex Pattern"]["Name"]
