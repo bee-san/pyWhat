@@ -31,7 +31,7 @@ class Identifier:
         self,
         text: str,
         *,
-        only_text=False,
+        only_text=True,
         dist: Distribution = None,
         key: Optional[Callable] = None,
         reverse: Optional[bool] = None
