@@ -12,7 +12,6 @@ python = "^3.6"
 click = "^7.1.2"
 name_that_hash = "^1.7.0"
 rich = ">=9.9,<11.0"
-requests = "^2.25.1"
 
 [tool.poetry.dev-dependencies]
 

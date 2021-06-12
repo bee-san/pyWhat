@@ -76,8 +76,9 @@ def test_lat_long6():
 
 def test_ip():
     r = regex_identifier.RegexIdentifier()
-    res = r.check(["http://10.1.1.1"])
-    assert "Internet Protocol (IP) Address Version 4" in res[0]["Regex Pattern"]["Name"]
+    res = r.check(["http://10.1.1.1/just/a/test"])
+    assert "Uniform Resource Locator (URL)" in res[0]["Regex Pattern"]["Name"]
+    assert "Internet Protocol (IP) Address Version 4" in res[1]["Regex Pattern"]["Name"]
 
 
 def test_ip_not_url():
