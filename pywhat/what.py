@@ -126,7 +126,7 @@ class What_Object:
         """
         Returns a Python dictionary of everything that has been identified
         """
-        return self.id.identify(text)
+        return self.id.identify(text, only_text=False)
 
 
 if __name__ == "__main__":
