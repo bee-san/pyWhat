@@ -111,3 +111,11 @@ def test_only_text():
 
     out = r.identify("THM{7281j}}", only_text=True)
     assert "TryHackMe Flag Format" in out["Regexes"]["text"][0]["Regex Pattern"]["Name"]
+
+
+def test_recursion():
+    r = identifier.Identifier()
+    out = r.identify("fixtures")
+    assert "ETH" in out["Regexes"]["/file"][0]["Regex Pattern"]["Name"]
+
+    assert "URL" in out["Regexes"]["/test/file"][0]["Regex Pattern"]["Name"]

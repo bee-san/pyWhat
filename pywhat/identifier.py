@@ -49,7 +49,7 @@ class Identifier:
             # if input is a directory, recursively search for all of the files
             for myfile in glob.iglob(text + "/**", recursive=True):
                 if os.path.isfile(myfile):
-                    search.append(myfile)
+                    search.append(os.path.abspath(myfile))
         else:
             search = [text]
 
