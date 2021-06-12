@@ -412,3 +412,33 @@ def test_key_value_min_rarity_0_2():
     result = runner.invoke(main, ["--rarity", "0:", "key: value"])
     assert result.exit_code == 0
     assert re.findall("Key:Value", str(result.output))
+
+def test_key_value_min_rarity_0_3():
+    runner = CliRunner()
+    result = runner.invoke(main, ["--rarity", "0:", ":a:"])
+    assert result.exit_code == 0
+    assert not re.findall("Key:Value", str(result.output))
+
+def test_key_value_min_rarity_0_4():
+    runner = CliRunner()
+    result = runner.invoke(main, ["--rarity", "0:", ":::::"])
+    assert result.exit_code == 0
+    assert not re.findall("Key:Value", str(result.output))
+
+def test_key_value_min_rarity_0_5():
+    runner = CliRunner()
+    result = runner.invoke(main, ["--rarity", "0:", "a:b:c"])
+    assert result.exit_code == 0
+    assert not re.findall("a:b:c", str(result.output))
+
+def test_key_value_min_rarity_0_6():
+    runner = CliRunner()
+    result = runner.invoke(main, ["--rarity", "0:", "a:b:c"])
+    assert result.exit_code == 0
+    assert re.findall("a:b", str(result.output))
+
+def test_key_value_min_rarity_0_7():
+    runner = CliRunner()
+    result = runner.invoke(main, ["--rarity", "0:", "a : b:c"])
+    assert result.exit_code == 0
+    assert re.findall("a : b", str(result.output))

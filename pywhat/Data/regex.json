@@ -461,7 +461,7 @@
     },
     {
       "Name": "Key:Value Pair",
-      "Regex": ".*:[ ]?.*",
+      "Regex": "[^:\\s]+[ ]?:[ ]?[^:\\s]+",
       "plural_name": false,
       "Description": null,
       "Rarity": 0,
