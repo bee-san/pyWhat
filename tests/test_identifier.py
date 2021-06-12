@@ -137,5 +137,5 @@ def test_recursion():
     r = identifier.Identifier()
     out = r.identify("fixtures", only_text=False)
 
-    assert re.findall(r"\'(?:\/|\\)file\'", str(list(out["Regexes"].keys())))
-    assert re.findall(r"\'(?:\/|\\)test(?:\/|\\)file\'", str(list(out["Regexes"].keys())))
+    assert re.findall(r"\'(?:\/|\\\\)file\'", str(list(out["Regexes"].keys())))
+    assert re.findall(r"\'(?:\/|\\\\)test(?:\/|\\\\)file\'", str(list(out["Regexes"].keys())))
