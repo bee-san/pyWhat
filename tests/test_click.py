@@ -5,11 +5,13 @@ from click.testing import CliRunner
 from pywhat import pywhat_tags
 from pywhat.what import main
 
+
 def test_nothing_found():
     runner = CliRunner()
     result = runner.invoke(main, [""])
     assert result.exit_code == 0
     assert "Nothing found!" in result.output
+
 
 def test_hello_world():
     runner = CliRunner()
@@ -20,7 +22,10 @@ def test_hello_world():
 
 def test_filtration():
     runner = CliRunner()
-    result = runner.invoke(main, ["--rarity", "0.5:", "--include_tags", "Identifiers,Media", "fixtures/file"])
+    result = runner.invoke(
+        main,
+        ["--rarity", "0.5:", "--include_tags", "Identifiers,Media", "fixtures/file"],
+    )
     assert result.exit_code == 0
     assert "THM{" not in result.output
     assert "ETH" not in result.output
@@ -35,7 +40,7 @@ def test_tag_printing():
     assert result.exit_code == 0
     for tag in pywhat_tags:
         assert tag in result.output
-        
+
 
 def test_file_fixture():
     runner = CliRunner()
@@ -288,7 +293,9 @@ def test_file_fixture_bch():
 
 def test_file_fixture_bch2():
     runner = CliRunner()
-    result = runner.invoke(main, ["bitcoincash:qzlg6uvceehgzgtz6phmvy8gtdqyt6vf359at4n3lq"])
+    result = runner.invoke(
+        main, ["bitcoincash:qzlg6uvceehgzgtz6phmvy8gtdqyt6vf359at4n3lq"]
+    )
     assert result.exit_code == 0
     assert re.findall("blockchain", str(result.output))
 
@@ -320,11 +327,18 @@ def test_file_cors():
     assert result.exit_code == 0
     assert re.findall("Access", str(result.output))
 
+
 def test_file_jwt():
     runner = CliRunner()
-    result = runner.invoke(main, ["eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c"])
+    result = runner.invoke(
+        main,
+        [
+            "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c"
+        ],
+    )
     assert result.exit_code == 0
     assert re.findall("JWT", str(result.output))
+
 
 def test_file_s3():
     runner = CliRunner()
@@ -332,11 +346,13 @@ def test_file_s3():
     assert result.exit_code == 0
     assert re.findall("S3", str(result.output))
 
+
 def test_file_s3_2():
     runner = CliRunner()
     result = runner.invoke(main, ["s3://bucket/path/key"])
     assert result.exit_code == 0
     assert re.findall("S3", str(result.output))
+
 
 def test_file_s3_3():
     runner = CliRunner()
@@ -344,26 +360,85 @@ def test_file_s3_3():
     assert result.exit_code == 0
     assert re.findall("S3", str(result.output))
 
+
 def test_file_arn():
     runner = CliRunner()
     result = runner.invoke(main, ["arn:partition:service:region:account-id:resource"])
     assert result.exit_code == 0
     assert re.findall("ARN", str(result.output))
 
+
 def test_file_arn2():
     runner = CliRunner()
-    result = runner.invoke(main, ["arn:partition:service:region:account-id:resourcetype/resource"])
+    result = runner.invoke(
+        main, ["arn:partition:service:region:account-id:resourcetype/resource"]
+    )
     assert result.exit_code == 0
     assert re.findall("ARN", str(result.output))
 
+
 def test_file_arn3():
     runner = CliRunner()
-    result = runner.invoke(main, ["arn:partition:service:region:account-id:resourcetype:resource"])
+    result = runner.invoke(
+        main, ["arn:partition:service:region:account-id:resourcetype:resource"]
+    )
     assert result.exit_code == 0
     assert re.findall("ARN", str(result.output))
+
 
 def test_file_arn4():
     runner = CliRunner()
     result = runner.invoke(main, ["arn:aws:s3:::my_corporate_bucket/Development/*"])
     assert result.exit_code == 0
     assert re.findall("ARN", str(result.output))
+
+
+def test_key_value_min_rarity_0():
+    runner = CliRunner()
+    result = runner.invoke(main, ["--rarity", "0:", "key:value"])
+    assert result.exit_code == 0
+    assert re.findall("Key:Value", str(result.output))
+
+
+def test_key_value_min_rarity_0_1():
+    runner = CliRunner()
+    result = runner.invoke(main, ["--rarity", "0:", "key : value"])
+    assert result.exit_code == 0
+    assert re.findall("Key:Value", str(result.output))
+
+
+def test_key_value_min_rarity_0_2():
+    runner = CliRunner()
+    result = runner.invoke(main, ["--rarity", "0:", "key: value"])
+    assert result.exit_code == 0
+    assert re.findall("Key:Value", str(result.output))
+
+def test_key_value_min_rarity_0_3():
+    runner = CliRunner()
+    result = runner.invoke(main, ["--rarity", "0:", ":a:"])
+    assert result.exit_code == 0
+    assert not re.findall("Key:Value", str(result.output))
+
+def test_key_value_min_rarity_0_4():
+    runner = CliRunner()
+    result = runner.invoke(main, ["--rarity", "0:", ":::::"])
+    assert result.exit_code == 0
+    assert not re.findall("Key:Value", str(result.output))
+
+def test_key_value_min_rarity_0_5():
+    runner = CliRunner()
+    result = runner.invoke(main, ["--rarity", "0:", "a:b:c"])
+    assert result.exit_code == 0
+    assert not re.findall("a:b:c", str(result.output))
+
+def test_key_value_min_rarity_0_6():
+    runner = CliRunner()
+    result = runner.invoke(main, ["--rarity", "0:", "a:b:c"])
+    assert result.exit_code == 0
+    assert re.findall("a:b", str(result.output))
+
+def test_key_value_min_rarity_0_7():
+    runner = CliRunner()
+    result = runner.invoke(main, ["--rarity", "0:", "a : b:c"])
+    assert result.exit_code == 0
+    assert re.findall("a : b", str(result.output))

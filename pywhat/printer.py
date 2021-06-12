@@ -39,7 +39,7 @@ class Printing:
                     description = None
                     filename = key
 
-                    if "URL" in i["Regex Pattern"]:
+                    if "URL" in i["Regex Pattern"] and i["Regex Pattern"]["URL"]:
                         description = (
                             "Click here to analyse in the browser\n"
                             + i["Regex Pattern"]["URL"]
