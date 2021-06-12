@@ -32,15 +32,17 @@ def parse_options(rarity, include_tags, exclude_tags):
             print("Invalid rarity argument (float expected)")
             sys.exit(1)
     if include_tags is not None:
-        filter["Tags"] = list(map(str.strip, include_tags.split(',')))
+        filter["Tags"] = list(map(str.strip, include_tags.split(",")))
     if exclude_tags is not None:
-        filter["ExcludeTags"] = list(map(str.strip, exclude_tags.split(',')))
+        filter["ExcludeTags"] = list(map(str.strip, exclude_tags.split(",")))
 
     try:
         distribution = Distribution(filter)
     except InvalidTag:
-        print("Passed tags are not valid.\n" \
-            "You can check available tags by using: 'pywhat --tags'")
+        print(
+            "Passed tags are not valid.\n"
+            "You can check available tags by using: 'pywhat --tags'"
+        )
         sys.exit(1)
 
     return distribution
@@ -52,8 +54,20 @@ def parse_options(rarity, include_tags, exclude_tags):
     )
 )
 @click.argument("text_input", required=True)
-@click.option("-t", "--tags", is_flag=True, expose_value=False, callback=print_tags, help="Show available tags and exit.")
-@click.option("-r", "--rarity", help="Filter by rarity. This is in the range of 0:1. To filter only items past 0.5, use 0.5: with the colon on the end.")
+@click.option(
+    "-t",
+    "--tags",
+    is_flag=True,
+    expose_value=False,
+    callback=print_tags,
+    help="Show available tags and exit.",
+)
+@click.option(
+    "-r",
+    "--rarity",
+    help="Filter by rarity. Rarity is how unlikely something is to be a false-positive. The higher the number, the more unlikely. This is in the range of 0:1. To filter only items past 0.5, use 0.5: with the colon on the end. Default 0.1:1",
+    default="0.1:1",
+)
 @click.option("-i", "--include_tags", help="Only print entries with included tags.")
 @click.option("-e", "--exclude_tags", help="Exclude tags.")
 def main(text_input, rarity, include_tags, exclude_tags):
@@ -66,7 +80,9 @@ def main(text_input, rarity, include_tags, exclude_tags):
 
     Filtration:\n
         --rarity min:max\n
+            Rarity is how unlikely something is to be a false-positive. The higher the number, the more unlikely.\n
             Only print entries with rarity in range [min,max]. min and max can be omitted.\n
+            Note: PyWhat by default has a rarity of 0.1. To see all matches, with many potential false positives use `0:`.\n
         --include_tags list\n
             Only include entries containing at least one tag in a list. List is a comma separated list.\n
         --exclude_tags list\n
@@ -78,9 +94,11 @@ def main(text_input, rarity, include_tags, exclude_tags):
 
         * what '0x52908400098527886E0F7030069857D2E4169EE7'
 
-        * what -- 52.6169586, -1.9779857
+        * what -- '52.6169586, -1.9779857'
 
         * what --rarity 0.6: 'myEmail@host.org'
+
+        * what --rarity 0: --include_tags "credentials, username, password" --exclude_tags "aws, credentials" 'James:SecretPassword'
 
     Your text must either be in quotation marks, or use the POSIX standard of "--" to mean "anything after -- is textual input".
 
@@ -93,9 +111,7 @@ def main(text_input, rarity, include_tags, exclude_tags):
 
     """
 
-    what_obj = What_Object(
-        parse_options(rarity, include_tags, exclude_tags)
-    )
+    what_obj = What_Object(parse_options(rarity, include_tags, exclude_tags))
     identified_output = what_obj.what_is_this(text_input)
 
     p = printer.Printing()
@@ -106,8 +122,7 @@ class What_Object:
     def __init__(self, distribution):
         self.id = identifier.Identifier(dist=distribution)
 
-    def what_is_this(
-        self, text: str) -> dict:
+    def what_is_this(self, text: str) -> dict:
         """
         Returns a Python dictionary of everything that has been identified
         """

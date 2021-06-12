@@ -4,8 +4,8 @@
        "Regex": "(?i)^0x[a-f0-9]{40}$",
        "plural_name": false,
        "Description": null,
-       "URL": "https://etherscan.io/address/",
        "Rarity": 1,
+       "URL": "https://etherscan.io/address/",
        "Tags": [
           "Cryptocurrency",
           "Finance"
@@ -17,6 +17,7 @@
        "plural_name": false,
        "Description": "Used for [#CAE4F1][link=https://en.wikipedia.org/wiki/Cross-origin_resource_sharing]Cross-Origin Resource Sharing (CORS)[/link][/#CAE4F1]",
        "Rarity": 1,
+       "URL": null,
        "Tags": [
          "Networking",
          "Website"
@@ -27,8 +28,8 @@
        "Regex": "^[13][a-km-zA-HJ-NP-Z1-9]{25,34}$",
        "plural_name": false,
        "Description": null,
-       "URL": "https://www.blockchain.com/btc/address/",
        "Rarity": 1,
+       "URL": "https://www.blockchain.com/btc/address/",
        "Tags": [
           "Cryptocurrency",
           "Finance"
@@ -40,6 +41,7 @@
        "plural_name": false,
        "Description": "Used for Capture The Flags at https://tryhackme.com",
        "Rarity": 1,
+       "URL": null,
        "Tags": [
           "Cyber Security"
        ]
@@ -50,6 +52,7 @@
        "plural_name": false,
        "Description": "Used for Capture The Flags at https://hackthebox.eu",
        "Rarity": 1,
+       "URL": null,
        "Tags": [
           "Cyber Security"
        ]
@@ -60,6 +63,7 @@
        "plural_name": false,
        "Description": null,
        "Rarity": 1,
+       "URL": null,
        "Tags": [
           "Cyber Security"
        ]
@@ -70,6 +74,7 @@
        "plural_name": false,
        "Description": null,
        "Rarity": 1,
+       "URL": null,
        "Tags": [
           "Media"
        ]
@@ -79,8 +84,8 @@
        "Regex": "(?i)^bitcoincash:[a-z0-9]{42}$",
        "plural_name": false,
        "Description": null,
-       "URL": "https://www.blockchain.com/bch/address/",
        "Rarity": 1,
+       "URL": "https://www.blockchain.com/bch/address/",
        "Tags": [
           "Cryptocurrency",
           "Finance"
@@ -91,6 +96,7 @@
       "Regex": "(?i)^[https://]*s3\\.amazonaws.com[\/]+.*$|[a-zA-Z0-9_-]*\\.s3\\.amazonaws.com/.*$",
       "Description": null,
       "Rarity": 1,
+      "URL": null,
       "Tags": [
          "Internet",
          "Networking"
@@ -101,6 +107,7 @@
       "Regex": "(?i)^s3://([^/]+)/(.*?([^/]+)/?)$",
       "Description": "Internal URL, only accessible via the virtual private cloud.",
       "Rarity": 1,
+      "URL": null,
       "Tags": [
          "Internet",
          "Networking"
@@ -111,8 +118,8 @@
        "Regex": "(?=.*[0-9])\\[?(?:(?:[0-9a-f]{1,4}:){7,7}[0-9a-f]{1,4}|([0-9a-f]{4}:){1,7}:|([0-9a-f]{1,4}:){1,6}:[0-9a-f]{1,4}|([0-9a-f]{1,4}:){1,5}(:[0-9a-f]{1,4}){1,2}|([0-9a-f]{1,4}:){1,4}(:[0-9a-f]{1,4}){1,3}|([0-9a-f]{1,4}:){1,3}(:[0-9a-f]{1,4}){1,4}|([0-9a-fA]{1,4}:){1,2}(:[0-9a-f]{1,4}){1,5}|[0-9a-f]{1,4}:((:[0-9a-f]{1,4}){1,6})|:((:[0-9a-f]{1,4}){1,7}|:)|fe80:(:[0-9a-f]{0,4}){0,4}%[0-9a-z]{1,}|::(ffff(:0{1,4}){0,1}:){0,1}((25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])\\.){3,3}(25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])|(?:[0-9a-f]{1,4}:){1,4}:(?:(25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])\\.){3,3}(25[0-5]|(?:2[0-4]|1{0,1}[0-9]){0,1}[0-9]))\\]?(?::[0-9]{1,5})?",
        "plural_name": false,
        "Description": null,
-       "URL": "https://www.shodan.io/host/",
        "Rarity": 1,
+       "URL": "https://www.shodan.io/host/",
        "Tags": [
           "Identifiers",
           "Networking"
@@ -124,6 +131,7 @@
       "plural_name": false,
       "Description": null,
       "Rarity": 0.8,
+      "URL": null,
       "Tags": [
          "Identifiers",
          "Networking",
@@ -136,6 +144,7 @@
        "plural_name": false,
        "Description": null,
        "Rarity": 0.7,
+       "URL": null,
        "Tags": [
           "Identifiers"
        ]
@@ -145,8 +154,8 @@
        "Regex": "(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)(?::[0-9]{1,5})?",
        "plural_name": false,
        "Description": null,
-       "URL": "https://www.shodan.io/host/",
        "Rarity": 0.7,
+       "URL": "https://www.shodan.io/host/",
        "Tags": [
           "Identifiers",
           "Networking"
@@ -157,8 +166,8 @@
        "Regex":"(?i)^(?:(?:N|W|S|E)\\s?\\d+\\s?\\u00B0?\\s?\\d+\\.?\\d*\\s?\\'?\\s?\\d*\\.?\\,?\\d*?\"?\\s?){1,2}$|^(?:\\d+\\s?\\u00B0\\s?\\d+\\s?\\'\\s?\\d+\\.?\\,?\\d{0,}?\"\\s?(?:N|W|S|E)\\s?){1,2}$|^(?:[-+]?(?:[0-8]?\\d+\\.\\d{4,}|90(?:\\.0+)?),\\s*[-+]?(?:180(?:\\.0+)?|(?:(?:1[0-7]\\d)|(?:[1-9]?\\d))(?:\\.\\d+)?))$",
        "plural_name": true,
        "Description": null,
-       "URL": "https://www.google.com/maps/place/",
        "Rarity": 0.5,
+       "URL": "https://www.google.com/maps/place/",
        "Tags": [
           "Geo-location"
       ]
@@ -168,8 +177,8 @@
        "Regex": "^D{1}[5-9A-HJ-NP-U]{1}[1-9A-HJ-NP-Za-km-z]{32}$",
        "plural_name": false,
        "Description": null,
-       "URL": "https://dogechain.info/address/",
        "Rarity": 0.5,
+       "URL": "https://dogechain.info/address/",
        "Tags": [
           "Cryptocurrency",
           "Finance"
@@ -181,6 +190,7 @@
        "plural_name": false,
        "Description": null,
        "Rarity": 0.5,
+       "URL": null,
        "Tags": [
           "Cryptocurrency",
           "Finance"
@@ -191,8 +201,8 @@
        "Regex": "(?i)^(?:L|M)[a-z0-9]{33}$",
        "plural_name": false,
        "Description": null,
-       "URL": "https://live.blockcypher.com/ltc/address/",
        "Rarity": 0.5,
+       "URL": "https://live.blockcypher.com/ltc/address/",
        "Tags": [
           "Cryptocurrency",
           "Finance"
@@ -203,8 +213,8 @@
        "Regex": "(?i)^r[a-z0-9]{33}$",
        "plural_name": false,
        "Description": null,
-       "URL": "https://xrpscan.com/account/",
        "Rarity": 0.5,
+       "URL": "https://xrpscan.com/account/",
        "Tags": [
           "Cryptocurrency",
           "Finance"
@@ -215,6 +225,7 @@
       "Regex": "(?i)^(?=.*[a-z])(?=.*[0-9])(?:[a-z0-9_=]+\\.){2}(?:[a-z0-9_\\-\\+\/=]*)$",
       "Description": null,
       "Rarity": 0.5,
+      "URL": null,
       "Tags": [
          "Security",
          "Hacking",
@@ -228,6 +239,7 @@
        "plural_name": false,
        "Description": null,
        "Rarity": 0.5,
+       "URL": null,
        "Tags": [
           "Credit Card",
           "Finance"
@@ -239,6 +251,7 @@
        "plural_name": false,
        "Description": null,
        "Rarity": 0.5,
+       "URL": null,
        "Tags": [
           "Credit Card",
           "Finance"
@@ -250,6 +263,7 @@
        "plural_name": false,
        "Description": null,
        "Rarity": 0.5,
+       "URL": null,
        "Tags": [
           "Credit Card",
           "Finance"
@@ -261,6 +275,7 @@
        "plural_name": false,
        "Description": null,
        "Rarity": 0.5,
+       "URL": null,
        "Tags": [
           "Credit Card",
           "Finance"
@@ -272,6 +287,7 @@
        "plural_name": false,
        "Description": null,
        "Rarity": 0.5,
+       "URL": null,
        "Tags": [
           "Credit Card",
           "Finance"
@@ -283,6 +299,7 @@
        "plural_name": false,
        "Description": null,
        "Rarity": 0.5,
+       "URL": null,
        "Tags": [
           "Credit Card",
           "Finance"
@@ -294,6 +311,7 @@
        "plural_name": false,
        "Description": null,
        "Rarity": 0.5,
+       "URL": null,
        "Tags": [
           "Credit Card",
           "Finance"
@@ -305,6 +323,7 @@
        "plural_name": false,
        "Description": null,
        "Rarity": 0.5,
+       "URL": null,
        "Tags": [
           "Credit Card",
           "Finance"
@@ -316,6 +335,7 @@
        "plural_name": false,
        "Description": null,
        "Rarity": 0.5,
+       "URL": null,
        "Tags": [
           "Credit Card",
           "Finance"
@@ -327,6 +347,7 @@
        "plural_name": false,
        "Description": null,
        "Rarity": 0.5,
+       "URL": null,
        "Tags": [
           "Credit Card",
           "Finance"
@@ -338,6 +359,7 @@
        "plural_name": false,
        "Description": null,
        "Rarity": 0.5,
+       "URL": null,
        "Tags": [
           "Credit Card",
           "Finance"
@@ -349,6 +371,7 @@
        "plural_name": false,
        "Description": null,
        "Rarity": 0.5,
+       "URL": null,
        "Tags": [
           "Credit Card"
        ]
@@ -359,6 +382,7 @@
        "plural_name": false,
        "Description": null,
        "Rarity": 0.5,
+       "URL": null,
        "Tags": [
           "Credit Card",
           "Finance"
@@ -370,6 +394,7 @@
        "plural_name": false,
        "Description": null,
        "Rarity": 0.5,
+       "URL": null,
        "Tags": [
           "Credit Card",
           "Finance"
@@ -381,6 +406,7 @@
        "plural_name": false,
        "Description": null,
        "Rarity": 0.5,
+       "URL": null,
        "Tags": [
           "Identifiers",
           "Credentials"
@@ -392,6 +418,7 @@
        "plural_name": false,
        "Description": null,
        "Rarity": 0.5,
+       "URL": null,
        "Tags": [
           "Identifiers",
           "Credentials"
@@ -402,8 +429,8 @@
        "Regex": "^UC[0-9A-Za-z_-]{21}[AQgw]{1}$",
        "plural_name": false,
        "Description": null,
-       "URL": "https://www.youtube.com/channel/",
        "Rarity": 0.4,
+       "URL": "https://www.youtube.com/channel/",
        "Tags": [
           "Media"
        ]
@@ -413,8 +440,8 @@
        "Regex": "^(?=.*[A-Z])(?=.*[a-z])[0-9A-Za-z_-]{10}[048AEIMQUYcgkosw]{1}$",
        "plural_name": false,
        "Description": null,
-       "URL": "https://www.youtube.com/watch?v=",
        "Rarity": 0.2,
+       "URL": "https://www.youtube.com/watch?v=",
        "Tags": [
           "Media"
        ]
@@ -425,11 +452,24 @@
        "plural_name": false,
        "Description": "An [#CAE4F1][link=https://en.wikipedia.org/wiki/Social_Security_number]American Identification Number[/link][/#CAE4F1]",
        "Rarity": 0.2,
+       "URL": null,
        "Tags": [
           "Credentials",
           "Password",
           "Username"
        ]
-    }
-
- ]
+    },
+    {
+      "Name": "Key:Value Pair",
+      "Regex": "[^:\\s]+[ ]?:[ ]?[^:\\s]+",
+      "plural_name": false,
+      "Description": null,
+      "Rarity": 0,
+      "URL": null,
+      "Tags": [
+         "Credentials",
+         "Password",
+         "Username"
+      ]
+   }
+]
