@@ -51,7 +51,7 @@ def test_lat_long2():
 
 def test_lat_long3():
     r = regex_identifier.RegexIdentifier()
-    res = r.check(['77\u00B0 30\' 29.9988" N'])
+    res = r.check(["77\u00B0 30' 29.9988\" N"])
     assert "Latitude & Longitude Coordinates" in res[0]["Regex Pattern"]["Name"]
 
 
@@ -64,7 +64,7 @@ def test_lat_long4():
 
 def test_lat_long5():
     r = regex_identifier.RegexIdentifier()
-    res = r.check(["41\u00B024\'12.2\" N 2\u00B010\'26.5\" E"])
+    res = r.check(["41\u00B024'12.2\" N 2\u00B010'26.5\" E"])
     assert "Latitude & Longitude Coordinates" in res[0]["Regex Pattern"]["Name"]
 
 
@@ -144,7 +144,11 @@ def test_bitcoin():
 
 def test_monero():
     r = regex_identifier.RegexIdentifier()
-    res = r.check(["47DF8D9NwtmefhFUghynYRMqrexiZTsm48T1hhi2jZcbfcwoPbkhMrrED6zqJRfeYpXFfdaqAT3jnBEwoMwCx6BYDJ1W3ub"])
+    res = r.check(
+        [
+            "47DF8D9NwtmefhFUghynYRMqrexiZTsm48T1hhi2jZcbfcwoPbkhMrrED6zqJRfeYpXFfdaqAT3jnBEwoMwCx6BYDJ1W3ub"
+        ]
+    )
     assert "Monero (XMR) Wallet Address" in res[0]["Regex Pattern"]["Name"]
 
 
@@ -331,40 +335,52 @@ def test_cors():
     res = r.check(["Access-Control-Allow: *"])
     assert "Access" in str(res)
 
+
 def test_jwt():
     r = regex_identifier.RegexIdentifier()
-    res = r.check(["eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c"])
+    res = r.check(
+        [
+            "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c"
+        ]
+    )
     assert "JWT" in str(res)
+
 
 def test_s3():
     r = regex_identifier.RegexIdentifier()
     res = r.check(["http://s3.amazonaws.com/bucket/"])
     assert "S3" in str(res)
 
+
 def test_s3_internal():
     r = regex_identifier.RegexIdentifier()
     res = r.check(["s3://bucket/path/key"])
     assert "S3" in str(res)
+
 
 def test_s3_internal2():
     r = regex_identifier.RegexIdentifier()
     res = r.check(["s3://bucket/path/directory/"])
     assert "S3" in str(res)
 
+
 def test_arn():
     r = regex_identifier.RegexIdentifier()
     res = r.check(["arn:partition:service:region:account-id:resource"])
     assert "ARN" in str(res)
+
 
 def test_arn2():
     r = regex_identifier.RegexIdentifier()
     res = r.check(["arn:partition:service:region:account-id:resourcetype/resource"])
     assert "ARN" in str(res)
 
+
 def test_arn3():
     r = regex_identifier.RegexIdentifier()
     res = r.check(["arn:partition:service:region:account-id:resourcetype:resource"])
     assert "ARN" in str(res)
+
 
 def test_arn4():
     r = regex_identifier.RegexIdentifier()

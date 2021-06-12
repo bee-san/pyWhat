@@ -28,16 +28,17 @@ class RegexIdentifier:
                 matched_regex = re.search(reg["Regex"], string, re.UNICODE)
 
                 if matched_regex:
-                    reg = copy.copy(reg) # necessary, when checking phone
-                                         # numbers from file that may contain
-                                         # non-international numbers
+                    reg = copy.copy(reg)  # necessary, when checking phone
+                    # numbers from file that may contain
+                    # non-international numbers
                     matched = self.clean_text(matched_regex.group(0))
 
                     if "Phone Number" in reg["Name"]:
                         number = re.sub(r"[-() ]", "", matched)
                         codes_path = "Data/phone_codes.json"
                         codes_fullpath = os.path.join(
-                            os.path.dirname(os.path.abspath(__file__)), codes_path)
+                            os.path.dirname(os.path.abspath(__file__)), codes_path
+                        )
                         with open(codes_fullpath, "r", encoding="utf-8") as myfile:
                             codes = json.load(myfile)
 
@@ -47,9 +48,7 @@ class RegexIdentifier:
                                 locations.append(code["name"])
                         if len(locations) > 0:
                             reg["Description"] = (
-                                "Location(s)"
-                                + ": "
-                                + ", ".join(locations)
+                                "Location(s)" + ": " + ", ".join(locations)
                             )
 
                     matches.append(
