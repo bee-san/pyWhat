@@ -20,10 +20,15 @@ class Distribution:
             filters_dict = dict()
 
         self._dict["Tags"] = CaseInsensitiveSet(filters_dict.setdefault("Tags", tags))
-        self._dict["ExcludeTags"] = CaseInsensitiveSet(filters_dict.setdefault("ExcludeTags", set()))
-        self._dict["MinRarity"] = filters_dict.setdefault("MinRarity", 0)
+        self._dict["ExcludeTags"] = CaseInsensitiveSet(
+            filters_dict.setdefault("ExcludeTags", set())
+        )
+        # We have regex with 0 rarity which trip false positive alarms all the time
+        self._dict["MinRarity"] = filters_dict.setdefault("MinRarity", 0.1)
         self._dict["MaxRarity"] = filters_dict.setdefault("MaxRarity", 1)
-        if not self._dict["Tags"].issubset(tags) or not self._dict["ExcludeTags"].issubset(tags):
+        if not self._dict["Tags"].issubset(tags) or not self._dict[
+            "ExcludeTags"
+        ].issubset(tags):
             raise InvalidTag("Passed filter contains tags that are not used by 'what'")
 
         self._regexes = load_regexes()
@@ -60,8 +65,13 @@ class Distribution:
         min_rarity = max(self._dict["MinRarity"], other._dict["MinRarity"])
         max_rarity = min(self._dict["MaxRarity"], other._dict["MaxRarity"])
         return Distribution(
-            {"Tags": tags, "ExcludeTags": exclude_tags,
-            "MinRarity": min_rarity, "MaxRarity": max_rarity})
+            {
+                "Tags": tags,
+                "ExcludeTags": exclude_tags,
+                "MinRarity": min_rarity,
+                "MaxRarity": max_rarity,
+            }
+        )
 
     def __or__(self, other):
         if type(self) != type(other):
@@ -71,9 +81,13 @@ class Distribution:
         min_rarity = min(self._dict["MinRarity"], other._dict["MinRarity"])
         max_rarity = max(self._dict["MaxRarity"], other._dict["MaxRarity"])
         return Distribution(
-            {"Tags": tags, "ExcludeTags": exclude_tags,
-            "MinRarity": min_rarity, "MaxRarity": max_rarity})
-
+            {
+                "Tags": tags,
+                "ExcludeTags": exclude_tags,
+                "MinRarity": min_rarity,
+                "MaxRarity": max_rarity,
+            }
+        )
 
     def __iand__(self, other):
         if type(self) != type(other):
