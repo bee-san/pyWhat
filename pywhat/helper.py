@@ -65,3 +65,10 @@ class Keys(Enum):
     RARITY = lambda match: match["Regex Pattern"]["Rarity"]
     MATCHED = lambda match: match["Matched"]
     NONE = auto()
+
+
+def str_to_key(s: str):
+    try:
+        return getattr(Keys, s.upper())
+    except AttributeError:
+        raise ValueError
