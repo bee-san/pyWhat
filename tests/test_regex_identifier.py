@@ -1,4 +1,5 @@
 import pytest
+
 from pywhat import regex_identifier
 
 
@@ -105,7 +106,9 @@ def test_ip4():
     assert "[2001:db8::1]:8080" in res[0]["Matched"]
 
 
-@pytest.mark.skip(reason="Fails because not a valid TLD. If presented in punycode, it works.")
+@pytest.mark.skip(
+    reason="Fails because not a valid TLD. If presented in punycode, it works."
+)
 def test_international_url():
     r = regex_identifier.RegexIdentifier()
     res = r.check(["http://папироска.рф"])
