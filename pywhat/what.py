@@ -5,7 +5,7 @@ from rich.console import Console
 
 from pywhat import identifier, printer
 from pywhat.distribution import Distribution
-from pywhat.helper import AvailableTags, InvalidTag
+from pywhat.helper import AvailableTags, InvalidTag, Keys, str_to_key
 
 
 def print_tags(ctx, opts, value):
@@ -70,7 +70,10 @@ def parse_options(rarity, include_tags, exclude_tags):
 )
 @click.option("-i", "--include_tags", help="Only print entries with included tags.")
 @click.option("-e", "--exclude_tags", help="Exclude tags.")
-def main(text_input, rarity, include_tags, exclude_tags):
+@click.option("-o", "--only-text", is_flag=True, help="Do not scan files or folders.")
+@click.option("-k", "--key", help="Sort by the specified key.")
+@click.option("--reverse", is_flag=True, help="Sort in reverse order.")
+def main(text_input, rarity, include_tags, exclude_tags, only_text, key, reverse):
     """
     pyWhat - Identify what something is.\n
 
@@ -87,6 +90,27 @@ def main(text_input, rarity, include_tags, exclude_tags):
             Only include entries containing at least one tag in a list. List is a comma separated list.\n
         --exclude_tags list\n
             Exclude specified tags. List is a comma separated list.\n
+
+    Sorting:
+
+        --key key_name
+
+            Sort by the given key.
+
+        --reverse
+
+            Sort in reverse order.
+
+        Available keys:
+
+            name - Sort by the name of regex pattern
+
+            rarity - Sort by rarity
+
+            matched - Sort by a matched string
+
+            none - No sorting is done (the default)
+
 
     Examples:
 
@@ -112,7 +136,15 @@ def main(text_input, rarity, include_tags, exclude_tags):
     """
 
     what_obj = What_Object(parse_options(rarity, include_tags, exclude_tags))
-    identified_output = what_obj.what_is_this(text_input)
+    if key is None:
+        key = Keys.NONE
+    else:
+        try:
+            key = str_to_key(key)
+        except ValueError:
+            print("Invalid key")
+            sys.exit(1)
+    identified_output = what_obj.what_is_this(text_input, only_text, key, reverse)
 
     p = printer.Printing()
     p.pretty_print(identified_output, text_input)
@@ -122,11 +154,11 @@ class What_Object:
     def __init__(self, distribution):
         self.id = identifier.Identifier(dist=distribution)
 
-    def what_is_this(self, text: str) -> dict:
+    def what_is_this(self, text: str, only_text: bool, key, reverse) -> dict:
         """
         Returns a Python dictionary of everything that has been identified
         """
-        return self.id.identify(text, only_text=False)
+        return self.id.identify(text, only_text=only_text, key=key, reverse=reverse)
 
 
 if __name__ == "__main__":
