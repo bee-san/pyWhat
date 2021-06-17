@@ -1,7 +1,7 @@
 import re
 
 from pywhat import identifier
-from pywhat.distribution import Distribution
+from pywhat.filter import Distribution
 from pywhat.helper import Keys, load_regexes
 
 
