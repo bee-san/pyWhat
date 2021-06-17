@@ -57,6 +57,8 @@ What about a whole **directory**? `What` can handle that too! It will **recursiv
 
 **Filtration** You can filter output by using `what --rarity 0.2:0.8 --include_tags tag1,tag2 TEXT`. Use `what --help` to get more information.
 
+**Sorting** You can sort the output by using `what -k rarity --reverse TEXT`. Use `what --help` to get more information.
+
 # 🍕 API
 
 PyWhat has an API! Click here [https://github.com/bee-san/pyWhat/wiki/API](https://github.com/bee-san/pyWhat/wiki/API) to read about it.

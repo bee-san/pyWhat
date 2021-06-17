@@ -2,7 +2,6 @@ import re
 
 import pytest
 from click.testing import CliRunner
-
 from pywhat import pywhat_tags
 from pywhat.what import main
 
@@ -448,3 +447,10 @@ def test_key_value_min_rarity_0_7():
     result = runner.invoke(main, ["--rarity", "0:", "a : b:c"])
     assert result.exit_code == 0
     assert re.findall("a : b", str(result.output))
+
+
+def test_only_text():
+    runner = CliRunner()
+    result = runner.invoke(main, ["-o", "fixtures/file"])
+    assert result.exit_code == 0
+    assert "Nothing found" in result.output
