@@ -1,3 +1,6 @@
+from datetime import datetime
+from time import time
+
 import pytest
 from pywhat import regex_identifier
 
@@ -386,3 +389,28 @@ def test_arn4():
     r = regex_identifier.RegexIdentifier()
     res = r.check(["arn:aws:s3:::my_corporate_bucket/Development/*"])
     assert "ARN" in str(res)
+
+
+def test_unix_timestamp():
+    r = regex_identifier.RegexIdentifier()
+    ts_from_ymd = lambda ymd: int(datetime.strptime(ymd, '%Y-%m-%d').timestamp())
+
+    res = r.check([str(ts_from_ymd('2020-01-01'))])
+    keys = [m['Regex Pattern']['Name'] for m in res]
+    assert "Unix Timestamp" in keys
+    assert "Recent Unix Timestamp" in keys
+
+    res = r.check([str(ts_from_ymd('1980-01-01'))])
+    keys = [m['Regex Pattern']['Name'] for m in res]
+    assert "Unix Timestamp" in keys
+    assert "Recent Unix Timestamp" not in keys
+
+    res = r.check([str(ts_from_ymd('2020-01-01') * 1000)])
+    keys = [m['Regex Pattern']['Name'] for m in res]
+    assert "Unix Millisecond Timestamp" in keys
+    assert "Recent Unix Millisecond Timestamp" in keys
+
+    res = r.check([str(ts_from_ymd('1980-01-01') * 1000)])
+    keys = [m['Regex Pattern']['Name'] for m in res]
+    assert "Unix Millisecond Timestamp" in keys
+    assert "Recent Unix Millisecond Timestamp" not in keys
