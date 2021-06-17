@@ -4,7 +4,7 @@ import click
 from rich.console import Console
 
 from pywhat import identifier, printer
-from pywhat.distribution import Distribution
+from pywhat.filter import Distribution
 from pywhat.helper import AvailableTags, InvalidTag
 
 

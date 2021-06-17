@@ -4,7 +4,7 @@ import os
 import re
 from typing import Optional
 
-from pywhat.distribution import Distribution
+from pywhat.filter import Distribution
 
 
 class RegexIdentifier:

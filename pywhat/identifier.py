@@ -2,7 +2,7 @@ import glob
 import os.path
 from typing import Callable, Optional
 
-from pywhat.distribution import Distribution
+from pywhat.filter import Distribution
 from pywhat.helper import Keys
 from pywhat.magic_numbers import FileSignatures
 from pywhat.nameThatHash import Nth
