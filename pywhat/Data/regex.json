@@ -127,28 +127,7 @@
           "Networking"
        ]
     },
-    {
-      "Name": "Recent Unix Timestamp",
-      "Regex": "^[0-9]{10}$",
-      "plural_name": false,
-      "Description": "Seconds elapsed since unix epoch: 1970, between year 2001 and 2286",
-      "Rarity": 0.8,
-      "URL": null,
-      "Tags": [
-         "Time"
-       ]
-    },
-    {
-      "Name": "Recent Unix Millisecond Timestamp",
-      "Regex": "^[0-9]{13}$",
-      "plural_name": false,
-      "Description": "Milliseconds elapsed since unix epoch: 1970, between year 2001 and 2286",
-      "Rarity": 0.8,
-      "URL": null,
-      "Tags": [
-         "Time"
-       ]
-    },
+
     {
       "Name": "Amazon Resource Name (ARN)",
       "Regex": "(?i)^arn:(?P<Partition>[^:\n]*):(?P<Service>[^:\n]*):(?P<Region>[^:\n]*):(?P<AccountID>[^:\n]*):(?P<Ignore>(?P<ResourceType>[^:\/\n]*)[:\/])?(?P<Resource>.*)$",
@@ -447,6 +426,28 @@
        "Tags": [
           "Identifiers",
           "Credentials"
+       ]
+    },
+      {
+      "Name": "Recent Unix Timestamp",
+      "Regex": "^[0-9]{10}$",
+      "plural_name": false,
+      "Description": "Seconds elapsed since unix epoch: 1970, between year 2001 and 2286",
+      "Rarity": 0.5,
+      "URL": null,
+      "Tags": [
+         "Time"
+       ]
+    },
+    {
+      "Name": "Recent Unix Millisecond Timestamp",
+      "Regex": "^[0-9]{13}$",
+      "plural_name": false,
+      "Description": "Milliseconds elapsed since unix epoch: 1970, between year 2001 and 2286",
+      "Rarity": 0.5,
+      "URL": null,
+      "Tags": [
+         "Time"
        ]
     },
     {
