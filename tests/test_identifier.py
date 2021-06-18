@@ -60,7 +60,9 @@ def test_identifier_filtration2():
     filter1 = {"ExcludeTags": ["Identifiers"]}
     filter2 = {"Tags": ["Identifiers"], "MinRarity": 0.6}
     r = identifier.Identifier(dist=Distribution(filter1))
-    regexes = r.identify("fixtures/file", only_text=False, dist=Distribution(filter2))["Regexes"]["file"]
+    regexes = r.identify("fixtures/file", only_text=False, dist=Distribution(filter2))[
+        "Regexes"
+    ]["file"]
     for regex in regexes:
         assert "Identifiers" in regex["Regex Pattern"]["Tags"]
         assert regex["Regex Pattern"]["Rarity"] >= 0.6
@@ -136,4 +138,6 @@ def test_recursion():
     out = r.identify("fixtures", only_text=False)
 
     assert re.findall(r"\'(?:\/|\\\\)file\'", str(list(out["Regexes"].keys())))
-    assert re.findall(r"\'(?:\/|\\\\)test(?:\/|\\\\)file\'", str(list(out["Regexes"].keys())))
+    assert re.findall(
+        r"\'(?:\/|\\\\)test(?:\/|\\\\)file\'", str(list(out["Regexes"].keys()))
+    )
