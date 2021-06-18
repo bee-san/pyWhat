@@ -1,5 +1,5 @@
 [
-	{
+    {
       "Name": "SSH RSA Public Key",
       "Regex": "ssh-rsa [A-Za-z0-9+\/=]+ [^ \n]+",
       "plural_name": false,
