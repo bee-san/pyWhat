@@ -474,5 +474,17 @@
          "Password",
          "Username"
        ]
-    }
+    },
+    {
+      "Name": "Media Access Control (MAC) Address",
+      "Regex": "^([0-9A-Fa-f]{2}[:-]){5}([0-9A-Fa-f]{2})|([0-9a-fA-F]{4}\\.[0-9a-fA-F]{4}\\.[0-9a-fA-F]{4})$",
+      "plural_name": false,
+      "Description": null,
+      "Rarity": 0.2,
+      "URL": null,
+      "Tags": [
+         "Identifiers",
+         "Networking"
+      ]
+   }
 ]

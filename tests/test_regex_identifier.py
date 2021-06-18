@@ -386,3 +386,23 @@ def test_arn4():
     r = regex_identifier.RegexIdentifier()
     res = r.check(["arn:aws:s3:::my_corporate_bucket/Development/*"])
     assert "ARN" in str(res)
+
+
+def test_mac1():
+    r = regex_identifier.RegexIdentifier()
+    res = r.check(["01-23-35-67-89-A6"])
+    print(res[0])
+    assert "Media Access Control Address" in res[0]["Regex Pattern"]["Name"]
+
+
+def test_mac2():
+    r = regex_identifier.RegexIdentifier()
+    res = r.check(["01:23:35:67:89:A6"])
+    assert "Media Access Control Address" in res[0]["Regex Pattern"]["Name"]
+
+
+def test_mac3():
+    r = regex_identifier.RegexIdentifier()
+    res = r.check(["0123.3567.89A6"])
+    assert "" in res[0]["Regex Pattern"]["Name"]
+    assert "Media Access Control Address" in res[1]["Regex Pattern"]["Name"]
