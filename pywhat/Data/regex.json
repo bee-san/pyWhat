@@ -1,4 +1,40 @@
 [
+	{
+      "Name": "SSH RSA Public Key",
+      "Regex": "ssh-rsa [A-Za-z0-9+\/=]+ [^ \n]+",
+      "plural_name": false,
+      "Description": null,
+      "Rarity": 1,
+      "URL": null,
+      "Tags": [
+         "Credentials",
+         "Cyber Security"
+       ]
+    },
+    {
+      "Name": "SSH ECDSA Public Key",
+      "Regex": "ecdsa-sha2-nistp[0-9]{3} [A-Za-z0-9+\/=]+ [^ \n]+",
+      "plural_name": false,
+      "Description": null,
+      "Rarity": 1,
+      "URL": null,
+      "Tags": [
+         "Credentials",
+         "Cyber Security"
+       ]
+    },
+    {
+      "Name": "SSH ED25519 Public Key",
+      "Regex": "ssh-ed25519 [A-Za-z0-9+\/=]+ [^ \n]+",
+      "plural_name": false,
+      "Description": null,
+      "Rarity": 1,
+      "URL": null,
+      "Tags": [
+         "Credentials",
+         "Cyber Security"
+       ]
+    },
     {
        "Name": "Ethereum (ETH) Wallet Address",
        "Regex": "(?i)^0x[a-f0-9]{40}$",
