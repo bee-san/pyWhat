@@ -1,4 +1,4 @@
-from pywhat.filter import Distribution
+from pywhat.filter import Distribution, Filter
 from pywhat.helper import AvailableTags, Keys
 from pywhat.identifier import Identifier
 
