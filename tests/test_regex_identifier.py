@@ -416,3 +416,13 @@ def test_ssh_ed25519_key():
         ]
     )
     assert "SSH ED25519" in str(res)
+
+def test_aws_access_key():
+    r = regex_identifier.RegexIdentifier()
+    res = r.check(["AKIAIOSFODNN7EXAMPLE"])
+    assert "Amazon Web Services Access Key" in str(res)
+
+def test_aws_secret_access_key():
+    r = regex_identifier.RegexIdentifier()
+    res = r.check(["Nw0XP0t2OdyUkaIk3B8TaAa2gEXAMPLEMvD2tW+g"])
+    assert "Amazon Web Services Secret Access Key" in str(res)

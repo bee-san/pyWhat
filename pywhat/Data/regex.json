@@ -165,7 +165,7 @@
     },
     {
       "Name": "Amazon Web Services Secret Access Key",
-      "Regex": "(?<![A-Z0-9])[A-Z0-9]{20}(?![A-Z0-9])",
+      "Regex": "(?<![A-Za-z0-9/+=])[A-Za-z0-9/+=]{40}(?![A-Za-z0-9/+=])",
       "plural_name": false,
       "Description": "Secret access key used to authenticate with the AWS API",
       "Rarity": 1,
