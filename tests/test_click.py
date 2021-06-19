@@ -413,11 +413,13 @@ def test_key_value_min_rarity_0_2():
     assert result.exit_code == 0
     assert re.findall("Key:Value", str(result.output))
 
+
 def test_key_value_min_rarity_0_3():
     runner = CliRunner()
     result = runner.invoke(main, ["--rarity", "0:", ":a:"])
     assert result.exit_code == 0
     assert not re.findall("Key:Value", str(result.output))
+
 
 def test_key_value_min_rarity_0_4():
     runner = CliRunner()
@@ -425,11 +427,13 @@ def test_key_value_min_rarity_0_4():
     assert result.exit_code == 0
     assert not re.findall("Key:Value", str(result.output))
 
+
 def test_key_value_min_rarity_0_5():
     runner = CliRunner()
     result = runner.invoke(main, ["--rarity", "0:", "a:b:c"])
     assert result.exit_code == 0
     assert not re.findall("a:b:c", str(result.output))
+
 
 def test_key_value_min_rarity_0_6():
     runner = CliRunner()
@@ -437,8 +441,34 @@ def test_key_value_min_rarity_0_6():
     assert result.exit_code == 0
     assert re.findall("a:b", str(result.output))
 
+
 def test_key_value_min_rarity_0_7():
     runner = CliRunner()
     result = runner.invoke(main, ["--rarity", "0:", "a : b:c"])
     assert result.exit_code == 0
     assert re.findall("a : b", str(result.output))
+
+
+def test_only_text():
+    runner = CliRunner()
+    result = runner.invoke(main, ["-o", "fixtures/file"])
+    assert result.exit_code == 0
+    assert "Nothing found" in result.output
+
+def test_ssh_rsa_key():
+    runner = CliRunner()
+    result = runner.invoke(main, ["fixtures/file"])
+    assert result.exit_code == 0
+    assert re.findall("SSH RSA", str(result.output))
+
+def test_ssh_ecdsa_key():
+    runner = CliRunner()
+    result = runner.invoke(main, ["fixtures/file"])
+    assert result.exit_code == 0
+    assert re.findall("SSH ECDSA", str(result.output))
+
+def test_ssh_ed25519_key():
+    runner = CliRunner()
+    result = runner.invoke(main, ["fixtures/file"])
+    assert result.exit_code == 0
+    assert re.findall("SSH ED25519", str(result.output))

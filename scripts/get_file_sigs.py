@@ -1,8 +1,8 @@
-import wikitextparser as wtp
-import requests
 import json
 import re
-import json
+
+import requests
+import wikitextparser as wtp
 
 
 def cleanhtml(raw_html):

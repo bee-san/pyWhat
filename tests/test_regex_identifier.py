@@ -1,4 +1,5 @@
 import pytest
+
 from pywhat import regex_identifier
 
 
@@ -105,7 +106,9 @@ def test_ip4():
     assert "[2001:db8::1]:8080" in res[0]["Matched"]
 
 
-@pytest.mark.skip(reason="Fails because not a valid TLD. If presented in punycode, it works.")
+@pytest.mark.skip(
+    reason="Fails because not a valid TLD. If presented in punycode, it works."
+)
 def test_international_url():
     r = regex_identifier.RegexIdentifier()
     res = r.check(["http://папироска.рф"])
@@ -386,3 +389,30 @@ def test_arn4():
     r = regex_identifier.RegexIdentifier()
     res = r.check(["arn:aws:s3:::my_corporate_bucket/Development/*"])
     assert "ARN" in str(res)
+
+def test_ssh_rsa_key():
+    r = regex_identifier.RegexIdentifier()
+    res = r.check(
+        [
+            "ssh-rsa AAAAB3NzaC1tc2EAAAADAQABAAACAQDrnjkGtf3iA46rtwsvRiscvMTCw30l5Mmln/sf8Wohg4RPc7nuIx3/fB86K9jzBNoQk6Fb00p2cSW0dX6c3OTL5R5Q0rBjOFy6GV07MkS7rXa7WYh4ObxBh+M+LEzxVIw29anzQFZkR0TAf6x2rBoErK7JYU4fyqFBDFupTt3coQDPEEmVwtLLUCEnJrurbbnJKcWJ+/FbItLxYyMLPl8TwEn0iqiJ97onCU2DuBtiYv3hp1WoEH08b5WDF0F04zEPRdJT+WisxlEFRgaj51o2BtjOC+D2qZQDb4LHaAfJ0WcO4nu7YocdlcLp2JPfXKKgu9P5J8UDsmXbR3KCJ1oddFa2R6TbHc6d2hKyG4amBzMX5ltxXu7D6FLPZlFqua8YooY7A2zwIVirOUH/cfx+5O9o0CtspkNmj/iYzN0FPaOpELncWsuauy9hrGql/1cF4SUr20zHFoBoDQUtmvmBnWnKoGfpWXzuda449FVtmcrEjvBzCvCb3RStu0BbyOOybJagbKif3MkcYVO10pRbTveIUwgCD6F3ypD11XztoPNsgScmjme0sj/KWWNLyQkLWtpJEQ4k46745NAC5g+nP28TR2JM8doeqsxA8JovQkLWwDcR+WYZu2z/I8dfhOmalnoMRTJ2NzWDc0OSkKGYWjexR4fN6lAKCUOUptl9Nw== r00t@my-random_host"
+        ]
+    )
+    assert "SSH RSA" in str(res)
+
+def test_ssh_ecdsa_key():
+    r = regex_identifier.RegexIdentifier()
+    res = r.check(
+        [
+            "ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBCE9Uli8bGnD4hOWdeo5KKQJ/P/vOazI4MgqJK54w37emP2JwOAOdMmXuwpxbKng3KZz27mz+nKWIlXJ3rzSGMo= r00t@my-random_host"
+        ]
+    )
+    assert "SSH ECDSA" in str(res)
+
+def test_ssh_ed25519_key():
+    r = regex_identifier.RegexIdentifier()
+    res = r.check(
+        [
+            "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIK0wmN/Cr3JXqmLW7u+g9pTh+wyqDHpSQEIQczXkVx9q r00t@my-random_host"
+        ]
+    )
+    assert "SSH ED25519" in str(res)
