@@ -426,3 +426,18 @@ def test_aws_secret_access_key():
     r = regex_identifier.RegexIdentifier()
     res = r.check(["Nw0XP0t2OdyUkaIk3B8TaAa2gEXAMPLEMvD2tW+g"])
     assert "Amazon Web Services Secret Access Key" in str(res)
+
+def test_aws_ec2_id():
+    r = regex_identifier.RegexIdentifier()
+    res = r.check(["i-1234567890abcdef0"])
+    assert "Amazon Web Services EC2 Instance identifier" in str(res)
+
+def test_aws_sg_id():
+    r = regex_identifier.RegexIdentifier()
+    res = r.check(["sg-6e616f6d69"])
+    assert "Amazon Web Services EC2 Security Group identifier" in str(res)
+
+def test_aws_org_id():
+    r = regex_identifier.RegexIdentifier()
+    res = r.check(["o-aa111bb222"])
+    assert "Amazon Web Services Organization identifier" in str(res)

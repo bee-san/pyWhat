@@ -136,7 +136,8 @@
       "URL": null,
       "Tags": [
          "Internet",
-         "Networking"
+         "Networking",
+         "AWS"
        ]
     },
     {
@@ -148,7 +149,8 @@
       "URL": null,
       "Tags": [
          "Internet",
-         "Networking"
+         "Networking",
+         "AWS"
        ]
     },
     {
@@ -160,7 +162,8 @@
       "URL": null,
       "Tags": [
          "Credentials",
-         "Cyber Security"
+         "Cyber Security",
+         "AWS"
        ]
     },
     {
@@ -172,7 +175,44 @@
       "URL": null,
       "Tags": [
          "Credentials",
-         "Cyber Security"
+         "Cyber Security",
+         "AWS"
+       ]
+    },
+    {
+      "Name": "Amazon Web Services EC2 Instance identifier",
+      "Regex": "(?i)\\b[a-z]+-[a-z0-9]+",
+      "plural_name": false,
+      "Description": "An identifier used to identify a single Amazon EC2 instance",
+      "Rarity": 0.5,
+      "URL": null,
+      "Tags": [
+         "Identifiers",
+         "AWS"
+       ]
+    },
+    {
+      "Name": "Amazon Web Services EC2 Security Group identifier",
+      "Regex": "^([0-9]*\/)?sg-([0-9]*)",
+      "plural_name": false,
+      "Description": "An identifier used to identify a single EC2 Security Group",
+      "Rarity": 0.5,
+      "URL": null,
+      "Tags": [
+         "Identifiers",
+         "AWS"
+       ]
+    },
+    {
+      "Name": "Amazon Web Services Organization identifier",
+      "Regex": "^o-[a-z0-9]{10,32}$",
+      "plural_name": false,
+      "Description": "An identifier used to identify a single AWS Orgnanization",
+      "Rarity": 0.5,
+      "URL": null,
+      "Tags": [
+         "Identifiers",
+         "AWS"
        ]
     },
     {
