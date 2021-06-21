@@ -49,9 +49,8 @@
        "Rarity": 1,
        "URL": "https://etherscan.io/address/",
        "Tags": [
-          "Cryptocurrency",
           "Finance",
-          "Coin Wallet",
+          "Cryptocurrency Wallet",
           "Ethereum Wallet"
        ]
     },
@@ -77,7 +76,7 @@
        "Tags": [
           "Cryptocurrency",
           "Finance",
-          "Coin Wallet",
+          "Cryptocurrency Wallet",
           "Bitcoin Wallet"
        ]
     },
@@ -123,6 +122,7 @@
        "URL": null,
        "Tags": [
           "Media",
+          "YouTube",
           "YouTube Video"
        ]
     },
@@ -134,9 +134,8 @@
        "Rarity": 1,
        "URL": "https://www.blockchain.com/bch/address/",
        "Tags": [
-          "Cryptocurrency",
           "Finance",
-          "Coin Wallet",
+          "Cryptocurrency Wallet",
           "Bitcoin Cash Wallet"
        ]
     },
@@ -237,9 +236,8 @@
        "Rarity": 0.5,
        "URL": "https://dogechain.info/address/",
        "Tags": [
-          "Cryptocurrency",
           "Finance",
-          "Coin Wallet",
+          "Cryptocurrency Wallet",
           "Dogecoin Wallet"
        ]
     },
@@ -251,9 +249,8 @@
        "Rarity": 0.5,
        "URL": null,
        "Tags": [
-          "Cryptocurrency",
           "Finance",
-          "Coin Wallet",
+          "Cryptocurrency Wallet",
           "Monero Wallet"
        ]
     },
@@ -265,9 +262,8 @@
        "Rarity": 0.5,
        "URL": "https://live.blockcypher.com/ltc/address/",
        "Tags": [
-          "Cryptocurrency",
           "Finance",
-          "Coin Wallet",
+          "Cryptocurrency Wallet",
           "Litecoin Wallet"
        ]
     },
@@ -279,9 +275,8 @@
        "Rarity": 0.5,
        "URL": "https://xrpscan.com/account/",
        "Tags": [
-          "Cryptocurrency",
           "Finance",
-          "Coin Wallet",
+          "Cryptocurrency Wallet",
           "Ripple Wallet"
        ]
     },
