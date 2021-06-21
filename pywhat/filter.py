@@ -1,7 +1,8 @@
 from collections.abc import Mapping
 from typing import Optional
 
-from pywhat.helper import AvailableTags, CaseInsensitiveSet, InvalidTag, load_regexes
+from pywhat.helper import (AvailableTags, CaseInsensitiveSet, InvalidTag,
+                           load_regexes)
 
 
 class Filter(Mapping):
@@ -90,6 +91,16 @@ class Filter(Mapping):
     def __len__(self):
         return len(self._dict)
 
+    def __contains__(self, item):
+        try:
+            return (
+                self["MinRarity"] <= item["Rarity"] <= self["MaxRarity"]
+                and set(item["Tags"]) & self["Tags"]
+                and not set(item["Tags"]) & self["ExcludeTags"]
+            )
+        except:
+            return False
+
     def setdefault(self, key, default=None):
         return self._dict.setdefault(key, default)
 
@@ -114,11 +125,7 @@ class Distribution(Filter):
         min_rarity = self["MinRarity"]
         max_rarity = self["MaxRarity"]
         for regex in self._regexes:
-            if (
-                min_rarity <= regex["Rarity"] <= max_rarity
-                and set(regex["Tags"]) & self["Tags"]
-                and not set(regex["Tags"]) & self["ExcludeTags"]
-            ):
+            if regex in self:
                 temp_regexes.append(regex)
 
         self._regexes = temp_regexes
