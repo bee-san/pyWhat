@@ -6,9 +6,10 @@ from rich.table import Table
 
 
 class Printing:
+    def __init__(self):
+        self.console = Console(highlight=False)
+    
     def pretty_print(self, text: dict, text_input):
-        console = Console(highlight=False)
-
         to_out = ""
 
         if text["File Signatures"] and text["Regexes"]:
@@ -71,10 +72,10 @@ class Printing:
                             description,
                         )
 
-            console.print(to_out, table)
+            self.console.print(to_out, table)
 
         if to_out == "":
-            console.print("Nothing found!")
+            self.console.print("Nothing found!")
 
         """
         # This is commented out because there's too many possible hash idenfications
@@ -98,4 +99,13 @@ class Printing:
         """
 
     def print_json(self, text: dict):
-        return json.dumps(text, indent=4)
+        if text['Regexes'] == None:
+            self.console.print('{}')
+
+        else:
+            delete_values = ['Regex', 'plural_name', 'Tags', 'Rarity']
+            values = text['Regexes']['text'][0]['Regex Pattern']
+            for i in delete_values:
+                values.pop(i)
+            
+            self.console.print(json.dumps(values))

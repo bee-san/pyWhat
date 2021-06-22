@@ -1,4 +1,5 @@
 import re
+import json
 
 import pytest
 from click.testing import CliRunner
@@ -40,6 +41,20 @@ def test_tag_printing():
     assert result.exit_code == 0
     for tag in pywhat_tags:
         assert tag in result.output
+
+
+def test_json_printing():
+    """Test for valid json"""
+    runner = CliRunner()
+    result = runner.invoke(main, ['10.0.0.1', '--json'])
+    assert json.loads(result.output)
+
+
+def test_json_printing2():
+    """Test for empty json return"""
+    runner = CliRunner()
+    result = runner.invoke(main, ['', '--json'])
+    assert result.output.strip('\n') == '{}'
 
 
 def test_file_fixture():

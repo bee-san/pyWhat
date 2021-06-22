@@ -73,7 +73,8 @@ def parse_options(rarity, include_tags, exclude_tags):
 @click.option("-o", "--only-text", is_flag=True, help="Do not scan files or folders.")
 @click.option("-k", "--key", help="Sort by the specified key.")
 @click.option("--reverse", is_flag=True, help="Sort in reverse order.")
-def main(text_input, rarity, include_tags, exclude_tags, only_text, key, reverse):
+@click.option("--json", is_flag=True, help="Return results in json format.")
+def main(text_input, rarity, include_tags, exclude_tags, only_text, key, reverse, json):
     """
     pyWhat - Identify what something is.\n
 
@@ -110,6 +111,12 @@ def main(text_input, rarity, include_tags, exclude_tags, only_text, key, reverse
             matched - Sort by a matched string
 
             none - No sorting is done (the default)
+    
+    Exporting:
+
+        --json
+            
+            Return results in json format.
 
 
     Examples:
@@ -145,9 +152,14 @@ def main(text_input, rarity, include_tags, exclude_tags, only_text, key, reverse
             print("Invalid key")
             sys.exit(1)
     identified_output = what_obj.what_is_this(text_input, only_text, key, reverse)
-
+    
     p = printer.Printing()
-    p.pretty_print(identified_output, text_input)
+    
+    if json == True:
+        p.print_json(identified_output)
+
+    else:
+        p.pretty_print(identified_output, text_input)
 
 
 class What_Object:
