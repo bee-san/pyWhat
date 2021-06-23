@@ -1,8 +1,9 @@
-import re
 import json
+import re
 
 import pytest
 from click.testing import CliRunner
+
 from pywhat import pywhat_tags
 from pywhat.what import main
 
@@ -46,15 +47,15 @@ def test_tag_printing():
 def test_json_printing():
     """Test for valid json"""
     runner = CliRunner()
-    result = runner.invoke(main, ['10.0.0.1', '--json'])
-    assert json.loads(result.output)
+    result = runner.invoke(main, ["10.0.0.1", "--json"])
+    assert json.loads(result.output, strict=False)
 
 
 def test_json_printing2():
     """Test for empty json return"""
     runner = CliRunner()
-    result = runner.invoke(main, ['', '--json'])
-    assert result.output.strip('\n') == '{}'
+    result = runner.invoke(main, ["", "--json"])
+    assert result.output.strip("\n") == '{"File Signatures": null, "Regexes": null}'
 
 
 def test_file_fixture():
@@ -470,17 +471,20 @@ def test_only_text():
     assert result.exit_code == 0
     assert "Nothing found" in result.output
 
+
 def test_ssh_rsa_key():
     runner = CliRunner()
     result = runner.invoke(main, ["fixtures/file"])
     assert result.exit_code == 0
     assert re.findall("SSH RSA", str(result.output))
 
+
 def test_ssh_ecdsa_key():
     runner = CliRunner()
     result = runner.invoke(main, ["fixtures/file"])
     assert result.exit_code == 0
     assert re.findall("SSH ECDSA", str(result.output))
+
 
 def test_ssh_ed25519_key():
     runner = CliRunner()

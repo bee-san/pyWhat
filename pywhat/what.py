@@ -111,11 +111,11 @@ def main(text_input, rarity, include_tags, exclude_tags, only_text, key, reverse
             matched - Sort by a matched string
 
             none - No sorting is done (the default)
-    
+
     Exporting:
 
         --json
-            
+
             Return results in json format.
 
 
@@ -152,10 +152,10 @@ def main(text_input, rarity, include_tags, exclude_tags, only_text, key, reverse
             print("Invalid key")
             sys.exit(1)
     identified_output = what_obj.what_is_this(text_input, only_text, key, reverse)
-    
+
     p = printer.Printing()
-    
-    if json == True:
+
+    if json:
         p.print_json(identified_output)
 
     else:

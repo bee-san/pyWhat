@@ -8,7 +8,7 @@ from rich.table import Table
 class Printing:
     def __init__(self):
         self.console = Console(highlight=False)
-    
+
     def pretty_print(self, text: dict, text_input):
         to_out = ""
 
@@ -99,13 +99,4 @@ class Printing:
         """
 
     def print_json(self, text: dict):
-        if text['Regexes'] == None:
-            self.console.print('{}')
-
-        else:
-            delete_values = ['Regex', 'plural_name', 'Tags', 'Rarity']
-            values = text['Regexes']['text'][0]['Regex Pattern']
-            for i in delete_values:
-                values.pop(i)
-            
-            self.console.print(json.dumps(values))
+        self.console.print(json.dumps(text))
