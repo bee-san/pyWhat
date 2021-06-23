@@ -1,7 +1,7 @@
 import re
 
 import pytest
-from click.testing import CliRunner
+from click.testing import CliRunner, Result
 from pywhat import pywhat_tags
 from pywhat.what import main
 
@@ -472,3 +472,9 @@ def test_ssh_ed25519_key():
     result = runner.invoke(main, ["fixtures/file"])
     assert result.exit_code == 0
     assert re.findall("SSH ED25519", str(result.output))
+
+def test_asin():
+    runner = CliRunner()
+    result = runner.invoke(main, ["fixtures/file"])
+    assert result.exit_code == 0
+    assert re.findall("ASIN", str(result.output))

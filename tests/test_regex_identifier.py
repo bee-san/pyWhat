@@ -416,3 +416,12 @@ def test_ssh_ed25519_key():
         ]
     )
     assert "SSH ED25519" in str(res)
+
+def test_asin():
+    r = regex_identifier.RegexIdentifier()
+    res = r.check(
+        [
+            "http://www.amazon.com/Kindle-Wireless-Reading-Display-Generation/dp/B0015T963C"
+        ]
+    )
+    assert "ASIN" in str(res)
