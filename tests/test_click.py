@@ -1,7 +1,7 @@
 import re
 
 import pytest
-from click.testing import CliRunner, Result
+from click.testing import CliRunner
 from pywhat import pywhat_tags
 from pywhat.what import main
 
