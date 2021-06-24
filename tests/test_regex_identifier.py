@@ -393,24 +393,28 @@ def test_arn4():
 
 def test_unix_timestamp():
     r = regex_identifier.RegexIdentifier()
-    ts_from_ymd = lambda ymd: int(datetime.strptime(ymd, '%Y-%m-%d').timestamp())
 
-    res = r.check([str(ts_from_ymd('2020-01-01'))])
+    res = r.check(["1577836800"])  # 2020-01-01
     keys = [m['Regex Pattern']['Name'] for m in res]
     assert "Unix Timestamp" in keys
     assert "Recent Unix Timestamp" in keys
 
-    res = r.check([str(ts_from_ymd('1980-01-01'))])
+    res = r.check(["94694400"])  # 1973-01-01
     keys = [m['Regex Pattern']['Name'] for m in res]
     assert "Unix Timestamp" in keys
     assert "Recent Unix Timestamp" not in keys
 
-    res = r.check([str(ts_from_ymd('2020-01-01') * 1000)])
+    res = r.check(["1234567"])  # 7 numbers
+    keys = [m['Regex Pattern']['Name'] for m in res]
+    assert "Unix Timestamp" not in keys
+    assert "Recent Unix Timestamp" not in keys
+
+    res = r.check(["1577836800000"])  # 2020-01-01
     keys = [m['Regex Pattern']['Name'] for m in res]
     assert "Unix Millisecond Timestamp" in keys
     assert "Recent Unix Millisecond Timestamp" in keys
 
-    res = r.check([str(ts_from_ymd('1980-01-01') * 1000)])
+    res = r.check(["94694400000"])  # 1973-01-01
     keys = [m['Regex Pattern']['Name'] for m in res]
     assert "Unix Millisecond Timestamp" in keys
     assert "Recent Unix Millisecond Timestamp" not in keys
