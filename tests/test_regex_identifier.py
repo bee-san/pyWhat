@@ -1,5 +1,6 @@
 import pytest
 from pywhat import regex_identifier
+from pywhat.filter import Filter
 
 
 def test_regex_successfully_parses():
@@ -76,7 +77,9 @@ def test_lat_long6():
 
 def test_ip():
     r = regex_identifier.RegexIdentifier()
-    res = r.check(["http://10.1.1.1/just/a/test"])
+    res = r.check(
+        ["http://10.1.1.1/just/a/test"], boundaryless=Filter({"Tags": ["Identifiers"]})
+    )
     assert "Uniform Resource Locator (URL)" in res[0]["Regex Pattern"]["Name"]
     assert "Internet Protocol (IP) Address Version 4" in res[1]["Regex Pattern"]["Name"]
 
@@ -105,7 +108,9 @@ def test_ip4():
     assert "[2001:db8::1]:8080" in res[0]["Matched"]
 
 
-@pytest.mark.skip(reason="Fails because not a valid TLD. If presented in punycode, it works.")
+@pytest.mark.skip(
+    reason="Fails because not a valid TLD. If presented in punycode, it works."
+)
 def test_international_url():
     r = regex_identifier.RegexIdentifier()
     res = r.check(["http://папироска.рф"])
@@ -263,8 +268,10 @@ def test_email2():
 
 def test_email3():
     r = regex_identifier.RegexIdentifier()
-    res = r.check(["john.smith@[123.123.123.123]"])
-    assert "Email" in res[1]["Regex Pattern"]["Name"]
+    res = r.check(
+        ["john.smith@[123.123.123.123]"], boundaryless=Filter({"Tags": ["Identifiers"]})
+    )
+    assert "Email" in res[2]["Regex Pattern"]["Name"]
 
 
 def test_email4():

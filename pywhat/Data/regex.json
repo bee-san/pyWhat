@@ -13,7 +13,7 @@
     },
     {
        "Name": "Access-Control-Allow-Header",
-       "Regex": "(?i)Access-Control-Allow: [a-z0-9\\-*]",
+       "Regex": "(?i)^Access-Control-Allow: [a-z0-9\\-*]$",
        "plural_name": false,
        "Description": "Used for [#CAE4F1][link=https://en.wikipedia.org/wiki/Cross-origin_resource_sharing]Cross-Origin Resource Sharing (CORS)[/link][/#CAE4F1]",
        "Rarity": 1,
@@ -37,7 +37,7 @@
     },
     {
        "Name": "TryHackMe Flag Format",
-       "Regex": "(?i)thm{.*}|tryhackme{.*}",
+       "Regex": "(?i)^thm{.*}|tryhackme{.*}$",
        "plural_name": false,
        "Description": "Used for Capture The Flags at https://tryhackme.com",
        "Rarity": 1,
@@ -48,7 +48,7 @@
     },
     {
        "Name": "HackTheBox Flag Format",
-       "Regex": "(?i)hackthebox{.*}|htb{.*}",
+       "Regex": "(?i)^hackthebox{.*}|htb{.*}$",
        "plural_name": false,
        "Description": "Used for Capture The Flags at https://hackthebox.eu",
        "Rarity": 1,
@@ -59,7 +59,7 @@
     },
     {
        "Name": "Capture The Flag (CTF) Flag",
-       "Regex": "(?i)flag{.*}|ctf{.*}|ctfa{.*}",
+       "Regex": "(?i)^flag{.*}|ctf{.*}|ctfa{.*}$",
        "plural_name": false,
        "Description": null,
        "Rarity": 1,
@@ -70,7 +70,7 @@
     },
     {
        "Name": "YouTube Video",
-       "Regex": "https?:\\/\\/(?:youtu\\.be\\/|(?:[a-z]{2,3}\\.)?youtube\\.com\\/watch(?:\\?|#\\!)v=)([\\w-]{11})$",
+       "Regex": "^https?:\\/\\/(?:youtu\\.be\\/|(?:[a-z]{2,3}\\.)?youtube\\.com\\/watch(?:\\?|#\\!)v=)([\\w-]{11})$",
        "plural_name": false,
        "Description": null,
        "Rarity": 1,
@@ -117,7 +117,7 @@
     },
     {
        "Name": "Internet Protocol (IP) Address Version 6",
-       "Regex": "(?=.*[0-9])\\[?(?:(?:[0-9a-f]{1,4}:){7,7}[0-9a-f]{1,4}|([0-9a-f]{4}:){1,7}:|([0-9a-f]{1,4}:){1,6}:[0-9a-f]{1,4}|([0-9a-f]{1,4}:){1,5}(:[0-9a-f]{1,4}){1,2}|([0-9a-f]{1,4}:){1,4}(:[0-9a-f]{1,4}){1,3}|([0-9a-f]{1,4}:){1,3}(:[0-9a-f]{1,4}){1,4}|([0-9a-fA]{1,4}:){1,2}(:[0-9a-f]{1,4}){1,5}|[0-9a-f]{1,4}:((:[0-9a-f]{1,4}){1,6})|:((:[0-9a-f]{1,4}){1,7}|:)|fe80:(:[0-9a-f]{0,4}){0,4}%[0-9a-z]{1,}|::(ffff(:0{1,4}){0,1}:){0,1}((25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])\\.){3,3}(25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])|(?:[0-9a-f]{1,4}:){1,4}:(?:(25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])\\.){3,3}(25[0-5]|(?:2[0-4]|1{0,1}[0-9]){0,1}[0-9]))\\]?(?::[0-9]{1,5})?",
+       "Regex": "^(?=.*[0-9])\\[?(?:(?:[0-9a-f]{1,4}:){7,7}[0-9a-f]{1,4}|([0-9a-f]{4}:){1,7}:|([0-9a-f]{1,4}:){1,6}:[0-9a-f]{1,4}|([0-9a-f]{1,4}:){1,5}(:[0-9a-f]{1,4}){1,2}|([0-9a-f]{1,4}:){1,4}(:[0-9a-f]{1,4}){1,3}|([0-9a-f]{1,4}:){1,3}(:[0-9a-f]{1,4}){1,4}|([0-9a-fA]{1,4}:){1,2}(:[0-9a-f]{1,4}){1,5}|[0-9a-f]{1,4}:((:[0-9a-f]{1,4}){1,6})|:((:[0-9a-f]{1,4}){1,7}|:)|fe80:(:[0-9a-f]{0,4}){0,4}%[0-9a-z]{1,}|::(ffff(:0{1,4}){0,1}:){0,1}((25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])\\.){3,3}(25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])|(?:[0-9a-f]{1,4}:){1,4}:(?:(25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])\\.){3,3}(25[0-5]|(?:2[0-4]|1{0,1}[0-9]){0,1}[0-9]))\\]?(?::[0-9]{1,5})?$",
        "plural_name": false,
        "Description": null,
        "Rarity": 1,
@@ -153,7 +153,7 @@
     },
     {
        "Name": "Internet Protocol (IP) Address Version 4",
-       "Regex": "(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)(?::[0-9]{1,5})?",
+       "Regex": "^(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)(?::[0-9]{1,5})?$",
        "plural_name": false,
        "Description": null,
        "Rarity": 0.7,
@@ -464,7 +464,7 @@
     },
     {
       "Name": "Key:Value Pair",
-      "Regex": "[^:\\s]+[ ]?:[ ]?[^:\\s]+",
+      "Regex": "^[^:\\s]+[ ]?:[ ]?[^:\\s]+$",
       "plural_name": false,
       "Description": null,
       "Rarity": 0,
