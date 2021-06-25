@@ -264,6 +264,18 @@
        ]
     },
     {
+       "Name": "EUI-48 Identifier (Ethernet, WiFi, Bluetooth, etc)",
+       "Regex": "([0-9A-Fa-f]{2}[:]){5}[0-9A-Fa-f]{2}|([0-9A-Fa-f]{2}[-]){5}[0-9A-Fa-f]{2}|([0-9A-Fa-f]{4}[\\.]){2}[0-9A-Fa-f]{4}",
+       "plural_name": false,
+       "Description": null,
+       "Rarity": 0.5,
+       "URL": "https://maclookup.app/",
+       "Tags": [
+          "Identifiers",
+          "Networking"
+       ]
+    },
+    {
        "Name":"Latitude & Longitude Coordinates",
        "Regex":"(?i)^(?:(?:N|W|S|E)\\s?\\d+\\s?\\u00B0?\\s?\\d+\\.?\\d*\\s?\\'?\\s?\\d*\\.?\\,?\\d*?\"?\\s?){1,2}$|^(?:\\d+\\s?\\u00B0\\s?\\d+\\s?\\'\\s?\\d+\\.?\\,?\\d{0,}?\"\\s?(?:N|W|S|E)\\s?){1,2}$|^(?:[-+]?(?:[0-8]?\\d+\\.\\d{4,}|90(?:\\.0+)?),\\s*[-+]?(?:180(?:\\.0+)?|(?:(?:1[0-7]\\d)|(?:[1-9]?\\d))(?:\\.\\d+)?))$",
        "plural_name": true,
