@@ -703,19 +703,19 @@
        ]
     },
     {
-       "Name": "American Social Security Number",
-       "Regex": "^[0-9]{3}-[0-9]{2}-[0-9]{4}$",
-       "plural_name": false,
-       "Description": "An [#CAE4F1][link=https://en.wikipedia.org/wiki/Social_Security_number]American Identification Number[/link][/#CAE4F1]",
-       "Rarity": 0.2,
-       "URL": null,
-       "Tags": [
-          "Credentials",
-          "Password",
-          "Username",
-          "SSN"
-       ]
-    },
+      "Name": "American Social Security Number",
+      "Regex": "^([0-9][0-9][0-9])(?<!666|000|9[0-9][0-9])(=|\\+|_|\\#|:|;|\\.|-|\\s){0,3}([1-9][1-9]|0[1-9]|[1-9]0)(=|\\+|_|\\#|:|;|\\.|-|\\s){0,3}([0-9][0-9][0-9][0-9])(?<!0000)(=|\\+|_|\\#|:|;|\\.|-|\\s){0,3}?$",
+      "plural_name": false,
+      "Description": "An [#CAE4F1][link=https://en.wikipedia.org/wiki/Social_Security_number]American Identification Number[/link][/#CAE4F1]",
+      "Rarity": 0.5,
+      "URL": null,
+      "Tags": [
+         "Credentials",
+         "Password",
+         "Username",
+         "SSN"
+      ]
+   },
     {
       "Name": "Key:Value Pair",
       "Regex": "[^:\\s]+[ ]?:[ ]?[^:\\s]+",
