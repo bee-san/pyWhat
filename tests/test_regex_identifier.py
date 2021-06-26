@@ -107,6 +107,35 @@ def test_ip4():
     res = r.check(["[2001:db8::1]:8080"])
     assert "[2001:db8::1]:8080" in res[0]["Matched"]
 
+def test_mac():
+    r = regex_identifier.RegexIdentifier()
+    res = r.check(["00:00:00:00:00:00"])
+    assert res and "00:00:00:00:00:00" in res[0]["Matched"] and res[0]["Regex Pattern"]["Name"] == "EUI-48 Identifier (Ethernet, WiFi, Bluetooth, etc)"
+
+def test_mac2():
+    r = regex_identifier.RegexIdentifier()
+    res = r.check(["00-00-00-00-00-00"])
+    assert res and "00-00-00-00-00-00" in res[0]["Matched"] and res[0]["Regex Pattern"]["Name"] == "EUI-48 Identifier (Ethernet, WiFi, Bluetooth, etc)"
+
+def test_mac3():
+    r = regex_identifier.RegexIdentifier()
+    res = r.check(["0000.0000.0000"])
+    assert res and "0000.0000.0000" in res[0]["Matched"] and res[0]["Regex Pattern"]["Name"] == "EUI-48 Identifier (Ethernet, WiFi, Bluetooth, etc)"
+
+def test_mac4():
+    r = regex_identifier.RegexIdentifier()
+    res = r.check(["00-00-00-00.00-00"])
+    assert not res or res[0]["Regex Pattern"]["Name"] != "EUI-48 Identifier (Ethernet, WiFi, Bluetooth, etc)"
+
+def test_mac5():
+    r = regex_identifier.RegexIdentifier()
+    res = r.check(["00:00-00-00-00-00"])
+    assert not res or res[0]["Regex Pattern"]["Name"] != "EUI-48 Identifier (Ethernet, WiFi, Bluetooth, etc)"
+
+def test_mac6():
+    r = regex_identifier.RegexIdentifier()
+    res = r.check(["00:00:0G:00:00:00"])
+    assert not res or res[0]["Regex Pattern"]["Name"] != "EUI-48 Identifier (Ethernet, WiFi, Bluetooth, etc)"
 
 @pytest.mark.skip(
     reason="Fails because not a valid TLD. If presented in punycode, it works."
