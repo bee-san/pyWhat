@@ -406,6 +406,17 @@
        ]
     },
     {
+       "Name":"Placekey Universal Identifier for Phyiscal Place",
+       "Regex":"^([0-9][0-9][0-9]-[0-9][0-9][0-9]@[a-z|0-9][a-z0-9][a-z0-9]-[a-z0-9][a-z0-9][a-z0-9]-[a-z0-9][a-z0-9][a-z0-9])$",
+       "plural_name": true,
+       "Description": "Placekey is a free, universal standard identifier for any physical place, so that the data pertaining to those places can be shared across datasets and organizations easily.",
+       "Rarity": 0.5,
+       "URL": null,
+       "Tags": [
+          "Geo-location"
+       ]
+    },
+    {
        "Name": "Dogecoin (DOGE) Wallet Address",
        "Regex": "^D{1}[5-9A-HJ-NP-U]{1}[1-9A-HJ-NP-Za-km-z]{32}$",
        "plural_name": false,
