@@ -24,7 +24,7 @@ def test_filtration():
     runner = CliRunner()
     result = runner.invoke(
         main,
-        ["--rarity", "0.5:", "--include_tags", "Identifiers,Media", "fixtures/file"],
+        ["--rarity", "0.5:", "--include", "Identifiers,Media", "fixtures/file"],
     )
     assert result.exit_code == 0
     assert "THM{" not in result.output
@@ -437,14 +437,18 @@ def test_key_value_min_rarity_0_5():
 
 def test_key_value_min_rarity_0_6():
     runner = CliRunner()
-    result = runner.invoke(main, ["--rarity", "0:", "a:b:c"])
+    result = runner.invoke(
+        main, ["--rarity", "0:", "--boundaryless-rarity", "0:", "a:b:c"]
+    )
     assert result.exit_code == 0
     assert re.findall("a:b", str(result.output))
 
 
 def test_key_value_min_rarity_0_7():
     runner = CliRunner()
-    result = runner.invoke(main, ["--rarity", "0:", "a : b:c"])
+    result = runner.invoke(
+        main, ["--rarity", "0:", "--boundaryless-rarity", "0:", "a : b:c"]
+    )
     assert result.exit_code == 0
     assert re.findall("a : b", str(result.output))
 
@@ -452,5 +456,21 @@ def test_key_value_min_rarity_0_7():
 def test_only_text():
     runner = CliRunner()
     result = runner.invoke(main, ["-o", "fixtures/file"])
+    assert result.exit_code == 0
+    assert "Nothing found" in result.output
+
+
+def test_boundaryless():
+    runner = CliRunner()
+    result = runner.invoke(
+        main, ["-be", "identifiers, security", "abc118.103.238.230abc"]
+    )
+    assert result.exit_code == 0
+    assert "Nothing found" in result.output
+
+
+def test_boundaryless2():
+    runner = CliRunner()
+    result = runner.invoke(main, ["-bi", "media", "abc118.103.238.230abc"])
     assert result.exit_code == 0
     assert "Nothing found" in result.output
