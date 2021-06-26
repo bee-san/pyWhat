@@ -491,3 +491,21 @@ def test_ssh_ed25519_key():
     result = runner.invoke(main, ["fixtures/file"])
     assert result.exit_code == 0
     assert re.findall("SSH ED25519", str(result.output))
+
+def test_mac():
+    runner = CliRunner()
+    result = runner.invoke(main, ["fixtures/file"])
+    assert result.exit_code == 0
+    assert re.findall("de:ad:be:ef:ca:fe", str(result.output))
+    assert re.findall("DE:AD:BE:EF:CA:FE", str(result.output))
+
+def test_mac_tags():
+    runner = CliRunner()
+    result = runner.invoke(
+        main,
+        ["--include_tags", "Identifiers,Networking", "fixtures/file"],
+    )
+    assert result.exit_code == 0
+    assert "Ethernet" in result.output
+    assert "IP" in result.output
+
