@@ -8,7 +8,9 @@
       "URL": null,
       "Tags": [
          "Credentials",
-         "Cyber Security"
+         "Cyber Security",
+         "Public Key",
+         "RSA Public Key"
        ]
     },
     {
@@ -20,7 +22,9 @@
       "URL": null,
       "Tags": [
          "Credentials",
-         "Cyber Security"
+         "Cyber Security",
+         "Public Key",
+         "SSH Public Key"
        ]
     },
     {
@@ -32,7 +36,9 @@
       "URL": null,
       "Tags": [
          "Credentials",
-         "Cyber Security"
+         "Cyber Security",
+         "Public Key",
+         "SSH Public Key"
        ]
     },
     {
@@ -43,8 +49,9 @@
        "Rarity": 1,
        "URL": "https://etherscan.io/address/",
        "Tags": [
-          "Cryptocurrency",
-          "Finance"
+          "Finance",
+          "Cryptocurrency Wallet",
+          "Ethereum Wallet"
        ]
     },
     {
@@ -68,7 +75,9 @@
        "URL": "https://www.blockchain.com/btc/address/",
        "Tags": [
           "Cryptocurrency",
-          "Finance"
+          "Finance",
+          "Cryptocurrency Wallet",
+          "Bitcoin Wallet"
        ]
     },
     {
@@ -112,7 +121,9 @@
        "Rarity": 1,
        "URL": null,
        "Tags": [
-          "Media"
+          "Media",
+          "YouTube",
+          "YouTube Video"
        ]
     },
     {
@@ -123,8 +134,9 @@
        "Rarity": 1,
        "URL": "https://www.blockchain.com/bch/address/",
        "Tags": [
-          "Cryptocurrency",
-          "Finance"
+          "Finance",
+          "Cryptocurrency Wallet",
+          "Bitcoin Cash Wallet"
        ]
     },
     {
@@ -136,7 +148,8 @@
       "URL": null,
       "Tags": [
          "Internet",
-         "Networking"
+         "Networking",
+         "AWS"
        ]
     },
     {
@@ -148,7 +161,8 @@
       "URL": null,
       "Tags": [
          "Internet",
-         "Networking"
+         "Networking",
+         "AWS"
        ]
     },
     {
@@ -160,7 +174,8 @@
        "URL": "https://www.shodan.io/host/",
        "Tags": [
           "Identifiers",
-          "Networking"
+          "Networking",
+          "IPv6"
        ]
     },
     {
@@ -338,7 +353,8 @@
       "Tags": [
          "Identifiers",
          "Networking",
-         "AWS"
+         "AWS",
+         "AWS ARN"
        ]
     },
     {
@@ -349,7 +365,8 @@
        "Rarity": 0.7,
        "URL": null,
        "Tags": [
-          "Identifiers"
+          "Identifiers",
+          "URL"
        ]
     },
     {
@@ -361,7 +378,8 @@
        "URL": "https://www.shodan.io/host/",
        "Tags": [
           "Identifiers",
-          "Networking"
+          "Networking",
+          "IPv4"
        ]
     },
     {
@@ -395,8 +413,9 @@
        "Rarity": 0.5,
        "URL": "https://dogechain.info/address/",
        "Tags": [
-          "Cryptocurrency",
-          "Finance"
+          "Finance",
+          "Cryptocurrency Wallet",
+          "Dogecoin Wallet"
        ]
     },
     {
@@ -407,8 +426,9 @@
        "Rarity": 0.5,
        "URL": null,
        "Tags": [
-          "Cryptocurrency",
-          "Finance"
+          "Finance",
+          "Cryptocurrency Wallet",
+          "Monero Wallet"
        ]
     },
     {
@@ -419,8 +439,9 @@
        "Rarity": 0.5,
        "URL": "https://live.blockcypher.com/ltc/address/",
        "Tags": [
-          "Cryptocurrency",
-          "Finance"
+          "Finance",
+          "Cryptocurrency Wallet",
+          "Litecoin Wallet"
        ]
     },
     {
@@ -431,8 +452,9 @@
        "Rarity": 0.5,
        "URL": "https://xrpscan.com/account/",
        "Tags": [
-          "Cryptocurrency",
-          "Finance"
+          "Finance",
+          "Cryptocurrency Wallet",
+          "Ripple Wallet"
        ]
     },
     {
@@ -446,7 +468,8 @@
          "Security",
          "Hacking",
          "Token",
-         "Website"
+         "Website",
+         "JWT Token"
        ]
     },
     {
@@ -458,7 +481,8 @@
        "URL": null,
        "Tags": [
           "Credit Card",
-          "Finance"
+          "Finance",
+          "AMEX CC"
        ]
     },
     {
@@ -506,7 +530,8 @@
        "URL": null,
        "Tags": [
           "Credit Card",
-          "Finance"
+          "Finance",
+          "Discover CC"
        ]
     },
     {
@@ -518,7 +543,8 @@
        "URL": null,
        "Tags": [
           "Credit Card",
-          "Finance"
+          "Finance",
+          "MasterCard CC"
        ]
     },
     {
@@ -542,7 +568,8 @@
        "URL": null,
        "Tags": [
           "Credit Card",
-          "Finance"
+          "Finance",
+          "Visa CC"
        ]
     },
     {
@@ -625,7 +652,8 @@
        "URL": null,
        "Tags": [
           "Identifiers",
-          "Credentials"
+          "Credentials",
+          "Email Address"
        ]
     },
     {
@@ -637,7 +665,8 @@
        "URL": null,
        "Tags": [
           "Identifiers",
-          "Credentials"
+          "Credentials",
+          "Phone Number"
        ]
     },
     {
@@ -672,7 +701,8 @@
        "Tags": [
           "Credentials",
           "Password",
-          "Username"
+          "Username",
+          "SSN"
        ]
     },
     {
