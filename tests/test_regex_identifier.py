@@ -333,6 +333,60 @@ def test_ssn():
     assert "Social" in str(res)
 
 
+def test_ssn2():
+    r = regex_identifier.RegexIdentifier()
+    res = r.check(["001:01:0001"])
+    assert "Social" in str(res)
+
+
+def test_ssn3():
+    r = regex_identifier.RegexIdentifier()
+    res = r.check(["001.01.0001"])
+    assert "Social" in str(res)
+
+
+def test_ssn4():
+    r = regex_identifier.RegexIdentifier()
+    res = r.check(["001 01 0001"])
+    assert "Social" in str(res)
+
+
+def test_ssn5():
+    r = regex_identifier.RegexIdentifier()
+    res = r.check(["900-01-2222"])
+    assert "Social" not in str(res)
+
+
+def test_ssn6():
+    r = regex_identifier.RegexIdentifier()
+    res = r.check(["999-21-2222"])
+    assert "Social" not in str(res)
+
+
+def test_ssn7():
+    r = regex_identifier.RegexIdentifier()
+    res = r.check(["666-21-2222"])
+    assert "Social" not in str(res)
+
+
+def test_ssn8():
+    r = regex_identifier.RegexIdentifier()
+    res = r.check(["000-21-5544"])
+    assert "Social" not in str(res)
+
+
+def test_ssn9():
+    r = regex_identifier.RegexIdentifier()
+    res = r.check(["122-00-5544"])
+    assert "Social" not in str(res)
+
+
+def test_ssn10():
+    r = regex_identifier.RegexIdentifier()
+    res = r.check(["122-32-0000"])
+    assert "Social" not in str(res)
+
+
 def test_cors():
     r = regex_identifier.RegexIdentifier()
     res = r.check(["Access-Control-Allow: *"])

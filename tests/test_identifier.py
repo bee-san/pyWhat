@@ -44,7 +44,7 @@ def test_identifier_works3():
     out = r.identify("fixtures/file", only_text=False)
     assert (
         "Dogecoin (DOGE) Wallet Address"
-        in out["Regexes"]["file"][1]["Regex Pattern"]["Name"]
+        in out["Regexes"]["file"][2]["Regex Pattern"]["Name"]
     )
 
 
