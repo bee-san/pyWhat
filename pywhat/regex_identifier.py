@@ -30,9 +30,8 @@ class RegexIdentifier:
                 if reg in boundaryless:
                     regex = re.sub(r"(?<!\\)\^(?![^\[\]]*(?<!\\)\])", "", regex)
                     regex = re.sub(r"(?<!\\)\$(?![^\[\]]*(?<!\\)\])", "", regex)
-                matched_regex = re.search(regex, string, re.UNICODE)
 
-                if matched_regex:
+                for matched_regex in re.finditer(regex, string, re.UNICODE):
                     reg = copy.copy(reg)  # necessary, when checking phone
                     # numbers from file that may contain
                     # non-international numbers

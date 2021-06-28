@@ -152,3 +152,10 @@ def test_boundaryless():
     )
     out = r.identify("127.0.0.1abrakadabra", boundaryless=Filter({"Tags": ["Media"]}))
     assert out["Regexes"] is None
+
+
+def test_finditer():
+    r = identifier.Identifier(boundaryless=Filter())
+    out = r.identify("anon@random.org dad@gmail.com")
+    assert "anon@random.org" in out["Regexes"]["text"][2]["Matched"]
+    assert "dad@gmail.com" in out["Regexes"]["text"][3]["Matched"]
