@@ -28,7 +28,8 @@ class RegexIdentifier:
             for reg in dist.get_regexes():
                 regex = reg["Regex"]
                 if reg in boundaryless:
-                    regex = regex.removeprefix("^").removesuffix("$")
+                    regex = re.sub(r"(?<!\\)\^(?![^\[\]]*(?<!\\)\])", "", regex)
+                    regex = re.sub(r"(?<!\\)\$(?![^\[\]]*(?<!\\)\])", "", regex)
                 matched_regex = re.search(regex, string, re.UNICODE)
 
                 if matched_regex:

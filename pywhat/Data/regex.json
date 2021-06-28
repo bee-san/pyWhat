@@ -37,7 +37,7 @@
     },
     {
        "Name": "TryHackMe Flag Format",
-       "Regex": "(?i)^thm{.*}|tryhackme{.*}$",
+       "Regex": "(?i)^(thm{.*}|tryhackme{.*})$",
        "plural_name": false,
        "Description": "Used for Capture The Flags at https://tryhackme.com",
        "Rarity": 1,
@@ -48,7 +48,7 @@
     },
     {
        "Name": "HackTheBox Flag Format",
-       "Regex": "(?i)^hackthebox{.*}|htb{.*}$",
+       "Regex": "(?i)^(hackthebox{.*}|htb{.*})$",
        "plural_name": false,
        "Description": "Used for Capture The Flags at https://hackthebox.eu",
        "Rarity": 1,
@@ -59,7 +59,7 @@
     },
     {
        "Name": "Capture The Flag (CTF) Flag",
-       "Regex": "(?i)^flag{.*}|ctf{.*}|ctfa{.*}$",
+       "Regex": "(?i)^(flag{.*}|ctf{.*}|ctfa{.*})$",
        "plural_name": false,
        "Description": null,
        "Rarity": 1,
