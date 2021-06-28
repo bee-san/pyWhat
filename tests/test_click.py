@@ -1,7 +1,9 @@
+import json
 import re
 
 import pytest
 from click.testing import CliRunner
+
 from pywhat import pywhat_tags
 from pywhat.what import main
 
@@ -40,6 +42,20 @@ def test_tag_printing():
     assert result.exit_code == 0
     for tag in pywhat_tags:
         assert tag in result.output
+
+
+def test_json_printing():
+    """Test for valid json"""
+    runner = CliRunner()
+    result = runner.invoke(main, ["10.0.0.1", "--json"])
+    assert json.loads(result.output, strict=False)
+
+
+def test_json_printing2():
+    """Test for empty json return"""
+    runner = CliRunner()
+    result = runner.invoke(main, ["", "--json"])
+    assert result.output.strip("\n") == '{"File Signatures": null, "Regexes": null}'
 
 
 def test_file_fixture():
@@ -454,3 +470,42 @@ def test_only_text():
     result = runner.invoke(main, ["-o", "fixtures/file"])
     assert result.exit_code == 0
     assert "Nothing found" in result.output
+
+
+def test_ssh_rsa_key():
+    runner = CliRunner()
+    result = runner.invoke(main, ["fixtures/file"])
+    assert result.exit_code == 0
+    assert re.findall("SSH RSA", str(result.output))
+
+
+def test_ssh_ecdsa_key():
+    runner = CliRunner()
+    result = runner.invoke(main, ["fixtures/file"])
+    assert result.exit_code == 0
+    assert re.findall("SSH ECDSA", str(result.output))
+
+
+def test_ssh_ed25519_key():
+    runner = CliRunner()
+    result = runner.invoke(main, ["fixtures/file"])
+    assert result.exit_code == 0
+    assert re.findall("SSH ED25519", str(result.output))
+
+def test_mac():
+    runner = CliRunner()
+    result = runner.invoke(main, ["fixtures/file"])
+    assert result.exit_code == 0
+    assert re.findall("de:ad:be:ef:ca:fe", str(result.output))
+    assert re.findall("DE:AD:BE:EF:CA:FE", str(result.output))
+
+def test_mac_tags():
+    runner = CliRunner()
+    result = runner.invoke(
+        main,
+        ["--include_tags", "Identifiers,Networking", "fixtures/file"],
+    )
+    assert result.exit_code == 0
+    assert "Ethernet" in result.output
+    assert "IP" in result.output
+

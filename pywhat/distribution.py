@@ -1,6 +1,7 @@
 from typing import Optional
 
-from pywhat.helper import AvailableTags, CaseInsensitiveSet, InvalidTag, load_regexes
+from pywhat.helper import (AvailableTags, CaseInsensitiveSet, InvalidTag,
+                           load_regexes)
 
 
 class Distribution:
