@@ -8,7 +8,9 @@
       "URL": null,
       "Tags": [
          "Credentials",
-         "Cyber Security"
+         "Cyber Security",
+         "Public Key",
+         "RSA Public Key"
        ]
     },
     {
@@ -20,7 +22,9 @@
       "URL": null,
       "Tags": [
          "Credentials",
-         "Cyber Security"
+         "Cyber Security",
+         "Public Key",
+         "SSH Public Key"
        ]
     },
     {
@@ -32,7 +36,9 @@
       "URL": null,
       "Tags": [
          "Credentials",
-         "Cyber Security"
+         "Cyber Security",
+         "Public Key",
+         "SSH Public Key"
        ]
     },
     {
@@ -43,8 +49,9 @@
        "Rarity": 1,
        "URL": "https://etherscan.io/address/",
        "Tags": [
-          "Cryptocurrency",
-          "Finance"
+          "Finance",
+          "Cryptocurrency Wallet",
+          "Ethereum Wallet"
        ]
     },
     {
@@ -68,7 +75,9 @@
        "URL": "https://www.blockchain.com/btc/address/",
        "Tags": [
           "Cryptocurrency",
-          "Finance"
+          "Finance",
+          "Cryptocurrency Wallet",
+          "Bitcoin Wallet"
        ]
     },
     {
@@ -112,7 +121,9 @@
        "Rarity": 1,
        "URL": null,
        "Tags": [
-          "Media"
+          "Media",
+          "YouTube",
+          "YouTube Video"
        ]
     },
     {
@@ -123,8 +134,9 @@
        "Rarity": 1,
        "URL": "https://www.blockchain.com/bch/address/",
        "Tags": [
-          "Cryptocurrency",
-          "Finance"
+          "Finance",
+          "Cryptocurrency Wallet",
+          "Bitcoin Cash Wallet"
        ]
     },
     {
@@ -136,7 +148,8 @@
       "URL": null,
       "Tags": [
          "Internet",
-         "Networking"
+         "Networking",
+         "AWS"
        ]
     },
     {
@@ -148,7 +161,8 @@
       "URL": null,
       "Tags": [
          "Internet",
-         "Networking"
+         "Networking",
+         "AWS"
        ]
     },
     {
@@ -160,8 +174,174 @@
        "URL": "https://www.shodan.io/host/",
        "Tags": [
           "Identifiers",
-          "Networking"
+          "Networking",
+          "IPv6"
        ]
+    },
+    {
+      "Name": "Google API Key",
+      "Regex": "AIza[0-9A-Za-z-_]{35}",
+      "plural_name": false,
+      "Description": null,
+      "Rarity": 1,
+      "URL": null,
+      "Tags": [
+         "API Keys",
+         "Credentials",
+         "Google"
+      ]
+    },
+    {
+      "Name": "Google ReCaptcha API Key",
+      "Regex": "6L[0-9A-Za-z-_]{38}|^6[0-9a-zA-Z_-]{39}$",
+      "plural_name": false,
+      "Description": null,
+      "Rarity": 1,
+      "URL": null,
+      "Tags": [
+         "API Keys",
+         "Credentials",
+         "Google"
+      ]
+   },
+   {
+      "Name": "Google OAuth Token",
+      "Regex": "ya29.[0-9A-Za-z-_]+",
+      "plural_name": false,
+      "Description": null,
+      "Rarity": 1,
+      "URL": null,
+      "Tags": [
+         "API Keys",
+         "Credentials",
+         "Google"
+      ]
+   },
+   {
+      "Name": "AWS Access Key ID",
+      "Regex": "A[SK]IA[0-9A-Z]{16}",
+      "plural_name": false,
+      "Description": null,
+      "Rarity": 1,
+      "URL": null,
+      "Tags": [
+         "API Keys",
+         "Credentials",
+         "AWS"
+      ]
+   },
+    {
+      "Name": "Mailgun API Key",
+      "Regex": "key-[0-9a-zA-Z]{32}",
+      "plural_name": false,
+      "Description": null,
+      "Rarity": 1,
+      "URL": null,
+      "Tags": [
+         "API Keys",
+         "Credentials"
+      ]
+   },
+   {
+      "Name": "Twilio API Key",
+      "Regex": "SK[0-9a-fA-F]{32}",
+      "plural_name": false,
+      "Description": null,
+      "Rarity": 1,
+      "URL": null,
+      "Tags": [
+         "API Keys",
+         "Credentials",
+         "Twilio"
+     ]
+   },
+   {
+      "Name": "Twilio Account SID",
+      "Regex": "AC[a-zA-Z0-9_-]{32}",
+      "plural_name": false,
+      "Description": null,
+      "Rarity": 1,
+      "URL": null,
+      "Tags": [
+         "API Keys",
+         "Credentials",
+         "Twilio"
+      ]
+   },
+   {
+      "Name": "Twilio Application SID",
+      "Regex": "AP[a-zA-Z0-9_-]{32}",
+      "plural_name": false,
+      "Description": null,
+      "Rarity": 1,
+      "URL": null,
+      "Tags": [
+         "API Keys",
+         "Credentials",
+         "Twilio"
+      ]
+   },
+    {
+      "Name": "Square Application Secret",
+      "Regex": "sandbox-?sq0csp-[0-9A-Za-z-_]{43}|sq0[a-z]{3}-[0-9A-Za-z-_]{22,43}",
+      "plural_name": false,
+      "Description": null,
+      "Rarity": 1,
+      "URL": null,
+      "Tags": [
+         "API Keys",
+         "Credentials",
+         "Square"
+      ]
+   },
+   {
+      "Name": "Square Access Token",
+      "Regex": "sqOatp-[0-9A-Za-z-_]{22}|EAAA[a-zA-Z0-9-_]{60}",
+      "plural_name": false,
+      "Description": null,
+      "Rarity": 1,
+      "URL": null,
+      "Tags": [
+         "API Keys",
+         "Credentials",
+         "Square"
+      ]
+   },
+   {
+      "Name": "Stripe API Key",
+      "Regex": "[srp]k_live_[0-9a-zA-Z]{24}",
+      "plural_name": false,
+      "Description": null,
+      "Rarity": 1,
+      "URL": null,
+      "Tags": [
+         "API Keys",
+         "Credentials"
+      ]
+    },
+    {
+      "Name": "GitHub Access Token",
+      "Regex": "[a-zA-Z0-9_-]*:[a-zA-Z0-9_-]+@github.com*",
+      "plural_name": false,
+      "Description": null,
+      "Rarity": 1,
+      "URL": null,
+      "Tags": [
+         "API Keys",
+         "Credentials"
+      ]
+    },
+    {
+      "Name": "Slack Token",
+      "Regex": "xox[a-zA-Z]-[a-zA-Z0-9-]+",
+      "plural_name": false,
+      "Description": null,
+      "Rarity": 1,
+      "URL": null,
+      "Tags": [
+         "API Keys",
+         "Credentials"
+      ]
     },
     {
       "Name": "Amazon Resource Name (ARN)",
@@ -173,7 +353,8 @@
       "Tags": [
          "Identifiers",
          "Networking",
-         "AWS"
+         "AWS",
+         "AWS ARN"
        ]
     },
     {
@@ -184,7 +365,8 @@
        "Rarity": 0.7,
        "URL": null,
        "Tags": [
-          "Identifiers"
+          "Identifiers",
+          "URL"
        ]
     },
     {
@@ -194,6 +376,19 @@
        "Description": null,
        "Rarity": 0.7,
        "URL": "https://www.shodan.io/host/",
+       "Tags": [
+          "Identifiers",
+          "Networking",
+          "IPv4"
+       ]
+    },
+    {
+       "Name": "EUI-48 Identifier (Ethernet, WiFi, Bluetooth, etc)",
+       "Regex": "([0-9A-Fa-f]{2}[:]){5}[0-9A-Fa-f]{2}|([0-9A-Fa-f]{2}[-]){5}[0-9A-Fa-f]{2}|([0-9A-Fa-f]{4}[\\.]){2}[0-9A-Fa-f]{4}",
+       "plural_name": false,
+       "Description": null,
+       "Rarity": 0.5,
+       "URL": "https://maclookup.app/",
        "Tags": [
           "Identifiers",
           "Networking"
@@ -223,6 +418,17 @@
        ]
     },
     {
+       "Name":"Placekey Universal Identifier for Phyiscal Place",
+       "Regex":"^([0-9][0-9][0-9]-[0-9][0-9][0-9]@[a-z|0-9][a-z0-9][a-z0-9]-[a-z0-9][a-z0-9][a-z0-9]-[a-z0-9][a-z0-9][a-z0-9])$",
+       "plural_name": true,
+       "Description": "Placekey is a free, universal standard identifier for any physical place, so that the data pertaining to those places can be shared across datasets and organizations easily.",
+       "Rarity": 0.5,
+       "URL": null,
+       "Tags": [
+          "Geo-location"
+       ]
+    },
+    {
        "Name": "Dogecoin (DOGE) Wallet Address",
        "Regex": "^D{1}[5-9A-HJ-NP-U]{1}[1-9A-HJ-NP-Za-km-z]{32}$",
        "plural_name": false,
@@ -230,8 +436,9 @@
        "Rarity": 0.5,
        "URL": "https://dogechain.info/address/",
        "Tags": [
-          "Cryptocurrency",
-          "Finance"
+          "Finance",
+          "Cryptocurrency Wallet",
+          "Dogecoin Wallet"
        ]
     },
     {
@@ -242,8 +449,9 @@
        "Rarity": 0.5,
        "URL": null,
        "Tags": [
-          "Cryptocurrency",
-          "Finance"
+          "Finance",
+          "Cryptocurrency Wallet",
+          "Monero Wallet"
        ]
     },
     {
@@ -254,8 +462,9 @@
        "Rarity": 0.5,
        "URL": "https://live.blockcypher.com/ltc/address/",
        "Tags": [
-          "Cryptocurrency",
-          "Finance"
+          "Finance",
+          "Cryptocurrency Wallet",
+          "Litecoin Wallet"
        ]
     },
     {
@@ -266,8 +475,9 @@
        "Rarity": 0.5,
        "URL": "https://xrpscan.com/account/",
        "Tags": [
-          "Cryptocurrency",
-          "Finance"
+          "Finance",
+          "Cryptocurrency Wallet",
+          "Ripple Wallet"
        ]
     },
     {
@@ -281,7 +491,8 @@
          "Security",
          "Hacking",
          "Token",
-         "Website"
+         "Website",
+         "JWT Token"
        ]
     },
     {
@@ -293,7 +504,8 @@
        "URL": null,
        "Tags": [
           "Credit Card",
-          "Finance"
+          "Finance",
+          "AMEX CC"
        ]
     },
     {
@@ -341,7 +553,8 @@
        "URL": null,
        "Tags": [
           "Credit Card",
-          "Finance"
+          "Finance",
+          "Discover CC"
        ]
     },
     {
@@ -353,7 +566,8 @@
        "URL": null,
        "Tags": [
           "Credit Card",
-          "Finance"
+          "Finance",
+          "MasterCard CC"
        ]
     },
     {
@@ -377,7 +591,8 @@
        "URL": null,
        "Tags": [
           "Credit Card",
-          "Finance"
+          "Finance",
+          "Visa CC"
        ]
     },
     {
@@ -460,7 +675,8 @@
        "URL": null,
        "Tags": [
           "Identifiers",
-          "Credentials"
+          "Credentials",
+          "Email Address"
        ]
     },
     {
@@ -472,7 +688,8 @@
        "URL": null,
        "Tags": [
           "Identifiers",
-          "Credentials"
+          "Credentials",
+          "Phone Number"
        ]
     },
     {
@@ -498,18 +715,19 @@
        ]
     },
     {
-       "Name": "American Social Security Number",
-       "Regex": "^[0-9]{3}-[0-9]{2}-[0-9]{4}$",
-       "plural_name": false,
-       "Description": "An [#CAE4F1][link=https://en.wikipedia.org/wiki/Social_Security_number]American Identification Number[/link][/#CAE4F1]",
-       "Rarity": 0.2,
-       "URL": null,
-       "Tags": [
-          "Credentials",
-          "Password",
-          "Username"
-       ]
-    },
+      "Name": "American Social Security Number",
+      "Regex": "^([0-9][0-9][0-9])(?<!666|000|9[0-9][0-9])(=|\\+|_|\\#|:|;|\\.|-|\\s){0,3}([1-9][1-9]|0[1-9]|[1-9]0)(=|\\+|_|\\#|:|;|\\.|-|\\s){0,3}([0-9][0-9][0-9][0-9])(?<!0000)(=|\\+|_|\\#|:|;|\\.|-|\\s){0,3}?$",
+      "plural_name": false,
+      "Description": "An [#CAE4F1][link=https://en.wikipedia.org/wiki/Social_Security_number]American Identification Number[/link][/#CAE4F1]",
+      "Rarity": 0.5,
+      "URL": null,
+      "Tags": [
+         "Credentials",
+         "Password",
+         "Username",
+         "SSN"
+      ]
+   },
     {
       "Name": "Key:Value Pair",
       "Regex": "[^:\\s]+[ ]?:[ ]?[^:\\s]+",
