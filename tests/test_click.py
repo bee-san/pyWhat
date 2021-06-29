@@ -474,3 +474,10 @@ def test_boundaryless2():
     result = runner.invoke(main, ["-bi", "media", "abc118.103.238.230abc"])
     assert result.exit_code == 0
     assert "Nothing found" in result.output
+
+
+def test_boundaryless3():
+    runner = CliRunner()
+    result = runner.invoke(main, ["-db", "abc118.103.238.230abc"])
+    assert result.exit_code == 0
+    assert "Nothing found" in result.output

@@ -85,6 +85,9 @@ def create_filter(rarity, include, exclude):
 @click.option(
     "-be", "--boundaryless-exclude", help="Same as --exclude but for boundaryless."
 )
+@click.option(
+    "-db", "--disable-boundaryless", is_flag=True, help="Disable boundaryless mode."
+)
 def main(
     text_input,
     rarity,
@@ -96,6 +99,7 @@ def main(
     boundaryless_rarity,
     boundaryless_include,
     boundaryless_exclude,
+    disable_boundaryless,
 ):
     """
     pyWhat - Identify what something is.\n
@@ -158,9 +162,12 @@ def main(
 
     """
     dist = Distribution(create_filter(rarity, include, exclude))
-    boundaryless = create_filter(
-        boundaryless_rarity, boundaryless_include, boundaryless_exclude
-    )
+    if disable_boundaryless:
+        boundaryless = Filter({"Tags": []})
+    else:
+        boundaryless = create_filter(
+            boundaryless_rarity, boundaryless_include, boundaryless_exclude
+        )
     what_obj = What_Object(dist)
     if key is None:
         key = Keys.NONE
