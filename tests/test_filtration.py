@@ -1,4 +1,5 @@
 import pytest
+
 from pywhat import Distribution, Filter, pywhat_tags
 from pywhat.helper import CaseInsensitiveSet, InvalidTag, load_regexes
 

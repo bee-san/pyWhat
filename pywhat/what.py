@@ -88,6 +88,7 @@ def create_filter(rarity, include, exclude):
 @click.option(
     "-db", "--disable-boundaryless", is_flag=True, help="Disable boundaryless mode."
 )
+@click.option("--json", is_flag=True, help="Return results in json format.")
 def main(
     text_input,
     rarity,
@@ -100,6 +101,7 @@ def main(
     boundaryless_include,
     boundaryless_exclude,
     disable_boundaryless,
+    json,
 ):
     """
     pyWhat - Identify what something is.\n
@@ -137,6 +139,12 @@ def main(
             matched - Sort by a matched string
 
             none - No sorting is done (the default)
+
+    Exporting:
+
+        --json
+
+            Return results in json format.
 
 
     Examples:
@@ -182,7 +190,12 @@ def main(
     )
 
     p = printer.Printing()
-    p.pretty_print(identified_output, text_input)
+
+    if json:
+        p.print_json(identified_output)
+
+    else:
+        p.pretty_print(identified_output, text_input)
 
 
 class What_Object:

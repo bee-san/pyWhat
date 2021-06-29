@@ -18,7 +18,7 @@ Imagine this: You come across some mysterious text 🧙‍♂️ `5f4dcc3b5aa765
 
 Well, with `what` all you have to do is ask `what "5f4dcc3b5aa765d61d8327deb882cf99"` and `what` will tell you!
 
-`what`'s job is to **identify _what_ something is.** Whether it be a file or text! Or even the hex of a file! What about text _within_ files? We have that too! `what` is recursive, it will identify **everything** in text and more! 
+`what`'s job is to **identify _what_ something is.** Whether it be a file or text! Or even the hex of a file! What about text _within_ files? We have that too! `what` is recursive, it will identify **everything** in text and more!
 
 # ⚙ Use Cases
 
@@ -37,11 +37,12 @@ You use `What` to identify all the domains in the malware, and use a domain regi
 ![](images_for_README/pcap_demo.gif)
 
 Say you have a `.pcap` file from a network attack. `What` can identify this and quickly find you:
-* All hashes
-* Credit card numbers
-* Cryptocurrency addresses
-* Social Security Numbers
-* and much more.
+
+- All hashes
+- Credit card numbers
+- Cryptocurrency addresses
+- Social Security Numbers
+- and much more.
 
 With `what`, you can identify the important things in the pcap in seconds, not minutes.
 
@@ -58,6 +59,8 @@ What about a whole **directory**? `What` can handle that too! It will **recursiv
 **Filtration** You can filter output by using `what --rarity 0.2:0.8 --include_tags tag1,tag2 TEXT`. Use `what --help` to get more information.
 
 **Sorting** You can sort the output by using `what -k rarity --reverse TEXT`. Use `what --help` to get more information.
+
+**Exporting** You can export to json using `what --json` and results can be sent directly to a file using `what --json > file.json`.
 
 # 🍕 API
 
