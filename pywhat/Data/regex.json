@@ -178,7 +178,6 @@
           "IPv6"
        ]
     },
-
     {
       "Name": "Google API Key",
       "Regex": "AIza[0-9A-Za-z-_]{35}",
@@ -681,7 +680,7 @@
           "Phone Number"
        ]
     },
-      {
+    {
       "Name": "Recent Unix Timestamp",
       "Regex": "^[0-9]{10}$",
       "plural_name": false,
