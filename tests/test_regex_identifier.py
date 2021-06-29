@@ -479,7 +479,7 @@ def test_arn4():
     assert "ARN" in str(res)
 
 
-def test_unix_timestamp1():
+def test_unix_timestamp():
     r = regex_identifier.RegexIdentifier()
     res = r.check(["1577836800"])  # 2020-01-01
     keys = [m['Regex Pattern']['Name'] for m in res]
