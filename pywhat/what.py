@@ -68,22 +68,22 @@ def create_filter(rarity, include, exclude):
     help="Filter by rarity. Rarity is how unlikely something is to be a false-positive. The higher the number, the more unlikely. This is in the range of 0:1. To filter only items past 0.5, use 0.5: with the colon on the end. Default 0.1:1",
     default="0.1:1",
 )
-@click.option("-i", "--include", help="Only print entries with included tags.")
-@click.option("-e", "--exclude", help="Exclude tags.")
+@click.option("-i", "--include", help="Only show matches with these tags.")
+@click.option("-e", "--exclude", help="Disclude matches with these tags.")
 @click.option("-o", "--only-text", is_flag=True, help="Do not scan files or folders.")
 @click.option("-k", "--key", help="Sort by the specified key.")
 @click.option("--reverse", is_flag=True, help="Sort in reverse order.")
 @click.option(
     "-br",
     "--boundaryless-rarity",
-    help="Same as --rarity but for boundaryless.",
+    help="Same as --rarity but for boundaryless mode (toggles what regexes will not have boundaries).",
     default="0.1:1",
 )
 @click.option(
-    "-bi", "--boundaryless-include", help="Same as --include but for boundaryless."
+    "-bi", "--boundaryless-include", help="Same as --include but for boundaryless mode."
 )
 @click.option(
-    "-be", "--boundaryless-exclude", help="Same as --exclude but for boundaryless."
+    "-be", "--boundaryless-exclude", help="Same as --exclude but for boundaryless mode."
 )
 @click.option(
     "-db", "--disable-boundaryless", is_flag=True, help="Disable boundaryless mode."
@@ -104,21 +104,29 @@ def main(
     json,
 ):
     """
-    pyWhat - Identify what something is.\n
+    pyWhat - Identify what something is.
 
-    Made by Bee https://twitter.com/bee_sec_san\n
+    Made by Bee https://twitter.com/bee_sec_san
 
-    https://github.com/bee-san\n
+    https://github.com/bee-san
 
-    Filtration:\n
-        --rarity min:max\n
-            Rarity is how unlikely something is to be a false-positive. The higher the number, the more unlikely.\n
-            Only print entries with rarity in range [min,max]. min and max can be omitted.\n
-            Note: PyWhat by default has a rarity of 0.1. To see all matches, with many potential false positives use `0:`.\n
-        --include list\n
-            Only include entries containing at least one tag in a list. List is a comma separated list.\n
-        --exclude list\n
-            Exclude specified tags. List is a comma separated list.\n
+    Filtration:
+
+        --rarity min:max
+
+            Rarity is how unlikely something is to be a false-positive. The higher the number, the more unlikely.
+
+            Only print entries with rarity in range [min,max]. min and max can be omitted.
+
+            Note: PyWhat by default has a rarity of 0.1. To see all matches, with many potential false positives use `0:`.
+
+        --include list
+
+            Only include entries containing at least one tag in a list. List is a comma separated list.
+
+        --exclude list
+
+            Exclude specified tags. List is a comma separated list.
 
     Sorting:
 
@@ -146,6 +154,18 @@ def main(
 
             Return results in json format.
 
+    Boundaryless mode:
+
+        CLI tool matches strings like 'abcthm{kgh}jk' by default because the boundaryless mode is enabled for regexes with a rarity of 0.1 and higher.
+
+        Since boundaryless mode may produce a lot of false-positive matches, it is possible to disable it, either fully or partially.
+
+        '--disable-boundaryless' flag can be used to fully disable this mode.
+
+        In addition, '-br', '-bi', and '-be' options can be used to tweak which regexes should be in boundaryless mode.
+
+        Refer to the Filtration section for more information.
+
 
     Examples:
 
@@ -159,6 +179,8 @@ def main(
 
         * what --rarity 0: --include "credentials, username, password" --exclude "aws, credentials" 'James:SecretPassword'
 
+        * what -br 0.6: -be URL '123myEmail@host.org456'
+
     Your text must either be in quotation marks, or use the POSIX standard of "--" to mean "anything after -- is textual input".
 
 
@@ -171,7 +193,7 @@ def main(
     """
     dist = Distribution(create_filter(rarity, include, exclude))
     if disable_boundaryless:
-        boundaryless = Filter({"Tags": []})
+        boundaryless = Filter({"Tags": []}) # use empty filter
     else:
         boundaryless = create_filter(
             boundaryless_rarity, boundaryless_include, boundaryless_exclude
