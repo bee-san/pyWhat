@@ -122,8 +122,6 @@ class Distribution(Filter):
     def _filter(self):
         self._regexes = load_regexes()
         temp_regexes = []
-        min_rarity = self["MinRarity"]
-        max_rarity = self["MaxRarity"]
         for regex in self._regexes:
             if regex in self:
                 temp_regexes.append(regex)

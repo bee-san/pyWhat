@@ -26,10 +26,9 @@ class RegexIdentifier:
 
         for string in text:
             for reg in dist.get_regexes():
-                regex = reg["Regex"]
-                if reg in boundaryless:
-                    regex = re.sub(r"(?<!\\)\^(?![^\[\]]*(?<!\\)\])", "", regex)
-                    regex = re.sub(r"(?<!\\)\$(?![^\[\]]*(?<!\\)\])", "", regex)
+                regex = (
+                    reg["Boundaryless Regex"] if reg in boundaryless else reg["Regex"]
+                )
 
                 for matched_regex in re.finditer(regex, string, re.UNICODE):
                     reg = copy.copy(reg)  # necessary, when checking phone
