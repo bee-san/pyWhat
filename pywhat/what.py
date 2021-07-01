@@ -89,20 +89,7 @@ def create_filter(rarity, include, exclude):
     "-db", "--disable-boundaryless", is_flag=True, help="Disable boundaryless mode."
 )
 @click.option("--json", is_flag=True, help="Return results in json format.")
-def main(
-    text_input,
-    rarity,
-    include,
-    exclude,
-    only_text,
-    key,
-    reverse,
-    boundaryless_rarity,
-    boundaryless_include,
-    boundaryless_exclude,
-    disable_boundaryless,
-    json,
-):
+def main(**kwargs):
     """
     pyWhat - Identify what something is.
 
@@ -191,33 +178,37 @@ def main(
         * what 'this/is/a/path'
 
     """
-    dist = Distribution(create_filter(rarity, include, exclude))
-    if disable_boundaryless:
-        boundaryless = Filter({"Tags": []}) # use empty filter
+    dist = Distribution(
+        create_filter(kwargs["rarity"], kwargs["include"], kwargs["exclude"])
+    )
+    if kwargs["disable_boundaryless"]:
+        boundaryless = Filter({"Tags": []})  # use empty filter
     else:
         boundaryless = create_filter(
-            boundaryless_rarity, boundaryless_include, boundaryless_exclude
+            kwargs["boundaryless_rarity"],
+            kwargs["boundaryless_include"],
+            kwargs["boundaryless_exclude"],
         )
     what_obj = What_Object(dist)
-    if key is None:
+    if kwargs["key"] is None:
         key = Keys.NONE
     else:
         try:
-            key = str_to_key(key)
+            key = str_to_key(kwargs["key"])
         except ValueError:
             print("Invalid key")
             sys.exit(1)
     identified_output = what_obj.what_is_this(
-        text_input, only_text, key, reverse, boundaryless
+        kwargs["text_input"], kwargs["only_text"], key, kwargs["reverse"], boundaryless
     )
 
     p = printer.Printing()
 
-    if json:
+    if kwargs["json"]:
         p.print_json(identified_output)
 
     else:
-        p.pretty_print(identified_output, text_input)
+        p.pretty_print(identified_output, kwargs["text_input"])
 
 
 class What_Object:
