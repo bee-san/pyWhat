@@ -1,5 +1,31 @@
 [
    {
+      "Name": "PGP Public Key",
+      "Regex": "/^(-----BEGIN PGP PUBLIC KEY BLOCK-----).*([a-zA-Z0-9//\n\/\\.\\:\\+\\ \\=]+).*(-----END PGP PUBLIC KEY BLOCK-----)$",
+      "plural_name": false,
+      "Description": null,
+      "Rarity": 1,
+      "URL": "",
+      "Tags": [
+         "PGP",
+         "Pretty Good Privacy",
+         "Public Key"
+      ]
+   },
+   {
+      "Name": "PGP Private Key",
+      "Regex": "/^(-----BEGIN PGP PRIVATE KEY BLOCK-----).*([a-zA-Z0-9//\n\/\\.\\:\\+\\ \\=]+).*(-----END PGP PRIVATE KEY BLOCK-----)$/",
+      "plural_name": false,
+      "Description": null,
+      "Rarity": 1,
+      "URL": "",
+      "Tags": [
+         "PGP",
+         "Pretty Good Privacy",
+         "Private Key"
+      ]
+   },
+   {
       "Name": "SSH RSA Public Key",
       "Regex": "ssh-rsa [A-Za-z0-9+\/=]+ [^ \n]+",
       "plural_name": false,
@@ -727,19 +753,6 @@
          "Credentials",
          "Password",
          "Username"
-      ]
-   },
-   {
-      "Name": "PGP Public Key",
-      "Regex": "/^(-----BEGIN PGP PUBLIC KEY BLOCK-----).*([a-zA-Z0-9//\n\/\\.\\:\\+\\ \\=]+).*(-----END PGP PUBLIC KEY BLOCK-----)$|^(-----BEGIN PGP PRIVATE KEY BLOCK-----).*([a-zA-Z0-9//\n\/\\.\\:\\+\\ \\=]+).*(-----END PGP PRIVATE KEY BLOCK-----)$/",
-      "plural_name": false,
-      "Description": null,
-      "Rarity": 0,
-      "URL": "https://8gwifi.org/pgpencdec.jsp",
-      "Tags": [
-         "PGP",
-         "Pretty Good Privacy",
-         "Public Key"
       ]
    }
 ]

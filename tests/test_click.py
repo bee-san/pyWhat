@@ -514,3 +514,9 @@ def test_pgp_public_key():
     result = runner.invoke(main, ["fixtures/file"])
     assert result.exit_code == 0
     assert re.findall("PGP Public Key", str(result.output))
+
+def test_pgp_public_key():
+    runner = CliRunner()
+    result = runner.invoke(main, ["fixtures/file"])
+    assert result.exit_code == 0
+    assert re.findall("PGP Private Key", str(result.output))
