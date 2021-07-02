@@ -754,5 +754,18 @@
          "Password",
          "Username"
       ]
+   },
+   {
+      "Name": "PGP Public Key",
+      "Regex": "/^(-----BEGIN PGP PUBLIC KEY BLOCK-----).*([a-zA-Z0-9//\n\/\\.\\:\\+\\ \\=]+).*(-----END PGP PUBLIC KEY BLOCK-----)$|^(-----BEGIN PGP PRIVATE KEY BLOCK-----).*([a-zA-Z0-9//\n\/\\.\\:\\+\\ \\=]+).*(-----END PGP PRIVATE KEY BLOCK-----)$/",
+      "plural_name": false,
+      "Description": null,
+      "Rarity": 0,
+      "URL": "https://8gwifi.org/pgpencdec.jsp",
+      "Tags": [
+         "PGP",
+         "Pretty Good Privacy",
+         "Public Key"
+      ]
    }
 ]
