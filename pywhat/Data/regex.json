@@ -681,6 +681,28 @@
        ]
     },
     {
+      "Name": "Recent Unix Timestamp",
+      "Regex": "^[0-9]{10}$",
+      "plural_name": false,
+      "Description": "Seconds elapsed since unix epoch: 1970, between year 2001 and 2286",
+      "Rarity": 0.5,
+      "URL": null,
+      "Tags": [
+         "Time"
+       ]
+    },
+    {
+      "Name": "Recent Unix Millisecond Timestamp",
+      "Regex": "^[0-9]{13}$",
+      "plural_name": false,
+      "Description": "Milliseconds elapsed since unix epoch: 1970, between year 2001 and 2286",
+      "Rarity": 0.5,
+      "URL": null,
+      "Tags": [
+         "Time"
+       ]
+    },
+    {
        "Name": "American Social Security Number",
        "Regex": "^(([0-9][0-9][0-9])(?<!666|000|9[0-9][0-9])(=|\\+|_|\\#|:|;|\\.|-|\\s){0,3}([1-9][1-9]|0[1-9]|[1-9]0)(=|\\+|_|\\#|:|;|\\.|-|\\s){0,3}([0-9][0-9][0-9][0-9])(?<!0000)(=|\\+|_|\\#|:|;|\\.|-|\\s){0,3}?)$",
        "plural_name": false,
@@ -716,7 +738,28 @@
           "Media"
        ]
     },
-    
+    {
+      "Name": "Unix Timestamp",
+      "Regex": "^[0-9]{8,10}$",
+      "plural_name": false,
+      "Description": "Seconds elapsed since unix epoch: 1970",
+      "Rarity": 0.2,
+      "URL": null,
+      "Tags": [
+         "Time"
+       ]
+    },
+    {
+      "Name": "Unix Millisecond Timestamp",
+      "Regex": "^[0-9]{11,13}$",
+      "plural_name": false,
+      "Description": "Milliseconds elapsed since unix epoch: 1970",
+      "Rarity": 0.2,
+      "URL": null,
+      "Tags": [
+         "Time"
+       ]
+    },
     {
       "Name": "Key:Value Pair",
       "Regex": "^([^:\\s]+[ ]?:[ ]?[^:\\s]+)$",
