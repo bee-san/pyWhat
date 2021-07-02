@@ -2,6 +2,7 @@
 import collections.abc
 import json
 import os.path
+import re
 from enum import Enum, auto
 
 
@@ -29,7 +30,15 @@ def load_regexes() -> list:
     path = "Data/regex.json"
     fullpath = os.path.join(os.path.dirname(os.path.abspath(__file__)), path)
     with open(fullpath, "r", encoding="utf-8") as myfile:
-        return json.load(myfile)
+        regexes = json.load(myfile)
+    for regex in regexes:
+        regex["Boundaryless Regex"] = re.sub(
+            r"(?<!\\)\^(?![^\[\]]*(?<!\\)\])", "", regex["Regex"]
+        )
+        regex["Boundaryless Regex"] = re.sub(
+            r"(?<!\\)\$(?![^\[\]]*(?<!\\)\])", "", regex["Boundaryless Regex"]
+        )
+    return regexes
 
 
 class CaseInsensitiveSet(collections.abc.Set):

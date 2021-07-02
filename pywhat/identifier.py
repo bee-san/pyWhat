@@ -2,8 +2,8 @@ import glob
 import os.path
 from typing import Callable, Optional
 
-from pywhat.distribution import Distribution
-from pywhat.helper import Keys
+from pywhat.filter import Distribution, Filter
+from pywhat.helper import AvailableTags, Keys
 from pywhat.magic_numbers import FileSignatures
 from pywhat.nameThatHash import Nth
 from pywhat.regex_identifier import RegexIdentifier
@@ -15,7 +15,8 @@ class Identifier:
         *,
         dist: Optional[Distribution] = None,
         key: Callable = Keys.NONE,
-        reverse=False
+        reverse=False,
+        boundaryless: Optional[Filter] = None
     ):
         if dist is None:
             self.distribution = Distribution()
@@ -26,6 +27,10 @@ class Identifier:
         self._name_that_hash = Nth()
         self._key = key
         self._reverse = reverse
+        if boundaryless is None:
+            self.boundaryless = Filter({"Tags": []})
+        else:
+            self.boundaryless = boundaryless
 
     def identify(
         self,
@@ -34,7 +39,8 @@ class Identifier:
         only_text=True,
         dist: Distribution = None,
         key: Optional[Callable] = None,
-        reverse: Optional[bool] = None
+        reverse: Optional[bool] = None,
+        boundaryless: Optional[Filter] = None
     ) -> dict:
         if dist is None:
             dist = self.distribution
@@ -42,6 +48,8 @@ class Identifier:
             key = self._key
         if reverse is None:
             reverse = self._reverse
+        if boundaryless is None:
+            boundaryless = self.boundaryless
         identify_obj = {"File Signatures": {}, "Regexes": {}}
         search = []
 
@@ -72,7 +80,9 @@ class Identifier:
                     identify_obj["File Signatures"][short_name] = magic_numbers
             else:
                 short_name = "text"
-                regex = self._regex_id.check(search, dist)
+                regex = self._regex_id.check(
+                    search, dist=dist, boundaryless=boundaryless
+                )
 
             if regex:
                 identify_obj["Regexes"][short_name] = regex
