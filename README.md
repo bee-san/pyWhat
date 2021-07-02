@@ -62,7 +62,7 @@ What about a whole **directory**? `What` can handle that too! It will **recursiv
 
 **Exporting** You can export to json using `what --json` and results can be sent directly to a file using `what --json > file.json`.
 
-**Boundaryless mode** `What` has a special mode to match identifiable information within characters. By default, it is enabled in CLI but disabled in API. Use `what --help` or refer to [API Documentation](https://github.com/bee-san/pyWhat/wiki/API) for more information.
+**Boundaryless mode** `What` has a special mode to match identifiable information within strings. By default, it is enabled in CLI but disabled in API. Use `what --help` or refer to [API Documentation](https://github.com/bee-san/pyWhat/wiki/API) for more information.
 
 # 🍕 API
 

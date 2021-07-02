@@ -143,7 +143,7 @@ def main(**kwargs):
 
     Boundaryless mode:
 
-        CLI tool matches strings like 'abcthm{kgh}jk' by default because the boundaryless mode is enabled for regexes with a rarity of 0.1 and higher.
+        CLI tool matches strings like 'abcdTHM{hello}plze' by default because the boundaryless mode is enabled for regexes with a rarity of 0.1 and higher.
 
         Since boundaryless mode may produce a lot of false-positive matches, it is possible to disable it, either fully or partially.
 
