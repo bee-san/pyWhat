@@ -509,3 +509,8 @@ def test_mac_tags():
     assert "Ethernet" in result.output
     assert "IP" in result.output
 
+def test_pgp_public_key():
+    runner = CliRunner()
+    result = runner.invoke(main, ["fixtures/file"])
+    assert result.exit_code == 0
+    assert re.findall("PGP Public Key", str(result.output))
