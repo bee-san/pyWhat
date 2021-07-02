@@ -1,20 +1,22 @@
+from collections.abc import Mapping
 from typing import Optional
 
 from pywhat.helper import (AvailableTags, CaseInsensitiveSet, InvalidTag,
                            load_regexes)
 
 
-class Distribution:
+class Filter(Mapping):
     """
-    A distribution is an object containing the regex
-    But the regex has gone through a filter process.
+    A filter is an object containing the filtration information.
+    The difference from Distribution object is
+    that Filter object does not store regexes.
 
     Example filters:
     * {"Tags": ["Networking"]}
     * {"Tags": ["Identifiers"], "ExcludeTags": ["Credentials"], "MinRarity": 0.6}
     """
 
-    def __init__(self, filters_dict: Optional[dict] = None):
+    def __init__(self, filters_dict: Optional[Mapping] = None):
         tags = CaseInsensitiveSet(AvailableTags().get_tags())
         self._dict = dict()
         if filters_dict is None:
@@ -32,31 +34,11 @@ class Distribution:
         ].issubset(tags):
             raise InvalidTag("Passed filter contains tags that are not used by 'what'")
 
-        self._regexes = load_regexes()
-        self._filter()
-
-    def _filter(self):
-        temp_regexes = []
-        min_rarity = self._dict["MinRarity"]
-        max_rarity = self._dict["MaxRarity"]
-        for regex in self._regexes:
-            if (
-                min_rarity <= regex["Rarity"] <= max_rarity
-                and set(regex["Tags"]) & self._dict["Tags"]
-                and not set(regex["Tags"]) & self._dict["ExcludeTags"]
-            ):
-                temp_regexes.append(regex)
-
-        self._regexes = temp_regexes
-
-    def get_regexes(self):
-        return list(self._regexes)
-
     def get_filter(self):
         return dict(self._dict)
 
     def __repr__(self):
-        return f"Distribution({self._dict})"
+        return f"{self.__class__.__name__}({self._dict})"
 
     def __and__(self, other):
         if type(self) != type(other):
@@ -65,7 +47,7 @@ class Distribution:
         exclude_tags = self._dict["ExcludeTags"] & other._dict["ExcludeTags"]
         min_rarity = max(self._dict["MinRarity"], other._dict["MinRarity"])
         max_rarity = min(self._dict["MaxRarity"], other._dict["MaxRarity"])
-        return Distribution(
+        return self.__class__(
             {
                 "Tags": tags,
                 "ExcludeTags": exclude_tags,
@@ -81,7 +63,7 @@ class Distribution:
         exclude_tags = self._dict["ExcludeTags"] | other._dict["ExcludeTags"]
         min_rarity = min(self._dict["MinRarity"], other._dict["MinRarity"])
         max_rarity = max(self._dict["MaxRarity"], other._dict["MaxRarity"])
-        return Distribution(
+        return self.__class__(
             {
                 "Tags": tags,
                 "ExcludeTags": exclude_tags,
@@ -99,3 +81,52 @@ class Distribution:
         if type(self) != type(other):
             return NotImplemented
         return self | other
+
+    def __getitem__(self, key):
+        return self._dict[key]
+
+    def __iter__(self):
+        return iter(self._dict)
+
+    def __len__(self):
+        return len(self._dict)
+
+    def __contains__(self, item):
+        try:
+            return (
+                self["MinRarity"] <= item["Rarity"] <= self["MaxRarity"]
+                and set(item["Tags"]) & self["Tags"]
+                and not set(item["Tags"]) & self["ExcludeTags"]
+            )
+        except:
+            return False
+
+    def setdefault(self, key, default=None):
+        return self._dict.setdefault(key, default)
+
+
+class Distribution(Filter):
+    """
+    A distribution is an object containing the regex
+    But the regex has gone through a filter process.
+
+    Example filters:
+    * {"Tags": ["Networking"]}
+    * {"Tags": ["Identifiers"], "ExcludeTags": ["Credentials"], "MinRarity": 0.6}
+    """
+
+    def __init__(self, filter: Optional[Filter] = None):
+        super().__init__(filter)
+        self._filter()
+
+    def _filter(self):
+        self._regexes = load_regexes()
+        temp_regexes = []
+        for regex in self._regexes:
+            if regex in self:
+                temp_regexes.append(regex)
+
+        self._regexes = temp_regexes
+
+    def get_regexes(self):
+        return list(self._regexes)

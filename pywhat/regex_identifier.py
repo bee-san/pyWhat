@@ -4,23 +4,33 @@ import os
 import re
 from typing import Optional
 
-from pywhat.distribution import Distribution
+from pywhat.filter import Distribution, Filter
 
 
 class RegexIdentifier:
     def __init__(self):
         self.distribution = Distribution()
 
-    def check(self, text, distribution: Optional[Distribution] = None):
-        if distribution is None:
-            distribution = self.distribution
+    def check(
+        self,
+        text,
+        dist: Optional[Distribution] = None,
+        *,
+        boundaryless: Optional[Filter] = None
+    ):
+        if dist is None:
+            dist = self.distribution
+        if boundaryless is None:
+            boundaryless = Filter({"Tags": []})
         matches = []
 
         for string in text:
-            for reg in distribution.get_regexes():
-                matched_regex = re.search(reg["Regex"], string, re.UNICODE)
+            for reg in dist.get_regexes():
+                regex = (
+                    reg["Boundaryless Regex"] if reg in boundaryless else reg["Regex"]
+                )
 
-                if matched_regex:
+                for matched_regex in re.finditer(regex, string, re.UNICODE):
                     reg = copy.copy(reg)  # necessary, when checking phone
                     # numbers from file that may contain
                     # non-international numbers

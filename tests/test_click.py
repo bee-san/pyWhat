@@ -1,7 +1,9 @@
+import json
 import re
 
 import pytest
 from click.testing import CliRunner
+
 from pywhat import pywhat_tags
 from pywhat.what import main
 
@@ -24,7 +26,7 @@ def test_filtration():
     runner = CliRunner()
     result = runner.invoke(
         main,
-        ["--rarity", "0.5:", "--include_tags", "Identifiers,Media", "fixtures/file"],
+        ["--rarity", "0.5:", "--include", "Identifiers,Media", "fixtures/file"],
     )
     assert result.exit_code == 0
     assert "THM{" not in result.output
@@ -40,6 +42,20 @@ def test_tag_printing():
     assert result.exit_code == 0
     for tag in pywhat_tags:
         assert tag in result.output
+
+
+def test_json_printing():
+    """Test for valid json"""
+    runner = CliRunner()
+    result = runner.invoke(main, ["10.0.0.1", "--json"])
+    assert json.loads(result.output, strict=False)
+
+
+def test_json_printing2():
+    """Test for empty json return"""
+    runner = CliRunner()
+    result = runner.invoke(main, ["", "--json"])
+    assert result.output.strip("\n") == '{"File Signatures": null, "Regexes": null}'
 
 
 def test_file_fixture():
@@ -437,14 +453,18 @@ def test_key_value_min_rarity_0_5():
 
 def test_key_value_min_rarity_0_6():
     runner = CliRunner()
-    result = runner.invoke(main, ["--rarity", "0:", "a:b:c"])
+    result = runner.invoke(
+        main, ["--rarity", "0:", "--boundaryless-rarity", "0:", "a:b:c"]
+    )
     assert result.exit_code == 0
     assert re.findall("a:b", str(result.output))
 
 
 def test_key_value_min_rarity_0_7():
     runner = CliRunner()
-    result = runner.invoke(main, ["--rarity", "0:", "a : b:c"])
+    result = runner.invoke(
+        main, ["--rarity", "0:", "--boundaryless-rarity", "0:", "a : b:c"]
+    )
     assert result.exit_code == 0
     assert re.findall("a : b", str(result.output))
 
@@ -455,11 +475,36 @@ def test_only_text():
     assert result.exit_code == 0
     assert "Nothing found" in result.output
 
+
+def test_boundaryless():
+    runner = CliRunner()
+    result = runner.invoke(
+        main, ["-be", "identifiers, security", "abc118.103.238.230abc"]
+    )
+    assert result.exit_code == 0
+    assert "Nothing found" in result.output
+
+
+def test_boundaryless2():
+    runner = CliRunner()
+    result = runner.invoke(main, ["-bi", "media", "abc118.103.238.230abc"])
+    assert result.exit_code == 0
+    assert "Nothing found" in result.output
+
+
+def test_boundaryless3():
+    runner = CliRunner()
+    result = runner.invoke(main, ["-db", "abc118.103.238.230abc"])
+    assert result.exit_code == 0
+    assert "Nothing found" in result.output
+
+
 def test_ssh_rsa_key():
     runner = CliRunner()
     result = runner.invoke(main, ["fixtures/file"])
     assert result.exit_code == 0
     assert re.findall("SSH RSA", str(result.output))
+
 
 def test_ssh_ecdsa_key():
     runner = CliRunner()
@@ -467,11 +512,13 @@ def test_ssh_ecdsa_key():
     assert result.exit_code == 0
     assert re.findall("SSH ECDSA", str(result.output))
 
+
 def test_ssh_ed25519_key():
     runner = CliRunner()
     result = runner.invoke(main, ["fixtures/file"])
     assert result.exit_code == 0
     assert re.findall("SSH ED25519", str(result.output))
+
 
 def test_mac():
     runner = CliRunner()
@@ -480,13 +527,13 @@ def test_mac():
     assert re.findall("de:ad:be:ef:ca:fe", str(result.output))
     assert re.findall("DE:AD:BE:EF:CA:FE", str(result.output))
 
+
 def test_mac_tags():
     runner = CliRunner()
     result = runner.invoke(
         main,
-        ["--include_tags", "Identifiers,Networking", "fixtures/file"],
+        ["--include", "Identifiers,Networking", "fixtures/file"],
     )
     assert result.exit_code == 0
     assert "Ethernet" in result.output
     assert "IP" in result.output
-
