@@ -43,7 +43,7 @@
     },
     {
        "Name": "Ethereum (ETH) Wallet Address",
-       "Regex": "(?i)^0x[a-f0-9]{40}$",
+       "Regex": "(?i)^(0x[a-f0-9]{40})$",
        "plural_name": false,
        "Description": null,
        "Rarity": 1,
@@ -56,7 +56,7 @@
     },
     {
        "Name": "Access-Control-Allow-Header",
-       "Regex": "(?i)Access-Control-Allow: [a-z0-9\\-*]",
+       "Regex": "(?i)^(Access-Control-Allow: [a-z0-9\\-*])$",
        "plural_name": false,
        "Description": "Used for [#CAE4F1][link=https://en.wikipedia.org/wiki/Cross-origin_resource_sharing]Cross-Origin Resource Sharing (CORS)[/link][/#CAE4F1]",
        "Rarity": 1,
@@ -68,7 +68,7 @@
     },
     {
        "Name": "Bitcoin (₿) Wallet Address",
-       "Regex": "^[13][a-km-zA-HJ-NP-Z1-9]{25,34}$",
+       "Regex": "^([13][a-km-zA-HJ-NP-Z1-9]{25,34})$",
        "plural_name": false,
        "Description": null,
        "Rarity": 1,
@@ -82,7 +82,7 @@
     },
     {
        "Name": "TryHackMe Flag Format",
-       "Regex": "(?i)thm{.*}|tryhackme{.*}",
+       "Regex": "(?i)^(thm{.*}|tryhackme{.*})$",
        "plural_name": false,
        "Description": "Used for Capture The Flags at https://tryhackme.com",
        "Rarity": 1,
@@ -93,7 +93,7 @@
     },
     {
        "Name": "HackTheBox Flag Format",
-       "Regex": "(?i)hackthebox{.*}|htb{.*}",
+       "Regex": "(?i)^(hackthebox{.*}|htb{.*})$",
        "plural_name": false,
        "Description": "Used for Capture The Flags at https://hackthebox.eu",
        "Rarity": 1,
@@ -104,7 +104,7 @@
     },
     {
        "Name": "Capture The Flag (CTF) Flag",
-       "Regex": "(?i)flag{.*}|ctf{.*}|ctfa{.*}",
+       "Regex": "(?i)^(flag{.*}|ctf{.*}|ctfa{.*})$",
        "plural_name": false,
        "Description": null,
        "Rarity": 1,
@@ -115,7 +115,7 @@
     },
     {
        "Name": "YouTube Video",
-       "Regex": "https?:\\/\\/(?:youtu\\.be\\/|(?:[a-z]{2,3}\\.)?youtube\\.com\\/watch(?:\\?|#\\!)v=)([\\w-]{11})$",
+       "Regex": "^(https?:\\/\\/(?:youtu\\.be\\/|(?:[a-z]{2,3}\\.)?youtube\\.com\\/watch(?:\\?|#\\!)v=)([\\w-]{11}))$",
        "plural_name": false,
        "Description": null,
        "Rarity": 1,
@@ -128,7 +128,7 @@
     },
     {
        "Name": "Bitcoin Cash (BCH) Wallet Address",
-       "Regex": "(?i)^bitcoincash:[a-z0-9]{42}$",
+       "Regex": "(?i)^(bitcoincash:[a-z0-9]{42})$",
        "plural_name": false,
        "Description": null,
        "Rarity": 1,
@@ -141,7 +141,7 @@
     },
     {
       "Name": "Amazon Web Services Simple Storage (AWS S3) URL",
-      "Regex": "(?i)^[https://]*s3\\.amazonaws.com[\/]+.*$|[a-zA-Z0-9_-]*\\.s3\\.amazonaws.com/.*$",
+      "Regex": "(?i)^([https://]*s3\\.amazonaws.com[\/]+.*|[a-zA-Z0-9_-]*\\.s3\\.amazonaws.com/.*)$",
       "plural_name": false,
       "Description": null,
       "Rarity": 1,
@@ -154,7 +154,7 @@
     },
     {
       "Name": "Amazon Web Services Simple Storage (AWS S3) Internal URL",
-      "Regex": "(?i)^s3://([^/]+)/(.*?([^/]+)/?)$",
+      "Regex": "(?i)^(s3://([^/]+)/(.*?([^/]+)/?))$",
       "plural_name": false,
       "Description": "Internal URL, only accessible via the virtual private cloud.",
       "Rarity": 1,
@@ -167,7 +167,7 @@
     },
     {
        "Name": "Internet Protocol (IP) Address Version 6",
-       "Regex": "(?=.*[0-9])\\[?(?:(?:[0-9a-f]{1,4}:){7,7}[0-9a-f]{1,4}|([0-9a-f]{4}:){1,7}:|([0-9a-f]{1,4}:){1,6}:[0-9a-f]{1,4}|([0-9a-f]{1,4}:){1,5}(:[0-9a-f]{1,4}){1,2}|([0-9a-f]{1,4}:){1,4}(:[0-9a-f]{1,4}){1,3}|([0-9a-f]{1,4}:){1,3}(:[0-9a-f]{1,4}){1,4}|([0-9a-fA]{1,4}:){1,2}(:[0-9a-f]{1,4}){1,5}|[0-9a-f]{1,4}:((:[0-9a-f]{1,4}){1,6})|:((:[0-9a-f]{1,4}){1,7}|:)|fe80:(:[0-9a-f]{0,4}){0,4}%[0-9a-z]{1,}|::(ffff(:0{1,4}){0,1}:){0,1}((25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])\\.){3,3}(25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])|(?:[0-9a-f]{1,4}:){1,4}:(?:(25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])\\.){3,3}(25[0-5]|(?:2[0-4]|1{0,1}[0-9]){0,1}[0-9]))\\]?(?::[0-9]{1,5})?",
+       "Regex": "^((?=.*[0-9])\\[?(?:(?:[0-9a-f]{1,4}:){7,7}[0-9a-f]{1,4}|([0-9a-f]{4}:){1,7}:|([0-9a-f]{1,4}:){1,6}:[0-9a-f]{1,4}|([0-9a-f]{1,4}:){1,5}(:[0-9a-f]{1,4}){1,2}|([0-9a-f]{1,4}:){1,4}(:[0-9a-f]{1,4}){1,3}|([0-9a-f]{1,4}:){1,3}(:[0-9a-f]{1,4}){1,4}|([0-9a-fA]{1,4}:){1,2}(:[0-9a-f]{1,4}){1,5}|[0-9a-f]{1,4}:((:[0-9a-f]{1,4}){1,6})|:((:[0-9a-f]{1,4}){1,7}|:)|fe80:(:[0-9a-f]{0,4}){0,4}%[0-9a-z]{1,}|::(ffff(:0{1,4}){0,1}:){0,1}((25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])\\.){3,3}(25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])|(?:[0-9a-f]{1,4}:){1,4}:(?:(25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])\\.){3,3}(25[0-5]|(?:2[0-4]|1{0,1}[0-9]){0,1}[0-9]))\\]?(?::[0-9]{1,5})?)$",
        "plural_name": false,
        "Description": null,
        "Rarity": 1,
@@ -345,7 +345,7 @@
     },
     {
       "Name": "Amazon Resource Name (ARN)",
-      "Regex": "(?i)^arn:(?P<Partition>[^:\n]*):(?P<Service>[^:\n]*):(?P<Region>[^:\n]*):(?P<AccountID>[^:\n]*):(?P<Ignore>(?P<ResourceType>[^:\/\n]*)[:\/])?(?P<Resource>.*)$",
+      "Regex": "(?i)^(arn:(?P<Partition>[^:\n]*):(?P<Service>[^:\n]*):(?P<Region>[^:\n]*):(?P<AccountID>[^:\n]*):(?P<Ignore>(?P<ResourceType>[^:\/\n]*)[:\/])?(?P<Resource>.*))$",
       "plural_name": false,
       "Description": null,
       "Rarity": 0.8,
@@ -371,7 +371,7 @@
     },
     {
        "Name": "Internet Protocol (IP) Address Version 4",
-       "Regex": "(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)(?::[0-9]{1,5})?",
+       "Regex": "^((?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)(?::[0-9]{1,5})?)$",
        "plural_name": false,
        "Description": null,
        "Rarity": 0.7,
@@ -408,7 +408,7 @@
     },
     {
        "Name":"Latitude & Longitude Coordinates",
-       "Regex":"(?i)^(?:(?:N|W|S|E)\\s?\\d+\\s?\\u00B0?\\s?\\d+\\.?\\d*\\s?\\'?\\s?\\d*\\.?\\,?\\d*?\"?\\s?){1,2}$|^(?:\\d+\\s?\\u00B0\\s?\\d+\\s?\\'\\s?\\d+\\.?\\,?\\d{0,}?\"\\s?(?:N|W|S|E)\\s?){1,2}$|^(?:[-+]?(?:[0-8]?\\d+\\.\\d{4,}|90(?:\\.0+)?),\\s*[-+]?(?:180(?:\\.0+)?|(?:(?:1[0-7]\\d)|(?:[1-9]?\\d))(?:\\.\\d+)?))$",
+       "Regex":"(?i)^((?:(?:N|W|S|E)\\s?\\d+\\s?\\u00B0?\\s?\\d+\\.?\\d*\\s?\\'?\\s?\\d*\\.?\\,?\\d*?\"?\\s?){1,2}|(?:\\d+\\s?\\u00B0\\s?\\d+\\s?\\'\\s?\\d+\\.?\\,?\\d{0,}?\"\\s?(?:N|W|S|E)\\s?){1,2}|(?:[-+]?(?:[0-8]?\\d+\\.\\d{4,}|90(?:\\.0+)?),\\s*[-+]?(?:180(?:\\.0+)?|(?:(?:1[0-7]\\d)|(?:[1-9]?\\d))(?:\\.\\d+)?)))$",
        "plural_name": true,
        "Description": null,
        "Rarity": 0.5,
@@ -430,7 +430,7 @@
     },
     {
        "Name": "Dogecoin (DOGE) Wallet Address",
-       "Regex": "^D{1}[5-9A-HJ-NP-U]{1}[1-9A-HJ-NP-Za-km-z]{32}$",
+       "Regex": "^(D{1}[5-9A-HJ-NP-U]{1}[1-9A-HJ-NP-Za-km-z]{32})$",
        "plural_name": false,
        "Description": null,
        "Rarity": 0.5,
@@ -443,7 +443,7 @@
     },
     {
        "Name": "Monero (XMR) Wallet Address",
-       "Regex": "(?i)^4(?:[0-9]|[A-B])[a-z0-9]{93}$",
+       "Regex": "(?i)^(4(?:[0-9]|[A-B])[a-z0-9]{93})$",
        "plural_name": false,
        "Description": null,
        "Rarity": 0.5,
@@ -456,7 +456,7 @@
     },
     {
        "Name": "Litecoin (LTC) Wallet Address",
-       "Regex": "(?i)^(?:L|M)[a-z0-9]{33}$",
+       "Regex": "(?i)^((?:L|M)[a-z0-9]{33})$",
        "plural_name": false,
        "Description": null,
        "Rarity": 0.5,
@@ -469,7 +469,7 @@
     },
     {
        "Name": "Ripple (XRP) Wallet Address",
-       "Regex": "(?i)^r[a-z0-9]{33}$",
+       "Regex": "(?i)^(r[a-z0-9]{33})$",
        "plural_name": false,
        "Description": null,
        "Rarity": 0.5,
@@ -482,7 +482,7 @@
     },
     {
       "Name": "JSON Web Token (JWT)",
-      "Regex": "(?i)^(?=.*[a-z])(?=.*[0-9])(?:[a-z0-9_=]+\\.){2}(?:[a-z0-9_\\-\\+\/=]*)$",
+      "Regex": "(?i)^((?=.*[a-z])(?=.*[0-9])(?:[a-z0-9_=]+\\.){2}(?:[a-z0-9_\\-\\+\/=]*))$",
       "plural_name": false,
       "Description": null,
       "Rarity": 0.5,
@@ -497,7 +497,7 @@
     },
     {
        "Name": "American Express Card Number",
-       "Regex": "^3[47][0-9]{2}\\s?(?:[0-9]{4}\\s?){2}[0-9]{3}$",
+       "Regex": "^(3[47][0-9]{2}\\s?(?:[0-9]{4}\\s?){2}[0-9]{3})$",
        "plural_name": false,
        "Description": null,
        "Rarity": 0.5,
@@ -510,7 +510,7 @@
     },
     {
        "Name": "BCGlobal Card Number",
-       "Regex": "^(?:6541|6556)[0-9]{12}$",
+       "Regex": "^((?:6541|6556)[0-9]{12})$",
        "plural_name": false,
        "Description": null,
        "Rarity": 0.5,
@@ -522,7 +522,7 @@
     },
     {
        "Name": "Carte Blanche Card Number",
-       "Regex": "^389[0-9]{11}$",
+       "Regex": "^(389[0-9]{11})$",
        "plural_name": false,
        "Description": null,
        "Rarity": 0.5,
@@ -534,7 +534,7 @@
     },
     {
        "Name": "Diners Club Card Number",
-       "Regex": "^3(?:0[0-5]|[68][0-9])[0-9]\\s?(?:[0-9]{4}\\s?){2}[0-9]{2}$",
+       "Regex": "^(3(?:0[0-5]|[68][0-9])[0-9]\\s?(?:[0-9]{4}\\s?){2}[0-9]{2})$",
        "plural_name": false,
        "Description": null,
        "Rarity": 0.5,
@@ -546,7 +546,7 @@
     },
     {
        "Name": "Discover Card Number",
-       "Regex": "^(?:64[4-9][0-9]|65[0-9]{2}|6011)\\s?(?:[0-9]{4}\\s?){3}$|^622(?:1\\s?2[6-9][0-9]{2}|1\\s?[3-9][0-9]{3}|[2-8]\\s?[0-9]{4}|9\\s?[01][0-9]{3}|9\\s?2[0-5][0-9]{2})\\s?(?:[0-9]{4}\\s?){2}$",
+       "Regex": "^((?:64[4-9][0-9]|65[0-9]{2}|6011)\\s?(?:[0-9]{4}\\s?){3}|622(?:1\\s?2[6-9][0-9]{2}|1\\s?[3-9][0-9]{3}|[2-8]\\s?[0-9]{4}|9\\s?[01][0-9]{3}|9\\s?2[0-5][0-9]{2})\\s?(?:[0-9]{4}\\s?){2})$",
        "plural_name": false,
        "Description": null,
        "Rarity": 0.5,
@@ -559,7 +559,7 @@
     },
     {
        "Name": "MasterCard Number",
-       "Regex": "^(?:5[1-5][0-9]{2}|222[1-9]|22[3-9][0-9]|2[3-6][0-9]{2}|27[01][0-9]|2720)\\s?(?:[0-9]{4}\\s?){3}$",
+       "Regex": "^((?:5[1-5][0-9]{2}|222[1-9]|22[3-9][0-9]|2[3-6][0-9]{2}|27[01][0-9]|2720)\\s?(?:[0-9]{4}\\s?){3})$",
        "plural_name": false,
        "Description": null,
        "Rarity": 0.5,
@@ -572,7 +572,7 @@
     },
     {
        "Name": "Maestro Card Number",
-       "Regex": "^(?:5018|5020|5038|5612|5893|6304|6759|676[1-3]|0604|6390)\\s?(?:[0-9]{4}\\s?){3}\\s?(?:[0-9]{3,7})?$",
+       "Regex": "^((?:5018|5020|5038|5612|5893|6304|6759|676[1-3]|0604|6390)\\s?(?:[0-9]{4}\\s?){3}\\s?(?:[0-9]{3,7})?)$",
        "plural_name": false,
        "Description": null,
        "Rarity": 0.5,
@@ -584,7 +584,7 @@
     },
     {
        "Name": "Visa Card Number",
-       "Regex": "^4[0-9]{12}(?:[0-9]{3})?$|^4[0-9]{3}\\s(?:[0-9]{2,4}\\s?){3}(?:[0-9])?$",
+       "Regex": "^(4[0-9]{12}(?:[0-9]{3})?|4[0-9]{3}\\s(?:[0-9]{2,4}\\s?){3}(?:[0-9])?)$",
        "plural_name": false,
        "Description": null,
        "Rarity": 0.5,
@@ -597,7 +597,7 @@
     },
     {
        "Name": "Insta Payment Card Number",
-       "Regex": "^63[7-9][0-9]{13}$",
+       "Regex": "^(63[7-9][0-9]{13})$",
        "plural_name": false,
        "Description": null,
        "Rarity": 0.5,
@@ -609,7 +609,7 @@
     },
     {
        "Name": "JCB Card Number",
-       "Regex": "^(?:2131|1800|35\\d{3})\\d{11}$",
+       "Regex": "^((?:2131|1800|35\\d{3})\\d{11})$",
        "plural_name": false,
        "Description": null,
        "Rarity": 0.5,
@@ -621,7 +621,7 @@
     },
     {
        "Name": "Korean Local Card Number",
-       "Regex": "^9[0-9]{15}$",
+       "Regex": "^(9[0-9]{15})$",
        "plural_name": false,
        "Description": null,
        "Rarity": 0.5,
@@ -633,7 +633,7 @@
     },
     {
        "Name": "Laser Card Number",
-       "Regex": "^(?:6304|6706|6709|6771)[0-9]{12,15}$",
+       "Regex": "^((?:6304|6706|6709|6771)[0-9]{12,15})$",
        "plural_name": false,
        "Description": null,
        "Rarity": 0.5,
@@ -644,7 +644,7 @@
     },
     {
        "Name": "Solo Card Number",
-       "Regex": "^(?:6334|6767)[0-9]{12}$|^(?:6334|6767)[0-9]{14}$|^(?:6334|6767)[0-9]{15}$",
+       "Regex": "^((?:6334|6767)[0-9]{12}|(?:6334|6767)[0-9]{14}|(?:6334|6767)[0-9]{15})$",
        "plural_name": false,
        "Description": null,
        "Rarity": 0.5,
@@ -656,7 +656,7 @@
     },
     {
        "Name": "Switch Card Number",
-       "Regex": "^(?:4903|4905|4911|4936|6333|6759)[0-9]{12}$|(?:4903|4905|4911|4936|6333|6759)[0-9]{14}|(?:4903|4905|4911|4936|6333|6759)[0-9]{15}|564182[0-9]{10}|564182[0-9]{12}|564182[0-9]{13}|633110[0-9]{10}|633110[0-9]{12}|633110[0-9]{13}$",
+       "Regex": "^((?:4903|4905|4911|4936|6333|6759)[0-9]{12}|(?:4903|4905|4911|4936|6333|6759)[0-9]{14}|(?:4903|4905|4911|4936|6333|6759)[0-9]{15}|564182[0-9]{10}|564182[0-9]{12}|564182[0-9]{13}|633110[0-9]{10}|633110[0-9]{12}|633110[0-9]{13})$",
        "plural_name": false,
        "Description": null,
        "Rarity": 0.5,
@@ -668,7 +668,7 @@
     },
     {
        "Name": "Email Address",
-       "Regex": "^(?:[a-z0-9!#$%&'\"*+\/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'\"*+\/=?^_`{|}~-]+)*)@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\\[(?:(?:(?:2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9]))\\.){3}(?:(?:2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9])|[a-z0-9-]*[a-z0-9]:)\\])$",
+       "Regex": "^((?:[a-z0-9!#$%&'\"*+\/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'\"*+\/=?^_`{|}~-]+)*)@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\\[(?:(?:(?:2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9]))\\.){3}(?:(?:2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9])|[a-z0-9-]*[a-z0-9]:)\\]))$",
        "plural_name": false,
        "Description": null,
        "Rarity": 0.5,
@@ -681,7 +681,7 @@
     },
     {
        "Name": "Phone Number",
-       "Regex": "^\\s*(?:\\+?(\\d{1,3}))?[-. (]*(\\d{3})[-. )]*(\\d{3})[-. ]*(\\d{4})(?: *x(\\d+))?\\s*$",
+       "Regex": "^(\\s*(?:\\+?(\\d{1,3}))?[-. (]*(\\d{3})[-. )]*(\\d{3})[-. ]*(\\d{4})(?: *x(\\d+))?\\s*)$",
        "plural_name": false,
        "Description": null,
        "Rarity": 0.5,
@@ -693,8 +693,44 @@
        ]
     },
     {
+      "Name": "Recent Unix Timestamp",
+      "Regex": "^[0-9]{10}$",
+      "plural_name": false,
+      "Description": "Seconds elapsed since unix epoch: 1970, between year 2001 and 2286",
+      "Rarity": 0.5,
+      "URL": null,
+      "Tags": [
+         "Time"
+       ]
+    },
+    {
+      "Name": "Recent Unix Millisecond Timestamp",
+      "Regex": "^[0-9]{13}$",
+      "plural_name": false,
+      "Description": "Milliseconds elapsed since unix epoch: 1970, between year 2001 and 2286",
+      "Rarity": 0.5,
+      "URL": null,
+      "Tags": [
+         "Time"
+       ]
+    },
+    {
+       "Name": "American Social Security Number",
+       "Regex": "^(([0-9][0-9][0-9])(?<!666|000|9[0-9][0-9])(=|\\+|_|\\#|:|;|\\.|-|\\s){0,3}([1-9][1-9]|0[1-9]|[1-9]0)(=|\\+|_|\\#|:|;|\\.|-|\\s){0,3}([0-9][0-9][0-9][0-9])(?<!0000)(=|\\+|_|\\#|:|;|\\.|-|\\s){0,3}?)$",
+       "plural_name": false,
+       "Description": "An [#CAE4F1][link=https://en.wikipedia.org/wiki/Social_Security_number]American Identification Number[/link][/#CAE4F1]",
+       "Rarity": 0.5,
+       "URL": null,
+       "Tags": [
+          "Credentials",
+          "Password",
+          "Username",
+          "SSN"
+       ]
+    },
+    {
        "Name": "YouTube Channel ID",
-       "Regex": "^UC[0-9A-Za-z_-]{21}[AQgw]{1}$",
+       "Regex": "^(UC[0-9A-Za-z_-]{21}[AQgw]{1})$",
        "plural_name": false,
        "Description": null,
        "Rarity": 0.4,
@@ -705,7 +741,7 @@
     },
     {
        "Name": "YouTube Video ID",
-       "Regex": "^(?=.*[A-Z])(?=.*[a-z])[0-9A-Za-z_-]{10}[048AEIMQUYcgkosw]{1}$",
+       "Regex": "^((?=.*[A-Z])(?=.*[a-z])[0-9A-Za-z_-]{10}[048AEIMQUYcgkosw]{1})$",
        "plural_name": false,
        "Description": null,
        "Rarity": 0.2,
@@ -715,22 +751,30 @@
        ]
     },
     {
-      "Name": "American Social Security Number",
-      "Regex": "^([0-9][0-9][0-9])(?<!666|000|9[0-9][0-9])(=|\\+|_|\\#|:|;|\\.|-|\\s){0,3}([1-9][1-9]|0[1-9]|[1-9]0)(=|\\+|_|\\#|:|;|\\.|-|\\s){0,3}([0-9][0-9][0-9][0-9])(?<!0000)(=|\\+|_|\\#|:|;|\\.|-|\\s){0,3}?$",
+      "Name": "Unix Timestamp",
+      "Regex": "^[0-9]{8,10}$",
       "plural_name": false,
-      "Description": "An [#CAE4F1][link=https://en.wikipedia.org/wiki/Social_Security_number]American Identification Number[/link][/#CAE4F1]",
-      "Rarity": 0.5,
+      "Description": "Seconds elapsed since unix epoch: 1970",
+      "Rarity": 0.2,
       "URL": null,
       "Tags": [
-         "Credentials",
-         "Password",
-         "Username",
-         "SSN"
-      ]
-   },
+         "Time"
+       ]
+    },
+    {
+      "Name": "Unix Millisecond Timestamp",
+      "Regex": "^[0-9]{11,13}$",
+      "plural_name": false,
+      "Description": "Milliseconds elapsed since unix epoch: 1970",
+      "Rarity": 0.2,
+      "URL": null,
+      "Tags": [
+         "Time"
+       ]
+    },
     {
       "Name": "Key:Value Pair",
-      "Regex": "[^:\\s]+[ ]?:[ ]?[^:\\s]+",
+      "Regex": "^([^:\\s]+[ ]?:[ ]?[^:\\s]+)$",
       "plural_name": false,
       "Description": null,
       "Rarity": 0,

@@ -26,7 +26,7 @@ def test_filtration():
     runner = CliRunner()
     result = runner.invoke(
         main,
-        ["--rarity", "0.5:", "--include_tags", "Identifiers,Media", "fixtures/file"],
+        ["--rarity", "0.5:", "--include", "Identifiers,Media", "fixtures/file"],
     )
     assert result.exit_code == 0
     assert "THM{" not in result.output
@@ -55,7 +55,8 @@ def test_json_printing2():
     """Test for empty json return"""
     runner = CliRunner()
     result = runner.invoke(main, ["", "--json"])
-    assert result.output.strip("\n") == '{"File Signatures": null, "Regexes": null}'
+    assert result.output.strip(
+        "\n") == '{"File Signatures": null, "Regexes": null}'
 
 
 def test_file_fixture():
@@ -379,7 +380,8 @@ def test_file_s3_3():
 
 def test_file_arn():
     runner = CliRunner()
-    result = runner.invoke(main, ["arn:partition:service:region:account-id:resource"])
+    result = runner.invoke(
+        main, ["arn:partition:service:region:account-id:resource"])
     assert result.exit_code == 0
     assert re.findall("ARN", str(result.output))
 
@@ -404,7 +406,8 @@ def test_file_arn3():
 
 def test_file_arn4():
     runner = CliRunner()
-    result = runner.invoke(main, ["arn:aws:s3:::my_corporate_bucket/Development/*"])
+    result = runner.invoke(
+        main, ["arn:aws:s3:::my_corporate_bucket/Development/*"])
     assert result.exit_code == 0
     assert re.findall("ARN", str(result.output))
 
@@ -453,14 +456,18 @@ def test_key_value_min_rarity_0_5():
 
 def test_key_value_min_rarity_0_6():
     runner = CliRunner()
-    result = runner.invoke(main, ["--rarity", "0:", "a:b:c"])
+    result = runner.invoke(
+        main, ["--rarity", "0:", "--boundaryless-rarity", "0:", "a:b:c"]
+    )
     assert result.exit_code == 0
     assert re.findall("a:b", str(result.output))
 
 
 def test_key_value_min_rarity_0_7():
     runner = CliRunner()
-    result = runner.invoke(main, ["--rarity", "0:", "a : b:c"])
+    result = runner.invoke(
+        main, ["--rarity", "0:", "--boundaryless-rarity", "0:", "a : b:c"]
+    )
     assert result.exit_code == 0
     assert re.findall("a : b", str(result.output))
 
@@ -468,6 +475,29 @@ def test_key_value_min_rarity_0_7():
 def test_only_text():
     runner = CliRunner()
     result = runner.invoke(main, ["-o", "fixtures/file"])
+    assert result.exit_code == 0
+    assert "Nothing found" in result.output
+
+
+def test_boundaryless():
+    runner = CliRunner()
+    result = runner.invoke(
+        main, ["-be", "identifiers, security", "abc118.103.238.230abc"]
+    )
+    assert result.exit_code == 0
+    assert "Nothing found" in result.output
+
+
+def test_boundaryless2():
+    runner = CliRunner()
+    result = runner.invoke(main, ["-bi", "media", "abc118.103.238.230abc"])
+    assert result.exit_code == 0
+    assert "Nothing found" in result.output
+
+
+def test_boundaryless3():
+    runner = CliRunner()
+    result = runner.invoke(main, ["-db", "abc118.103.238.230abc"])
     assert result.exit_code == 0
     assert "Nothing found" in result.output
 
@@ -492,11 +522,13 @@ def test_ssh_ed25519_key():
     assert result.exit_code == 0
     assert re.findall("SSH ED25519", str(result.output))
 
+
 def test_asin():
     runner = CliRunner()
     result = runner.invoke(main, ["fixtures/file"])
     assert result.exit_code == 0
     assert re.findall("ASIN", str(result.output))
+
 
 def test_mac():
     runner = CliRunner()
@@ -505,11 +537,12 @@ def test_mac():
     assert re.findall("de:ad:be:ef:ca:fe", str(result.output))
     assert re.findall("DE:AD:BE:EF:CA:FE", str(result.output))
 
+
 def test_mac_tags():
     runner = CliRunner()
     result = runner.invoke(
         main,
-        ["--include_tags", "Identifiers,Networking", "fixtures/file"],
+        ["--include", "Identifiers,Networking", "fixtures/file"],
     )
     assert result.exit_code == 0
     assert "Ethernet" in result.output

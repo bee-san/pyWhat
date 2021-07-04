@@ -1,9 +1,15 @@
+from datetime import datetime
+from time import time
+
 import pytest
 
 from pywhat import regex_identifier
+from pywhat.filter import Filter
+
 
 def _assert_match_first_item(name, res):
     assert name in res[0]["Regex Pattern"]["Name"]
+
 
 def test_regex_successfully_parses():
     r = regex_identifier.RegexIdentifier()
@@ -79,7 +85,9 @@ def test_lat_long6():
 
 def test_ip():
     r = regex_identifier.RegexIdentifier()
-    res = r.check(["http://10.1.1.1/just/a/test"])
+    res = r.check(
+        ["http://10.1.1.1/just/a/test"], boundaryless=Filter({"Tags": ["Identifiers"]})
+    )
     _assert_match_first_item("Uniform Resource Locator (URL)", res)
     assert "Internet Protocol (IP) Address Version 4" in res[1]["Regex Pattern"]["Name"]
 
@@ -107,35 +115,69 @@ def test_ip4():
     res = r.check(["[2001:db8::1]:8080"])
     assert "[2001:db8::1]:8080" in res[0]["Matched"]
 
+
 def test_mac():
     r = regex_identifier.RegexIdentifier()
     res = r.check(["00:00:00:00:00:00"])
-    assert res and "00:00:00:00:00:00" in res[0]["Matched"] and res[0]["Regex Pattern"]["Name"] == "EUI-48 Identifier (Ethernet, WiFi, Bluetooth, etc)"
+    assert (
+        res
+        and "00:00:00:00:00:00" in res[0]["Matched"]
+        and res[0]["Regex Pattern"]["Name"]
+        == "EUI-48 Identifier (Ethernet, WiFi, Bluetooth, etc)"
+    )
+
 
 def test_mac2():
     r = regex_identifier.RegexIdentifier()
     res = r.check(["00-00-00-00-00-00"])
-    assert res and "00-00-00-00-00-00" in res[0]["Matched"] and res[0]["Regex Pattern"]["Name"] == "EUI-48 Identifier (Ethernet, WiFi, Bluetooth, etc)"
+    assert (
+        res
+        and "00-00-00-00-00-00" in res[0]["Matched"]
+        and res[0]["Regex Pattern"]["Name"]
+        == "EUI-48 Identifier (Ethernet, WiFi, Bluetooth, etc)"
+    )
+
 
 def test_mac3():
     r = regex_identifier.RegexIdentifier()
     res = r.check(["0000.0000.0000"])
-    assert res and "0000.0000.0000" in res[0]["Matched"] and res[0]["Regex Pattern"]["Name"] == "EUI-48 Identifier (Ethernet, WiFi, Bluetooth, etc)"
+    assert (
+        res
+        and "0000.0000.0000" in res[0]["Matched"]
+        and res[0]["Regex Pattern"]["Name"]
+        == "EUI-48 Identifier (Ethernet, WiFi, Bluetooth, etc)"
+    )
+
 
 def test_mac4():
     r = regex_identifier.RegexIdentifier()
     res = r.check(["00-00-00-00.00-00"])
-    assert not res or res[0]["Regex Pattern"]["Name"] != "EUI-48 Identifier (Ethernet, WiFi, Bluetooth, etc)"
+    assert (
+        not res
+        or res[0]["Regex Pattern"]["Name"]
+        != "EUI-48 Identifier (Ethernet, WiFi, Bluetooth, etc)"
+    )
+
 
 def test_mac5():
     r = regex_identifier.RegexIdentifier()
     res = r.check(["00:00-00-00-00-00"])
-    assert not res or res[0]["Regex Pattern"]["Name"] != "EUI-48 Identifier (Ethernet, WiFi, Bluetooth, etc)"
+    assert (
+        not res
+        or res[0]["Regex Pattern"]["Name"]
+        != "EUI-48 Identifier (Ethernet, WiFi, Bluetooth, etc)"
+    )
+
 
 def test_mac6():
     r = regex_identifier.RegexIdentifier()
     res = r.check(["00:00:0G:00:00:00"])
-    assert not res or res[0]["Regex Pattern"]["Name"] != "EUI-48 Identifier (Ethernet, WiFi, Bluetooth, etc)"
+    assert (
+        not res
+        or res[0]["Regex Pattern"]["Name"]
+        != "EUI-48 Identifier (Ethernet, WiFi, Bluetooth, etc)"
+    )
+
 
 @pytest.mark.skip(
     reason="Fails because not a valid TLD. If presented in punycode, it works."
@@ -297,8 +339,10 @@ def test_email2():
 
 def test_email3():
     r = regex_identifier.RegexIdentifier()
-    res = r.check(["john.smith@[123.123.123.123]"])
-    assert "Email" in res[1]["Regex Pattern"]["Name"]
+    res = r.check(
+        ["john.smith@[123.123.123.123]"], boundaryless=Filter({"Tags": ["Identifiers"]})
+    )
+    assert "Email" in res[2]["Regex Pattern"]["Name"]
 
 
 def test_email4():
@@ -460,13 +504,15 @@ def test_arn():
 
 def test_arn2():
     r = regex_identifier.RegexIdentifier()
-    res = r.check(["arn:partition:service:region:account-id:resourcetype/resource"])
+    res = r.check(
+        ["arn:partition:service:region:account-id:resourcetype/resource"])
     assert "ARN" in str(res)
 
 
 def test_arn3():
     r = regex_identifier.RegexIdentifier()
-    res = r.check(["arn:partition:service:region:account-id:resourcetype:resource"])
+    res = r.check(
+        ["arn:partition:service:region:account-id:resourcetype:resource"])
     assert "ARN" in str(res)
 
 
@@ -474,6 +520,47 @@ def test_arn4():
     r = regex_identifier.RegexIdentifier()
     res = r.check(["arn:aws:s3:::my_corporate_bucket/Development/*"])
     assert "ARN" in str(res)
+
+
+def test_unix_timestamp():
+    r = regex_identifier.RegexIdentifier()
+    res = r.check(["1577836800"])  # 2020-01-01
+    keys = [m['Regex Pattern']['Name'] for m in res]
+    assert "Unix Timestamp" in keys
+    assert "Recent Unix Timestamp" in keys
+
+
+def test_unix_timestamp2():
+    r = regex_identifier.RegexIdentifier()
+    res = r.check(["94694400"])  # 1973-01-01
+    keys = [m['Regex Pattern']['Name'] for m in res]
+    assert "Unix Timestamp" in keys
+    assert "Recent Unix Timestamp" not in keys
+
+
+def test_unix_timestamp3():
+    r = regex_identifier.RegexIdentifier()
+    res = r.check(["1234567"])  # 7 numbers
+    keys = [m['Regex Pattern']['Name'] for m in res]
+    assert "Unix Timestamp" not in keys
+    assert "Recent Unix Timestamp" not in keys
+
+
+def test_unix_timestamp4():
+    r = regex_identifier.RegexIdentifier()
+    res = r.check(["1577836800000"])  # 2020-01-01
+    keys = [m['Regex Pattern']['Name'] for m in res]
+    assert "Unix Millisecond Timestamp" in keys
+    assert "Recent Unix Millisecond Timestamp" in keys
+
+
+def test_unix_timestamp5():
+    r = regex_identifier.RegexIdentifier()
+    res = r.check(["94694400000"])  # 1973-01-01
+    keys = [m['Regex Pattern']['Name'] for m in res]
+    assert "Unix Millisecond Timestamp" in keys
+    assert "Recent Unix Millisecond Timestamp" not in keys
+
 
 def test_ssh_rsa_key():
     r = regex_identifier.RegexIdentifier()
@@ -484,6 +571,7 @@ def test_ssh_rsa_key():
     )
     assert "SSH RSA" in str(res)
 
+
 def test_ssh_ecdsa_key():
     r = regex_identifier.RegexIdentifier()
     res = r.check(
@@ -492,6 +580,7 @@ def test_ssh_ecdsa_key():
         ]
     )
     assert "SSH ECDSA" in str(res)
+
 
 def test_ssh_ed25519_key():
     r = regex_identifier.RegexIdentifier()
@@ -502,6 +591,7 @@ def test_ssh_ed25519_key():
     )
     assert "SSH ED25519" in str(res)
 
+
 def test_asin():
     r = regex_identifier.RegexIdentifier()
     res = r.check(
@@ -511,120 +601,81 @@ def test_asin():
     )
     assert "ASIN" in str(res)
 
+
 def test_google_api_key():
     r = regex_identifier.RegexIdentifier()
-    res = r.check(
-        [
-            "AIzaSyD7CQl6fRhagGok6CzFGOOPne2X1u1spoA"
-        ]
-    )
+    res = r.check(["AIzaSyD7CQl6fRhagGok6CzFGOOPne2X1u1spoA"])
     _assert_match_first_item("Google API Key", res)
+
 
 def test_google_recaptcha_api_key():
     r = regex_identifier.RegexIdentifier()
-    res = r.check(
-        [
-            "6Le3W6QUAAAANNT8X_9JwlNnK4kZGLaYTB3KqFLM"
-        ]
-    )
+    res = r.check(["6Le3W6QUAAAANNT8X_9JwlNnK4kZGLaYTB3KqFLM"])
     _assert_match_first_item("Google ReCaptcha API Key", res)
 
 
 def test_google_oauth_token():
     r = regex_identifier.RegexIdentifier()
-    res = r.check(
-        [
-            "ya29.AHES6ZRnn6CfjjaK6GCQ84vikePv_hk4NUAJwzaAXamCL0s"
-        ]
-    )
+    res = r.check(["ya29.AHES6ZRnn6CfjjaK6GCQ84vikePv_hk4NUAJwzaAXamCL0s"])
     _assert_match_first_item("Google OAuth Token", res)
+
 
 def test_aws_access_key_id():
     r = regex_identifier.RegexIdentifier()
-    res = r.check(
-        [
-            "AKIA31OMZKYAARWZ3ERH"
-        ]
-    )
+    res = r.check(["AKIA31OMZKYAARWZ3ERH"])
     _assert_match_first_item("AWS Access Key ID", res)
+
 
 def test_mailgun_api_key():
     r = regex_identifier.RegexIdentifier()
-    res = r.check(
-        [
-            "key-1e1631a9414aff7c262721e7b6ff6e43"
-        ]
-    )
+    res = r.check(["key-1e1631a9414aff7c262721e7b6ff6e43"])
     _assert_match_first_item("Mailgun API Key", res)
+
 
 def test_twilio_api_key():
     r = regex_identifier.RegexIdentifier()
-    res = r.check(
-        [
-            "SK012dab2d3f4dab1c2f33dffafdf23142"
-        ]
-    )
+    res = r.check(["SK012dab2d3f4dab1c2f33dffafdf23142"])
     _assert_match_first_item("Twilio API Key", res)
+
 
 def test_twilio_account_sid():
     r = regex_identifier.RegexIdentifier()
-    res = r.check(
-        [
-            "AC10a133ffdfb112abb2d3f42d1d2d3b14"
-        ]
-    )
+    res = r.check(["AC10a133ffdfb112abb2d3f42d1d2d3b14"])
     _assert_match_first_item("Twilio Account SID", res)
+
 
 def test_twilio_application_sid():
     r = regex_identifier.RegexIdentifier()
-    res = r.check(
-        [
-            "APfff01abd2b134a2aff3adc243ab211ab"
-        ]
-    )
+    res = r.check(["APfff01abd2b134a2aff3adc243ab211ab"])
     _assert_match_first_item("Twilio Application SID", res)
+
 
 def test_square_application_secret():
     r = regex_identifier.RegexIdentifier()
-    res = r.check(
-        [
-            "sq0csp-LBptIQ85io8CvbjVDvmzD1drQbOERgjlhnNrMgscFGk"
-        ]
-    )
+    res = r.check(["sq0csp-LBptIQ85io8CvbjVDvmzD1drQbOERgjlhnNrMgscFGk"])
     _assert_match_first_item("Square Application Secret", res)
+
 
 def test_square_access_token():
     r = regex_identifier.RegexIdentifier()
     res = r.check(
-        [
-            "EAAAEBQZoq15Ub0PBBr_kw0zK-uIHcBPBZcfjPFT05ODfjng9GqFK9Dbgtj1ILcU"
-        ]
-    )
+        ["EAAAEBQZoq15Ub0PBBr_kw0zK-uIHcBPBZcfjPFT05ODfjng9GqFK9Dbgtj1ILcU"])
     _assert_match_first_item("Square Access Token", res)
+
 
 def test_stripe_api_key():
     r = regex_identifier.RegexIdentifier()
-    res = r.check(
-        [
-            "sk_live_vHDDrL02ioRF5vYtyqiYBKma"
-        ]
-    )
+    res = r.check(["sk_live_vHDDrL02ioRF5vYtyqiYBKma"])
     _assert_match_first_item("Stripe API Key", res)
+
 
 def test_github_access_token():
     r = regex_identifier.RegexIdentifier()
-    res = r.check(
-        [
-            "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:test@github.com"
-        ]
-    )
+    res = r.check(["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:test@github.com"])
     _assert_match_first_item("GitHub Access Token", res)
+
 
 def test_slack_token():
     r = regex_identifier.RegexIdentifier()
-    res = r.check(
-        [
-            "xoxb-51465443183-hgvhXVd2ISC2x7gaoRWBOUdQ"
-        ]
-    )
+    res = r.check(["xoxb-51465443183-hgvhXVd2ISC2x7gaoRWBOUdQ"])
     _assert_match_first_item("Slack Token", res)
