@@ -1,7 +1,7 @@
 [
    {
       "Name": "SSH RSA Public Key",
-      "Regex": "ssh-rsa [A-Za-z0-9+\/=]+ [^ \n]+",
+      "Regex": "^(ssh-rsa [A-Za-z0-9+\/=]+ [^ \n]+)$",
       "plural_name": false,
       "Description": null,
       "Rarity": 1,
@@ -15,7 +15,7 @@
    },
    {
       "Name": "SSH ECDSA Public Key",
-      "Regex": "ecdsa-sha2-nistp[0-9]{3} [A-Za-z0-9+\/=]+ [^ \n]+",
+      "Regex": "^(ecdsa-sha2-nistp[0-9]{3} [A-Za-z0-9+\/=]+ [^ \n]+)$",
       "plural_name": false,
       "Description": null,
       "Rarity": 1,
@@ -29,7 +29,7 @@
    },
    {
       "Name": "SSH ED25519 Public Key",
-      "Regex": "ssh-ed25519 [A-Za-z0-9+\/=]+ [^ \n]+",
+      "Regex": "^(ssh-ed25519 [A-Za-z0-9+\/=]+ [^ \n]+)$",
       "plural_name": false,
       "Description": null,
       "Rarity": 1,
@@ -43,7 +43,7 @@
    },
    {
       "Name": "Ethereum (ETH) Wallet Address",
-      "Regex": "(?i)^(0x[a-f0-9]{40})$",
+      "Regex": "^((?i)^(0x[a-f0-9]{40})$)$",
       "plural_name": false,
       "Description": null,
       "Rarity": 1,
@@ -180,7 +180,7 @@
    },
    {
       "Name": "Google API Key",
-      "Regex": "AIza[0-9A-Za-z-_]{35}",
+      "Regex": "^(AIza[0-9A-Za-z-_]{35})$",
       "plural_name": false,
       "Description": null,
       "Rarity": 1,
@@ -193,7 +193,7 @@
    },
    {
       "Name": "Google ReCaptcha API Key",
-      "Regex": "6L[0-9A-Za-z-_]{38}|^6[0-9a-zA-Z_-]{39}$",
+      "Regex": "^(6L[0-9A-Za-z-_]{38}|^6[0-9a-zA-Z_-]{39}$)$",
       "plural_name": false,
       "Description": null,
       "Rarity": 1,
@@ -206,7 +206,7 @@
    },
    {
       "Name": "Google OAuth Token",
-      "Regex": "ya29.[0-9A-Za-z-_]+",
+      "Regex": "^(ya29.[0-9A-Za-z-_]+)$",
       "plural_name": false,
       "Description": null,
       "Rarity": 1,
@@ -219,7 +219,7 @@
    },
    {
       "Name": "AWS Access Key ID",
-      "Regex": "A[SK]IA[0-9A-Z]{16}",
+      "Regex": "^(A[SK]IA[0-9A-Z]{16})$",
       "plural_name": false,
       "Description": null,
       "Rarity": 1,
@@ -232,7 +232,7 @@
    },
    {
       "Name": "Mailgun API Key",
-      "Regex": "key-[0-9a-zA-Z]{32}",
+      "Regex": "^(key-[0-9a-zA-Z]{32})$",
       "plural_name": false,
       "Description": null,
       "Rarity": 1,
@@ -244,7 +244,7 @@
    },
    {
       "Name": "Twilio API Key",
-      "Regex": "SK[0-9a-fA-F]{32}",
+      "Regex": "^(SK[0-9a-fA-F]{32})$",
       "plural_name": false,
       "Description": null,
       "Rarity": 1,
@@ -257,7 +257,7 @@
    },
    {
       "Name": "Twilio Account SID",
-      "Regex": "AC[a-zA-Z0-9_-]{32}",
+      "Regex": "^(AC[a-zA-Z0-9_-]{32})$",
       "plural_name": false,
       "Description": null,
       "Rarity": 1,
@@ -270,7 +270,7 @@
    },
    {
       "Name": "Twilio Application SID",
-      "Regex": "AP[a-zA-Z0-9_-]{32}",
+      "Regex": "^(AP[a-zA-Z0-9_-]{32})$",
       "plural_name": false,
       "Description": null,
       "Rarity": 1,
@@ -283,7 +283,7 @@
    },
    {
       "Name": "Square Application Secret",
-      "Regex": "sandbox-?sq0csp-[0-9A-Za-z-_]{43}|sq0[a-z]{3}-[0-9A-Za-z-_]{22,43}",
+      "Regex": "^(sandbox-?sq0csp-[0-9A-Za-z-_]{43}|sq0[a-z]{3}-[0-9A-Za-z-_]{22,43})$",
       "plural_name": false,
       "Description": null,
       "Rarity": 1,
@@ -296,7 +296,7 @@
    },
    {
       "Name": "Square Access Token",
-      "Regex": "sqOatp-[0-9A-Za-z-_]{22}|EAAA[a-zA-Z0-9-_]{60}",
+      "Regex": "^(sqOatp-[0-9A-Za-z-_]{22}|EAAA[a-zA-Z0-9-_]{60})$",
       "plural_name": false,
       "Description": null,
       "Rarity": 1,
@@ -309,7 +309,7 @@
    },
    {
       "Name": "Stripe API Key",
-      "Regex": "[srp]k_live_[0-9a-zA-Z]{24}",
+      "Regex": "^([srp]k_live_[0-9a-zA-Z]{24})$",
       "plural_name": false,
       "Description": null,
       "Rarity": 1,
@@ -321,7 +321,7 @@
    },
    {
       "Name": "GitHub Access Token",
-      "Regex": "[a-zA-Z0-9_-]*:[a-zA-Z0-9_-]+@github.com*",
+      "Regex": "^([a-zA-Z0-9_-]*:[a-zA-Z0-9_-]+@github.com*)$",
       "plural_name": false,
       "Description": null,
       "Rarity": 1,
@@ -333,7 +333,7 @@
    },
    {
       "Name": "Slack Token",
-      "Regex": "xox[a-zA-Z]-[a-zA-Z0-9-]+",
+      "Regex": "^(xox[a-zA-Z]-[a-zA-Z0-9-]+)$",
       "plural_name": false,
       "Description": null,
       "Rarity": 1,
@@ -384,7 +384,7 @@
    },
    {
       "Name": "EUI-48 Identifier (Ethernet, WiFi, Bluetooth, etc)",
-      "Regex": "([0-9A-Fa-f]{2}[:]){5}[0-9A-Fa-f]{2}|([0-9A-Fa-f]{2}[-]){5}[0-9A-Fa-f]{2}|([0-9A-Fa-f]{4}[\\.]){2}[0-9A-Fa-f]{4}",
+      "Regex": "^(([0-9A-Fa-f]{2}[:]){5}[0-9A-Fa-f]{2}|([0-9A-Fa-f]{2}[-]){5}[0-9A-Fa-f]{2}|([0-9A-Fa-f]{4}[\\.]){2}[0-9A-Fa-f]{4})$",
       "plural_name": false,
       "Description": null,
       "Rarity": 0.5,
@@ -694,7 +694,7 @@
    },
    {
       "Name": "Recent Unix Timestamp",
-      "Regex": "^[0-9]{10}$",
+      "Regex": "^([0-9]{10})$",
       "plural_name": false,
       "Description": "Seconds elapsed since unix epoch: 1970, between year 2001 and 2286",
       "Rarity": 0.5,
@@ -705,7 +705,7 @@
    },
    {
       "Name": "Recent Unix Millisecond Timestamp",
-      "Regex": "^[0-9]{13}$",
+      "Regex": "^([0-9]{13})$",
       "plural_name": false,
       "Description": "Milliseconds elapsed since unix epoch: 1970, between year 2001 and 2286",
       "Rarity": 0.5,
@@ -752,7 +752,7 @@
    },
    {
       "Name": "Unix Timestamp",
-      "Regex": "^[0-9]{8,10}$",
+      "Regex": "^([0-9]{8,10})$",
       "plural_name": false,
       "Description": "Seconds elapsed since unix epoch: 1970",
       "Rarity": 0.2,
@@ -763,7 +763,7 @@
    },
    {
       "Name": "Unix Millisecond Timestamp",
-      "Regex": "^[0-9]{11,13}$",
+      "Regex": "^([0-9]{11,13})$",
       "plural_name": false,
       "Description": "Milliseconds elapsed since unix epoch: 1970",
       "Rarity": 0.2,
