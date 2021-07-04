@@ -594,7 +594,7 @@ def test_asin():
     r = regex_identifier.RegexIdentifier()
     res = r.check(
         [
-            "http://www.amazon.com/Kindle-Wireless-Reading-Display-Generation/dp/B0015T963C"
+            "B07ND5BB8V"
         ]
     )
     assert "ASIN" in str(res)

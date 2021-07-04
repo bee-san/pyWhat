@@ -396,7 +396,7 @@
    },
    {
       "Name": "Amazon Standard Identification Number (ASIN)",
-      "Regex": "(?:[/dp/]|$)([A-Z0-9]{10})",
+      "Regex": "^(B[A-Z0-9]{9})$",
       "plural_name": false,
       "Description": null,
       "Rarity": 0.5,
