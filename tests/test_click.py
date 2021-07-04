@@ -55,8 +55,7 @@ def test_json_printing2():
     """Test for empty json return"""
     runner = CliRunner()
     result = runner.invoke(main, ["", "--json"])
-    assert result.output.strip(
-        "\n") == '{"File Signatures": null, "Regexes": null}'
+    assert result.output.strip("\n") == '{"File Signatures": null, "Regexes": null}'
 
 
 def test_file_fixture():
@@ -380,8 +379,7 @@ def test_file_s3_3():
 
 def test_file_arn():
     runner = CliRunner()
-    result = runner.invoke(
-        main, ["arn:partition:service:region:account-id:resource"])
+    result = runner.invoke(main, ["arn:partition:service:region:account-id:resource"])
     assert result.exit_code == 0
     assert re.findall("ARN", str(result.output))
 
@@ -406,8 +404,7 @@ def test_file_arn3():
 
 def test_file_arn4():
     runner = CliRunner()
-    result = runner.invoke(
-        main, ["arn:aws:s3:::my_corporate_bucket/Development/*"])
+    result = runner.invoke(main, ["arn:aws:s3:::my_corporate_bucket/Development/*"])
     assert result.exit_code == 0
     assert re.findall("ARN", str(result.output))
 

@@ -504,15 +504,13 @@ def test_arn():
 
 def test_arn2():
     r = regex_identifier.RegexIdentifier()
-    res = r.check(
-        ["arn:partition:service:region:account-id:resourcetype/resource"])
+    res = r.check(["arn:partition:service:region:account-id:resourcetype/resource"])
     assert "ARN" in str(res)
 
 
 def test_arn3():
     r = regex_identifier.RegexIdentifier()
-    res = r.check(
-        ["arn:partition:service:region:account-id:resourcetype:resource"])
+    res = r.check(["arn:partition:service:region:account-id:resourcetype:resource"])
     assert "ARN" in str(res)
 
 
@@ -525,7 +523,7 @@ def test_arn4():
 def test_unix_timestamp():
     r = regex_identifier.RegexIdentifier()
     res = r.check(["1577836800"])  # 2020-01-01
-    keys = [m['Regex Pattern']['Name'] for m in res]
+    keys = [m["Regex Pattern"]["Name"] for m in res]
     assert "Unix Timestamp" in keys
     assert "Recent Unix Timestamp" in keys
 
@@ -533,7 +531,7 @@ def test_unix_timestamp():
 def test_unix_timestamp2():
     r = regex_identifier.RegexIdentifier()
     res = r.check(["94694400"])  # 1973-01-01
-    keys = [m['Regex Pattern']['Name'] for m in res]
+    keys = [m["Regex Pattern"]["Name"] for m in res]
     assert "Unix Timestamp" in keys
     assert "Recent Unix Timestamp" not in keys
 
@@ -541,7 +539,7 @@ def test_unix_timestamp2():
 def test_unix_timestamp3():
     r = regex_identifier.RegexIdentifier()
     res = r.check(["1234567"])  # 7 numbers
-    keys = [m['Regex Pattern']['Name'] for m in res]
+    keys = [m["Regex Pattern"]["Name"] for m in res]
     assert "Unix Timestamp" not in keys
     assert "Recent Unix Timestamp" not in keys
 
@@ -549,7 +547,7 @@ def test_unix_timestamp3():
 def test_unix_timestamp4():
     r = regex_identifier.RegexIdentifier()
     res = r.check(["1577836800000"])  # 2020-01-01
-    keys = [m['Regex Pattern']['Name'] for m in res]
+    keys = [m["Regex Pattern"]["Name"] for m in res]
     assert "Unix Millisecond Timestamp" in keys
     assert "Recent Unix Millisecond Timestamp" in keys
 
@@ -557,7 +555,7 @@ def test_unix_timestamp4():
 def test_unix_timestamp5():
     r = regex_identifier.RegexIdentifier()
     res = r.check(["94694400000"])  # 1973-01-01
-    keys = [m['Regex Pattern']['Name'] for m in res]
+    keys = [m["Regex Pattern"]["Name"] for m in res]
     assert "Unix Millisecond Timestamp" in keys
     assert "Recent Unix Millisecond Timestamp" not in keys
 
@@ -658,8 +656,7 @@ def test_square_application_secret():
 
 def test_square_access_token():
     r = regex_identifier.RegexIdentifier()
-    res = r.check(
-        ["EAAAEBQZoq15Ub0PBBr_kw0zK-uIHcBPBZcfjPFT05ODfjng9GqFK9Dbgtj1ILcU"])
+    res = r.check(["EAAAEBQZoq15Ub0PBBr_kw0zK-uIHcBPBZcfjPFT05ODfjng9GqFK9Dbgtj1ILcU"])
     _assert_match_first_item("Square Access Token", res)
 
 
