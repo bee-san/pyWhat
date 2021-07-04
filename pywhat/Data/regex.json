@@ -180,7 +180,7 @@
     },
     {
       "Name": "Amazon Web Services Secret Access Key",
-      "Regex": "(?<![A-Za-z0-9/+=])[A-Za-z0-9/+=]{40}(?![A-Za-z0-9/+=])",
+      "Regex": "^((?<![A-Za-z0-9/+=])[A-Za-z0-9/+=]{40}(?![A-Za-z0-9/+=]))$",
       "plural_name": false,
       "Description": null,
       "Rarity": 1,
@@ -193,7 +193,7 @@
     },
     {
       "Name": "Amazon Web Services EC2 Instance identifier",
-      "Regex": "(?i)\\b[a-z]+-[a-z0-9]+",
+      "Regex": "(?i)^(\\b[a-z]+-[a-z0-9]+)$",
       "plural_name": false,
       "Description": null,
       "Rarity": 0.5,
@@ -277,19 +277,6 @@
          "API Keys",
          "Credentials",
          "Google"
-      ]
-   },
-   {
-      "Name": "AWS Access Key ID",
-      "Regex": "A[SK]IA[0-9A-Z]{16}",
-      "plural_name": false,
-      "Description": null,
-      "Rarity": 1,
-      "URL": null,
-      "Tags": [
-         "API Keys",
-         "Credentials",
-         "AWS"
       ]
    },
     {

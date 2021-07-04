@@ -637,13 +637,13 @@ def test_google_oauth_token():
 def test_aws_access_key_id():
     r = regex_identifier.RegexIdentifier()
     res = r.check(["AKIA31OMZKYAARWZ3ERH"])
-    _assert_match_first_item("AWS Access Key ID", res)
+    _assert_match_first_item("Amazon Web Services Access Key", res)
 
 
 def test_mailgun_api_key():
     r = regex_identifier.RegexIdentifier()
     res = r.check(["key-1e1631a9414aff7c262721e7b6ff6e43"])
-    _assert_match_first_item("Mailgun API Key", res)
+    assert "Mailgun API Key" in res[1]["Regex Pattern"]["Name"]
 
 
 def test_twilio_api_key():
