@@ -30,7 +30,7 @@ class RegexIdentifier:
                     reg["Boundaryless Regex"] if reg in boundaryless else reg["Regex"]
                 )
 
-                for matched_regex in re.finditer(regex, string, re.UNICODE.MULTILINE):
+                for matched_regex in re.finditer(regex, string, re.MULTILINE):
                     reg = copy.copy(reg)  # necessary, when checking phone
                     # numbers from file that may contain
                     # non-international numbers
