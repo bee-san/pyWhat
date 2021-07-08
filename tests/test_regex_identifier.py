@@ -694,3 +694,23 @@ def test_pgp_private_key():
         ]
     )
     _assert_match_first_item("PGP Private Key", res)
+
+
+def test_discord_token():
+    r = regex_identifier.RegexIdentifier()
+    res = r.check(
+        [
+            "NzQ4MDk3ODM3OTgzODU4NzIz.X0YeZw.UlcjuCywUAWvPH9s-3cXNBaq3M4"
+        ]
+    )
+    _assert_match_first_item("Discord Bot Token", res)
+
+
+def test_discord_token_2():
+    r = regex_identifier.RegexIdentifier()
+    res = r.check(
+        [
+            "MTE4NDQyNjQ0NTAxMjk5MjAz.DPM2DQ.vLNMR02Qxb9DJFucGZK1UtTs__s"
+        ]
+    )
+    _assert_match_first_item("Discord Bot Token", res)
