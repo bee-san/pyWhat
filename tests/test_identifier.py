@@ -33,13 +33,13 @@ def test_identifier_works():
 def test_identifier_works2():
     r = identifier.Identifier()
     out = r.identify("fixtures/file", only_text=False)
-    assert ("Ethereum (ETH) Wallet Address" in str(out))
+    assert "Ethereum (ETH) Wallet Address" in str(out)
 
 
 def test_identifier_works3():
     r = identifier.Identifier()
     out = r.identify("fixtures/file", only_text=False)
-    assert ("Dogecoin (DOGE) Wallet Address" in str(out))
+    assert "Dogecoin (DOGE) Wallet Address" in str(out)
 
 
 def test_identifier_filtration():

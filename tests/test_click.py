@@ -3,6 +3,7 @@ import re
 
 import pytest
 from click.testing import CliRunner
+
 from pywhat import pywhat_tags
 from pywhat.what import main
 
@@ -550,6 +551,7 @@ def test_pgp_public_key():
     result = runner.invoke(main, ["fixtures/file"])
     assert result.exit_code == 0
     assert re.findall("PGP Public Key", str(result.output))
+
 
 def test_pgp_private_key():
     runner = CliRunner()
