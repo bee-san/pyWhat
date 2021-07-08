@@ -698,7 +698,7 @@ def test_aws_access_key_id():
 def test_mailgun_api_key():
     r = regex_identifier.RegexIdentifier()
     res = r.check(["key-1e1631a9414aff7c262721e7b6ff6e43"])
-    assert "Mailgun API Key" in res[1]["Regex Pattern"]["Name"]
+    _assert_match_first_item("Mailgun API Key", res)
 
 
 def test_twilio_api_key():

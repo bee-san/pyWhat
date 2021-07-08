@@ -68,19 +68,6 @@
       ]
    },
    {
-      "Name": "Ethereum (ETH) Wallet Address",
-      "Regex": "(?i)^(0x[a-f0-9]{40})$",
-      "plural_name": false,
-      "Description": null,
-      "Rarity": 1,
-      "URL": "https://etherscan.io/address/",
-      "Tags": [
-         "Finance",
-         "Cryptocurrency Wallet",
-         "Ethereum Wallet"
-      ]
-   },
-   {
       "Name": "Access-Control-Allow-Header",
       "Regex": "(?i)^(Access-Control-Allow: [a-z0-9\\-*])$",
       "plural_name": false,
@@ -90,20 +77,6 @@
       "Tags": [
          "Networking",
          "Website"
-      ]
-   },
-   {
-      "Name": "Bitcoin (₿) Wallet Address",
-      "Regex": "^([13][a-km-zA-HJ-NP-Z1-9]{25,34})$",
-      "plural_name": false,
-      "Description": null,
-      "Rarity": 1,
-      "URL": "https://www.blockchain.com/btc/address/",
-      "Tags": [
-         "Cryptocurrency",
-         "Finance",
-         "Cryptocurrency Wallet",
-         "Bitcoin Wallet"
       ]
    },
    {
@@ -189,171 +162,6 @@
          "Internet",
          "Networking",
          "AWS"
-       ]
-    },
-    {
-      "Name": "Amazon Web Services Access Key",
-      "Regex": "(?<![A-Z0-9])[A-Z0-9]{20}(?![A-Z0-9])",
-      "plural_name": false,
-      "Description": null,
-      "Rarity": 1,
-      "URL": null,
-      "Tags": [
-         "Credentials",
-         "Cyber Security",
-         "AWS"
-       ]
-    },
-    {
-      "Name": "Amazon Web Services Secret Access Key",
-      "Regex": "^((?<![A-Za-z0-9/+=])[A-Za-z0-9/+=]{40}(?![A-Za-z0-9/+=]))$",
-      "plural_name": false,
-      "Description": null,
-      "Rarity": 1,
-      "URL": null,
-      "Tags": [
-         "Credentials",
-         "Cyber Security",
-         "AWS"
-       ]
-    },
-    {
-      "Name": "Amazon Web Services EC2 Instance identifier",
-      "Regex": "(?i)^(\\b[a-z]+-[a-z0-9]+)$",
-      "plural_name": false,
-      "Description": null,
-      "Rarity": 0.5,
-      "URL": null,
-      "Tags": [
-         "Identifiers",
-         "AWS"
-       ]
-    },
-    {
-      "Name": "Amazon Web Services EC2 Security Group identifier",
-      "Regex": "^([0-9]*\/)?sg-([0-9]*)",
-      "plural_name": false,
-      "Description": null,
-      "Rarity": 0.5,
-      "URL": null,
-      "Tags": [
-         "Identifiers",
-         "AWS"
-       ]
-    },
-    {
-      "Name": "Amazon Web Services Organization identifier",
-      "Regex": "^o-[a-z0-9]{10,32}$",
-      "plural_name": false,
-      "Description": null,
-      "Rarity": 0.5,
-      "URL": null,
-      "Tags": [
-         "Identifiers",
-         "AWS"
-       ]
-    },
-    {
-       "Name": "Internet Protocol (IP) Address Version 6",
-       "Regex": "^((?=.*[0-9])\\[?(?:(?:[0-9a-f]{1,4}:){7,7}[0-9a-f]{1,4}|([0-9a-f]{4}:){1,7}:|([0-9a-f]{1,4}:){1,6}:[0-9a-f]{1,4}|([0-9a-f]{1,4}:){1,5}(:[0-9a-f]{1,4}){1,2}|([0-9a-f]{1,4}:){1,4}(:[0-9a-f]{1,4}){1,3}|([0-9a-f]{1,4}:){1,3}(:[0-9a-f]{1,4}){1,4}|([0-9a-fA]{1,4}:){1,2}(:[0-9a-f]{1,4}){1,5}|[0-9a-f]{1,4}:((:[0-9a-f]{1,4}){1,6})|:((:[0-9a-f]{1,4}){1,7}|:)|fe80:(:[0-9a-f]{0,4}){0,4}%[0-9a-z]{1,}|::(ffff(:0{1,4}){0,1}:){0,1}((25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])\\.){3,3}(25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])|(?:[0-9a-f]{1,4}:){1,4}:(?:(25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])\\.){3,3}(25[0-5]|(?:2[0-4]|1{0,1}[0-9]){0,1}[0-9]))\\]?(?::[0-9]{1,5})?)$",
-       "plural_name": false,
-       "Description": null,
-       "Rarity": 1,
-       "URL": "https://www.shodan.io/host/",
-       "Tags": [
-          "Identifiers",
-          "Networking",
-          "IPv6"
-       ]
-    },
-    {
-      "Name": "Google API Key",
-      "Regex": "^(AIza[0-9A-Za-z-_]{35})$",
-      "plural_name": false,
-      "Description": null,
-      "Rarity": 1,
-      "URL": null,
-      "Tags": [
-         "API Keys",
-         "Credentials",
-         "Google"
-      ]
-   },
-   {
-      "Name": "Google ReCaptcha API Key",
-      "Regex": "^(6L[0-9A-Za-z-_]{38}|6[0-9a-zA-Z_-]{39})$",
-      "plural_name": false,
-      "Description": null,
-      "Rarity": 1,
-      "URL": null,
-      "Tags": [
-         "API Keys",
-         "Credentials",
-         "Google"
-      ]
-   },
-   {
-      "Name": "Google OAuth Token",
-      "Regex": "^(ya29.[0-9A-Za-z-_]+)$",
-      "plural_name": false,
-      "Description": null,
-      "Rarity": 1,
-      "URL": null,
-      "Tags": [
-         "API Keys",
-         "Credentials",
-         "Google"
-      ]
-   },
-    {
-      "Name": "Mailgun API Key",
-      "Regex": "^(key-[0-9a-zA-Z]{32})$",
-      "plural_name": false,
-      "Description": null,
-      "Rarity": 1,
-      "URL": null,
-      "Tags": [
-         "API Keys",
-         "Credentials"
-      ]
-   },
-   {
-      "Name": "Twilio API Key",
-      "Regex": "^(SK[0-9a-fA-F]{32})$",
-      "plural_name": false,
-      "Description": null,
-      "Rarity": 1,
-      "URL": null,
-      "Tags": [
-         "API Keys",
-         "Credentials",
-         "Twilio"
-      ]
-   },
-   {
-      "Name": "Twilio Account SID",
-      "Regex": "^(AC[a-zA-Z0-9_-]{32})$",
-      "plural_name": false,
-      "Description": null,
-      "Rarity": 1,
-      "URL": null,
-      "Tags": [
-         "API Keys",
-         "Credentials",
-         "Twilio"
-      ]
-   },
-   {
-      "Name": "Twilio Application SID",
-      "Regex": "^(AP[a-zA-Z0-9_-]{32})$",
-      "plural_name": false,
-      "Description": null,
-      "Rarity": 1,
-      "URL": null,
-      "Tags": [
-         "API Keys",
-         "Credentials",
-         "Twilio"
       ]
    },
    {
@@ -406,30 +214,31 @@
          "Credentials"
       ]
    },
-   {
-      "Name": "Slack Token",
-      "Regex": "^(xox[a-zA-Z]-[a-zA-Z0-9-]+)$",
-      "plural_name": false,
-      "Description": null,
-      "Rarity": 1,
-      "URL": null,
-      "Tags": [
-         "API Keys",
-         "Credentials"
-      ]
-   },
-   {
+    {
       "Name": "Amazon Resource Name (ARN)",
       "Regex": "(?i)^(arn:(?P<Partition>[^:\\n]*):(?P<Service>[^:\\n]*):(?P<Region>[^:\\n]*):(?P<AccountID>[^:\\n]*):(?P<Ignore>(?P<ResourceType>[^:\/\\n]*)[:\/])?(?P<Resource>.*))$",
       "plural_name": false,
       "Description": null,
-      "Rarity": 0.8,
+      "Rarity": 1,
       "URL": null,
       "Tags": [
          "Identifiers",
          "Networking",
          "AWS",
          "AWS ARN"
+      ]
+   },
+   {
+      "Name": "Internet Protocol (IP) Address Version 6",
+      "Regex": "^((?=.*[0-9])\\[?(?:(?:[0-9a-f]{1,4}:){7,7}[0-9a-f]{1,4}|([0-9a-f]{4}:){1,7}:|([0-9a-f]{1,4}:){1,6}:[0-9a-f]{1,4}|([0-9a-f]{1,4}:){1,5}(:[0-9a-f]{1,4}){1,2}|([0-9a-f]{1,4}:){1,4}(:[0-9a-f]{1,4}){1,3}|([0-9a-f]{1,4}:){1,3}(:[0-9a-f]{1,4}){1,4}|([0-9a-fA]{1,4}:){1,2}(:[0-9a-f]{1,4}){1,5}|[0-9a-f]{1,4}:((:[0-9a-f]{1,4}){1,6})|:((:[0-9a-f]{1,4}){1,7}|:)|fe80:(:[0-9a-f]{0,4}){0,4}%[0-9a-z]{1,}|::(ffff(:0{1,4}){0,1}:){0,1}((25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])\\.){3,3}(25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])|(?:[0-9a-f]{1,4}:){1,4}:(?:(25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])\\.){3,3}(25[0-5]|(?:2[0-4]|1{0,1}[0-9]){0,1}[0-9]))\\]?(?::[0-9]{1,5})?)$",
+      "plural_name": false,
+      "Description": null,
+      "Rarity": 0.7,
+      "URL": "https://www.shodan.io/host/",
+      "Tags": [
+         "Identifiers",
+         "Networking",
+         "IPv6"
       ]
    },
    {
@@ -458,6 +267,31 @@
       ]
    },
    {
+      "Name": "Bitcoin (₿) Wallet Address",
+      "Regex": "^([13][a-km-zA-HJ-NP-Z1-9]{25,34})$",
+      "plural_name": false,
+      "Description": null,
+      "Rarity": 0.7,
+      "URL": "https://www.blockchain.com/btc/address/",
+      "Tags": [
+         "Cryptocurrency",
+         "Finance",
+         "Cryptocurrency Wallet",
+         "Bitcoin Wallet"
+      ]
+   },
+   {
+      "Name": "Latitude & Longitude Coordinates",
+      "Regex": "(?i)^((?:(?:N|W|S|E)\\s?\\d+\\s?\\u00B0?\\s?\\d+\\.?\\d*\\s?\\'?\\s?\\d*\\.?\\,?\\d*?\"?\\s?){1,2}|(?:\\d+\\s?\\u00B0\\s?\\d+\\s?\\'\\s?\\d+\\.?\\,?\\d{0,}?\"\\s?(?:N|W|S|E)\\s?){1,2}|(?:[-+]?(?:[0-8]?\\d+\\.\\d{4,}|90(?:\\.0+)?),\\s*[-+]?(?:180(?:\\.0+)?|(?:(?:1[0-7]\\d)|(?:[1-9]?\\d))(?:\\.\\d+)?)))$",
+      "plural_name": true,
+      "Description": null,
+      "Rarity": 0.7,
+      "URL": "https://www.google.com/maps/place/",
+      "Tags": [
+         "Geo-location"
+      ]
+   },
+   {
       "Name": "EUI-48 Identifier (Ethernet, WiFi, Bluetooth, etc)",
       "Regex": "^(([0-9A-Fa-f]{2}[:]){5}[0-9A-Fa-f]{2}|([0-9A-Fa-f]{2}[-]){5}[0-9A-Fa-f]{2}|([0-9A-Fa-f]{4}[\\.]){2}[0-9A-Fa-f]{4})$",
       "plural_name": false,
@@ -467,29 +301,6 @@
       "Tags": [
          "Identifiers",
          "Networking"
-      ]
-   },
-   {
-      "Name": "Amazon Standard Identification Number (ASIN)",
-      "Regex": "^(B[A-Z0-9]{9})$",
-      "plural_name": false,
-      "Description": null,
-      "Rarity": 0.5,
-      "URL": "https://amzn.com/",
-      "Tags": [
-         "Identifiers",
-         "Amazon"
-      ]
-   },
-   {
-      "Name": "Latitude & Longitude Coordinates",
-      "Regex": "(?i)^((?:(?:N|W|S|E)\\s?\\d+\\s?\\u00B0?\\s?\\d+\\.?\\d*\\s?\\'?\\s?\\d*\\.?\\,?\\d*?\"?\\s?){1,2}|(?:\\d+\\s?\\u00B0\\s?\\d+\\s?\\'\\s?\\d+\\.?\\,?\\d{0,}?\"\\s?(?:N|W|S|E)\\s?){1,2}|(?:[-+]?(?:[0-8]?\\d+\\.\\d{4,}|90(?:\\.0+)?),\\s*[-+]?(?:180(?:\\.0+)?|(?:(?:1[0-7]\\d)|(?:[1-9]?\\d))(?:\\.\\d+)?)))$",
-      "plural_name": true,
-      "Description": null,
-      "Rarity": 0.5,
-      "URL": "https://www.google.com/maps/place/",
-      "Tags": [
-         "Geo-location"
       ]
    },
    {
@@ -514,231 +325,6 @@
          "Finance",
          "Cryptocurrency Wallet",
          "Dogecoin Wallet"
-      ]
-   },
-   {
-      "Name": "Monero (XMR) Wallet Address",
-      "Regex": "(?i)^(4(?:[0-9]|[A-B])[a-z0-9]{93})$",
-      "plural_name": false,
-      "Description": null,
-      "Rarity": 0.5,
-      "URL": null,
-      "Tags": [
-         "Finance",
-         "Cryptocurrency Wallet",
-         "Monero Wallet"
-      ]
-   },
-   {
-      "Name": "Litecoin (LTC) Wallet Address",
-      "Regex": "(?i)^((?:L|M)[a-z0-9]{33})$",
-      "plural_name": false,
-      "Description": null,
-      "Rarity": 0.5,
-      "URL": "https://live.blockcypher.com/ltc/address/",
-      "Tags": [
-         "Finance",
-         "Cryptocurrency Wallet",
-         "Litecoin Wallet"
-      ]
-   },
-   {
-      "Name": "Ripple (XRP) Wallet Address",
-      "Regex": "(?i)^(r[a-z0-9]{33})$",
-      "plural_name": false,
-      "Description": null,
-      "Rarity": 0.5,
-      "URL": "https://xrpscan.com/account/",
-      "Tags": [
-         "Finance",
-         "Cryptocurrency Wallet",
-         "Ripple Wallet"
-      ]
-   },
-   {
-      "Name": "JSON Web Token (JWT)",
-      "Regex": "(?i)^((?=.*[a-z])(?=.*[0-9])(?:[a-z0-9_=]+\\.){2}(?:[a-z0-9_\\-\\+\/=]*))$",
-      "plural_name": false,
-      "Description": null,
-      "Rarity": 0.5,
-      "URL": null,
-      "Tags": [
-         "Security",
-         "Hacking",
-         "Token",
-         "Website",
-         "JWT Token"
-      ]
-   },
-   {
-      "Name": "American Express Card Number",
-      "Regex": "^(3[47][0-9]{2}\\s?(?:[0-9]{4}\\s?){2}[0-9]{3})$",
-      "plural_name": false,
-      "Description": null,
-      "Rarity": 0.5,
-      "URL": null,
-      "Tags": [
-         "Credit Card",
-         "Finance",
-         "AMEX CC"
-      ]
-   },
-   {
-      "Name": "BCGlobal Card Number",
-      "Regex": "^((?:6541|6556)[0-9]{12})$",
-      "plural_name": false,
-      "Description": null,
-      "Rarity": 0.5,
-      "URL": null,
-      "Tags": [
-         "Credit Card",
-         "Finance"
-      ]
-   },
-   {
-      "Name": "Carte Blanche Card Number",
-      "Regex": "^(30[0-5][0-9]{11})$",
-      "plural_name": false,
-      "Description": null,
-      "Rarity": 0.5,
-      "URL": null,
-      "Tags": [
-         "Credit Card",
-         "Finance"
-      ]
-   },
-   {
-      "Name": "Diners Club Card Number",
-      "Regex": "^(3(?:0[0-5]|[68][0-9])[0-9]\\s?(?:[0-9]{4}\\s?){2}[0-9]{2})$",
-      "plural_name": false,
-      "Description": null,
-      "Rarity": 0.5,
-      "URL": null,
-      "Tags": [
-         "Credit Card",
-         "Finance"
-      ]
-   },
-   {
-      "Name": "Discover Card Number",
-      "Regex": "^((?:64[4-9][0-9]|65[0-9]{2}|6011)\\s?(?:[0-9]{4}\\s?){3}|622(?:1\\s?2[6-9][0-9]{2}|1\\s?[3-9][0-9]{3}|[2-8]\\s?[0-9]{4}|9\\s?[01][0-9]{3}|9\\s?2[0-5][0-9]{2})\\s?(?:[0-9]{4}\\s?){2})$",
-      "plural_name": false,
-      "Description": null,
-      "Rarity": 0.5,
-      "URL": null,
-      "Tags": [
-         "Credit Card",
-         "Finance",
-         "Discover CC"
-      ]
-   },
-   {
-      "Name": "MasterCard Number",
-      "Regex": "^((?:5[1-5][0-9]{2}|222[1-9]|22[3-9][0-9]|2[3-6][0-9]{2}|27[01][0-9]|2720)\\s?(?:[0-9]{4}\\s?){3})$",
-      "plural_name": false,
-      "Description": null,
-      "Rarity": 0.5,
-      "URL": null,
-      "Tags": [
-         "Credit Card",
-         "Finance",
-         "MasterCard CC"
-      ]
-   },
-   {
-      "Name": "Maestro Card Number",
-      "Regex": "^((?:5018|5020|5038|5612|5893|6304|6759|676[1-3]|0604|6390)\\s?(?:[0-9]{4}\\s?){3}\\s?(?:[0-9]{3,7})?)$",
-      "plural_name": false,
-      "Description": null,
-      "Rarity": 0.5,
-      "URL": null,
-      "Tags": [
-         "Credit Card",
-         "Finance"
-      ]
-   },
-   {
-      "Name": "Visa Card Number",
-      "Regex": "^(4[0-9]{12}(?:[0-9]{3})?|4[0-9]{3}\\s(?:[0-9]{2,4}\\s?){3}(?:[0-9])?)$",
-      "plural_name": false,
-      "Description": null,
-      "Rarity": 0.5,
-      "URL": null,
-      "Tags": [
-         "Credit Card",
-         "Finance",
-         "Visa CC"
-      ]
-   },
-   {
-      "Name": "Insta Payment Card Number",
-      "Regex": "^(63[7-9][0-9]{13})$",
-      "plural_name": false,
-      "Description": null,
-      "Rarity": 0.5,
-      "URL": null,
-      "Tags": [
-         "Credit Card",
-         "Finance"
-      ]
-   },
-   {
-      "Name": "JCB Card Number",
-      "Regex": "^((?:2131|1800|35\\d{3})\\d{11,14})$",
-      "plural_name": false,
-      "Description": null,
-      "Rarity": 0.5,
-      "URL": null,
-      "Tags": [
-         "Credit Card",
-         "Finance"
-      ]
-   },
-   {
-      "Name": "Korean Local Card Number",
-      "Regex": "^(9[0-9]{15})$",
-      "plural_name": false,
-      "Description": null,
-      "Rarity": 0.5,
-      "URL": null,
-      "Tags": [
-         "Credit Card",
-         "Finance"
-      ]
-   },
-   {
-      "Name": "Laser Card Number",
-      "Regex": "^((?:6304|6706|6709|6771)[0-9]{12,15})$",
-      "plural_name": false,
-      "Description": null,
-      "Rarity": 0.5,
-      "URL": null,
-      "Tags": [
-         "Credit Card"
-      ]
-   },
-   {
-      "Name": "Solo Card Number",
-      "Regex": "^((?:6334|6767)[0-9]{12}|(?:6334|6767)[0-9]{14}|(?:6334|6767)[0-9]{15})$",
-      "plural_name": false,
-      "Description": null,
-      "Rarity": 0.5,
-      "URL": null,
-      "Tags": [
-         "Credit Card",
-         "Finance"
-      ]
-   },
-   {
-      "Name": "Switch Card Number",
-      "Regex": "^((?:4903|4905|4911|4936|6333|6759)[0-9]{12}|(?:4903|4905|4911|4936|6333|6759)[0-9]{14}|(?:4903|4905|4911|4936|6333|6759)[0-9]{15}|564182[0-9]{10}|564182[0-9]{12}|564182[0-9]{13}|633110[0-9]{10}|633110[0-9]{12}|633110[0-9]{13})$",
-      "plural_name": false,
-      "Description": null,
-      "Rarity": 0.5,
-      "URL": null,
-      "Tags": [
-         "Credit Card",
-         "Finance"
       ]
    },
    {
@@ -768,28 +354,6 @@
       ]
    },
    {
-      "Name": "Recent Unix Timestamp",
-      "Regex": "^([0-9]{10})$",
-      "plural_name": false,
-      "Description": "Seconds elapsed since unix epoch: 1970, between year 2001 and 2286",
-      "Rarity": 0.5,
-      "URL": null,
-      "Tags": [
-         "Time"
-      ]
-   },
-   {
-      "Name": "Recent Unix Millisecond Timestamp",
-      "Regex": "^([0-9]{13})$",
-      "plural_name": false,
-      "Description": "Milliseconds elapsed since unix epoch: 1970, between year 2001 and 2286",
-      "Rarity": 0.5,
-      "URL": null,
-      "Tags": [
-         "Time"
-      ]
-   },
-   {
       "Name": "American Social Security Number",
       "Regex": "^(([0-9][0-9][0-9])(?<!666|000|9[0-9][0-9])(=|\\+|_|\\#|:|;|\\.|-|\\s){0,3}([1-9][1-9]|0[1-9]|[1-9]0)(=|\\+|_|\\#|:|;|\\.|-|\\s){0,3}([0-9][0-9][0-9][0-9])(?<!0000)(=|\\+|_|\\#|:|;|\\.|-|\\s){0,3}?)$",
       "plural_name": false,
@@ -804,16 +368,430 @@
       ]
    },
    {
+      "Name": "Monero (XMR) Wallet Address",
+      "Regex": "(?i)^(4(?:[0-9]|[A-B])[a-z0-9]{93})$",
+      "plural_name": false,
+      "Description": null,
+      "Rarity": 0.3,
+      "URL": null,
+      "Tags": [
+         "Finance",
+         "Cryptocurrency Wallet",
+         "Monero Wallet"
+      ]
+   },
+   {
+      "Name": "Litecoin (LTC) Wallet Address",
+      "Regex": "(?i)^((?:L|M)[a-z0-9]{33})$",
+      "plural_name": false,
+      "Description": null,
+      "Rarity": 0.3,
+      "URL": "https://live.blockcypher.com/ltc/address/",
+      "Tags": [
+         "Finance",
+         "Cryptocurrency Wallet",
+         "Litecoin Wallet"
+      ]
+   },
+   {
+      "Name": "Ripple (XRP) Wallet Address",
+      "Regex": "(?i)^(r[a-z0-9]{33})$",
+      "plural_name": false,
+      "Description": null,
+      "Rarity": 0.3,
+      "URL": "https://xrpscan.com/account/",
+      "Tags": [
+         "Finance",
+         "Cryptocurrency Wallet",
+         "Ripple Wallet"
+      ]
+   },
+   {
+      "Name": "American Express Card Number",
+      "Regex": "^(3[47][0-9]{2}\\s?(?:[0-9]{4}\\s?){2}[0-9]{3})$",
+      "plural_name": false,
+      "Description": null,
+      "Rarity": 0.3,
+      "URL": null,
+      "Tags": [
+         "Credit Card",
+         "Finance",
+         "AMEX CC"
+      ]
+   },
+   {
+      "Name": "BCGlobal Card Number",
+      "Regex": "^((?:6541|6556)[0-9]{12})$",
+      "plural_name": false,
+      "Description": null,
+      "Rarity": 0.3,
+      "URL": null,
+      "Tags": [
+         "Credit Card",
+         "Finance"
+      ]
+   },
+   {
+      "Name": "Carte Blanche Card Number",
+      "Regex": "^(30[0-5][0-9]{11})$",
+      "plural_name": false,
+      "Description": null,
+      "Rarity": 0.3,
+      "URL": null,
+      "Tags": [
+         "Credit Card",
+         "Finance"
+      ]
+   },
+   {
+      "Name": "Diners Club Card Number",
+      "Regex": "^(3(?:0[0-5]|[68][0-9])[0-9]\\s?(?:[0-9]{4}\\s?){2}[0-9]{2})$",
+      "plural_name": false,
+      "Description": null,
+      "Rarity": 0.3,
+      "URL": null,
+      "Tags": [
+         "Credit Card",
+         "Finance"
+      ]
+   },
+   {
+      "Name": "Discover Card Number",
+      "Regex": "^((?:64[4-9][0-9]|65[0-9]{2}|6011)\\s?(?:[0-9]{4}\\s?){3}|622(?:1\\s?2[6-9][0-9]{2}|1\\s?[3-9][0-9]{3}|[2-8]\\s?[0-9]{4}|9\\s?[01][0-9]{3}|9\\s?2[0-5][0-9]{2})\\s?(?:[0-9]{4}\\s?){2})$",
+      "plural_name": false,
+      "Description": null,
+      "Rarity": 0.3,
+      "URL": null,
+      "Tags": [
+         "Credit Card",
+         "Finance",
+         "Discover CC"
+      ]
+   },
+   {
+      "Name": "MasterCard Number",
+      "Regex": "^((?:5[1-5][0-9]{2}|222[1-9]|22[3-9][0-9]|2[3-6][0-9]{2}|27[01][0-9]|2720)\\s?(?:[0-9]{4}\\s?){3})$",
+      "plural_name": false,
+      "Description": null,
+      "Rarity": 0.3,
+      "URL": null,
+      "Tags": [
+         "Credit Card",
+         "Finance",
+         "MasterCard CC"
+      ]
+   },
+   {
+      "Name": "Maestro Card Number",
+      "Regex": "^((?:5018|5020|5038|5612|5893|6304|6759|676[1-3]|0604|6390)\\s?(?:[0-9]{4}\\s?){3}\\s?(?:[0-9]{3,7})?)$",
+      "plural_name": false,
+      "Description": null,
+      "Rarity": 0.3,
+      "URL": null,
+      "Tags": [
+         "Credit Card",
+         "Finance"
+      ]
+   },
+   {
+      "Name": "Visa Card Number",
+      "Regex": "^(4[0-9]{12}(?:[0-9]{3})?|4[0-9]{3}\\s(?:[0-9]{2,4}\\s?){3}(?:[0-9])?)$",
+      "plural_name": false,
+      "Description": null,
+      "Rarity": 0.3,
+      "URL": null,
+      "Tags": [
+         "Credit Card",
+         "Finance",
+         "Visa CC"
+      ]
+   },
+   {
+      "Name": "Insta Payment Card Number",
+      "Regex": "^(63[7-9][0-9]{13})$",
+      "plural_name": false,
+      "Description": null,
+      "Rarity": 0.3,
+      "URL": null,
+      "Tags": [
+         "Credit Card",
+         "Finance"
+      ]
+   },
+   {
+      "Name": "JCB Card Number",
+      "Regex": "^((?:2131|1800|35\\d{3})\\d{11,14})$",
+      "plural_name": false,
+      "Description": null,
+      "Rarity": 0.3,
+      "URL": null,
+      "Tags": [
+         "Credit Card",
+         "Finance"
+      ]
+   },
+   {
+      "Name": "Korean Local Card Number",
+      "Regex": "^(9[0-9]{15})$",
+      "plural_name": false,
+      "Description": null,
+      "Rarity": 0.3,
+      "URL": null,
+      "Tags": [
+         "Credit Card",
+         "Finance"
+      ]
+   },
+   {
+      "Name": "Laser Card Number",
+      "Regex": "^((?:6304|6706|6709|6771)[0-9]{12,15})$",
+      "plural_name": false,
+      "Description": null,
+      "Rarity": 0.3,
+      "URL": null,
+      "Tags": [
+         "Credit Card"
+      ]
+   },
+   {
+      "Name": "Solo Card Number",
+      "Regex": "^((?:6334|6767)[0-9]{12}|(?:6334|6767)[0-9]{14}|(?:6334|6767)[0-9]{15})$",
+      "plural_name": false,
+      "Description": null,
+      "Rarity": 0.3,
+      "URL": null,
+      "Tags": [
+         "Credit Card",
+         "Finance"
+      ]
+   },
+   {
+      "Name": "Switch Card Number",
+      "Regex": "^((?:4903|4905|4911|4936|6333|6759)[0-9]{12}|(?:4903|4905|4911|4936|6333|6759)[0-9]{14}|(?:4903|4905|4911|4936|6333|6759)[0-9]{15}|564182[0-9]{10}|564182[0-9]{12}|564182[0-9]{13}|633110[0-9]{10}|633110[0-9]{12}|633110[0-9]{13})$",
+      "plural_name": false,
+      "Description": null,
+      "Rarity": 0.3,
+      "URL": null,
+      "Tags": [
+         "Credit Card",
+         "Finance"
+      ]
+   },
+   {
+      "Name": "Ethereum (ETH) Wallet Address",
+      "Regex": "(?i)^(0x[a-f0-9]{40})$",
+      "plural_name": false,
+      "Description": null,
+      "Rarity": 0.3,
+      "URL": "https://etherscan.io/address/",
+      "Tags": [
+         "Finance",
+         "Cryptocurrency Wallet",
+         "Ethereum Wallet"
+      ]
+   },
+   {
+      "Name": "Amazon Web Services EC2 Security Group identifier",
+      "Regex": "^(([0-9]*\/)?sg-([0-9a-z]*))$",
+      "plural_name": false,
+      "Description": null,
+      "Rarity": 0.3,
+      "URL": null,
+      "Tags": [
+         "Identifiers",
+         "AWS"
+       ]
+    },
+    {
+      "Name": "Slack Token",
+      "Regex": "^(xox[a-zA-Z]-[a-zA-Z0-9-]+)$",
+      "plural_name": false,
+      "Description": null,
+      "Rarity": 0.3,
+      "URL": null,
+      "Tags": [
+         "API Keys",
+         "Credentials"
+      ]
+    },
+    {
+      "Name": "Amazon Web Services Organization identifier",
+      "Regex": "^(o-[a-z0-9]{10,32})$",
+      "plural_name": false,
+      "Description": null,
+      "Rarity": 0.3,
+      "URL": null,
+      "Tags": [
+         "Identifiers",
+         "AWS"
+       ]
+    },
+    {
+      "Name": "Google API Key",
+      "Regex": "^(AIza[0-9A-Za-z-_]{35})$",
+      "plural_name": false,
+      "Description": null,
+      "Rarity": 0.3,
+      "URL": null,
+      "Tags": [
+         "API Keys",
+         "Credentials",
+         "Google"
+      ]
+   },
+   {
       "Name": "YouTube Channel ID",
       "Regex": "^(UC[0-9A-Za-z_-]{21}[AQgw]{1})$",
       "plural_name": false,
       "Description": null,
-      "Rarity": 0.4,
+      "Rarity": 0.3,
       "URL": "https://www.youtube.com/channel/",
       "Tags": [
          "Media"
       ]
    },
+   {
+      "Name": "Google OAuth Token",
+      "Regex": "^(ya29.[0-9A-Za-z-_]+)$",
+      "plural_name": false,
+      "Description": null,
+      "Rarity": 0.3,
+      "URL": null,
+      "Tags": [
+         "API Keys",
+         "Credentials",
+         "Google"
+      ]
+   },
+    {
+      "Name": "Mailgun API Key",
+      "Regex": "^(key-[0-9a-zA-Z]{32})$",
+      "plural_name": false,
+      "Description": null,
+      "Rarity": 0.3,
+      "URL": null,
+      "Tags": [
+         "API Keys",
+         "Credentials"
+      ]
+   },
+   {
+      "Name": "Twilio API Key",
+      "Regex": "^(SK[0-9a-fA-F]{32})$",
+      "plural_name": false,
+      "Description": null,
+      "Rarity": 0.3,
+      "URL": null,
+      "Tags": [
+         "API Keys",
+         "Credentials",
+         "Twilio"
+      ]
+   },
+   {
+      "Name": "Twilio Account SID",
+      "Regex": "^(AC[a-zA-Z0-9_-]{32})$",
+      "plural_name": false,
+      "Description": null,
+      "Rarity": 0.3,
+      "URL": null,
+      "Tags": [
+         "API Keys",
+         "Credentials",
+         "Twilio"
+      ]
+   },
+   {
+      "Name": "Twilio Application SID",
+      "Regex": "^(AP[a-zA-Z0-9_-]{32})$",
+      "plural_name": false,
+      "Description": null,
+      "Rarity": 0.3,
+      "URL": null,
+      "Tags": [
+         "API Keys",
+         "Credentials",
+         "Twilio"
+      ]
+   },
+   {
+      "Name": "Google ReCaptcha API Key",
+      "Regex": "^(6L[0-9A-Za-z-_]{38}|6[0-9a-zA-Z_-]{39})$",
+      "plural_name": false,
+      "Description": null,
+      "Rarity": 0.3,
+      "URL": null,
+      "Tags": [
+         "API Keys",
+         "Credentials",
+         "Google"
+      ]
+   },
+   {
+      "Name": "Amazon Standard Identification Number (ASIN)",
+      "Regex": "^(B[A-Z0-9]{9})$",
+      "plural_name": false,
+      "Description": null,
+      "Rarity": 0.3,
+      "URL": "https://amzn.com/",
+      "Tags": [
+         "Identifiers",
+         "Amazon"
+      ]
+   },
+   {
+      "Name": "JSON Web Token (JWT)",
+      "Regex": "(?i)^((?=.*[a-z])(?=.*[0-9])(?:[a-z0-9_=]+\\.){2}(?:[a-z0-9_\\-\\+\/=]*))$",
+      "plural_name": false,
+      "Description": null,
+      "Rarity": 0.2,
+      "URL": null,
+      "Tags": [
+         "Security",
+         "Hacking",
+         "Token",
+         "Website",
+         "JWT Token"
+      ]
+   },
+   {
+      "Name": "Amazon Web Services Access Key",
+      "Regex": "^((?<![A-Z0-9])[A-Z0-9]{20}(?![A-Z0-9]))$",
+      "plural_name": false,
+      "Description": null,
+      "Rarity": 0.2,
+      "URL": null,
+      "Tags": [
+         "Credentials",
+         "Cyber Security",
+         "AWS"
+       ]
+    },
+    {
+      "Name": "Amazon Web Services Secret Access Key",
+      "Regex": "^((?<![A-Za-z0-9/+=])[A-Za-z0-9/+=]{40}(?![A-Za-z0-9/+=]))$",
+      "plural_name": false,
+      "Description": null,
+      "Rarity": 0.2,
+      "URL": null,
+      "Tags": [
+         "Credentials",
+         "Cyber Security",
+         "AWS"
+       ]
+    },
+    {
+      "Name": "Amazon Web Services EC2 Instance identifier",
+      "Regex": "(?i)^(\\b[a-z]+-[a-z0-9]+)$",
+      "plural_name": false,
+      "Description": null,
+      "Rarity": 0.2,
+      "URL": null,
+      "Tags": [
+         "Identifiers",
+         "AWS"
+       ]
+    },
    {
       "Name": "YouTube Video ID",
       "Regex": "^((?=.*[A-Z])(?=.*[a-z])[0-9A-Za-z_-]{10}[048AEIMQUYcgkosw]{1})$",
@@ -823,6 +801,28 @@
       "URL": "https://www.youtube.com/watch?v=",
       "Tags": [
          "Media"
+      ]
+   },
+   {
+      "Name": "Recent Unix Timestamp",
+      "Regex": "^([0-9]{10})$",
+      "plural_name": false,
+      "Description": "Seconds elapsed since unix epoch: 1970, between year 2001 and 2286",
+      "Rarity": 0.2,
+      "URL": null,
+      "Tags": [
+         "Time"
+      ]
+   },
+   {
+      "Name": "Recent Unix Millisecond Timestamp",
+      "Regex": "^([0-9]{13})$",
+      "plural_name": false,
+      "Description": "Milliseconds elapsed since unix epoch: 1970, between year 2001 and 2286",
+      "Rarity": 0.2,
+      "URL": null,
+      "Tags": [
+         "Time"
       ]
    },
    {
