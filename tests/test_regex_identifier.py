@@ -589,6 +589,30 @@ def test_ssh_ed25519_key():
     )
     assert "SSH ED25519" in str(res)
 
+def test_aws_access_key():
+    r = regex_identifier.RegexIdentifier()
+    res = r.check(["AKIAIOSFODNN7EXAMPLE"])
+    assert "Amazon Web Services Access Key" in str(res)
+
+def test_aws_secret_access_key():
+    r = regex_identifier.RegexIdentifier()
+    res = r.check(["Nw0XP0t2OdyUkaIk3B8TaAa2gEXAMPLEMvD2tW+g"])
+    assert "Amazon Web Services Secret Access Key" in str(res)
+
+def test_aws_ec2_id():
+    r = regex_identifier.RegexIdentifier()
+    res = r.check(["i-1234567890abcdef0"])
+    assert "Amazon Web Services EC2 Instance identifier" in str(res)
+
+def test_aws_sg_id():
+    r = regex_identifier.RegexIdentifier()
+    res = r.check(["sg-6e616f6d69"])
+    assert "Amazon Web Services EC2 Security Group identifier" in str(res)
+
+def test_aws_org_id():
+    r = regex_identifier.RegexIdentifier()
+    res = r.check(["o-aa111bb222"])
+    assert "Amazon Web Services Organization identifier" in str(res)
 
 def test_asin():
     r = regex_identifier.RegexIdentifier()
@@ -598,7 +622,6 @@ def test_asin():
         ]
     )
     assert "ASIN" in str(res)
-
 
 def test_google_api_key():
     r = regex_identifier.RegexIdentifier()
@@ -621,13 +644,13 @@ def test_google_oauth_token():
 def test_aws_access_key_id():
     r = regex_identifier.RegexIdentifier()
     res = r.check(["AKIA31OMZKYAARWZ3ERH"])
-    _assert_match_first_item("AWS Access Key ID", res)
+    _assert_match_first_item("Amazon Web Services Access Key", res)
 
 
 def test_mailgun_api_key():
     r = regex_identifier.RegexIdentifier()
     res = r.check(["key-1e1631a9414aff7c262721e7b6ff6e43"])
-    _assert_match_first_item("Mailgun API Key", res)
+    assert "Mailgun API Key" in res[1]["Regex Pattern"]["Name"]
 
 
 def test_twilio_api_key():
