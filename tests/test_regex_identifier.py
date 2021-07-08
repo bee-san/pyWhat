@@ -34,12 +34,10 @@ def test_regex_format():
 
 def test_sorted_by_rarity():
     database = load_regexes()
-    rarity_num = []
+    rarity_num = [regex["Rarity"] for regex in database]
 
-    for regex in database:
-        rarity_num.append(regex["Rarity"])
-
-    assert rarity_num == sorted(rarity_num, reverse=True
+    assert rarity_num == sorted(
+        rarity_num, reverse=True
     ), "Regexes should be sorted by rarity in 'regex.json'. Regexes with rarity '1' are at the top of the file and '0' is at the bottom."
 
 
@@ -641,35 +639,42 @@ def test_ssh_ed25519_key():
     )
     _assert_match_first_item("SSH ED25519 Public Key", res)
 
+
 def test_aws_access_key():
     r = regex_identifier.RegexIdentifier()
     res = r.check(["AKIAIOSFODNN7EXAMPLE"])
     assert "Amazon Web Services Access Key" in str(res)
+
 
 def test_aws_secret_access_key():
     r = regex_identifier.RegexIdentifier()
     res = r.check(["Nw0XP0t2OdyUkaIk3B8TaAa2gEXAMPLEMvD2tW+g"])
     assert "Amazon Web Services Secret Access Key" in str(res)
 
+
 def test_aws_ec2_id():
     r = regex_identifier.RegexIdentifier()
     res = r.check(["i-1234567890abcdef0"])
     assert "Amazon Web Services EC2 Instance identifier" in str(res)
+
 
 def test_aws_sg_id():
     r = regex_identifier.RegexIdentifier()
     res = r.check(["sg-6e616f6d69"])
     assert "Amazon Web Services EC2 Security Group identifier" in str(res)
 
+
 def test_aws_org_id():
     r = regex_identifier.RegexIdentifier()
     res = r.check(["o-aa111bb222"])
     assert "Amazon Web Services Organization identifier" in str(res)
 
+
 def test_asin():
     r = regex_identifier.RegexIdentifier()
     res = r.check(["B07ND5BB8V"])
     _assert_match_first_item("Amazon Standard Identification Number (ASIN)", res)
+
 
 def test_google_api_key():
     r = regex_identifier.RegexIdentifier()
