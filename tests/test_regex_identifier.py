@@ -523,7 +523,7 @@ def test_arn4():
 def test_unix_timestamp():
     r = regex_identifier.RegexIdentifier()
     res = r.check(["1577836800"])  # 2020-01-01
-    keys = [m['Regex Pattern']['Name'] for m in res]
+    keys = [m["Regex Pattern"]["Name"] for m in res]
     assert "Unix Timestamp" in keys
     assert "Recent Unix Timestamp" in keys
 
@@ -531,7 +531,7 @@ def test_unix_timestamp():
 def test_unix_timestamp2():
     r = regex_identifier.RegexIdentifier()
     res = r.check(["94694400"])  # 1973-01-01
-    keys = [m['Regex Pattern']['Name'] for m in res]
+    keys = [m["Regex Pattern"]["Name"] for m in res]
     assert "Unix Timestamp" in keys
     assert "Recent Unix Timestamp" not in keys
 
@@ -539,7 +539,7 @@ def test_unix_timestamp2():
 def test_unix_timestamp3():
     r = regex_identifier.RegexIdentifier()
     res = r.check(["1234567"])  # 7 numbers
-    keys = [m['Regex Pattern']['Name'] for m in res]
+    keys = [m["Regex Pattern"]["Name"] for m in res]
     assert "Unix Timestamp" not in keys
     assert "Recent Unix Timestamp" not in keys
 
@@ -547,7 +547,7 @@ def test_unix_timestamp3():
 def test_unix_timestamp4():
     r = regex_identifier.RegexIdentifier()
     res = r.check(["1577836800000"])  # 2020-01-01
-    keys = [m['Regex Pattern']['Name'] for m in res]
+    keys = [m["Regex Pattern"]["Name"] for m in res]
     assert "Unix Millisecond Timestamp" in keys
     assert "Recent Unix Millisecond Timestamp" in keys
 
@@ -555,7 +555,7 @@ def test_unix_timestamp4():
 def test_unix_timestamp5():
     r = regex_identifier.RegexIdentifier()
     res = r.check(["94694400000"])  # 1973-01-01
-    keys = [m['Regex Pattern']['Name'] for m in res]
+    keys = [m["Regex Pattern"]["Name"] for m in res]
     assert "Unix Millisecond Timestamp" in keys
     assert "Recent Unix Millisecond Timestamp" not in keys
 
@@ -589,7 +589,6 @@ def test_ssh_ed25519_key():
     )
     assert "SSH ED25519" in str(res)
 
-
 def test_aws_access_key():
     r = regex_identifier.RegexIdentifier()
     res = r.check(["AKIAIOSFODNN7EXAMPLE"])
@@ -615,6 +614,14 @@ def test_aws_org_id():
     res = r.check(["o-aa111bb222"])
     assert "Amazon Web Services Organization identifier" in str(res)
 
+def test_asin():
+    r = regex_identifier.RegexIdentifier()
+    res = r.check(
+        [
+            "B07ND5BB8V"
+        ]
+    )
+    assert "ASIN" in str(res)
 
 def test_google_api_key():
     r = regex_identifier.RegexIdentifier()
@@ -692,3 +699,21 @@ def test_slack_token():
     r = regex_identifier.RegexIdentifier()
     res = r.check(["xoxb-51465443183-hgvhXVd2ISC2x7gaoRWBOUdQ"])
     _assert_match_first_item("Slack Token", res)
+
+def test_pgp_public_key():
+    r = regex_identifier.RegexIdentifier()
+    res = r.check(
+        [
+            "-----BEGIN PGP PUBLIC KEY BLOCK-----Comment: Alice's OpenPGP certificateComment: https://www.ietf.org/id/draft-bre-openpgp-samples-01.htmlmDMEXEcE6RYJKwYBBAHaRw8BAQdArjWwk3FAqyiFbFBKT4TzXcVBqPTB3gmzlC/Ub7O1u120JkFsaWNlIExvdmVsYWNlIDxhbGljZUBvcGVucGdwLmV4YW1wbGU+iJAEExYIADgCGwMFCwkIBwIGFQoJCAsCBBYCAwECHgECF4AWIQTrhbtfozp14V6UTmPyMVUMT0fjjgUCXaWfOgAKCRDyMVUMT0fjjukrAPoDnHBSogOmsHOsd9qGsiZpgRnOdypvbm+QtXZqth9rvwD9HcDC0tC+PHAsO7OTh1S1TC9RiJsvawAfCPaQZoed8gK4OARcRwTpEgorBgEEAZdVAQUBAQdAQv8GIa2rSTzgqbXCpDDYMiKRVitCsy203x3sE9+eviIDAQgHiHgEGBYIACAWIQTrhbtfozp14V6UTmPyMVUMT0fjjgUCXEcE6QIbDAAKCRDyMVUMT0fjjlnQAQDFHUs6TIcxrNTtEZFjUFm1M0PJ1Dng/cDW4xN80fsn0QEA22Kr7VkCjeAEC08VSTeV+QFsmz55/lntWkwYWhmvOgE==iIGO-----END PGP PUBLIC KEY BLOCK-----"
+        ]
+    )
+    _assert_match_first_item("PGP Public Key", res)
+
+def test_pgp_private_key():
+    r = regex_identifier.RegexIdentifier()
+    res = r.check(
+        [
+            "-----BEGIN PGP PRIVATE KEY BLOCK-----Comment: Alice's OpenPGP Transferable Secret KeyComment: https://www.ietf.org/id/draft-bre-openpgp-samples-01.htmllFgEXEcE6RYJKwYBBAHaRw8BAQdArjWwk3FAqyiFbFBKT4TzXcVBqPTB3gmzlC/Ub7O1u10AAP9XBeW6lzGOLx7zHH9AsUDUTb2pggYGMzd0P3ulJ2AfvQ4RtCZBbGljZSBMb3ZlbGFjZSA8YWxpY2VAb3BlbnBncC5leGFtcGxlPoiQBBMWCAA4AhsDBQsJCAcCBhUKCQgLAgQWAgMBAh4BAheAFiEE64W7X6M6deFelE5j8jFVDE9H444FAl2lnzoACgkQ8jFVDE9H447pKwD6A5xwUqIDprBzrHfahrImaYEZzncqb25vkLV2arYfa78A/R3AwtLQvjxwLDuzk4dUtUwvUYibL2sAHwj2kGaHnfICnF0EXEcE6RIKKwYBBAGXVQEFAQEHQEL/BiGtq0k84Km1wqQw2DIikVYrQrMttN8d7BPfnr4iAwEIBwAA/3/xFPG6U17rhTuq+07gmEvaFYKfxRB6sgAYiW6TMTpQEK6IeAQYFggAIBYhBOuFu1+jOnXhXpROY/IxVQxPR+OOBQJcRwTpAhsMAAoJEPIxVQxPR+OOWdABAMUdSzpMhzGs1O0RkWNQWbUzQ8nUOeD9wNbjE3zR+yfRAQDbYqvtWQKN4AQLTxVJN5X5AWybPnn+We1aTBhaGa86AQ===n8OM-----END PGP PRIVATE KEY BLOCK-----"
+        ]
+    )
+    _assert_match_first_item("PGP Private Key", res)
