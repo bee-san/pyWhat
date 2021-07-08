@@ -368,6 +368,17 @@
       ]
    },
    {
+      "Name": "YouTube Channel ID",
+      "Regex": "^(UC[0-9A-Za-z_-]{21}[AQgw]{1})$",
+      "plural_name": false,
+      "Description": null,
+      "Rarity": 0.5,
+      "URL": "https://www.youtube.com/channel/",
+      "Tags": [
+         "Media"
+      ]
+   },
+   {
       "Name": "Monero (XMR) Wallet Address",
       "Regex": "(?i)^(4(?:[0-9]|[A-B])[a-z0-9]{93})$",
       "plural_name": false,
@@ -637,17 +648,6 @@
          "API Keys",
          "Credentials",
          "Google"
-      ]
-   },
-   {
-      "Name": "YouTube Channel ID",
-      "Regex": "^(UC[0-9A-Za-z_-]{21}[AQgw]{1})$",
-      "plural_name": false,
-      "Description": null,
-      "Rarity": 0.3,
-      "URL": "https://www.youtube.com/channel/",
-      "Tags": [
-         "Media"
       ]
    },
    {
