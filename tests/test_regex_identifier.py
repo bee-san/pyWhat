@@ -29,7 +29,7 @@ def test_regex_format():
 
         assert (
             re.findall(r"\^\||\|\^|\$\|\^|\$\||\|\$", regex["Regex"]) == []
-        ), "Remove in-between boundaries."
+        ), "Remove in-between boundaries. For example, '^|$' should only be '|'."
 
 
 def test_sorted_by_rarity():
