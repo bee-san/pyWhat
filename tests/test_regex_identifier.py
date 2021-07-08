@@ -10,7 +10,7 @@ from pywhat.helper import load_regexes
 def test_if_all_tests_exist():
     database = load_regexes()
 
-    with open("tests/test_regex_identifier.py", "r") as file:
+    with open("tests/test_regex_identifier.py", "r", encoding="utf-8") as file:
         tests = file.read()
 
     for regex in database:
@@ -39,8 +39,7 @@ def test_sorted_by_rarity():
     for regex in database:
         rarity_num.append(regex["Rarity"])
 
-    assert rarity_num == sorted(
-        rarity_num, reverse=True
+    assert rarity_num == sorted(rarity_num, reverse=True
     ), "Regexes should be sorted by rarity in 'regex.json'. Regexes with rarity '1' are at the top of the file and '0' is at the bottom."
 
 
