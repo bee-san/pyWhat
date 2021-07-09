@@ -159,7 +159,7 @@ python-versions = "*"
 
 [[package]]
 name = "name-that-hash"
-version = "1.9.0"
+version = "1.10.0"
 description = "The Modern Hash Identification System"
 category = "main"
 optional = false
@@ -274,7 +274,7 @@ python-versions = "*"
 
 [[package]]
 name = "rich"
-version = "10.3.0"
+version = "10.5.0"
 description = "Render rich text, tables, progress bars, syntax highlighting, markdown and more to the terminal"
 category = "main"
 optional = false
@@ -328,8 +328,8 @@ testing = ["pytest (>=4.6)", "pytest-checkdocs (>=2.4)", "pytest-flake8", "pytes
 
 [metadata]
 lock-version = "1.1"
-python-versions = "^3.6.2"
-content-hash = "838162a91db8bb36f87df24bf9a9728efa0716d4e64985375be1b5ea3a81f7eb"
+python-versions = "^3.6"
+content-hash = "923766d41cd21fbd4e94ee45bb2f2bc5e1ab5d5673f60cfdfe984355a5165aae"
 
 [metadata.files]
 appdirs = [
@@ -389,8 +389,8 @@ mypy-extensions = [
     {file = "mypy_extensions-0.4.3.tar.gz", hash = "sha256:2d82818f5bb3e369420cb3c4060a7970edba416647068eb4c5343488a6c604a8"},
 ]
 name-that-hash = [
-    {file = "name-that-hash-1.9.0.tar.gz", hash = "sha256:77f848196b339ec2ae8dc7f2ec1197401eb7cb9605f880c7813b342251e5cf89"},
-    {file = "name_that_hash-1.9.0-py3-none-any.whl", hash = "sha256:2be2d8aaf5191be6017dfd40987644589955bc1d64e776801a3e6d8dc3fe5ce5"},
+    {file = "name-that-hash-1.10.0.tar.gz", hash = "sha256:aabe1a3e23f5f8ca1ef6522eb1adcd5c69b5fed3961371ed84a22fc86ee648a2"},
+    {file = "name_that_hash-1.10.0-py3-none-any.whl", hash = "sha256:cfb871f486d98728fec546f1d2c1b1e512665ffe58458f0915ade4b841d2ef36"},
 ]
 packaging = [
     {file = "packaging-21.0-py3-none-any.whl", hash = "sha256:c86254f9220d55e31cc94d69bade760f0847da8000def4dfe1c6b872fd14ff14"},
@@ -472,8 +472,8 @@ regex = [
     {file = "regex-2021.7.6.tar.gz", hash = "sha256:8394e266005f2d8c6f0bc6780001f7afa3ef81a7a2111fa35058ded6fce79e4d"},
 ]
 rich = [
-    {file = "rich-10.3.0-py3-none-any.whl", hash = "sha256:b3b5e6c47bf6ea7a2479f5d9245d5ed32f542931912e14203292dfaa0c6c1437"},
-    {file = "rich-10.3.0.tar.gz", hash = "sha256:a83bff83309687e1859c75b499879738b135d700738dd2721c22965497af05bd"},
+    {file = "rich-10.5.0-py3-none-any.whl", hash = "sha256:d36d4dddbb6cb87cdcb2c02f8ffd7836e1b136e3ba45d4b5a4da057f3b5e7798"},
+    {file = "rich-10.5.0.tar.gz", hash = "sha256:f8a16484b3d70708bdafd04f659f9ca0e2c0129b33a343c10c734838d361777f"},
 ]
 toml = [
     {file = "toml-0.10.2-py2.py3-none-any.whl", hash = "sha256:806143ae5bfb6a3c6e736a764057db0e6a0e05e338b5630894a5f779cabb4f9b"},

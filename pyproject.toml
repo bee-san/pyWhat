@@ -8,15 +8,15 @@ documentation = "https://github.com/bee-san/pyWhat/wiki"
 readme = "README.md"
 
 [tool.poetry.dependencies]
-python = "^3.6.2"
+python = "^3.6"
 click = "^7.1.2"
 name_that_hash = "^1.7.0"
 rich = ">=9.9,<11.0"
 
 [tool.poetry.dev-dependencies]
 pytest = "^6.2.4"
-black = "^21.6b0"
-isort = "^5.9.2"
+black = {version = "^21.6b0", python = "^3.6.2"} 
+isort = {version = "^5.9.2", python = "^3.6.1"}
 flake8 = "3.8.4"
 
 [build-system]
