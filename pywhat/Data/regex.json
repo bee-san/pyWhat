@@ -306,7 +306,7 @@
    {
       "Name": "Placekey Universal Identifier for Physical Place",
       "Regex": "^((?:(?:[a-z0-9]{3}-[a-z0-9]{3})|(?:[a-z0-9]{3}))@[a-z0-9]{3}-[a-z0-9]{3}-[a-z0-9]{3})$",
-      "plural_name": true,
+      "plural_name": false,
       "Description": "Placekey is a free, universal standard identifier for any physical place, so that the data pertaining to those places can be shared across datasets and organizations easily.",
       "Rarity": 0.5,
       "URL": null,
@@ -376,6 +376,19 @@
       "URL": "https://www.youtube.com/channel/",
       "Tags": [
          "Media"
+      ]
+   },
+   {
+      "Name": "Discord Bot Token",
+      "Regex": "^((?:N|M|O)[a-zA-Z0-9]{23}\\.[a-zA-Z0-9-_]{6}\\.[a-zA-Z0-9-_]{27})$",
+      "plural_name": false,
+      "Description": null,
+      "Rarity": 0.5,
+      "URL": null,
+      "Tags": [
+          "Security",
+          "Token",
+          "API Keys"
       ]
    },
    {
