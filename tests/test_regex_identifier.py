@@ -1,10 +1,44 @@
-from datetime import datetime
-from time import time
+import re
 
 import pytest
 
 from pywhat import regex_identifier
 from pywhat.filter import Filter
+from pywhat.helper import load_regexes
+
+
+def test_if_all_tests_exist():
+    database = load_regexes()
+
+    with open("tests/test_regex_identifier.py", "r", encoding="utf-8") as file:
+        tests = file.read()
+
+    for regex in database:
+        assert (
+            regex["Name"] in tests
+        ), "No test for this regex found in 'test_regex_identifier.py'. Note that a test needs to assert the whole name."
+
+
+def test_regex_format():
+    database = load_regexes()
+
+    for regex in database:
+        assert re.findall(
+            r"^(?:\(\?i\))?\^\(.*\)\$$", regex["Regex"]
+        ), r"Please use ^(regex)$ regex format. If there is '\n' character, you have to escape it. If there is '(?i)', it is allowed and should be before the '^'."
+
+        assert (
+            re.findall(r"\^\||\|\^|\$\|\^|\$\||\|\$", regex["Regex"]) == []
+        ), "Remove in-between boundaries. For example, '^|$' should only be '|'."
+
+
+def test_sorted_by_rarity():
+    database = load_regexes()
+    rarity_num = [regex["Rarity"] for regex in database]
+
+    assert rarity_num == sorted(
+        rarity_num, reverse=True
+    ), "Regexes should be sorted by rarity in 'regex.json'. Regexes with rarity '1' are at the top of the file and '0' is at the bottom."
 
 
 def _assert_match_first_item(name, res):
@@ -16,7 +50,7 @@ def test_regex_successfully_parses():
     assert "Name" in r.distribution.get_regexes()[0]
 
 
-def test_regex_runs():
+def test_dogecoin():
     r = regex_identifier.RegexIdentifier()
     res = r.check(["DANHz6EQVoWyZ9rER56DwTXHWUxfkv9k2o"])
     _assert_match_first_item("Dogecoin (DOGE) Wallet Address", res)
@@ -95,7 +129,7 @@ def test_ip():
 def test_ip_not_url():
     r = regex_identifier.RegexIdentifier()
     res = r.check(["http://10.1.1.1"])
-    assert "URL" not in res[0]
+    assert "Uniform Resource Locator (URL)" not in res[0]
 
 
 def test_ip2():
@@ -206,6 +240,12 @@ def test_ctf_flag_uppercase():
     _assert_match_first_item("Capture The Flag (CTF) Flag", res)
 
 
+def test_htb_flag():
+    r = regex_identifier.RegexIdentifier()
+    res = r.check(["htb{just_a_test}"])
+    _assert_match_first_item("HackTheBox Flag Format", res)
+
+
 def test_ethereum():
     r = regex_identifier.RegexIdentifier()
     res = r.check(["0x52908400098527886E0F7030069857D2E4169EE7"])
@@ -215,7 +255,7 @@ def test_ethereum():
 def test_bitcoin():
     r = regex_identifier.RegexIdentifier()
     res = r.check(["1KFHE7w8BhaENAswwryaoccDb6qcT6DbYY"])
-    _assert_match_first_item("Bitcoin", res)
+    _assert_match_first_item("Bitcoin (₿) Wallet Address", res)
 
 
 def test_monero():
@@ -249,92 +289,92 @@ def test_ripple():
 def test_visa():
     r = regex_identifier.RegexIdentifier()
     res = r.check(["4111111111111111"])
-    _assert_match_first_item("Visa", res)
+    _assert_match_first_item("Visa Card Number", res)
 
 
 def test_visa_spaces():
     r = regex_identifier.RegexIdentifier()
     res = r.check(["4607 0000 0000 0009"])
-    _assert_match_first_item("Visa", res)
+    _assert_match_first_item("Visa Card Number", res)
 
 
 def test_master_Card():
     r = regex_identifier.RegexIdentifier()
     res = r.check(["5500000000000004"])
-    _assert_match_first_item("MasterCard", res)
+    _assert_match_first_item("MasterCard Number", res)
 
 
 def test_master_card_spaces():
     r = regex_identifier.RegexIdentifier()
     res = r.check(["5555 5555 5555 4444"])
-    _assert_match_first_item("MasterCard", res)
+    _assert_match_first_item("MasterCard Number", res)
 
 
 def test_american_express():
     r = regex_identifier.RegexIdentifier()
     res = r.check(["340000000000009"])
-    _assert_match_first_item("American Express", res)
+    _assert_match_first_item("American Express Card Number", res)
 
 
 def test_american_express_spaces():
     r = regex_identifier.RegexIdentifier()
     res = r.check(["3714 4963 5398 431"])
-    _assert_match_first_item("American Express", res)
+    _assert_match_first_item("American Express Card Number", res)
 
 
 def test_american_diners_club():
     r = regex_identifier.RegexIdentifier()
     res = r.check(["30000000000004"])
-    _assert_match_first_item("Diners Club Card", res)
+    assert "Diners Club Card Number" in res[1]["Regex Pattern"]["Name"]
 
 
 def test_american_diners_club_spaces():
     r = regex_identifier.RegexIdentifier()
     res = r.check(["3056 9309 0259 04"])
-    _assert_match_first_item("Diners Club Card", res)
+    _assert_match_first_item("Diners Club Card Number", res)
 
 
 def test_discover_card():
     r = regex_identifier.RegexIdentifier()
     res = r.check(["6011000000000004"])
-    _assert_match_first_item("Discover", res)
+    _assert_match_first_item("Discover Card Number", res)
 
 
 def test_discover_card_spaces():
     r = regex_identifier.RegexIdentifier()
     res = r.check(["6011 1111 1111 1117"])
-    _assert_match_first_item("Discover", res)
+    _assert_match_first_item("Discover Card Number", res)
 
 
 def test_maestro_card():
     r = regex_identifier.RegexIdentifier()
     res = r.check(["5038146401278870"])
-    _assert_match_first_item("Maestro", res)
+    _assert_match_first_item("Maestro Card Number", res)
 
 
 def test_maestro_card_spaces():
     r = regex_identifier.RegexIdentifier()
     res = r.check(["6759 6498 2643 8453"])
-    _assert_match_first_item("Maestro", res)
+    _assert_match_first_item("Maestro Card Number", res)
 
 
-@pytest.mark.skip("Key:value is turned off")
+@pytest.mark.skip("Key:Value Pair is not ran by default because of low rarity.")
 def test_username():
     r = regex_identifier.RegexIdentifier()
     res = r.check(["james:S3cr37_P@$$W0rd"])
-    _assert_match_first_item("Key:Value", res)
+    _assert_match_first_item("Key:Value Pair", res)
 
 
 def test_email():
     r = regex_identifier.RegexIdentifier()
     res = r.check(["github@skerritt.blog"])
-    _assert_match_first_item("Email", res)
+    _assert_match_first_item("Email Address", res)
 
 
 def test_email2():
     r = regex_identifier.RegexIdentifier()
     res = r.check(["firstname+lastname@example.com"])
-    _assert_match_first_item("Email", res)
+    _assert_match_first_item("Email Address", res)
 
 
 def test_email3():
@@ -342,13 +382,13 @@ def test_email3():
     res = r.check(
         ["john.smith@[123.123.123.123]"], boundaryless=Filter({"Tags": ["Identifiers"]})
     )
-    assert "Email" in res[2]["Regex Pattern"]["Name"]
+    assert "Email Address" in res[2]["Regex Pattern"]["Name"]
 
 
 def test_email4():
     r = regex_identifier.RegexIdentifier()
     res = r.check(["email@example@example.com"])
-    assert "Email" not in res
+    assert "Email Address" not in res
 
 
 def test_phone_number():
@@ -381,91 +421,97 @@ def test_phone_number4():
 def test_youtube():
     r = regex_identifier.RegexIdentifier()
     res = r.check(["https://www.youtube.com/watch?v=ScOAntcCa78"])
-    _assert_match_first_item("YouTube", res)
+    _assert_match_first_item("YouTube Video", res)
 
 
 def test_youtube2():
     r = regex_identifier.RegexIdentifier()
     res = r.check(["http://www.youtube.com/watch?v=dQw4w9WgXcQ"])
-    _assert_match_first_item("YouTube", res)
+    _assert_match_first_item("YouTube Video", res)
 
 
 def test_youtube_id():
     r = regex_identifier.RegexIdentifier()
     res = r.check(["dQw4w9WgXcQ"])
-    _assert_match_first_item("YouTube", res)
+    _assert_match_first_item("YouTube Video ID", res)
 
 
 def test_youtube_id2():
     r = regex_identifier.RegexIdentifier()
     res = r.check(["078-05-1120"])
-    assert "YouTube" not in res[0]
+    assert "YouTube Video ID" not in res
+
+
+def test_youtube_channel_id():
+    r = regex_identifier.RegexIdentifier()
+    res = r.check(["UCjXfkj5iapKHJrhYfAF9ZGg"])
+    _assert_match_first_item("YouTube Channel ID", res)
 
 
 def test_ssn():
     r = regex_identifier.RegexIdentifier()
     res = r.check(["001-01-0001"])
-    assert "Social" in str(res)
+    _assert_match_first_item("American Social Security Number", res)
 
 
 def test_ssn2():
     r = regex_identifier.RegexIdentifier()
     res = r.check(["001:01:0001"])
-    assert "Social" in str(res)
+    _assert_match_first_item("American Social Security Number", res)
 
 
 def test_ssn3():
     r = regex_identifier.RegexIdentifier()
     res = r.check(["001.01.0001"])
-    assert "Social" in str(res)
+    _assert_match_first_item("American Social Security Number", res)
 
 
 def test_ssn4():
     r = regex_identifier.RegexIdentifier()
     res = r.check(["001 01 0001"])
-    assert "Social" in str(res)
+    _assert_match_first_item("American Social Security Number", res)
 
 
 def test_ssn5():
     r = regex_identifier.RegexIdentifier()
     res = r.check(["900-01-2222"])
-    assert "Social" not in str(res)
+    assert "American Social Security Number" not in str(res)
 
 
 def test_ssn6():
     r = regex_identifier.RegexIdentifier()
     res = r.check(["999-21-2222"])
-    assert "Social" not in str(res)
+    assert "American Social Security Number" not in str(res)
 
 
 def test_ssn7():
     r = regex_identifier.RegexIdentifier()
     res = r.check(["666-21-2222"])
-    assert "Social" not in str(res)
+    assert "American Social Security Number" not in str(res)
 
 
 def test_ssn8():
     r = regex_identifier.RegexIdentifier()
     res = r.check(["000-21-5544"])
-    assert "Social" not in str(res)
+    assert "American Social Security Number" not in str(res)
 
 
 def test_ssn9():
     r = regex_identifier.RegexIdentifier()
     res = r.check(["122-00-5544"])
-    assert "Social" not in str(res)
+    assert "American Social Security Number" not in str(res)
 
 
 def test_ssn10():
     r = regex_identifier.RegexIdentifier()
     res = r.check(["122-32-0000"])
-    assert "Social" not in str(res)
+    assert "American Social Security Number" not in str(res)
 
 
 def test_cors():
     r = regex_identifier.RegexIdentifier()
     res = r.check(["Access-Control-Allow: *"])
-    assert "Access" in str(res)
+    _assert_match_first_item("Access-Control-Allow-Header", res)
 
 
 def test_jwt():
@@ -475,49 +521,53 @@ def test_jwt():
             "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c"
         ]
     )
-    assert "JWT" in str(res)
+    _assert_match_first_item("JSON Web Token (JWT)", res)
 
 
 def test_s3():
     r = regex_identifier.RegexIdentifier()
     res = r.check(["http://s3.amazonaws.com/bucket/"])
-    assert "S3" in str(res)
+    _assert_match_first_item("Amazon Web Services Simple Storage (AWS S3) URL", res)
 
 
 def test_s3_internal():
     r = regex_identifier.RegexIdentifier()
     res = r.check(["s3://bucket/path/key"])
-    assert "S3" in str(res)
+    _assert_match_first_item(
+        "Amazon Web Services Simple Storage (AWS S3) Internal URL", res
+    )
 
 
 def test_s3_internal2():
     r = regex_identifier.RegexIdentifier()
     res = r.check(["s3://bucket/path/directory/"])
-    assert "S3" in str(res)
+    _assert_match_first_item(
+        "Amazon Web Services Simple Storage (AWS S3) Internal URL", res
+    )
 
 
 def test_arn():
     r = regex_identifier.RegexIdentifier()
     res = r.check(["arn:partition:service:region:account-id:resource"])
-    assert "ARN" in str(res)
+    _assert_match_first_item("Amazon Resource Name (ARN)", res)
 
 
 def test_arn2():
     r = regex_identifier.RegexIdentifier()
     res = r.check(["arn:partition:service:region:account-id:resourcetype/resource"])
-    assert "ARN" in str(res)
+    _assert_match_first_item("Amazon Resource Name (ARN)", res)
 
 
 def test_arn3():
     r = regex_identifier.RegexIdentifier()
     res = r.check(["arn:partition:service:region:account-id:resourcetype:resource"])
-    assert "ARN" in str(res)
+    _assert_match_first_item("Amazon Resource Name (ARN)", res)
 
 
 def test_arn4():
     r = regex_identifier.RegexIdentifier()
     res = r.check(["arn:aws:s3:::my_corporate_bucket/Development/*"])
-    assert "ARN" in str(res)
+    _assert_match_first_item("Amazon Resource Name (ARN)", res)
 
 
 def test_unix_timestamp():
@@ -567,7 +617,7 @@ def test_ssh_rsa_key():
             "ssh-rsa AAAAB3NzaC1tc2EAAAADAQABAAACAQDrnjkGtf3iA46rtwsvRiscvMTCw30l5Mmln/sf8Wohg4RPc7nuIx3/fB86K9jzBNoQk6Fb00p2cSW0dX6c3OTL5R5Q0rBjOFy6GV07MkS7rXa7WYh4ObxBh+M+LEzxVIw29anzQFZkR0TAf6x2rBoErK7JYU4fyqFBDFupTt3coQDPEEmVwtLLUCEnJrurbbnJKcWJ+/FbItLxYyMLPl8TwEn0iqiJ97onCU2DuBtiYv3hp1WoEH08b5WDF0F04zEPRdJT+WisxlEFRgaj51o2BtjOC+D2qZQDb4LHaAfJ0WcO4nu7YocdlcLp2JPfXKKgu9P5J8UDsmXbR3KCJ1oddFa2R6TbHc6d2hKyG4amBzMX5ltxXu7D6FLPZlFqua8YooY7A2zwIVirOUH/cfx+5O9o0CtspkNmj/iYzN0FPaOpELncWsuauy9hrGql/1cF4SUr20zHFoBoDQUtmvmBnWnKoGfpWXzuda449FVtmcrEjvBzCvCb3RStu0BbyOOybJagbKif3MkcYVO10pRbTveIUwgCD6F3ypD11XztoPNsgScmjme0sj/KWWNLyQkLWtpJEQ4k46745NAC5g+nP28TR2JM8doeqsxA8JovQkLWwDcR+WYZu2z/I8dfhOmalnoMRTJ2NzWDc0OSkKGYWjexR4fN6lAKCUOUptl9Nw== r00t@my-random_host"
         ]
     )
-    assert "SSH RSA" in str(res)
+    _assert_match_first_item("SSH RSA Public Key", res)
 
 
 def test_ssh_ecdsa_key():
@@ -577,7 +627,7 @@ def test_ssh_ecdsa_key():
             "ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBCE9Uli8bGnD4hOWdeo5KKQJ/P/vOazI4MgqJK54w37emP2JwOAOdMmXuwpxbKng3KZz27mz+nKWIlXJ3rzSGMo= r00t@my-random_host"
         ]
     )
-    assert "SSH ECDSA" in str(res)
+    _assert_match_first_item("SSH ECDSA Public Key", res)
 
 
 def test_ssh_ed25519_key():
@@ -587,7 +637,8 @@ def test_ssh_ed25519_key():
             "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIK0wmN/Cr3JXqmLW7u+g9pTh+wyqDHpSQEIQczXkVx9q r00t@my-random_host"
         ]
     )
-    assert "SSH ED25519" in str(res)
+    _assert_match_first_item("SSH ED25519 Public Key", res)
+
 
 
 def test_aws_access_key():
@@ -623,7 +674,7 @@ def test_aws_org_id():
 def test_asin():
     r = regex_identifier.RegexIdentifier()
     res = r.check(["B07ND5BB8V"])
-    assert "ASIN" in str(res)
+    _assert_match_first_item("Amazon Standard Identification Number (ASIN)", res)
 
 
 def test_google_api_key():
@@ -653,7 +704,7 @@ def test_aws_access_key_id():
 def test_mailgun_api_key():
     r = regex_identifier.RegexIdentifier()
     res = r.check(["key-1e1631a9414aff7c262721e7b6ff6e43"])
-    assert "Mailgun API Key" in res[1]["Regex Pattern"]["Name"]
+    _assert_match_first_item("Mailgun API Key", res)
 
 
 def test_twilio_api_key():
@@ -722,3 +773,99 @@ def test_pgp_private_key():
         ]
     )
     _assert_match_first_item("PGP Private Key", res)
+
+
+def test_discord_token():
+    r = regex_identifier.RegexIdentifier()
+    res = r.check(
+        [
+            "NzQ4MDk3ODM3OTgzODU4NzIz.X0YeZw.UlcjuCywUAWvPH9s-3cXNBaq3M4"
+        ]
+    )
+    _assert_match_first_item("Discord Bot Token", res)
+
+
+def test_discord_token_2():
+    r = regex_identifier.RegexIdentifier()
+    res = r.check(
+        [
+            "MTE4NDQyNjQ0NTAxMjk5MjAz.DPM2DQ.vLNMR02Qxb9DJFucGZK1UtTs__s"
+        ]
+    )
+    _assert_match_first_item("Discord Bot Token", res)
+
+
+def test_discord_token_3():
+    r = regex_identifier.RegexIdentifier()
+    res = r.check(
+        [
+            "ODYyOTUyOTE3NTg4NjM5NzY1.YOf1iA.7lARgFXmodxpgmPvOXapaKUga6M"
+        ]
+    )
+    _assert_match_first_item("Discord Bot Token", res)
+
+
+def test_placekey():
+    r = regex_identifier.RegexIdentifier()
+    res = r.check(["zzw-223@63r-6cs-j5f"])
+    _assert_match_first_item("Placekey Universal Identifier for Physical Place", res)
+
+    r = regex_identifier.RegexIdentifier()
+    res = r.check(["226-223@5py-nm7-fs5"])
+    _assert_match_first_item("Placekey Universal Identifier for Physical Place", res)
+
+    r = regex_identifier.RegexIdentifier()
+    res = r.check(["22d@627-s8q-xkf"])
+    _assert_match_first_item("Placekey Universal Identifier for Physical Place", res)
+
+
+def test_bcglobal():
+    r = regex_identifier.RegexIdentifier()
+    res = r.check(["6556123456789012"])
+    _assert_match_first_item("BCGlobal Card Number", res)
+
+
+def test_carte_blanche():
+    r = regex_identifier.RegexIdentifier()
+    res = r.check(["30137891521480"])
+    _assert_match_first_item("Carte Blanche Card Number", res)
+
+
+def test_instapayment():
+    r = regex_identifier.RegexIdentifier()
+    res = r.check(["6387849878080951"])
+    _assert_match_first_item("Insta Payment Card Number", res)
+
+
+def test_jcb_card():
+    r = regex_identifier.RegexIdentifier()
+    res = r.check(["3537124887293334"])
+    _assert_match_first_item("JCB Card Number", res)
+
+    r = regex_identifier.RegexIdentifier()
+    res = r.check(["3543824683332150682"])
+    _assert_match_first_item("JCB Card Number", res)
+
+
+def test_switch_card():
+    r = regex_identifier.RegexIdentifier()
+    res = r.check(["633341812811453789"])
+    _assert_match_first_item("Switch Card Number", res)
+
+
+def test_korean_card():
+    r = regex_identifier.RegexIdentifier()
+    res = r.check(["9837282929900015"])
+    _assert_match_first_item("Korean Local Card Number", res)
+
+
+def test_laser_card():
+    r = regex_identifier.RegexIdentifier()
+    res = r.check(["630495060000000000"])
+    _assert_match_first_item("Laser Card Number", res)
+
+
+def test_solo_card():
+    r = regex_identifier.RegexIdentifier()
+    res = r.check(["6334498823141663"])
+    _assert_match_first_item("Solo Card Number", res)
