@@ -379,6 +379,19 @@
       ]
    },
    {
+      "Name": "Discord Bot Token",
+      "Regex": "^((?:N|M|O)[a-zA-Z0-9]{23}\\.[a-zA-Z0-9-_]{6}\\.[a-zA-Z0-9-_]{27})$",
+      "plural_name": false,
+      "Description": null,
+      "Rarity": 0.5,
+      "URL": null,
+      "Tags": [
+          "Security",
+          "Token",
+          "API Keys"
+      ]
+   },
+   {
       "Name": "Monero (XMR) Wallet Address",
       "Regex": "(?i)^(4(?:[0-9]|[A-B])[a-z0-9]{93})$",
       "plural_name": false,
@@ -418,18 +431,6 @@
       ]
    },
    {
-      "Name": "Discord Bot Token",
-      "Regex": "^((?:N|M|O)[a-zA-Z0-9]{23}\\.[a-zA-Z0-9-_]{6}\\.[a-zA-Z0-9-_]{27})$",
-      "plural_name": false,
-      "Description": null,
-      "Rarity": 0.5,
-      "URL": null,
-      "Tags": [
-          "Security",
-          "Token",
-          "API Keys"
-      ]
-   },
       "Name": "American Express Card Number",
       "Regex": "^(3[47][0-9]{2}\\s?(?:[0-9]{4}\\s?){2}[0-9]{3})$",
       "plural_name": false,
