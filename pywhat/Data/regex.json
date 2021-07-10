@@ -557,7 +557,7 @@
    },
    {
       "Name": "Discord Bot Token",
-      "Regex": "^((?:N|M)[a-zA-Z0-9]{23}\\.[a-zA-Z0-9-_]{6}\\.[a-zA-Z0-9-_]{27})$",
+      "Regex": "^((?:N|M|O)[a-zA-Z0-9]{23}\\.[a-zA-Z0-9-_]{6}\\.[a-zA-Z0-9-_]{27})$",
       "plural_name": false,
       "Description": null,
       "Rarity": 0.5,

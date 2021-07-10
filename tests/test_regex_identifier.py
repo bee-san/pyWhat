@@ -737,3 +737,12 @@ def test_discord_token_2():
         ]
     )
     _assert_match_first_item("Discord Bot Token", res)
+
+def test_discord_token_3():
+    r = regex_identifier.RegexIdentifier()
+    res = r.check(
+        [
+            "ODYyOTUyOTE3NTg4NjM5NzY1.YOf1iA.7lARgFXmodxpgmPvOXapaKUga6M"
+        ]
+    )
+    _assert_match_first_item("Discord Bot Token", res)
