@@ -640,6 +640,7 @@ def test_ssh_ed25519_key():
     _assert_match_first_item("SSH ED25519 Public Key", res)
 
 
+
 def test_aws_access_key():
     r = regex_identifier.RegexIdentifier()
     res = r.check(["AKIAIOSFODNN7EXAMPLE"])
@@ -792,6 +793,7 @@ def test_discord_token_2():
         ]
     )
     _assert_match_first_item("Discord Bot Token", res)
+
 
 def test_discord_token_3():
     r = regex_identifier.RegexIdentifier()

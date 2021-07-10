@@ -14,6 +14,10 @@ name_that_hash = "^1.7.0"
 rich = ">=9.9,<11.0"
 
 [tool.poetry.dev-dependencies]
+pytest = "^6.2.4"
+black = {version = "^21.6b0", python = "^3.6.2"} 
+isort = {version = "^5.9.2", python = "^3.6.1"}
+flake8 = "3.8.4"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
