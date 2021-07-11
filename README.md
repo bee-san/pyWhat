@@ -73,4 +73,4 @@ PyWhat has an API! Click here [https://github.com/bee-san/pyWhat/wiki/API](https
 `what` not only thrives on contributors, but can't exist without them! If you want to add a new regex to check for things, you can read our documentation [here](https://github.com/bee-san/what/wiki/Adding-your-own-Regex)
 
 We ask contributors to join the Discord for quicker discussions, but it's not needed:
-<img alt="Discord" src="https://img.shields.io/discord/754001738184392704">
+<a href="http://discord.skerritt.blog"><img alt="Discord" src="https://img.shields.io/discord/754001738184392704"></a>
