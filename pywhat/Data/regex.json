@@ -126,6 +126,102 @@
       ]
    },
    {
+      "Name": "Twitter Status",
+      "Regex": "^(https?:\\/\\/(?:twitter\\.com\\/)(?:#!\\/)?(\\w{1,15})\\/status(?:es)?\\/(\\d+))$",
+      "plural_name": false,
+      "Description": null,
+      "Rarity": 1,
+      "URL": null,
+      "Tags": [
+         "Media",
+         "Twitter"
+      ]
+   },
+   {
+      "Name": "Twitter User",
+      "Regex": "^(https?:\\/\\/(?:twitter\\.com\\/)(\\w{1,15})\\/?)$",
+      "plural_name": false,
+      "Description": null,
+      "Rarity": 1,
+      "URL": null,
+      "Tags": [
+         "Media",
+         "Twitter"
+      ]
+   },
+   {
+      "Name": "Instagram Post",
+      "Regex": "^(https?:\\/\\/(?:(www\\.)?instagram\\.com\\/p\\/)([^/?#&]{1,15})(?:\\/)?)$",
+      "plural_name": false,
+      "Description": null,
+      "Rarity": 1,
+      "URL": null,
+      "Tags": [
+         "Media",
+         "Instagram"
+      ]
+   },
+   {
+      "Name": "Instagram User",
+      "Regex": "^(https?:\\/\\/(?:(www\\.)?instagram\\.com\\/)([^/?#&]{1,15})(?:\\/)?)$",
+      "plural_name": false,
+      "Description": null,
+      "Rarity": 1,
+      "URL": null,
+      "Tags": [
+         "Media",
+         "Instagram"
+      ]
+   },
+   {
+      "Name": "Reddit Post",
+      "Regex": "^(https?:\\/\\/(?:www\\.)?reddit\\.com\\/r\\/[^\\/?#&]{1,15}\\/comments\\/([\\d\\w]+)(?:\\/)?)$",
+      "plural_name": false,
+      "Description": null,
+      "Rarity": 1,
+      "URL": null,
+      "Tags": [
+         "Media",
+         "Reddit"
+      ]
+   },
+   {
+      "Name": "Reddit User",
+      "Regex": "^(https?:\\/\\/(?:www\\.)?reddit\\.com\\/(?:user|u)\\/([^/?#&]{1,15})(?:\\/)?)$",
+      "plural_name": false,
+      "Description": null,
+      "Rarity": 1,
+      "URL": null,
+      "Tags": [
+         "Media",
+         "Reddit"
+      ]
+   },
+   {
+      "Name": "Reddit Subreddit",
+      "Regex": "^(https?:\\/\\/(?:www\\.)?reddit\\.com\\/r\\/([^/?#&]{1,15})(?:\\/)?)$",
+      "plural_name": false,
+      "Description": null,
+      "Rarity": 1,
+      "URL": null,
+      "Tags": [
+         "Media",
+         "Reddit"
+      ]
+   },
+   {
+      "Name": "Discord Invite",
+      "Regex": "^(https?:\\/\\/(?:(www\\.)?)(?:discord\\.gg\\/|discordapp\\.com\\/invite\\/|discord\\.com\\/invite\\/)([^\\/?#&]{1,15})(?:\\/)?)$",
+      "plural_name": false,
+      "Description": null,
+      "Rarity": 1,
+      "URL": null,
+      "Tags": [
+         "Media",
+         "Discord"
+      ]
+   },
+   {
       "Name": "Bitcoin Cash (BCH) Wallet Address",
       "Regex": "(?i)^(bitcoincash:[a-z0-9]{42})$",
       "plural_name": false,
