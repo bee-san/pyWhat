@@ -450,55 +450,55 @@ def test_youtube_channel_id():
 
 def test_twitter():
     r = regex_identifier.RegexIdentifier()
-    res = r.check(["https://twitter.com/jack/status/20"], boundaryless=Filter({"Tags": ["Media"]}))
+    res = r.check(["https://twitter.com/jack/status/20"])
     _assert_match_first_item("Twitter Status", res)
 
 
 def test_twitter_user():
     r = regex_identifier.RegexIdentifier()
-    res = r.check(["https://twitter.com/jack"], boundaryless=Filter({"Tags": ["Media"]}))
+    res = r.check(["https://twitter.com/jack"])
     _assert_match_first_item("Twitter User", res)
 
 
 def test_instagram():
     r = regex_identifier.RegexIdentifier()
-    res = r.check(["https://www.instagram.com/p/BHs_oZHU6VZ/"], boundaryless=Filter({"Tags": ["Media"]}))
+    res = r.check(["https://www.instagram.com/p/BHs_oZHU6VZ/"])
     _assert_match_first_item("Instagram Post", res)
 
 
 def test_instagram_user():
     r = regex_identifier.RegexIdentifier()
-    res = r.check(["https://www.instagram.com/instagram/"], boundaryless=Filter({"Tags": ["Media"]}))
+    res = r.check(["https://www.instagram.com/instagram/"])
     _assert_match_first_item("Instagram User", res)
 
 
 def test_reddit():
     r = regex_identifier.RegexIdentifier()
-    res = r.check(["https://www.reddit.com/r/funny/comments/3cxw9d/"], boundaryless=Filter({"Tags": ["Media"]}))
+    res = r.check(["https://www.reddit.com/r/funny/comments/3cxw9d/"])
     _assert_match_first_item("Reddit Post", res)
 
 
 def test_reddit_user():
     r = regex_identifier.RegexIdentifier()
-    res = r.check(["https://www.reddit.com/user/funny/"], boundaryless=Filter({"Tags": ["Media"]}))
+    res = r.check(["https://www.reddit.com/user/funny/"])
     _assert_match_first_item("Reddit User", res)
 
 
 def test_reddit_subreddit():
     r = regex_identifier.RegexIdentifier()
-    res = r.check(["https://www.reddit.com/r/funny/"], boundaryless=Filter({"Tags": ["Media"]}))
+    res = r.check(["https://www.reddit.com/r/funny/"])
     _assert_match_first_item("Reddit Subreddit", res)
 
 
 def test_discord_invite():
     r = regex_identifier.RegexIdentifier()
-    res = r.check(["https://discord.gg/vFxZxn"], boundaryless=Filter({"Tags": ["Media"]}))
+    res = r.check(["https://discord.gg/vFxZxn"])
     _assert_match_first_item("Discord Invite", res)
 
 
 def test_discord_invite2():
     r = regex_identifier.RegexIdentifier()
-    res = r.check(["https://discord.com/invite/vFxZxn"], boundaryless=Filter({"Tags": ["Media"]}))
+    res = r.check(["https://discord.com/invite/vFxZxn"])
     _assert_match_first_item("Discord Invite", res)
 
 
