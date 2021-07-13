@@ -454,9 +454,27 @@ def test_twitter():
     _assert_match_first_item("Twitter Status", res)
 
 
+def test_twitter2():
+    r = regex_identifier.RegexIdentifier()
+    res = r.check(["HTTPS://TWITTER.COM/#!/JACK/STATUS/20"])
+    _assert_match_first_item("Twitter Status", res)
+
+
+def test_twitter3():
+    r = regex_identifier.RegexIdentifier()
+    res = r.check(["https://mobile.twitter.com/#!/JACK/status/20"])
+    _assert_match_first_item("Twitter Status", res)
+
+
 def test_twitter_user():
     r = regex_identifier.RegexIdentifier()
     res = r.check(["https://twitter.com/jack"])
+    _assert_match_first_item("Twitter User", res)
+
+
+def test_twitter_user2():
+    r = regex_identifier.RegexIdentifier()
+    res = r.check(["HTTPS://TWITTER.COM/#!/JACK"])
     _assert_match_first_item("Twitter User", res)
 
 
@@ -466,15 +484,39 @@ def test_instagram():
     _assert_match_first_item("Instagram Post", res)
 
 
+def test_instagram2():
+    r = regex_identifier.RegexIdentifier()
+    res = r.check(["HTTPS://WWW.INSTAGRAM.COM/P/BHS_OZHU6VZ/"])
+    _assert_match_first_item("Instagram Post", res)
+
+
 def test_instagram_user():
     r = regex_identifier.RegexIdentifier()
-    res = r.check(["https://www.instagram.com/instagram/"])
+    res = r.check(["https://www.instagram.com/world_record_egg"])
+    _assert_match_first_item("Instagram User", res)
+
+
+def test_instagram_user2():
+    r = regex_identifier.RegexIdentifier()
+    res = r.check(["HTTPS://INSTAGRAM.COM/WORLD_RECORD_EGG"])
     _assert_match_first_item("Instagram User", res)
 
 
 def test_reddit():
     r = regex_identifier.RegexIdentifier()
-    res = r.check(["https://www.reddit.com/r/funny/comments/3cxw9d/"])
+    res = r.check(["https://www.reddit.com/r/funny/comments/3cxw9d"])
+    _assert_match_first_item("Reddit Post", res)
+
+
+def test_reddit2():
+    r = regex_identifier.RegexIdentifier()
+    res = r.check(["HTTPS://REDDIT.COM/R/FUNNY/COMMENTS/3CXW9D/"])
+    _assert_match_first_item("Reddit Post", res)
+
+
+def test_reddit3():
+    r = regex_identifier.RegexIdentifier()
+    res = r.check(["https://funny.reddit.com/comments/3cxw9d"])
     _assert_match_first_item("Reddit Post", res)
 
 
@@ -484,9 +526,27 @@ def test_reddit_user():
     _assert_match_first_item("Reddit User", res)
 
 
+def test_reddit_user2():
+    r = regex_identifier.RegexIdentifier()
+    res = r.check(["HTTPS://REDDIT.COM/USER/FUNNY/"])
+    _assert_match_first_item("Reddit User", res)
+
+
 def test_reddit_subreddit():
     r = regex_identifier.RegexIdentifier()
     res = r.check(["https://www.reddit.com/r/funny/"])
+    _assert_match_first_item("Reddit Subreddit", res)
+
+
+def test_reddit_subreddit2():
+    r = regex_identifier.RegexIdentifier()
+    res = r.check(["HTTPS://REDDIT.COM/R/FUNNY/"])
+    _assert_match_first_item("Reddit Subreddit", res)
+
+
+def test_reddit_subreddit3():
+    r = regex_identifier.RegexIdentifier()
+    res = r.check(["https://funny.reddit.com/"])
     _assert_match_first_item("Reddit Subreddit", res)
 
 
@@ -500,6 +560,18 @@ def test_discord_invite2():
     r = regex_identifier.RegexIdentifier()
     res = r.check(["https://discord.com/invite/vFxZxn"])
     _assert_match_first_item("Discord Invite", res)
+
+
+def test_discord_invite3():
+    r = regex_identifier.RegexIdentifier()
+    res = r.check(["HTTPS://DISCORDAPP.COM/INVITE/VFXZXN/"])
+    _assert_match_first_item("Discord Invite", res)
+
+
+def test_discord_invite4():
+    r = regex_identifier.RegexIdentifier()
+    res = r.check(["https://discord.com/vFxZxn"])
+    assert "Discord Invite" not in str(res)
 
 
 def test_ssn():
