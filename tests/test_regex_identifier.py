@@ -640,7 +640,6 @@ def test_ssh_ed25519_key():
     _assert_match_first_item("SSH ED25519 Public Key", res)
 
 
-
 def test_aws_access_key():
     r = regex_identifier.RegexIdentifier()
     res = r.check(["AKIAIOSFODNN7EXAMPLE"])
@@ -777,31 +776,19 @@ def test_pgp_private_key():
 
 def test_discord_token():
     r = regex_identifier.RegexIdentifier()
-    res = r.check(
-        [
-            "NzQ4MDk3ODM3OTgzODU4NzIz.X0YeZw.UlcjuCywUAWvPH9s-3cXNBaq3M4"
-        ]
-    )
+    res = r.check(["NzQ4MDk3ODM3OTgzODU4NzIz.X0YeZw.UlcjuCywUAWvPH9s-3cXNBaq3M4"])
     _assert_match_first_item("Discord Bot Token", res)
 
 
 def test_discord_token_2():
     r = regex_identifier.RegexIdentifier()
-    res = r.check(
-        [
-            "MTE4NDQyNjQ0NTAxMjk5MjAz.DPM2DQ.vLNMR02Qxb9DJFucGZK1UtTs__s"
-        ]
-    )
+    res = r.check(["MTE4NDQyNjQ0NTAxMjk5MjAz.DPM2DQ.vLNMR02Qxb9DJFucGZK1UtTs__s"])
     _assert_match_first_item("Discord Bot Token", res)
 
 
 def test_discord_token_3():
     r = regex_identifier.RegexIdentifier()
-    res = r.check(
-        [
-            "ODYyOTUyOTE3NTg4NjM5NzY1.YOf1iA.7lARgFXmodxpgmPvOXapaKUga6M"
-        ]
-    )
+    res = r.check(["ODYyOTUyOTE3NTg4NjM5NzY1.YOf1iA.7lARgFXmodxpgmPvOXapaKUga6M"])
     _assert_match_first_item("Discord Bot Token", res)
 
 
