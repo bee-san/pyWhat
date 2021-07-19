@@ -14,9 +14,9 @@
 
 ![](images_for_README/main_demo.gif)
 
-Imagine this: You come across some mysterious text 🧙‍♂️ `5f4dcc3b5aa765d61d8327deb882cf99` and you wonder what it is. What do you do?
+Imagine this: You come across some mysterious text 🧙‍♂️ `0x52908400098527886E0F7030069857D2E4169EE7` or `dQw4w9WgXcQ` and you wonder what it is. What do you do?
 
-Well, with `what` all you have to do is ask `what "5f4dcc3b5aa765d61d8327deb882cf99"` and `what` will tell you!
+Well, with `what` all you have to do is ask `what "0x52908400098527886E0F7030069857D2E4169EE7"` and `what` will tell you!
 
 `what`'s job is to **identify _what_ something is.** Whether it be a file or text! Or even the hex of a file! What about text _within_ files? We have that too! `what` is recursive, it will identify **everything** in text and more!
 
@@ -24,13 +24,13 @@ Well, with `what` all you have to do is ask `what "5f4dcc3b5aa765d61d8327deb882c
 
 ## 🦠 Wannacry
 
-![](images_for_README/Screenshot%202021-05-09%20162158.png)
+![](images_for_README/wantocry_demo.png)
 
 You come across a new piece of malware called WantToCry. You think back to Wannacry and remember it was stopped because a researcher found a kill-switch in the code.
 
 When a domain, hardcoded into Wannacry, was registered the virus would stop.
 
-You use `What` to identify all the domains in the malware, and use a domain registrar API to register all the domains. If Wannacry happens again, you can stop it in minutes - not weeks.
+You use `What` to identify all the domains in the malware, and use a domain registrar API to register all the domains.
 
 ## 🦈 Faster Analysis of Pcap files
 
@@ -38,7 +38,9 @@ You use `What` to identify all the domains in the malware, and use a domain regi
 
 Say you have a `.pcap` file from a network attack. `What` can identify this and quickly find you:
 
-- All hashes
+- All URLs
+- Emails
+- Phone numbers
 - Credit card numbers
 - Cryptocurrency addresses
 - Social Security Numbers
