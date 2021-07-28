@@ -7,8 +7,7 @@
       "Rarity": 1,
       "URL": null,
       "Tags": [
-         "PGP",
-         "PGP public Key"
+         "PGP"
       ]
    },
    {
@@ -19,8 +18,7 @@
       "Rarity": 1,
       "URL": null,
       "Tags": [
-         "PGP",
-         "PGP private Key"
+         "PGP"
       ]
    },
    {
@@ -32,7 +30,7 @@
       "URL": null,
       "Tags": [
          "Credentials",
-         "SSH RSA Public Key"
+         "SSH Public Key"
       ]
    },
    {
@@ -79,7 +77,7 @@
       "Rarity": 1,
       "URL": null,
       "Tags": [
-         "CTF flag"
+         "CTF Flag"
       ]
    },
    {
@@ -90,7 +88,7 @@
       "Rarity": 1,
       "URL": null,
       "Tags": [
-         "CTF flag"
+         "CTF Flag"
       ]
    },
    {
@@ -101,7 +99,7 @@
       "Rarity": 1,
       "URL": null,
       "Tags": [
-         "CTF flag"
+         "CTF Flag"
       ]
    },
    {
@@ -214,8 +212,7 @@
       "Tags": [
          "Identifiers",
          "Networking",
-         "AWS",
-         "AWS ARN"
+         "AWS"
       ]
    },
    {
@@ -228,7 +225,6 @@
       "Tags": [
          "Identifiers",
          "Networking",
-         "IPv6",
          "IP"
       ]
    },
@@ -254,7 +250,6 @@
       "Tags": [
          "Identifiers",
          "Networking",
-         "IPv4",
          "IP"
       ]
    },
@@ -504,8 +499,7 @@
       "URL": null,
       "Tags": [
          "Credit Card",
-         "Finance",
-         "Maestro CC"
+         "Finance"
       ]
    },
    {
@@ -677,8 +671,7 @@
       "URL": null,
       "Tags": [
          "API Keys",
-         "Credentials",
-         "Mailgun"
+         "Credentials"
       ]
    },
    {
@@ -742,7 +735,7 @@
       "URL": "https://amzn.com/",
       "Tags": [
          "Identifiers",
-         "Amazon ASIN"
+         "Amazon"
       ]
    },
    {
