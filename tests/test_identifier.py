@@ -43,11 +43,11 @@ def test_identifier_works3():
 
 
 def test_identifier_filtration():
-    filter = {"Tags": ["Password"]}
+    filter = {"Tags": ["Credentials"]}
     r = identifier.Identifier(dist=Distribution(filter))
     regexes = r.identify("fixtures/file", only_text=False)["Regexes"]["file"]
     for regex in regexes:
-        assert "Password" in regex["Regex Pattern"]["Tags"]
+        assert "Credentials" in regex["Regex Pattern"]["Tags"]
 
 
 def test_identifier_filtration2():

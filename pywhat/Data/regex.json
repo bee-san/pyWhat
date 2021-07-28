@@ -7,9 +7,7 @@
       "Rarity": 1,
       "URL": null,
       "Tags": [
-         "PGP",
-         "Pretty Good Privacy",
-         "Public Key"
+         "PGP"
       ]
    },
    {
@@ -20,9 +18,7 @@
       "Rarity": 1,
       "URL": null,
       "Tags": [
-         "PGP",
-         "Pretty Good Privacy",
-         "Private Key"
+         "PGP"
       ]
    },
    {
@@ -34,9 +30,7 @@
       "URL": null,
       "Tags": [
          "Credentials",
-         "Cyber Security",
-         "Public Key",
-         "RSA Public Key"
+         "SSH Public Key"
       ]
    },
    {
@@ -48,8 +42,6 @@
       "URL": null,
       "Tags": [
          "Credentials",
-         "Cyber Security",
-         "Public Key",
          "SSH Public Key"
       ]
    },
@@ -62,8 +54,6 @@
       "URL": null,
       "Tags": [
          "Credentials",
-         "Cyber Security",
-         "Public Key",
          "SSH Public Key"
       ]
    },
@@ -87,7 +77,7 @@
       "Rarity": 1,
       "URL": null,
       "Tags": [
-         "Cyber Security"
+         "CTF Flag"
       ]
    },
    {
@@ -98,7 +88,7 @@
       "Rarity": 1,
       "URL": null,
       "Tags": [
-         "Cyber Security"
+         "CTF Flag"
       ]
    },
    {
@@ -109,7 +99,7 @@
       "Rarity": 1,
       "URL": null,
       "Tags": [
-         "Cyber Security"
+         "CTF Flag"
       ]
    },
    {
@@ -146,7 +136,6 @@
       "Rarity": 1,
       "URL": null,
       "Tags": [
-         "Internet",
          "Networking",
          "AWS"
       ]
@@ -159,7 +148,6 @@
       "Rarity": 1,
       "URL": null,
       "Tags": [
-         "Internet",
          "Networking",
          "AWS"
       ]
@@ -174,7 +162,7 @@
       "Tags": [
          "API Keys",
          "Credentials",
-         "Square"
+         "Square API"
       ]
    },
    {
@@ -187,7 +175,7 @@
       "Tags": [
          "API Keys",
          "Credentials",
-         "Square"
+         "Square API"
       ]
    },
    {
@@ -224,8 +212,7 @@
       "Tags": [
          "Identifiers",
          "Networking",
-         "AWS",
-         "AWS ARN"
+         "AWS"
       ]
    },
    {
@@ -238,7 +225,7 @@
       "Tags": [
          "Identifiers",
          "Networking",
-         "IPv6"
+         "IP"
       ]
    },
    {
@@ -263,7 +250,7 @@
       "Tags": [
          "Identifiers",
          "Networking",
-         "IPv4"
+         "IP"
       ]
    },
    {
@@ -274,7 +261,6 @@
       "Rarity": 0.7,
       "URL": "https://www.blockchain.com/btc/address/",
       "Tags": [
-         "Cryptocurrency",
          "Finance",
          "Cryptocurrency Wallet",
          "Bitcoin Wallet"
@@ -362,8 +348,6 @@
       "URL": null,
       "Tags": [
          "Credentials",
-         "Password",
-         "Username",
          "SSN"
       ]
    },
@@ -375,7 +359,8 @@
       "Rarity": 0.5,
       "URL": "https://www.youtube.com/channel/",
       "Tags": [
-         "Media"
+         "Media",
+         "YouTube"
       ]
    },
    {
@@ -386,7 +371,7 @@
       "Rarity": 0.5,
       "URL": null,
       "Tags": [
-          "Security",
+          "Credentials",
           "Token",
           "API Keys"
       ]
@@ -574,7 +559,8 @@
       "Rarity": 0.3,
       "URL": null,
       "Tags": [
-         "Credit Card"
+         "Credit Card",
+         "Finance"
       ]
    },
    {
@@ -760,8 +746,6 @@
       "Rarity": 0.2,
       "URL": null,
       "Tags": [
-         "Security",
-         "Hacking",
          "Token",
          "Website",
          "JWT Token"
@@ -776,7 +760,7 @@
       "URL": null,
       "Tags": [
          "Credentials",
-         "Cyber Security",
+         "API Keys",
          "AWS"
        ]
     },
@@ -789,7 +773,7 @@
       "URL": null,
       "Tags": [
          "Credentials",
-         "Cyber Security",
+         "API Keys",
          "AWS"
        ]
     },
@@ -813,7 +797,8 @@
       "Rarity": 0.2,
       "URL": "https://www.youtube.com/watch?v=",
       "Tags": [
-         "Media"
+         "Media",
+         "YouTube Video"
       ]
    },
    {
@@ -824,7 +809,7 @@
       "Rarity": 0.2,
       "URL": null,
       "Tags": [
-         "Time"
+         "UNIX Timestamp"
       ]
    },
    {
@@ -835,7 +820,7 @@
       "Rarity": 0.2,
       "URL": null,
       "Tags": [
-         "Time"
+         "UNIX Timestamp"
       ]
    },
    {
@@ -846,7 +831,7 @@
       "Rarity": 0.2,
       "URL": null,
       "Tags": [
-         "Time"
+         "UNIX Timestamp"
       ]
    },
    {
@@ -857,7 +842,7 @@
       "Rarity": 0.2,
       "URL": null,
       "Tags": [
-         "Time"
+         "UNIX Timestamp"
       ]
    },
    {
@@ -868,9 +853,7 @@
       "Rarity": 0,
       "URL": null,
       "Tags": [
-         "Credentials",
-         "Password",
-         "Username"
+         "Credentials"
       ]
    }
 ]
