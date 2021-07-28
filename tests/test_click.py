@@ -479,7 +479,7 @@ def test_only_text():
 def test_boundaryless():
     runner = CliRunner()
     result = runner.invoke(
-        main, ["-be", "identifiers, security", "abc118.103.238.230abc"]
+        main, ["-be", "identifiers, token", "abc118.103.238.230abc"]
     )
     assert result.exit_code == 0
     assert "Nothing found" in result.output
