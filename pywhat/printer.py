@@ -77,26 +77,6 @@ class Printing:
         if to_out == "":
             self.console.print("Nothing found!")
 
-        """
-        # This is commented out because there's too many possible hash idenfications
-        # This is fixed by https://github.com/HashPals/Name-That-Hash/issues/89
-        if text["Hashes"]:
-            to_out = "\n[bold #D7Afff]Hashes Identified[/bold #D7Afff]"
-            table = Table(
-                show_header=True, header_style="bold #D7Afff", show_lines=True
-            )
-            table.add_column("Matched Text")
-            table.add_column("Possible Hash Type")
-            table.add_column("Description")
-            for hash_text in text["Hashes"].keys():
-                for types in text["Hashes"][hash_text]:
-                    table.add_row(
-                        hash_text,
-                        types["name"],
-                        types["description"],
-                    )
-            console.print(to_out, table)
-        """
 
     def print_json(self, text: dict):
         self.console.print(json.dumps(text))

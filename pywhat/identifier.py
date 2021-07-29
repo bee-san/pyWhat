@@ -3,9 +3,8 @@ import os.path
 from typing import Callable, Optional
 
 from pywhat.filter import Distribution, Filter
-from pywhat.helper import AvailableTags, Keys
+from pywhat.helper import Keys
 from pywhat.magic_numbers import FileSignatures
-from pywhat.nameThatHash import Nth
 from pywhat.regex_identifier import RegexIdentifier
 
 
@@ -24,7 +23,6 @@ class Identifier:
             self.distribution = dist
         self._regex_id = RegexIdentifier()
         self._file_sig = FileSignatures()
-        self._name_that_hash = Nth()
         self._key = key
         self._reverse = reverse
         if boundaryless is None:
