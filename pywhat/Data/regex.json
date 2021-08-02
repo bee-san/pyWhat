@@ -337,7 +337,9 @@
          "Identifiers",
          "Credentials",
          "Phone Number"
-      ]
+      ],
+      "children_path": "phone_codes.json",
+      "children_entry": "Location(s): "
    },
    {
       "Name": "American Social Security Number",

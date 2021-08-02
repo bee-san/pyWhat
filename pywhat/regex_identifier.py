@@ -31,28 +31,15 @@ class RegexIdentifier:
                 )
 
                 for matched_regex in re.finditer(regex, string, re.MULTILINE):
-                    reg = copy.copy(reg)  # necessary, when checking phone
-                    # numbers from file that may contain
-                    # non-international numbers
+                    reg = copy.copy(reg)
                     matched = self.clean_text(matched_regex.group(0))
 
-                    if "Phone Number" in reg["Name"]:
-                        number = re.sub(r"[-() ]", "", matched)
-                        codes_path = "Data/phone_codes.json"
-                        codes_fullpath = os.path.join(
-                            os.path.dirname(os.path.abspath(__file__)), codes_path
-                        )
-                        with open(codes_fullpath, "rb") as myfile:
-                            codes = json.load(myfile)
-
-                        locations = []
-                        for code in codes:
-                            if number.startswith(code["dial_code"]):
-                                locations.append(code["name"])
-                        if len(locations) > 0:
-                            reg["Description"] = (
-                                "Location(s)" + ": " + ", ".join(locations)
-                            )
+                    matched_children = []
+                    for child in reg.get("Children", []):
+                        if re.search(child["Regex"], matched, re.MULTILINE):
+                            matched_children.append(child["Name"])
+                    if matched_children:
+                        reg["Description"] =  reg.get("children_entry", "") + ", ".join(matched_children)
 
                     matches.append(
                         {

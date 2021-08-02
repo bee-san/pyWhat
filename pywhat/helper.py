@@ -26,11 +26,14 @@ class InvalidTag(Exception):
     pass
 
 
-def load_regexes() -> list:
-    path = "Data/regex.json"
-    fullpath = os.path.join(os.path.dirname(os.path.abspath(__file__)), path)
+def read_json(path: str):
+    fullpath = os.path.join(os.path.dirname(os.path.abspath(__file__)), "Data/" + path)
     with open(fullpath, "rb") as myfile:
-        regexes = json.load(myfile)
+        return json.load(myfile)
+
+
+def load_regexes() -> list:
+    regexes = read_json("regex.json")
     for regex in regexes:
         regex["Boundaryless Regex"] = re.sub(
             r"(?<!\\)\^(?![^\[\]]*(?<!\\)\])", "", regex["Regex"]
@@ -38,6 +41,9 @@ def load_regexes() -> list:
         regex["Boundaryless Regex"] = re.sub(
             r"(?<!\\)\$(?![^\[\]]*(?<!\\)\])", "", regex["Boundaryless Regex"]
         )
+        children_path = regex.get("children_path")
+        if children_path:
+            regex["Children"] = read_json(children_path)
     return regexes
 
 

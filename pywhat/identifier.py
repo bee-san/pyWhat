@@ -48,6 +48,7 @@ class Identifier:
             reverse = self._reverse
         if boundaryless is None:
             boundaryless = self.boundaryless
+
         identify_obj = {"File Signatures": {}, "Regexes": {}}
         search = []
 
