@@ -3,7 +3,7 @@ import sys
 import click
 from rich.console import Console
 
-from pywhat import identifier, printer
+from pywhat import identifier, printer, __version__
 from pywhat.filter import Distribution, Filter
 from pywhat.helper import AvailableTags, InvalidTag, Keys, str_to_key
 
@@ -12,7 +12,14 @@ def print_tags(ctx, opts, value):
     if value:
         tags = sorted(AvailableTags().get_tags())
         console = Console()
-        console.print("[bold #D7Afff]" + "\n".join(tags) + "[/bold #D7Afff]")
+        console.print("[bold #D7AFFF]" + "\n".join(tags) + "[/bold #D7AFFF]")
+        sys.exit()
+
+
+def print_version(ctx, opts, value):
+    if value:
+        console = Console()
+        console.print(f"PyWhat version [bold #49C3CE]{__version__}[/bold #49C3CE]")
         sys.exit()
 
 
@@ -89,6 +96,7 @@ def create_filter(rarity, include, exclude):
     "-db", "--disable-boundaryless", is_flag=True, help="Disable boundaryless mode."
 )
 @click.option("--json", is_flag=True, help="Return results in json format.")
+@click.option("-v", "--version", is_flag=True, callback=print_version, help="Display the version of pywhat.")
 def main(**kwargs):
     """
     pyWhat - Identify what something is.
