@@ -69,7 +69,7 @@ def create_filter(rarity, include, exclude):
     default="0.1:1",
 )
 @click.option("-i", "--include", help="Only show matches with these tags.")
-@click.option("-e", "--exclude", help="Disclude matches with these tags.")
+@click.option("-e", "--exclude", help="Exclude matches with these tags.")
 @click.option("-o", "--only-text", is_flag=True, help="Do not scan files or folders.")
 @click.option("-k", "--key", help="Sort by the specified key.")
 @click.option("--reverse", is_flag=True, help="Sort in reverse order.")
@@ -89,6 +89,13 @@ def create_filter(rarity, include, exclude):
     "-db", "--disable-boundaryless", is_flag=True, help="Disable boundaryless mode."
 )
 @click.option("--json", is_flag=True, help="Return results in json format.")
+@click.option(
+    "-fn",
+    "--search-filenames",
+    is_flag=True,
+    help="Alongside of file contents also search filenames for any possible matches.",
+    default=False,
+)
 def main(**kwargs):
     """
     pyWhat - Identify what something is.
@@ -199,7 +206,12 @@ def main(**kwargs):
             print("Invalid key")
             sys.exit(1)
     identified_output = what_obj.what_is_this(
-        kwargs["text_input"], kwargs["only_text"], key, kwargs["reverse"], boundaryless
+        kwargs["text_input"],
+        kwargs["only_text"],
+        key,
+        kwargs["reverse"],
+        boundaryless,
+        kwargs["search_filenames"],
     )
 
     p = printer.Printing()
@@ -216,7 +228,13 @@ class What_Object:
         self.id = identifier.Identifier(dist=distribution)
 
     def what_is_this(
-        self, text: str, only_text: bool, key, reverse: bool, boundaryless: Filter
+        self,
+        text: str,
+        only_text: bool,
+        key,
+        reverse: bool,
+        boundaryless: Filter,
+        search_filenames: bool,
     ) -> dict:
         """
         Returns a Python dictionary of everything that has been identified
@@ -227,6 +245,7 @@ class What_Object:
             key=key,
             reverse=reverse,
             boundaryless=boundaryless,
+            search_filenames=search_filenames
         )
 
 
