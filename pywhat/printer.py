@@ -77,6 +77,5 @@ class Printing:
         if to_out == "":
             self.console.print("Nothing found!")
 
-
     def print_json(self, text: dict):
         self.console.print(json.dumps(text))

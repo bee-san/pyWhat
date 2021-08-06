@@ -33,13 +33,18 @@ class RegexIdentifier:
                 for matched_regex in re.finditer(regex, string, re.MULTILINE):
                     reg = copy.copy(reg)
                     matched = self.clean_text(matched_regex.group(0))
+                    matched_without_whitespace = "".join(matched.split())
 
                     matched_children = []
                     for child in reg.get("Children", []):
-                        if re.search(child["Regex"], matched, re.MULTILINE):
+                        if re.search(
+                            child["Regex"], matched_without_whitespace, re.MULTILINE
+                        ):
                             matched_children.append(child["Name"])
                     if matched_children:
-                        reg["Description"] =  reg.get("children_entry", "") + ", ".join(matched_children)
+                        reg["Description"] = reg.get("children_entry", "") + ", ".join(
+                            matched_children
+                        )
 
                     matches.append(
                         {

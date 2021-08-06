@@ -490,7 +490,9 @@
          "Credit Card",
          "Finance",
          "MasterCard CC"
-      ]
+      ],
+      "children_path": "mastercard_companies.json",
+      "children_entry": "Issuer(s): "
    },
    {
       "Name": "Maestro Card Number",

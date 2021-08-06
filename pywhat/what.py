@@ -3,7 +3,7 @@ import sys
 import click
 from rich.console import Console
 
-from pywhat import identifier, printer, __version__
+from pywhat import __version__, identifier, printer
 from pywhat.filter import Distribution, Filter
 from pywhat.helper import AvailableTags, InvalidTag, Keys, str_to_key
 
@@ -96,7 +96,13 @@ def create_filter(rarity, include, exclude):
     "-db", "--disable-boundaryless", is_flag=True, help="Disable boundaryless mode."
 )
 @click.option("--json", is_flag=True, help="Return results in json format.")
-@click.option("-v", "--version", is_flag=True, callback=print_version, help="Display the version of pywhat.")
+@click.option(
+    "-v",
+    "--version",
+    is_flag=True,
+    callback=print_version,
+    help="Display the version of pywhat.",
+)
 def main(**kwargs):
     """
     pyWhat - Identify what something is.

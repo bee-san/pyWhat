@@ -1,0 +1,4702 @@
+[
+   {
+      "Name": "STAR PROCESSING, INC.",
+      "Regex": "^551411"
+   },
+   {
+      "Name": "VSEOBECNA UVEROVA BANKA, A.S.",
+      "Regex": "^543401"
+   },
+   {
+      "Name": "MASTERCARD FRANCE S.A.S.",
+      "Regex": "^513208"
+   },
+   {
+      "Name": "OHRIDSKA BANKA A.D. - OHRID",
+      "Regex": "^553046"
+   },
+   {
+      "Name": "FIDELITY INFORMATION SERVICES, INC.",
+      "Regex": "^511289"
+   },
+   {
+      "Name": "FIDELITY INFORMATION SERVICES, INC.",
+      "Regex": "^511932"
+   },
+   {
+      "Name": "FIDELITY INFORMATION SERVICES, INC.",
+      "Regex": "^528755"
+   },
+   {
+      "Name": "FISERV SOLUTIONS, INC.",
+      "Regex": "^551821"
+   },
+   {
+      "Name": "TEACHERS C.U.",
+      "Regex": "^517542"
+   },
+   {
+      "Name": "JSCB ROSBANK",
+      "Regex": "^531222"
+   },
+   {
+      "Name": "BARCLAYS BANK LIMITED LIABILITY COMPANY",
+      "Regex": "^548233"
+   },
+   {
+      "Name": "FIRST NATIONAL BANK OF OMAHA",
+      "Regex": "^536479"
+   },
+   {
+      "Name": "CARD SERVICES FOR CREDIT UNIONS, INC.",
+      "Regex": "^549414"
+   },
+   {
+      "Name": "FIDELITY INFORMATION SERVICES, INC.",
+      "Regex": "^534082"
+   },
+   {
+      "Name": "BANK POLSKA KASA OPIEKI S.A. (BANK PEKAO SA)",
+      "Regex": "^526770"
+   },
+   {
+      "Name": "EFG EUROBANK ERGASIAS, S.A.",
+      "Regex": "^547366"
+   },
+   {
+      "Name": "FISERV SOLUTIONS, INC.",
+      "Regex": "^514133"
+   },
+   {
+      "Name": "BANCO POPULAR NORTH AMERICA",
+      "Regex": "^514103"
+   },
+   {
+      "Name": "DATA CENTER INCORPORATED",
+      "Regex": "^551143"
+   },
+   {
+      "Name": "FIRST NATIONAL BANK OF OMAHA",
+      "Regex": "^542396"
+   },
+   {
+      "Name": "CARD SERVICES FOR CREDIT UNIONS, INC.",
+      "Regex": "^549457"
+   },
+   {
+      "Name": "EURO KARTENSYSTEME GMBH",
+      "Regex": "^548347"
+   },
+   {
+      "Name": "EASTERN FINANCIAL FLORIDA C.U.",
+      "Regex": "^515628"
+   },
+   {
+      "Name": "FIFTH THIRD BANK",
+      "Regex": "^551859"
+   },
+   {
+      "Name": "BARCLAYS BANK PLC",
+      "Regex": "^544452"
+   },
+   {
+      "Name": "CORNER BANCA, S.A.",
+      "Regex": "^558614"
+   },
+   {
+      "Name": "BARCLAYS BANK DELAWARE",
+      "Regex": "^514021"
+   },
+   {
+      "Name": "REDEBAN MULTICOLOR, S.A.",
+      "Regex": "^526826"
+   },
+   {
+      "Name": "MASTERCARD FRANCE S.A.S.",
+      "Regex": "^513814"
+   },
+   {
+      "Name": "BANK OF AMERICA, N.A.",
+      "Regex": "^530627"
+   },
+   {
+      "Name": "FIFTH THIRD BANK",
+      "Regex": "^551589"
+   },
+   {
+      "Name": "RIZAL COMMERCIAL BANKING CORPORATION",
+      "Regex": "^553283"
+   },
+   {
+      "Name": "SCOTIABANK (BAHAMAS), LTD.",
+      "Regex": "^552456"
+   },
+   {
+      "Name": "NYCE PAYMENTS NETWORK, LLC",
+      "Regex": "^551473"
+   },
+   {
+      "Name": "JACK HENRY AND ASSOCIATES",
+      "Regex": "^510729"
+   },
+   {
+      "Name": "UMB BANK, N.A.",
+      "Regex": "^540839"
+   },
+   {
+      "Name": "WELLS FARGO BANK, N.A.",
+      "Regex": "^554787"
+   },
+   {
+      "Name": "CITIBANK, N.A., PHILIPPINES",
+      "Regex": "^540127"
+   },
+   {
+      "Name": "BANK OF AMERICA, N.A.",
+      "Regex": "^530040"
+   },
+   {
+      "Name": "COMPUTER SERVICES, INC.",
+      "Regex": "^521722"
+   },
+   {
+      "Name": "CU COOPERATIVE SYSTEMS",
+      "Regex": "^544712"
+   },
+   {
+      "Name": "NYCE PAYMENTS NETWORK, LLC",
+      "Regex": "^514715"
+   },
+   {
+      "Name": "AMALGAMATED BANK",
+      "Regex": "^551991"
+   },
+   {
+      "Name": "U.S. BANK NATIONAL ASSOCIATION, ND",
+      "Regex": "^532227"
+   },
+   {
+      "Name": "MASTERCARD FRANCE S.A.S.",
+      "Regex": "^513630"
+   },
+   {
+      "Name": "CESKA SPORITELNA A.S. (CZECH SAVINGS BANK CO.)",
+      "Regex": "^552733"
+   },
+   {
+      "Name": "ZENITH BANK",
+      "Regex": "^540884"
+   },
+   {
+      "Name": "FISERV SOLUTIONS, INC.",
+      "Regex": "^510971"
+   },
+   {
+      "Name": "FIFTH THIRD BANK",
+      "Regex": "^551871"
+   },
+   {
+      "Name": "BANK ALFALAH, LTD.",
+      "Regex": "^523969"
+   },
+   {
+      "Name": "STAR PROCESSING, INC.",
+      "Regex": "^551573"
+   },
+   {
+      "Name": "FISERV SOLUTIONS, INC.",
+      "Regex": "^514243"
+   },
+   {
+      "Name": "FIRST CALIFORNIA BANK",
+      "Regex": "^528222"
+   },
+   {
+      "Name": "SHAZAM, INC.",
+      "Regex": "^551783"
+   },
+   {
+      "Name": "WASHINGTON MUTUAL",
+      "Regex": "^541675"
+   },
+   {
+      "Name": "FISERV SOLUTIONS, INC.",
+      "Regex": "^553882"
+   },
+   {
+      "Name": "MECHANICS BANK",
+      "Regex": "^544565"
+   },
+   {
+      "Name": "CITIBANK EUROPE PUBLIC LIMITED COMPANY",
+      "Regex": "^516023"
+   },
+   {
+      "Name": "SANTANDER CONSUMER FINANCE, S.A.",
+      "Regex": "^546264"
+   },
+   {
+      "Name": "FIRST COMMUNITY CREDIT UNION OF HOUSTON",
+      "Regex": "^543294"
+   },
+   {
+      "Name": "CSCBANK S.A.L.",
+      "Regex": "^518883"
+   },
+   {
+      "Name": "NOVA LJUBLJANSKA BANKA D.D., LJUBLJANA",
+      "Regex": "^543201"
+   },
+   {
+      "Name": "SEYLAN BANK PLC",
+      "Regex": "^557676"
+   },
+   {
+      "Name": "BANCA DI SASSARI S.P.A.",
+      "Regex": "^520942"
+   },
+   {
+      "Name": "SPARKASSE BANK MAKEDONIJA AD SKOPJE",
+      "Regex": "^547996"
+   },
+   {
+      "Name": "U.S. BANK NATIONAL ASSOCIATION, ND",
+      "Regex": "^558145"
+   },
+   {
+      "Name": "MBNA CANADA BANK",
+      "Regex": "^543694"
+   },
+   {
+      "Name": "BANSI S.A. INSTITUCION DE BANCA MULTIPLE",
+      "Regex": "^539978"
+   },
+   {
+      "Name": "U.S. BANK NATIONAL ASSOCIATION, ND",
+      "Regex": "^519688"
+   },
+   {
+      "Name": "CU COOPERATIVE SYSTEMS",
+      "Regex": "^510999"
+   },
+   {
+      "Name": "BANCA SELLA S.P.A.",
+      "Regex": "^521805"
+   },
+   {
+      "Name": "MASTERCARD FRANCE S.A.S.",
+      "Regex": "^513973"
+   },
+   {
+      "Name": "PULSE NETWORK LLC",
+      "Regex": "^541138"
+   },
+   {
+      "Name": "PSCU FINANCIAL SERVICES, INC.",
+      "Regex": "^514180"
+   },
+   {
+      "Name": "FISERV SOLUTIONS, INC.",
+      "Regex": "^550977"
+   },
+   {
+      "Name": "FISERV SOLUTIONS, INC.",
+      "Regex": "^515386"
+   },
+   {
+      "Name": "COMMERCIAL INTERNATIONAL BANK (EGYPT) S.A.E.",
+      "Regex": "^526716"
+   },
+   {
+      "Name": "EURO KARTENSYSTEME GMBH",
+      "Regex": "^541556"
+   },
+   {
+      "Name": "FIRST DATA CONO SUR, S.R.L.",
+      "Regex": "^548790"
+   },
+   {
+      "Name": "BANCO SANTANDER COLOMBIA, S.A.",
+      "Regex": "^520186"
+   },
+   {
+      "Name": "CITIBANK DEL PERU, S.A.",
+      "Regex": "^554860"
+   },
+   {
+      "Name": "METABANK",
+      "Regex": "^515092"
+   },
+   {
+      "Name": "FIDELITY INFORMATION SERVICES, INC.",
+      "Regex": "^544281"
+   },
+   {
+      "Name": "OJSC BANK URALSIB",
+      "Regex": "^549881"
+   },
+   {
+      "Name": "PSCU FINANCIAL SERVICES, INC.",
+      "Regex": "^542347"
+   },
+   {
+      "Name": "U.S. BANK NATIONAL ASSOCIATION, ND",
+      "Regex": "^551868"
+   },
+   {
+      "Name": "UNICREDIT BANK CZECH REPUBLIC, A.S.",
+      "Regex": "^528706"
+   },
+   {
+      "Name": "FIFTH THIRD BANK",
+      "Regex": "^511205"
+   },
+   {
+      "Name": "HONG LEONG BANK BERHAD",
+      "Regex": "^515704"
+   },
+   {
+      "Name": "PPF BANKA, A.S.",
+      "Regex": "^533223"
+   },
+   {
+      "Name": "MASTERCAJAS, S.A.",
+      "Regex": "^554082"
+   },
+   {
+      "Name": "VENEZOLANO DE CREDITO S.A. BANCO UNIVERS.A.L.",
+      "Regex": "^517707"
+   },
+   {
+      "Name": "JACK HENRY AND ASSOCIATES",
+      "Regex": "^510554"
+   },
+   {
+      "Name": "CARD SERVICES FOR CREDIT UNIONS, INC.",
+      "Regex": "^521328"
+   },
+   {
+      "Name": "FIFTH THIRD BANK",
+      "Regex": "^511202"
+   },
+   {
+      "Name": "MASTERCARD FRANCE S.A.S.",
+      "Regex": "^513130"
+   },
+   {
+      "Name": "FIRST PREMIER BANK - OBOPAY",
+      "Regex": "^515155"
+   },
+   {
+      "Name": "WING LUNG BANK, LTD.",
+      "Regex": "^515667"
+   },
+   {
+      "Name": "FIDELITY INFORMATION SERVICES, INC.",
+      "Regex": "^528995"
+   },
+   {
+      "Name": "WASHINGTON MUTUAL",
+      "Regex": "^532211"
+   },
+   {
+      "Name": "FIFTH THIRD BANK",
+      "Regex": "^521726"
+   },
+   {
+      "Name": "SUNNY BANK",
+      "Regex": "^554433"
+   },
+   {
+      "Name": "CITIBANK EUROPE PUBLIC LIMITED COMPANY",
+      "Regex": "^516022"
+   },
+   {
+      "Name": "BANCO SANTANDER COLOMBIA, S.A.",
+      "Regex": "^547417"
+   },
+   {
+      "Name": "HSBC BANK NEVADA, N.A.",
+      "Regex": "^515625"
+   },
+   {
+      "Name": "PAYLIFE BANK GMBH",
+      "Regex": "^526631"
+   },
+   {
+      "Name": "SYNOVUS BANK",
+      "Regex": "^519516"
+   },
+   {
+      "Name": "SHAZAM, INC.",
+      "Regex": "^510608"
+   },
+   {
+      "Name": "BANCO EXTERIOR, C.A.",
+      "Regex": "^547469"
+   },
+   {
+      "Name": "OJSC BANK URALSIB",
+      "Regex": "^543354"
+   },
+   {
+      "Name": "FIDELITY INFORMATION SERVICES, INC.",
+      "Regex": "^557213"
+   },
+   {
+      "Name": "KOREA EXCHANGE BANK",
+      "Regex": "^553168"
+   },
+   {
+      "Name": "COMPUTER SERVICES, INC.",
+      "Regex": "^515029"
+   },
+   {
+      "Name": "FISERV SOLUTIONS, INC.",
+      "Regex": "^529353"
+   },
+   {
+      "Name": "FIDELITY INFORMATION SERVICES, INC.",
+      "Regex": "^530736"
+   },
+   {
+      "Name": "JSC RUSSIAN STANDARD BANK",
+      "Regex": "^533469"
+   },
+   {
+      "Name": "HOUSING AND DEVELOPMENT BANK",
+      "Regex": "^549762"
+   },
+   {
+      "Name": "BOC CREDIT CARD (INTERNATIONAL), LTD.",
+      "Regex": "^547420"
+   },
+   {
+      "Name": "FIRST PREMIER BANK",
+      "Regex": "^524060"
+   },
+   {
+      "Name": "FIDELITY INFORMATION SERVICES, INC.",
+      "Regex": "^510579"
+   },
+   {
+      "Name": "FIDELITY INFORMATION SERVICES, INC.",
+      "Regex": "^514546"
+   },
+   {
+      "Name": "SHANGHAI COMMERCIAL AND SAVINGS BANK, LTD.",
+      "Regex": "^514738"
+   },
+   {
+      "Name": "MASTERCARD FRANCE S.A.S.",
+      "Regex": "^513027"
+   },
+   {
+      "Name": "RANDOLPH BROOKS F.C.U.",
+      "Regex": "^514900"
+   },
+   {
+      "Name": "MASTERCARD FRANCE S.A.S.",
+      "Regex": "^513398"
+   },
+   {
+      "Name": "ING DIRECT",
+      "Regex": "^510814"
+   },
+   {
+      "Name": "SCOTIABANK INVERLAT, S.A.",
+      "Regex": "^557920"
+   },
+   {
+      "Name": "HSBC BANK NEVADA, N.A.",
+      "Regex": "^522944"
+   },
+   {
+      "Name": "DATA CENTER INCORPORATED",
+      "Regex": "^523874"
+   },
+   {
+      "Name": "SCOTIABANK (BELIZE), LTD.",
+      "Regex": "^547537"
+   },
+   {
+      "Name": "HOUSING AND DEVELOPMENT BANK",
+      "Regex": "^540156"
+   },
+   {
+      "Name": "ZIONS FIRST NATIONAL BANK",
+      "Regex": "^540319"
+   },
+   {
+      "Name": "MASTERCARD FRANCE S.A.S.",
+      "Regex": "^513494"
+   },
+   {
+      "Name": "TCM BANK, N.A.",
+      "Regex": "^521334"
+   },
+   {
+      "Name": "METABANK/PAYONEER",
+      "Regex": "^530138"
+   },
+   {
+      "Name": "INTERNATIONAL BANK OF AZERBAIJAN",
+      "Regex": "^545230"
+   },
+   {
+      "Name": "PUBLIC JSC FIRST UKRAINIAN INTERNATIONAL BANK",
+      "Regex": "^558381"
+   },
+   {
+      "Name": "MASTERCARD FRANCE S.A.S.",
+      "Regex": "^513391"
+   },
+   {
+      "Name": "INDUSTRIAL AND COMMERCIAL BANK OF CHINA, LTD.",
+      "Regex": "^530990"
+   },
+   {
+      "Name": "FIFTH THIRD BANK",
+      "Regex": "^520582"
+   },
+   {
+      "Name": "CU COOPERATIVE SYSTEMS",
+      "Regex": "^510360"
+   },
+   {
+      "Name": "VTB24",
+      "Regex": "^529025"
+   },
+   {
+      "Name": "NYCE PAYMENTS NETWORK, LLC",
+      "Regex": "^514327"
+   },
+   {
+      "Name": "UNICREDIT S.P.A.",
+      "Regex": "^548756"
+   },
+   {
+      "Name": "CSCBANK S.A.L.",
+      "Regex": "^537020"
+   },
+   {
+      "Name": "BANQUE FEDERATIVE DU CREDIT MUTUEL (BFCM)",
+      "Regex": "^513704"
+   },
+   {
+      "Name": "CHASE BANK USA, N.A.",
+      "Regex": "^530021"
+   },
+   {
+      "Name": "BANCO MONEX, S.A., INSTITUCION DE BANCA MULTIPLE, MONEX GRUP",
+      "Regex": "^545290"
+   },
+   {
+      "Name": "CESKOSLOVENSKA OBCHODNA BANKA, A.S.",
+      "Regex": "^547737"
+   },
+   {
+      "Name": "REDEBAN MULTICOLOR, S.A.",
+      "Regex": "^520058"
+   },
+   {
+      "Name": "BANK OF AMERICA, N.A.",
+      "Regex": "^530505"
+   },
+   {
+      "Name": "ICBA BANCARD, INC.",
+      "Regex": "^521718"
+   },
+   {
+      "Name": "FIDELITY INFORMATION SERVICES, INC.",
+      "Regex": "^514318"
+   },
+   {
+      "Name": "ALLIANCE BANK MALAYSIA BERHAD",
+      "Regex": "^515703"
+   },
+   {
+      "Name": "U.S. BANK NATIONAL ASSOCIATION, ND",
+      "Regex": "^529387"
+   },
+   {
+      "Name": "PT. BANK BUKOPIN",
+      "Regex": "^526853"
+   },
+   {
+      "Name": "FISERV SOLUTIONS, INC.",
+      "Regex": "^546220"
+   },
+   {
+      "Name": "BANK GOSPODARKI ZYWNOSCIOWEJ SPOLKA AKCYJNA",
+      "Regex": "^558592"
+   },
+   {
+      "Name": "BANK OF AMERICA, N.A.",
+      "Regex": "^530604"
+   },
+   {
+      "Name": "BANCA INTESA AD BEOGRAD",
+      "Regex": "^547444"
+   },
+   {
+      "Name": "FIA CARD SERVICES, N.A.",
+      "Regex": "^556927"
+   },
+   {
+      "Name": "FISERV SOLUTIONS, INC.",
+      "Regex": "^551537"
+   },
+   {
+      "Name": "ING BANK RT.",
+      "Regex": "^558279"
+   },
+   {
+      "Name": "MASTERCARD FRANCE S.A.S.",
+      "Regex": "^513349"
+   },
+   {
+      "Name": "MASTERCARD FRANCE S.A.S.",
+      "Regex": "^513498"
+   },
+   {
+      "Name": "U.S. BANK NATIONAL ASSOCIATION, ND",
+      "Regex": "^514206"
+   },
+   {
+      "Name": "EUROPAY FRANCE SAS",
+      "Regex": "^513309"
+   },
+   {
+      "Name": "BANK OF AMERICA, N.A.",
+      "Regex": "^530663"
+   },
+   {
+      "Name": "NYCE PAYMENTS NETWORK, LLC",
+      "Regex": "^550905"
+   },
+   {
+      "Name": "CHASE BANK USA, N.A.",
+      "Regex": "^546621"
+   },
+   {
+      "Name": "JACK HENRY AND ASSOCIATES",
+      "Regex": "^551811"
+   },
+   {
+      "Name": "DEUTSCHE BANK S.P.A.",
+      "Regex": "^522238"
+   },
+   {
+      "Name": "BANQUE FEDERATIVE DU CREDIT MUTUEL (BFCM)",
+      "Regex": "^558882"
+   },
+   {
+      "Name": "RAIFFEISEN BANK, LTD.",
+      "Regex": "^524836"
+   },
+   {
+      "Name": "EUROCARD AB",
+      "Regex": "^541256"
+   },
+   {
+      "Name": "TARJETAS BANAMEX, SA DE CV, SOFOM E.R.",
+      "Regex": "^545039"
+   },
+   {
+      "Name": "MASTERCAJAS, S.A.",
+      "Regex": "^540866"
+   },
+   {
+      "Name": "CITIBANK COLOMBIA, S.A.",
+      "Regex": "^512067"
+   },
+   {
+      "Name": "DEUTSCHER SPARKASSEN UND GIROVERBAND",
+      "Regex": "^545129"
+   },
+   {
+      "Name": "STANDARD CHARTERED BANK (HONG KONG), LTD.",
+      "Regex": "^553398"
+   },
+   {
+      "Name": "RBS BANK (ROMANIA), S.A.",
+      "Regex": "^523904"
+   },
+   {
+      "Name": "BANCO POPULAR DOMINICANO, C. POR A.",
+      "Regex": "^541599"
+   },
+   {
+      "Name": "PEOPLE'S UNITED BANK",
+      "Regex": "^553752"
+   },
+   {
+      "Name": "FIRST NIAGARA BANK",
+      "Regex": "^557177"
+   },
+   {
+      "Name": "CITIBANK",
+      "Regex": "^552930"
+   },
+   {
+      "Name": "OJSC PROMSVYAZBANK",
+      "Regex": "^520088"
+   },
+   {
+      "Name": "NYCE PAYMENTS NETWORK, LLC",
+      "Regex": "^514675"
+   },
+   {
+      "Name": "FISERV SOLUTIONS, INC.",
+      "Regex": "^539765"
+   },
+   {
+      "Name": "CARTASI S.P.A.",
+      "Regex": "^512750"
+   },
+   {
+      "Name": "EASTERN CARIBBEAN CO-OPERATIVE",
+      "Regex": "^517187"
+   },
+   {
+      "Name": "DEUTSCHE BANK AG",
+      "Regex": "^510129"
+   },
+   {
+      "Name": "U.S. BANK NATIONAL ASSOCIATION, ND",
+      "Regex": "^510278"
+   },
+   {
+      "Name": "BANK OF AMERICA, N.A.",
+      "Regex": "^530437"
+   },
+   {
+      "Name": "COMERICA BANK",
+      "Regex": "^544679"
+   },
+   {
+      "Name": "SAUDI HOLLANDI BANK",
+      "Regex": "^557606"
+   },
+   {
+      "Name": "CAPITAL ONE BANK (USA), N.A.",
+      "Regex": "^529156"
+   },
+   {
+      "Name": "FIFTH THIRD BANK",
+      "Regex": "^514209"
+   },
+   {
+      "Name": "FIFTH THIRD BANK",
+      "Regex": "^510883"
+   },
+   {
+      "Name": "STAR PROCESSING, INC.",
+      "Regex": "^550714"
+   },
+   {
+      "Name": "ARAB FINANCIAL SERVICES COMPANY B.S.C. (C)",
+      "Regex": "^524174"
+   },
+   {
+      "Name": "BANCO DE COSTA RICA",
+      "Regex": "^512723"
+   },
+   {
+      "Name": "U.S. BANK NATIONAL ASSOCIATION, ND",
+      "Regex": "^511969"
+   },
+   {
+      "Name": "UNIVERSAL INVESTMENT BANK AD SKOPJE",
+      "Regex": "^558433"
+   },
+   {
+      "Name": "COMMERCIAL INNOVATION BANK ALFA-BANK",
+      "Regex": "^548655"
+   },
+   {
+      "Name": "PROCREDIT BANK A.D.",
+      "Regex": "^520930"
+   },
+   {
+      "Name": "OTP BANK JSC",
+      "Regex": "^533194"
+   },
+   {
+      "Name": "HSBC BANK MIDDLE EAST",
+      "Regex": "^552107"
+   },
+   {
+      "Name": "STANDARD CHARTERED BANK",
+      "Regex": "^539927"
+   },
+   {
+      "Name": "BANK LEUMI LE-ISRAEL B.M.",
+      "Regex": "^555953"
+   },
+   {
+      "Name": "JACK HENRY AND ASSOCIATES",
+      "Regex": "^522198"
+   },
+   {
+      "Name": "FIDELITY INFORMATION SERVICES, INC.",
+      "Regex": "^511982"
+   },
+   {
+      "Name": "PSCU FINANCIAL SERVICES, INC.",
+      "Regex": "^545809"
+   },
+   {
+      "Name": "CITIBANK, N.A.",
+      "Regex": "^526226"
+   },
+   {
+      "Name": "STAR PROCESSING, INC.",
+      "Regex": "^514241"
+   },
+   {
+      "Name": "FISERV SOLUTIONS, INC.",
+      "Regex": "^523862"
+   },
+   {
+      "Name": "TELLER, A.S.",
+      "Regex": "^553063"
+   },
+   {
+      "Name": "PT. BANK DANAMON INDONESIA",
+      "Regex": "^527460"
+   },
+   {
+      "Name": "ALAHLI BANK OF KUWAIT (K.S.C.)",
+      "Regex": "^524114"
+   },
+   {
+      "Name": "FISERV SOLUTIONS, INC.",
+      "Regex": "^546237"
+   },
+   {
+      "Name": "OHRIDSKA BANKA A.D. - OHRID",
+      "Regex": "^526847"
+   },
+   {
+      "Name": "JSCB VICTORIABANK",
+      "Regex": "^558471"
+   },
+   {
+      "Name": "INTERNATIONAL BANK OF QATAR (Q.S.C.)",
+      "Regex": "^541509"
+   },
+   {
+      "Name": "MASTERCARD FRANCE S.A.S.",
+      "Regex": "^513142"
+   },
+   {
+      "Name": "STAR PROCESSING, INC.",
+      "Regex": "^515043"
+   },
+   {
+      "Name": "MASTERCARD FRANCE S.A.S.",
+      "Regex": "^513824"
+   },
+   {
+      "Name": "OJSC BANK URALSIB",
+      "Regex": "^552845"
+   },
+   {
+      "Name": "U.S. BANK NATIONAL ASSOCIATION, ND",
+      "Regex": "^550909"
+   },
+   {
+      "Name": "RAIFFEISEN BANK, LTD.",
+      "Regex": "^542498"
+   },
+   {
+      "Name": "TELLER, A.S.",
+      "Regex": "^517947"
+   },
+   {
+      "Name": "CAPITAL ONE BANK (CANADA BRANCH)",
+      "Regex": "^548496"
+   },
+   {
+      "Name": "E. SUN COMMERCIAL BANK CO., LTD.",
+      "Regex": "^542462"
+   },
+   {
+      "Name": "FIDELITY INFORMATION SERVICES, INC.",
+      "Regex": "^527881"
+   },
+   {
+      "Name": "BANK OF CHINA, LTD.",
+      "Regex": "^512411"
+   },
+   {
+      "Name": "INTESA SANPAOLO BANK ALBANIA SHA.",
+      "Regex": "^556022"
+   },
+   {
+      "Name": "PUBLIC JSC ''VSEUKRAINSKYI AKSIONERNYI BANK",
+      "Regex": "^515608"
+   },
+   {
+      "Name": "GAZPROMBANK OJSC",
+      "Regex": "^540664"
+   },
+   {
+      "Name": "FIFTH THIRD BANK",
+      "Regex": "^551138"
+   },
+   {
+      "Name": "STAR PROCESSING, INC.",
+      "Regex": "^551792"
+   },
+   {
+      "Name": "PUNJAB NATIONAL BANK",
+      "Regex": "^519518"
+   },
+   {
+      "Name": "ALLIANCE BANK MALAYSIA BERHAD",
+      "Regex": "^519471"
+   },
+   {
+      "Name": "PUBLIC JSC UNICREDIT BANK",
+      "Regex": "^546644"
+   },
+   {
+      "Name": "PUBLIC JSC FIRST UKRAINIAN INTERNATIONAL BANK",
+      "Regex": "^524729"
+   },
+   {
+      "Name": "CHASE BANK USA, N.A.",
+      "Regex": "^558757"
+   },
+   {
+      "Name": "HSBC BANK MIDDLE EAST",
+      "Regex": "^525780"
+   },
+   {
+      "Name": "BANCO IBI S.A. BANCO MULTIPLO",
+      "Regex": "^536529"
+   },
+   {
+      "Name": "DUTCH-BANGLA BANK, LTD.",
+      "Regex": "^542128"
+   },
+   {
+      "Name": "BANCO DE BOGOTA, S.A.",
+      "Regex": "^540080"
+   },
+   {
+      "Name": "ICBA BANCARD, INC.",
+      "Regex": "^551910"
+   },
+   {
+      "Name": "RBS CITIZENS, N.A.",
+      "Regex": "^553419"
+   },
+   {
+      "Name": "ICICI BANK, LTD.",
+      "Regex": "^529973"
+   },
+   {
+      "Name": "HERRING BANK",
+      "Regex": "^550904"
+   },
+   {
+      "Name": "FISERV SOLUTIONS, INC.",
+      "Regex": "^514248"
+   },
+   {
+      "Name": "ING BANK, A.S.",
+      "Regex": "^542967"
+   },
+   {
+      "Name": "CITIBANK USA, N.A.",
+      "Regex": "^526288"
+   },
+   {
+      "Name": "STAR PROCESSING, INC.",
+      "Regex": "^521699"
+   },
+   {
+      "Name": "JACK HENRY AND ASSOCIATES",
+      "Regex": "^510274"
+   },
+   {
+      "Name": "CU COOPERATIVE SYSTEMS, INC.",
+      "Regex": "^515206"
+   },
+   {
+      "Name": "JACK HENRY AND ASSOCIATES",
+      "Regex": "^519677"
+   },
+   {
+      "Name": "WIRECARD BANK AG",
+      "Regex": "^513765"
+   },
+   {
+      "Name": "MAGYAR CETELEM BANK RT.",
+      "Regex": "^549542"
+   },
+   {
+      "Name": "STAR PROCESSING, INC.",
+      "Regex": "^553710"
+   },
+   {
+      "Name": "CONSORCIO CREDICARD, C.A.",
+      "Regex": "^514026"
+   },
+   {
+      "Name": "T.BANK, S.A.",
+      "Regex": "^522072"
+   },
+   {
+      "Name": "METABANK",
+      "Regex": "^544727"
+   },
+   {
+      "Name": "MASTERCARD FRANCE S.A.S.",
+      "Regex": "^513495"
+   },
+   {
+      "Name": "SHAZAM, INC.",
+      "Regex": "^515234"
+   },
+   {
+      "Name": "FIDELITY INFORMATION SERVICES, INC.",
+      "Regex": "^523829"
+   },
+   {
+      "Name": "NEWCASTLE BUILDING SOCIETY",
+      "Regex": "^557354"
+   },
+   {
+      "Name": "PSCU FINANCIAL SERVICES, INC.",
+      "Regex": "^515928"
+   },
+   {
+      "Name": "HDFC BANK, LTD.",
+      "Regex": "^556620"
+   },
+   {
+      "Name": "FIDELITY INFORMATION SERVICES, INC.",
+      "Regex": "^550827"
+   },
+   {
+      "Name": "PSCU FINANCIAL SERVICES, INC.",
+      "Regex": "^510291"
+   },
+   {
+      "Name": "TELLER, A.S.",
+      "Regex": "^541502"
+   },
+   {
+      "Name": "CIT BANK",
+      "Regex": "^556777"
+   },
+   {
+      "Name": "EUROPAY BELGIUM S.C.R.L.",
+      "Regex": "^544036"
+   },
+   {
+      "Name": "FIDELITY INFORMATION SERVICES, INC.",
+      "Regex": "^519656"
+   },
+   {
+      "Name": "RHB BANK BERHAD",
+      "Regex": "^540069"
+   },
+   {
+      "Name": "STAR PROCESSING, INC.",
+      "Regex": "^551802"
+   },
+   {
+      "Name": "DEUTSCHER SPARKASSEN UND GIROVERBAND",
+      "Regex": "^520309"
+   },
+   {
+      "Name": "CJSC COMMERCIAL BANK CITIBANK",
+      "Regex": "^533201"
+   },
+   {
+      "Name": "SEB KORT DANMARK",
+      "Regex": "^556661"
+   },
+   {
+      "Name": "ZENITH BANK",
+      "Regex": "^530519"
+   },
+   {
+      "Name": "MASTERCARD FRANCE S.A.S.",
+      "Regex": "^513548"
+   },
+   {
+      "Name": "TEACHERS C.U.",
+      "Regex": "^543613"
+   },
+   {
+      "Name": "BANCORP BANK",
+      "Regex": "^528228"
+   },
+   {
+      "Name": "HONG LEONG BANK BERHAD",
+      "Regex": "^514896"
+   },
+   {
+      "Name": "WELLS FARGO BANK, N.A.",
+      "Regex": "^530531"
+   },
+   {
+      "Name": "FIA CARD SERVICES, N.A.",
+      "Regex": "^532905"
+   },
+   {
+      "Name": "BANQUE FEDERATIVE DU CREDIT MUTUEL (BFCM)",
+      "Regex": "^513281"
+   },
+   {
+      "Name": "MASTERCAJAS, S.A.",
+      "Regex": "^554010"
+   },
+   {
+      "Name": "VTB BANK (OPEN JOINT STOCK COM PANY)",
+      "Regex": "^525787"
+   },
+   {
+      "Name": "OJSC BANK URALSIB",
+      "Regex": "^553581"
+   },
+   {
+      "Name": "REGIONS BANK",
+      "Regex": "^511485"
+   },
+   {
+      "Name": "SHANGHAI COMMERCIAL AND SAVINGS BANK, LTD.",
+      "Regex": "^522232"
+   },
+   {
+      "Name": "COMPUTER SERVICES, INC.",
+      "Regex": "^511955"
+   },
+   {
+      "Name": "ERSTE AND STEIERMARKISCHE BANK D.D.",
+      "Regex": "^553065"
+   },
+   {
+      "Name": "RAIFFEISENBANK (BULGARIA) A.D.",
+      "Regex": "^540026"
+   },
+   {
+      "Name": "MASTERCARD FRANCE S.A.S.",
+      "Regex": "^513409"
+   },
+   {
+      "Name": "BANK OF STANLY",
+      "Regex": "^540662"
+   },
+   {
+      "Name": "MASTERCARD FRANCE S.A.S.",
+      "Regex": "^513845"
+   },
+   {
+      "Name": "PSCU FINANCIAL SERVICES, INC.",
+      "Regex": "^515248"
+   },
+   {
+      "Name": "MISSION F.C.U.",
+      "Regex": "^530589"
+   },
+   {
+      "Name": "BANCO PROVINCIAL S.A.C.A.",
+      "Regex": "^540628"
+   },
+   {
+      "Name": "SOUTHWEST BRIDGE CORPORATE F.C.U.",
+      "Regex": "^514526"
+   },
+   {
+      "Name": "U.S. BANK NATIONAL ASSOCIATION, ND",
+      "Regex": "^510606"
+   },
+   {
+      "Name": "FIRST GULF BANK PJSC",
+      "Regex": "^518857"
+   },
+   {
+      "Name": "FIFTH THIRD BANK",
+      "Regex": "^540386"
+   },
+   {
+      "Name": "UNIBANCA, S.A",
+      "Regex": "^533635"
+   },
+   {
+      "Name": "FIFTH THIRD BANK",
+      "Regex": "^557146"
+   },
+   {
+      "Name": "FISERV SOLUTIONS, INC.",
+      "Regex": "^514983"
+   },
+   {
+      "Name": "FIRST AMERICAN BANK",
+      "Regex": "^545918"
+   },
+   {
+      "Name": "U.S. BANK NATIONAL ASSOCIATION, ND",
+      "Regex": "^553950"
+   },
+   {
+      "Name": "WASHINGTON MUTUAL",
+      "Regex": "^541677"
+   },
+   {
+      "Name": "SCOTIABANK DE PUERTO RICO",
+      "Regex": "^511858"
+   },
+   {
+      "Name": "TAIWAN BUSINESS BANK",
+      "Regex": "^558866"
+   },
+   {
+      "Name": "BANCO DE BOGOTA, S.A.",
+      "Regex": "^552865"
+   },
+   {
+      "Name": "U.S. BANK NATIONAL ASSOCIATION, ND",
+      "Regex": "^551024"
+   },
+   {
+      "Name": "AMERICAN STATE BANK",
+      "Regex": "^523798"
+   },
+   {
+      "Name": "BANCO SANTANDER, S.A.",
+      "Regex": "^545659"
+   },
+   {
+      "Name": "CHASE BANK USA, N.A.",
+      "Regex": "^541102"
+   },
+   {
+      "Name": "CITIBANK, N.A.",
+      "Regex": "^540350"
+   },
+   {
+      "Name": "JSCB ROSBANK",
+      "Regex": "^550467"
+   },
+   {
+      "Name": "OJSC BANK URALSIB",
+      "Regex": "^534136"
+   },
+   {
+      "Name": "PSCU FINANCIAL SERVICES, INC.",
+      "Regex": "^551327"
+   },
+   {
+      "Name": "UNITED OVERSEAS BANK (MALAYSIA) BERHAD",
+      "Regex": "^552086"
+   },
+   {
+      "Name": "NETWORK INTERNATIONAL LLC",
+      "Regex": "^531835"
+   },
+   {
+      "Name": "FIRST NATIONAL BANK TEXAS",
+      "Regex": "^516401"
+   },
+   {
+      "Name": "JSCB PROBUSINESSBANK OJSC",
+      "Regex": "^531153"
+   },
+   {
+      "Name": "JPMORGAN CHASE BANK, N.A.",
+      "Regex": "^511597"
+   },
+   {
+      "Name": "FISERV SOLUTIONS, INC.",
+      "Regex": "^550742"
+   },
+   {
+      "Name": "KREDYT BANK, S.A.",
+      "Regex": "^547303"
+   },
+   {
+      "Name": "BANAMEX USA",
+      "Regex": "^541826"
+   },
+   {
+      "Name": "WESTPAC BANKING CORPORATION",
+      "Regex": "^516328"
+   },
+   {
+      "Name": "CITIBANK, N.A.",
+      "Regex": "^556924"
+   },
+   {
+      "Name": "DEUTSCHER SPARKASSEN UND GIROVERBAND",
+      "Regex": "^558406"
+   },
+   {
+      "Name": "BANCARD, S.A.",
+      "Regex": "^542621"
+   },
+   {
+      "Name": "DATA CENTER INCORPORATED",
+      "Regex": "^511901"
+   },
+   {
+      "Name": "ICBA BANCARD, INC.",
+      "Regex": "^551359"
+   },
+   {
+      "Name": "STAR PROCESSING, INC.",
+      "Regex": "^551371"
+   },
+   {
+      "Name": "CSCBANK S.A.L.",
+      "Regex": "^542164"
+   },
+   {
+      "Name": "OJSC BANK URALSIB",
+      "Regex": "^531858"
+   },
+   {
+      "Name": "BANQUE INVIK, S.A.",
+      "Regex": "^529960"
+   },
+   {
+      "Name": "INDUSTRIAL BANK CO., LTD.",
+      "Regex": "^523036"
+   },
+   {
+      "Name": "STAR PROCESSING, INC.",
+      "Regex": "^514372"
+   },
+   {
+      "Name": "MASTERCARD FRANCE S.A.S.",
+      "Regex": "^513972"
+   },
+   {
+      "Name": "STAR PROCESSING, INC.",
+      "Regex": "^510864"
+   },
+   {
+      "Name": "CORP BANCA",
+      "Regex": "^521312"
+   },
+   {
+      "Name": "JSCB MOSCOW INDUSTRIAL BANK",
+      "Regex": "^549870"
+   },
+   {
+      "Name": "BANK SAINT-PETERSBURG OJSC",
+      "Regex": "^522858"
+   },
+   {
+      "Name": "MASTERCARD FRANCE S.A.S.",
+      "Regex": "^513262"
+   },
+   {
+      "Name": "ITAU UNIBANCO, S.A.",
+      "Regex": "^525694"
+   },
+   {
+      "Name": "U.S. BANK NATIONAL ASSOCIATION, ND",
+      "Regex": "^514967"
+   },
+   {
+      "Name": "JSCB ROSBANK",
+      "Regex": "^549822"
+   },
+   {
+      "Name": "FIFTH THIRD BANK",
+      "Regex": "^514286"
+   },
+   {
+      "Name": "SANTANDER CONSUMO, S.A. DE C.V. SOFOM, E.R.",
+      "Regex": "^547046"
+   },
+   {
+      "Name": "AUSTRALIA AND NEW ZEALAND BANKING GROUP, LTD.",
+      "Regex": "^545279"
+   },
+   {
+      "Name": "BANCORP BANK",
+      "Regex": "^511217"
+   },
+   {
+      "Name": "CATHAY UNITED BANK",
+      "Regex": "^552032"
+   },
+   {
+      "Name": "FISERV SOLUTIONS, INC.",
+      "Regex": "^510827"
+   },
+   {
+      "Name": "NUEVO BANCO DE ENTRE RIOS, S.A.",
+      "Regex": "^543885"
+   },
+   {
+      "Name": "STAR PROCESSING, INC.",
+      "Regex": "^511132"
+   },
+   {
+      "Name": "BANK SAINT-PETERSBURG OJSC",
+      "Regex": "^530900"
+   },
+   {
+      "Name": "BANCO PLAZA, C.A.",
+      "Regex": "^554798"
+   },
+   {
+      "Name": "BANCO INTERACCIONES, S.A.",
+      "Regex": "^545094"
+   },
+   {
+      "Name": "FIDELITY INFORMATION SERVICES, INC.",
+      "Regex": "^514793"
+   },
+   {
+      "Name": "EGYPTIAN BANKS CO. FOR TECHNOLOGICAL ADVANCEMENT, S.A",
+      "Regex": "^526884"
+   },
+   {
+      "Name": "MASTERCARD FRANCE S.A.S.",
+      "Regex": "^513332"
+   },
+   {
+      "Name": "HONGKONG AND SHANGHAI BANKING CORP., LTD.",
+      "Regex": "^518305"
+   },
+   {
+      "Name": "CARD SERVICES FOR CREDIT UNIONS, INC.",
+      "Regex": "^551340"
+   },
+   {
+      "Name": "CUETS FINANCIAL",
+      "Regex": "^531709"
+   },
+   {
+      "Name": "JACK HENRY AND ASSOCIATES",
+      "Regex": "^553805"
+   },
+   {
+      "Name": "CREDISCOTIA FINANCIERA, S.A.",
+      "Regex": "^525476"
+   },
+   {
+      "Name": "FIFTH THIRD BANK",
+      "Regex": "^534751"
+   },
+   {
+      "Name": "DEUTSCHER SPARKASSEN UND GIROVERBAND",
+      "Regex": "^549705"
+   },
+   {
+      "Name": "BANK OF AMERICA, N.A.",
+      "Regex": "^530625"
+   },
+   {
+      "Name": "HSBC BANK NEVADA, N.A.",
+      "Regex": "^543339"
+   },
+   {
+      "Name": "CSCBANK S.A.L.",
+      "Regex": "^552369"
+   },
+   {
+      "Name": "SHAZAM, INC.",
+      "Regex": "^551725"
+   },
+   {
+      "Name": "FISERV SOLUTIONS, INC.",
+      "Regex": "^553702"
+   },
+   {
+      "Name": "BANCO NACIONAL DE MEXICO, S.A.",
+      "Regex": "^554492"
+   },
+   {
+      "Name": "COMMERCIAL BANK MASTER-BANK",
+      "Regex": "^533668"
+   },
+   {
+      "Name": "BANKIA, S.A.",
+      "Regex": "^540246"
+   },
+   {
+      "Name": "ROYAL BANK OF SCOTLAND, N.V.",
+      "Regex": "^531820"
+   },
+   {
+      "Name": "CREDOMATIC LATINO AMERICANA",
+      "Regex": "^524351"
+   },
+   {
+      "Name": "CITIBANK USA, N.A.",
+      "Regex": "^526201"
+   },
+   {
+      "Name": "CITIBANK, N.A. SOUTH AFRICA",
+      "Regex": "^558753"
+   },
+   {
+      "Name": "STANDARD BANK OF SOUTH AFRICA, LTD.",
+      "Regex": "^520997"
+   },
+   {
+      "Name": "ACHIEVA C.U.",
+      "Regex": "^515354"
+   },
+   {
+      "Name": "U.S. BANK NATIONAL ASSOCIATION, ND",
+      "Regex": "^511069"
+   },
+   {
+      "Name": "PT. BANK CIMB NIAGA TBK.",
+      "Regex": "^524319"
+   },
+   {
+      "Name": "UNION BANK, N.A.",
+      "Regex": "^549182"
+   },
+   {
+      "Name": "CITIBANK, N.A.",
+      "Regex": "^541931"
+   },
+   {
+      "Name": "FISERV SOLUTIONS, INC.",
+      "Regex": "^550908"
+   },
+   {
+      "Name": "BANQUE FEDERATIVE DU CREDIT MUTUEL (BFCM)",
+      "Regex": "^513720"
+   },
+   {
+      "Name": "JACK HENRY AND ASSOCIATES",
+      "Regex": "^551126"
+   },
+   {
+      "Name": "US AIRWAYS DIVIDEND MILES",
+      "Regex": "^514845"
+   },
+   {
+      "Name": "UNIVERSAL FINANCING SERVICES",
+      "Regex": "^531221"
+   },
+   {
+      "Name": "PUBLIC JSC FIRST UKRAINIAN INTERNATIONAL BANK",
+      "Regex": "^544362"
+   },
+   {
+      "Name": "U.S. BANK NATIONAL ASSOCIATION, ND",
+      "Regex": "^547022"
+   },
+   {
+      "Name": "FISERV SOLUTIONS, INC.",
+      "Regex": "^545615"
+   },
+   {
+      "Name": "PULSE NETWORK LLC",
+      "Regex": "^553716"
+   },
+   {
+      "Name": "FIA CARD SERVICES, N.A.",
+      "Regex": "^554291"
+   },
+   {
+      "Name": "FIRST ARKANSAS BANK AND TRUST",
+      "Regex": "^546606"
+   },
+   {
+      "Name": "FIRST DATA CONO SUR, S.R.L.",
+      "Regex": "^544014"
+   },
+   {
+      "Name": "BANK OF AMERICA, N.A.",
+      "Regex": "^530621"
+   },
+   {
+      "Name": "FIRST COMMUNITY CREDIT UNION OF HOUSTON",
+      "Regex": "^552893"
+   },
+   {
+      "Name": "SBERBANK OF RUSSIA",
+      "Regex": "^548430"
+   },
+   {
+      "Name": "FISERV SOLUTIONS, INC.",
+      "Regex": "^519097"
+   },
+   {
+      "Name": "STAR PROCESSING, INC.",
+      "Regex": "^546442"
+   },
+   {
+      "Name": "MASTERCARD FRANCE S.A.S.",
+      "Regex": "^513992"
+   },
+   {
+      "Name": "JPMORGAN CHASE BANK, N.A.",
+      "Regex": "^559040"
+   },
+   {
+      "Name": "BANK OF COMMUNICATIONS",
+      "Regex": "^521899"
+   },
+   {
+      "Name": "TAIWAN COOPERATIVE BANK",
+      "Regex": "^540520"
+   },
+   {
+      "Name": "RBS CITIZENS, N.A.",
+      "Regex": "^541650"
+   },
+   {
+      "Name": "CITIBANK, N.A.",
+      "Regex": "^526227"
+   },
+   {
+      "Name": "JAMMU AND KASHMIR BANK, LTD.",
+      "Regex": "^524098"
+   },
+   {
+      "Name": "FIA CARD SERVICES, N.A.",
+      "Regex": "^552428"
+   },
+   {
+      "Name": "JPMORGAN CHASE BANK, N.A.",
+      "Regex": "^556968"
+   },
+   {
+      "Name": "KEY CLIENT CARDS AND SOLUTIONS S.P.A.",
+      "Regex": "^544567"
+   },
+   {
+      "Name": "CITADEL F.C.U.",
+      "Regex": "^528725"
+   },
+   {
+      "Name": "FIDELITY INFORMATION SERVICES, INC.",
+      "Regex": "^551447"
+   },
+   {
+      "Name": "JPMORGAN CHASE BANK, N.A.",
+      "Regex": "^514797"
+   },
+   {
+      "Name": "ABN AMRO BANK, N.V.",
+      "Regex": "^556979"
+   },
+   {
+      "Name": "STANDARD CHARTERED BANK",
+      "Regex": "^524329"
+   },
+   {
+      "Name": "EUROPAY FRANCE SAS",
+      "Regex": "^513111"
+   },
+   {
+      "Name": "FIFTH THIRD BANK",
+      "Regex": "^511130"
+   },
+   {
+      "Name": "FIFTH THIRD BANK",
+      "Regex": "^534067"
+   },
+   {
+      "Name": "CHASE BANK USA, N.A.",
+      "Regex": "^549085"
+   },
+   {
+      "Name": "PUBLIC JSC RAIFFEISEN BANK AVAL",
+      "Regex": "^518808"
+   },
+   {
+      "Name": "FIRST HAWAIIAN BANK",
+      "Regex": "^547813"
+   },
+   {
+      "Name": "JACK HENRY AND ASSOCIATES",
+      "Regex": "^551432"
+   },
+   {
+      "Name": "PSCU FINANCIAL SERVICES, INC.",
+      "Regex": "^514515"
+   },
+   {
+      "Name": "CHEVRON F.C.U.",
+      "Regex": "^546027"
+   },
+   {
+      "Name": "U.S. BANK NATIONAL ASSOCIATION, ND",
+      "Regex": "^557553"
+   },
+   {
+      "Name": "COMMERCIAL INTERNATIONAL BANK (EGYPT) S.A.E.",
+      "Regex": "^517879"
+   },
+   {
+      "Name": "MASTERCARD FRANCE S.A.S.",
+      "Regex": "^513832"
+   },
+   {
+      "Name": "U.S. BANK NATIONAL ASSOCIATION, ND",
+      "Regex": "^514604"
+   },
+   {
+      "Name": "WIRECARD BANK AG",
+      "Regex": "^529444"
+   },
+   {
+      "Name": "U.S. BANK NATIONAL ASSOCIATION, ND",
+      "Regex": "^541248"
+   },
+   {
+      "Name": "TEACHERS C.U.",
+      "Regex": "^557635"
+   },
+   {
+      "Name": "MASTERCARD FRANCE S.A.S.",
+      "Regex": "^513039"
+   },
+   {
+      "Name": "JACK HENRY AND ASSOCIATES",
+      "Regex": "^559003"
+   },
+   {
+      "Name": "DEUTSCHER SPARKASSEN UND GIROVERBAND",
+      "Regex": "^523932"
+   },
+   {
+      "Name": "BANK RESPUBLIKA OJSC",
+      "Regex": "^533599"
+   },
+   {
+      "Name": "BANK OF THE WEST",
+      "Regex": "^556319"
+   },
+   {
+      "Name": "MBNA AMERICA BANK, N.A.",
+      "Regex": "^532938"
+   },
+   {
+      "Name": "CITIBANK SINGAPORE, LTD.",
+      "Regex": "^522274"
+   },
+   {
+      "Name": "ICBA BANCARD, INC.",
+      "Regex": "^551806"
+   },
+   {
+      "Name": "CITIBANK, N.A.",
+      "Regex": "^547786"
+   },
+   {
+      "Name": "FIFTH THIRD BANK",
+      "Regex": "^543237"
+   },
+   {
+      "Name": "CU COOPERATIVE SYSTEMS",
+      "Regex": "^511273"
+   },
+   {
+      "Name": "LOTTE CARD CO., LTD.",
+      "Regex": "^528937"
+   },
+   {
+      "Name": "FIFTH THIRD BANK",
+      "Regex": "^511201"
+   },
+   {
+      "Name": "PIRAEUS BANK EGYPT",
+      "Regex": "^529113"
+   },
+   {
+      "Name": "PUBLIC JSC COMMERCIAL BANK PRAVEX BANK",
+      "Regex": "^536444"
+   },
+   {
+      "Name": "FIFTH THIRD BANK",
+      "Regex": "^511983"
+   },
+   {
+      "Name": "FIRST PREMIER BANK",
+      "Regex": "^543362"
+   },
+   {
+      "Name": "RENASANT BANK",
+      "Regex": "^557612"
+   },
+   {
+      "Name": "DNB NOR BANK ASA",
+      "Regex": "^547305"
+   },
+   {
+      "Name": "BANCO HSBC (COSTA RICA), S.A.",
+      "Regex": "^531882"
+   },
+   {
+      "Name": "BANK PRZEMYSLOWO-HANDLOWY PBK, S.A.",
+      "Regex": "^547212"
+   },
+   {
+      "Name": "BANK POLSKA KASA OPIEKI S.A. (BANK PEKAO SA)",
+      "Regex": "^526452"
+   },
+   {
+      "Name": "TMG FINANCIAL SERVICES, INC.",
+      "Regex": "^521396"
+   },
+   {
+      "Name": "FIDELITY INFORMATION SERVICES, INC.",
+      "Regex": "^540374"
+   },
+   {
+      "Name": "FISERV SOLUTIONS, INC.",
+      "Regex": "^523899"
+   },
+   {
+      "Name": "FISERV SOLUTIONS, INC.",
+      "Regex": "^521701"
+   },
+   {
+      "Name": "BANK FOR DEVELOPMENT AND FOREIGN ECONOMIC AFFAIRS (VNES",
+      "Regex": "^540823"
+   },
+   {
+      "Name": "FIFTH THIRD BANK",
+      "Regex": "^543957"
+   },
+   {
+      "Name": "STAR PROCESSING, INC.",
+      "Regex": "^528443"
+   },
+   {
+      "Name": "FIFTH THIRD BANK",
+      "Regex": "^544632"
+   },
+   {
+      "Name": "MASTERCAJAS, S.A.",
+      "Regex": "^554099"
+   },
+   {
+      "Name": "CU COOPERATIVE SYSTEMS",
+      "Regex": "^551149"
+   },
+   {
+      "Name": "FIDELITY INFORMATION SERVICES, INC.",
+      "Regex": "^551073"
+   },
+   {
+      "Name": "VOLKSBANK SLOVENSKO, A.S.",
+      "Regex": "^541050"
+   },
+   {
+      "Name": "FISERV SOLUTIONS, INC.",
+      "Regex": "^510321"
+   },
+   {
+      "Name": "EURO KARTENSYSTEME GMBH",
+      "Regex": "^549957"
+   },
+   {
+      "Name": "FIFTH THIRD BANK",
+      "Regex": "^534890"
+   },
+   {
+      "Name": "ICICI BANK, LTD.",
+      "Regex": "^517653"
+   },
+   {
+      "Name": "BANCO POPULAR DOMINICANO, C. POR A.",
+      "Regex": "^519229"
+   },
+   {
+      "Name": "DENIZBANK, A.S.",
+      "Regex": "^543400"
+   },
+   {
+      "Name": "FIRSTCARIBBEAN INTERNATIONAL BANK (BARBADOS), LTD.",
+      "Regex": "^546897"
+   },
+   {
+      "Name": "FIFTH THIRD BANK",
+      "Regex": "^551766"
+   },
+   {
+      "Name": "U.S. BANK NATIONAL ASSOCIATION, ND",
+      "Regex": "^517873"
+   },
+   {
+      "Name": "CSCBANK S.A.L.",
+      "Regex": "^540998"
+   },
+   {
+      "Name": "BANCO DE GUAYAQUIL, S.A.",
+      "Regex": "^524071"
+   },
+   {
+      "Name": "CSCBANK S.A.L.",
+      "Regex": "^524215"
+   },
+   {
+      "Name": "STAR PROCESSING, INC.",
+      "Regex": "^551795"
+   },
+   {
+      "Name": "TARJETAS BANAMEX, SA DE CV, SOFOM E.R.",
+      "Regex": "^528843"
+   },
+   {
+      "Name": "FIDELITY INFORMATION SERVICES, INC.",
+      "Regex": "^534722"
+   },
+   {
+      "Name": "ZAGREBACKA BANKA BH D.D.",
+      "Regex": "^513686"
+   },
+   {
+      "Name": "PSCU FINANCIAL SERVICES, INC.",
+      "Regex": "^550952"
+   },
+   {
+      "Name": "BANCO BILBAO VIZCAYA ARGENTARIA COLOMBIA, S.A.",
+      "Regex": "^547457"
+   },
+   {
+      "Name": "BANQUE FEDERATIVE DU CREDIT MUTUEL (BFCM)",
+      "Regex": "^513298"
+   },
+   {
+      "Name": "HSBC BANK NEVADA, N.A.",
+      "Regex": "^512734"
+   },
+   {
+      "Name": "PULSE NETWORK LLC",
+      "Regex": "^514274"
+   },
+   {
+      "Name": "BANQUE FEDERATIVE DU CREDIT MUTUEL (BFCM)",
+      "Regex": "^513632"
+   },
+   {
+      "Name": "HSBC BANK NEVADA, N.A.",
+      "Regex": "^543328"
+   },
+   {
+      "Name": "STAR PROCESSING, INC.",
+      "Regex": "^511190"
+   },
+   {
+      "Name": "FIFTH THIRD BANK",
+      "Regex": "^557301"
+   },
+   {
+      "Name": "ITAU UNIBANCO, S.A.",
+      "Regex": "^547109"
+   },
+   {
+      "Name": "R RAPHAEL AND SONS PLC",
+      "Regex": "^533603"
+   },
+   {
+      "Name": "STAR PROCESSING, INC.",
+      "Regex": "^516701"
+   },
+   {
+      "Name": "FISERV SOLUTIONS, INC.",
+      "Regex": "^510844"
+   },
+   {
+      "Name": "RESONA BANK, LTD.",
+      "Regex": "^525258"
+   },
+   {
+      "Name": "KB KOOKMIN CARD CO., LTD.",
+      "Regex": "^554963"
+   },
+   {
+      "Name": "BANK OF AMERICA, N.A.",
+      "Regex": "^531264"
+   },
+   {
+      "Name": "BANK OF AMERICA, N.A.",
+      "Regex": "^530669"
+   },
+   {
+      "Name": "FISERV SOLUTIONS, INC.",
+      "Regex": "^520575"
+   },
+   {
+      "Name": "HSBC BANK (PANAMA), S.A.",
+      "Regex": "^544961"
+   },
+   {
+      "Name": "REDEBAN MULTICOLOR, S.A.",
+      "Regex": "^549166"
+   },
+   {
+      "Name": "SB HSBC BANK KAZAKHSTAN JSC",
+      "Regex": "^516730"
+   },
+   {
+      "Name": "BANCO SANTANDER TOTTA, S.A.",
+      "Regex": "^520342"
+   },
+   {
+      "Name": "PUBLIC JSC DELTA BANK",
+      "Regex": "^516399"
+   },
+   {
+      "Name": "FISERV SOLUTIONS, INC.",
+      "Regex": "^531905"
+   },
+   {
+      "Name": "JACK HENRY AND ASSOCIATES",
+      "Regex": "^527849"
+   },
+   {
+      "Name": "BANK OF AMERICA, N.A.",
+      "Regex": "^530701"
+   },
+   {
+      "Name": "HSBC BANK CANADA",
+      "Regex": "^519434"
+   },
+   {
+      "Name": "MAINSTREET C.U.",
+      "Regex": "^546453"
+   },
+   {
+      "Name": "GULF BANK K.S.C.",
+      "Regex": "^552078"
+   },
+   {
+      "Name": "MASTERCARD FRANCE S.A.S.",
+      "Regex": "^513407"
+   },
+   {
+      "Name": "CREDICORP BANK, S.A.",
+      "Regex": "^525754"
+   },
+   {
+      "Name": "EAST WEST BANKING CORPORATION",
+      "Regex": "^546308"
+   },
+   {
+      "Name": "U.S. BANK NATIONAL ASSOCIATION, ND",
+      "Regex": "^546414"
+   },
+   {
+      "Name": "CU COOPERATIVE SYSTEMS",
+      "Regex": "^551333"
+   },
+   {
+      "Name": "FIRST COMMUNITY CREDIT UNION OF HOUSTON",
+      "Regex": "^524010"
+   },
+   {
+      "Name": "FIFTH THIRD BANK",
+      "Regex": "^532538"
+   },
+   {
+      "Name": "BANK OF AMERICA, N.A.",
+      "Regex": "^530227"
+   },
+   {
+      "Name": "WARKA BANK FOR INVESTMENT AND FINANCE",
+      "Regex": "^531353"
+   },
+   {
+      "Name": "EUROPAY FRANCE, S.A.",
+      "Regex": "^529598"
+   },
+   {
+      "Name": "FRANSABANK S.A.L.",
+      "Regex": "^552045"
+   },
+   {
+      "Name": "OJSC OTP BANK",
+      "Regex": "^545214"
+   },
+   {
+      "Name": "BANK OF HAWAII",
+      "Regex": "^510801"
+   },
+   {
+      "Name": "JPMORGAN CHASE BANK, N.A.",
+      "Regex": "^558115"
+   },
+   {
+      "Name": "COMMERCIAL BANK KHRESCHATYK",
+      "Regex": "^529914"
+   },
+   {
+      "Name": "EFG EUROBANK ERGASIAS, S.A.",
+      "Regex": "^525789"
+   },
+   {
+      "Name": "ICBA BANCARD, INC.",
+      "Regex": "^521750"
+   },
+   {
+      "Name": "NETWORK INTERNATIONAL LLC",
+      "Regex": "^552291"
+   },
+   {
+      "Name": "COMPUTER SERVICES, INC.",
+      "Regex": "^510355"
+   },
+   {
+      "Name": "FIDELITY INFORMATION SERVICES, INC.",
+      "Regex": "^510394"
+   },
+   {
+      "Name": "BANK OF AMERICA CANADA",
+      "Regex": "^556960"
+   },
+   {
+      "Name": "MASTERCARD FRANCE S.A.S.",
+      "Regex": "^513059"
+   },
+   {
+      "Name": "BANCO BRADESCO, S.A.",
+      "Regex": "^552530"
+   },
+   {
+      "Name": "MONEY CARD ASSOCIATION PR LEAGUE, INC.",
+      "Regex": "^520389"
+   },
+   {
+      "Name": "GOSPODARCZY BANK WIELKOPOLSKI S.A. (GBW S.A.)",
+      "Regex": "^552600"
+   },
+   {
+      "Name": "ASYA KATILIM BANKASI, A.S.",
+      "Regex": "^515849"
+   },
+   {
+      "Name": "U.S. BANK NATIONAL ASSOCIATION, ND",
+      "Regex": "^550816"
+   },
+   {
+      "Name": "JACK HENRY AND ASSOCIATES",
+      "Regex": "^550700"
+   },
+   {
+      "Name": "ITAU UNIBANCO, S.A.",
+      "Regex": "^514897"
+   },
+   {
+      "Name": "HSBC BANK NEVADA, N.A.",
+      "Regex": "^525478"
+   },
+   {
+      "Name": "STANDARD CHARTERED BANK MALAYSIA BERHAD",
+      "Regex": "^552302"
+   },
+   {
+      "Name": "FIDELITY INFORMATION SERVICES, INC.",
+      "Regex": "^514678"
+   },
+   {
+      "Name": "BANK OF EAST ASIA, LTD.",
+      "Regex": "^540820"
+   },
+   {
+      "Name": "ABU DHABI COMMERCIAL BANK",
+      "Regex": "^532688"
+   },
+   {
+      "Name": "CU COOPERATIVE SYSTEMS",
+      "Regex": "^511910"
+   },
+   {
+      "Name": "BANCO DE VENEZUELA, S.A.C.A.",
+      "Regex": "^525739"
+   },
+   {
+      "Name": "BANK PRZEMYSLOWO-HANDLOWY PBK, S.A.",
+      "Regex": "^557521"
+   },
+   {
+      "Name": "BANQUE TUNISO KOWEITIENNE",
+      "Regex": "^549895"
+   },
+   {
+      "Name": "FIDELITY INFORMATION SERVICES, INC.",
+      "Regex": "^551567"
+   },
+   {
+      "Name": "MEGA INTERNATIONAL COMMERCIAL BANK CO., LTD.",
+      "Regex": "^547767"
+   },
+   {
+      "Name": "FISERV SOLUTIONS, INC.",
+      "Regex": "^527855"
+   },
+   {
+      "Name": "BANK OF EAST ASIA, LTD.",
+      "Regex": "^554487"
+   },
+   {
+      "Name": "CSCBANK S.A.L.",
+      "Regex": "^521082"
+   },
+   {
+      "Name": "SILVERTON BANK, N.A.",
+      "Regex": "^540368"
+   },
+   {
+      "Name": "BANCO DE CHILE",
+      "Regex": "^552525"
+   },
+   {
+      "Name": "SEB BANKAS AB",
+      "Regex": "^558282"
+   },
+   {
+      "Name": "HUNGARIAN VOLKSBANK, LTD.",
+      "Regex": "^549717"
+   },
+   {
+      "Name": "UNITED BANK LIMITED (UBL)",
+      "Regex": "^532709"
+   },
+   {
+      "Name": "MBNA EUROPE BANK, LTD.",
+      "Regex": "^518675"
+   },
+   {
+      "Name": "MASTERCARD FRANCE S.A.S.",
+      "Regex": "^513945"
+   },
+   {
+      "Name": "LIBERTY BANK OF ARKANSAS",
+      "Regex": "^514965"
+   },
+   {
+      "Name": "OJSC BANK URALSIB",
+      "Regex": "^512394"
+   },
+   {
+      "Name": "PSCU FINANCIAL SERVICES, INC.",
+      "Regex": "^516449"
+   },
+   {
+      "Name": "MASTERCARD FRANCE S.A.S.",
+      "Regex": "^513544"
+   },
+   {
+      "Name": "YUANTA COMMERCIAL BANK CO., LTD.",
+      "Regex": "^514875"
+   },
+   {
+      "Name": "ARAB AFRICAN INTERNATIONAL BANK",
+      "Regex": "^543340"
+   },
+   {
+      "Name": "BANK OF MONTREAL",
+      "Regex": "^552822"
+   },
+   {
+      "Name": "MASTERCARD FRANCE S.A.S.",
+      "Regex": "^513790"
+   },
+   {
+      "Name": "BANKMUSCAT LTD. (S.A.O.G.)",
+      "Regex": "^526710"
+   },
+   {
+      "Name": "LLOYDS TSB BANK PLC",
+      "Regex": "^552157"
+   },
+   {
+      "Name": "SILICON VALLEY BANK",
+      "Regex": "^519684"
+   },
+   {
+      "Name": "U.S. BANK NATIONAL ASSOCIATION, ND",
+      "Regex": "^550829"
+   },
+   {
+      "Name": "MASTERCARD FRANCE S.A.S.",
+      "Regex": "^513949"
+   },
+   {
+      "Name": "CAIXA ECONOMICA FEDERAL",
+      "Regex": "^552668"
+   },
+   {
+      "Name": "COMPUTER SERVICES, INC.",
+      "Regex": "^510573"
+   },
+   {
+      "Name": "JACK HENRY AND ASSOCIATES",
+      "Regex": "^510926"
+   },
+   {
+      "Name": "WESTBURY BANK",
+      "Regex": "^541021"
+   },
+   {
+      "Name": "JPMORGAN CHASE BANK, N.A.",
+      "Regex": "^514755"
+   },
+   {
+      "Name": "FIDELITY INFORMATION SERVICES, INC.",
+      "Regex": "^558219"
+   },
+   {
+      "Name": "U.S. BANK NATIONAL ASSOCIATION, ND",
+      "Regex": "^551288"
+   },
+   {
+      "Name": "FISERV SOLUTIONS, INC.",
+      "Regex": "^558249"
+   },
+   {
+      "Name": "COMERICA BANK",
+      "Regex": "^515101"
+   },
+   {
+      "Name": "LAKE MICHIGAN C.U.",
+      "Regex": "^510875"
+   },
+   {
+      "Name": "BANCO POPULAR NORTH AMERICA",
+      "Regex": "^514104"
+   },
+   {
+      "Name": "NETWORK INTERNATIONAL LLC",
+      "Regex": "^555941"
+   },
+   {
+      "Name": "STAR PROCESSING, INC.",
+      "Regex": "^546210"
+   },
+   {
+      "Name": "BLOM BANK S.A.L.",
+      "Regex": "^511863"
+   },
+   {
+      "Name": "RBS CITIZENS, N.A.",
+      "Regex": "^524050"
+   },
+   {
+      "Name": "ICBA BANCARD, INC.",
+      "Regex": "^518120"
+   },
+   {
+      "Name": "JORDAN AHLI BANK",
+      "Regex": "^546891"
+   },
+   {
+      "Name": "ICBA BANCARD, INC.",
+      "Regex": "^523895"
+   },
+   {
+      "Name": "FISERV SOLUTIONS, INC.",
+      "Regex": "^514781"
+   },
+   {
+      "Name": "PSCU FINANCIAL SERVICES, INC.",
+      "Regex": "^515249"
+   },
+   {
+      "Name": "BOC CREDIT CARD (INTERNATIONAL), LTD.",
+      "Regex": "^552739"
+   },
+   {
+      "Name": "CHASE BANK USA, N.A.",
+      "Regex": "^521843"
+   },
+   {
+      "Name": "OJSC BANK URALSIB",
+      "Regex": "^541632"
+   },
+   {
+      "Name": "CU COOPERATIVE SYSTEMS",
+      "Regex": "^510701"
+   },
+   {
+      "Name": "KEYBANK, N.A.",
+      "Regex": "^511480"
+   },
+   {
+      "Name": "BANK OF AMERICA, N.A.",
+      "Regex": "^530918"
+   },
+   {
+      "Name": "INTESA SANPAOLO S.P.A.",
+      "Regex": "^512599"
+   },
+   {
+      "Name": "JACK HENRY AND ASSOCIATES",
+      "Regex": "^528102"
+   },
+   {
+      "Name": "ICBA BANCARD, INC.",
+      "Regex": "^515194"
+   },
+   {
+      "Name": "HSBC - SAKS FIFTH AVENUE",
+      "Regex": "^539671"
+   },
+   {
+      "Name": "ALLIED BANKING CORPORATION",
+      "Regex": "^552280"
+   },
+   {
+      "Name": "BARCLAYS BANK DELAWARE",
+      "Regex": "^515665"
+   },
+   {
+      "Name": "SCOTIABANK EL SALVADOR, S.A.",
+      "Regex": "^513695"
+   },
+   {
+      "Name": "ECOBANK NIGERIA PLC",
+      "Regex": "^548458"
+   },
+   {
+      "Name": "INTERCONTINENTAL BANK PLC",
+      "Regex": "^557693"
+   },
+   {
+      "Name": "BANCO RIPLEY",
+      "Regex": "^553452"
+   },
+   {
+      "Name": "TARJETAS BANAMEX, SA DE CV, SOFOM E.R.",
+      "Regex": "^547075"
+   },
+   {
+      "Name": "TURKIYE IS BANKASI, A.S.",
+      "Regex": "^552096"
+   },
+   {
+      "Name": "TELLER, A.S.",
+      "Regex": "^533617"
+   },
+   {
+      "Name": "TAISHIN INTERNATIONAL BANK",
+      "Regex": "^544228"
+   },
+   {
+      "Name": "H AND R BLOCK BANK",
+      "Regex": "^510812"
+   },
+   {
+      "Name": "SBERBANK OF RUSSIA",
+      "Regex": "^548468"
+   },
+   {
+      "Name": "FIFTH THIRD BANK",
+      "Regex": "^548009"
+   },
+   {
+      "Name": "FIFTH THIRD BANK",
+      "Regex": "^546176"
+   },
+   {
+      "Name": "STANDARD CHARTERED BANK",
+      "Regex": "^524355"
+   },
+   {
+      "Name": "FIRST GULF BANK PJSC",
+      "Regex": "^554907"
+   },
+   {
+      "Name": "MASTERCARD FRANCE S.A.S.",
+      "Regex": "^513065"
+   },
+   {
+      "Name": "FISERV SOLUTIONS, INC.",
+      "Regex": "^558194"
+   },
+   {
+      "Name": "BANCO BILBAO VIZCAYA ARGENTARIA COLOMBIA, S.A.",
+      "Regex": "^548115"
+   },
+   {
+      "Name": "MASTERCAJAS, S.A.",
+      "Regex": "^544012"
+   },
+   {
+      "Name": "INDUSTRIAL BANK CO., LTD.",
+      "Regex": "^527414"
+   },
+   {
+      "Name": "TARJETAS BANAMEX, SA DE CV, SOFOM E.R.",
+      "Regex": "^549138"
+   },
+   {
+      "Name": "FISERV SOLUTIONS, INC.",
+      "Regex": "^539807"
+   },
+   {
+      "Name": "EURO KARTENSYSTEME GMBH",
+      "Regex": "^542606"
+   },
+   {
+      "Name": "EUROPAY FRANCE SAS",
+      "Regex": "^513537"
+   },
+   {
+      "Name": "BARCLAYS BANK PLC",
+      "Regex": "^531214"
+   },
+   {
+      "Name": "PUBLIC JSC UKRSIBBANK",
+      "Regex": "^558259"
+   },
+   {
+      "Name": "HOUSING AND DEVELOPMENT BANK",
+      "Regex": "^518300"
+   },
+   {
+      "Name": "FIFTH THIRD BANK",
+      "Regex": "^530738"
+   },
+   {
+      "Name": "UNION BANK OF CALIFORNIA, N.A.",
+      "Regex": "^540961"
+   },
+   {
+      "Name": "BALBOA BANK AND TRUST, CORP.",
+      "Regex": "^530461"
+   },
+   {
+      "Name": "MASTERCARD FRANCE S.A.S.",
+      "Regex": "^513603"
+   },
+   {
+      "Name": "CU COOPERATIVE SYSTEMS",
+      "Regex": "^515208"
+   },
+   {
+      "Name": "EUROPAY BELGIUM S.C.R.L.",
+      "Regex": "^544050"
+   },
+   {
+      "Name": "MERCANTIL COMMERCEBANK, N.A.",
+      "Regex": "^542226"
+   },
+   {
+      "Name": "INTERNATIONAL CARD CO., LTD.",
+      "Regex": "^512023"
+   },
+   {
+      "Name": "CITIBANK, N.A.",
+      "Regex": "^558861"
+   },
+   {
+      "Name": "CARIBBEAN CREDIT CARD CORP., LTD.",
+      "Regex": "^548545"
+   },
+   {
+      "Name": "BANCO CITICARD, S.A.",
+      "Regex": "^558305"
+   },
+   {
+      "Name": "BANK OF AMERICA, N.A.",
+      "Regex": "^530920"
+   },
+   {
+      "Name": "FIDELITY INFORMATION SERVICES, INC.",
+      "Regex": "^511985"
+   },
+   {
+      "Name": "FISERV SOLUTIONS, INC.",
+      "Regex": "^559011"
+   },
+   {
+      "Name": "EQUATORIAL COMMERCIAL BANK, LTD.",
+      "Regex": "^549771"
+   },
+   {
+      "Name": "BANK OF AMERICA, N.A.",
+      "Regex": "^530152"
+   },
+   {
+      "Name": "JPMORGAN CHASE BANK, N.A.",
+      "Regex": "^547777"
+   },
+   {
+      "Name": "JACK HENRY AND ASSOCIATES",
+      "Regex": "^510755"
+   },
+   {
+      "Name": "MASTERCARD FRANCE S.A.S.",
+      "Regex": "^513914"
+   },
+   {
+      "Name": "METABANK",
+      "Regex": "^530084"
+   },
+   {
+      "Name": "FIFTH THIRD BANK",
+      "Regex": "^557550"
+   },
+   {
+      "Name": "ICICI BANK, LTD.",
+      "Regex": "^529972"
+   },
+   {
+      "Name": "BANKIA, S.A.",
+      "Regex": "^541763"
+   },
+   {
+      "Name": "FISERV SOLUTIONS, INC.",
+      "Regex": "^537166"
+   },
+   {
+      "Name": "TAIPEI FUBON COMMERCIAL BANK CO., LTD.",
+      "Regex": "^543377"
+   },
+   {
+      "Name": "BLOM BANK S.A.L.",
+      "Regex": "^557681"
+   },
+   {
+      "Name": "ZAO RAIFFEISENBANK",
+      "Regex": "^547613"
+   },
+   {
+      "Name": "U.S. BANK NATIONAL ASSOCIATION, ND",
+      "Regex": "^510653"
+   },
+   {
+      "Name": "FIFTH THIRD BANK",
+      "Regex": "^515287"
+   },
+   {
+      "Name": "SBERBANK OF RUSSIA",
+      "Regex": "^547925"
+   },
+   {
+      "Name": "NORDEA BANK FINLAND PLC",
+      "Regex": "^516001"
+   },
+   {
+      "Name": "FISERV SOLUTIONS, INC.",
+      "Regex": "^515275"
+   },
+   {
+      "Name": "BANCO COOPERATIVO ESPANOL",
+      "Regex": "^529931"
+   },
+   {
+      "Name": "U.S. BANK NATIONAL ASSOCIATION, ND",
+      "Regex": "^514488"
+   },
+   {
+      "Name": "PUBLIC JSC UNICREDIT BANK",
+      "Regex": "^553091"
+   },
+   {
+      "Name": "FISERV SOLUTIONS, INC.",
+      "Regex": "^550843"
+   },
+   {
+      "Name": "FISERV SOLUTIONS, INC.",
+      "Regex": "^520560"
+   },
+   {
+      "Name": "FIFTH THIRD BANK",
+      "Regex": "^527831"
+   },
+   {
+      "Name": "JSCB ROSBANK",
+      "Regex": "^558258"
+   },
+   {
+      "Name": "NEDBANK, LTD.",
+      "Regex": "^541281"
+   },
+   {
+      "Name": "BAYPORT C.U.",
+      "Regex": "^540418"
+   },
+   {
+      "Name": "MASTERCARD FRANCE S.A.S.",
+      "Regex": "^513382"
+   },
+   {
+      "Name": "FISERV SOLUTIONS, INC.",
+      "Regex": "^557141"
+   },
+   {
+      "Name": "UNION NATIONAL BANK",
+      "Regex": "^540901"
+   },
+   {
+      "Name": "MANUFACTURERS AND TRADERS TRUST COMPANY",
+      "Regex": "^521789"
+   },
+   {
+      "Name": "CSCBANK S.A.L.",
+      "Regex": "^549758"
+   },
+   {
+      "Name": "JACK HENRY AND ASSOCIATES",
+      "Regex": "^539763"
+   },
+   {
+      "Name": "FIDELITY INFORMATION SERVICES, INC.",
+      "Regex": "^551107"
+   },
+   {
+      "Name": "COMMERCIAL BANK MASTER-BANK",
+      "Regex": "^548783"
+   },
+   {
+      "Name": "EURO KARTENSYSTEME GMBH",
+      "Regex": "^521165"
+   },
+   {
+      "Name": "CHASE BANK USA, N.A.",
+      "Regex": "^532350"
+   },
+   {
+      "Name": "CITIBANK USA, N.A.",
+      "Regex": "^526231"
+   },
+   {
+      "Name": "FISERV SOLUTIONS, INC.",
+      "Regex": "^514131"
+   },
+   {
+      "Name": "U.S. BANK NATIONAL ASSOCIATION, ND",
+      "Regex": "^515365"
+   },
+   {
+      "Name": "BANCO SANTANDER PUERTO RICO",
+      "Regex": "^512457"
+   },
+   {
+      "Name": "SBERBANK OF RUSSIA",
+      "Regex": "^547938"
+   },
+   {
+      "Name": "BANK OF NOVA SCOTIA JAMAICA, LTD.",
+      "Regex": "^540522"
+   },
+   {
+      "Name": "U.S. BANK NATIONAL ASSOCIATION, ND",
+      "Regex": "^558042"
+   },
+   {
+      "Name": "MASTERCARD FRANCE S.A.S.",
+      "Regex": "^513342"
+   },
+   {
+      "Name": "FISERV SOLUTIONS, INC.",
+      "Regex": "^557293"
+   },
+   {
+      "Name": "JACK HENRY AND ASSOCIATES",
+      "Regex": "^532601"
+   },
+   {
+      "Name": "JSC CARTU BANK",
+      "Regex": "^552606"
+   },
+   {
+      "Name": "BANK OF AMERICA, N.A.",
+      "Regex": "^530190"
+   },
+   {
+      "Name": "PRESIDENTS CHOICE BANK",
+      "Regex": "^518127"
+   },
+   {
+      "Name": "FRANSABANK S.A.L.",
+      "Regex": "^558820"
+   },
+   {
+      "Name": "FISERV SOLUTIONS, INC.",
+      "Regex": "^511971"
+   },
+   {
+      "Name": "JSCB FOR FOREIGN TRADE OF VIETNAM",
+      "Regex": "^546285"
+   },
+   {
+      "Name": "FIFTH THIRD BANK",
+      "Regex": "^510303"
+   },
+   {
+      "Name": "SOCIEDAD CONJUNTA PARA LA EMISION Y GESTION DE MEDIOS DE",
+      "Regex": "^544786"
+   },
+   {
+      "Name": "FIDELITY INFORMATION SERVICES, INC.",
+      "Regex": "^523833"
+   },
+   {
+      "Name": "CHINA MINSHENG BANKING CORP., LTD.",
+      "Regex": "^512466"
+   },
+   {
+      "Name": "SYGMA BANQUE SOCIETE ANONYME ODDZIAL W POLSCE",
+      "Regex": "^527409"
+   },
+   {
+      "Name": "ONEY S.P.A.",
+      "Regex": "^545251"
+   },
+   {
+      "Name": "RANDOLPH BROOKS F.C.U.",
+      "Regex": "^553036"
+   },
+   {
+      "Name": "U.S. BANK NATIONAL ASSOCIATION, ND",
+      "Regex": "^553938"
+   },
+   {
+      "Name": "COMPUTER SERVICES, INC.",
+      "Regex": "^551461"
+   },
+   {
+      "Name": "CITIBANK TAIWAN, LTD.",
+      "Regex": "^540505"
+   },
+   {
+      "Name": "BOC CREDIT CARD (INTERNATIONAL), LTD.",
+      "Regex": "^522867"
+   },
+   {
+      "Name": "BLOM BANK S.A.L.",
+      "Regex": "^524334"
+   },
+   {
+      "Name": "SCOTIABANK EL SALVADOR, S.A.",
+      "Regex": "^522849"
+   },
+   {
+      "Name": "ABSA BANK, LTD.",
+      "Regex": "^514757"
+   },
+   {
+      "Name": "FISERV SOLUTIONS, INC.",
+      "Regex": "^511090"
+   },
+   {
+      "Name": "MASTERCARD FRANCE S.A.S.",
+      "Regex": "^513792"
+   },
+   {
+      "Name": "KINECTA F.C.U.",
+      "Regex": "^531628"
+   },
+   {
+      "Name": "PSCU FINANCIAL SERVICES, INC.",
+      "Regex": "^551665"
+   },
+   {
+      "Name": "CITIBANK COLOMBIA, S.A.",
+      "Regex": "^543448"
+   },
+   {
+      "Name": "AS UNICREDIT BANK",
+      "Regex": "^542560"
+   },
+   {
+      "Name": "BANQUE FEDERATIVE DU CREDIT MUTUEL (BFCM)",
+      "Regex": "^513365"
+   },
+   {
+      "Name": "MASTERCARD FRANCE S.A.S.",
+      "Regex": "^513361"
+   },
+   {
+      "Name": "CHASE BANK USA, N.A.",
+      "Regex": "^546656"
+   },
+   {
+      "Name": "FISERV SOLUTIONS, INC.",
+      "Regex": "^553977"
+   },
+   {
+      "Name": "JSC TRASTA KOMERCBANKA",
+      "Regex": "^544450"
+   },
+   {
+      "Name": "CITIBANK EUROPE PUBLIC LIMITED COMPANY",
+      "Regex": "^515884"
+   },
+   {
+      "Name": "UNICREDIT BANK HUNGARY ZRT.",
+      "Regex": "^552071"
+   },
+   {
+      "Name": "MASTERCAJAS, S.A.",
+      "Regex": "^530444"
+   },
+   {
+      "Name": "FIFTH THIRD BANK",
+      "Regex": "^519481"
+   },
+   {
+      "Name": "BRD GROUPE SOCIETE GENERALE",
+      "Regex": "^547379"
+   },
+   {
+      "Name": "U.S. BANK NATIONAL ASSOCIATION, ND",
+      "Regex": "^514778"
+   },
+   {
+      "Name": "FIDELITY INFORMATION SERVICES, INC.",
+      "Regex": "^510859"
+   },
+   {
+      "Name": "CITIBANK USA, N.A.",
+      "Regex": "^558843"
+   },
+   {
+      "Name": "CITIBANK, N.A.",
+      "Regex": "^551070"
+   },
+   {
+      "Name": "CU COOPERATIVE SYSTEMS",
+      "Regex": "^511977"
+   },
+   {
+      "Name": "UNIVERSITY NATIONAL BANK",
+      "Regex": "^533285"
+   },
+   {
+      "Name": "TURKIYE GARANTI BANKASI A. S.",
+      "Regex": "^520097"
+   },
+   {
+      "Name": "BANK ZENIT",
+      "Regex": "^517667"
+   },
+   {
+      "Name": "NYCE PAYMENTS NETWORK, LLC",
+      "Regex": "^553958"
+   },
+   {
+      "Name": "BANCO G AND T CONTINENTAL, S.A.",
+      "Regex": "^526429"
+   },
+   {
+      "Name": "BARCLAYS BANK DELAWARE",
+      "Regex": "^546638"
+   },
+   {
+      "Name": "FISERV SOLUTIONS, INC.",
+      "Regex": "^515013"
+   },
+   {
+      "Name": "HANASK CARD CO., LTD.",
+      "Regex": "^524242"
+   },
+   {
+      "Name": "FBME CARD SERVICES, LTD.",
+      "Regex": "^521189"
+   },
+   {
+      "Name": "OJSC COMMERCIAL BANK",
+      "Regex": "^552708"
+   },
+   {
+      "Name": "CREDOMATIC DEL ISTMO, S.A.",
+      "Regex": "^545797"
+   },
+   {
+      "Name": "KOMERCIJALNA BANKA A.D. BEOGRAD",
+      "Regex": "^530991"
+   },
+   {
+      "Name": "BANK BPH SPOLKA AKCYJNA",
+      "Regex": "^553041"
+   },
+   {
+      "Name": "CITIBANK COLOMBIA, S.A.",
+      "Regex": "^543421"
+   },
+   {
+      "Name": "NUEVO BANCO DE ENTRE RIOS, S.A.",
+      "Regex": "^514954"
+   },
+   {
+      "Name": "DIRECTCASH BANK",
+      "Regex": "^512786"
+   },
+   {
+      "Name": "SHAZAM, INC.",
+      "Regex": "^553081"
+   },
+   {
+      "Name": "SVYAZNOY BANK (JSC)",
+      "Regex": "^520339"
+   },
+   {
+      "Name": "FISERV SOLUTIONS, INC.",
+      "Regex": "^523028"
+   },
+   {
+      "Name": "NYCE PAYMENTS NETWORK, LLC",
+      "Regex": "^517882"
+   },
+   {
+      "Name": "MERRICK BANK CORPORATION",
+      "Regex": "^542539"
+   },
+   {
+      "Name": "ICBA BANCARD, INC.",
+      "Regex": "^548033"
+   },
+   {
+      "Name": "JACK HENRY AND ASSOCIATES",
+      "Regex": "^514185"
+   },
+   {
+      "Name": "BANCO DE VENEZUELA, S.A.C.A.",
+      "Regex": "^552292"
+   },
+   {
+      "Name": "BANCA DI SASSARI S.P.A.",
+      "Regex": "^526736"
+   },
+   {
+      "Name": "HSBC BANK (RR) (LIMITED LIABILITY COMPANY)",
+      "Regex": "^548793"
+   },
+   {
+      "Name": "BANCO CITICARD, S.A.",
+      "Regex": "^547693"
+   },
+   {
+      "Name": "JPMORGAN CHASE BANK, N.A.",
+      "Regex": "^546517"
+   },
+   {
+      "Name": "CONISTER BANK, LTD.",
+      "Regex": "^541592"
+   },
+   {
+      "Name": "BANCO CITIBANK DE COSTA RICA, S.A.",
+      "Regex": "^544197"
+   },
+   {
+      "Name": "BANK OF AMERICA, N.A.",
+      "Regex": "^530225"
+   },
+   {
+      "Name": "STAR PROCESSING, INC.",
+      "Regex": "^539756"
+   },
+   {
+      "Name": "CU COOPERATIVE SYSTEMS",
+      "Regex": "^511250"
+   },
+   {
+      "Name": "AL-MAWARID BANK S.A.L.",
+      "Regex": "^544279"
+   },
+   {
+      "Name": "COMMERCIAL BANK TRANSPORTNY INVESTITIONAL BANK, LTD.",
+      "Regex": "^524314"
+   },
+   {
+      "Name": "HUNGARIAN VOLKSBANK, LTD.",
+      "Regex": "^558371"
+   },
+   {
+      "Name": "FISERV SOLUTIONS, INC.",
+      "Regex": "^545845"
+   },
+   {
+      "Name": "BANCORP BANK",
+      "Regex": "^534786"
+   },
+   {
+      "Name": "AMBANK (M) BERHAD",
+      "Regex": "^528943"
+   },
+   {
+      "Name": "FIFTH THIRD BANK",
+      "Regex": "^534892"
+   },
+   {
+      "Name": "ATTIJARIWAFA BANK",
+      "Regex": "^527421"
+   },
+   {
+      "Name": "FIDELITY INFORMATION SERVICES, INC.",
+      "Regex": "^531898"
+   },
+   {
+      "Name": "FISERV SOLUTIONS, INC.",
+      "Regex": "^519091"
+   },
+   {
+      "Name": "TELLER, A.S.",
+      "Regex": "^517025"
+   },
+   {
+      "Name": "COMPUTER SERVICES, INC.",
+      "Regex": "^514524"
+   },
+   {
+      "Name": "SANTA BARBARA BANK AND TRUST, N.A.",
+      "Regex": "^511995"
+   },
+   {
+      "Name": "FIRST DATA CONO SUR, S.R.L.",
+      "Regex": "^532309"
+   },
+   {
+      "Name": "BAC FINANCIAL CORPORATION",
+      "Regex": "^541376"
+   },
+   {
+      "Name": "FIFTH THIRD BANK",
+      "Regex": "^533060"
+   },
+   {
+      "Name": "ARMENIAN CARD CJSC",
+      "Regex": "^544456"
+   },
+   {
+      "Name": "BANCO G AND T CONTINENTAL, S.A.",
+      "Regex": "^554935"
+   },
+   {
+      "Name": "JACK HENRY AND ASSOCIATES",
+      "Regex": "^531916"
+   },
+   {
+      "Name": "HSBC BANK MIDDLE EAST",
+      "Regex": "^555013"
+   },
+   {
+      "Name": "U.S. BANK NATIONAL ASSOCIATION, ND",
+      "Regex": "^558072"
+   },
+   {
+      "Name": "CITIBANK, N.A.",
+      "Regex": "^536228"
+   },
+   {
+      "Name": "ICBA BANCARD, INC.",
+      "Regex": "^551078"
+   },
+   {
+      "Name": "DENIZBANK, A.S.",
+      "Regex": "^543944"
+   },
+   {
+      "Name": "ITAU UNIBANCO, S.A.",
+      "Regex": "^552914"
+   },
+   {
+      "Name": "EUROCARD AB",
+      "Regex": "^554489"
+   },
+   {
+      "Name": "MASTERCARD FRANCE S.A.S.",
+      "Regex": "^513567"
+   },
+   {
+      "Name": "LAKE MICHIGAN C.U.",
+      "Regex": "^514684"
+   },
+   {
+      "Name": "RBS CITIZENS, N.A.",
+      "Regex": "^544917"
+   },
+   {
+      "Name": "BANKIA, S.A.",
+      "Regex": "^539709"
+   },
+   {
+      "Name": "INTER NATIONAL BANK",
+      "Regex": "^514544"
+   },
+   {
+      "Name": "CARD SERVICES FOR CREDIT UNIONS, INC.",
+      "Regex": "^524000"
+   },
+   {
+      "Name": "TIB - THE INDEPENDENT BANKERSBANK",
+      "Regex": "^512387"
+   },
+   {
+      "Name": "FIFTH THIRD BANK",
+      "Regex": "^531879"
+   },
+   {
+      "Name": "BONNEVILLE BANK",
+      "Regex": "^539645"
+   },
+   {
+      "Name": "FIFTH THIRD BANK",
+      "Regex": "^557288"
+   },
+   {
+      "Name": "MARFIN POPULAR BANK PUBLIC CO., LTD.",
+      "Regex": "^544034"
+   },
+   {
+      "Name": "PROCARD, S.A.",
+      "Regex": "^544896"
+   },
+   {
+      "Name": "FISERV SOLUTIONS, INC.",
+      "Regex": "^510686"
+   },
+   {
+      "Name": "FIDELITY INFORMATION SERVICES, INC.",
+      "Regex": "^530698"
+   },
+   {
+      "Name": "UNITED BANK S.E.A.",
+      "Regex": "^530071"
+   },
+   {
+      "Name": "APPLIED BANK",
+      "Regex": "^541490"
+   },
+   {
+      "Name": "CARD SERVICES FOR CREDIT UNIONS, INC.",
+      "Regex": "^546115"
+   },
+   {
+      "Name": "EQUATORIAL COMMERCIAL BANK, LTD.",
+      "Regex": "^519621"
+   },
+   {
+      "Name": "FIFTH THIRD BANK",
+      "Regex": "^514389"
+   },
+   {
+      "Name": "MASTERCARD FRANCE S.A.S.",
+      "Regex": "^513847"
+   },
+   {
+      "Name": "STAR PROCESSING, INC.",
+      "Regex": "^510860"
+   },
+   {
+      "Name": "ERSTE AND STEIERMARKISCHE BANK D.D.",
+      "Regex": "^547502"
+   },
+   {
+      "Name": "BLOM BANK FRANCE, S.A.",
+      "Regex": "^547599"
+   },
+   {
+      "Name": "HSBC BANK (RR) (LIMITED LIABILITY COMPANY)",
+      "Regex": "^549619"
+   },
+   {
+      "Name": "KB KOOKMIN CARD CO., LTD.",
+      "Regex": "^554973"
+   },
+   {
+      "Name": "MKB BANK ZRT.",
+      "Regex": "^540720"
+   },
+   {
+      "Name": "BANCORP BANK",
+      "Regex": "^510282"
+   },
+   {
+      "Name": "JPMORGAN CHASE BANK, N.A.",
+      "Regex": "^558116"
+   },
+   {
+      "Name": "FISERV SOLUTIONS, INC.",
+      "Regex": "^510804"
+   },
+   {
+      "Name": "ITAU UNIBANCO, S.A.",
+      "Regex": "^527425"
+   },
+   {
+      "Name": "OJSC BANK URALSIB",
+      "Regex": "^530279"
+   },
+   {
+      "Name": "ABSA BANK, LTD.",
+      "Regex": "^528718"
+   },
+   {
+      "Name": "EUROPAY (EUROCARD) ISRAEL, LTD.",
+      "Regex": "^532610"
+   },
+   {
+      "Name": "JPMORGAN CHASE BANK, N.A.",
+      "Regex": "^537172"
+   },
+   {
+      "Name": "FAR EASTERN INTERNATIONAL BANK",
+      "Regex": "^552166"
+   },
+   {
+      "Name": "JSCB ROSBANK",
+      "Regex": "^522231"
+   },
+   {
+      "Name": "FIFTH THIRD BANK",
+      "Regex": "^514277"
+   },
+   {
+      "Name": "BANK SINOPAC",
+      "Regex": "^524189"
+   },
+   {
+      "Name": "HSBC BANK MIDDLE EAST",
+      "Regex": "^547148"
+   },
+   {
+      "Name": "CITIBANK",
+      "Regex": "^552093"
+   },
+   {
+      "Name": "ARMENIAN CARD CJSC",
+      "Regex": "^542047"
+   },
+   {
+      "Name": "RIETUMU BANKA",
+      "Regex": "^522883"
+   },
+   {
+      "Name": "CAPITAL ONE BANK (USA), N.A.",
+      "Regex": "^546630"
+   },
+   {
+      "Name": "JPMORGAN CHASE BANK, N.A.",
+      "Regex": "^546536"
+   },
+   {
+      "Name": "U.S. BANK NATIONAL ASSOCIATION, ND",
+      "Regex": "^517544"
+   },
+   {
+      "Name": "INDUSTRIAL AND COMMERCIAL BANK OF CHINA (MACAU), LTD.",
+      "Regex": "^530506"
+   },
+   {
+      "Name": "BANCO CITICARD, S.A.",
+      "Regex": "^544833"
+   },
+   {
+      "Name": "METABANK",
+      "Regex": "^519509"
+   },
+   {
+      "Name": "HSBC BANK USA, N.A.",
+      "Regex": "^540580"
+   },
+   {
+      "Name": "BANCO DE VENEZUELA, S.A.C.A.",
+      "Regex": "^558834"
+   },
+   {
+      "Name": "FIFTH THIRD BANK",
+      "Regex": "^546443"
+   },
+   {
+      "Name": "CHASE MANHATTAN BANK USA, N.A.",
+      "Regex": "^511443"
+   },
+   {
+      "Name": "FIDELITY INFORMATION SERVICES, INC.",
+      "Regex": "^532984"
+   },
+   {
+      "Name": "BANK OF AMERICA, N.A.",
+      "Regex": "^530484"
+   },
+   {
+      "Name": "US AIRWAYS DIVIDEND MILES",
+      "Regex": "^514849"
+   },
+   {
+      "Name": "FISERV SOLUTIONS, INC.",
+      "Regex": "^510556"
+   },
+   {
+      "Name": "JORDAN AHLI BANK",
+      "Regex": "^543751"
+   },
+   {
+      "Name": "FIA CARD SERVICES, N.A.",
+      "Regex": "^549099"
+   },
+   {
+      "Name": "TARJETAS BANAMEX, SA DE CV, SOFOM E.R.",
+      "Regex": "^547093"
+   },
+   {
+      "Name": "SERVIRED, SOCIEDAD ESPANOLA DE MEDIOS DE PAGO, S.A.",
+      "Regex": "^518674"
+   },
+   {
+      "Name": "DEUTSCHER SPARKASSEN UND GIROVERBAND",
+      "Regex": "^515649"
+   },
+   {
+      "Name": "BANCO DE CHILE",
+      "Regex": "^518370"
+   },
+   {
+      "Name": "RBS CITIZENS, N.A.",
+      "Regex": "^544918"
+   },
+   {
+      "Name": "FIFTH THIRD BANK",
+      "Regex": "^552193"
+   },
+   {
+      "Name": "CU COOPERATIVE SYSTEMS",
+      "Regex": "^553836"
+   },
+   {
+      "Name": "BANCO CITIBANK DE GUATEMALA, S.A.",
+      "Regex": "^520122"
+   },
+   {
+      "Name": "BANK SINOPAC",
+      "Regex": "^524196"
+   },
+   {
+      "Name": "COMMERCIAL BANK MOSKOMMERTSBANK OJSC",
+      "Regex": "^531302"
+   },
+   {
+      "Name": "CARD SERVICES FOR CREDIT UNIONS, INC.",
+      "Regex": "^549281"
+   },
+   {
+      "Name": "CSCBANK S.A.L.",
+      "Regex": "^557636"
+   },
+   {
+      "Name": "CITIBANK, N.A.",
+      "Regex": "^537156"
+   },
+   {
+      "Name": "U.S. BANK NATIONAL ASSOCIATION, ND",
+      "Regex": "^543685"
+   },
+   {
+      "Name": "HANASK CARD CO., LTD.",
+      "Regex": "^552133"
+   },
+   {
+      "Name": "FISERV SOLUTIONS, INC.",
+      "Regex": "^511007"
+   },
+   {
+      "Name": "JACK HENRY AND ASSOCIATES",
+      "Regex": "^514135"
+   },
+   {
+      "Name": "COMERICA BANK",
+      "Regex": "^515090"
+   },
+   {
+      "Name": "NEW ENGLAND BANKCARD ASSOCIATION, INC.",
+      "Regex": "^547014"
+   },
+   {
+      "Name": "PUBLIC JSC FIRST UKRAINIAN INTERNATIONAL BANK",
+      "Regex": "^525626"
+   },
+   {
+      "Name": "U.S. BANK N.A. ND",
+      "Regex": "^546396"
+   },
+   {
+      "Name": "FISERV SOLUTIONS, INC.",
+      "Regex": "^514418"
+   },
+   {
+      "Name": "FIDELITY INFORMATION SERVICES, INC.",
+      "Regex": "^528761"
+   },
+   {
+      "Name": "FIDELITY INFORMATION SERVICES, INC.",
+      "Regex": "^514792"
+   },
+   {
+      "Name": "BANCO NACIONAL DE CREDITO, C.A.",
+      "Regex": "^528004"
+   },
+   {
+      "Name": "FIDELITY INFORMATION SERVICES, INC.",
+      "Regex": "^528103"
+   },
+   {
+      "Name": "U.S. BANK NATIONAL ASSOCIATION, ND",
+      "Regex": "^510730"
+   },
+   {
+      "Name": "FIFTH THIRD BANK",
+      "Regex": "^540318"
+   },
+   {
+      "Name": "HERITAGE BUILDING SOCIETY, LTD.",
+      "Regex": "^538635"
+   },
+   {
+      "Name": "OJSC DEMIRBANK",
+      "Regex": "^541673"
+   },
+   {
+      "Name": "FIDELITY INFORMATION SERVICES, INC.",
+      "Regex": "^519648"
+   },
+   {
+      "Name": "HUNGARIAN VOLKSBANK, LTD.",
+      "Regex": "^528618"
+   },
+   {
+      "Name": "TELLER, A.S.",
+      "Regex": "^521349"
+   },
+   {
+      "Name": "ICUL SERVICE CORPORATION",
+      "Regex": "^510932"
+   },
+   {
+      "Name": "POWSZECHNA KASA OSZCZEDNOSCI BANK POLSKI SA (PKO BANK POLSKI",
+      "Regex": "^519467"
+   },
+   {
+      "Name": "CITIBANK BERHAD",
+      "Regex": "^552925"
+   },
+   {
+      "Name": "NORDNET BANK AB",
+      "Regex": "^525409"
+   },
+   {
+      "Name": "FISERV SOLUTIONS, INC.",
+      "Regex": "^511144"
+   },
+   {
+      "Name": "BANCO BRADESCO, S.A.",
+      "Regex": "^552780"
+   },
+   {
+      "Name": "CARD SERVICES FOR CREDIT UNIONS, INC.",
+      "Regex": "^558474"
+   },
+   {
+      "Name": "COMMERCIAL BANK OF DUBAI",
+      "Regex": "^524092"
+   },
+   {
+      "Name": "FIDELITY INFORMATION SERVICES, INC.",
+      "Regex": "^550741"
+   },
+   {
+      "Name": "BANCO FINANCIERA COMERCIAL HONDURENA, S.A.",
+      "Regex": "^548125"
+   },
+   {
+      "Name": "BANCO NACIONAL DE MEXICO, S.A.",
+      "Regex": "^551244"
+   },
+   {
+      "Name": "UNICREDIT S.P.A.",
+      "Regex": "^525499"
+   },
+   {
+      "Name": "JSCB BANK OF MOSCOW",
+      "Regex": "^548267"
+   },
+   {
+      "Name": "KOREA EXCHANGE BANK",
+      "Regex": "^540554"
+   },
+   {
+      "Name": "DEUTSCHE BANK S.P.A.",
+      "Regex": "^556634"
+   },
+   {
+      "Name": "BFC BANCO FONDO COMUN, C.A. BANCO UNIVERS.A.L.",
+      "Regex": "^554646"
+   },
+   {
+      "Name": "HSBC BANK USA, N.A.",
+      "Regex": "^544356"
+   },
+   {
+      "Name": "CARD SERVICES FOR CREDIT UNIONS, INC.",
+      "Regex": "^514811"
+   },
+   {
+      "Name": "FIFTH THIRD BANK",
+      "Regex": "^557248"
+   },
+   {
+      "Name": "EUROPAY FRANCE SAS",
+      "Regex": "^513381"
+   },
+   {
+      "Name": "BANK OF TRADE-UNIONS SOLIDARITY AND SOCIAL INVESTME",
+      "Regex": "^547884"
+   },
+   {
+      "Name": "FIDELITY INFORMATION SERVICES, INC.",
+      "Regex": "^534056"
+   },
+   {
+      "Name": "FIFTH THIRD BANK",
+      "Regex": "^551711"
+   },
+   {
+      "Name": "BANK ISLAM MALAYSIA BERHAD",
+      "Regex": "^529980"
+   },
+   {
+      "Name": "COMMERCIAL BANK MASTER-BANK",
+      "Regex": "^510082"
+   },
+   {
+      "Name": "BANCO DO BRASIL, S.A.",
+      "Regex": "^522978"
+   },
+   {
+      "Name": "JOINT STOCK HALYK SAVINGS BANK OF KAZAKHSTAN",
+      "Regex": "^546875"
+   },
+   {
+      "Name": "CANADIAN TIRE BANK",
+      "Regex": "^544614"
+   },
+   {
+      "Name": "FIRST COMMERCIAL BANK",
+      "Regex": "^518729"
+   },
+   {
+      "Name": "CHEBANCA! S.P.A.",
+      "Regex": "^531158"
+   },
+   {
+      "Name": "DIE SCHWEIZERISCHE POST",
+      "Regex": "^530826"
+   },
+   {
+      "Name": "MASTERCARD FRANCE S.A.S.",
+      "Regex": "^513161"
+   },
+   {
+      "Name": "FIDELITY INFORMATION SERVICES, INC.",
+      "Regex": "^528727"
+   },
+   {
+      "Name": "NEDBANK, LTD.",
+      "Regex": "^542808"
+   },
+   {
+      "Name": "BANKVEREIN WERTHER AKTIENGESELLSCHAFT",
+      "Regex": "^547867"
+   },
+   {
+      "Name": "WIRECARD BANK AG",
+      "Regex": "^516007"
+   },
+   {
+      "Name": "COPPERMARK BANK",
+      "Regex": "^547248"
+   },
+   {
+      "Name": "FNB BANK",
+      "Regex": "^539738"
+   },
+   {
+      "Name": "BRE BANK SPOLKA AKCYJNA BRE BANK, S.A.",
+      "Regex": "^552715"
+   },
+   {
+      "Name": "FIRST COVENANT BANK",
+      "Regex": "^511438"
+   },
+   {
+      "Name": "FISERV SOLUTIONS, INC.",
+      "Regex": "^527829"
+   },
+   {
+      "Name": "BANK OF AMERICA, N.A.",
+      "Regex": "^530552"
+   },
+   {
+      "Name": "MASTERCARD FRANCE S.A.S.",
+      "Regex": "^513745"
+   },
+   {
+      "Name": "HEARTLAND BANK",
+      "Regex": "^557193"
+   },
+   {
+      "Name": "STANDARD CHARTERED BANK",
+      "Regex": "^512714"
+   },
+   {
+      "Name": "JSCB PROBUSINESSBANK OJSC",
+      "Regex": "^537728"
+   },
+   {
+      "Name": "BANCA POPOLARE DI MILANO",
+      "Regex": "^533903"
+   },
+   {
+      "Name": "FIFTH THIRD BANK",
+      "Regex": "^544410"
+   },
+   {
+      "Name": "BANCO SANTANDER (BRASIL), S.A.",
+      "Regex": "^543658"
+   },
+   {
+      "Name": "DANSKE BANK A/S",
+      "Regex": "^558441"
+   },
+   {
+      "Name": "HALLMARK TRUST, LTD.",
+      "Regex": "^518942"
+   },
+   {
+      "Name": "STATE EXPORT-IMPORT BANK OF UKRAINE (UKREXIMBANK)",
+      "Regex": "^543205"
+   },
+   {
+      "Name": "MASTERCARD FRANCE S.A.S.",
+      "Regex": "^513345"
+   },
+   {
+      "Name": "FIDELITY INFORMATION SERVICES, INC.",
+      "Regex": "^534908"
+   },
+   {
+      "Name": "BANK OF NOVA SCOTIA",
+      "Regex": "^512259"
+   },
+   {
+      "Name": "MASTERCARD FRANCE S.A.S.",
+      "Regex": "^513881"
+   },
+   {
+      "Name": "VTB BANK OJSC",
+      "Regex": "^558629"
+   },
+   {
+      "Name": "BANCA NAZIONALE DEL LAVORO S.P.A. - BNL",
+      "Regex": "^543013"
+   },
+   {
+      "Name": "U.S. BANK NATIONAL ASSOCIATION, ND",
+      "Regex": "^514523"
+   },
+   {
+      "Name": "MASTERCARD FRANCE S.A.S.",
+      "Regex": "^513326"
+   },
+   {
+      "Name": "JACK HENRY AND ASSOCIATES",
+      "Regex": "^511058"
+   },
+   {
+      "Name": "COMMERCIAL BANK OF KUWAIT, S.A.K.",
+      "Regex": "^532672"
+   },
+   {
+      "Name": "FIFTH THIRD BANK",
+      "Regex": "^557271"
+   },
+   {
+      "Name": "CITIBANK",
+      "Regex": "^555035"
+   },
+   {
+      "Name": "TRADE AND DEVELOPMENT BANK OF MONGOLIA",
+      "Regex": "^556059"
+   },
+   {
+      "Name": "INDUSTRIAL AND COMMERCIAL BANK OF CHINA (MACAU), LTD.",
+      "Regex": "^544016"
+   },
+   {
+      "Name": "CORNER BANCA, S.A.",
+      "Regex": "^544694"
+   },
+   {
+      "Name": "CARD COMPLETE SERVICE BANK AG",
+      "Regex": "^544895"
+   },
+   {
+      "Name": "FIFTH THIRD BANK",
+      "Regex": "^553891"
+   },
+   {
+      "Name": "VTB24",
+      "Regex": "^545224"
+   },
+   {
+      "Name": "OVERSEA-CHINESE BANKING CORP., LTD.",
+      "Regex": "^524040"
+   },
+   {
+      "Name": "MASTERCARD FRANCE S.A.S.",
+      "Regex": "^513119"
+   },
+   {
+      "Name": "TELLER, A.S.",
+      "Regex": "^548741"
+   },
+   {
+      "Name": "U.S. BANK NATIONAL ASSOCIATION, ND",
+      "Regex": "^550888"
+   },
+   {
+      "Name": "FIA CARD SERVICES, N.A.",
+      "Regex": "^544264"
+   },
+   {
+      "Name": "STAR PROCESSING, INC.",
+      "Regex": "^514674"
+   },
+   {
+      "Name": "BANK OF STANLY",
+      "Regex": "^547915"
+   },
+   {
+      "Name": "EURO KARTENSYSTEME GMBH",
+      "Regex": "^549958"
+   },
+   {
+      "Name": "BANK AUDI- AUDI SARADAR GROUP",
+      "Regex": "^526760"
+   },
+   {
+      "Name": "COMPUTER SERVICES, INC.",
+      "Regex": "^532276"
+   },
+   {
+      "Name": "FISERV SOLUTIONS, INC.",
+      "Regex": "^551684"
+   },
+   {
+      "Name": "OJSC BANK URALSIB",
+      "Regex": "^547306"
+   },
+   {
+      "Name": "JSCB ROSBANK",
+      "Regex": "^518864"
+   },
+   {
+      "Name": "JSCB SOYUZ",
+      "Regex": "^552867"
+   },
+   {
+      "Name": "BANQUE SAUDI FRANSI",
+      "Regex": "^542747"
+   },
+   {
+      "Name": "STAR PROCESSING, INC.",
+      "Regex": "^558183"
+   },
+   {
+      "Name": "BANQUE TUNISO KOWEITIENNE",
+      "Regex": "^531813"
+   },
+   {
+      "Name": "ITAU UNIBANCO, S.A.",
+      "Regex": "^556670"
+   },
+   {
+      "Name": "NEWCASTLE BUILDING SOCIETY",
+      "Regex": "^519525"
+   },
+   {
+      "Name": "JACK HENRY AND ASSOCIATES",
+      "Regex": "^532526"
+   },
+   {
+      "Name": "FISERV SOLUTIONS, INC.",
+      "Regex": "^550818"
+   },
+   {
+      "Name": "GE CAPITAL RETAIL BANK",
+      "Regex": "^521884"
+   },
+   {
+      "Name": "FIFTH THIRD BANK",
+      "Regex": "^514451"
+   },
+   {
+      "Name": "METABANK",
+      "Regex": "^530044"
+   },
+   {
+      "Name": "JACK HENRY AND ASSOCIATES",
+      "Regex": "^510880"
+   },
+   {
+      "Name": "BANCO NACIONAL DE COSTA RICA",
+      "Regex": "^541254"
+   },
+   {
+      "Name": "ITAU UNIBANCO, S.A.",
+      "Regex": "^518309"
+   },
+   {
+      "Name": "BANCO BICENTENARIO BANCO UNIVERSAL, C.A.",
+      "Regex": "^554540"
+   },
+   {
+      "Name": "CARD SERVICES FOR CREDIT UNIONS, INC.",
+      "Regex": "^549407"
+   },
+   {
+      "Name": "GHANA COMMERCIAL BANK, LTD.",
+      "Regex": "^528481"
+   },
+   {
+      "Name": "UNITED BULGARIAN BANK PLC",
+      "Regex": "^541233"
+   },
+   {
+      "Name": "ISRAEL CREDIT CARDS, LTD.",
+      "Regex": "^552183"
+   },
+   {
+      "Name": "COMMERCIAL INTERNATIONAL BANK",
+      "Regex": "^545658"
+   },
+   {
+      "Name": "BANCO INTERACCIONES, S.A.",
+      "Regex": "^516699"
+   },
+   {
+      "Name": "PEOPLE'S UNITED BANK",
+      "Regex": "^532244"
+   },
+   {
+      "Name": "CITIBANK (HONG KONG), LTD.",
+      "Regex": "^540204"
+   },
+   {
+      "Name": "CU COOPERATIVE SYSTEMS",
+      "Regex": "^510664"
+   },
+   {
+      "Name": "INTESA SANPAOLO S.P.A.",
+      "Regex": "^533018"
+   },
+   {
+      "Name": "FIFTH THIRD BANK",
+      "Regex": "^510637"
+   },
+   {
+      "Name": "CITIBANK CANADA",
+      "Regex": "^519538"
+   },
+   {
+      "Name": "FISERV SOLUTIONS, INC.",
+      "Regex": "^553919"
+   },
+   {
+      "Name": "FIDELITY INFORMATION SERVICES, INC.",
+      "Regex": "^532550"
+   },
+   {
+      "Name": "MASTERCARD FRANCE S.A.S.",
+      "Regex": "^513181"
+   },
+   {
+      "Name": "STAR PROCESSING, INC.",
+      "Regex": "^551786"
+   },
+   {
+      "Name": "FISERV SOLUTIONS, INC.",
+      "Regex": "^533047"
+   },
+   {
+      "Name": "KUVEYT TURK KATILIM BANKASI, A.S.",
+      "Regex": "^518896"
+   },
+   {
+      "Name": "NORDEA BANK FINLAND PLC",
+      "Regex": "^518706"
+   },
+   {
+      "Name": "FISERV SOLUTIONS, INC.",
+      "Regex": "^531917"
+   },
+   {
+      "Name": "METABANK",
+      "Regex": "^539694"
+   },
+   {
+      "Name": "FIFTH THIRD BANK",
+      "Regex": "^510656"
+   },
+   {
+      "Name": "FIRST COMMERCIAL BANK",
+      "Regex": "^521885"
+   },
+   {
+      "Name": "NUEVO BANCO COMERCIAL, S.A.",
+      "Regex": "^525473"
+   },
+   {
+      "Name": "BANCO SANTANDER COLOMBIA, S.A.",
+      "Regex": "^541140"
+   },
+   {
+      "Name": "FISERV SOLUTIONS, INC.",
+      "Regex": "^546245"
+   },
+   {
+      "Name": "UNION BANK OF CALIFORNIA, N.A.",
+      "Regex": "^540986"
+   },
+   {
+      "Name": "MASTERCARD FRANCE S.A.S.",
+      "Regex": "^513269"
+   },
+   {
+      "Name": "COMMERCIAL BANK ASSISTANCE FOR PUBLIC INITIATIVES SOBINBANK",
+      "Regex": "^558501"
+   },
+   {
+      "Name": "MASTERCARD FRANCE S.A.S.",
+      "Regex": "^513258"
+   },
+   {
+      "Name": "CENTRAL COOPERATIVE BANK PLC",
+      "Regex": "^539625"
+   },
+   {
+      "Name": "FIFTH THIRD BANK",
+      "Regex": "^533048"
+   },
+   {
+      "Name": "FIRST PREMIER BANK - OBOPAY",
+      "Regex": "^515128"
+   },
+   {
+      "Name": "REGIONS BANK",
+      "Regex": "^528847"
+   },
+   {
+      "Name": "COMMERCIAL BANK BNP PARIBAS VOSTOK LIMITED LIABILITY COMP",
+      "Regex": "^527443"
+   },
+   {
+      "Name": "CITIGROUP PTY, LTD.",
+      "Regex": "^552927"
+   },
+   {
+      "Name": "SCOTIABANK PERU S.A.A.",
+      "Regex": "^516003"
+   },
+   {
+      "Name": "FIRST CITIZENS BANK AND TRUST CO",
+      "Regex": "^540678"
+   },
+   {
+      "Name": "FIFTH THIRD BANK",
+      "Regex": "^515918"
+   },
+   {
+      "Name": "CITIBANK USA, N.A.",
+      "Regex": "^558814"
+   },
+   {
+      "Name": "PULSE NETWORK LLC",
+      "Regex": "^551483"
+   },
+   {
+      "Name": "DATA CENTER INCORPORATED",
+      "Regex": "^511074"
+   },
+   {
+      "Name": "KEYBANK, N.A.",
+      "Regex": "^511481"
+   },
+   {
+      "Name": "HSBC BANK BRASIL S.A. - BANCO MULTIPLO",
+      "Regex": "^512465"
+   },
+   {
+      "Name": "WRIGHT EXPRESS FINANCIAL SERVICES CORPORATION",
+      "Regex": "^555081"
+   },
+   {
+      "Name": "BANK OF MONTREAL",
+      "Regex": "^519409"
+   },
+   {
+      "Name": "DEUTSCHE BANK SOCIEDAD ANONIMA ESPANOLA",
+      "Regex": "^541310"
+   },
+   {
+      "Name": "BANCO DE OCCIDENTE, S.A.",
+      "Regex": "^541203"
+   },
+   {
+      "Name": "BANCO DO BRASIL, S.A.",
+      "Regex": "^548572"
+   },
+   {
+      "Name": "CU COOPERATIVE SYSTEMS",
+      "Regex": "^511209"
+   },
+   {
+      "Name": "CREDOMATIC DE MEXICO S.A. DE C.V.",
+      "Regex": "^524385"
+   },
+   {
+      "Name": "ICBA BANCARD, INC.",
+      "Regex": "^525105"
+   },
+   {
+      "Name": "EUROPAY FRANCE SAS",
+      "Regex": "^513527"
+   },
+   {
+      "Name": "EUROPAY FRANCE SAS",
+      "Regex": "^513389"
+   },
+   {
+      "Name": "SWEDBANK, A.S.",
+      "Regex": "^547882"
+   },
+   {
+      "Name": "KB KOOKMIN CARD CO., LTD.",
+      "Regex": "^540935"
+   },
+   {
+      "Name": "BANK OF AMERICA, N.A.",
+      "Regex": "^530947"
+   },
+   {
+      "Name": "BANCO CITICARD, S.A.",
+      "Regex": "^544844"
+   },
+   {
+      "Name": "MASTERCARD FRANCE S.A.S.",
+      "Regex": "^513876"
+   },
+   {
+      "Name": "CITIBANK USA, N.A.",
+      "Regex": "^526270"
+   },
+   {
+      "Name": "MASTERCARD FRANCE S.A.S.",
+      "Regex": "^513395"
+   },
+   {
+      "Name": "PT. BANK CIMB NIAGA TBK.",
+      "Regex": "^546318"
+   },
+   {
+      "Name": "BANK OF MONTREAL",
+      "Regex": "^519342"
+   },
+   {
+      "Name": "SHAZAM, INC.",
+      "Regex": "^554341"
+   },
+   {
+      "Name": "FISERV SOLUTIONS, INC.",
+      "Regex": "^551060"
+   },
+   {
+      "Name": "COMPUTER SERVICES, INC.",
+      "Regex": "^514990"
+   },
+   {
+      "Name": "BANK OF AMERICA, N.A.",
+      "Regex": "^512987"
+   },
+   {
+      "Name": "FIFTH THIRD BANK",
+      "Regex": "^540365"
+   },
+   {
+      "Name": "U.S. BANK NATIONAL ASSOCIATION, ND",
+      "Regex": "^556862"
+   },
+   {
+      "Name": "MDM BANK OJSC",
+      "Regex": "^518788"
+   },
+   {
+      "Name": "MDM BANK OJSC",
+      "Regex": "^547243"
+   },
+   {
+      "Name": "CHINA UNIONPAY CO., LTD.",
+      "Regex": "^512431"
+   },
+   {
+      "Name": "PSCU FINANCIAL SERVICES, INC.",
+      "Regex": "^515262"
+   },
+   {
+      "Name": "STANDARD CHARTERED BANK MALAYSIA BERHAD",
+      "Regex": "^540478"
+   },
+   {
+      "Name": "DEUTSCHER SPARKASSEN UND GIROVERBAND",
+      "Regex": "^545106"
+   },
+   {
+      "Name": "NORDEA BANK FINLAND PLC EESTI FILIAAL",
+      "Regex": "^515607"
+   },
+   {
+      "Name": "SOCIEDAD CONJUNTA PARA LA EMISION Y GESTION DE MEDIOS DE",
+      "Regex": "^544771"
+   },
+   {
+      "Name": "BANK ISLAM MALAYSIA BERHAD",
+      "Regex": "^512432"
+   },
+   {
+      "Name": "ENTERCARD NORGE, A.S.",
+      "Regex": "^544084"
+   },
+   {
+      "Name": "U.S. BANK NATIONAL ASSOCIATION, ND",
+      "Regex": "^542846"
+   },
+   {
+      "Name": "U.S. BANK NATIONAL ASSOCIATION, ND",
+      "Regex": "^510592"
+   },
+   {
+      "Name": "MASTERCARD FRANCE S.A.S.",
+      "Regex": "^513848"
+   },
+   {
+      "Name": "BANK OF AMERICA, N.A.",
+      "Regex": "^530415"
+   },
+   {
+      "Name": "BANCO DEL TESORO C.A. BANCO UNIVERS.A.L.",
+      "Regex": "^553438"
+   },
+   {
+      "Name": "FBME BANK, LTD.",
+      "Regex": "^526396"
+   },
+   {
+      "Name": "NYCE PAYMENTS NETWORK, LLC",
+      "Regex": "^550810"
+   },
+   {
+      "Name": "FIFTH THIRD BANK",
+      "Regex": "^511044"
+   },
+   {
+      "Name": "MASTERCARD FRANCE S.A.S.",
+      "Regex": "^513654"
+   },
+   {
+      "Name": "JACK HENRY AND ASSOCIATES",
+      "Regex": "^514307"
+   },
+   {
+      "Name": "BANCO ATLANTIDA, S.A.",
+      "Regex": "^553475"
+   },
+   {
+      "Name": "EURO KARTENSYSTEME GMBH",
+      "Regex": "^556603"
+   },
+   {
+      "Name": "EUROPAY FRANCE SAS",
+      "Regex": "^513547"
+   },
+   {
+      "Name": "JACK HENRY AND ASSOCIATES",
+      "Regex": "^514653"
+   },
+   {
+      "Name": "BANK BPH SPOLKA AKCYJNA",
+      "Regex": "^531682"
+   },
+   {
+      "Name": "BANCO POPULAR NORTH AMERICA",
+      "Regex": "^514101"
+   },
+   {
+      "Name": "SILVERTON BANK, N.A.",
+      "Regex": "^523805"
+   },
+   {
+      "Name": "U.S. BANK NATIONAL ASSOCIATION, ND",
+      "Regex": "^519313"
+   },
+   {
+      "Name": "U.S. BANK NATIONAL ASSOCIATION, ND",
+      "Regex": "^514303"
+   },
+   {
+      "Name": "FIDELITY INFORMATION SERVICES, INC.",
+      "Regex": "^514233"
+   },
+   {
+      "Name": "DATA CENTER INCORPORATED",
+      "Regex": "^553838"
+   },
+   {
+      "Name": "FIFTH THIRD BANK",
+      "Regex": "^515054"
+   },
+   {
+      "Name": "MASTERCARD FRANCE S.A.S.",
+      "Regex": "^513784"
+   },
+   {
+      "Name": "NOVA LJUBLJANSKA BANKA D.D., LJUBLJANA",
+      "Regex": "^558661"
+   },
+   {
+      "Name": "PUBLIC BANK BERHAD",
+      "Regex": "^549797"
+   },
+   {
+      "Name": "SHAZAM, INC.",
+      "Regex": "^515340"
+   },
+   {
+      "Name": "BC CARD CO., LTD.",
+      "Regex": "^553211"
+   },
+   {
+      "Name": "COMMERCIAL INTERNATIONAL BANK (EGYPT) S.A.E.",
+      "Regex": "^552566"
+   },
+   {
+      "Name": "FIRST INTERSTATE BANK",
+      "Regex": "^521849"
+   },
+   {
+      "Name": "LUSO INTERNATIONAL BANKING, LTD.",
+      "Regex": "^541422"
+   },
+   {
+      "Name": "BANCO GENERAL, S.A.",
+      "Regex": "^543610"
+   },
+   {
+      "Name": "FISERV SOLUTIONS, INC.",
+      "Regex": "^551551"
+   },
+   {
+      "Name": "FISERV SOLUTIONS, INC.",
+      "Regex": "^540399"
+   },
+   {
+      "Name": "COMPUTER SERVICES, INC.",
+      "Regex": "^511804"
+   },
+   {
+      "Name": "MASTERCARD FRANCE S.A.S.",
+      "Regex": "^513221"
+   },
+   {
+      "Name": "U.S. BANK NATIONAL ASSOCIATION, ND",
+      "Regex": "^558025"
+   },
+   {
+      "Name": "JPMORGAN CHASE BANK, N.A.",
+      "Regex": "^537169"
+   },
+   {
+      "Name": "FINECOBANK S.P.A.",
+      "Regex": "^521181"
+   },
+   {
+      "Name": "BANCORP BANK",
+      "Regex": "^511032"
+   },
+   {
+      "Name": "PT. BANK NEGARA INDONESIA (PERSERO) TBK.",
+      "Regex": "^542640"
+   },
+   {
+      "Name": "FIFTH THIRD BANK",
+      "Regex": "^551220"
+   },
+   {
+      "Name": "ABSOLUT BANK",
+      "Regex": "^541997"
+   },
+   {
+      "Name": "JSCB MOSCOW INDUSTRIAL BANK",
+      "Regex": "^520113"
+   },
+   {
+      "Name": "BANKMED S.A.L.",
+      "Regex": "^547850"
+   },
+   {
+      "Name": "BANK OF NEW YORK MELLON",
+      "Regex": "^511256"
+   },
+   {
+      "Name": "FIFTH THIRD BANK",
+      "Regex": "^532275"
+   },
+   {
+      "Name": "KB KOOKMIN CARD CO., LTD.",
+      "Regex": "^540926"
+   },
+   {
+      "Name": "PODGORICKA BANKA SOCIETE GENERALE GROUP",
+      "Regex": "^542194"
+   },
+   {
+      "Name": "HERITAGE INTERNATIONAL BANK AND TRUST, LTD.",
+      "Regex": "^511683"
+   },
+   {
+      "Name": "BANCO DE CHILE",
+      "Regex": "^540476"
+   },
+   {
+      "Name": "BANK DNB NORD POLSKA, S.A.",
+      "Regex": "^557533"
+   },
+   {
+      "Name": "SANTANDER CONSUMER BANK AG",
+      "Regex": "^546812"
+   },
+   {
+      "Name": "PSCU FINANCIAL SERVICES, INC.",
+      "Regex": "^544116"
+   },
+   {
+      "Name": "FIFTH THIRD BANK",
+      "Regex": "^521731"
+   },
+   {
+      "Name": "EUROPAY FRANCE SAS",
+      "Regex": "^513106"
+   },
+   {
+      "Name": "JACK HENRY AND ASSOCIATES",
+      "Regex": "^550861"
+   },
+   {
+      "Name": "FIDELITY INFORMATION SERVICES, INC.",
+      "Regex": "^511817"
+   },
+   {
+      "Name": "ISTITUTO CENTRALE DELLE BANCHE DI CREDITO COOPERATIVO",
+      "Regex": "^510171"
+   },
+   {
+      "Name": "BANK OF NOVA SCOTIA JAMAICA, LTD.",
+      "Regex": "^520176"
+   },
+   {
+      "Name": "MASTERCARD FRANCE S.A.S.",
+      "Regex": "^513905"
+   },
+   {
+      "Name": "CENTRAL TRUST BANK",
+      "Regex": "^544185"
+   },
+   {
+      "Name": "EDUCATORS C.U.",
+      "Regex": "^543936"
+   },
+   {
+      "Name": "FIDELITY INFORMATION SERVICES, INC.",
+      "Regex": "^534080"
+   },
+   {
+      "Name": "CITIBANK TAIWAN, LTD.",
+      "Regex": "^540805"
+   },
+   {
+      "Name": "BANCO CITIBANK DE HONDURAS, S.A.",
+      "Regex": "^518400"
+   },
+   {
+      "Name": "BANCO CITIBANK, S.A.",
+      "Regex": "^552297"
+   },
+   {
+      "Name": "FIRST COMMUNITY C.U.",
+      "Regex": "^545316"
+   },
+   {
+      "Name": "SCOTIABANK TRINIDAD AND TOBAGO, LTD.",
+      "Regex": "^518395"
+   },
+   {
+      "Name": "STAR PROCESSING, INC.",
+      "Regex": "^514536"
+   },
+   {
+      "Name": "FIDELITY INFORMATION SERVICES, INC.",
+      "Regex": "^516408"
+   },
+   {
+      "Name": "STAR PROCESSING, INC.",
+      "Regex": "^546123"
+   },
+   {
+      "Name": "CU COOPERATIVE SYSTEMS",
+      "Regex": "^530744"
+   },
+   {
+      "Name": "CITIBANK",
+      "Regex": "^553410"
+   },
+   {
+      "Name": "BANCO DE RESERVAS DE LA REPUBLICA DOMINICANA",
+      "Regex": "^541551"
+   },
+   {
+      "Name": "BANK OF MONTREAL",
+      "Regex": "^528031"
+   },
+   {
+      "Name": "FIRST ARKANSAS BANK AND TRUST",
+      "Regex": "^545509"
+   },
+   {
+      "Name": "FISERV SOLUTIONS, INC.",
+      "Regex": "^546179"
+   },
+   {
+      "Name": "PUBLIC JSC UNICREDIT BANK",
+      "Regex": "^545199"
+   },
+   {
+      "Name": "FIFTH THIRD BANK",
+      "Regex": "^514984"
+   },
+   {
+      "Name": "OJSC OTP BANK",
+      "Regex": "^526839"
+   },
+   {
+      "Name": "BANQUE MISR",
+      "Regex": "^510498"
+   },
+   {
+      "Name": "PSCU FINANCIAL SERVICES, INC.",
+      "Regex": "^511194"
+   },
+   {
+      "Name": "NORDEA BANK NORGE ASA",
+      "Regex": "^552519"
+   },
+   {
+      "Name": "100% BANCO, BANCO COMERCIAL, C.A.",
+      "Regex": "^525712"
+   },
+   {
+      "Name": "RBS CITIZENS, N.A.",
+      "Regex": "^527470"
+   },
+   {
+      "Name": "FISERV SOLUTIONS, INC.",
+      "Regex": "^510635"
+   },
+   {
+      "Name": "MASTERCARD FRANCE S.A.S.",
+      "Regex": "^513301"
+   },
+   {
+      "Name": "EURO KARTENSYSTEME GMBH",
+      "Regex": "^552751"
+   },
+   {
+      "Name": "JACK HENRY AND ASSOCIATES",
+      "Regex": "^554335"
+   },
+   {
+      "Name": "NYCE PAYMENTS NETWORK, LLC",
+      "Regex": "^557232"
+   },
+   {
+      "Name": "FISERV SOLUTIONS, INC.",
+      "Regex": "^510568"
+   },
+   {
+      "Name": "UNICRE - INSTITUICAO FINANCEIRA DE CREDITO, S.A.",
+      "Regex": "^536468"
+   },
+   {
+      "Name": "INDUSTRIAL AND COMMERCIAL BANK OF CHINA ASIA), LTD.",
+      "Regex": "^541801"
+   },
+   {
+      "Name": "MASTERCARD FRANCE S.A.S.",
+      "Regex": "^513405"
+   },
+   {
+      "Name": "FISERV SOLUTIONS, INC.",
+      "Regex": "^510578"
+   },
+   {
+      "Name": "VALITOR HF.",
+      "Regex": "^533000"
+   },
+   {
+      "Name": "FISERV SOLUTIONS, INC.",
+      "Regex": "^545563"
+   },
+   {
+      "Name": "BOC CREDIT CARD (INTERNATIONAL), LTD.",
+      "Regex": "^540701"
+   },
+   {
+      "Name": "STANDARD BANK OF SOUTH AFRICA, LTD.",
+      "Regex": "^517894"
+   },
+   {
+      "Name": "CESKOSLOVENSKA OBCHODNI BANKA, A.S.",
+      "Regex": "^554354"
+   },
+   {
+      "Name": "BANK OF MONTREAL",
+      "Regex": "^519433"
+   },
+   {
+      "Name": "U.S. BANK NATIONAL ASSOCIATION, ND",
+      "Regex": "^551880"
+   },
+   {
+      "Name": "JACK HENRY AND ASSOCIATES",
+      "Regex": "^539819"
+   },
+   {
+      "Name": "U.S. BANK NATIONAL ASSOCIATION, ND",
+      "Regex": "^539817"
+   },
+   {
+      "Name": "CITIBANK",
+      "Regex": "^540432"
+   },
+   {
+      "Name": "CHASE BANK USA, N.A.",
+      "Regex": "^546647"
+   }
+]

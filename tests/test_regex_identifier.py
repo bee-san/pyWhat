@@ -300,14 +300,16 @@ def test_visa_spaces():
 
 def test_master_Card():
     r = regex_identifier.RegexIdentifier()
-    res = r.check(["5500000000000004"])
+    res = r.check(["5409010000000004"])
     _assert_match_first_item("MasterCard Number", res)
+    assert "UNION NATIONAL BANK" in res[0]["Regex Pattern"]["Description"]
 
 
 def test_master_card_spaces():
     r = regex_identifier.RegexIdentifier()
-    res = r.check(["5555 5555 5555 4444"])
+    res = r.check(["5409 0100 0000 0004"])
     _assert_match_first_item("MasterCard Number", res)
+    assert "UNION NATIONAL BANK" in res[0]["Regex Pattern"]["Description"]
 
 
 def test_american_express():
