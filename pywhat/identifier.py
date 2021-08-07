@@ -39,7 +39,7 @@ class Identifier:
         key: Optional[Callable] = None,
         reverse: Optional[bool] = None,
         boundaryless: Optional[Filter] = None,
-        search_filenames=False,
+        include_filenames=False,
     ) -> dict:
         if dist is None:
             dist = self.distribution
@@ -70,8 +70,7 @@ class Identifier:
                 magic_numbers = self._file_sig.open_binary_scan_magic_nums(string)
                 contents = self._file_sig.open_file_loc(string)
 
-                if search_filenames:
-                    # if -fn command option, add filename to the search
+                if include_filenames:
                     contents.append(os.path.basename(string))
 
                 regex = self._regex_id.check(contents, dist)

@@ -90,11 +90,10 @@ def create_filter(rarity, include, exclude):
 )
 @click.option("--json", is_flag=True, help="Return results in json format.")
 @click.option(
-    "-fn",
-    "--search-filenames",
+    "-if",
+    "--include-filenames",
     is_flag=True,
-    help="Alongside of file contents also search filenames for any possible matches.",
-    default=False,
+    help="Search filenames for possible matches."
 )
 def main(**kwargs):
     """
@@ -211,7 +210,7 @@ def main(**kwargs):
         key,
         kwargs["reverse"],
         boundaryless,
-        kwargs["search_filenames"],
+        kwargs["include_filenames"],
     )
 
     p = printer.Printing()
@@ -234,7 +233,7 @@ class What_Object:
         key,
         reverse: bool,
         boundaryless: Filter,
-        search_filenames: bool,
+        include_filenames: bool,
     ) -> dict:
         """
         Returns a Python dictionary of everything that has been identified
@@ -245,7 +244,7 @@ class What_Object:
             key=key,
             reverse=reverse,
             boundaryless=boundaryless,
-            search_filenames=search_filenames
+            include_filenames=include_filenames
         )
 
 
