@@ -117,7 +117,7 @@
    },
    {
       "Name": "Bitcoin Cash (BCH) Wallet Address",
-      "Regex": "(?i)^(bitcoincash:[a-z0-9]{42})$",
+      "Regex": "(?i)^(((bitcoincash|bchreg|bchtest):)?(q|p)[a-z0-9]{41})$",
       "plural_name": false,
       "Description": null,
       "Rarity": 1,
@@ -255,7 +255,7 @@
    },
    {
       "Name": "Bitcoin (₿) Wallet Address",
-      "Regex": "^([13][a-km-zA-HJ-NP-Z1-9]{25,34})$",
+      "Regex": "^(([1][a-km-zA-HJ-NP-Z1-9]{25,35})|([3][a-km-zA-HJ-NP-Z1-9]{33})|(bc|tb)1(?!.*[1bio])[a-z0-9]{39,59})$",
       "plural_name": false,
       "Description": null,
       "Rarity": 0.7,
@@ -378,7 +378,7 @@
    },
    {
       "Name": "Monero (XMR) Wallet Address",
-      "Regex": "(?i)^(4(?:[0-9]|[A-B])[a-z0-9]{93})$",
+      "Regex": "(?i)^([48][0-9AB][1-9A-HJ-NP-Za-km-z]{93})$",
       "plural_name": false,
       "Description": null,
       "Rarity": 0.3,
