@@ -252,9 +252,21 @@ def test_ethereum():
     _assert_match_first_item("Ethereum (ETH) Wallet Address", res)
 
 
-def test_bitcoin():
+def test_bitcoin_p2pkh():
     r = regex_identifier.RegexIdentifier()
     res = r.check(["1KFHE7w8BhaENAswwryaoccDb6qcT6DbYY"])
+    _assert_match_first_item("Bitcoin (₿) Wallet Address", res)
+
+
+def test_bitcoin_p2sh():
+    r = regex_identifier.RegexIdentifier()
+    res = r.check(["3EmUH8Uh9EXE7axgyAeBsCc2vdUdKkDqWK"])
+    _assert_match_first_item("Bitcoin (₿) Wallet Address", res)
+
+
+def test_bitcoin_bech32():
+    r = regex_identifier.RegexIdentifier()
+    res = r.check(["bc1qj89046x7zv6pm4n00qgqp505nvljnfp6xfznyw"])
     _assert_match_first_item("Bitcoin (₿) Wallet Address", res)
 
 
