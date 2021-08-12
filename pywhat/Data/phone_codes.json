@@ -1,970 +1,970 @@
 [
    {
       "Name": "Afghanistan",
-      "Regex": "^\\+93"
+      "Regex": "+93"
    },
    {
       "Name": "Aland Islands",
-      "Regex": "^\\+358"
+      "Regex": "+358"
    },
    {
       "Name": "Albania",
-      "Regex": "^\\+355"
+      "Regex": "+355"
    },
    {
       "Name": "Algeria",
-      "Regex": "^\\+213"
+      "Regex": "+213"
    },
    {
       "Name": "AmericanSamoa",
-      "Regex": "^\\+1 684"
+      "Regex": "+1 684"
    },
    {
       "Name": "Andorra",
-      "Regex": "^\\+376"
+      "Regex": "+376"
    },
    {
       "Name": "Angola",
-      "Regex": "^\\+244"
+      "Regex": "+244"
    },
    {
       "Name": "Anguilla",
-      "Regex": "^\\+1 264"
+      "Regex": "+1 264"
    },
    {
       "Name": "Antarctica",
-      "Regex": "^\\+672"
+      "Regex": "+672"
    },
    {
       "Name": "Antigua and Barbuda",
-      "Regex": "^\\+1268"
+      "Regex": "+1268"
    },
    {
       "Name": "Argentina",
-      "Regex": "^\\+54"
+      "Regex": "+54"
    },
    {
       "Name": "Armenia",
-      "Regex": "^\\+374"
+      "Regex": "+374"
    },
    {
       "Name": "Aruba",
-      "Regex": "^\\+297"
+      "Regex": "+297"
    },
    {
       "Name": "Australia",
-      "Regex": "^\\+61"
+      "Regex": "+61"
    },
    {
       "Name": "Austria",
-      "Regex": "^\\+43"
+      "Regex": "+43"
    },
    {
       "Name": "Azerbaijan",
-      "Regex": "^\\+994"
+      "Regex": "+994"
    },
    {
       "Name": "Bahamas",
-      "Regex": "^\\+1 242"
+      "Regex": "+1 242"
    },
    {
       "Name": "Bahrain",
-      "Regex": "^\\+973"
+      "Regex": "+973"
    },
    {
       "Name": "Bangladesh",
-      "Regex": "^\\+880"
+      "Regex": "+880"
    },
    {
       "Name": "Barbados",
-      "Regex": "^\\+1 246"
+      "Regex": "+1 246"
    },
    {
       "Name": "Belarus",
-      "Regex": "^\\+375"
+      "Regex": "+375"
    },
    {
       "Name": "Belgium",
-      "Regex": "^\\+32"
+      "Regex": "+32"
    },
    {
       "Name": "Belize",
-      "Regex": "^\\+501"
+      "Regex": "+501"
    },
    {
       "Name": "Benin",
-      "Regex": "^\\+229"
+      "Regex": "+229"
    },
    {
       "Name": "Bermuda",
-      "Regex": "^\\+1 441"
+      "Regex": "+1 441"
    },
    {
       "Name": "Bhutan",
-      "Regex": "^\\+975"
+      "Regex": "+975"
    },
    {
       "Name": "Bolivia, Plurinational State of",
-      "Regex": "^\\+591"
+      "Regex": "+591"
    },
    {
       "Name": "Bosnia and Herzegovina",
-      "Regex": "^\\+387"
+      "Regex": "+387"
    },
    {
       "Name": "Botswana",
-      "Regex": "^\\+267"
+      "Regex": "+267"
    },
    {
       "Name": "Brazil",
-      "Regex": "^\\+55"
+      "Regex": "+55"
    },
    {
       "Name": "British Indian Ocean Territory",
-      "Regex": "^\\+246"
+      "Regex": "+246"
    },
    {
       "Name": "Brunei Darussalam",
-      "Regex": "^\\+673"
+      "Regex": "+673"
    },
    {
       "Name": "Bulgaria",
-      "Regex": "^\\+359"
+      "Regex": "+359"
    },
    {
       "Name": "Burkina Faso",
-      "Regex": "^\\+226"
+      "Regex": "+226"
    },
    {
       "Name": "Burundi",
-      "Regex": "^\\+257"
+      "Regex": "+257"
    },
    {
       "Name": "Cambodia",
-      "Regex": "^\\+855"
+      "Regex": "+855"
    },
    {
       "Name": "Cameroon",
-      "Regex": "^\\+237"
+      "Regex": "+237"
    },
    {
       "Name": "Canada",
-      "Regex": "^\\+1"
+      "Regex": "+1"
    },
    {
       "Name": "Cape Verde",
-      "Regex": "^\\+238"
+      "Regex": "+238"
    },
    {
       "Name": "Cayman Islands",
-      "Regex": "^\\+ 345"
+      "Regex": "+ 345"
    },
    {
       "Name": "Central African Republic",
-      "Regex": "^\\+236"
+      "Regex": "+236"
    },
    {
       "Name": "Chad",
-      "Regex": "^\\+235"
+      "Regex": "+235"
    },
    {
       "Name": "Chile",
-      "Regex": "^\\+56"
+      "Regex": "+56"
    },
    {
       "Name": "China",
-      "Regex": "^\\+86"
+      "Regex": "+86"
    },
    {
       "Name": "Christmas Island",
-      "Regex": "^\\+61"
+      "Regex": "+61"
    },
    {
       "Name": "Cocos (Keeling) Islands",
-      "Regex": "^\\+61"
+      "Regex": "+61"
    },
    {
       "Name": "Colombia",
-      "Regex": "^\\+57"
+      "Regex": "+57"
    },
    {
       "Name": "Comoros",
-      "Regex": "^\\+269"
+      "Regex": "+269"
    },
    {
       "Name": "Congo",
-      "Regex": "^\\+242"
+      "Regex": "+242"
    },
    {
       "Name": "Congo, The Democratic Republic of the Congo",
-      "Regex": "^\\+243"
+      "Regex": "+243"
    },
    {
       "Name": "Cook Islands",
-      "Regex": "^\\+682"
+      "Regex": "+682"
    },
    {
       "Name": "Costa Rica",
-      "Regex": "^\\+506"
+      "Regex": "+506"
    },
    {
       "Name": "Cote d'Ivoire",
-      "Regex": "^\\+225"
+      "Regex": "+225"
    },
    {
       "Name": "Croatia",
-      "Regex": "^\\+385"
+      "Regex": "+385"
    },
    {
       "Name": "Cuba",
-      "Regex": "^\\+53"
+      "Regex": "+53"
    },
    {
       "Name": "Cyprus",
-      "Regex": "^\\+357"
+      "Regex": "+357"
    },
    {
       "Name": "Czech Republic",
-      "Regex": "^\\+420"
+      "Regex": "+420"
    },
    {
       "Name": "Denmark",
-      "Regex": "^\\+45"
+      "Regex": "+45"
    },
    {
       "Name": "Djibouti",
-      "Regex": "^\\+253"
+      "Regex": "+253"
    },
    {
       "Name": "Dominica",
-      "Regex": "^\\+1 767"
+      "Regex": "+1 767"
    },
    {
       "Name": "Dominican Republic",
-      "Regex": "^\\+1 849"
+      "Regex": "+1 849"
    },
    {
       "Name": "Ecuador",
-      "Regex": "^\\+593"
+      "Regex": "+593"
    },
    {
       "Name": "Egypt",
-      "Regex": "^\\+20"
+      "Regex": "+20"
    },
    {
       "Name": "El Salvador",
-      "Regex": "^\\+503"
+      "Regex": "+503"
    },
    {
       "Name": "Equatorial Guinea",
-      "Regex": "^\\+240"
+      "Regex": "+240"
    },
    {
       "Name": "Eritrea",
-      "Regex": "^\\+291"
+      "Regex": "+291"
    },
    {
       "Name": "Estonia",
-      "Regex": "^\\+372"
+      "Regex": "+372"
    },
    {
       "Name": "Ethiopia",
-      "Regex": "^\\+251"
+      "Regex": "+251"
    },
    {
       "Name": "Falkland Islands (Malvinas)",
-      "Regex": "^\\+500"
+      "Regex": "+500"
    },
    {
       "Name": "Faroe Islands",
-      "Regex": "^\\+298"
+      "Regex": "+298"
    },
    {
       "Name": "Fiji",
-      "Regex": "^\\+679"
+      "Regex": "+679"
    },
    {
       "Name": "Finland",
-      "Regex": "^\\+358"
+      "Regex": "+358"
    },
    {
       "Name": "France",
-      "Regex": "^\\+33"
+      "Regex": "+33"
    },
    {
       "Name": "French Guiana",
-      "Regex": "^\\+594"
+      "Regex": "+594"
    },
    {
       "Name": "French Polynesia",
-      "Regex": "^\\+689"
+      "Regex": "+689"
    },
    {
       "Name": "Gabon",
-      "Regex": "^\\+241"
+      "Regex": "+241"
    },
    {
       "Name": "Gambia",
-      "Regex": "^\\+220"
+      "Regex": "+220"
    },
    {
       "Name": "Georgia",
-      "Regex": "^\\+995"
+      "Regex": "+995"
    },
    {
       "Name": "Germany",
-      "Regex": "^\\+49"
+      "Regex": "+49"
    },
    {
       "Name": "Ghana",
-      "Regex": "^\\+233"
+      "Regex": "+233"
    },
    {
       "Name": "Gibraltar",
-      "Regex": "^\\+350"
+      "Regex": "+350"
    },
    {
       "Name": "Greece",
-      "Regex": "^\\+30"
+      "Regex": "+30"
    },
    {
       "Name": "Greenland",
-      "Regex": "^\\+299"
+      "Regex": "+299"
    },
    {
       "Name": "Grenada",
-      "Regex": "^\\+1 473"
+      "Regex": "+1 473"
    },
    {
       "Name": "Guadeloupe",
-      "Regex": "^\\+590"
+      "Regex": "+590"
    },
    {
       "Name": "Guam",
-      "Regex": "^\\+1 671"
+      "Regex": "+1 671"
    },
    {
       "Name": "Guatemala",
-      "Regex": "^\\+502"
+      "Regex": "+502"
    },
    {
       "Name": "Guernsey",
-      "Regex": "^\\+44"
+      "Regex": "+44"
    },
    {
       "Name": "Guinea",
-      "Regex": "^\\+224"
+      "Regex": "+224"
    },
    {
       "Name": "Guinea-Bissau",
-      "Regex": "^\\+245"
+      "Regex": "+245"
    },
    {
       "Name": "Guyana",
-      "Regex": "^\\+595"
+      "Regex": "+595"
    },
    {
       "Name": "Haiti",
-      "Regex": "^\\+509"
+      "Regex": "+509"
    },
    {
       "Name": "Holy See (Vatican City State)",
-      "Regex": "^\\+379"
+      "Regex": "+379"
    },
    {
       "Name": "Honduras",
-      "Regex": "^\\+504"
+      "Regex": "+504"
    },
    {
       "Name": "Hong Kong",
-      "Regex": "^\\+852"
+      "Regex": "+852"
    },
    {
       "Name": "Hungary",
-      "Regex": "^\\+36"
+      "Regex": "+36"
    },
    {
       "Name": "Iceland",
-      "Regex": "^\\+354"
+      "Regex": "+354"
    },
    {
       "Name": "India",
-      "Regex": "^\\+91"
+      "Regex": "+91"
    },
    {
       "Name": "Indonesia",
-      "Regex": "^\\+62"
+      "Regex": "+62"
    },
    {
       "Name": "Iran, Islamic Republic of Persian Gulf",
-      "Regex": "^\\+98"
+      "Regex": "+98"
    },
    {
       "Name": "Iraq",
-      "Regex": "^\\+964"
+      "Regex": "+964"
    },
    {
       "Name": "Ireland",
-      "Regex": "^\\+353"
+      "Regex": "+353"
    },
    {
       "Name": "Isle of Man",
-      "Regex": "^\\+44"
+      "Regex": "+44"
    },
    {
       "Name": "Israel",
-      "Regex": "^\\+972"
+      "Regex": "+972"
    },
    {
       "Name": "Italy",
-      "Regex": "^\\+39"
+      "Regex": "+39"
    },
    {
       "Name": "Jamaica",
-      "Regex": "^\\+1 876"
+      "Regex": "+1 876"
    },
    {
       "Name": "Japan",
-      "Regex": "^\\+81"
+      "Regex": "+81"
    },
    {
       "Name": "Jersey",
-      "Regex": "^\\+44"
+      "Regex": "+44"
    },
    {
       "Name": "Jordan",
-      "Regex": "^\\+962"
+      "Regex": "+962"
    },
    {
       "Name": "Kazakhstan",
-      "Regex": "^\\+7 7"
+      "Regex": "+7 7"
    },
    {
       "Name": "Kenya",
-      "Regex": "^\\+254"
+      "Regex": "+254"
    },
    {
       "Name": "Kiribati",
-      "Regex": "^\\+686"
+      "Regex": "+686"
    },
    {
       "Name": "Korea, Democratic People's Republic of Korea",
-      "Regex": "^\\+850"
+      "Regex": "+850"
    },
    {
       "Name": "Korea, Republic of South Korea",
-      "Regex": "^\\+82"
+      "Regex": "+82"
    },
    {
       "Name": "Kosovo",
-      "Regex": "^\\+383"
+      "Regex": "+383"
    },
    {
       "Name": "Kuwait",
-      "Regex": "^\\+965"
+      "Regex": "+965"
    },
    {
       "Name": "Kyrgyzstan",
-      "Regex": "^\\+996"
+      "Regex": "+996"
    },
    {
       "Name": "Laos",
-      "Regex": "^\\+856"
+      "Regex": "+856"
    },
    {
       "Name": "Latvia",
-      "Regex": "^\\+371"
+      "Regex": "+371"
    },
    {
       "Name": "Lebanon",
-      "Regex": "^\\+961"
+      "Regex": "+961"
    },
    {
       "Name": "Lesotho",
-      "Regex": "^\\+266"
+      "Regex": "+266"
    },
    {
       "Name": "Liberia",
-      "Regex": "^\\+231"
+      "Regex": "+231"
    },
    {
       "Name": "Libyan Arab Jamahiriya",
-      "Regex": "^\\+218"
+      "Regex": "+218"
    },
    {
       "Name": "Liechtenstein",
-      "Regex": "^\\+423"
+      "Regex": "+423"
    },
    {
       "Name": "Lithuania",
-      "Regex": "^\\+370"
+      "Regex": "+370"
    },
    {
       "Name": "Luxembourg",
-      "Regex": "^\\+352"
+      "Regex": "+352"
    },
    {
       "Name": "Macao",
-      "Regex": "^\\+853"
+      "Regex": "+853"
    },
    {
       "Name": "Macedonia",
-      "Regex": "^\\+389"
+      "Regex": "+389"
    },
    {
       "Name": "Madagascar",
-      "Regex": "^\\+261"
+      "Regex": "+261"
    },
    {
       "Name": "Malawi",
-      "Regex": "^\\+265"
+      "Regex": "+265"
    },
    {
       "Name": "Malaysia",
-      "Regex": "^\\+60"
+      "Regex": "+60"
    },
    {
       "Name": "Maldives",
-      "Regex": "^\\+960"
+      "Regex": "+960"
    },
    {
       "Name": "Mali",
-      "Regex": "^\\+223"
+      "Regex": "+223"
    },
    {
       "Name": "Malta",
-      "Regex": "^\\+356"
+      "Regex": "+356"
    },
    {
       "Name": "Marshall Islands",
-      "Regex": "^\\+692"
+      "Regex": "+692"
    },
    {
       "Name": "Martinique",
-      "Regex": "^\\+596"
+      "Regex": "+596"
    },
    {
       "Name": "Mauritania",
-      "Regex": "^\\+222"
+      "Regex": "+222"
    },
    {
       "Name": "Mauritius",
-      "Regex": "^\\+230"
+      "Regex": "+230"
    },
    {
       "Name": "Mayotte",
-      "Regex": "^\\+262"
+      "Regex": "+262"
    },
    {
       "Name": "Mexico",
-      "Regex": "^\\+52"
+      "Regex": "+52"
    },
    {
       "Name": "Micronesia, Federated States of Micronesia",
-      "Regex": "^\\+691"
+      "Regex": "+691"
    },
    {
       "Name": "Moldova",
-      "Regex": "^\\+373"
+      "Regex": "+373"
    },
    {
       "Name": "Monaco",
-      "Regex": "^\\+377"
+      "Regex": "+377"
    },
    {
       "Name": "Mongolia",
-      "Regex": "^\\+976"
+      "Regex": "+976"
    },
    {
       "Name": "Montenegro",
-      "Regex": "^\\+382"
+      "Regex": "+382"
    },
    {
       "Name": "Montserrat",
-      "Regex": "^\\+1664"
+      "Regex": "+1664"
    },
    {
       "Name": "Morocco",
-      "Regex": "^\\+212"
+      "Regex": "+212"
    },
    {
       "Name": "Mozambique",
-      "Regex": "^\\+258"
+      "Regex": "+258"
    },
    {
       "Name": "Myanmar",
-      "Regex": "^\\+95"
+      "Regex": "+95"
    },
    {
       "Name": "Namibia",
-      "Regex": "^\\+264"
+      "Regex": "+264"
    },
    {
       "Name": "Nauru",
-      "Regex": "^\\+674"
+      "Regex": "+674"
    },
    {
       "Name": "Nepal",
-      "Regex": "^\\+977"
+      "Regex": "+977"
    },
    {
       "Name": "Netherlands",
-      "Regex": "^\\+31"
+      "Regex": "+31"
    },
    {
       "Name": "Netherlands Antilles",
-      "Regex": "^\\+599"
+      "Regex": "+599"
    },
    {
       "Name": "New Caledonia",
-      "Regex": "^\\+687"
+      "Regex": "+687"
    },
    {
       "Name": "New Zealand",
-      "Regex": "^\\+64"
+      "Regex": "+64"
    },
    {
       "Name": "Nicaragua",
-      "Regex": "^\\+505"
+      "Regex": "+505"
    },
    {
       "Name": "Niger",
-      "Regex": "^\\+227"
+      "Regex": "+227"
    },
    {
       "Name": "Nigeria",
-      "Regex": "^\\+234"
+      "Regex": "+234"
    },
    {
       "Name": "Niue",
-      "Regex": "^\\+683"
+      "Regex": "+683"
    },
    {
       "Name": "Norfolk Island",
-      "Regex": "^\\+672"
+      "Regex": "+672"
    },
    {
       "Name": "Northern Mariana Islands",
-      "Regex": "^\\+1 670"
+      "Regex": "+1 670"
    },
    {
       "Name": "Norway",
-      "Regex": "^\\+47"
+      "Regex": "+47"
    },
    {
       "Name": "Oman",
-      "Regex": "^\\+968"
+      "Regex": "+968"
    },
    {
       "Name": "Pakistan",
-      "Regex": "^\\+92"
+      "Regex": "+92"
    },
    {
       "Name": "Palau",
-      "Regex": "^\\+680"
+      "Regex": "+680"
    },
    {
       "Name": "Palestinian Territory, Occupied",
-      "Regex": "^\\+970"
+      "Regex": "+970"
    },
    {
       "Name": "Panama",
-      "Regex": "^\\+507"
+      "Regex": "+507"
    },
    {
       "Name": "Papua New Guinea",
-      "Regex": "^\\+675"
+      "Regex": "+675"
    },
    {
       "Name": "Paraguay",
-      "Regex": "^\\+595"
+      "Regex": "+595"
    },
    {
       "Name": "Peru",
-      "Regex": "^\\+51"
+      "Regex": "+51"
    },
    {
       "Name": "Philippines",
-      "Regex": "^\\+63"
+      "Regex": "+63"
    },
    {
       "Name": "Pitcairn",
-      "Regex": "^\\+872"
+      "Regex": "+872"
    },
    {
       "Name": "Poland",
-      "Regex": "^\\+48"
+      "Regex": "+48"
    },
    {
       "Name": "Portugal",
-      "Regex": "^\\+351"
+      "Regex": "+351"
    },
    {
       "Name": "Puerto Rico",
-      "Regex": "^\\+1 939"
+      "Regex": "+1 939"
    },
    {
       "Name": "Qatar",
-      "Regex": "^\\+974"
+      "Regex": "+974"
    },
    {
       "Name": "Romania",
-      "Regex": "^\\+40"
+      "Regex": "+40"
    },
    {
       "Name": "Russia",
-      "Regex": "^\\+7"
+      "Regex": "+7"
    },
    {
       "Name": "Rwanda",
-      "Regex": "^\\+250"
+      "Regex": "+250"
    },
    {
       "Name": "Reunion",
-      "Regex": "^\\+262"
+      "Regex": "+262"
    },
    {
       "Name": "Saint Barthelemy",
-      "Regex": "^\\+590"
+      "Regex": "+590"
    },
    {
       "Name": "Saint Helena, Ascension and Tristan Da Cunha",
-      "Regex": "^\\+290"
+      "Regex": "+290"
    },
    {
       "Name": "Saint Kitts and Nevis",
-      "Regex": "^\\+1 869"
+      "Regex": "+1 869"
    },
    {
       "Name": "Saint Lucia",
-      "Regex": "^\\+1 758"
+      "Regex": "+1 758"
    },
    {
       "Name": "Saint Martin",
-      "Regex": "^\\+590"
+      "Regex": "+590"
    },
    {
       "Name": "Saint Pierre and Miquelon",
-      "Regex": "^\\+508"
+      "Regex": "+508"
    },
    {
       "Name": "Saint Vincent and the Grenadines",
-      "Regex": "^\\+1 784"
+      "Regex": "+1 784"
    },
    {
       "Name": "Samoa",
-      "Regex": "^\\+685"
+      "Regex": "+685"
    },
    {
       "Name": "San Marino",
-      "Regex": "^\\+378"
+      "Regex": "+378"
    },
    {
       "Name": "Sao Tome and Principe",
-      "Regex": "^\\+239"
+      "Regex": "+239"
    },
    {
       "Name": "Saudi Arabia",
-      "Regex": "^\\+966"
+      "Regex": "+966"
    },
    {
       "Name": "Senegal",
-      "Regex": "^\\+221"
+      "Regex": "+221"
    },
    {
       "Name": "Serbia",
-      "Regex": "^\\+381"
+      "Regex": "+381"
    },
    {
       "Name": "Seychelles",
-      "Regex": "^\\+248"
+      "Regex": "+248"
    },
    {
       "Name": "Sierra Leone",
-      "Regex": "^\\+232"
+      "Regex": "+232"
    },
    {
       "Name": "Singapore",
-      "Regex": "^\\+65"
+      "Regex": "+65"
    },
    {
       "Name": "Slovakia",
-      "Regex": "^\\+421"
+      "Regex": "+421"
    },
    {
       "Name": "Slovenia",
-      "Regex": "^\\+386"
+      "Regex": "+386"
    },
    {
       "Name": "Solomon Islands",
-      "Regex": "^\\+677"
+      "Regex": "+677"
    },
    {
       "Name": "Somalia",
-      "Regex": "^\\+252"
+      "Regex": "+252"
    },
    {
       "Name": "South Africa",
-      "Regex": "^\\+27"
+      "Regex": "+27"
    },
    {
       "Name": "South Georgia and the South Sandwich Islands",
-      "Regex": "^\\+500"
+      "Regex": "+500"
    },
    {
       "Name": "Spain",
-      "Regex": "^\\+34"
+      "Regex": "+34"
    },
    {
       "Name": "Sri Lanka",
-      "Regex": "^\\+94"
+      "Regex": "+94"
    },
    {
       "Name": "Sudan",
-      "Regex": "^\\+249"
+      "Regex": "+249"
    },
    {
       "Name": "SuriName",
-      "Regex": "^\\+597"
+      "Regex": "+597"
    },
    {
       "Name": "Svalbard and Jan Mayen",
-      "Regex": "^\\+47"
+      "Regex": "+47"
    },
    {
       "Name": "Swaziland",
-      "Regex": "^\\+268"
+      "Regex": "+268"
    },
    {
       "Name": "Sweden",
-      "Regex": "^\\+46"
+      "Regex": "+46"
    },
    {
       "Name": "Switzerland",
-      "Regex": "^\\+41"
+      "Regex": "+41"
    },
    {
       "Name": "Syrian Arab Republic",
-      "Regex": "^\\+963"
+      "Regex": "+963"
    },
    {
       "Name": "Taiwan",
-      "Regex": "^\\+886"
+      "Regex": "+886"
    },
    {
       "Name": "Tajikistan",
-      "Regex": "^\\+992"
+      "Regex": "+992"
    },
    {
       "Name": "Tanzania, United Republic of Tanzania",
-      "Regex": "^\\+255"
+      "Regex": "+255"
    },
    {
       "Name": "Thailand",
-      "Regex": "^\\+66"
+      "Regex": "+66"
    },
    {
       "Name": "Timor-Leste",
-      "Regex": "^\\+670"
+      "Regex": "+670"
    },
    {
       "Name": "Togo",
-      "Regex": "^\\+228"
+      "Regex": "+228"
    },
    {
       "Name": "Tokelau",
-      "Regex": "^\\+690"
+      "Regex": "+690"
    },
    {
       "Name": "Tonga",
-      "Regex": "^\\+676"
+      "Regex": "+676"
    },
    {
       "Name": "Trinidad and Tobago",
-      "Regex": "^\\+1 868"
+      "Regex": "+1 868"
    },
    {
       "Name": "Tunisia",
-      "Regex": "^\\+216"
+      "Regex": "+216"
    },
    {
       "Name": "Turkey",
-      "Regex": "^\\+90"
+      "Regex": "+90"
    },
    {
       "Name": "Turkmenistan",
-      "Regex": "^\\+993"
+      "Regex": "+993"
    },
    {
       "Name": "Turks and Caicos Islands",
-      "Regex": "^\\+1 649"
+      "Regex": "+1 649"
    },
    {
       "Name": "Tuvalu",
-      "Regex": "^\\+688"
+      "Regex": "+688"
    },
    {
       "Name": "Uganda",
-      "Regex": "^\\+256"
+      "Regex": "+256"
    },
    {
       "Name": "Ukraine",
-      "Regex": "^\\+380"
+      "Regex": "+380"
    },
    {
       "Name": "United Arab Emirates",
-      "Regex": "^\\+971"
+      "Regex": "+971"
    },
    {
       "Name": "United Kingdom",
-      "Regex": "^\\+44"
+      "Regex": "+44"
    },
    {
       "Name": "United States",
-      "Regex": "^\\+1"
+      "Regex": "+1"
    },
    {
       "Name": "Uruguay",
-      "Regex": "^\\+598"
+      "Regex": "+598"
    },
    {
       "Name": "Uzbekistan",
-      "Regex": "^\\+998"
+      "Regex": "+998"
    },
    {
       "Name": "Vanuatu",
-      "Regex": "^\\+678"
+      "Regex": "+678"
    },
    {
       "Name": "Venezuela, Bolivarian Republic of Venezuela",
-      "Regex": "^\\+58"
+      "Regex": "+58"
    },
    {
       "Name": "Vietnam",
-      "Regex": "^\\+84"
+      "Regex": "+84"
    },
    {
       "Name": "Virgin Islands, British",
-      "Regex": "^\\+1 284"
+      "Regex": "+1 284"
    },
    {
       "Name": "Virgin Islands, U.S.",
-      "Regex": "^\\+1 340"
+      "Regex": "+1 340"
    },
    {
       "Name": "Wallis and Futuna",
-      "Regex": "^\\+681"
+      "Regex": "+681"
    },
    {
       "Name": "Yemen",
-      "Regex": "^\\+967"
+      "Regex": "+967"
    },
    {
       "Name": "Zambia",
-      "Regex": "^\\+260"
+      "Regex": "+260"
    },
    {
       "Name": "Zimbabwe",
-      "Regex": "^\\+263"
+      "Regex": "+263"
    }
 ]

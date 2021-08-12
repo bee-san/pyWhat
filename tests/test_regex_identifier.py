@@ -158,6 +158,7 @@ def test_mac():
         and "00:00:00:00:00:00" in res[0]["Matched"]
         and res[0]["Regex Pattern"]["Name"]
         == "EUI-48 Identifier (Ethernet, WiFi, Bluetooth, etc)"
+        and "Xerox Corp" in res[0]["Regex Pattern"]["Description"]
     )
 
 
@@ -169,6 +170,7 @@ def test_mac2():
         and "00-00-00-00-00-00" in res[0]["Matched"]
         and res[0]["Regex Pattern"]["Name"]
         == "EUI-48 Identifier (Ethernet, WiFi, Bluetooth, etc)"
+        and "Xerox Corp" in res[0]["Regex Pattern"]["Description"]
     )
 
 
@@ -180,6 +182,7 @@ def test_mac3():
         and "0000.0000.0000" in res[0]["Matched"]
         and res[0]["Regex Pattern"]["Name"]
         == "EUI-48 Identifier (Ethernet, WiFi, Bluetooth, etc)"
+        and "Xerox Corp" in res[0]["Regex Pattern"]["Description"]
     )
 
 

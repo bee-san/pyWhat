@@ -287,7 +287,11 @@
       "Tags": [
          "Identifiers",
          "Networking"
-      ]
+      ],
+      "children_path": "mac_vendors.json",
+      "children_entry": "Vendor(s): ",
+      "removal_pattern": "[:.-]",
+      "use_startswith": true
    },
    {
       "Name": "Placekey Universal Identifier for Physical Place",
@@ -339,7 +343,8 @@
          "Phone Number"
       ],
       "children_path": "phone_codes.json",
-      "children_entry": "Location(s): "
+      "children_entry": "Location(s): ",
+      "use_startswith": true
    },
    {
       "Name": "American Social Security Number",
@@ -492,7 +497,9 @@
          "MasterCard CC"
       ],
       "children_path": "mastercard_companies.json",
-      "children_entry": "Issuer(s): "
+      "children_entry": "Issuer(s): ",
+      "removal_pattern": "\\s",
+      "use_startswith": true
    },
    {
       "Name": "Maestro Card Number",
