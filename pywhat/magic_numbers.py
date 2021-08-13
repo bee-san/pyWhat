@@ -1,14 +1,17 @@
 import binascii
-import json
 import os
 
+try:
+    import orjson as json
+except ImportError:
+    import json
 
 class FileSignatures:
     def __init__(self):
         path = "Data/file_signatures.json"
         fullpath = os.path.join(os.path.dirname(os.path.abspath(__file__)), path)
         with open(fullpath, "rb") as myfile:
-            self.file_sigs = json.load(myfile)
+            self.file_sigs = json.loads(myfile.read())
 
     def open_file_loc(self, file_loc):
         with open(file_loc, "r", encoding="utf-8", errors="ignore") as myfile:

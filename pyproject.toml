@@ -11,6 +11,7 @@ readme = "README.md"
 python = "^3.6"
 click = "^7.1.2"
 rich = ">=9.9,<11.0"
+orjson = {version = "^3.6.1", optional = true}
 
 [tool.poetry.dev-dependencies]
 pytest = "^6.2.4"

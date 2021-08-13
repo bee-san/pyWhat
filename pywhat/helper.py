@@ -1,10 +1,13 @@
 """Helper utilities"""
 import collections.abc
-import json
 import os.path
 import re
 from enum import Enum, auto
 
+try:
+    import orjson as json
+except ImportError:
+    import json
 
 class AvailableTags:
     def __init__(self):
@@ -29,7 +32,7 @@ class InvalidTag(Exception):
 def read_json(path: str):
     fullpath = os.path.join(os.path.dirname(os.path.abspath(__file__)), "Data/" + path)
     with open(fullpath, "rb") as myfile:
-        return json.load(myfile)
+        return json.loads(myfile.read())
 
 
 def load_regexes() -> list:

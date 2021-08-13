@@ -31,7 +31,9 @@ class RegexIdentifier:
                 for matched_regex in re.finditer(regex, string, re.MULTILINE):
                     reg = copy.copy(reg)
                     matched = self.clean_text(matched_regex.group(0))
-                    processed_match = re.sub(reg.get("removal_pattern", ""), "", matched)
+                    processed_match = re.sub(
+                        reg.get("removal_pattern", ""), "", matched
+                    )
                     use_startswith = reg.get("use_startswith", False)
 
                     matched_children = []
@@ -39,9 +41,7 @@ class RegexIdentifier:
                         if use_startswith:
                             if processed_match.startswith(child["Regex"]):
                                 matched_children.append(child["Name"])
-                        elif re.search(
-                            child["Regex"], processed_match, re.MULTILINE
-                        ):
+                        elif re.search(child["Regex"], processed_match, re.MULTILINE):
                             matched_children.append(child["Name"])
 
                     if matched_children:
