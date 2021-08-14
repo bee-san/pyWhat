@@ -3,6 +3,8 @@ import pytest
 from pywhat import Distribution, Filter, pywhat_tags
 from pywhat.helper import CaseInsensitiveSet, InvalidTag, load_regexes
 
+regexes = load_regexes()
+
 
 @pytest.mark.skip(
     "Dist.get_regexes() returns the regex list with the default filter of 0.1:1. \
@@ -11,7 +13,6 @@ from pywhat.helper import CaseInsensitiveSet, InvalidTag, load_regexes
 )
 def test_distribution():
     dist = Distribution()
-    regexes = load_regexes()
     assert regexes == dist.get_regexes()
 
 
@@ -23,7 +24,6 @@ def test_distribution2():
         "ExcludeTags": ["Identifiers"],
     }
     dist = Distribution(filter)
-    regexes = load_regexes()
     for regex in regexes:
         if (
             0.3 <= regex["Rarity"] <= 0.8
@@ -37,7 +37,6 @@ def test_distribution3():
     filter1 = {"MinRarity": 0.3, "Tags": ["Networking"], "ExcludeTags": ["Identifiers"]}
     filter2 = {"MinRarity": 0.4, "MaxRarity": 0.8, "ExcludeTags": ["Media"]}
     dist = Distribution(filter1) & Distribution(filter2)
-    regexes = load_regexes()
     assert dist._dict["MinRarity"] == 0.4
     assert dist._dict["MaxRarity"] == 0.8
     assert dist._dict["Tags"] == CaseInsensitiveSet(["Networking"])
@@ -53,7 +52,6 @@ def test_distribution4():
     filter2 = {"MinRarity": 0.4, "MaxRarity": 0.8, "ExcludeTags": ["Media"]}
     dist = Distribution(filter2)
     dist &= Distribution(filter1)
-    regexes = load_regexes()
     assert dist._dict["MinRarity"] == 0.4
     assert dist._dict["MaxRarity"] == 0.8
     assert dist._dict["Tags"] == CaseInsensitiveSet(["Networking"])
@@ -68,7 +66,6 @@ def test_distribution5():
     filter1 = {"MinRarity": 0.3, "Tags": ["Networking"], "ExcludeTags": ["Identifiers"]}
     filter2 = {"MinRarity": 0.4, "MaxRarity": 0.8, "ExcludeTags": ["Media"]}
     dist = Distribution(filter1) | Distribution(filter2)
-    regexes = load_regexes()
     assert dist._dict["MinRarity"] == 0.3
     assert dist._dict["MaxRarity"] == 1
     assert dist._dict["Tags"] == CaseInsensitiveSet(pywhat_tags)
@@ -88,7 +85,6 @@ def test_distribution6():
     filter2 = {"MinRarity": 0.4, "MaxRarity": 0.8, "ExcludeTags": ["Media"]}
     dist = Distribution(filter2)
     dist |= Distribution(filter1)
-    regexes = load_regexes()
     assert dist._dict["MinRarity"] == 0.3
     assert dist._dict["MaxRarity"] == 1
     assert dist._dict["Tags"] == CaseInsensitiveSet(pywhat_tags)
@@ -146,7 +142,6 @@ def test_filter3():
     }
     filt = Filter(filter)
     dist = Distribution(filt)
-    regexes = load_regexes()
     for regex in regexes:
         if (
             0.3 <= regex["Rarity"] <= 0.8
