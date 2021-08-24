@@ -42,12 +42,12 @@ class RegexIdentifier:
                             for length in children["lengths"]:
                                 try:
                                     matched_children.append(
-                                        children["Elements"][processed_match[:length]]
+                                        children["Items"][processed_match[:length]]
                                     )
                                 except KeyError:
                                     continue
                         else:
-                            for element in children["Elements"]:
+                            for element in children["Items"]:
                                 if (
                                     children["method"] == "regex"
                                     and re.search(
@@ -58,7 +58,7 @@ class RegexIdentifier:
                                     and processed_match.startswith(element)
                                 ):
                                     matched_children.append(
-                                        children["Elements"][element]
+                                        children["Items"][element]
                                     )
 
                         if matched_children:

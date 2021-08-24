@@ -48,11 +48,11 @@ def load_regexes() -> list:
         children = regex.get("Children")
         if children is not None:
             try:
-                children["Elements"] = read_json(children["path"])
+                children["Items"] = read_json(children["path"])
             except KeyError:
                 pass
             children["lengths"] = set()
-            for element in children["Elements"]:
+            for element in children["Items"]:
                 children["lengths"].add(len(element))
     return regexes
 
