@@ -57,9 +57,7 @@ class RegexIdentifier:
                                     children["method"] == "startswith"
                                     and processed_match.startswith(element)
                                 ):
-                                    matched_children.append(
-                                        children["Items"][element]
-                                    )
+                                    matched_children.append(children["Items"][element])
 
                         if matched_children:
                             reg["Description"] = children.get("entry", "") + ", ".join(

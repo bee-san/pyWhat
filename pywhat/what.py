@@ -76,7 +76,7 @@ def create_filter(rarity, include, exclude):
     default="0.1:1",
 )
 @click.option("-i", "--include", help="Only show matches with these tags.")
-@click.option("-e", "--exclude", help="Disclude matches with these tags.")
+@click.option("-e", "--exclude", help="Exclude matches with these tags.")
 @click.option("-o", "--only-text", is_flag=True, help="Do not scan files or folders.")
 @click.option("-k", "--key", help="Sort by the specified key.")
 @click.option("--reverse", is_flag=True, help="Sort in reverse order.")
@@ -102,6 +102,12 @@ def create_filter(rarity, include, exclude):
     is_flag=True,
     callback=print_version,
     help="Display the version of pywhat.",
+)
+@click.option(
+    "-if",
+    "--include-filenames",
+    is_flag=True,
+    help="Search filenames for possible matches.",
 )
 def main(**kwargs):
     """
@@ -213,7 +219,12 @@ def main(**kwargs):
             print("Invalid key")
             sys.exit(1)
     identified_output = what_obj.what_is_this(
-        kwargs["text_input"], kwargs["only_text"], key, kwargs["reverse"], boundaryless
+        kwargs["text_input"],
+        kwargs["only_text"],
+        key,
+        kwargs["reverse"],
+        boundaryless,
+        kwargs["include_filenames"],
     )
 
     p = printer.Printing()
@@ -230,7 +241,13 @@ class What_Object:
         self.id = identifier.Identifier(dist=distribution)
 
     def what_is_this(
-        self, text: str, only_text: bool, key, reverse: bool, boundaryless: Filter
+        self,
+        text: str,
+        only_text: bool,
+        key,
+        reverse: bool,
+        boundaryless: Filter,
+        include_filenames: bool,
     ) -> dict:
         """
         Returns a Python dictionary of everything that has been identified
@@ -241,6 +258,7 @@ class What_Object:
             key=key,
             reverse=reverse,
             boundaryless=boundaryless,
+            include_filenames=include_filenames,
         )
 
 

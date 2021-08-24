@@ -36,6 +36,7 @@ def read_json(path: str):
     with open(fullpath, "rb") as myfile:
         return json.loads(myfile.read())
 
+
 @lru_cache()
 def load_regexes() -> list:
     regexes = read_json("regex.json")
