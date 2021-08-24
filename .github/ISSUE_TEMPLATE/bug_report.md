@@ -1,97 +1,38 @@
-name: Report an issue with Home Assistant Core
-description: Report an issue with Home Assistant Core.
-title: ""
-issue_body: true
-body:
-  - type: markdown
-    attributes:
-      value: |
-        This issue form is for reporting bugs only!
+---
+name: Bug report
+about: Create a report to help us improve
+title: ''
+labels: ''
+assignees: ''
 
-        If you have a feature or enhancement request, please use the [feature request][fr] section of our [Community Forum][fr].
+---
 
-        [fr]: https://community.home-assistant.io/c/feature-requests
-  - type: textarea
-    validations:
-      required: true
-    attributes:
-      label: The problem
-      description: >-
-        Describe the issue you are experiencing here to communicate to the
-        maintainers. Tell us what you were trying to do and what happened.
+**Describe the bug**
+A clear and concise description of what the bug is.
 
-        Provide a clear and concise description of what the problem is.
-  - type: markdown
-    attributes:
-      value: |
-        ## Environment
-  - type: input
-    id: version
-    validations:
-      required: true
-    attributes:
-      label: What is version of Home Assistant Core has the issue?
-      placeholder: core-
-      description: >
-        Can be found in the Configuration panel -> Info.
-  - type: input
-    attributes:
-      label: What was the last working version of Home Assistant Core?
-      placeholder: core-
-      description: >
-        If known, otherwise leave blank.
-  - type: dropdown
-    validations:
-      required: true
-    attributes:
-      label: What type of installation are you running?
-      description: >
-        If you don't know, you can find it in: Configuration panel -> Info.
-      options:
-        - Home Assistant OS
-        - Home Assistant Container
-        - Home Assistant Supervised
-        - Home Assistant Core
-  - type: input
-    id: integration_name
-    attributes:
-      label: Integration causing the issue
-      description: >
-        The name of the integration, for example, Automation or Philips Hue.
-  - type: input
-    id: integration_link
-    attributes:
-      label: Link to integration documentation on our website
-      placeholder: "https://www.home-assistant.io/integrations/..."
-      description: |
-        Providing a link [to the documentation][docs] help us categorizing the
-        issue, while providing a useful reference at the same time.
+**To Reproduce**
+Steps to reproduce the behavior:
+1. Go to '...'
+2. Click on '....'
+3. Scroll down to '....'
+4. See error
 
-        [docs]: https://www.home-assistant.io/integrations
+**Expected behavior**
+A clear and concise description of what you expected to happen.
 
-  - type: markdown
-    attributes:
-      value: |
-        # Details
-  - type: textarea
-    attributes:
-      label: Example YAML snippet
-      description: |
-        If this issue has an example piece of YAML that can help reproducing this problem, please provide.
-        This can be an piece of YAML from, e.g., an automation, script, scene or configuration.
-      render: yaml
-  - type: textarea
-    attributes:
-      label: Anything in the logs that might be useful for us?
-      description: For example, error message, or stack traces.
-      render: txt
-  - type: markdown
-    attributes:
-      value: |
-        ## Additional information
-  - type: markdown
-    attributes:
-      value: >
-        If you have any additional information for us, use the field below.
-        Please note, you can attach screenshots or screen recordings here, by
-        dragging and dropping files in the field below.
+**Screenshots**
+If applicable, add screenshots to help explain your problem.
+
+**Desktop (please complete the following information):**
+ - OS: [e.g. iOS]
+ - Browser [e.g. chrome, safari]
+ - Version [e.g. 22]
+
+**Smartphone (please complete the following information):**
+ - Device: [e.g. iPhone6]
+ - OS: [e.g. iOS8.1]
+ - Browser [e.g. stock browser, safari]
+ - Version [e.g. 22]
+
+**Additional context**
+Add any other context about the problem here.
