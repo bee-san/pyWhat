@@ -3,6 +3,7 @@ import collections.abc
 import os.path
 import re
 from enum import Enum, auto
+from functools import lru_cache
 
 try:
     import orjson as json
@@ -35,7 +36,7 @@ def read_json(path: str):
     with open(fullpath, "rb") as myfile:
         return json.loads(myfile.read())
 
-
+@lru_cache
 def load_regexes() -> list:
     regexes = read_json("regex.json")
     for regex in regexes:
