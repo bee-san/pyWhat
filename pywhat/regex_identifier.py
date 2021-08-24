@@ -31,23 +31,40 @@ class RegexIdentifier:
                 for matched_regex in re.finditer(regex, string, re.MULTILINE):
                     reg = copy.copy(reg)
                     matched = self.clean_text(matched_regex.group(0))
-                    processed_match = re.sub(
-                        reg.get("removal_pattern", ""), "", matched
-                    )
-                    use_startswith = reg.get("use_startswith", False)
 
-                    matched_children = []
-                    for child in reg.get("Children", []):
-                        if use_startswith:
-                            if processed_match.startswith(child["Regex"]):
-                                matched_children.append(child["Name"])
-                        elif re.search(child["Regex"], processed_match, re.MULTILINE):
-                            matched_children.append(child["Name"])
-
-                    if matched_children:
-                        reg["Description"] = reg.get("children_entry", "") + ", ".join(
-                            matched_children
+                    children = reg.get("Children")
+                    if children is not None:
+                        processed_match = re.sub(
+                            children.get("deletion_pattern", ""), "", matched
                         )
+                        matched_children = []
+                        if children["method"] == "hashmap":
+                            for length in children["lengths"]:
+                                try:
+                                    matched_children.append(
+                                        children["Elements"][processed_match[:length]]
+                                    )
+                                except KeyError:
+                                    continue
+                        else:
+                            for element in children["Elements"]:
+                                if (
+                                    children["method"] == "regex"
+                                    and re.search(
+                                        element, processed_match, re.MULTILINE
+                                    )
+                                ) or (
+                                    children["method"] == "startswith"
+                                    and processed_match.startswith(element)
+                                ):
+                                    matched_children.append(
+                                        children["Elements"][element]
+                                    )
+
+                        if matched_children:
+                            reg["Description"] = children.get("entry", "") + ", ".join(
+                                matched_children
+                            )
 
                     matches.append(
                         {

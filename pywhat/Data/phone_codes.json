@@ -1,970 +1,230 @@
-[
-   {
-      "Name": "Afghanistan",
-      "Regex": "+93"
-   },
-   {
-      "Name": "Aland Islands",
-      "Regex": "+358"
-   },
-   {
-      "Name": "Albania",
-      "Regex": "+355"
-   },
-   {
-      "Name": "Algeria",
-      "Regex": "+213"
-   },
-   {
-      "Name": "AmericanSamoa",
-      "Regex": "+1 684"
-   },
-   {
-      "Name": "Andorra",
-      "Regex": "+376"
-   },
-   {
-      "Name": "Angola",
-      "Regex": "+244"
-   },
-   {
-      "Name": "Anguilla",
-      "Regex": "+1 264"
-   },
-   {
-      "Name": "Antarctica",
-      "Regex": "+672"
-   },
-   {
-      "Name": "Antigua and Barbuda",
-      "Regex": "+1268"
-   },
-   {
-      "Name": "Argentina",
-      "Regex": "+54"
-   },
-   {
-      "Name": "Armenia",
-      "Regex": "+374"
-   },
-   {
-      "Name": "Aruba",
-      "Regex": "+297"
-   },
-   {
-      "Name": "Australia",
-      "Regex": "+61"
-   },
-   {
-      "Name": "Austria",
-      "Regex": "+43"
-   },
-   {
-      "Name": "Azerbaijan",
-      "Regex": "+994"
-   },
-   {
-      "Name": "Bahamas",
-      "Regex": "+1 242"
-   },
-   {
-      "Name": "Bahrain",
-      "Regex": "+973"
-   },
-   {
-      "Name": "Bangladesh",
-      "Regex": "+880"
-   },
-   {
-      "Name": "Barbados",
-      "Regex": "+1 246"
-   },
-   {
-      "Name": "Belarus",
-      "Regex": "+375"
-   },
-   {
-      "Name": "Belgium",
-      "Regex": "+32"
-   },
-   {
-      "Name": "Belize",
-      "Regex": "+501"
-   },
-   {
-      "Name": "Benin",
-      "Regex": "+229"
-   },
-   {
-      "Name": "Bermuda",
-      "Regex": "+1 441"
-   },
-   {
-      "Name": "Bhutan",
-      "Regex": "+975"
-   },
-   {
-      "Name": "Bolivia, Plurinational State of",
-      "Regex": "+591"
-   },
-   {
-      "Name": "Bosnia and Herzegovina",
-      "Regex": "+387"
-   },
-   {
-      "Name": "Botswana",
-      "Regex": "+267"
-   },
-   {
-      "Name": "Brazil",
-      "Regex": "+55"
-   },
-   {
-      "Name": "British Indian Ocean Territory",
-      "Regex": "+246"
-   },
-   {
-      "Name": "Brunei Darussalam",
-      "Regex": "+673"
-   },
-   {
-      "Name": "Bulgaria",
-      "Regex": "+359"
-   },
-   {
-      "Name": "Burkina Faso",
-      "Regex": "+226"
-   },
-   {
-      "Name": "Burundi",
-      "Regex": "+257"
-   },
-   {
-      "Name": "Cambodia",
-      "Regex": "+855"
-   },
-   {
-      "Name": "Cameroon",
-      "Regex": "+237"
-   },
-   {
-      "Name": "Canada",
-      "Regex": "+1"
-   },
-   {
-      "Name": "Cape Verde",
-      "Regex": "+238"
-   },
-   {
-      "Name": "Cayman Islands",
-      "Regex": "+ 345"
-   },
-   {
-      "Name": "Central African Republic",
-      "Regex": "+236"
-   },
-   {
-      "Name": "Chad",
-      "Regex": "+235"
-   },
-   {
-      "Name": "Chile",
-      "Regex": "+56"
-   },
-   {
-      "Name": "China",
-      "Regex": "+86"
-   },
-   {
-      "Name": "Christmas Island",
-      "Regex": "+61"
-   },
-   {
-      "Name": "Cocos (Keeling) Islands",
-      "Regex": "+61"
-   },
-   {
-      "Name": "Colombia",
-      "Regex": "+57"
-   },
-   {
-      "Name": "Comoros",
-      "Regex": "+269"
-   },
-   {
-      "Name": "Congo",
-      "Regex": "+242"
-   },
-   {
-      "Name": "Congo, The Democratic Republic of the Congo",
-      "Regex": "+243"
-   },
-   {
-      "Name": "Cook Islands",
-      "Regex": "+682"
-   },
-   {
-      "Name": "Costa Rica",
-      "Regex": "+506"
-   },
-   {
-      "Name": "Cote d'Ivoire",
-      "Regex": "+225"
-   },
-   {
-      "Name": "Croatia",
-      "Regex": "+385"
-   },
-   {
-      "Name": "Cuba",
-      "Regex": "+53"
-   },
-   {
-      "Name": "Cyprus",
-      "Regex": "+357"
-   },
-   {
-      "Name": "Czech Republic",
-      "Regex": "+420"
-   },
-   {
-      "Name": "Denmark",
-      "Regex": "+45"
-   },
-   {
-      "Name": "Djibouti",
-      "Regex": "+253"
-   },
-   {
-      "Name": "Dominica",
-      "Regex": "+1 767"
-   },
-   {
-      "Name": "Dominican Republic",
-      "Regex": "+1 849"
-   },
-   {
-      "Name": "Ecuador",
-      "Regex": "+593"
-   },
-   {
-      "Name": "Egypt",
-      "Regex": "+20"
-   },
-   {
-      "Name": "El Salvador",
-      "Regex": "+503"
-   },
-   {
-      "Name": "Equatorial Guinea",
-      "Regex": "+240"
-   },
-   {
-      "Name": "Eritrea",
-      "Regex": "+291"
-   },
-   {
-      "Name": "Estonia",
-      "Regex": "+372"
-   },
-   {
-      "Name": "Ethiopia",
-      "Regex": "+251"
-   },
-   {
-      "Name": "Falkland Islands (Malvinas)",
-      "Regex": "+500"
-   },
-   {
-      "Name": "Faroe Islands",
-      "Regex": "+298"
-   },
-   {
-      "Name": "Fiji",
-      "Regex": "+679"
-   },
-   {
-      "Name": "Finland",
-      "Regex": "+358"
-   },
-   {
-      "Name": "France",
-      "Regex": "+33"
-   },
-   {
-      "Name": "French Guiana",
-      "Regex": "+594"
-   },
-   {
-      "Name": "French Polynesia",
-      "Regex": "+689"
-   },
-   {
-      "Name": "Gabon",
-      "Regex": "+241"
-   },
-   {
-      "Name": "Gambia",
-      "Regex": "+220"
-   },
-   {
-      "Name": "Georgia",
-      "Regex": "+995"
-   },
-   {
-      "Name": "Germany",
-      "Regex": "+49"
-   },
-   {
-      "Name": "Ghana",
-      "Regex": "+233"
-   },
-   {
-      "Name": "Gibraltar",
-      "Regex": "+350"
-   },
-   {
-      "Name": "Greece",
-      "Regex": "+30"
-   },
-   {
-      "Name": "Greenland",
-      "Regex": "+299"
-   },
-   {
-      "Name": "Grenada",
-      "Regex": "+1 473"
-   },
-   {
-      "Name": "Guadeloupe",
-      "Regex": "+590"
-   },
-   {
-      "Name": "Guam",
-      "Regex": "+1 671"
-   },
-   {
-      "Name": "Guatemala",
-      "Regex": "+502"
-   },
-   {
-      "Name": "Guernsey",
-      "Regex": "+44"
-   },
-   {
-      "Name": "Guinea",
-      "Regex": "+224"
-   },
-   {
-      "Name": "Guinea-Bissau",
-      "Regex": "+245"
-   },
-   {
-      "Name": "Guyana",
-      "Regex": "+595"
-   },
-   {
-      "Name": "Haiti",
-      "Regex": "+509"
-   },
-   {
-      "Name": "Holy See (Vatican City State)",
-      "Regex": "+379"
-   },
-   {
-      "Name": "Honduras",
-      "Regex": "+504"
-   },
-   {
-      "Name": "Hong Kong",
-      "Regex": "+852"
-   },
-   {
-      "Name": "Hungary",
-      "Regex": "+36"
-   },
-   {
-      "Name": "Iceland",
-      "Regex": "+354"
-   },
-   {
-      "Name": "India",
-      "Regex": "+91"
-   },
-   {
-      "Name": "Indonesia",
-      "Regex": "+62"
-   },
-   {
-      "Name": "Iran, Islamic Republic of Persian Gulf",
-      "Regex": "+98"
-   },
-   {
-      "Name": "Iraq",
-      "Regex": "+964"
-   },
-   {
-      "Name": "Ireland",
-      "Regex": "+353"
-   },
-   {
-      "Name": "Isle of Man",
-      "Regex": "+44"
-   },
-   {
-      "Name": "Israel",
-      "Regex": "+972"
-   },
-   {
-      "Name": "Italy",
-      "Regex": "+39"
-   },
-   {
-      "Name": "Jamaica",
-      "Regex": "+1 876"
-   },
-   {
-      "Name": "Japan",
-      "Regex": "+81"
-   },
-   {
-      "Name": "Jersey",
-      "Regex": "+44"
-   },
-   {
-      "Name": "Jordan",
-      "Regex": "+962"
-   },
-   {
-      "Name": "Kazakhstan",
-      "Regex": "+7 7"
-   },
-   {
-      "Name": "Kenya",
-      "Regex": "+254"
-   },
-   {
-      "Name": "Kiribati",
-      "Regex": "+686"
-   },
-   {
-      "Name": "Korea, Democratic People's Republic of Korea",
-      "Regex": "+850"
-   },
-   {
-      "Name": "Korea, Republic of South Korea",
-      "Regex": "+82"
-   },
-   {
-      "Name": "Kosovo",
-      "Regex": "+383"
-   },
-   {
-      "Name": "Kuwait",
-      "Regex": "+965"
-   },
-   {
-      "Name": "Kyrgyzstan",
-      "Regex": "+996"
-   },
-   {
-      "Name": "Laos",
-      "Regex": "+856"
-   },
-   {
-      "Name": "Latvia",
-      "Regex": "+371"
-   },
-   {
-      "Name": "Lebanon",
-      "Regex": "+961"
-   },
-   {
-      "Name": "Lesotho",
-      "Regex": "+266"
-   },
-   {
-      "Name": "Liberia",
-      "Regex": "+231"
-   },
-   {
-      "Name": "Libyan Arab Jamahiriya",
-      "Regex": "+218"
-   },
-   {
-      "Name": "Liechtenstein",
-      "Regex": "+423"
-   },
-   {
-      "Name": "Lithuania",
-      "Regex": "+370"
-   },
-   {
-      "Name": "Luxembourg",
-      "Regex": "+352"
-   },
-   {
-      "Name": "Macao",
-      "Regex": "+853"
-   },
-   {
-      "Name": "Macedonia",
-      "Regex": "+389"
-   },
-   {
-      "Name": "Madagascar",
-      "Regex": "+261"
-   },
-   {
-      "Name": "Malawi",
-      "Regex": "+265"
-   },
-   {
-      "Name": "Malaysia",
-      "Regex": "+60"
-   },
-   {
-      "Name": "Maldives",
-      "Regex": "+960"
-   },
-   {
-      "Name": "Mali",
-      "Regex": "+223"
-   },
-   {
-      "Name": "Malta",
-      "Regex": "+356"
-   },
-   {
-      "Name": "Marshall Islands",
-      "Regex": "+692"
-   },
-   {
-      "Name": "Martinique",
-      "Regex": "+596"
-   },
-   {
-      "Name": "Mauritania",
-      "Regex": "+222"
-   },
-   {
-      "Name": "Mauritius",
-      "Regex": "+230"
-   },
-   {
-      "Name": "Mayotte",
-      "Regex": "+262"
-   },
-   {
-      "Name": "Mexico",
-      "Regex": "+52"
-   },
-   {
-      "Name": "Micronesia, Federated States of Micronesia",
-      "Regex": "+691"
-   },
-   {
-      "Name": "Moldova",
-      "Regex": "+373"
-   },
-   {
-      "Name": "Monaco",
-      "Regex": "+377"
-   },
-   {
-      "Name": "Mongolia",
-      "Regex": "+976"
-   },
-   {
-      "Name": "Montenegro",
-      "Regex": "+382"
-   },
-   {
-      "Name": "Montserrat",
-      "Regex": "+1664"
-   },
-   {
-      "Name": "Morocco",
-      "Regex": "+212"
-   },
-   {
-      "Name": "Mozambique",
-      "Regex": "+258"
-   },
-   {
-      "Name": "Myanmar",
-      "Regex": "+95"
-   },
-   {
-      "Name": "Namibia",
-      "Regex": "+264"
-   },
-   {
-      "Name": "Nauru",
-      "Regex": "+674"
-   },
-   {
-      "Name": "Nepal",
-      "Regex": "+977"
-   },
-   {
-      "Name": "Netherlands",
-      "Regex": "+31"
-   },
-   {
-      "Name": "Netherlands Antilles",
-      "Regex": "+599"
-   },
-   {
-      "Name": "New Caledonia",
-      "Regex": "+687"
-   },
-   {
-      "Name": "New Zealand",
-      "Regex": "+64"
-   },
-   {
-      "Name": "Nicaragua",
-      "Regex": "+505"
-   },
-   {
-      "Name": "Niger",
-      "Regex": "+227"
-   },
-   {
-      "Name": "Nigeria",
-      "Regex": "+234"
-   },
-   {
-      "Name": "Niue",
-      "Regex": "+683"
-   },
-   {
-      "Name": "Norfolk Island",
-      "Regex": "+672"
-   },
-   {
-      "Name": "Northern Mariana Islands",
-      "Regex": "+1 670"
-   },
-   {
-      "Name": "Norway",
-      "Regex": "+47"
-   },
-   {
-      "Name": "Oman",
-      "Regex": "+968"
-   },
-   {
-      "Name": "Pakistan",
-      "Regex": "+92"
-   },
-   {
-      "Name": "Palau",
-      "Regex": "+680"
-   },
-   {
-      "Name": "Palestinian Territory, Occupied",
-      "Regex": "+970"
-   },
-   {
-      "Name": "Panama",
-      "Regex": "+507"
-   },
-   {
-      "Name": "Papua New Guinea",
-      "Regex": "+675"
-   },
-   {
-      "Name": "Paraguay",
-      "Regex": "+595"
-   },
-   {
-      "Name": "Peru",
-      "Regex": "+51"
-   },
-   {
-      "Name": "Philippines",
-      "Regex": "+63"
-   },
-   {
-      "Name": "Pitcairn",
-      "Regex": "+872"
-   },
-   {
-      "Name": "Poland",
-      "Regex": "+48"
-   },
-   {
-      "Name": "Portugal",
-      "Regex": "+351"
-   },
-   {
-      "Name": "Puerto Rico",
-      "Regex": "+1 939"
-   },
-   {
-      "Name": "Qatar",
-      "Regex": "+974"
-   },
-   {
-      "Name": "Romania",
-      "Regex": "+40"
-   },
-   {
-      "Name": "Russia",
-      "Regex": "+7"
-   },
-   {
-      "Name": "Rwanda",
-      "Regex": "+250"
-   },
-   {
-      "Name": "Reunion",
-      "Regex": "+262"
-   },
-   {
-      "Name": "Saint Barthelemy",
-      "Regex": "+590"
-   },
-   {
-      "Name": "Saint Helena, Ascension and Tristan Da Cunha",
-      "Regex": "+290"
-   },
-   {
-      "Name": "Saint Kitts and Nevis",
-      "Regex": "+1 869"
-   },
-   {
-      "Name": "Saint Lucia",
-      "Regex": "+1 758"
-   },
-   {
-      "Name": "Saint Martin",
-      "Regex": "+590"
-   },
-   {
-      "Name": "Saint Pierre and Miquelon",
-      "Regex": "+508"
-   },
-   {
-      "Name": "Saint Vincent and the Grenadines",
-      "Regex": "+1 784"
-   },
-   {
-      "Name": "Samoa",
-      "Regex": "+685"
-   },
-   {
-      "Name": "San Marino",
-      "Regex": "+378"
-   },
-   {
-      "Name": "Sao Tome and Principe",
-      "Regex": "+239"
-   },
-   {
-      "Name": "Saudi Arabia",
-      "Regex": "+966"
-   },
-   {
-      "Name": "Senegal",
-      "Regex": "+221"
-   },
-   {
-      "Name": "Serbia",
-      "Regex": "+381"
-   },
-   {
-      "Name": "Seychelles",
-      "Regex": "+248"
-   },
-   {
-      "Name": "Sierra Leone",
-      "Regex": "+232"
-   },
-   {
-      "Name": "Singapore",
-      "Regex": "+65"
-   },
-   {
-      "Name": "Slovakia",
-      "Regex": "+421"
-   },
-   {
-      "Name": "Slovenia",
-      "Regex": "+386"
-   },
-   {
-      "Name": "Solomon Islands",
-      "Regex": "+677"
-   },
-   {
-      "Name": "Somalia",
-      "Regex": "+252"
-   },
-   {
-      "Name": "South Africa",
-      "Regex": "+27"
-   },
-   {
-      "Name": "South Georgia and the South Sandwich Islands",
-      "Regex": "+500"
-   },
-   {
-      "Name": "Spain",
-      "Regex": "+34"
-   },
-   {
-      "Name": "Sri Lanka",
-      "Regex": "+94"
-   },
-   {
-      "Name": "Sudan",
-      "Regex": "+249"
-   },
-   {
-      "Name": "SuriName",
-      "Regex": "+597"
-   },
-   {
-      "Name": "Svalbard and Jan Mayen",
-      "Regex": "+47"
-   },
-   {
-      "Name": "Swaziland",
-      "Regex": "+268"
-   },
-   {
-      "Name": "Sweden",
-      "Regex": "+46"
-   },
-   {
-      "Name": "Switzerland",
-      "Regex": "+41"
-   },
-   {
-      "Name": "Syrian Arab Republic",
-      "Regex": "+963"
-   },
-   {
-      "Name": "Taiwan",
-      "Regex": "+886"
-   },
-   {
-      "Name": "Tajikistan",
-      "Regex": "+992"
-   },
-   {
-      "Name": "Tanzania, United Republic of Tanzania",
-      "Regex": "+255"
-   },
-   {
-      "Name": "Thailand",
-      "Regex": "+66"
-   },
-   {
-      "Name": "Timor-Leste",
-      "Regex": "+670"
-   },
-   {
-      "Name": "Togo",
-      "Regex": "+228"
-   },
-   {
-      "Name": "Tokelau",
-      "Regex": "+690"
-   },
-   {
-      "Name": "Tonga",
-      "Regex": "+676"
-   },
-   {
-      "Name": "Trinidad and Tobago",
-      "Regex": "+1 868"
-   },
-   {
-      "Name": "Tunisia",
-      "Regex": "+216"
-   },
-   {
-      "Name": "Turkey",
-      "Regex": "+90"
-   },
-   {
-      "Name": "Turkmenistan",
-      "Regex": "+993"
-   },
-   {
-      "Name": "Turks and Caicos Islands",
-      "Regex": "+1 649"
-   },
-   {
-      "Name": "Tuvalu",
-      "Regex": "+688"
-   },
-   {
-      "Name": "Uganda",
-      "Regex": "+256"
-   },
-   {
-      "Name": "Ukraine",
-      "Regex": "+380"
-   },
-   {
-      "Name": "United Arab Emirates",
-      "Regex": "+971"
-   },
-   {
-      "Name": "United Kingdom",
-      "Regex": "+44"
-   },
-   {
-      "Name": "United States",
-      "Regex": "+1"
-   },
-   {
-      "Name": "Uruguay",
-      "Regex": "+598"
-   },
-   {
-      "Name": "Uzbekistan",
-      "Regex": "+998"
-   },
-   {
-      "Name": "Vanuatu",
-      "Regex": "+678"
-   },
-   {
-      "Name": "Venezuela, Bolivarian Republic of Venezuela",
-      "Regex": "+58"
-   },
-   {
-      "Name": "Vietnam",
-      "Regex": "+84"
-   },
-   {
-      "Name": "Virgin Islands, British",
-      "Regex": "+1 284"
-   },
-   {
-      "Name": "Virgin Islands, U.S.",
-      "Regex": "+1 340"
-   },
-   {
-      "Name": "Wallis and Futuna",
-      "Regex": "+681"
-   },
-   {
-      "Name": "Yemen",
-      "Regex": "+967"
-   },
-   {
-      "Name": "Zambia",
-      "Regex": "+260"
-   },
-   {
-      "Name": "Zimbabwe",
-      "Regex": "+263"
-   }
-]
+{
+   "+93": "Afghanistan",
+   "+358": "Finland",
+   "+355": "Albania",
+   "+213": "Algeria",
+   "+1 684": "AmericanSamoa",
+   "+376": "Andorra",
+   "+244": "Angola",
+   "+1 264": "Anguilla",
+   "+672": "Norfolk Island",
+   "+1268": "Antigua and Barbuda",
+   "+54": "Argentina",
+   "+374": "Armenia",
+   "+297": "Aruba",
+   "+61": "Cocos (Keeling) Islands",
+   "+43": "Austria",
+   "+994": "Azerbaijan",
+   "+1 242": "Bahamas",
+   "+973": "Bahrain",
+   "+880": "Bangladesh",
+   "+1 246": "Barbados",
+   "+375": "Belarus",
+   "+32": "Belgium",
+   "+501": "Belize",
+   "+229": "Benin",
+   "+1 441": "Bermuda",
+   "+975": "Bhutan",
+   "+591": "Bolivia, Plurinational State of",
+   "+387": "Bosnia and Herzegovina",
+   "+267": "Botswana",
+   "+55": "Brazil",
+   "+246": "British Indian Ocean Territory",
+   "+673": "Brunei Darussalam",
+   "+359": "Bulgaria",
+   "+226": "Burkina Faso",
+   "+257": "Burundi",
+   "+855": "Cambodia",
+   "+237": "Cameroon",
+   "+1": "United States",
+   "+238": "Cape Verde",
+   "+ 345": "Cayman Islands",
+   "+236": "Central African Republic",
+   "+235": "Chad",
+   "+56": "Chile",
+   "+86": "China",
+   "+57": "Colombia",
+   "+269": "Comoros",
+   "+242": "Congo",
+   "+243": "Congo, The Democratic Republic of the Congo",
+   "+682": "Cook Islands",
+   "+506": "Costa Rica",
+   "+225": "Cote d'Ivoire",
+   "+385": "Croatia",
+   "+53": "Cuba",
+   "+357": "Cyprus",
+   "+420": "Czech Republic",
+   "+45": "Denmark",
+   "+253": "Djibouti",
+   "+1 767": "Dominica",
+   "+1 849": "Dominican Republic",
+   "+593": "Ecuador",
+   "+20": "Egypt",
+   "+503": "El Salvador",
+   "+240": "Equatorial Guinea",
+   "+291": "Eritrea",
+   "+372": "Estonia",
+   "+251": "Ethiopia",
+   "+500": "South Georgia and the South Sandwich Islands",
+   "+298": "Faroe Islands",
+   "+679": "Fiji",
+   "+33": "France",
+   "+594": "French Guiana",
+   "+689": "French Polynesia",
+   "+241": "Gabon",
+   "+220": "Gambia",
+   "+995": "Georgia",
+   "+49": "Germany",
+   "+233": "Ghana",
+   "+350": "Gibraltar",
+   "+30": "Greece",
+   "+299": "Greenland",
+   "+1 473": "Grenada",
+   "+590": "Saint Martin",
+   "+1 671": "Guam",
+   "+502": "Guatemala",
+   "+44": "United Kingdom",
+   "+224": "Guinea",
+   "+245": "Guinea-Bissau",
+   "+595": "Paraguay",
+   "+509": "Haiti",
+   "+379": "Holy See (Vatican City State)",
+   "+504": "Honduras",
+   "+852": "Hong Kong",
+   "+36": "Hungary",
+   "+354": "Iceland",
+   "+91": "India",
+   "+62": "Indonesia",
+   "+98": "Iran, Islamic Republic of Persian Gulf",
+   "+964": "Iraq",
+   "+353": "Ireland",
+   "+972": "Israel",
+   "+39": "Italy",
+   "+1 876": "Jamaica",
+   "+81": "Japan",
+   "+962": "Jordan",
+   "+7 7": "Kazakhstan",
+   "+254": "Kenya",
+   "+686": "Kiribati",
+   "+850": "Korea, Democratic People's Republic of Korea",
+   "+82": "Korea, Republic of South Korea",
+   "+383": "Kosovo",
+   "+965": "Kuwait",
+   "+996": "Kyrgyzstan",
+   "+856": "Laos",
+   "+371": "Latvia",
+   "+961": "Lebanon",
+   "+266": "Lesotho",
+   "+231": "Liberia",
+   "+218": "Libyan Arab Jamahiriya",
+   "+423": "Liechtenstein",
+   "+370": "Lithuania",
+   "+352": "Luxembourg",
+   "+853": "Macao",
+   "+389": "Macedonia",
+   "+261": "Madagascar",
+   "+265": "Malawi",
+   "+60": "Malaysia",
+   "+960": "Maldives",
+   "+223": "Mali",
+   "+356": "Malta",
+   "+692": "Marshall Islands",
+   "+596": "Martinique",
+   "+222": "Mauritania",
+   "+230": "Mauritius",
+   "+262": "Reunion",
+   "+52": "Mexico",
+   "+691": "Micronesia, Federated States of Micronesia",
+   "+373": "Moldova",
+   "+377": "Monaco",
+   "+976": "Mongolia",
+   "+382": "Montenegro",
+   "+1664": "Montserrat",
+   "+212": "Morocco",
+   "+258": "Mozambique",
+   "+95": "Myanmar",
+   "+264": "Namibia",
+   "+674": "Nauru",
+   "+977": "Nepal",
+   "+31": "Netherlands",
+   "+599": "Netherlands Antilles",
+   "+687": "New Caledonia",
+   "+64": "New Zealand",
+   "+505": "Nicaragua",
+   "+227": "Niger",
+   "+234": "Nigeria",
+   "+683": "Niue",
+   "+1 670": "Northern Mariana Islands",
+   "+47": "Svalbard and Jan Mayen",
+   "+968": "Oman",
+   "+92": "Pakistan",
+   "+680": "Palau",
+   "+970": "Palestinian Territory, Occupied",
+   "+507": "Panama",
+   "+675": "Papua New Guinea",
+   "+51": "Peru",
+   "+63": "Philippines",
+   "+872": "Pitcairn",
+   "+48": "Poland",
+   "+351": "Portugal",
+   "+1 939": "Puerto Rico",
+   "+974": "Qatar",
+   "+40": "Romania",
+   "+7": "Russia",
+   "+250": "Rwanda",
+   "+290": "Saint Helena, Ascension and Tristan Da Cunha",
+   "+1 869": "Saint Kitts and Nevis",
+   "+1 758": "Saint Lucia",
+   "+508": "Saint Pierre and Miquelon",
+   "+1 784": "Saint Vincent and the Grenadines",
+   "+685": "Samoa",
+   "+378": "San Marino",
+   "+239": "Sao Tome and Principe",
+   "+966": "Saudi Arabia",
+   "+221": "Senegal",
+   "+381": "Serbia",
+   "+248": "Seychelles",
+   "+232": "Sierra Leone",
+   "+65": "Singapore",
+   "+421": "Slovakia",
+   "+386": "Slovenia",
+   "+677": "Solomon Islands",
+   "+252": "Somalia",
+   "+27": "South Africa",
+   "+34": "Spain",
+   "+94": "Sri Lanka",
+   "+249": "Sudan",
+   "+597": "SuriName",
+   "+268": "Swaziland",
+   "+46": "Sweden",
+   "+41": "Switzerland",
+   "+963": "Syrian Arab Republic",
+   "+886": "Taiwan",
+   "+992": "Tajikistan",
+   "+255": "Tanzania, United Republic of Tanzania",
+   "+66": "Thailand",
+   "+670": "Timor-Leste",
+   "+228": "Togo",
+   "+690": "Tokelau",
+   "+676": "Tonga",
+   "+1 868": "Trinidad and Tobago",
+   "+216": "Tunisia",
+   "+90": "Turkey",
+   "+993": "Turkmenistan",
+   "+1 649": "Turks and Caicos Islands",
+   "+688": "Tuvalu",
+   "+256": "Uganda",
+   "+380": "Ukraine",
+   "+971": "United Arab Emirates",
+   "+598": "Uruguay",
+   "+998": "Uzbekistan",
+   "+678": "Vanuatu",
+   "+58": "Venezuela, Bolivarian Republic of Venezuela",
+   "+84": "Vietnam",
+   "+1 284": "Virgin Islands, British",
+   "+1 340": "Virgin Islands, U.S.",
+   "+681": "Wallis and Futuna",
+   "+967": "Yemen",
+   "+260": "Zambia",
+   "+263": "Zimbabwe"
+}

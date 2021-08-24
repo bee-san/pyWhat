@@ -9,6 +9,7 @@ try:
 except ImportError:
     import json
 
+
 class AvailableTags:
     def __init__(self):
         self.tags = set()
@@ -44,9 +45,15 @@ def load_regexes() -> list:
         regex["Boundaryless Regex"] = re.sub(
             r"(?<!\\)\$(?![^\[\]]*(?<!\\)\])", "", regex["Boundaryless Regex"]
         )
-        children_path = regex.get("children_path")
-        if children_path:
-            regex["Children"] = read_json(children_path)
+        children = regex.get("Children")
+        if children is not None:
+            try:
+                children["Elements"] = read_json(children["path"])
+            except KeyError:
+                pass
+            children["lengths"] = set()
+            for element in children["Elements"]:
+                children["lengths"].add(len(element))
     return regexes
 
 

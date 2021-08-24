@@ -6,6 +6,7 @@ try:
 except ImportError:
     import json
 
+
 class FileSignatures:
     def __init__(self):
         path = "Data/file_signatures.json"
