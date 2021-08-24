@@ -4,6 +4,8 @@ from pywhat import identifier
 from pywhat.filter import Distribution, Filter
 from pywhat.helper import Keys, load_regexes
 
+r = identifier.Identifier()
+
 
 def test_check_keys_in_json():
     database = load_regexes()
@@ -22,7 +24,6 @@ def test_check_keys_in_json():
 
 
 def test_identifier_works():
-    r = identifier.Identifier()
     out = r.identify("DANHz6EQVoWyZ9rER56DwTXHWUxfkv9k2o")
     assert (
         "Dogecoin (DOGE) Wallet Address"
@@ -31,13 +32,11 @@ def test_identifier_works():
 
 
 def test_identifier_works2():
-    r = identifier.Identifier()
     out = r.identify("fixtures/file", only_text=False)
     assert "Ethereum (ETH) Wallet Address" in str(out)
 
 
 def test_identifier_works3():
-    r = identifier.Identifier()
     out = r.identify("fixtures/file", only_text=False)
     assert "Dogecoin (DOGE) Wallet Address" in str(out)
 
@@ -69,7 +68,6 @@ def test_identifier_sorting():
 
 
 def test_identifier_sorting2():
-    r = identifier.Identifier()
     out = r.identify("fixtures/file", only_text=False, key=Keys.RARITY, reverse=True)
     prev = None
     for match in out["Regexes"]["file"]:
@@ -79,7 +77,6 @@ def test_identifier_sorting2():
 
 
 def test_identifier_sorting3():
-    r = identifier.Identifier()
     out = r.identify("fixtures/file", only_text=False, key=Keys.NAME)
     prev = None
     for match in out["Regexes"]["file"]:
@@ -99,7 +96,6 @@ def test_identifier_sorting4():
 
 
 def test_identifier_sorting5():
-    r = identifier.Identifier()
     out = r.identify("fixtures/file", only_text=False, key=Keys.MATCHED)
     prev = None
     for match in out["Regexes"]["file"]:
@@ -109,7 +105,6 @@ def test_identifier_sorting5():
 
 
 def test_identifier_sorting6():
-    r = identifier.Identifier()
     out = r.identify("fixtures/file", only_text=False, key=Keys.MATCHED, reverse=True)
     prev = None
     for match in out["Regexes"]["file"]:
@@ -119,7 +114,6 @@ def test_identifier_sorting6():
 
 
 def test_only_text():
-    r = identifier.Identifier()
     out = r.identify("fixtures/file")
     assert None == out["Regexes"]
 
@@ -128,7 +122,6 @@ def test_only_text():
 
 
 def test_recursion():
-    r = identifier.Identifier()
     out = r.identify("fixtures", only_text=False)
 
     assert re.findall(r"\'(?:\/|\\\\)file\'", str(list(out["Regexes"].keys())))

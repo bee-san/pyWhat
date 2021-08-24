@@ -1,9 +1,14 @@
 """Helper utilities"""
 import collections.abc
-import json
 import os.path
 import re
 from enum import Enum, auto
+from functools import lru_cache
+
+try:
+    import orjson as json
+except ImportError:
+    import json
 
 
 class AvailableTags:
@@ -26,11 +31,15 @@ class InvalidTag(Exception):
     pass
 
 
-def load_regexes() -> list:
-    path = "Data/regex.json"
-    fullpath = os.path.join(os.path.dirname(os.path.abspath(__file__)), path)
+def read_json(path: str):
+    fullpath = os.path.join(os.path.dirname(os.path.abspath(__file__)), "Data/" + path)
     with open(fullpath, "rb") as myfile:
-        regexes = json.load(myfile)
+        return json.loads(myfile.read())
+
+
+@lru_cache()
+def load_regexes() -> list:
+    regexes = read_json("regex.json")
     for regex in regexes:
         regex["Boundaryless Regex"] = re.sub(
             r"(?<!\\)\^(?![^\[\]]*(?<!\\)\])", "", regex["Regex"]
@@ -38,6 +47,15 @@ def load_regexes() -> list:
         regex["Boundaryless Regex"] = re.sub(
             r"(?<!\\)\$(?![^\[\]]*(?<!\\)\])", "", regex["Boundaryless Regex"]
         )
+        children = regex.get("Children")
+        if children is not None:
+            try:
+                children["Items"] = read_json(children["path"])
+            except KeyError:
+                pass
+            children["lengths"] = set()
+            for element in children["Items"]:
+                children["lengths"].add(len(element))
     return regexes
 
 

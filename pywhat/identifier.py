@@ -15,7 +15,7 @@ class Identifier:
         dist: Optional[Distribution] = None,
         key: Callable = Keys.NONE,
         reverse=False,
-        boundaryless: Optional[Filter] = None
+        boundaryless: Optional[Filter] = None,
     ):
         if dist is None:
             self.distribution = Distribution()
@@ -49,6 +49,7 @@ class Identifier:
             reverse = self._reverse
         if boundaryless is None:
             boundaryless = self.boundaryless
+
         identify_obj = {"File Signatures": {}, "Regexes": {}}
         search = []
 

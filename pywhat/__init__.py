@@ -2,6 +2,8 @@ from pywhat.filter import Distribution, Filter
 from pywhat.helper import AvailableTags, Keys
 from pywhat.identifier import Identifier
 
+__version__ = "3.3.0"
+
 pywhat_tags = AvailableTags().get_tags()
 
 

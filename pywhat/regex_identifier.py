@@ -1,6 +1,4 @@
 import copy
-import json
-import os
 import re
 from typing import Optional
 
@@ -31,27 +29,39 @@ class RegexIdentifier:
                 )
 
                 for matched_regex in re.finditer(regex, string, re.MULTILINE):
-                    reg = copy.copy(reg)  # necessary, when checking phone
-                    # numbers from file that may contain
-                    # non-international numbers
+                    reg = copy.copy(reg)
                     matched = self.clean_text(matched_regex.group(0))
 
-                    if "Phone Number" in reg["Name"]:
-                        number = re.sub(r"[-() ]", "", matched)
-                        codes_path = "Data/phone_codes.json"
-                        codes_fullpath = os.path.join(
-                            os.path.dirname(os.path.abspath(__file__)), codes_path
+                    children = reg.get("Children")
+                    if children is not None:
+                        processed_match = re.sub(
+                            children.get("deletion_pattern", ""), "", matched
                         )
-                        with open(codes_fullpath, "rb") as myfile:
-                            codes = json.load(myfile)
+                        matched_children = []
+                        if children["method"] == "hashmap":
+                            for length in children["lengths"]:
+                                try:
+                                    matched_children.append(
+                                        children["Items"][processed_match[:length]]
+                                    )
+                                except KeyError:
+                                    continue
+                        else:
+                            for element in children["Items"]:
+                                if (
+                                    children["method"] == "regex"
+                                    and re.search(
+                                        element, processed_match, re.MULTILINE
+                                    )
+                                ) or (
+                                    children["method"] == "startswith"
+                                    and processed_match.startswith(element)
+                                ):
+                                    matched_children.append(children["Items"][element])
 
-                        locations = []
-                        for code in codes:
-                            if number.startswith(code["dial_code"]):
-                                locations.append(code["name"])
-                        if len(locations) > 0:
-                            reg["Description"] = (
-                                "Location(s)" + ": " + ", ".join(locations)
+                        if matched_children:
+                            reg["Description"] = children.get("entry", "") + ", ".join(
+                                matched_children
                             )
 
                     matches.append(
