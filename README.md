@@ -1,5 +1,5 @@
 <p align='center'>
-<img src='images_for_README/logo.png'>
+<img src='images/logo.png'>
 <p align="center">➡️ <a href="http://discord.skerritt.blog">Discord</a> ⬅️<br>
 <i>The easiest way to identify anything</i><br>
 <code>pip3 install pywhat && pywhat --help</code>
@@ -12,7 +12,7 @@
 
 # 🤔 `What` is this?
 
-![](images_for_README/main_demo.gif)
+![](images/main_demo.gif)
 
 Imagine this: You come across some mysterious text 🧙‍♂️ `0x52908400098527886E0F7030069857D2E4169EE7` or `dQw4w9WgXcQ` and you wonder what it is. What do you do?
 
@@ -24,7 +24,7 @@ Well, with `what` all you have to do is ask `what "0x52908400098527886E0F7030069
 
 ## 🦠 Wannacry
 
-![](images_for_README/wantocry_demo.png)
+![](images/wantocry_demo.png)
 
 You come across a new piece of malware called WantToCry. You think back to Wannacry and remember it was stopped because a researcher found a kill-switch in the code.
 
@@ -34,7 +34,7 @@ You use `What` to identify all the domains in the malware, and use a domain regi
 
 ## 🦈 Faster Analysis of Pcap files
 
-![](images_for_README/pcap_demo.gif)
+![](images/pcap_demo.gif)
 
 Say you have a `.pcap` file from a network attack. `What` can identify this and quickly find you:
 
