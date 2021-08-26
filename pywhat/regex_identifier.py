@@ -63,6 +63,7 @@ class RegexIdentifier:
                             reg["Description"] = children.get("entry", "") + ", ".join(
                                 matched_children
                             )
+                    reg.pop("Children", None)
 
                     matches.append(
                         {
