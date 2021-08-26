@@ -48,7 +48,7 @@ def test_json_printing():
     """Test for valid json"""
     runner = CliRunner()
     result = runner.invoke(main, ["10.0.0.1", "--json"])
-    assert json.loads(result.output, strict=False)
+    assert json.loads(result.output.replace("\n", ""))
 
 
 def test_json_printing2():
@@ -56,6 +56,12 @@ def test_json_printing2():
     runner = CliRunner()
     result = runner.invoke(main, ["", "--json"])
     assert result.output.strip("\n") == '{"File Signatures": null, "Regexes": null}'
+
+
+def test_json_printing3():
+    runner = CliRunner()
+    result = runner.invoke(main, ["fixtures/file", "--json"])
+    assert json.loads(result.output.replace("\n", ""))
 
 
 def test_file_fixture():
