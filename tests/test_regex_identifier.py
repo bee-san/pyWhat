@@ -693,18 +693,6 @@ def test_discord_token_3():
     res = r.check(["ODYyOTUyOTE3NTg4NjM5NzY1.YOf1iA.7lARgFXmodxpgmPvOXapaKUga6M"])
     _assert_match_first_item("Discord Bot Token", res)
 
-
-def test_placekey():
-    res = r.check(["zzw-223@63r-6cs-j5f"])
-    _assert_match_first_item("Placekey Universal Identifier for Physical Place", res)
-
-    res = r.check(["226-223@5py-nm7-fs5"])
-    _assert_match_first_item("Placekey Universal Identifier for Physical Place", res)
-
-    res = r.check(["22d@627-s8q-xkf"])
-    _assert_match_first_item("Placekey Universal Identifier for Physical Place", res)
-
-
 def test_bcglobal():
     res = r.check(["6556123456789012"])
     _assert_match_first_item("BCGlobal Card Number", res)
