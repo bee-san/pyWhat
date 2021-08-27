@@ -617,18 +617,6 @@
          "Ethereum Wallet"
       ]
    },
-   {
-      "Name": "Amazon Web Services EC2 Security Group identifier",
-      "Regex": "^(([0-9]*\\/)?sg-([0-9a-z]*))$",
-      "plural_name": false,
-      "Description": null,
-      "Rarity": 0.3,
-      "URL": null,
-      "Tags": [
-         "Identifiers",
-         "AWS"
-       ]
-    },
     {
       "Name": "Slack Token",
       "Regex": "^(xox[a-zA-Z]-[a-zA-Z0-9-]+)$",
