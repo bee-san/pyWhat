@@ -580,12 +580,6 @@ def test_aws_ec2_id():
     res = r.check(["i-1234567890abcdef0"])
     assert "Amazon Web Services EC2 Instance identifier" in str(res)
 
-
-def test_aws_sg_id():
-    res = r.check(["sg-6e616f6d69"])
-    assert "Amazon Web Services EC2 Security Group identifier" in str(res)
-
-
 def test_aws_org_id():
     res = r.check(["o-aa111bb222"])
     assert "Amazon Web Services Organization identifier" in str(res)
