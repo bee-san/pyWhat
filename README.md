@@ -20,6 +20,28 @@ Well, with `what` all you have to do is ask `what "0x52908400098527886E0F7030069
 
 `what`'s job is to **identify _what_ something is.** Whether it be a file or text! Or even the hex of a file! What about text _within_ files? We have that too! `what` is recursive, it will identify **everything** in text and more!
 
+# Installation
+
+## 🔨 Using pip
+
+```$ pip3 install pywhat```
+
+or
+
+```$ pip3 install pywhat[optimize] # installs optional dependencies that may improve the speed```
+
+## 🔨 Using homebrew
+
+```$ brew install pywhat```
+
+## 🔨 Using macports
+
+```$ sudo port install pywhat```
+
+## 🔨 Using conda
+
+```$ conda install -c conda-forge pywhat```
+
 # ⚙ Use Cases
 
 ## 🦠 Wannacry
