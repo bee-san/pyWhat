@@ -20,6 +20,9 @@ isort = {version = "^5.9.2", python = "^3.6.1"}
 flake8 = "3.8.4"
 requests = "^2.26.0"
 
+[tool.poetry.extras]
+optimize = ["orjson"]
+
 [build-system]
 requires = ["poetry-core>=1.0.0"]
 build-backend = "poetry.core.masonry.api"
