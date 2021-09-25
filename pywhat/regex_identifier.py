@@ -27,7 +27,6 @@ class RegexIdentifier:
                 regex = (
                     reg["Boundaryless Regex"] if reg in boundaryless else reg["Regex"]
                 )
-
                 for matched_regex in re.finditer(regex, string, re.MULTILINE):
                     reg = copy.copy(reg)
                     matched = self.clean_text(matched_regex.group(0))
