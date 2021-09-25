@@ -112,7 +112,7 @@ wget -r -np -k https://skerritt.blog
 for f in $(find . ); do pywhat --include "Bug Bounty" $f; done
 ```
 
-**PS**: We support more filters than just bug bounties! Run `pywhat 
+**PS**: We support more filters than just bug bounties! Run `pywhat --tags`
 
 ## 🌌 Other Features
 
