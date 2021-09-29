@@ -31,7 +31,7 @@ class InvalidTag(Exception):
     pass
 
 
-@lru_cache
+@lru_cache()
 def read_json(path: str):
     fullpath = os.path.join(os.path.dirname(os.path.abspath(__file__)), "Data/" + path)
     with open(fullpath, "rb") as myfile:
