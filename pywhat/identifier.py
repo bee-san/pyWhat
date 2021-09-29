@@ -74,7 +74,9 @@ class Identifier:
                 if include_filenames:
                     contents.append(os.path.basename(string))
 
-                regex = self._regex_id.check(contents, dist)
+                regex = self._regex_id.check(
+                    contents, dist=dist, boundaryless=boundaryless
+                )
 
                 if not magic_numbers:
                     magic_numbers = pywhat.magic_numbers.check_magic_nums(string)
