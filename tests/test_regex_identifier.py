@@ -580,6 +580,7 @@ def test_aws_ec2_id():
     res = r.check(["i-1234567890abcdef0"])
     assert "Amazon Web Services EC2 Instance identifier" in str(res)
 
+
 def test_aws_org_id():
     res = r.check(["o-aa111bb222"])
     assert "Amazon Web Services Organization identifier" in str(res)
@@ -686,6 +687,7 @@ def test_discord_token_2():
 def test_discord_token_3():
     res = r.check(["ODYyOTUyOTE3NTg4NjM5NzY1.YOf1iA.7lARgFXmodxpgmPvOXapaKUga6M"])
     _assert_match_first_item("Discord Bot Token", res)
+
 
 def test_bcglobal():
     res = r.check(["6556123456789012"])

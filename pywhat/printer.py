@@ -12,7 +12,7 @@ class Printing:
     def pretty_print(self, text: dict, text_input):
         to_out = ""
 
-        if text["File Signatures"] and text["Regexes"]:
+        if text["File Signatures"]:
             for key, value in text["File Signatures"].items():
                 if value:
                     to_out += "\n"
@@ -74,8 +74,8 @@ class Printing:
 
             self.console.print(to_out, table)
 
-        if to_out == "":
-            self.console.print("Nothing found!")
+        else:
+            self.console.print(to_out + "\nNothing found!")
 
     def print_json(self, text: dict):
         self.console.print(json.dumps(text))

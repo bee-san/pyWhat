@@ -2,9 +2,9 @@ import glob
 import os.path
 from typing import Callable, Optional
 
+import pywhat.magic_numbers
 from pywhat.filter import Distribution, Filter
 from pywhat.helper import Keys
-from pywhat.magic_numbers import FileSignatures
 from pywhat.regex_identifier import RegexIdentifier
 
 
@@ -22,7 +22,6 @@ class Identifier:
         else:
             self.distribution = dist
         self._regex_id = RegexIdentifier()
-        self._file_sig = FileSignatures()
         self._key = key
         self._reverse = reverse
         if boundaryless is None:
@@ -68,8 +67,9 @@ class Identifier:
                 else:
                     short_name = os.path.basename(string)
 
-                magic_numbers = self._file_sig.open_binary_scan_magic_nums(string)
-                contents = self._file_sig.open_file_loc(string)
+                magic_numbers = pywhat.magic_numbers.get_magic_nums(string)
+                with open(string, "r", encoding="utf-8", errors="ignore") as myfile:
+                    contents = [myfile.read()]
 
                 if include_filenames:
                     contents.append(os.path.basename(string))
@@ -77,7 +77,7 @@ class Identifier:
                 regex = self._regex_id.check(contents, dist)
 
                 if not magic_numbers:
-                    magic_numbers = self._file_sig.check_magic_nums(string)
+                    magic_numbers = pywhat.magic_numbers.check_magic_nums(string)
 
                 if magic_numbers:
                     identify_obj["File Signatures"][short_name] = magic_numbers
