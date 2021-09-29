@@ -72,10 +72,10 @@ class Printing:
                             description,
                         )
 
-            self.console.print(to_out, table)
+            self.console.print(to_out.lstrip(), table)
 
         else:
-            self.console.print(to_out + "\nNothing found!")
+            self.console.print((to_out + "\nNothing found!").lstrip())
 
     def print_json(self, text: dict):
         self.console.print(json.dumps(text))
