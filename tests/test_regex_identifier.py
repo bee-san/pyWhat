@@ -17,14 +17,13 @@ def _assert_match_first_item(name, res):
 def test_regex_successfully_parses():
     assert "Name" in r.distribution.get_regexes()[0]
 
+
 def _assert_match_in_items(name, res):
     for i in res:
-        if i["Regex Pattern"]["Name"] == name:
-            assert True
-        else:
-            assert False
+        assert i["Regex Pattern"]["Name"] == name
 
-@pytest.mark.skip(reason="Not all regex have tests now, check my PR for info.")
+
+@pytest.mark.skip(reason="Not all regex have tests now, check https://github.com/bee-san/pyWhat/pull/146#issuecomment-927087231 for info.")
 def test_if_all_tests_exist():
     with open("tests/test_regex_identifier.py", "r", encoding="utf-8") as file:
         tests = file.read()
@@ -52,6 +51,7 @@ def test_sorted_by_rarity():
     assert rarity_num == sorted(
         rarity_num, reverse=True
     ), "Regexes should be sorted by rarity in 'regex.json'. Regexes with rarity '1' are at the top of the file and '0' is at the bottom."
+
 
 def test_dogecoin():
     res = r.check(["DANHz6EQVoWyZ9rER56DwTXHWUxfkv9k2o"])
@@ -586,6 +586,7 @@ def test_aws_ec2_id():
     res = r.check(["i-1234567890abcdef0"])
     assert "Amazon Web Services EC2 Instance identifier" in str(res)
 
+
 def test_aws_org_id():
     res = r.check(["o-aa111bb222"])
     assert "Amazon Web Services Organization identifier" in str(res)
@@ -693,6 +694,7 @@ def test_discord_token_3():
     res = r.check(["ODYyOTUyOTE3NTg4NjM5NzY1.YOf1iA.7lARgFXmodxpgmPvOXapaKUga6M"])
     _assert_match_first_item("Discord Bot Token", res)
 
+
 def test_bcglobal():
     res = r.check(["6556123456789012"])
     _assert_match_first_item("BCGlobal Card Number", res)
@@ -735,25 +737,31 @@ def test_solo_card():
     res = r.check(["6334498823141663"])
     _assert_match_first_item("Solo Card Number", res)
 
+
 def test_github_personal_access_token():
     res = r.check(["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"])
     _assert_match_first_item("GitHub Personal Access Token", res)
+
 
 def test_github_oauth_token():
     res = r.check(["gho_16C7e42F292c6912E7710c838347Ae178B4a"])
     _assert_match_first_item("GitHub OAuth Access Token", res)
 
+
 def test_github_refresh_token():
-    res = r.check(["ghr_1B4a2e77838347a7E420ce178F2E7c6912E169246c34E1ccbF66C46812d16D5B1A9Dc86A1498"])
+    res = r.check(
+        [
+            "ghr_1B4a2e77838347a7E420ce178F2E7c6912E169246c34E1ccbF66C46812d16D5B1A9Dc86A1498"
+        ]
+    )
     _assert_match_first_item("GitHub Refresh Token", res)
+
 
 def test_stripe_api_key():
     res = r.check(["sk_live_26PHem9AhJZvU623DfE1x4sd"])
     _assert_match_first_item("Stripe API Key", res)
 
+
 def test_zapier_webhook():
     res = r.check(["https://hooks.zapier.com/hooks/catch/1234567/f8f22dgg/"])
     _assert_match_first_item("Zapier Webhook Token", res)
-
-
-
