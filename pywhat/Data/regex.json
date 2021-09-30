@@ -610,7 +610,7 @@
       "Regex": "(?i)^(https://(?:www.)?hooks\\.zapier\\.com/hooks/catch/[A-Za-z0-9]+/[A-Za-z0-9]+/)$",
       "plural_name": false,
       "Description": null,
-      "Exploit": "Use the command below to verify that the Zapier Webook url is valid.\n  $ curl -H \"Accept: application/json\" -H \"Content-Type: application/json\" -X POST -d '{\"name\":\"dora\"}' \"WEBHOOK_URL_HERE\"\n\nAPI Documentation: https://zapier.com/help/create/code-webhooks\n",
+      "Exploit": "Verify that the Zapier Webook url is valid:\n  curl -H \"Accept: application/json\" -H \"Content-Type: application/json\" -X POST -d '{\"name\":\"PyWhat\"}' \"WEBHOOK_URL_HERE\"",
       "Rarity": 1,
       "URL": null,
       "Tags": [
