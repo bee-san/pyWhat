@@ -765,3 +765,8 @@ def test_stripe_api_key():
 def test_zapier_webhook():
     res = r.check(["https://hooks.zapier.com/hooks/catch/1234567/f8f22dgg/"])
     _assert_match_first_item("Zapier Webhook Token", res)
+
+
+def test_new_relic_user_api_key():
+    res = r.check(["NRAK-WI4JTVS049IF5A3FGS5N51XS3Y5"])
+    _assert_match_first_item("New Relic User API Key", res)
