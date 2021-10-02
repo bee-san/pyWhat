@@ -14,6 +14,10 @@ def _assert_match_first_item(name, res):
     assert name in res[0]["Regex Pattern"]["Name"]
 
 
+def _assert_match_exploit_first_item(search, res):
+    assert search in res[0]["Regex Pattern"]["Exploit"]
+
+
 def test_regex_successfully_parses():
     assert "Name" in r.distribution.get_regexes()[0]
 
@@ -659,9 +663,16 @@ def test_github_access_token():
     _assert_match_first_item("GitHub Access Token", res)
 
 
+def test_slack_api_key():
+    res = r.check(["xoxp-514654431830-843187921057-792480346180-d44d2r9b71f954o8z2k5llt41ovpip6v"])
+    _assert_match_first_item("Slack API Key", res)
+    _assert_match_exploit_first_item("https://slack.com/api/auth.test?token=xoxp-514654431830-843187921057-792480346180-d44d2r9b71f954o8z2k5llt41ovpip6v", res)
+
+
 def test_slack_token():
     res = r.check(["xoxb-51465443183-hgvhXVd2ISC2x7gaoRWBOUdQ"])
     _assert_match_first_item("Slack Token", res)
+    _assert_match_exploit_first_item("https://slack.com/api/auth.test?token=xoxb-51465443183-hgvhXVd2ISC2x7gaoRWBOUdQ", res)
 
 
 def test_pgp_public_key():
