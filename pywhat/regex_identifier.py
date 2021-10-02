@@ -31,6 +31,10 @@ class RegexIdentifier:
                     reg = copy.copy(reg)
                     matched = self.clean_text(matched_regex.group(0))
 
+                    if reg.get("Exploit") is not None and "curl" in reg["Exploit"]:
+                        # Replace anything like XXXXX_XXXXXX_HERE with the match
+                        reg["Exploit"] = re.sub(r'[A-Z_]+_HERE', matched, reg["Exploit"])
+
                     children = reg.get("Children")
                     if children is not None:
                         processed_match = re.sub(
