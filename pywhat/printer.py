@@ -19,11 +19,11 @@ class Printing:
                 if value:
                     to_out += "\n"
                     to_out += f"[bold #D7Afff]File Identified[/bold #D7Afff]: [bold]{key}[/bold] with Magic Numbers {value['ISO 8859-1']}."
-                    to_out += f"\n[bold #D7Afff]File Description:[/bold #D7Afff] {value['Description']}."
-                    to_out += "\n"
+                    to_out += f"\n[bold #D7Afff]File Description: [/bold #D7Afff] {value['Description']}."
+                    to_out += "\n\n"
 
         if text["Regexes"]:
-            to_out += "\n[bold #D7Afff]Possible Identification[/bold #D7Afff]"
+            to_out += "\n[bold #D7Afff]Possible Identification[/bold #D7Afff]\n"
             table = Table(
                 show_header=True, header_style="bold #D7Afff", show_lines=True
             )
@@ -37,7 +37,8 @@ class Printing:
             
             # Check if there are any bug bounties with exploits
             # in the regex
-            if self._check_if_exploit_in_json(text):
+            self._check_if_exploit_in_json(text)
+            if self.bug_bounty_mode:
                 table.add_column("Exploit", overflow="fold")
 
             for key, value in text["Regexes"].items():
@@ -46,6 +47,7 @@ class Printing:
                     name = i["Regex Pattern"]["Name"]
                     description = None
                     filename = key
+                    exploit = None
 
                     if "URL" in i["Regex Pattern"] and i["Regex Pattern"]["URL"]:
                         description = (
@@ -125,34 +127,34 @@ class Printing:
         
 
         if text["Regexes"]:
-            output_str += "[bold #D7Afff]Possible Identification[/bold #D7Afff]\n"
-
             for key, value in text["Regexes"].items():
                 for i in value:
                     description = None
                     matched = i["Matched"]
                     if self._check_if_directory(text_input):
-                        output_str += f"[bold]File: {key}[/bold]\n"
-                    output_str += "[blue]Matched on: [/blue]" + i["Matched"]
-                    output_str += "\nName: " + i["Regex Pattern"]["Name"]
+                        output_str += f"[bold #D7Afff]File: {key}[/bold #D7Afff]\n"
+                    output_str += "[bold #D7Afff]Matched on: [/bold #D7Afff]" + i["Matched"]
+                    output_str += "\n[bold #D7Afff]Name: [/bold #D7Afff]" + i["Regex Pattern"]["Name"]
 
+                    link = None
                     if "URL" in i["Regex Pattern"] and i["Regex Pattern"]["URL"]:
-                        description = (
-                            "\n[Blue]Description: [/Blue] Click here to analyse in the browser\n"
+                        link = (
+                            "\n[bold #D7Afff]Link: [/bold #D7Afff] "
                             + i["Regex Pattern"]["URL"]
                             + matched.replace(" ", "")
                         )
+                    
+                    if link:
+                        output_str += link
 
                     if i["Regex Pattern"]["Description"]:
-                        if description:
-                            description = (
-                                description + "\n[Blue]Description: [/Blue] \n" + i["Regex Pattern"]["Description"]
-                            )
-                        else:
-                            description = "\n[Blue]Description: [/Blue]" + i["Regex Pattern"]["Description"]
+                         description = "\n[bold #D7Afff]Description: [/bold #D7Afff]" + i["Regex Pattern"]["Description"]
+                    
+                    if description:
+                        output_str += description
                     
                     if "Exploit" in i["Regex Pattern"] and i["Regex Pattern"]["Exploit"]:
-                        output_str += "\n[red]Exploit: [/red]" + i["Regex Pattern"]["Exploit"]
+                        output_str += "\n[bold #D7Afff]Exploit: [/bold #D7Afff]" + i["Regex Pattern"]["Exploit"]
                     output_str += "\n\n"
 
         if output_str == "":
@@ -161,9 +163,16 @@ class Printing:
         self.console.print(output_str)
     
     def _check_if_exploit_in_json(self, text: dict) -> bool:
-        for value in text["Regexes"]["text"]:
-            if "Exploit" in value["Regex Pattern"].keys():
-                self.bug_bounty_mode = True
+        if "File Signatures" in text.keys() and text["File Signatures"]:
+            # loops files
+            for file in text["Regexes"].keys():
+                for i in text["Regexes"][file]:
+                    if "Exploit" in i.keys():
+                        self.bug_bounty_mode = True
+        else:
+            for value in text["Regexes"]["text"]:
+                if "Exploit" in value["Regex Pattern"].keys():
+                    self.bug_bounty_mode = True
 
     def _check_if_directory(self, text_input):
         return os.path.isdir(text_input)
