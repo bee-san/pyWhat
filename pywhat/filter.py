@@ -1,8 +1,7 @@
 from collections.abc import Mapping
 from typing import Optional
 
-from pywhat.helper import (AvailableTags, CaseInsensitiveSet, InvalidTag,
-                           load_regexes)
+from pywhat.helper import AvailableTags, CaseInsensitiveSet, InvalidTag, load_regexes
 
 
 class Filter(Mapping):

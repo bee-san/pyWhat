@@ -52,7 +52,7 @@ def lint(session: Session) -> None:
 def tests(session: Session) -> None:
     """Run the test suite."""
     session.run("poetry", "install", "--no-dev", external=True)
-    install_with_constraints(session, "pytest")
+    install_with_constraints(session, "pytest", "pytest-black", "pytest-isort")
     session.run("pytest")
 
 
@@ -61,7 +61,9 @@ def typeguard(session: Session) -> None:
     """Runtime type checking using Typeguard."""
     args = session.posargs or ["-m", "not e2e"]
     session.run("poetry", "install", "--no-dev", external=True)
-    install_with_constraints(session, "pytest", "pytest-mock", "typeguard")
+    install_with_constraints(
+        session, "pytest", "pytest-mock", "typeguard", "pytest-black", "pytest-isort"
+    )
     session.run("pytest", f"--typeguard-packages={package}", *args)
 
 
