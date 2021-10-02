@@ -10,6 +10,22 @@ database = load_regexes()
 r = regex_identifier.RegexIdentifier()
 
 
+def _assert_match_first_item(name, res):
+    assert name in res[0]["Regex Pattern"]["Name"]
+
+
+def test_regex_successfully_parses():
+    assert "Name" in r.distribution.get_regexes()[0]
+
+
+def _assert_match_in_items(name, res):
+    for i in res:
+        assert i["Regex Pattern"]["Name"] == name
+
+
+@pytest.mark.skip(
+    reason="Not all regex have tests now, check https://github.com/bee-san/pyWhat/pull/146#issuecomment-927087231 for info."
+)
 def test_if_all_tests_exist():
     with open("tests/test_regex_identifier.py", "r", encoding="utf-8") as file:
         tests = file.read()
@@ -37,14 +53,6 @@ def test_sorted_by_rarity():
     assert rarity_num == sorted(
         rarity_num, reverse=True
     ), "Regexes should be sorted by rarity in 'regex.json'. Regexes with rarity '1' are at the top of the file and '0' is at the bottom."
-
-
-def _assert_match_first_item(name, res):
-    assert name in res[0]["Regex Pattern"]["Name"]
-
-
-def test_regex_successfully_parses():
-    assert "Name" in r.distribution.get_regexes()[0]
 
 
 def test_dogecoin():
@@ -730,3 +738,47 @@ def test_laser_card():
 def test_solo_card():
     res = r.check(["6334498823141663"])
     _assert_match_first_item("Solo Card Number", res)
+
+
+def test_github_personal_access_token():
+    res = r.check(["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"])
+    _assert_match_first_item("GitHub Personal Access Token", res)
+
+
+def test_github_oauth_token():
+    res = r.check(["gho_16C7e42F292c6912E7710c838347Ae178B4a"])
+    _assert_match_first_item("GitHub OAuth Access Token", res)
+
+
+def test_github_refresh_token():
+    res = r.check(
+        [
+            "ghr_1B4a2e77838347a7E420ce178F2E7c6912E169246c34E1ccbF66C46812d16D5B1A9Dc86A1498"
+        ]
+    )
+    _assert_match_first_item("GitHub Refresh Token", res)
+
+
+def test_stripe_api_key():
+    res = r.check(["sk_live_26PHem9AhJZvU623DfE1x4sd"])
+    _assert_match_first_item("Stripe API Key", res)
+
+
+def test_zapier_webhook():
+    res = r.check(["https://hooks.zapier.com/hooks/catch/1234567/f8f22dgg/"])
+    _assert_match_first_item("Zapier Webhook Token", res)
+
+
+def test_new_relic_rest_api_key():
+    res = r.check(["NRRA-2a2d50d7d9449f3bb7ef65ac1184c488bd4fe7a8bd"])
+    _assert_match_first_item("New Relic REST API Key", res)
+
+
+def test_new_relic_synthetics_api_key():
+    res = r.check(["NRSP-us010E1E3D1716F721FF39F726B3E4CBCB7"])
+    _assert_match_first_item("New Relic Synthetics Location Key", res)
+
+
+def test_new_relic_user_api_key():
+    res = r.check(["NRAK-WI4JTVS049IF5A3FGS5N51XS3Y5"])
+    _assert_match_first_item("New Relic User API Key", res)

@@ -109,6 +109,11 @@ def create_filter(rarity, include, exclude):
     is_flag=True,
     help="Search filenames for possible matches.",
 )
+@click.option(
+    "--format",
+    required=False,
+    help="--format json for json output. --format pretty for a pretty table output.",
+)
 def main(**kwargs):
     """
     pyWhat - Identify what something is.
@@ -229,11 +234,12 @@ def main(**kwargs):
 
     p = printer.Printing()
 
-    if kwargs["json"]:
+    if kwargs["json"] or kwargs["format"] == "json":
         p.print_json(identified_output)
-
-    else:
+    elif kwargs["format"] == "pretty":
         p.pretty_print(identified_output, kwargs["text_input"])
+    else:
+        p.print_raw(identified_output, kwargs["text_input"])
 
 
 class What_Object:
