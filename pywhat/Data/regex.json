@@ -650,7 +650,7 @@
       "Regex": "(?i)^(NRRA-[a-f0-9]{42})$",
       "plural_name": false,
       "Description": null,
-      "Exploit": "Use the command below to verify that the New Relic REST API Key is valid.\n  $ curl -X GET 'https://api.newrelic.com/v2/applications.json'      -H \"X-Api-Key:${APIKEY}\" -i\n\nIf valid, test furher to see if its an admin key[1]\n\n[1] https://docs.newrelic.com/docs/apis/intro-apis/new-relic-api-keys/\n\nAPI Documentation: https://docs.newrelic.com/docs/apis/intro-apis/new-relic-api-keys/",
+      "Exploit": "Use the command below to verify that the New Relic REST API Key is valid.\n  $ curl -X GET 'https://api.newrelic.com/v2/applications.json'      -H \"X-Api-Key:${API_KEY_HERE}\" -i\n\nIf valid, test furher to see if its an admin key[1]\n\n[1] https://docs.newrelic.com/docs/apis/intro-apis/new-relic-api-keys/\n\nAPI Documentation: https://docs.newrelic.com/docs/apis/intro-apis/new-relic-api-keys/",
       "Rarity": 1,
       "URL": null,
       "Tags": [
@@ -1330,7 +1330,7 @@
       "Regex": "^(key-[0-9a-zA-Z]{32})$",
       "plural_name": false,
       "Description": null,
-      "Exploit": "Use the command below to verify that private key is valid:\n  $ curl --user 'api:key-PRIVATEKEYHERE' \"https://api.mailgun.net/v3/domains\"\nAPI Documentation: https://documentation.mailgun.com/en/latest/api_reference.html",
+      "Exploit": "Use the command below to verify that private key is valid:\n  $ curl --user 'api:key-PRIVATE_KEY_HERE' \"https://api.mailgun.net/v3/domains\"\nAPI Documentation: https://documentation.mailgun.com/en/latest/api_reference.html",
       "Rarity": 0.3,
       "URL": null,
       "Tags": [
