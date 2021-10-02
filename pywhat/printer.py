@@ -105,7 +105,7 @@ class Printing:
                                 description,
                             )
 
-            self.console.print(to_out, table)
+            self.console.print(to_out.rstrip(), table)
 
         if to_out == "":
             self.console.print("Nothing found!")
@@ -177,7 +177,8 @@ class Printing:
         if output_str == "":
             self.console.print("Nothing found!")
 
-        self.console.print(output_str)
+        if output_str.strip():
+            self.console.print(output_str.rstrip())
 
     def _check_if_exploit_in_json(self, text: dict) -> bool:
         if "File Signatures" in text.keys() and text["File Signatures"]:
