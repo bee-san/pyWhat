@@ -796,3 +796,8 @@ def test_windows_file_name():
     res = r.check(["cmd.exe"])
     _assert_match_first_item("Windows File Name", res)
 
+
+def test_youtube_channel_id():
+    res = r.check(["https://www.youtube.com/channel/UCXuqSBlHAE6Xw-yeJA0Tunw"])
+    _assert_match_first_item("YouTube Channel ID", res)
+
