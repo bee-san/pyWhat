@@ -98,7 +98,7 @@ GHUSER=CHANGEME; curl "https://api.github.com/users/$GHUSER/repos?per_page=1000"
 
 # Will print when it finds things.
 # Loops over all files in current directory.
-for f in $(find . ); do pywhat --include 'Bug Bounty' $f; done
+find . -type f -execdir pywhat --include 'Bug Bounty' {} \;
 ```
 
 ### 🕷 Scan all web pages for bounties
@@ -109,7 +109,7 @@ wget -r -np -k https://skerritt.blog
 
 # Will print when it finds things.
 # Loops over all files in current directory.
-for f in $(find . ); do pywhat --include 'Bug Bounty' $f; done
+find . -type f -execdir pywhat --include 'Bug Bounty' {} \;
 ```
 
 **PS**: We support more filters than just bug bounties! Run `pywhat --tags`
