@@ -28,19 +28,18 @@ Well, with `what` all you have to do is ask `what "0x52908400098527886E0F7030069
 
 or
 
-```$ pip3 install pywhat[optimize] # installs optional dependencies that may improve the speed```
+```shell
+# installs optional dependencies that may improve the speed
+$ pip3 install pywhat[optimize] 
+```
 
-## 🔨 Using homebrew
+## 🔨 On Mac?
 
 ```$ brew install pywhat```
 
-## 🔨 Using macports
+Or for our MacPorts fans:
 
 ```$ sudo port install pywhat```
-
-## 🔨 Using conda
-
-```$ conda install -c conda-forge pywhat```
 
 # ⚙ Use Cases
 
@@ -70,23 +69,83 @@ Say you have a `.pcap` file from a network attack. `What` can identify this and 
 
 With `what`, you can identify the important things in the pcap in seconds, not minutes.
 
-## 🌌 Anything
+## 🐞 Bug Bounties
+
+You can use PyWhat to scan for things that'll make you money via bug bounties like:
+* API Keys
+* Webhooks
+* Credentials
+* and more
+
+Run PyWhat with:
+
+```
+pywhat --include "Bug Bounty" TEXT
+```
+
+To do this.
+
+Here are some examples 👇
+
+### 🐙 GitHub Repository API Key Leaks
+
+1. Download all GitHub repositories of an organisation
+2. Search for anything that you can submit as a bounty, like API keys
+
+```shell
+# Download all repositories
+GHUSER=CHANGEME; curl "https://api.github.com/users/$GHUSER/repos?per_page=1000" | grep -o 'git@[^"]*' | xargs -L1 git clone
+
+# Will print when it finds things.
+# Loops over all files in current directory.
+for f in $(find . ); do pywhat --include 'Bug Bounty' $f; done
+```
+
+### 🕷 Scan all web pages for bounties
+
+```shell
+# Recursively download all web pages of a site
+wget -r -np -k https://skerritt.blog
+
+# Will print when it finds things.
+# Loops over all files in current directory.
+for f in $(find . ); do pywhat --include 'Bug Bounty' $f; done
+```
+
+**PS**: We support more filters than just bug bounties! Run `pywhat --tags`
+
+## 🌌 Other Features
 
 Anytime you have a file and you want to find structured data in it that's useful, `What` is for you.
 
 Or if you come across some piece of text and you don't know what it is, `What` will tell you.
 
+### 📁 File & Directory Handling
+
 **File Opening** You can pass in a file path by `what 'this/is/a/file/path'`. `What` is smart enough to figure out it's a file!
 
 What about a whole **directory**? `What` can handle that too! It will **recursively** search for files and output everything you need!
 
-**Filtration** You can filter output by using `what --rarity 0.2:0.8 --include_tags tag1,tag2 TEXT`. Use `what --help` to get more information.
+### 🔍 Filtering your output
+
+Sometimes, you only care about seeing things which are related to AWS. Or bug bounties, or cryptocurrencies!
+
+You can filter output by using `what --rarity 0.2:0.8 --include Identifiers,URL https://skerritt.blog`. Use `what --help` to get more information.
+
+To see all filters, run `pywhat --tags`! You can also combine them, for example to see all cryptocurrency wallets minus Ripple you can do:
+
+```console
+pywhat --include "Cryptocurrency Wallet" --exclude "Ripple Wallet" 1KFHE7w8BhaENAswwryaoccDb6qcT6DbYY
+```
+
+### 👽 Sorting, Exporting, and more!
 
 **Sorting** You can sort the output by using `what -k rarity --reverse TEXT`. Use `what --help` to get more information.
 
 **Exporting** You can export to json using `what --json` and results can be sent directly to a file using `what --json > file.json`.
 
 **Boundaryless mode** `What` has a special mode to match identifiable information within strings. By default, it is enabled in CLI but disabled in API. Use `what --help` or refer to [API Documentation](https://github.com/bee-san/pyWhat/wiki/API) for more information.
+
 
 # 🍕 API
 
@@ -98,3 +157,7 @@ PyWhat has an API! Click here [https://github.com/bee-san/pyWhat/wiki/API](https
 
 We ask contributors to join the Discord for quicker discussions, but it's not needed:
 <a href="http://discord.skerritt.blog"><img alt="Discord" src="https://img.shields.io/discord/754001738184392704"></a>
+
+# 🙏 Thanks
+
+We would like to thank [Dora](https://github.com/sdushantha/dora) for their work on a bug bounty specific regex database which we have used.
