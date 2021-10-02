@@ -104,7 +104,7 @@ class Printing:
 
             self.console.print(to_out, table)
 
-        if to_out == "":
+        if to_out == "" and not self.bug_bounty_mode:
             self.console.print("Nothing found!")
 
     def print_json(self, text: dict):
@@ -157,7 +157,7 @@ class Printing:
                         output_str += "\n[bold #D7Afff]Exploit: [/bold #D7Afff]" + i["Regex Pattern"]["Exploit"]
                     output_str += "\n\n"
 
-        if output_str == "":
+        if output_str == "" and self.bug_bounty_mode:
             self.console.print("Nothing found!")
 
         self.console.print(output_str)
