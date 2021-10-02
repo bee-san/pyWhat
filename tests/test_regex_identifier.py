@@ -767,6 +767,16 @@ def test_zapier_webhook():
     _assert_match_first_item("Zapier Webhook Token", res)
 
 
+def test_new_relic_rest_api_key():
+    res = r.check(["NRRA-2a2d50d7d9449f3bb7ef65ac1184c488bd4fe7a8bd"])
+    _assert_match_first_item("New Relic REST API Key", res)
+
+
+def test_new_relic_synthetics_api_key():
+    res = r.check(["NRSP-us010E1E3D1716F721FF39F726B3E4CBCB7"])
+    _assert_match_first_item("New Relic Synthetics Location Key", res)
+
+
 def test_new_relic_user_api_key():
     res = r.check(["NRAK-WI4JTVS049IF5A3FGS5N51XS3Y5"])
     _assert_match_first_item("New Relic User API Key", res)
