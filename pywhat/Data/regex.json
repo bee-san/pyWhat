@@ -148,7 +148,7 @@
       "Regex": "(?i)^(xox[p|b|o|a]-[0-9]{12}-[0-9]{12}-[0-9]{12}-[a-z0-9]{32})$",
       "plural_name": false,
       "Description": null,
-      "Exploit": "Use the command below to verify that private key is valid:\n  $ curl -sX POST \"https://slack.com/api/auth.test?token=xoxp-TOKEN_HERE&pretty=1\"\n \nAPI Documentation: https://api.slack.com/web",
+      "Exploit": "Use the command below to verify that private key is valid:\n  $ curl -sX POST \"https://slack.com/api/auth.test?token=TOKEN_HERE&pretty=1\"\n \nAPI Documentation: https://api.slack.com/web",
       "Rarity": 1,
       "URL": null,
       "Tags": [
@@ -1275,7 +1275,7 @@
       "Regex": "^(xox[a-zA-Z]-[a-zA-Z0-9-]+)$",
       "plural_name": false,
       "Description": null,
-      "Exploit": "Use the command below to verify that private key is valid:\n  $ curl -sX POST \"https://slack.com/api/auth.test?token=xoxp-TOKEN_HERE&pretty=1\"\n \nAPI Documentation: https://api.slack.com/web",
+      "Exploit": "Use the command below to verify that private key is valid:\n  $ curl -sX POST \"https://slack.com/api/auth.test?token=TOKEN_HERE&pretty=1\"\n \nAPI Documentation: https://api.slack.com/web",
       "Rarity": 0.3,
       "URL": null,
       "Tags": [
