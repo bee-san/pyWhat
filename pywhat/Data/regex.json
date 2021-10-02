@@ -1548,5 +1548,17 @@
         "Windows",
         "File"
      ]
+  }, 
+{
+     "Name": "YouTube Channel ID",
+     "Regex": "^(((http|https):\/\/|)(www\.|)youtube\.com\/(channel\/|user\/)[a-zA-Z0-9_-]{1,})$",
+     "plural_name": false,
+     "Description": "Used for detecting YouTube Channel IDs",
+     "Rarity": 1,
+     "URL": "https://support.google.com/youtube/answer/3250431?hl=en",
+     "Tags": [
+        "YouTube",
+        "Channel"
+     ]
   }
 ]
