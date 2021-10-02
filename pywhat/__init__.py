@@ -4,7 +4,15 @@ from pywhat.identifier import Identifier
 
 __version__ = "3.4.1"
 
-pywhat_tags = AvailableTags().get_tags()
+tags = AvailableTags().get_tags()
+pywhat_tags = tags  # left for backward compatibility purposes
+
+_contents = ["Identifier", "Distribution", "tags", "pywhat_tags", "Keys", "Filter"]
 
 
-__all__ = ["Identifier", "Distribution", "pywhat_tags", "Keys", "Filter"]
+__all__ = _contents
+
+del AvailableTags, filter
+
+def __dir__():
+    return _contents + ["__version__"]

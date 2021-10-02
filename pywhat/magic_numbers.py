@@ -13,8 +13,6 @@ def get_magic_nums(file_loc):
 def check_magic_nums(text):
     for i in read_json("file_signatures.json"):
         to_check = i["Hexadecimal File Signature"]
-        # Say we have "16 23 21", the [0, len()] prevents it from executing
-        # as magic numbers only count at the start of the file.
         if text.lower().startswith(to_check.lower()):
             # A file can only be one type
             return i
