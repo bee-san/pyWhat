@@ -1,6 +1,5 @@
 import json
 import os
-from functools import lru_cache
 
 from rich.console import Console
 from rich.table import Table
