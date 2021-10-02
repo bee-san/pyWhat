@@ -1536,5 +1536,17 @@
       "Tags": [
          "Credentials"
       ]
-   }
+   },
+	{
+     "Name": "Windows File Name",
+     "Regex": "^(?!(?:CON|PRN|AUX|NUL|COM[1-9]|LPT[1-9])(?:\\.[^.]*)?$)[^<>:\"/\\\\|?*\\x00-\\x1F]*[^<>:\"/\\\\|?*\\x00-\\x1F\\ .]$",
+     "plural_name": false,
+     "Description": "Used for detecting Windows File names, even obscure ones.",
+     "Rarity": 0.2,
+     "URL": "https://docs.microsoft.com/en-us/windows/win32/fileio/naming-a-file",
+     "Tags": [
+        "Windows",
+        "File"
+     ]
+  }
 ]
