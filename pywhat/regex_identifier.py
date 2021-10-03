@@ -31,7 +31,10 @@ class RegexIdentifier:
                     reg_match = copy.deepcopy(reg)
                     matched = self.clean_text(matched_regex.group(0))
 
-                    if reg_match.get("Exploit") is not None and "curl" in reg_match["Exploit"]:
+                    if (
+                        reg_match.get("Exploit") is not None
+                        and "curl" in reg_match["Exploit"]
+                    ):
                         # Replace anything like XXXXX_XXXXXX_HERE with the match
                         reg_match["Exploit"] = re.sub(
                             r"[A-Z_]+_HERE", matched, reg_match["Exploit"]
@@ -65,9 +68,9 @@ class RegexIdentifier:
                                     matched_children.append(children["Items"][element])
 
                         if matched_children:
-                            reg_match["Description"] = children.get("entry", "") + ", ".join(
-                                matched_children
-                            )
+                            reg_match["Description"] = children.get(
+                                "entry", ""
+                            ) + ", ".join(matched_children)
                     reg_match.pop("Children", None)
 
                     matches.append(
