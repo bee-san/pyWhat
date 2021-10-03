@@ -1,6 +1,5 @@
 import json
 import os
-from functools import lru_cache
 
 from rich.console import Console
 from rich.table import Table
@@ -14,7 +13,7 @@ class Printing:
     def pretty_print(self, text: dict, text_input):
         to_out = ""
 
-        if text["File Signatures"] and text["Regexes"]:
+        if text["File Signatures"]:
             for key, value in text["File Signatures"].items():
                 if value:
                     to_out += "\n"
@@ -105,10 +104,10 @@ class Printing:
                                 description,
                             )
 
-            self.console.print(to_out.rstrip(), table)
+            self.console.print(to_out.strip(), table)
 
-        if to_out == "":
-            self.console.print("Nothing found!")
+        else:
+            self.console.print((to_out + "\nNothing found!").lstrip())
 
     def print_json(self, text: dict):
         self.console.print(json.dumps(text))

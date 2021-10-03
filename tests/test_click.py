@@ -26,7 +26,7 @@ def test_filtration():
     runner = CliRunner()
     result = runner.invoke(
         main,
-        ["--rarity", "0.5:", "--include", "Identifiers,Media", "fixtures/file"],
+        ["--rarity", "0.5:", "--include", "Identifiers,Media", "-db", "fixtures/file"],
     )
     assert result.exit_code == 0
     assert "THM{" not in result.output
@@ -60,13 +60,13 @@ def test_json_printing2():
 
 def test_json_printing3():
     runner = CliRunner()
-    result = runner.invoke(main, ["fixtures/file", "--json"])
+    result = runner.invoke(main, ["-db", "fixtures/file", "--json"])
     assert json.loads(result.output.replace("\n", ""))
 
 
 def test_file_fixture():
     runner = CliRunner()
-    result = runner.invoke(main, ["fixtures/file"])
+    result = runner.invoke(main, ["-db", "fixtures/file"])
     assert result.exit_code == 0
     assert re.findall("thm", str(result.output))
     assert re.findall("Ethereum", str(result.output))
@@ -75,77 +75,77 @@ def test_file_fixture():
 
 def test_file_fixture2():
     runner = CliRunner()
-    result = runner.invoke(main, ["fixtures/file"])
+    result = runner.invoke(main, ["-db", "fixtures/file"])
     assert result.exit_code == 0
     assert "Dogecoin" in result.output
 
 
 def test_file_fixture3():
     runner = CliRunner()
-    result = runner.invoke(main, ["fixtures/file"])
+    result = runner.invoke(main, ["-db", "fixtures/file"])
     assert result.exit_code == 0
     assert re.findall("thm", str(result.output))
 
 
 def test_file_fixture4():
     runner = CliRunner()
-    result = runner.invoke(main, ["fixtures/file"])
+    result = runner.invoke(main, ["-db", "fixtures/file"])
     assert result.exit_code == 0
     assert re.findall("Ethereum", str(result.output))
 
 
 def test_file_fixture5():
     runner = CliRunner()
-    result = runner.invoke(main, ["fixtures/file"])
+    result = runner.invoke(main, ["-db", "fixtures/file"])
     assert result.exit_code == 0
     assert re.findall("thm{", str(result.output))
 
 
 def test_file_fixture7():
     runner = CliRunner()
-    result = runner.invoke(main, ["fixtures/file"])
+    result = runner.invoke(main, ["-db", "fixtures/file"])
     assert result.exit_code == 0
     assert re.findall('thm{"', str(result.output))
 
 
 def test_file_fixture8():
     runner = CliRunner()
-    result = runner.invoke(main, ["fixtures/file"])
+    result = runner.invoke(main, ["-db", "fixtures/file"])
     assert result.exit_code == 0
     assert re.findall("URL", str(result.output))
 
 
 def test_file_fixture9():
     runner = CliRunner()
-    result = runner.invoke(main, ["fixtures/file"])
+    result = runner.invoke(main, ["-db", "fixtures/file"])
     assert result.exit_code == 0
     assert re.findall("etherscan", str(result.output))
 
 
 def test_file_fixture10():
     runner = CliRunner()
-    result = runner.invoke(main, ["fixtures/file"])
+    result = runner.invoke(main, ["-db", "fixtures/file"])
     assert result.exit_code == 0
     assert re.findall("dogechain", str(result.output))
 
 
 def test_file_fixture11():
     runner = CliRunner()
-    result = runner.invoke(main, ["fixtures/file"])
+    result = runner.invoke(main, ["-db", "fixtures/file"])
     assert result.exit_code == 0
     assert re.findall("Dogecoin", str(result.output))
 
 
 def test_file_fixture12():
     runner = CliRunner()
-    result = runner.invoke(main, ["fixtures/file"])
+    result = runner.invoke(main, ["-db", "fixtures/file"])
     assert result.exit_code == 0
     assert re.findall("Ethereum", str(result.output))
 
 
 def test_file_fixture13():
     runner = CliRunner()
-    result = runner.invoke(main, ["fixtures/file"])
+    result = runner.invoke(main, ["-db", "fixtures/file"])
     assert result.exit_code == 0
     assert re.findall("Bitcoin", str(result.output))
 
@@ -166,35 +166,35 @@ def test_arg_parsing2():
 
 def test_file_fixture_visa():
     runner = CliRunner()
-    result = runner.invoke(main, ["fixtures/file"])
+    result = runner.invoke(main, ["-db", "fixtures/file"])
     assert result.exit_code == 0
     assert re.findall("Visa", str(result.output))
 
 
 def test_file_fixture_master_card():
     runner = CliRunner()
-    result = runner.invoke(main, ["fixtures/file"])
+    result = runner.invoke(main, ["-db", "fixtures/file"])
     assert result.exit_code == 0
     assert re.findall("MasterCard", str(result.output))
 
 
 def test_file_fixture_master_amex():
     runner = CliRunner()
-    result = runner.invoke(main, ["fixtures/file"])
+    result = runner.invoke(main, ["-db", "fixtures/file"])
     assert result.exit_code == 0
     assert re.findall("American Express", str(result.output))
 
 
 def test_file_fixture_master_diners():
     runner = CliRunner()
-    result = runner.invoke(main, ["fixtures/file"])
+    result = runner.invoke(main, ["-db", "fixtures/file"])
     assert result.exit_code == 0
     assert re.findall("Diners Club Card", str(result.output))
 
 
 def test_file_fixture_discover():
     runner = CliRunner()
-    result = runner.invoke(main, ["fixtures/file"])
+    result = runner.invoke(main, ["-db", "fixtures/file"])
     assert result.exit_code == 0
     assert re.findall("Discover", str(result.output))
 
@@ -202,14 +202,14 @@ def test_file_fixture_discover():
 @pytest.mark.skip("Key:value turned off")
 def test_file_fixture_usernamepassword():
     runner = CliRunner()
-    result = runner.invoke(main, ["fixtures/file"])
+    result = runner.invoke(main, ["-db", "fixtures/file"])
     assert result.exit_code == 0
     assert re.findall("Key", str(result.output))
 
 
 def test_file_fixture_email():
     runner = CliRunner()
-    result = runner.invoke(main, ["fixtures/file"])
+    result = runner.invoke(main, ["-db", "fixtures/file"])
     assert result.exit_code == 0
     assert re.findall("Email", str(result.output))
 
@@ -230,14 +230,14 @@ def test_file_fixture_phone_number():
 
 def test_file_fixture_youtube():
     runner = CliRunner()
-    result = runner.invoke(main, ["fixtures/file"])
+    result = runner.invoke(main, ["-db", "fixtures/file"])
     assert result.exit_code == 0
     assert re.findall("YouTube", str(result.output))
 
 
 def test_file_fixture_youtube_id():
     runner = CliRunner()
-    result = runner.invoke(main, ["fixtures/file"])
+    result = runner.invoke(main, ["-db", "fixtures/file"])
     assert result.exit_code == 0
     assert re.findall("YouTube", str(result.output))
 
@@ -272,7 +272,7 @@ def test_file_fixture_ip6_shodan():
 
 def test_file_fixture_ssn():
     runner = CliRunner()
-    result = runner.invoke(main, ["fixtures/file"])
+    result = runner.invoke(main, ["-db", "fixtures/file"])
     assert result.exit_code == 0
     assert re.findall("Social", str(result.output))
 
@@ -280,7 +280,7 @@ def test_file_fixture_ssn():
 @pytest.mark.skip("Key:value turned off")
 def test_file_pcap():
     runner = CliRunner()
-    result = runner.invoke(main, ["fixtures/FollowTheLeader.pcap"])
+    result = runner.invoke(main, ["-db", "fixtures/FollowTheLeader.pcap"])
     assert result.exit_code == 0
     assert re.findall("Host:", str(result.output))
 
@@ -294,21 +294,21 @@ def test_file_coords():
 
 def test_file_fixture_ltc():
     runner = CliRunner()
-    result = runner.invoke(main, ["fixtures/file"])
+    result = runner.invoke(main, ["-db", "fixtures/file"])
     assert result.exit_code == 0
     assert re.findall("Litecoin", str(result.output))
 
 
 def test_file_fixture_ltc2():
     runner = CliRunner()
-    result = runner.invoke(main, ["fixtures/file"])
+    result = runner.invoke(main, ["-db", "fixtures/file"])
     assert result.exit_code == 0
     assert re.findall("live.block", str(result.output))
 
 
 def test_file_fixture_bch():
     runner = CliRunner()
-    result = runner.invoke(main, ["fixtures/file"])
+    result = runner.invoke(main, ["-db", "fixtures/file"])
     assert result.exit_code == 0
     assert re.findall("Bitcoin Cash", str(result.output))
 
@@ -324,21 +324,21 @@ def test_file_fixture_bch2():
 
 def test_file_fixture_xrp():
     runner = CliRunner()
-    result = runner.invoke(main, ["fixtures/file"])
+    result = runner.invoke(main, ["-db", "fixtures/file"])
     assert result.exit_code == 0
     assert re.findall("Ripple", str(result.output))
 
 
 def test_file_fixture_xrp2():
     runner = CliRunner()
-    result = runner.invoke(main, ["fixtures/file"])
+    result = runner.invoke(main, ["-db", "fixtures/file"])
     assert result.exit_code == 0
     assert re.findall("xrpscan", str(result.output))
 
 
 def test_file_fixture_xmr():
     runner = CliRunner()
-    result = runner.invoke(main, ["fixtures/file"])
+    result = runner.invoke(main, ["-db", "fixtures/file"])
     assert result.exit_code == 0
     assert re.findall("Monero", str(result.output))
 
@@ -477,7 +477,7 @@ def test_key_value_min_rarity_0_7():
 
 def test_only_text():
     runner = CliRunner()
-    result = runner.invoke(main, ["-o", "fixtures/file"])
+    result = runner.invoke(main, ["-o", "-db", "fixtures/file"])
     assert result.exit_code == 0
     assert "Nothing found" in result.output
 
@@ -505,35 +505,35 @@ def test_boundaryless3():
 
 def test_ssh_rsa_key():
     runner = CliRunner()
-    result = runner.invoke(main, ["fixtures/file"])
+    result = runner.invoke(main, ["-db", "fixtures/file"])
     assert result.exit_code == 0
     assert re.findall("SSH RSA", str(result.output))
 
 
 def test_ssh_ecdsa_key():
     runner = CliRunner()
-    result = runner.invoke(main, ["fixtures/file"])
+    result = runner.invoke(main, ["-db", "fixtures/file"])
     assert result.exit_code == 0
     assert re.findall("SSH ECDSA", str(result.output))
 
 
 def test_ssh_ed25519_key():
     runner = CliRunner()
-    result = runner.invoke(main, ["fixtures/file"])
+    result = runner.invoke(main, ["-db", "fixtures/file"])
     assert result.exit_code == 0
     assert re.findall("SSH ED25519", str(result.output))
 
 
 def test_asin():
     runner = CliRunner()
-    result = runner.invoke(main, ["fixtures/file"])
+    result = runner.invoke(main, ["-db", "fixtures/file"])
     assert result.exit_code == 0
     assert re.findall("ASIN", str(result.output))
 
 
 def test_mac():
     runner = CliRunner()
-    result = runner.invoke(main, ["fixtures/file"])
+    result = runner.invoke(main, ["-db", "fixtures/file"])
     assert result.exit_code == 0
     assert re.findall("de:ad:be:ef:ca:fe", str(result.output))
     assert re.findall("DE:AD:BE:EF:CA:FE", str(result.output))
@@ -543,7 +543,7 @@ def test_mac_tags():
     runner = CliRunner()
     result = runner.invoke(
         main,
-        ["--include", "Identifiers,Networking", "fixtures/file"],
+        ["--include", "Identifiers,Networking", "-db", "fixtures/file"],
     )
     assert result.exit_code == 0
     assert "Ethernet" in result.output
@@ -552,13 +552,13 @@ def test_mac_tags():
 
 def test_pgp_public_key():
     runner = CliRunner()
-    result = runner.invoke(main, ["fixtures/file"])
+    result = runner.invoke(main, ["-db", "fixtures/file"])
     assert result.exit_code == 0
     assert re.findall("PGP Public Key", str(result.output))
 
 
 def test_pgp_private_key():
     runner = CliRunner()
-    result = runner.invoke(main, ["fixtures/file"])
+    result = runner.invoke(main, ["-db", "fixtures/file"])
     assert result.exit_code == 0
     assert re.findall("PGP Private Key", str(result.output))
