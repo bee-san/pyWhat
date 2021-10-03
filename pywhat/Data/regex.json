@@ -134,7 +134,7 @@
       "Regex": "(?i)^(heroku.{0,30}[0-9A-F]{8}-[0-9A-F]{4}-[0-9A-F]{4}-[0-9A-F]{4}-[0-9A-F]{12})$",
       "plural_name": false,
       "Description": null,
-      "Exploit": "Use the command below to verify that the API key is valid:\n  $ curl -X POST https://api.heroku.com/apps -H \"Accept: application/vnd.heroku+json; version=3\" -H \"Authorization: Bearer API_KEY_HERE\"\n\nAPI Documentation: https://devcenter.heroku.com/articles/platform-api-quickstart",
+      "Exploit": "Use the command below to verify that the API key is valid:\n  $ curl -X POST https://api.heroku.com/apps -H \"Accept: application/vnd.heroku+json; version=3\" -H \"Authorization: Bearer API_KEY_HERE\"\n",
       "Rarity": 1,
       "URL": null,
       "Tags": [
@@ -148,7 +148,7 @@
       "Regex": "(?i)^(xox[p|b|o|a]-[0-9]{12}-[0-9]{12}-[0-9]{12}-[a-z0-9]{32})$",
       "plural_name": false,
       "Description": null,
-      "Exploit": "Use the command below to verify that the API key is valid:\n  $ curl -sX POST \"https://slack.com/api/auth.test?token=API_KEY_HERE&pretty=1\"\n \nAPI Documentation: https://api.slack.com/web",
+      "Exploit": "Use the command below to verify that the API key is valid:\n  $ curl -sX POST \"https://slack.com/api/auth.test?token=API_KEY_HERE&pretty=1\"\n",
       "Rarity": 1,
       "URL": null,
       "Tags": [
@@ -162,7 +162,7 @@
       "Regex": "(?i)^(https://hooks.slack.com/services/T[a-zA-Z0-9_]{8}/B[a-zA-Z0-9_]{8}/[a-zA-Z0-9_]{24})$",
       "plural_name": false,
       "Description": null,
-      "Exploit": "If the command below returns 'missing_text_or_fallback_or_attachments', it means\nthat the URL is valid, any other responses would mean that the URL is invalid.\n  $ curl -s -X POST -H \"Content-type: application/json\" -d '{\"text\":\"\"}' \"SLACK_WEBOOK_URL_HERE\"\n \nAPI Documentation: https://api.slack.com/messaging/webhooks\n",
+      "Exploit": "If the command below returns 'missing_text_or_fallback_or_attachments', it means\nthat the URL is valid, any other responses would mean that the URL is invalid.\n  $ curl -s -X POST -H \"Content-type: application/json\" -d '{\"text\":\"\"}' \"SLACK_WEBOOK_URL_HERE\"\n",
       "Rarity": 1,
       "URL": null,
       "Tags": [
@@ -216,7 +216,7 @@
       "Regex": "^(sqOatp-[0-9A-Za-z-_]{22}|EAAA[a-zA-Z0-9-_]{60})$",
       "plural_name": false,
       "Description": null,
-      "Exploit": "Use the command below to verify that the access token is valid:\n  $ curl https://connect.squareup.com/v2/locations -H \"Authorization: Bearer AUTH_TOKEN\"\n  API Documentation: https://developer.squareup.com/us/en",
+      "Exploit": "Use the command below to verify that the access token is valid:\n  $ curl https://connect.squareup.com/v2/locations -H \"Authorization: Bearer TOKEN_HERE\"\n",
       "Rarity": 1,
       "URL": null,
       "Tags": [
@@ -231,7 +231,7 @@
       "Regex": "^([srp]k_live_[0-9a-zA-Z]{24})$",
       "plural_name": false,
       "Description": null,
-      "Exploit": "Use the command below to verify that the API key is valid:\n  $ curl \"https://api.stripe.com/v1/charges -u token_here:API_KEY_HERE\"\n  API Documentation: https://stripe.com/docs/api/authentication",
+      "Exploit": "Use the command below to verify that the API key is valid:\n  $ curl https://api.stripe.com/v1/charges -u \"API_KEY_HERE:\"\n",
       "Rarity": 1,
       "URL": null,
       "Tags": [
@@ -245,7 +245,7 @@
       "Regex": "^([a-zA-Z0-9_-]*:[a-zA-Z0-9_-]+@github.com*)$",
       "plural_name": false,
       "Description": null,
-      "Exploit": "Use the command below to verify that the access token is valid:\n  $ curl -s -u \"user:TOKEN_HERE\" https://api.github.com/user\n  curl -s -H \"Authorization: token TOKEN_HERE\" \"https://api.github.com/users/USERNAME_HERE/orgs\"\n . # Check scope of your api token\n $  curl \"https://api.github.com/rate_limit\" -i -u \"user:TOKEN_HERE\" | grep \"X-OAuth-Scopes:\"\n  API Documentation: https://developer.github.com/v3/",
+      "Exploit": "Use the command below to verify that the access token is valid:\n  $ curl -s -u \"user:TOKEN_HERE\" https://api.github.com/user\n  curl -s -H \"Authorization: token TOKEN_HERE\" \"https://api.github.com/users/USERNAME_HERE/orgs\"\n . # Check scope of your api token\n $  curl \"https://api.github.com/rate_limit\" -i -u \"user:TOKEN_HERE\" | grep \"X-OAuth-Scopes:\"\n",
       "Rarity": 1,
       "URL": null,
       "Tags": [
@@ -274,7 +274,7 @@
       "Description": null,
       "Exploit": null,
       "Rarity": 1,
-      "URL": "https://developers.facebook.com/tools/debug/accesstoken/?access_token=TOKEN_HERE&version=3.2",
+      "URL": "https://developers.facebook.com/tools/debug/accesstoken/?access_token=",
       "Tags": [
          "API Keys",
          "Bug Bounty",
@@ -286,9 +286,9 @@
       "Regex": "(?i)^((facebook|fb)(.{0,20})?['\\\"][0-9a-f]{32}['\\\"])$",
       "plural_name": false,
       "Description": null,
-      "Exploit": null,
+      "Exploit": "Use the command below to verify that the secret key is valid:\n  $ curl \"https://graph.facebook.com/oauth/access_token?client_id=ID_HERE&client_secret=SECRET_KEY_HERE&redirect_uri=&grant_type=client_credentials\"\n",
       "Rarity": 1,
-      "URL": "https://graph.facebook.com/oauth/access_token?client_id=ID_HERE&client_secret=SECRET_HERE&redirect_uri=&grant_type=client_credentials",
+      "URL": null, 
       "Tags": [
          "API Keys",
          "Bug Bounty",
@@ -300,9 +300,9 @@
       "Regex": "(?i)^((facebook|fb)(.{0,20})?['\\\"][0-9]{13,17}['\\\"])$",
       "plural_name": false,
       "Description": null,
-      "Exploit": null,
+      "Exploit": "Use the command below to verify that the secret key is valid:\n  $ curl \"https://graph.facebook.com/oauth/access_token?client_id=ID_HERE&client_secret=SECRET_KEY_HERE&redirect_uri=&grant_type=client_credentials\"\n",
       "Rarity": 1,
-      "URL": "https://graph.facebook.com/oauth/access_token?client_id=ID_HERE&client_secret=SECRET_HERE&redirect_uri=&grant_type=client_credentials",
+      "URL": null, 
       "Tags": [
          "Bug Bounty"
       ]
@@ -312,7 +312,7 @@
       "Regex": "(?i)^(twitter(.{0,20})?['\\\"][0-9a-z]{35,44}['\\\"])$",
       "plural_name": false,
       "Description": null,
-      "Exploit": "Use the command below to verify that the API key is valid:\n  $ curl -u 'API key:API_KEY_HERE' --data 'grant_type=client_credentials' 'https://api.twitter.com/oauth2/token'\n  API Documentation: https://developer.twitter.com/en/docs/basics/authentication/guides/bearer-tokens.html",
+      "Exploit": "Use the command below to verify that the API key is valid:\n  $ curl -u 'API key:API_KEY_HERE' --data 'grant_type=client_credentials' 'https://api.twitter.com/oauth2/token'\n",
       "Rarity": 1,
       "URL": null,
       "Tags": [
@@ -338,7 +338,7 @@
       "Regex": "^(ghp_[0-9a-zA-Z]{36})$",
       "plural_name": false,
       "Description": null,
-      "Exploit": "Use the command below to verify that the access token is valid:\n  $ curl -s -u \"user:TOKEN_HERE\" https://api.github.com/user\n  curl -s -H \"Authorization: token TOKEN_HERE\" \"https://api.github.com/users/USERNAME_HERE/orgs\"\n . # Check scope of your api token\n $  curl \"https://api.github.com/rate_limit\" -i -u \"user:TOKEN_HERE\" | grep \"X-OAuth-Scopes:\"\n  API Documentation: https://developer.github.com/v3/",
+      "Exploit": "Use the command below to verify that the access token is valid:\n  $ curl -s -u \"user:TOKEN_HERE\" https://api.github.com/user\n  curl -s -H \"Authorization: token TOKEN_HERE\" \"https://api.github.com/users/USERNAME_HERE/orgs\"\n . # Check scope of your api token\n $  curl \"https://api.github.com/rate_limit\" -i -u \"user:TOKEN_HERE\" | grep \"X-OAuth-Scopes:\"\n",
       "Rarity": 1,
       "URL": null,
       "Tags": [
@@ -352,7 +352,7 @@
       "Regex": "^(gho_[0-9a-zA-Z]{36})$",
       "plural_name": false,
       "Description": null,
-      "Exploit": "Use the command below to verify that the access token is valid:\n  $ curl -s -u \"user:TOKEN_HERE\" https://api.github.com/user\n  curl -s -H \"Authorization: token TOKEN_HERE\" \"https://api.github.com/users/USERNAME_HERE/orgs\"\n . # Check scope of your api token\n $  curl \"https://api.github.com/rate_limit\" -i -u \"user:TOKEN_HERE\" | grep \"X-OAuth-Scopes:\"\n  API Documentation: https://developer.github.com/v3/",
+      "Exploit": "Use the command below to verify that the access token is valid:\n  $ curl -s -u \"user:TOKEN_HERE\" https://api.github.com/user\n  curl -s -H \"Authorization: token TOKEN_HERE\" \"https://api.github.com/users/USERNAME_HERE/orgs\"\n . # Check scope of your api token\n $  curl \"https://api.github.com/rate_limit\" -i -u \"user:TOKEN_HERE\" | grep \"X-OAuth-Scopes:\"\n",
       "Rarity": 1,
       "URL": null,
       "Tags": [
@@ -366,7 +366,7 @@
       "Regex": "^((ghu|ghs)_[0-9a-zA-Z]{36})$",
       "plural_name": false,
       "Description": null,
-      "Exploit": "Use the command below to verify that the app token is valid:\n  $ curl -s -u \"user:TOKEN_HERE\" https://api.github.com/user\n  curl -s -H \"Authorization: token TOKEN_HERE\" \"https://api.github.com/users/USERNAME_HERE/orgs\"\n . # Check scope of your api token\n $  curl \"https://api.github.com/rate_limit\" -i -u \"user:TOKEN_HERE\" | grep \"X-OAuth-Scopes:\"\n  API Documentation: https://developer.github.com/v3/",
+      "Exploit": "Use the command below to verify that the app token is valid:\n  $ curl -s -u \"user:TOKEN_HERE\" https://api.github.com/user\n  curl -s -H \"Authorization: token TOKEN_HERE\" \"https://api.github.com/users/USERNAME_HERE/orgs\"\n . # Check scope of your api token\n $  curl \"https://api.github.com/rate_limit\" -i -u \"user:TOKEN_HERE\" | grep \"X-OAuth-Scopes:\"\n",
       "Rarity": 1,
       "URL": null,
       "Tags": [
@@ -448,7 +448,7 @@
       "Regex": "(?i)^(sk_live_[0-9a-zA-Z]{24})$",
       "plural_name": false,
       "Description": null,
-      "Exploit": "Use the command below to verify that the Stripe Standard Live API Token is valid.\n  $ curl https://api.stripe.com/v1/charges -u TOKEN_HERE:\n\nKeep the colon at the end of the token to prevent cURL from requesting a password.\n\nThe live key can be used to extract/retrieve a lot of info ranging from the charges\nto the complete product list.\n\nKeep in mind that you will never be able to get the full credit card information since\nStripe only gives you the last 4 digits.\n\nAPI Documentation: https://stripe.com/docs/api/authentication",
+      "Exploit": "Use the command below to verify that the Stripe Standard Live API Token is valid.\n  $ curl https://api.stripe.com/v1/charges -u TOKEN_HERE:\n\nKeep the colon at the end of the token to prevent cURL from requesting a password.\n\nThe live key can be used to extract/retrieve a lot of info ranging from the charges\nto the complete product list.\n\nKeep in mind that you will never be able to get the full credit card information since\nStripe only gives you the last 4 digits.\n",
       "Rarity": 1,
       "URL": null,
       "Tags": [
@@ -462,7 +462,7 @@
       "Regex": "(?i)^(sqOatp-[0-9A-Za-z\\-_]{22})$",
       "plural_name": false,
       "Description": null,
-      "Exploit": "Use the command below to verify that the access token is valid:\n  $ curl \"https://squareup.com/oauth2/revoke\" -d '{\"access_token\":\"RANDOM_STRING\",\"client_id\":\"APP_ID\"}'  -H \"Content-Type: application/json\" -H \"Authorization: Client TOKEN_HERE\"\n  API Documentation: https://developer.squareup.com/us/en",
+      "Exploit": "Use the command below to verify that the access token is valid:\n  $ curl \"https://squareup.com/oauth2/revoke\" -d '{\"access_token\":\"[RANDOM_STRING_HERE]\",\"client_id\":\"[APP_ID_HERE]\"}'  -H \"Content-Type: application/json\" -H \"Authorization: Client TOKEN_HERE\"\n",
       "Rarity": 1,
       "URL": null,
       "Tags": [
@@ -476,7 +476,7 @@
       "Regex": "(?i)^(sq0csp-[ 0-9A-Za-z\\-_]{43})$",
       "plural_name": false,
       "Description": null,
-      "Exploit": "Use the command below to verify that the token is valid:\n  $ curl \"https://squareup.com/oauth2/revoke\" -d '{\"access_token\":\"RANDOM_STRING\",\"client_id\":\"APP_ID\"}'  -H \"Content-Type: application/json\" -H \"Authorization: Client TOKEN_HERE\"\n  API Documentation: https://developer.squareup.com/us/en",
+      "Exploit": "Use the command below to verify that the token is valid:\n  $ curl \"https://squareup.com/oauth2/revoke\" -d '{\"access_token\":\"[RANDOM_STRING_HERE]\",\"client_id\":\"[APP_ID_HERE]\"}'  -H \"Content-Type: application/json\" -H \"Authorization: Client TOKEN_HERE\"\n",
       "Rarity": 1,
       "URL": null,
       "Tags": [
@@ -588,7 +588,7 @@
       "Regex": "(?i)^(SG\\.[0-9A-Za-z\\-_]{22}\\.[0-9A-Za-z-_]{43})$",
       "plural_name": false,
       "Description": null,
-      "Exploit": "Use the command below to verify that the SendGrid Token is valid.\n  $ curl -X \"GET\" \"https://api.sendgrid.com/v3/scopes\" -H \"Authorization: Bearer SENDGRID_TOKEN_HERE\" -H \"Content-Type: application/json\"\n\nAPI Documentation: https://docs.sendgrid.com/api-reference\n",
+      "Exploit": "Use the command below to verify that the SendGrid Token is valid.\n  $ curl -X \"GET\" \"https://api.sendgrid.com/v3/scopes\" -H \"Authorization: Bearer SENDGRID_TOKEN_HERE\" -H \"Content-Type: application/json\"\n",
       "Rarity": 1,
       "URL": null,
       "Tags": [
@@ -614,7 +614,7 @@
       "Regex": "(?i)^(https://(?:www.)?hooks\\.zapier\\.com/hooks/catch/[A-Za-z0-9]+/[A-Za-z0-9]+/)$",
       "plural_name": false,
       "Description": null,
-      "Exploit": "Verify that the Zapier Webook url is valid:\n  curl -H \"Accept: application/json\" -H \"Content-Type: application/json\" -X POST -d '{\"name\":\"PyWhat\"}' \"WEBHOOK_URL_HERE\"\n  API Documentation: https://zapier.com/help/how-get-started-webhooks-zapier/",
+      "Exploit": "Verify that the Zapier Webook url is valid:\n  curl -H \"Accept: application/json\" -H \"Content-Type: application/json\" -X POST -d '{\"name\":\"PyWhat\"}' \"WEBHOOK_URL_HERE\"\n",
       "Rarity": 1,
       "URL": null,
       "Tags": [
@@ -628,7 +628,7 @@
       "Regex": "(?i)^(NRAA-[a-f0-9]{27})$",
       "plural_name": false,
       "Description": null,
-      "Exploit": "Use the command below to verify that API key is valid:\n  $ curl -X POST https://api.newrelic.com/graphql -H 'Content-Type: application/json' -H 'API-Key: YOUR_API_KEY' -d '{ \"query\": \"{ requestContext { userId apiKey } }\" } '\n  API Documentation: https://docs.newrelic.com/docs/apis/",
+      "Exploit": "Use the command below to verify that API key is valid:\n  $ curl -X POST https://api.newrelic.com/graphql -H 'Content-Type: application/json' -H 'API-Key: API_KEY_HERE' -d '{ \"query\": \"{ requestContext { userId apiKey } }\" } '\n",
       "Rarity": 1,
       "URL": null,
       "Tags": [
@@ -656,7 +656,7 @@
       "Regex": "(?i)^(NRRA-[a-f0-9]{42})$",
       "plural_name": false,
       "Description": null,
-      "Exploit": "Use the command below to verify that the New Relic REST API Key is valid.\n  $ curl -X GET 'https://api.newrelic.com/v2/applications.json'      -H \"X-Api-Key:${API_KEY_HERE}\" -i\n\nIf valid, test furher to see if its an admin key[1]\n\n[1] https://docs.newrelic.com/docs/apis/intro-apis/new-relic-api-keys/\n\nAPI Documentation: https://docs.newrelic.com/docs/apis/intro-apis/new-relic-api-keys/",
+      "Exploit": "Use the command below to verify that the New Relic REST API Key is valid.\n  $ curl -X GET 'https://api.newrelic.com/v2/applications.json' -H \"X-Api-Key:${API_KEY_HERE}\" -i\n\nIf valid, test furher to see if its an admin key (https://docs.newrelic.com/docs/apis/intro-apis/new-relic-api-keys/)\n",
       "Rarity": 1,
       "URL": null,
       "Tags": [
@@ -682,7 +682,7 @@
       "Regex": "(?i)^(NRAK-[a-z0-9]{27})$",
       "plural_name": false,
       "Description": null,
-      "Exploit": "Use the command below to verify that API key is valid:\n  $ curl -X POST https://api.newrelic.com/graphql -H 'Content-Type: application/json' -H 'API-Key: YOUR_API_KEY' -d '{ \"query\": \"{ requestContext { userId apiKey } }\" } '\n  API Documentation: https://docs.newrelic.com/docs/apis/",
+      "Exploit": "Use the command below to verify that API key is valid:\n  $ curl -X POST https://api.newrelic.com/graphql -H 'Content-Type: application/json' -H 'API-Key: API_KEY_HERE' -d '{ \"query\": \"{ requestContext { userId apiKey } }\" } '\n",
       "Rarity": 1,
       "URL": null,
       "Tags": [
@@ -760,9 +760,9 @@
       "Regex": "(?i)^(R_[0-9a-f]{32})$",
       "plural_name": false,
       "Description": null,
-      "Exploit": null,
+      "Exploit": "Use the command below to verify that the secret key is valid:\n  $ curl \"https://api-ssl.bitly.com/v3/shorten?access_token=SECRET_KEY_HERE&longUrl=https://www.google.com\"\n",
       "Rarity": 1,
-      "URL": "https://api-ssl.bitly.com/v3/shorten?access_token=SECRET_KEY&longUrl=https://www.google.com",
+      "URL": null,
       "Tags": [
          "Bug Bounty",
          "Credentials",
@@ -774,7 +774,7 @@
       "Regex": "(?i)^(pypi-AgEIcHlwaS5vcmc[A-Za-z0-9-_]+)$",
       "plural_name": false,
       "Description": null,
-      "Exploit": "Anyone with this token is able to upload to the PyPi for the package that belongs to this token.\n\nAPI Documentation: https://pypi.org/help/#apitoken",
+      "Exploit": "Anyone with this token is able to upload to the PyPi for the package that belongs to this token.\n",
       "Rarity": 1,
       "URL": null,
       "Tags": [
@@ -885,7 +885,7 @@
       "Regex": "(?i)^([0-9a-f]{32}-us[0-9]{1,2})$",
       "plural_name": false,
       "Description": null,
-      "Exploit": "Use the command below to verify that the API key is valid:\n  $ curl --request GET --url 'https://<dc>.api.mailchimp.com/3.0/' --user 'anystring:API_KEY_HERE' --include\n \nAPI Documentation: https://mailchimp.com/developer/marketing/api/root",
+      "Exploit": "Use the command below to verify that the API key is valid:\n  $ curl --request GET --url 'https://<dc>.api.mailchimp.com/3.0/' --user 'anystring:API_KEY_HERE' --include\n",
       "Rarity": 0.8,
       "URL": null,
       "Tags": [
@@ -1295,7 +1295,7 @@
       "Regex": "^(xox[a-zA-Z]-[a-zA-Z0-9-]+)$",
       "plural_name": false,
       "Description": null,
-      "Exploit": "Use the command below to verify that private key is valid:\n  $ curl -sX POST \"https://slack.com/api/auth.test?token=TOKEN_HERE&pretty=1\"\n \nAPI Documentation: https://api.slack.com/web",
+      "Exploit": "Use the command below to verify that private key is valid:\n  $ curl -sX POST \"https://slack.com/api/auth.test?token=TOKEN_HERE&pretty=1\"\n",
       "Rarity": 0.3,
       "URL": null,
       "Tags": [
@@ -1350,7 +1350,7 @@
       "Regex": "^(key-[0-9a-zA-Z]{32})$",
       "plural_name": false,
       "Description": null,
-      "Exploit": "Use the command below to verify that private key is valid:\n  $ curl --user 'api:key-PRIVATE_KEY_HERE' \"https://api.mailgun.net/v3/domains\"\nAPI Documentation: https://documentation.mailgun.com/en/latest/api_reference.html",
+      "Exploit": "Use the command below to verify that private key is valid:\n  $ curl --user 'api:key-PRIVATE_KEY_HERE' \"https://api.mailgun.net/v3/domains\"\n",
       "Rarity": 0.3,
       "URL": null,
       "Tags": [
@@ -1364,7 +1364,7 @@
       "Regex": "^(SK[0-9a-fA-F]{32})$",
       "plural_name": false,
       "Description": null,
-      "Exploit": "Use the command below to verify that API key is valid:\n  $ curl -X GET 'https://api.twilio.com/2010-04-01/Accounts.json' -u ACCOUNT_SID:AUTH_TOKEN\n  API Documentation: https://www.twilio.com/docs/iam/api/account",
+      "Exploit": "Use the command below to verify that API key is valid:\n  $ curl -X GET 'https://api.twilio.com/2010-04-01/Accounts.json' -u ACCOUNT_SID_HERE:AUTH_TOKEN_HERE\n",
       "Rarity": 0.3,
       "URL": null,
       "Tags": [
@@ -1378,7 +1378,7 @@
       "Regex": "^(AC[a-zA-Z0-9_-]{32})$",
       "plural_name": false,
       "Description": null,
-      "Exploit": "Use the command below to verify that the SID is valid:\n  $ curl -X GET 'https://api.twilio.com/2010-04-01/Accounts.json' -u ACCOUNT_SID:AUTH_TOKEN\n  API Documentation: https://www.twilio.com/docs/iam/api/account",
+      "Exploit": "Use the command below to verify that the SID is valid:\n  $ curl -X GET 'https://api.twilio.com/2010-04-01/Accounts.json' -u ACCOUNT_SID_HERE:AUTH_TOKEN_HERE\n",
       "Rarity": 0.3,
       "URL": null,
       "Tags": [
@@ -1405,7 +1405,7 @@
       "Regex": "^(6L[0-9A-Za-z-_]{38}|6[0-9a-zA-Z_-]{39})$",
       "plural_name": false,
       "Description": null,
-      "Exploit": "Use the command below to verify that API key is valid:\n  $ curl -X POST -d \"secret=API_KEY_GERE&response=RESPONSE_TO_VERIFY\" https://www.google.com/recaptcha/api/siteverify\n  API Documentation: https://developers.google.com/recaptcha/docs/verify",
+      "Exploit": "Use the command below to verify that API key is valid:\n  $ curl -X POST -d \"secret=API_KEY_HERE&response=RESPONSE_TO_VERIFY\" https://www.google.com/recaptcha/api/siteverify\n",
       "Rarity": 0.3,
       "URL": null,
       "Tags": [
@@ -1445,7 +1445,7 @@
       "Regex": "^((?<![A-Z0-9])[A-Z0-9]{20}(?![A-Z0-9]))$",
       "plural_name": false,
       "Description": null,
-      "Exploit": "Install awscli (https://aws.amazon.com/cli/), set the access key and secret to environment variables, and execute the following command: $ AWS_ACCESS_KEY_ID=xxxx AWS_SECRET_ACCESS_KEY=yyyy aws sts get-caller-identity\n AWS credentials' permissions can be determined using enumerate-IAM (https://github.com/andresriancho/enumerate-iam).\n This gives broader view of the discovered AWS credentials privileges instead of just checking S3 buckets.\n $ git clone https://github.com/andresriancho/enumerate-iam\n  cd  enumerate-iam\n  ./enumerate-iam.py --access-key AKIA... --secret-key StF0q...\n  API Documentation: https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-profiles.html",
+      "Exploit": "Install awscli (https://aws.amazon.com/cli/), set the access key and secret to environment variables, and execute the following command: $ AWS_ACCESS_KEY_ID=ACCESS_KEY_HERE AWS_SECRET_ACCESS_KEY=SECRET_KEY_HERE aws sts get-caller-identity\n AWS credentials' permissions can be determined using enumerate-IAM (https://github.com/andresriancho/enumerate-iam).\n This gives broader view of the discovered AWS credentials privileges instead of just checking S3 buckets.\n $ git clone https://github.com/andresriancho/enumerate-iam\n  cd  enumerate-iam\n  ./enumerate-iam.py --access-key ACCESS_KEY_HERE --secret-key SECRET_KEY_HERE\n",
       "Rarity": 0.2,
       "URL": null,
       "Tags": [
@@ -1459,7 +1459,7 @@
       "Regex": "^((?<![A-Za-z0-9\\/+=])[A-Za-z0-9\\/+=]{40}(?![A-Za-z0-9\\/+=]))$",
       "plural_name": false,
       "Description": null,
-      "Exploit": "Install awscli (https://aws.amazon.com/cli/), set the access key and secret to environment variables, and execute the following command: $ AWS_ACCESS_KEY_ID=xxxx AWS_SECRET_ACCESS_KEY=yyyy aws sts get-caller-identity\n AWS credentials' permissions can be determined using enumerate-IAM (https://github.com/andresriancho/enumerate-iam).\n This gives broader view of the discovered AWS credentials privileges instead of just checking S3 buckets.\n $ git clone https://github.com/andresriancho/enumerate-iam\n  cd  enumerate-iam\n  ./enumerate-iam.py --access-key AKIA... --secret-key StF0q...\n  API Documentation: https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-profiles.html",
+      "Exploit": "Install awscli (https://aws.amazon.com/cli/), set the access key and secret to environment variables, and execute the following command: $ AWS_ACCESS_KEY_ID=ACCESS_KEY_HERE AWS_SECRET_ACCESS_KEY=SECRET_KEY_HERE aws sts get-caller-identity\n AWS credentials' permissions can be determined using enumerate-IAM (https://github.com/andresriancho/enumerate-iam).\n This gives broader view of the discovered AWS credentials privileges instead of just checking S3 buckets.\n $ git clone https://github.com/andresriancho/enumerate-iam\n  cd  enumerate-iam\n  ./enumerate-iam.py --access-key ACCESS_KEY_HERE --secret-key SECRET_KEY_HERE\n",
       "Rarity": 0.2,
       "URL": null,
       "Tags": [
