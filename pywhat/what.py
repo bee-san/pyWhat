@@ -55,12 +55,18 @@ def create_filter(rarity, include, exclude):
     return filter
 
 
+def get_text(ctx, opts, value):
+    if not value and not click.get_text_stream("stdin").isatty():
+        return click.get_text_stream("stdin").read().strip()
+    return value
+
+
 @click.command(
     context_settings=dict(
         ignore_unknown_options=True,
     )
 )
-@click.argument("text_input", required=True)
+@click.argument("text_input", callback=get_text, required=False)
 @click.option(
     "-t",
     "--tags",
@@ -203,6 +209,8 @@ def main(**kwargs):
         * what 'this/is/a/path'
 
     """
+    if kwargs["text_input"] is None:
+        sys.exit("Text input expected. Run 'pywhat --help' for help")
     dist = Distribution(
         create_filter(kwargs["rarity"], kwargs["include"], kwargs["exclude"])
     )
