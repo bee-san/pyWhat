@@ -105,7 +105,7 @@ find . -type f -execdir pywhat --include 'Bug Bounty' {} \;
 
 ```shell
 # Recursively download all web pages of a site
-wget -r -np -k https://skerritt.blog
+wget -U 'Opera 11.0' -r -np -k https://skerritt.blog
 
 # Will print when it finds things.
 # Loops over all files in current directory.
