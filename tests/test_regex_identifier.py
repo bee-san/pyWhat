@@ -27,7 +27,9 @@ def _assert_match_in_items(name, res):
         assert i["Regex Pattern"]["Name"] == name
 
 
-@pytest.mark.skip(reason="Not all regex have tests now, check https://github.com/bee-san/pyWhat/pull/146#issuecomment-927087231 for info.")
+@pytest.mark.skip(
+    reason="Not all regex have tests now, check https://github.com/bee-san/pyWhat/pull/146#issuecomment-927087231 for info."
+)
 def test_if_all_tests_exist():
     with open("tests/test_regex_identifier.py", "r", encoding="utf-8") as file:
         tests = file.read()
@@ -662,15 +664,23 @@ def test_github_access_token():
 
 
 def test_slack_api_key():
-    res = r.check(["xoxp-514654431830-843187921057-792480346180-d44d2r9b71f954o8z2k5llt41ovpip6v"])
+    res = r.check(
+        ["xoxp-514654431830-843187921057-792480346180-d44d2r9b71f954o8z2k5llt41ovpip6v"]
+    )
     _assert_match_first_item("Slack API Key", res)
-    _assert_match_exploit_first_item("https://slack.com/api/auth.test?token=xoxp-514654431830-843187921057-792480346180-d44d2r9b71f954o8z2k5llt41ovpip6v", res)
+    _assert_match_exploit_first_item(
+        "https://slack.com/api/auth.test?token=xoxp-514654431830-843187921057-792480346180-d44d2r9b71f954o8z2k5llt41ovpip6v",
+        res,
+    )
 
 
 def test_slack_token():
     res = r.check(["xoxb-51465443183-hgvhXVd2ISC2x7gaoRWBOUdQ"])
     _assert_match_first_item("Slack Token", res)
-    _assert_match_exploit_first_item("https://slack.com/api/auth.test?token=xoxb-51465443183-hgvhXVd2ISC2x7gaoRWBOUdQ", res)
+    _assert_match_exploit_first_item(
+        "https://slack.com/api/auth.test?token=xoxb-51465443183-hgvhXVd2ISC2x7gaoRWBOUdQ",
+        res,
+    )
 
 
 def test_pgp_public_key():
