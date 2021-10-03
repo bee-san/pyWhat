@@ -245,7 +245,7 @@
       "Regex": "^([a-zA-Z0-9_-]*:[a-zA-Z0-9_-]+@github.com*)$",
       "plural_name": false,
       "Description": null,
-      "Exploit": "Use the command below to verify that the access token is valid:\n  $ curl -s -u \"user:TOKEN_HERE\" https://api.github.com/user\n  curl -s -H \"Authorization: token TOKEN_HERE\" \"https://api.github.com/users/USERNAME_HERE/orgs\"\n . # Check scope of your api token\n $  curl \"https://api.github.com/rate_limit\" -i -u \"user:TOKEN_HERE\" | grep \"X-OAuth-Scopes:\"\n",
+      "Exploit": "Use the command below to verify that the access token is valid:\n  $ curl -s -u \"user:TOKEN_HERE\" https://api.github.com/user\n  curl -s -H \"Authorization: token TOKEN_HERE\" \"https://api.github.com/users/[USERNAME]/orgs\"\n . # Check scope of your api token\n $  curl \"https://api.github.com/rate_limit\" -i -u \"user:TOKEN_HERE\" | grep \"X-OAuth-Scopes:\"\n",
       "Rarity": 1,
       "URL": null,
       "Tags": [
@@ -286,7 +286,7 @@
       "Regex": "(?i)^((facebook|fb)(.{0,20})?['\\\"][0-9a-f]{32}['\\\"])$",
       "plural_name": false,
       "Description": null,
-      "Exploit": "Use the command below to verify that the secret key is valid:\n  $ curl \"https://graph.facebook.com/oauth/access_token?client_id=ID_HERE&client_secret=SECRET_KEY_HERE&redirect_uri=&grant_type=client_credentials\"\n",
+      "Exploit": "Use the command below to verify that the secret key is valid:\n  $ curl \"https://graph.facebook.com/oauth/access_token?client_id=[ID]&client_secret=SECRET_KEY_HERE&redirect_uri=&grant_type=client_credentials\"\n",
       "Rarity": 1,
       "URL": null, 
       "Tags": [
@@ -300,7 +300,7 @@
       "Regex": "(?i)^((facebook|fb)(.{0,20})?['\\\"][0-9]{13,17}['\\\"])$",
       "plural_name": false,
       "Description": null,
-      "Exploit": "Use the command below to verify that the secret key is valid:\n  $ curl \"https://graph.facebook.com/oauth/access_token?client_id=ID_HERE&client_secret=SECRET_KEY_HERE&redirect_uri=&grant_type=client_credentials\"\n",
+      "Exploit": "Use the command below to verify that the secret key is valid:\n  $ curl \"https://graph.facebook.com/oauth/access_token?client_id=ID_HERE&client_secret=[SECRET_KEY]&redirect_uri=&grant_type=client_credentials\"\n",
       "Rarity": 1,
       "URL": null, 
       "Tags": [
@@ -338,7 +338,7 @@
       "Regex": "^(ghp_[0-9a-zA-Z]{36})$",
       "plural_name": false,
       "Description": null,
-      "Exploit": "Use the command below to verify that the access token is valid:\n  $ curl -s -u \"user:TOKEN_HERE\" https://api.github.com/user\n  curl -s -H \"Authorization: token TOKEN_HERE\" \"https://api.github.com/users/USERNAME_HERE/orgs\"\n . # Check scope of your api token\n $  curl \"https://api.github.com/rate_limit\" -i -u \"user:TOKEN_HERE\" | grep \"X-OAuth-Scopes:\"\n",
+      "Exploit": "Use the command below to verify that the access token is valid:\n  $ curl -s -u \"user:TOKEN_HERE\" https://api.github.com/user\n  curl -s -H \"Authorization: token TOKEN_HERE\" \"https://api.github.com/users/[USERNAME]/orgs\"\n . # Check scope of your api token\n $  curl \"https://api.github.com/rate_limit\" -i -u \"user:TOKEN_HERE\" | grep \"X-OAuth-Scopes:\"\n",
       "Rarity": 1,
       "URL": null,
       "Tags": [
@@ -352,7 +352,7 @@
       "Regex": "^(gho_[0-9a-zA-Z]{36})$",
       "plural_name": false,
       "Description": null,
-      "Exploit": "Use the command below to verify that the access token is valid:\n  $ curl -s -u \"user:TOKEN_HERE\" https://api.github.com/user\n  curl -s -H \"Authorization: token TOKEN_HERE\" \"https://api.github.com/users/USERNAME_HERE/orgs\"\n . # Check scope of your api token\n $  curl \"https://api.github.com/rate_limit\" -i -u \"user:TOKEN_HERE\" | grep \"X-OAuth-Scopes:\"\n",
+      "Exploit": "Use the command below to verify that the access token is valid:\n  $ curl -s -u \"user:TOKEN_HERE\" https://api.github.com/user\n  curl -s -H \"Authorization: token TOKEN_HERE\" \"https://api.github.com/users/[USERNAME]/orgs\"\n . # Check scope of your api token\n $  curl \"https://api.github.com/rate_limit\" -i -u \"user:TOKEN_HERE\" | grep \"X-OAuth-Scopes:\"\n",
       "Rarity": 1,
       "URL": null,
       "Tags": [
@@ -366,7 +366,7 @@
       "Regex": "^((ghu|ghs)_[0-9a-zA-Z]{36})$",
       "plural_name": false,
       "Description": null,
-      "Exploit": "Use the command below to verify that the app token is valid:\n  $ curl -s -u \"user:TOKEN_HERE\" https://api.github.com/user\n  curl -s -H \"Authorization: token TOKEN_HERE\" \"https://api.github.com/users/USERNAME_HERE/orgs\"\n . # Check scope of your api token\n $  curl \"https://api.github.com/rate_limit\" -i -u \"user:TOKEN_HERE\" | grep \"X-OAuth-Scopes:\"\n",
+      "Exploit": "Use the command below to verify that the app token is valid:\n  $ curl -s -u \"user:TOKEN_HERE\" https://api.github.com/user\n  curl -s -H \"Authorization: token TOKEN_HERE\" \"https://api.github.com/users/[USERNAME]/orgs\"\n . # Check scope of your api token\n $  curl \"https://api.github.com/rate_limit\" -i -u \"user:TOKEN_HERE\" | grep \"X-OAuth-Scopes:\"\n",
       "Rarity": 1,
       "URL": null,
       "Tags": [
@@ -462,7 +462,7 @@
       "Regex": "(?i)^(sqOatp-[0-9A-Za-z\\-_]{22})$",
       "plural_name": false,
       "Description": null,
-      "Exploit": "Use the command below to verify that the access token is valid:\n  $ curl \"https://squareup.com/oauth2/revoke\" -d '{\"access_token\":\"[RANDOM_STRING_HERE]\",\"client_id\":\"[APP_ID_HERE]\"}'  -H \"Content-Type: application/json\" -H \"Authorization: Client TOKEN_HERE\"\n",
+      "Exploit": "Use the command below to verify that the access token is valid:\n  $ curl \"https://squareup.com/oauth2/revoke\" -d '{\"access_token\":\"[RANDOM_STRING]\",\"client_id\":\"[APP_ID]\"}'  -H \"Content-Type: application/json\" -H \"Authorization: Client TOKEN_HERE\"\n",
       "Rarity": 1,
       "URL": null,
       "Tags": [
@@ -476,7 +476,7 @@
       "Regex": "(?i)^(sq0csp-[ 0-9A-Za-z\\-_]{43})$",
       "plural_name": false,
       "Description": null,
-      "Exploit": "Use the command below to verify that the token is valid:\n  $ curl \"https://squareup.com/oauth2/revoke\" -d '{\"access_token\":\"[RANDOM_STRING_HERE]\",\"client_id\":\"[APP_ID_HERE]\"}'  -H \"Content-Type: application/json\" -H \"Authorization: Client TOKEN_HERE\"\n",
+      "Exploit": "Use the command below to verify that the token is valid:\n  $ curl \"https://squareup.com/oauth2/revoke\" -d '{\"access_token\":\"[RANDOM_STRING]\",\"client_id\":\"[APP_ID]\"}'  -H \"Content-Type: application/json\" -H \"Authorization: Client TOKEN_HERE\"\n",
       "Rarity": 1,
       "URL": null,
       "Tags": [
@@ -1364,7 +1364,7 @@
       "Regex": "^(SK[0-9a-fA-F]{32})$",
       "plural_name": false,
       "Description": null,
-      "Exploit": "Use the command below to verify that API key is valid:\n  $ curl -X GET 'https://api.twilio.com/2010-04-01/Accounts.json' -u ACCOUNT_SID_HERE:AUTH_TOKEN_HERE\n",
+      "Exploit": "Use the command below to verify that API key is valid:\n  $ curl -X GET 'https://api.twilio.com/2010-04-01/Accounts.json' -u [ACCOUNT_SID]:AUTH_TOKEN_HERE\n",
       "Rarity": 0.3,
       "URL": null,
       "Tags": [
@@ -1378,7 +1378,7 @@
       "Regex": "^(AC[a-zA-Z0-9_-]{32})$",
       "plural_name": false,
       "Description": null,
-      "Exploit": "Use the command below to verify that the SID is valid:\n  $ curl -X GET 'https://api.twilio.com/2010-04-01/Accounts.json' -u ACCOUNT_SID_HERE:AUTH_TOKEN_HERE\n",
+      "Exploit": "Use the command below to verify that the SID is valid:\n  $ curl -X GET 'https://api.twilio.com/2010-04-01/Accounts.json' -u ACCOUNT_SID_HERE:[AUTH_TOKEN]\n",
       "Rarity": 0.3,
       "URL": null,
       "Tags": [
@@ -1445,7 +1445,7 @@
       "Regex": "^((?<![A-Z0-9])[A-Z0-9]{20}(?![A-Z0-9]))$",
       "plural_name": false,
       "Description": null,
-      "Exploit": "Install awscli (https://aws.amazon.com/cli/), set the access key and secret to environment variables, and execute the following command: $ AWS_ACCESS_KEY_ID=ACCESS_KEY_HERE AWS_SECRET_ACCESS_KEY=SECRET_KEY_HERE aws sts get-caller-identity\n AWS credentials' permissions can be determined using enumerate-IAM (https://github.com/andresriancho/enumerate-iam).\n This gives broader view of the discovered AWS credentials privileges instead of just checking S3 buckets.\n $ git clone https://github.com/andresriancho/enumerate-iam\n  cd  enumerate-iam\n  ./enumerate-iam.py --access-key ACCESS_KEY_HERE --secret-key SECRET_KEY_HERE\n",
+      "Exploit": "Install awscli (https://aws.amazon.com/cli/), set the access key and secret to environment variables, and execute the following command: $ AWS_ACCESS_KEY_ID=ACCESS_KEY_HERE AWS_SECRET_ACCESS_KEY=[SECRET_KEY] aws sts get-caller-identity\n AWS credentials' permissions can be determined using enumerate-IAM (https://github.com/andresriancho/enumerate-iam).\n This gives broader view of the discovered AWS credentials privileges instead of just checking S3 buckets.\n $ git clone https://github.com/andresriancho/enumerate-iam\n  cd  enumerate-iam\n  ./enumerate-iam.py --access-key ACCESS_KEY_HERE --secret-key [SECRET_KEY]\n",
       "Rarity": 0.2,
       "URL": null,
       "Tags": [
@@ -1459,7 +1459,7 @@
       "Regex": "^((?<![A-Za-z0-9\\/+=])[A-Za-z0-9\\/+=]{40}(?![A-Za-z0-9\\/+=]))$",
       "plural_name": false,
       "Description": null,
-      "Exploit": "Install awscli (https://aws.amazon.com/cli/), set the access key and secret to environment variables, and execute the following command: $ AWS_ACCESS_KEY_ID=ACCESS_KEY_HERE AWS_SECRET_ACCESS_KEY=SECRET_KEY_HERE aws sts get-caller-identity\n AWS credentials' permissions can be determined using enumerate-IAM (https://github.com/andresriancho/enumerate-iam).\n This gives broader view of the discovered AWS credentials privileges instead of just checking S3 buckets.\n $ git clone https://github.com/andresriancho/enumerate-iam\n  cd  enumerate-iam\n  ./enumerate-iam.py --access-key ACCESS_KEY_HERE --secret-key SECRET_KEY_HERE\n",
+      "Exploit": "Install awscli (https://aws.amazon.com/cli/), set the access key and secret to environment variables, and execute the following command: $ AWS_ACCESS_KEY_ID=[ACCESS_KEY] AWS_SECRET_ACCESS_KEY=SECRET_KEY_HERE aws sts get-caller-identity\n AWS credentials' permissions can be determined using enumerate-IAM (https://github.com/andresriancho/enumerate-iam).\n This gives broader view of the discovered AWS credentials privileges instead of just checking S3 buckets.\n $ git clone https://github.com/andresriancho/enumerate-iam\n  cd  enumerate-iam\n  ./enumerate-iam.py --access-key [ACCESS_KEY] --secret-key SECRET_KEY_HERE\n",
       "Rarity": 0.2,
       "URL": null,
       "Tags": [
