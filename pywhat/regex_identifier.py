@@ -28,16 +28,16 @@ class RegexIdentifier:
                     reg["Boundaryless Regex"] if reg in boundaryless else reg["Regex"]
                 )
                 for matched_regex in re.finditer(regex, string, re.MULTILINE):
-                    reg = copy.copy(reg)
+                    reg_match = copy.deepcopy(reg)
                     matched = self.clean_text(matched_regex.group(0))
 
-                    if reg.get("Exploit") is not None and "curl" in reg["Exploit"]:
+                    if reg_match.get("Exploit") is not None and "curl" in reg_match["Exploit"]:
                         # Replace anything like XXXXX_XXXXXX_HERE with the match
-                        reg["Exploit"] = re.sub(
-                            r"[A-Z_]+_HERE", matched, reg["Exploit"]
+                        reg_match["Exploit"] = re.sub(
+                            r"[A-Z_]+_HERE", matched, reg_match["Exploit"]
                         )
 
-                    children = reg.get("Children")
+                    children = reg_match.get("Children")
                     if children is not None:
                         processed_match = re.sub(
                             children.get("deletion_pattern", ""), "", matched
@@ -65,15 +65,15 @@ class RegexIdentifier:
                                     matched_children.append(children["Items"][element])
 
                         if matched_children:
-                            reg["Description"] = children.get("entry", "") + ", ".join(
+                            reg_match["Description"] = children.get("entry", "") + ", ".join(
                                 matched_children
                             )
-                    reg.pop("Children", None)
+                    reg_match.pop("Children", None)
 
                     matches.append(
                         {
                             "Matched": matched,
-                            "Regex Pattern": reg,
+                            "Regex Pattern": reg_match,
                         }
                     )
 
