@@ -1,5 +1,4 @@
 """Nox sessions."""
-import tempfile
 from typing import Any
 
 import nox

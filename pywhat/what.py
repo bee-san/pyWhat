@@ -109,7 +109,11 @@ def create_filter(rarity, include, exclude):
     is_flag=True,
     help="Search filenames for possible matches.",
 )
-@click.option("--format", required = False, help="--format json for json output. --format pretty for a pretty table output.")
+@click.option(
+    "--format",
+    required=False,
+    help="--format json for json output. --format pretty for a pretty table output.",
+)
 def main(**kwargs):
     """
     pyWhat - Identify what something is.
