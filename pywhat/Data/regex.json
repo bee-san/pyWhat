@@ -201,7 +201,7 @@
       "Regex": "^(sandbox-?sq0csp-[0-9A-Za-z-_]{43}|sq0[a-z]{3}-[0-9A-Za-z-_]{22,43})$",
       "plural_name": false,
       "Description": null,
-      "Exploit": "Use the command below to verify that the secret is valid:\n  $ curl \"https://squareup.com/oauth2/revoke\" -d '{\"access_token\":\"RANDOM_STRING\",\"client_id\":\"APP_ID\"}'  -H \"Content-Type: application/json\" -H \"Authorization: Client SECRET_HERE\"\n  API Documentation: https://developer.squareup.com/us/en",
+      "Exploit": "Use the command below to verify that the secret is valid:\n  $ curl \"https://squareup.com/oauth2/revoke\" -d '{\"access_token\":\"[RANDOM_STRING]\",\"client_id\":\"[APP_ID]\"}'  -H \"Content-Type: application/json\" -H \"Authorization: Client SECRET_HERE\"\n",
       "Rarity": 1,
       "URL": null,
       "Tags": [
