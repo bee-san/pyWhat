@@ -45,7 +45,7 @@ Or for our MacPorts fans:
 
 ## 🦠 Wannacry
 
-![](images/wantocry_demo.png)
+![](images/wannacry_demo.png)
 
 You come across a new piece of malware called WantToCry. You think back to Wannacry and remember it was stopped because a researcher found a kill-switch in the code.
 
