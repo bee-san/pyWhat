@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "pywhat"
-version = "3.4.0"
+version = "4.0.0"
 description = "What is that thing?"
 authors = ["Bee <github@skerritt.blog>"]
 license = "MIT"
@@ -19,6 +19,9 @@ black = {version = "^21.6b0", python = "^3.6.2"}
 isort = {version = "^5.9.2", python = "^3.6.1"}
 flake8 = "3.8.4"
 requests = "^2.26.0"
+
+[tool.poetry.extras]
+optimize = ["orjson"]
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]

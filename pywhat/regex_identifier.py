@@ -27,10 +27,13 @@ class RegexIdentifier:
                 regex = (
                     reg["Boundaryless Regex"] if reg in boundaryless else reg["Regex"]
                 )
-
                 for matched_regex in re.finditer(regex, string, re.MULTILINE):
                     reg = copy.copy(reg)
                     matched = self.clean_text(matched_regex.group(0))
+
+                    if reg.get("Exploit") is not None and "curl" in reg["Exploit"]:
+                        # Replace anything like XXXXX_XXXXXX_HERE with the match
+                        reg["Exploit"] = re.sub(r'[A-Z_]+_HERE', matched, reg["Exploit"])
 
                     children = reg.get("Children")
                     if children is not None:
