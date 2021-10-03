@@ -801,3 +801,8 @@ def test_new_relic_synthetics_api_key():
 def test_new_relic_user_api_key():
     res = r.check(["NRAK-WI4JTVS049IF5A3FGS5N51XS3Y5"])
     _assert_match_first_item("New Relic User API Key", res)
+
+
+def test_nano():
+    res = r.check(["nano_1c46rz7xnk98ozhzdjq7thwty844sgnqxk9496yysit1bnio1rcdzshc5ymn"])
+    _assert_match_first_item("Nano (NANO) Wallet Address", res)

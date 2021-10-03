@@ -288,7 +288,7 @@
       "Description": null,
       "Exploit": "Use the command below to verify that the secret key is valid:\n  $ curl \"https://graph.facebook.com/oauth/access_token?client_id=[ID]&client_secret=SECRET_KEY_HERE&redirect_uri=&grant_type=client_credentials\"\n",
       "Rarity": 1,
-      "URL": null, 
+      "URL": null,
       "Tags": [
          "API Keys",
          "Bug Bounty",
@@ -302,7 +302,7 @@
       "Description": null,
       "Exploit": "Use the command below to verify that the secret key is valid:\n  $ curl \"https://graph.facebook.com/oauth/access_token?client_id=ID_HERE&client_secret=[SECRET_KEY]&redirect_uri=&grant_type=client_credentials\"\n",
       "Rarity": 1,
-      "URL": null, 
+      "URL": null,
       "Tags": [
          "Bug Bounty"
       ]
@@ -1546,6 +1546,19 @@
       "URL": null,
       "Tags": [
          "Credentials"
+      ]
+   },
+   {
+      "Name": "Nano (NANO) Wallet Address",
+      "Regex": "^(nano|xrb)_[13]{1}[13456789abcdefghijkmnopqrstuwxyz]{59}$",
+      "plural_name": false,
+      "Description": null,
+      "Rarity": 0.8,
+      "URL": "https://nanocrawler.cc/explorer/account/",
+      "Tags": [
+         "Finance",
+         "Cryptocurrency Wallet",
+         "Nano Wallet"
       ]
    }
 ]

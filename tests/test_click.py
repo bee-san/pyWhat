@@ -3,7 +3,6 @@ import re
 
 import pytest
 from click.testing import CliRunner
-
 from pywhat import pywhat_tags
 from pywhat.what import main
 
@@ -148,6 +147,13 @@ def test_file_fixture13():
     result = runner.invoke(main, ["-db", "fixtures/file"])
     assert result.exit_code == 0
     assert re.findall("Bitcoin", str(result.output))
+
+
+def test_file_fixture14():
+    runner = CliRunner()
+    result = runner.invoke(main, ["-db", "fixtures/file"])
+    assert result.exit_code == 0
+    assert re.findall("Nano", str(result.output))
 
 
 def test_arg_parsing():
