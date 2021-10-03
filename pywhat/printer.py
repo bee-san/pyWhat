@@ -106,7 +106,7 @@ class Printing:
 
             self.console.print(to_out.strip(), table)
 
-        else:
+        elif not self.bug_bounty_mode:
             self.console.print((to_out + "\nNothing found!").lstrip())
 
     def print_json(self, text: dict):
@@ -173,7 +173,7 @@ class Printing:
                         )
                     output_str += "\n\n"
 
-        if output_str == "":
+        if output_str == "" and not self.bug_bounty_mode:
             self.console.print("Nothing found!")
 
         if output_str.strip():
