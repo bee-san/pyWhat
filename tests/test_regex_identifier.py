@@ -805,4 +805,4 @@ def test_new_relic_user_api_key():
     
 def test_pypi_upload_token():
     res = r.check(["pypi-AgEIcHlwaS5vcmcCJDZlNzEyNGJmLWQ4N2UtNGZhYS1iNWEzLWQzYzg2YjU3NzAxYgACJXsicGVybWlzc2lvbnMiOiAidXNlciIsICJ2ZXJzaW9uIjogMX0AAAYgeYcgrZO31PTS_3ipsd0fTSMy1kVkxCzhQvHN6m97yIE"])
-    _assert_match_first_item("Pypi Upload Token", res)
+    _assert_match_first_item("PyPi Upload Token", res)
