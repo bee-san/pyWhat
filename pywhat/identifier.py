@@ -18,7 +18,9 @@ class Identifier:
         boundaryless: Optional[Filter] = None,
     ):
         self.distribution = Distribution() if dist is None else dist
-        self.boundaryless = Filter({"Tags": []}) if boundaryless is None else boundaryless
+        self.boundaryless = (
+            Filter({"Tags": []}) if boundaryless is None else boundaryless
+        )
         self._regex_id = RegexIdentifier()
         self._key = key
         self._reverse = reverse
