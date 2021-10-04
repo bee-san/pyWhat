@@ -801,8 +801,8 @@ def test_new_relic_synthetics_api_key():
 def test_new_relic_user_api_key():
     res = r.check(["NRAK-WI4JTVS049IF5A3FGS5N51XS3Y5"])
     _assert_match_first_item("New Relic User API Key", res)
-    
-    
+
+
 def test_pypi_upload_token():
     res = r.check(
         [
