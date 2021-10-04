@@ -1553,7 +1553,7 @@
       "Regex": "^(nano|xrb)_[13]{1}[13456789abcdefghijkmnopqrstuwxyz]{59}$",
       "plural_name": false,
       "Description": null,
-      "Rarity": 0.8,
+      "Rarity": 1,
       "URL": "https://nanocrawler.cc/explorer/account/",
       "Tags": [
          "Finance",
