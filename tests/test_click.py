@@ -568,3 +568,31 @@ def test_pgp_private_key():
     result = runner.invoke(main, ["-db", "fixtures/file"])
     assert result.exit_code == 0
     assert re.findall("PGP Private Key", str(result.output))
+
+
+def test_file_fixture_turkish_car_plate():
+    runner = CliRunner()
+    result = runner.invoke(main, ["fixtures/file"])
+    assert result.exit_code == 0
+    assert re.findall("Turkish License Plate Number", str(result.output))
+
+
+def test_file_fixture_date_of_birth():
+    runner = CliRunner()
+    result = runner.invoke(main, ["fixtures/file"])
+    assert result.exit_code == 0
+    assert re.findall("Date of Birth", str(result.output))
+
+
+def test_file_fixture_turkish_id_number():
+    runner = CliRunner()
+    result = runner.invoke(main, ["fixtures/file"])
+    assert result.exit_code == 0
+    assert re.findall("Turkish Identification Number", str(result.output))
+
+
+def test_file_fixture_turkish_tax_number():
+    runner = CliRunner()
+    result = runner.invoke(main, ["fixtures/file"])
+    assert result.exit_code == 0
+    assert re.findall("Turkish Tax Number", str(result.output))
