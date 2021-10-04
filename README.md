@@ -93,10 +93,9 @@ Here are some examples 👇
 2. Search for anything that you can submit as a bounty, like API keys
 
 ```shell
-# Download an user repositories:
+# Download a user's repositories:
 GHUSER=CHANGEME; curl "https://api.github.com/users/$GHUSER/repos?per_page=1000" | grep -o 'git@[^"]*' | xargs -L1 git clone
-# OR
-# Download an organisation repositories:
+# Or Download an organisation's repositories:
 GHORG=org_name; curl "https://api.github.com/orgs/$GHORG/repos?per_page=1000" | grep -o 'git@[^"]*' | xargs -L1 git clone
 
 
