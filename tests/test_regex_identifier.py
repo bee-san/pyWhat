@@ -802,7 +802,6 @@ def test_new_relic_user_api_key():
     res = r.check(["NRAK-WI4JTVS049IF5A3FGS5N51XS3Y5"])
     _assert_match_first_item("New Relic User API Key", res)
 
-
 def test_pypi_upload_token():
     res = r.check(
         [
@@ -810,3 +809,67 @@ def test_pypi_upload_token():
         ]
     )
     _assert_match_first_item("PyPi Upload Token", res)
+
+def test_turkish_car_plate():
+    res = r.check(["34A2344"])
+    _assert_match_first_item("Turkish License Plate Number", res)
+
+
+def test_turkish_car_plate2():
+    res = r.check(["34A23415"])
+    _assert_match_first_item("Turkish License Plate Number", res)
+
+
+def test_turkish_car_plate3():
+    res = r.check(["06BK123"])
+    _assert_match_first_item("Turkish License Plate Number", res)
+
+
+def test_turkish_car_plate4():
+    res = r.check(["06JK1234"])
+    _assert_match_first_item("Turkish License Plate Number", res)
+
+
+def test_turkish_car_plate5():
+    res = r.check(["81ABC75"])
+    _assert_match_first_item("Turkish License Plate Number", res)
+
+
+def test_date_of_birth():
+    res = r.check(["13.08.1987"])
+    _assert_match_first_item("Date of Birth", res)
+
+
+def test_date_of_birth2():
+    res = r.check(["13081987"])
+    _assert_match_first_item("Date of Birth", res)
+
+
+def test_date_of_birth3():
+    res = r.check(["13/08/1987"])
+    _assert_match_first_item("Date of Birth", res)
+
+
+def test_date_of_birth4():
+    res = r.check(["13-08-1987"])
+    _assert_match_first_item("Date of Birth", res)
+
+
+def test_date_of_birth5():
+    res = r.check(["13 08 1987"])
+    _assert_match_first_item("Date of Birth", res)
+
+
+def test_turkish_id_number():
+    res = r.check(["12345678902"])
+    assert "Turkish Identification Number" in str(res)
+
+
+def test_turkish_id_number2():
+    res = r.check(["12345678900"])
+    assert "Turkish Identification Number" in str(res)
+
+
+def test_turkish_tax_number():
+    res = r.check(["1234567890"])
+    assert "Turkish Tax Number" in str(res)
