@@ -868,7 +868,7 @@
    },
    {
       "Name": "Nano (NANO) Wallet Address",
-      "Regex": "^(nano|xrb)_[13]{1}[13456789abcdefghijkmnopqrstuwxyz]{59}$",
+      "Regex": "^((nano|xrb)_[13]{1}[1a-km-z3-9]{59})$",
       "plural_name": false,
       "Description": null,
       "Rarity": 1,
