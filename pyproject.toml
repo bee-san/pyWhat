@@ -43,5 +43,8 @@ use_parentheses = true
 ensure_newline_before_comments = true
 line_length = 88
 
+[tool.mypy]
+ignore_missing_imports = true
+
 [tool.pytest.ini_options]
 addopts = "--black --isort --mypy"
