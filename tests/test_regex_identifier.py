@@ -121,10 +121,7 @@ def test_ip():
         boundaryless=Filter({"Tags": ["Identifiers"]}),
     )
     _assert_match_first_item("Uniform Resource Locator (URL)", res)
-    assert (
-        "Internet Protocol (IP) Address Version 4"
-        in res[1]["Regex Pattern"]["Name"]
-    )
+    assert "Internet Protocol (IP) Address Version 4" in res[1]["Regex Pattern"]["Name"]
 
 
 def test_ip_not_url():
@@ -341,9 +338,7 @@ def test_maestro_card_spaces():
     _assert_match_first_item("Maestro Card Number", res)
 
 
-@pytest.mark.skip(
-    "Key:Value Pair is not ran by default because of low rarity."
-)
+@pytest.mark.skip("Key:Value Pair is not ran by default because of low rarity.")
 def test_username():
     res = r.check(["james:S3cr37_P@$$W0rd"])
     _assert_match_first_item("Key:Value Pair", res)
@@ -486,9 +481,7 @@ def test_jwt():
 
 def test_s3():
     res = r.check(["http://s3.amazonaws.com/bucket/"])
-    _assert_match_first_item(
-        "Amazon Web Services Simple Storage (AWS S3) URL", res
-    )
+    _assert_match_first_item("Amazon Web Services Simple Storage (AWS S3) URL", res)
 
 
 def test_s3_internal():
@@ -511,16 +504,12 @@ def test_arn():
 
 
 def test_arn2():
-    res = r.check(
-        ["arn:partition:service:region:account-id:resourcetype/resource"]
-    )
+    res = r.check(["arn:partition:service:region:account-id:resourcetype/resource"])
     _assert_match_first_item("Amazon Resource Name (ARN)", res)
 
 
 def test_arn3():
-    res = r.check(
-        ["arn:partition:service:region:account-id:resourcetype:resource"]
-    )
+    res = r.check(["arn:partition:service:region:account-id:resourcetype:resource"])
     _assert_match_first_item("Amazon Resource Name (ARN)", res)
 
 
@@ -613,9 +602,7 @@ def test_aws_org_id():
 
 def test_asin():
     res = r.check(["B07ND5BB8V"])
-    _assert_match_first_item(
-        "Amazon Standard Identification Number (ASIN)", res
-    )
+    _assert_match_first_item("Amazon Standard Identification Number (ASIN)", res)
 
 
 def test_google_api_key():
@@ -664,9 +651,7 @@ def test_square_application_secret():
 
 
 def test_square_access_token():
-    res = r.check(
-        ["EAAAEBQZoq15Ub0PBBr_kw0zK-uIHcBPBZcfjPFT05ODfjng9GqFK9Dbgtj1ILcU"]
-    )
+    res = r.check(["EAAAEBQZoq15Ub0PBBr_kw0zK-uIHcBPBZcfjPFT05ODfjng9GqFK9Dbgtj1ILcU"])
     _assert_match_first_item("Square Access Token", res)
 
 
@@ -682,9 +667,7 @@ def test_github_access_token():
 
 def test_slack_api_key():
     res = r.check(
-        [
-            "xoxp-514654431830-843187921057-792480346180-d44d2r9b71f954o8z2k5llt41ovpip6v"
-        ]
+        ["xoxp-514654431830-843187921057-792480346180-d44d2r9b71f954o8z2k5llt41ovpip6v"]
     )
     _assert_match_first_item("Slack API Key", res)
     _assert_match_exploit_first_item(
@@ -721,23 +704,17 @@ def test_pgp_private_key():
 
 
 def test_discord_token():
-    res = r.check(
-        ["NzQ4MDk3ODM3OTgzODU4NzIz.X0YeZw.UlcjuCywUAWvPH9s-3cXNBaq3M4"]
-    )
+    res = r.check(["NzQ4MDk3ODM3OTgzODU4NzIz.X0YeZw.UlcjuCywUAWvPH9s-3cXNBaq3M4"])
     _assert_match_first_item("Discord Bot Token", res)
 
 
 def test_discord_token_2():
-    res = r.check(
-        ["MTE4NDQyNjQ0NTAxMjk5MjAz.DPM2DQ.vLNMR02Qxb9DJFucGZK1UtTs__s"]
-    )
+    res = r.check(["MTE4NDQyNjQ0NTAxMjk5MjAz.DPM2DQ.vLNMR02Qxb9DJFucGZK1UtTs__s"])
     _assert_match_first_item("Discord Bot Token", res)
 
 
 def test_discord_token_3():
-    res = r.check(
-        ["ODYyOTUyOTE3NTg4NjM5NzY1.YOf1iA.7lARgFXmodxpgmPvOXapaKUga6M"]
-    )
+    res = r.check(["ODYyOTUyOTE3NTg4NjM5NzY1.YOf1iA.7lARgFXmodxpgmPvOXapaKUga6M"])
     _assert_match_first_item("Discord Bot Token", res)
 
 
