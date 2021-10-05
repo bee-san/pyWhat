@@ -24,7 +24,7 @@ def print_version(ctx, opts, value):
 
 
 def create_filter(rarity, include, exclude):
-    filters_dict = dict()
+    filters_dict = {}
     if rarity is not None:
         rarities = rarity.split(":")
         if len(rarities) != 2:

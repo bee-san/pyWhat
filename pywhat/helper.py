@@ -82,10 +82,7 @@ class CaseInsensitiveSet(collections.abc.Set):
         return self._elements.__repr__()
 
     def issubset(self, other):
-        for value in self:
-            if value not in other:
-                return False
-        return True
+        return all(value in other for value in self)
 
 
 class Keys(Enum):

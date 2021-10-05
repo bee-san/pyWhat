@@ -19,7 +19,7 @@ class Filter(Mapping):
         tags = CaseInsensitiveSet(AvailableTags().get_tags())
         self._dict = dict()
         if filters_dict is None:
-            filters_dict = dict()
+            filters_dict = {}
 
         self._dict["Tags"] = CaseInsensitiveSet(filters_dict.setdefault("Tags", tags))
         self._dict["ExcludeTags"] = CaseInsensitiveSet(
@@ -120,11 +120,7 @@ class Distribution(Filter):
 
     def _filter(self):
         self._regexes = load_regexes()
-        temp_regexes = []
-        for regex in self._regexes:
-            if regex in self:
-                temp_regexes.append(regex)
-
+        temp_regexes = [regex for regex in self._regexes if regex in self]
         self._regexes = temp_regexes
 
     def get_regexes(self):

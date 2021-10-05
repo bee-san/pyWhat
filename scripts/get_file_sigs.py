@@ -26,7 +26,7 @@ def cleanhtml(raw_html):
 
 
 r = requests.get(
-    "http://en.wikipedia.org/w/index.php?title=" + "List_of_file_signatures&action=raw"
+    "https://en.wikipedia.org/w/index.php?title=" + "List_of_file_signatures&action=raw"
 )
 wt = wtp.parse(r.text)
 # prints first 3 items of json, delete [0:3] to print all.
@@ -35,7 +35,7 @@ to_iter = {"root": wt.tables[0].data()}
 to_iter = to_iter["root"]
 to_dump = []
 
-populars = set(["23 21"])
+populars = {"23 21"}
 
 for i in range(1, len(to_iter)):
     to_insert = {}

@@ -117,7 +117,8 @@ def test_lat_long6():
 
 def test_ip():
     res = r.check(
-        ["http://10.1.1.1/just/a/test"], boundaryless=Filter({"Tags": ["Identifiers"]})
+        ["http://10.1.1.1/just/a/test"],
+        boundaryless=Filter({"Tags": ["Identifiers"]}),
     )
     _assert_match_first_item("Uniform Resource Locator (URL)", res)
     assert "Internet Protocol (IP) Address Version 4" in res[1]["Regex Pattern"]["Name"]
@@ -355,7 +356,8 @@ def test_email2():
 
 def test_email3():
     res = r.check(
-        ["john.smith@[123.123.123.123]"], boundaryless=Filter({"Tags": ["Identifiers"]})
+        ["john.smith@[123.123.123.123]"],
+        boundaryless=Filter({"Tags": ["Identifiers"]}),
     )
     assert "Email Address" in res[2]["Regex Pattern"]["Name"]
 
@@ -731,6 +733,11 @@ def test_instapayment():
     _assert_match_first_item("Insta Payment Card Number", res)
 
 
+def test_instapayment():
+    res = r.check(["hawk.wz6bAoFDwcVQFCD9dofE.w2R1PWI8UTvEM4jd56XQ"])
+    _assert_match_first_item("StackHawk API Key", res)
+
+
 def test_jcb_card():
     res = r.check(["3537124887293334"])
     _assert_match_first_item("JCB Card Number", res)
@@ -762,6 +769,15 @@ def test_solo_card():
 def test_github_personal_access_token():
     res = r.check(["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"])
     _assert_match_first_item("GitHub Personal Access Token", res)
+
+
+def test_discord_webhook():
+    res = r.check(
+        [
+            "https://discord.com/api/webhooks/894893734582452235/KhNc2-_zwY9FfCAK0iGUa_KfYyW8m5Ja_5i-V24fEY6ETwvLLn-GmdT_vq0Do9-YRsij"
+        ]
+    )
+    _assert_match_first_item("Discord Webhook", res)
 
 
 def test_github_oauth_token():
@@ -801,6 +817,20 @@ def test_new_relic_synthetics_api_key():
 def test_new_relic_user_api_key():
     res = r.check(["NRAK-WI4JTVS049IF5A3FGS5N51XS3Y5"])
     _assert_match_first_item("New Relic User API Key", res)
+
+
+def test_nano():
+    res = r.check(["nano_1c46rz7xnk98ozhzdjq7thwty844sgnqxk9496yysit1bnio1rcdzshc5ymn"])
+    _assert_match_first_item("Nano (NANO) Wallet Address", res)
+
+
+def test_pypi_upload_token():
+    res = r.check(
+        [
+            "pypi-AgEIcHlwaS5vcmcCJDZlNzEyNGJmLWQ4N2UtNGZhYS1iNWEzLWQzYzg2YjU3NzAxYgACJXsicGVybWlzc2lvbnMiOiAidXNlciIsICJ2ZXJzaW9uIjogMX0AAAYgeYcgrZO31PTS_3ipsd0fTSMy1kVkxCzhQvHN6m97yIE"
+        ]
+    )
+    _assert_match_first_item("PyPi Upload Token", res)
 
 
 def test_turkish_car_plate():
