@@ -38,6 +38,12 @@ def tests(session: Session) -> None:
     """Run the test suite."""
     session.run("poetry", "install", "--no-dev", external=True)
     install_with_constraints(
-        session, "pytest", "pytest-black", "pytest-isort", "pytest-mypy"
+        session,
+        "pytest",
+        "pytest-black",
+        "pytest-isort",
+        "pytest-mypy",
+        "types-requests",
+        "types-orjson",
     )
     session.run("pytest")
