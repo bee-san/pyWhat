@@ -733,6 +733,11 @@ def test_instapayment():
     _assert_match_first_item("Insta Payment Card Number", res)
 
 
+def test_instapayment():
+    res = r.check(["hawk.wz6bAoFDwcVQFCD9dofE.w2R1PWI8UTvEM4jd56XQ"])
+    _assert_match_first_item("StackHawk API Key", res)
+
+
 def test_jcb_card():
     res = r.check(["3537124887293334"])
     _assert_match_first_item("JCB Card Number", res)
@@ -764,6 +769,15 @@ def test_solo_card():
 def test_github_personal_access_token():
     res = r.check(["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"])
     _assert_match_first_item("GitHub Personal Access Token", res)
+
+
+def test_discord_webhook():
+    res = r.check(
+        [
+            "https://discord.com/api/webhooks/894893734582452235/KhNc2-_zwY9FfCAK0iGUa_KfYyW8m5Ja_5i-V24fEY6ETwvLLn-GmdT_vq0Do9-YRsij"
+        ]
+    )
+    _assert_match_first_item("Discord Webhook", res)
 
 
 def test_github_oauth_token():
