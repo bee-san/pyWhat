@@ -288,7 +288,7 @@
       "Description": null,
       "Exploit": "Use the command below to verify that the secret key is valid:\n  $ curl \"https://graph.facebook.com/oauth/access_token?client_id=[ID]&client_secret=SECRET_KEY_HERE&redirect_uri=&grant_type=client_credentials\"\n",
       "Rarity": 1,
-      "URL": null, 
+      "URL": null,
       "Tags": [
          "API Keys",
          "Bug Bounty",
@@ -302,7 +302,7 @@
       "Description": null,
       "Exploit": "Use the command below to verify that the secret key is valid:\n  $ curl \"https://graph.facebook.com/oauth/access_token?client_id=ID_HERE&client_secret=[SECRET_KEY]&redirect_uri=&grant_type=client_credentials\"\n",
       "Rarity": 1,
-      "URL": null, 
+      "URL": null,
       "Tags": [
          "Bug Bounty"
       ]
@@ -731,7 +731,7 @@
    },
    {
       "Name": "Discord Webhook",
-      "Regex": "(?i)^(https://discordapp\\.com/api/webhooks/[0-9]+/[A-Za-z0-9-_]+)$",
+      "Regex": "(?i)^(https://discord\\.com/api/webhooks/[0-9]+/[A-Za-z0-9-_]+)$",
       "plural_name": false,
       "Description": null,
       "Exploit": null,
@@ -864,6 +864,19 @@
       "Tags": [
          "Bug Bounty",
          "AWS"
+      ]
+   },
+   {
+      "Name": "Nano (NANO) Wallet Address",
+      "Regex": "^((nano|xrb)_[13]{1}[1a-km-z3-9]{59})$",
+      "plural_name": false,
+      "Description": null,
+      "Rarity": 1,
+      "URL": "https://nanocrawler.cc/explorer/account/",
+      "Tags": [
+         "Finance",
+         "Cryptocurrency Wallet",
+         "Nano Wallet"
       ]
    },
    {

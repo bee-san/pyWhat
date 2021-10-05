@@ -89,20 +89,19 @@ class Printing:
                                 description,
                                 exploit,
                             )
+                    elif self._check_if_directory(text_input):
+                        table.add_row(
+                            matched,
+                            name,
+                            description,
+                            filename,
+                        )
                     else:
-                        if self._check_if_directory(text_input):
-                            table.add_row(
-                                matched,
-                                name,
-                                description,
-                                filename,
-                            )
-                        else:
-                            table.add_row(
-                                matched,
-                                name,
-                                description,
-                            )
+                        table.add_row(
+                            matched,
+                            name,
+                            description,
+                        )
 
             self.console.print(to_out.strip(), table)
 
@@ -180,7 +179,7 @@ class Printing:
             self.console.print(output_str.rstrip())
 
     def _check_if_exploit_in_json(self, text: dict) -> bool:
-        if "File Signatures" in text.keys() and text["File Signatures"]:
+        if "File Signatures" in text and text["File Signatures"]:
             # loops files
             for file in text["Regexes"].keys():
                 for i in text["Regexes"][file]:
