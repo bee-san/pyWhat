@@ -150,6 +150,13 @@ def test_file_fixture13():
     assert re.findall("Bitcoin", str(result.output))
 
 
+def test_file_fixture14():
+    runner = CliRunner()
+    result = runner.invoke(main, ["-db", "fixtures/file"])
+    assert result.exit_code == 0
+    assert re.findall("Nano", str(result.output))
+
+
 def test_arg_parsing():
     runner = CliRunner()
     result = runner.invoke(main, ["1KFHE7w8BhaENAswwryaoccDb6qcT6DbYY"])

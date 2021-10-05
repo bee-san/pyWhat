@@ -17,17 +17,13 @@ class Identifier:
         reverse=False,
         boundaryless: Optional[Filter] = None,
     ):
-        if dist is None:
-            self.distribution = Distribution()
-        else:
-            self.distribution = dist
+        self.distribution = Distribution() if dist is None else dist
+        self.boundaryless = (
+            Filter({"Tags": []}) if boundaryless is None else boundaryless
+        )
         self._regex_id = RegexIdentifier()
         self._key = key
         self._reverse = reverse
-        if boundaryless is None:
-            self.boundaryless = Filter({"Tags": []})
-        else:
-            self.boundaryless = boundaryless
 
     def identify(
         self,
