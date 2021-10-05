@@ -34,7 +34,7 @@ def install_with_constraints(session: Session, *args: str, **kwargs: Any) -> Non
     session.install("--constraint=requirements.txt", *args, **kwargs)
 
 
-@nox.session()
+@nox.session
 def black(session: Session) -> None:
     """Run black code formatter."""
     args = session.posargs or locations
@@ -42,12 +42,12 @@ def black(session: Session) -> None:
     session.run("black", *args)
 
 
-@nox.session()
+@nox.session
 def lint(session: Session) -> None:
     pass
 
 
-@nox.session()
+@nox.session
 def tests(session: Session) -> None:
     """Run the test suite."""
     session.run("poetry", "install", "--no-dev", external=True)
@@ -55,7 +55,7 @@ def tests(session: Session) -> None:
     session.run("pytest")
 
 
-@nox.session()
+@nox.session
 def typeguard(session: Session) -> None:
     """Runtime type checking using Typeguard."""
     args = session.posargs or ["-m", "not e2e"]
@@ -66,7 +66,7 @@ def typeguard(session: Session) -> None:
     session.run("pytest", f"--typeguard-packages={package}", *args)
 
 
-@nox.session()
+@nox.session
 def coverage(session: Session) -> None:
     """Upload coverage data."""
     install_with_constraints(session, "coverage[toml]", "codecov")
