@@ -867,9 +867,9 @@
    },
    {
       "Name": "Notion Note URI",
-      "Regex": "(?i)^(https:\/\/www\\.notion\\.so\/[A-Za-z0-9-_]+\/.*-.{32})$",
+      "Regex": "(?i)^(?:https:\/\/www\\.notion\\.so\/)([A-Za-z0-9-_]+\/.*-.{32})$",
       "plural_name": false,
-      "Description": "A note written on notion.so.",
+      "Description": null,
       "Rarity": 1,
       "URL": "https://www.notion.so/",
       "Tags": [
@@ -881,9 +881,9 @@
       "Name": "Notion Team Note URI",
       "Regex": "(?i)^(https:\/\/[A-Za-z0-9-_]+\\.notion\\.site\/.*-.{32})$",
       "plural_name": false,
-      "Description": "A note written using a Notion Team plan.",
+      "Description": null,
       "Rarity": 1,
-      "URL": "https://www.notion.so/",
+      "URL": null,
       "Tags": [
          "Bug Bounty",
          "URL"
