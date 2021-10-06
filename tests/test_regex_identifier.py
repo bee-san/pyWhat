@@ -600,6 +600,11 @@ def test_aws_org_id():
     assert "Amazon Web Services Organization identifier" in str(res)
 
 
+def test_aws_sns():
+    res = r.check(["arn:aws:sns:us-east-2:123456789012:MyTopic"])
+    assert "Amazon SNS Topic" in str(res)
+
+
 def test_asin():
     res = r.check(["B07ND5BB8V"])
     _assert_match_first_item("Amazon Standard Identification Number (ASIN)", res)
@@ -618,6 +623,15 @@ def test_google_recaptcha_api_key():
 def test_google_oauth_token():
     res = r.check(["ya29.AHES6ZRnn6CfjjaK6GCQ84vikePv_hk4NUAJwzaAXamCL0s"])
     _assert_match_first_item("Google OAuth Token", res)
+
+
+def test_google_cal():
+    res = r.check(
+        [
+            "https://calendar.google.com/calendar/embed?src=ht3jlfaac5lfd6263ulfh4tql8%40group.calendar.google.com&ctz=Europe%2FLondon"
+        ]
+    )
+    assert "Google Calendar URI" in str(res)
 
 
 def test_aws_access_key_id():

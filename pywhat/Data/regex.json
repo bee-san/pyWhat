@@ -718,7 +718,7 @@
    },
    {
       "Name": "Google Calendar URI",
-      "Regex": "(?i)^(https://www\\.google\\.com/calendar/embed\\?src=[A-Za-z0-9%@&;=\\-_\\./]+)$",
+      "Regex": "(?i)^(https:\/\/calendar.google.com\/calendar\/embed\\?src=[A-Za-z0-9%@&;=\\-_\\./]+)$",
       "plural_name": false,
       "Description": null,
       "Exploit": null,
@@ -855,7 +855,7 @@
    },
    {
       "Name": "Amazon SNS Topic",
-      "Regex": "(?i)^(arn:aws:sns:[a-z0-9-]+:[0-9]+:[A-Za-z0-9-_]{128})$",
+      "Regex": "(?i)^((arn:aws:sns:)[a-z0-9-]+:[0-9]+:[A-Za-z0-9-_]{1,128})$",
       "plural_name": false,
       "Description": null,
       "Exploit": null,
