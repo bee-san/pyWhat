@@ -866,6 +866,18 @@
       ]
    },
    {
+      "Name": "Notion Note URI",
+      "Regex": "(?i)^(https:\/\/www.notion.so\/[A-Za-z0-9-_]+\/.*-.{32})$",
+      "plural_name": false,
+      "Description": "A note written on notion.so",
+      "Rarity": 1,
+      "URL": "https://www.notion.so/",
+      "Tags": [
+         "Bug Bounty",
+         "URL"
+      ]
+   },
+   {
       "Name": "Nano (NANO) Wallet Address",
       "Regex": "^((nano|xrb)_[13]{1}[1a-km-z3-9]{59})$",
       "plural_name": false,
@@ -904,6 +916,18 @@
          "Bug Bounty",
          "API Keys",
          "Credentials"
+      ]
+   },
+   {
+      "Name": "Notion Integration Token",
+      "Regex": "(?i)^((secret_)([a-zA-Z0-9]{43}))$",
+      "plural_name": false,
+      "Description": "A Notion API integration's internal integration token.",
+      "Rarity": 0.8,
+      "URL": "https://www.notion.so/",
+      "Tags": [
+          "Credentials",
+          "API Keys"
       ]
    },
    {
