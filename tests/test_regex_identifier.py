@@ -23,8 +23,7 @@ def test_regex_successfully_parses():
 
 
 def _assert_match_in_items(name, res):
-    for i in res:
-        assert i["Regex Pattern"]["Name"] == name
+    assert any(name in i["Regex Pattern"]["Name"] for i in res)
 
 
 @pytest.mark.skip(
@@ -264,6 +263,21 @@ def test_monero():
 def test_litecoin():
     res = r.check(["LRX8rSPVjifTxoLeoJtLf2JYdJFTQFcE7m"])
     _assert_match_first_item("Litecoin (LTC) Wallet Address", res)
+
+
+def test_visual_studio_token():
+    res = r.check(["4435bc4358816be97a3f014499116c83ab224fb2"])
+    _assert_match_in_items("Visual Studio App Center API Token", res)
+
+
+def test_npm_token():
+    res = r.check(["npm_ir3kktsOr4JeXqeD72C3cWo2mbs5sQ2pfnt9"])
+    _assert_match_first_item("Node Package Manager (NPM) Token", res)
+
+
+def test_bitly_secret_key():
+    res = r.check(["96f79079f1d658895d188a78f303220c6f161b05"])
+    _assert_match_in_items("Bitly Secret Key", res)
 
 
 def test_bitcoincash():
