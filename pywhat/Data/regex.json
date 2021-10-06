@@ -334,7 +334,7 @@
       ]
    },
    {
-      "Name": "NPM Token",
+      "Name": "Node Package Manager (NPM) Token",
       "Regex": "^(npm_[0-9a-zA-Z]{36})$",
       "plural_name": false,
       "Description": null,

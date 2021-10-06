@@ -276,7 +276,7 @@ def test_visual_studio_token():
 
 def test_npm_token():
     res = r.check(["npm_ir3kktsOr4JeXqeD72C3cWo2mbs5sQ2pfnt9"])
-    _assert_match_first_item("NPM Token", res)
+    _assert_match_first_item("Node Package Manager (NPM) Token", res)
 
 
 def test_bitly_secret_key():
