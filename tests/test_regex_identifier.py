@@ -24,10 +24,7 @@ def test_regex_successfully_parses():
 
 def _assert_match_in_items(name, res):
     for i in res:
-        if i["Regex Pattern"]["Name"] == name:
-            assert i["Regex Pattern"]["Name"] == name
-            return
-    assert False
+assert any(name in i["Regex Pattern"]["Name"] for i in res)
 
 
 @pytest.mark.skip(
