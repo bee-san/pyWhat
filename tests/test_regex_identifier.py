@@ -655,6 +655,15 @@ def test_notion_note():
     assert "Notion Note URI" in str(res)
 
 
+def test_notion_team_note():
+    res = r.check(
+        [
+            "https://testorganization.notion.site/My-Note-ha45346d9dd4421abc6857ce4e7fb0db"
+        ]
+    )
+    assert "Notion Team Note URI" in str(res)
+
+
 def test_aws_access_key_id():
     res = r.check(["AKIA31OMZKYAARWZ3ERH"])
     _assert_match_first_item("Amazon Web Services Access Key", res)
