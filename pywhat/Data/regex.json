@@ -867,11 +867,11 @@
    },
    {
       "Name": "Notion Note URI",
-      "Regex": "(?i)([A-Za-z0-9-_]+\/*-.+)",
+      "Regex": "(?i)^(https:\/\/www\\.notion\\.so\/[A-Za-z0-9-_]+\/.*-.{32})$",
       "plural_name": false,
       "Description": null,
       "Rarity": 1,
-      "URL": "https://www.notion.so/",
+      "URL": null,
       "Tags": [
          "Bug Bounty",
          "URL"
