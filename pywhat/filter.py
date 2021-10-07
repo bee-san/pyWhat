@@ -15,7 +15,7 @@ class Filter(Mapping):
     * {"Tags": ["Identifiers"], "ExcludeTags": ["Credentials"], "MinRarity": 0.6}
     """
 
-    def __init__(self, filters_dict: Optional[Mapping] = dict():
+    def __init__(self, filters_dict: Optional[Mapping] = dict()):
         tags = CaseInsensitiveSet(AvailableTags().get_tags())
         self._dict = {}
         filters_dict = {}
