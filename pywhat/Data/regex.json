@@ -35,6 +35,18 @@
       ]
    },
    {
+	   "Name": "PEM-formatted Private Key",
+	   "Regex": "^(-----BEGIN( ANY| RSA| DSA| ENCRYPTED| EC| OPENSSH)? PRIVATE KEY-----\\n?[a-zA-Z0-9\\/\\.\\n\\:\\+\\=]+-----END( ANY| RSA| DSA| ENCRYPTED| EC| OPENSSH)? PRIVATE KEY-----)$",
+	   "plural_name": false,
+	   "Description": null,
+	   "Rarity": 1,
+	   "URL": null,
+	   "Tags": [
+		   "Credentials",
+		   "Bug Bounty"
+	   ]
+   },
+   {
       "Name": "SSH ECDSA Public Key",
       "Regex": "^(ecdsa-sha2-nistp[0-9]{3} [A-Za-z0-9+\\/=]+ [^ \\n]+)$",
       "plural_name": false,
