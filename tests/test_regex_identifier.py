@@ -761,7 +761,7 @@ def test_instapayment():
     _assert_match_first_item("Insta Payment Card Number", res)
 
 
-def test_instapayment():
+def test_stackhawk():
     res = r.check(["hawk.wz6bAoFDwcVQFCD9dofE.w2R1PWI8UTvEM4jd56XQ"])
     _assert_match_first_item("StackHawk API Key", res)
 
@@ -820,11 +820,6 @@ def test_github_refresh_token():
         ]
     )
     _assert_match_first_item("GitHub Refresh Token", res)
-
-
-def test_stripe_api_key():
-    res = r.check(["sk_live_26PHem9AhJZvU623DfE1x4sd"])
-    _assert_match_first_item("Stripe API Key", res)
 
 
 def test_zapier_webhook():
