@@ -178,7 +178,7 @@ class Printing:
         if output_str.strip():
             self.console.print(output_str.rstrip())
 
-        return None
+        return output_str
 
     def _check_if_exploit_in_json(self, text: dict) -> bool:
         if "File Signatures" in text and text["File Signatures"]:
@@ -192,7 +192,7 @@ class Printing:
                 if "Exploit" in value["Regex Pattern"].keys():
                     self.bug_bounty_mode = True
 
-        return None
+        return self.bug_bounty_mode
 
     def _check_if_directory(self, text_input):
         return os.path.isdir(text_input)
