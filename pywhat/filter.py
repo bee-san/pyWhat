@@ -15,10 +15,11 @@ class Filter(Mapping):
     * {"Tags": ["Identifiers"], "ExcludeTags": ["Credentials"], "MinRarity": 0.6}
     """
 
-    def __init__(self, filters_dict: Optional[Mapping] = dict()):
+    def __init__(self, filters_dict=None):
         tags = CaseInsensitiveSet(AvailableTags().get_tags())
         self._dict = {}
-        filters_dict = {}
+        if filters_dict is None:
+            filters_dict = {}
 
         self._dict["Tags"] = CaseInsensitiveSet(filters_dict.setdefault("Tags", tags))
         self._dict["ExcludeTags"] = CaseInsensitiveSet(
