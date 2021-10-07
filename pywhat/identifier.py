@@ -13,7 +13,7 @@ class Identifier:
         self,
         *,
         dist: Optional[Distribution] = None,
-        key=Keys.NONE,
+        key: Callable = Keys.NONE,
         reverse=False,
         boundaryless: Optional[Filter] = None,
     ):
@@ -45,7 +45,7 @@ class Identifier:
         if boundaryless is None:
             boundaryless = self.boundaryless
 
-        identify_obj: dict = {"File Signatures": {}, "Regexes": {}}
+        identify_obj = {"File Signatures": {}, "Regexes": {}}
         search = []
 
         if not only_text and os.path.isdir(text):
@@ -64,8 +64,8 @@ class Identifier:
                     short_name = os.path.basename(string)
 
                 magic_numbers = pywhat.magic_numbers.get_magic_nums(string)
-                with open(string, "r", encoding="utf-8", errors="ignore") as file:
-                    contents = [file.read()]
+                with open(string, "r", encoding="utf-8", errors="ignore") as myfile:
+                    contents = [myfile.read()]
 
                 if include_filenames:
                     contents.append(os.path.basename(string))

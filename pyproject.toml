@@ -21,9 +21,6 @@ flake8 = "3.8.4"
 requests = "^2.26.0"
 pytest-black = "^0.3.12"
 pytest-isort = "^2.0.0"
-pytest-mypy = "^0.8.1"
-types-requests = "^2.25.9"
-types-orjson = "^3.6.0"
 
 [tool.poetry.extras]
 optimize = ["orjson"]
@@ -45,8 +42,5 @@ use_parentheses = true
 ensure_newline_before_comments = true
 line_length = 88
 
-[tool.mypy]
-ignore_missing_imports = true
-
 [tool.pytest.ini_options]
-addopts = "--black --isort --mypy"
+addopts = "--black --isort"
