@@ -4,7 +4,8 @@ from typing import Any
 import nox
 from nox.sessions import Session
 
-nox.options.sessions = ["tests"]
+package = "hypermodern_python"
+nox.options.sessions = "lint", "tests"
 locations = "src", "tests", "noxfile.py", "docs/conf.py"
 
 
@@ -33,17 +34,41 @@ def install_with_constraints(session: Session, *args: str, **kwargs: Any) -> Non
     session.install("--constraint=requirements.txt", *args, **kwargs)
 
 
-@nox.session
+@nox.session(python="3.8")
+def black(session: Session) -> None:
+    """Run black code formatter."""
+    args = session.posargs or locations
+    install_with_constraints(session, "black")
+    session.run("black", *args)
+
+
+@nox.session(python=["3.8", "3.7"])
+def lint(session: Session) -> None:
+    pass
+
+
+@nox.session(python=["3.8", "3.7"])
 def tests(session: Session) -> None:
     """Run the test suite."""
     session.run("poetry", "install", "--no-dev", external=True)
-    install_with_constraints(
-        session,
-        "pytest",
-        "pytest-black",
-        "pytest-isort",
-        "pytest-mypy",
-        "types-requests",
-        "types-orjson",
-    )
+    install_with_constraints(session, "pytest", "pytest-black", "pytest-isort")
     session.run("pytest")
+
+
+@nox.session(python=["3.8", "3.7"])
+def typeguard(session: Session) -> None:
+    """Runtime type checking using Typeguard."""
+    args = session.posargs or ["-m", "not e2e"]
+    session.run("poetry", "install", "--no-dev", external=True)
+    install_with_constraints(
+        session, "pytest", "pytest-mock", "typeguard", "pytest-black", "pytest-isort"
+    )
+    session.run("pytest", f"--typeguard-packages={package}", *args)
+
+
+@nox.session(python="3.8")
+def coverage(session: Session) -> None:
+    """Upload coverage data."""
+    install_with_constraints(session, "coverage[toml]", "codecov")
+    session.run("coverage", "xml", "--fail-under=50")
+    session.run("codecov", *session.posargs)

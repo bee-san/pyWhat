@@ -31,8 +31,8 @@ r = requests.get(
 wt = wtp.parse(r.text)
 # prints first 3 items of json, delete [0:3] to print all.
 
-sig_dict = {"root": wt.tables[0].data()}
-to_iter = sig_dict["root"]
+to_iter = {"root": wt.tables[0].data()}
+to_iter = to_iter["root"]
 to_dump = []
 
 populars = {"23 21"}
