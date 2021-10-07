@@ -35,6 +35,17 @@
       ]
    },
    {
+	   "Name": "PEM-formatted Private Key",
+	   "Regex": "^(-----BEGIN( ANY| RSA| DSA| ENCRYPTED| EC| OPENSSH)? PRIVATE KEY-----\\n?[a-zA-Z0-9\\/\\.\\n\\:\\+\\=]+-----END( ANY| RSA| DSA| ENCRYPTED| EC| OPENSSH)? PRIVATE KEY-----)$",
+	   "plural_name": false,
+	   "Description": "Textual encoding of Public-Key Cryptography Standards (PKCS) described in RFC7468. Some of these PEM headers are defined in OpenSSL in https://github.com/openssl/openssl/blob/master/include/openssl/pem.h",
+	   "Rarity": 1,
+	   "URL": null,
+	   "Tags": [
+		   "Credentials"
+	   ]
+   },
+   {
       "Name": "SSH ECDSA Public Key",
       "Regex": "^(ecdsa-sha2-nistp[0-9]{3} [A-Za-z0-9+\\/=]+ [^ \\n]+)$",
       "plural_name": false,
