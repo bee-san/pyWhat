@@ -334,6 +334,19 @@
       ]
    },
    {
+      "Name": "Node Package Manager (NPM) Token",
+      "Regex": "^(npm_[0-9a-zA-Z]{36})$",
+      "plural_name": false,
+      "Description": null,
+      "Exploit": null,
+      "Rarity": 1,
+      "URL": null,
+      "Tags": [
+         "Token",
+         "Bug Bounty"
+      ]
+   },
+   {
       "Name": "GitHub Personal Access Token",
       "Regex": "^(ghp_[0-9a-zA-Z]{36})$",
       "plural_name": false,
@@ -718,7 +731,7 @@
    },
    {
       "Name": "Google Calendar URI",
-      "Regex": "(?i)^(https://www\\.google\\.com/calendar/embed\\?src=[A-Za-z0-9%@&;=\\-_\\./]+)$",
+      "Regex": "(?i)^(https:\/\/calendar.google.com\/calendar\/embed\\?src=[A-Za-z0-9%@&;=\\-_\\./]+)$",
       "plural_name": false,
       "Description": null,
       "Exploit": null,
@@ -753,20 +766,6 @@
       "Tags": [
          "Bug Bounty",
          "Credentials"
-      ]
-   },
-   {
-      "Name": "Bitly Secret Key",
-      "Regex": "(?i)^(R_[0-9a-f]{32})$",
-      "plural_name": false,
-      "Description": null,
-      "Exploit": "Use the command below to verify that the secret key is valid:\n  $ curl \"https://api-ssl.bitly.com/v3/shorten?access_token=SECRET_KEY_HERE&longUrl=https://www.google.com\"\n",
-      "Rarity": 1,
-      "URL": null,
-      "Tags": [
-         "Bug Bounty",
-         "Credentials",
-         "API Keys"
       ]
    },
    {
@@ -855,7 +854,7 @@
    },
    {
       "Name": "Amazon SNS Topic",
-      "Regex": "(?i)^(arn:aws:sns:[a-z0-9-]+:[0-9]+:[A-Za-z0-9-_]{128})$",
+      "Regex": "(?i)^((arn:aws:sns:)[a-z0-9-]+:[0-9]+:[A-Za-z0-9-_]{1,128})$",
       "plural_name": false,
       "Description": null,
       "Exploit": null,
@@ -1041,6 +1040,34 @@
       "Tags": [
          "Credentials",
          "SSN",
+         "Bug Bounty"
+      ]
+   },
+   {
+      "Name": "Bitly Secret Key",
+      "Regex": "^([0-9a-f]{40})$",
+      "plural_name": false,
+      "Description": null,
+      "Exploit": "Use the command below to verify that the secret key is valid:\n  $ curl \"https://api-ssl.bitly.com/v3/shorten?access_token=SECRET_KEY_HERE&longUrl=https://www.google.com\"\n",
+      "Rarity": 0.5,
+      "URL": null,
+      "Tags": [
+         "Bug Bounty",
+         "Credentials",
+         "API Keys"
+      ]
+   },
+   {
+      "Name": "Visual Studio App Center API Token",
+      "Regex": "^([0-9a-f]{40})$",
+      "plural_name": false,
+      "Description": null,
+      "Rarity": 0.5,
+      "Exploit":null,
+      "URL": null,
+      "Tags": [
+         "Identifiers",
+         "API Keys",
          "Bug Bounty"
       ]
    },
