@@ -657,9 +657,7 @@ def test_notion_note():
 
 def test_notion_team_note():
     res = r.check(
-        [
-            "https://testorganization.notion.site/My-Note-ha45346d9dd4421abc6857ce4e7fb0db"
-        ]
+        ["https://testorg.notion.site/My-Note-9f8863871e024ea6acc64d6564004a22"]
     )
     assert "Notion Team Note URI" in str(res)
 
