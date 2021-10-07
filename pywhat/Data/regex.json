@@ -867,7 +867,7 @@
    },
    {
       "Name": "Notion Note URI",
-      "Regex": "(?i)^([A-Za-z0-9-_]+\/.*-.{32})$",
+      "Regex": "(?i)([A-Za-z0-9-_]+\/*-.+)",
       "plural_name": false,
       "Description": null,
       "Rarity": 1,
