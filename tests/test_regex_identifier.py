@@ -908,7 +908,7 @@ def test_pypi_upload_token():
             "pypi-AgEIcHlwaS5vcmcCJDZlNzEyNGJmLWQ4N2UtNGZhYS1iNWEzLWQzYzg2YjU3NzAxYgACJXsicGVybWlzc2lvbnMiOiAidXNlciIsICJ2ZXJzaW9uIjogMX0AAAYgeYcgrZO31PTS_3ipsd0fTSMy1kVkxCzhQvHN6m97yIE"
         ]
     )
-    _assert_match_first_item("PyPi Upload Token", res)
+    _assert_match_first_item("PyPI Upload Token", res)
 
 
 def test_turkish_car_plate():
