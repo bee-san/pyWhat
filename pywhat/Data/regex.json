@@ -35,16 +35,16 @@
       ]
    },
    {
-	   "Name": "PEM-formatted Private Key",
-	   "Regex": "^(-----BEGIN( ANY| RSA| DSA| ENCRYPTED| EC| OPENSSH)? PRIVATE KEY-----\\n?[a-zA-Z0-9\\/\\.\\n\\:\\+\\=]+-----END( ANY| RSA| DSA| ENCRYPTED| EC| OPENSSH)? PRIVATE KEY-----)$",
-	   "plural_name": false,
-	   "Description": null,
-	   "Rarity": 1,
-	   "URL": null,
-	   "Tags": [
-		   "Credentials",
-		   "Bug Bounty"
-	   ]
+      "Name": "PEM-formatted Private Key",
+      "Regex": "^(-----BEGIN( ANY| RSA| DSA| ENCRYPTED| EC| OPENSSH)? PRIVATE KEY-----\\n?[a-zA-Z0-9\\/\\.\\n\\:\\+\\=]+-----END( ANY| RSA| DSA| ENCRYPTED| EC| OPENSSH)? PRIVATE KEY-----)$",
+      "plural_name": false,
+      "Description": null,
+      "Rarity": 1,
+      "URL": null,
+      "Tags": [
+         "Credentials",
+         "Bug Bounty"
+      ]
    },
    {
       "Name": "SSH ECDSA Public Key",
@@ -1190,6 +1190,18 @@
       ]
    },
    {
+      "Name": "UUID",
+      "Regex": "^([0-9A-Fa-f]{8}-[0-9A-Fa-f]{4}-[12345][0-9A-Fa-f]{3}-[89ABab][0-9A-Fa-f]{3}-[0-9A-Fa-f]{12})$",
+      "plural_name": false,
+      "Description": null,
+      "Rarity": 0.5,
+      "URL": "https://www.uuidtools.com/api/decode/",
+      "Tags": [
+         "Identifiers",
+         "UUID"
+      ]
+   },
+   {
       "Name": "Turkish License Plate Number",
       "Regex": "^(0[1-9]|[1-7][0-9]|8[01])(([A-Z])(\\d{4,5})|([A-Z]{2})(\\d{3,4})|([A-Z]{3})(\\d{2,3}))$",
       "plural_name": false,
@@ -1728,6 +1740,30 @@
          "Credentials",
          "Identifiers",
          "Turkish"
+      ]
+   },
+   {
+      "Name": "ObjectID",
+      "Regex": "^([0-9a-fA-F]{24})$",
+      "plural_name": false,
+      "Description": null,
+      "Rarity": 0.2,
+      "URL": null,
+      "Tags": [
+         "Identifiers",
+         "ObjectID"
+      ]
+   },
+   {
+      "Name": "ULID",
+      "Regex": "^([0-9A-HJKMNP-TV-Z]{26})$",
+      "plural_name": false,
+      "Description": null,
+      "Rarity": 0.2,
+      "URL": null,
+      "Tags": [
+         "Identifiers",
+         "ULID"
       ]
    },
    {
