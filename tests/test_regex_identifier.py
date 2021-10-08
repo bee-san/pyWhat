@@ -703,6 +703,20 @@ def test_google_cal():
     assert "Google Calendar URI" in str(res)
 
 
+def test_notion_note():
+    res = r.check(
+        ["https://www.notion.so/test-user/My-Note-fa45346d9dd4421abc6857ce2e7fb0db"]
+    )
+    assert "Notion Note URI" in str(res)
+
+
+def test_notion_team_note():
+    res = r.check(
+        ["https://testorg.notion.site/My-Note-9f8863871e024ea6acc64d6564004a22"]
+    )
+    assert "Notion Team Note URI" in str(res)
+
+
 def test_aws_access_key_id():
     res = r.check(["AKIA31OMZKYAARWZ3ERH"])
     _assert_match_first_item("Amazon Web Services Access Key", res)
@@ -766,6 +780,11 @@ def test_slack_token():
         "https://slack.com/api/auth.test?token=xoxb-51465443183-hgvhXVd2ISC2x7gaoRWBOUdQ",
         res,
     )
+
+
+def test_notion_integration_token():
+    res = r.check(["secret_n2ZeRrMx743JQ5wiucZ0DBEe47opfKubUp22N0wIrOy"])
+    _assert_match_first_item("Notion Integration Token", res)
 
 
 def test_pgp_public_key():
