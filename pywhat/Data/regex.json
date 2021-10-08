@@ -936,7 +936,7 @@
       "plural_name": false,
       "Description": "A Notion API integration's internal integration token.",
       "Rarity": 0.8,
-      "URL": "https://www.notion.so/",
+      "URL": null,
       "Tags": [
           "Credentials",
           "API Keys"
