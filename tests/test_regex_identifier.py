@@ -974,3 +974,18 @@ def test_turkish_id_number2():
 def test_turkish_tax_number():
     res = r.check(["1234567890"])
     assert "Turkish Tax Number" in str(res)
+
+
+def test_uuid():
+    res = r.check(["b2ced6f5-2542-4f7d-b131-e3ada95d8b75"])
+    assert "UUID" in str(res)
+
+
+def test_objectid():
+    res = r.check(["5fc7c33a7ef88b139122a38a"])
+    assert "ObjectID" in str(res)
+
+
+def test_ulid():
+    res = r.check(["01ERJ58HMWDN3VTRRHZQV2T5R5"])
+    assert "ULID" in str(res)
