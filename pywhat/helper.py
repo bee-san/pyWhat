@@ -8,7 +8,7 @@ from functools import lru_cache
 try:
     import orjson as json
 except ImportError:
-    import json
+    import json  # type: ignore
 
 
 class AvailableTags:

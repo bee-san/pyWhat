@@ -35,6 +35,18 @@
       ]
    },
    {
+      "Name": "PEM-formatted Private Key",
+      "Regex": "^(-----BEGIN( ANY| RSA| DSA| ENCRYPTED| EC| OPENSSH)? PRIVATE KEY-----\\n?[a-zA-Z0-9\\/\\.\\n\\:\\+\\=]+-----END( ANY| RSA| DSA| ENCRYPTED| EC| OPENSSH)? PRIVATE KEY-----)$",
+      "plural_name": false,
+      "Description": null,
+      "Rarity": 1,
+      "URL": null,
+      "Tags": [
+         "Credentials",
+         "Bug Bounty"
+      ]
+   },
+   {
       "Name": "SSH ECDSA Public Key",
       "Regex": "^(ecdsa-sha2-nistp[0-9]{3} [A-Za-z0-9+\\/=]+ [^ \\n]+)$",
       "plural_name": false,
@@ -126,7 +138,8 @@
       "Tags": [
          "Finance",
          "Cryptocurrency Wallet",
-         "Bitcoin Cash Wallet"
+         "Bitcoin Cash Wallet",
+         "Bitcoin"
       ]
    },
    {
@@ -140,7 +153,8 @@
       "Tags": [
          "Bug Bounty",
          "API Keys",
-         "Credentials"
+         "Credentials",
+         "Heroku"
       ]
    },
    {
@@ -154,7 +168,8 @@
       "Tags": [
          "Bug Bounty",
          "API Keys",
-         "Credentials"
+         "Credentials",
+         "Slack"
       ]
    },
    {
@@ -168,7 +183,8 @@
       "Tags": [
          "Bug Bounty",
          "API Keys",
-         "Credentials"
+         "Credentials",
+         "Slack"
       ]
    },
    {
@@ -193,7 +209,8 @@
       "URL": null,
       "Tags": [
          "Networking",
-         "AWS"
+         "AWS",
+         "Bug Bounty"
       ]
    },
    {
@@ -207,7 +224,7 @@
       "Tags": [
          "API Keys",
          "Credentials",
-         "Square API",
+         "Square",
          "Bug Bounty"
       ]
    },
@@ -222,7 +239,7 @@
       "Tags": [
          "API Keys",
          "Credentials",
-         "Square API",
+         "Square",
          "Bug Bounty"
       ]
    },
@@ -237,7 +254,8 @@
       "Tags": [
          "API Keys",
          "Credentials",
-         "Bug Bounty"
+         "Bug Bounty",
+         "Stripe"
       ]
    },
    {
@@ -251,10 +269,11 @@
       "Tags": [
          "API Keys",
          "Credentials",
-         "Bug Bounty"
+         "Bug Bounty",
+         "GitHub"
       ]
    },
-    {
+   {
       "Name": "Amazon Resource Name (ARN)",
       "Regex": "(?i)^(arn:(?P<Partition>[^:\\n]*):(?P<Service>[^:\\n]*):(?P<Region>[^:\\n]*):(?P<AccountID>[^:\\n]*):(?P<Ignore>(?P<ResourceType>[^:\\/\\n]*)[:\\/])?(?P<Resource>.*))$",
       "plural_name": false,
@@ -264,7 +283,8 @@
       "Tags": [
          "Identifiers",
          "Networking",
-         "AWS"
+         "AWS",
+         "Bug Bounty"
       ]
    },
    {
@@ -278,7 +298,8 @@
       "Tags": [
          "API Keys",
          "Bug Bounty",
-         "Credentials"
+         "Credentials",
+         "Facebook"
       ]
    },
    {
@@ -292,7 +313,8 @@
       "Tags": [
          "API Keys",
          "Bug Bounty",
-         "Credentials"
+         "Credentials",
+         "Facebook"
       ]
    },
    {
@@ -304,7 +326,8 @@
       "Rarity": 1,
       "URL": null,
       "Tags": [
-         "Bug Bounty"
+         "Bug Bounty",
+         "Facebook"
       ]
    },
    {
@@ -318,7 +341,8 @@
       "Tags": [
          "API Keys",
          "Bug Bounty",
-         "Credentials"
+         "Credentials",
+         "Twitter"
       ]
    },
    {
@@ -330,7 +354,8 @@
       "Rarity": 1,
       "URL": null,
       "Tags": [
-         "Bug Bounty"
+         "Bug Bounty",
+         "Twitter"
       ]
    },
    {
@@ -343,7 +368,8 @@
       "URL": null,
       "Tags": [
          "Token",
-         "Bug Bounty"
+         "Bug Bounty",
+         "NPM"
       ]
    },
    {
@@ -357,7 +383,8 @@
       "Tags": [
          "API Keys",
          "Bug Bounty",
-         "Credentials"
+         "Credentials",
+         "GitHub"
       ]
    },
    {
@@ -371,7 +398,8 @@
       "Tags": [
          "API Keys",
          "Bug Bounty",
-         "Credentials"
+         "Credentials",
+         "GitHub"
       ]
    },
    {
@@ -385,7 +413,8 @@
       "Tags": [
          "API Keys",
          "Bug Bounty",
-         "Credentials"
+         "Credentials",
+         "GitHub"
       ]
    },
    {
@@ -399,7 +428,8 @@
       "Tags": [
          "API Keys",
          "Bug Bounty",
-         "Credentials"
+         "Credentials",
+         "GitHub"
       ]
    },
    {
@@ -411,7 +441,8 @@
       "Rarity": 1,
       "URL": null,
       "Tags": [
-         "Bug Bounty"
+         "Bug Bounty",
+         "LinkedIn"
       ]
    },
    {
@@ -425,7 +456,8 @@
       "Tags": [
          "API Keys",
          "Bug Bounty",
-         "Credentials"
+         "Credentials",
+         "LinkedIn"
       ]
    },
    {
@@ -439,7 +471,8 @@
       "Tags": [
          "API Keys",
          "Bug Bounty",
-         "Credentials"
+         "Credentials",
+         "GitHub"
       ]
    },
    {
@@ -453,7 +486,8 @@
       "Tags": [
          "API Keys",
          "Bug Bounty",
-         "Credentials"
+         "Credentials",
+         "Stripe"
       ]
    },
    {
@@ -467,7 +501,8 @@
       "Tags": [
          "API Keys",
          "Bug Bounty",
-         "Credentials"
+         "Credentials",
+         "Stripe"
       ]
    },
    {
@@ -481,7 +516,8 @@
       "Tags": [
          "API Keys",
          "Bug Bounty",
-         "Credentials"
+         "Credentials",
+         "Square"
       ]
    },
    {
@@ -495,7 +531,8 @@
       "Tags": [
          "API Keys",
          "Bug Bounty",
-         "Credentials"
+         "Credentials",
+         "Square"
       ]
    },
    {
@@ -509,7 +546,9 @@
       "Tags": [
          "API Keys",
          "Bug Bounty",
-         "Credentials"
+         "Credentials",
+         "PayPal",
+         "Braintree"
       ]
    },
    {
@@ -523,7 +562,9 @@
       "Tags": [
          "API Keys",
          "Bug Bounty",
-         "Credentials"
+         "Credentials",
+         "Amazon",
+         "MWS"
       ]
    },
    {
@@ -537,7 +578,8 @@
       "Tags": [
          "API Keys",
          "Bug Bounty",
-         "Credentials"
+         "Credentials",
+         "Picatic"
       ]
    },
    {
@@ -551,7 +593,8 @@
       "Tags": [
          "API Keys",
          "Bug Bounty",
-         "Credentials"
+         "Credentials",
+         "Google"
       ]
    },
    {
@@ -565,7 +608,8 @@
       "Tags": [
          "API Keys",
          "Bug Bounty",
-         "Credentials"
+         "Credentials",
+         "Google"
       ]
    },
    {
@@ -579,7 +623,8 @@
       "Tags": [
          "API Keys",
          "Bug Bounty",
-         "Credentials"
+         "Credentials",
+         "StackHawk"
       ]
    },
    {
@@ -593,7 +638,8 @@
       "Tags": [
          "API Keys",
          "Bug Bounty",
-         "Credentials"
+         "Credentials",
+         "NuGet"
       ]
    },
    {
@@ -607,7 +653,8 @@
       "Tags": [
          "API Keys",
          "Bug Bounty",
-         "Credentials"
+         "Credentials",
+         "SendGrid"
       ]
    },
    {
@@ -619,7 +666,8 @@
       "Rarity": 1,
       "URL": null,
       "Tags": [
-         "Bug Bounty"
+         "Bug Bounty",
+         "Zoho"
       ]
    },
    {
@@ -633,7 +681,8 @@
       "Tags": [
          "API Keys",
          "Bug Bounty",
-         "Credentials"
+         "Credentials",
+         "Zapier"
       ]
    },
    {
@@ -647,7 +696,8 @@
       "Tags": [
          "API Keys",
          "Bug Bounty",
-         "Credentials"
+         "Credentials",
+         "New Relic"
       ]
    },
    {
@@ -661,7 +711,8 @@
       "Tags": [
          "API Keys",
          "Bug Bounty",
-         "Credentials"
+         "Credentials",
+         "New Relic"
       ]
    },
    {
@@ -675,7 +726,8 @@
       "Tags": [
          "API Keys",
          "Bug Bounty",
-         "Credentials"
+         "Credentials",
+         "New Relic"
       ]
    },
    {
@@ -687,7 +739,8 @@
       "Rarity": 1,
       "URL": null,
       "Tags": [
-         "Bug Bounty"
+         "Bug Bounty",
+         "New Relic"
       ]
    },
    {
@@ -701,7 +754,8 @@
       "Tags": [
          "API Keys",
          "Bug Bounty",
-         "Credentials"
+         "Credentials",
+         "New Relic"
       ]
    },
    {
@@ -714,7 +768,9 @@
       "URL": null,
       "Tags": [
          "Bug Bounty",
-         "URL"
+         "URL",
+         "Microsoft Teams",
+         "Microsoft"
       ]
    },
    {
@@ -726,12 +782,13 @@
       "Rarity": 1,
       "URL": null,
       "Tags": [
-         "Bug Bounty"
+         "Bug Bounty",
+         "Google"
       ]
    },
    {
       "Name": "Google Calendar URI",
-      "Regex": "(?i)^(https:\/\/calendar.google.com\/calendar\/embed\\?src=[A-Za-z0-9%@&;=\\-_\\./]+)$",
+      "Regex": "(?i)^(https://calendar.google.com/calendar/embed\\?src=[A-Za-z0-9%@&;=\\-_\\./]+)$",
       "plural_name": false,
       "Description": null,
       "Exploit": null,
@@ -739,7 +796,9 @@
       "URL": null,
       "Tags": [
          "Bug Bounty",
-         "URL"
+         "URL",
+         "Google Calendar",
+         "Google"
       ]
    },
    {
@@ -752,7 +811,8 @@
       "URL": null,
       "Tags": [
          "Bug Bounty",
-         "URL"
+         "URL",
+         "Discord"
       ]
    },
    {
@@ -765,21 +825,23 @@
       "URL": null,
       "Tags": [
          "Bug Bounty",
-         "Credentials"
+         "Credentials",
+         "Cloudinary"
       ]
    },
    {
-      "Name": "PyPi Upload Token",
+      "Name": "PyPI Upload Token",
       "Regex": "(?i)^(pypi-AgEIcHlwaS5vcmc[A-Za-z0-9-_]+)$",
       "plural_name": false,
       "Description": null,
-      "Exploit": "Anyone with this token is able to upload to the PyPi for the package that belongs to this token.\n",
+      "Exploit": "Anyone with this token is able to upload to the PyPI for the package that belongs to this token.\n",
       "Rarity": 1,
       "URL": null,
       "Tags": [
          "Bug Bounty",
          "Credentials",
-         "API Keys"
+         "API Keys",
+         "PyPI"
       ]
    },
    {
@@ -793,7 +855,8 @@
       "Tags": [
          "Bug Bounty",
          "Credentials",
-         "API Keys"
+         "API Keys",
+         "Shopify"
       ]
    },
    {
@@ -807,7 +870,8 @@
       "Tags": [
          "Bug Bounty",
          "Credentials",
-         "API Keys"
+         "API Keys",
+         "Shopify"
       ]
    },
    {
@@ -821,7 +885,8 @@
       "Tags": [
          "Bug Bounty",
          "Credentials",
-         "API Keys"
+         "API Keys",
+         "Shopify"
       ]
    },
    {
@@ -835,7 +900,8 @@
       "Tags": [
          "Bug Bounty",
          "Credentials",
-         "API Keys"
+         "API Keys",
+         "Shopify"
       ]
    },
    {
@@ -849,7 +915,8 @@
       "Tags": [
          "Bug Bounty",
          "Credentials",
-         "API Keys"
+         "API Keys",
+         "Dynatrace"
       ]
    },
    {
@@ -862,7 +929,8 @@
       "URL": null,
       "Tags": [
          "Bug Bounty",
-         "AWS"
+         "AWS",
+         "Amazon"
       ]
    },
    {
@@ -899,7 +967,8 @@
       "Tags": [
          "Finance",
          "Cryptocurrency Wallet",
-         "Nano Wallet"
+         "Nano Wallet",
+         "Nano"
       ]
    },
    {
@@ -913,7 +982,9 @@
       "Tags": [
          "API Keys",
          "Bug Bounty",
-         "Credentials"
+         "Credentials",
+         "Google Cloud",
+         "Google"
       ]
    },
    {
@@ -927,7 +998,8 @@
       "Tags": [
          "Bug Bounty",
          "API Keys",
-         "Credentials"
+         "Credentials",
+         "Mailchimp"
       ]
    },
    {
@@ -952,7 +1024,8 @@
       "Tags": [
          "Identifiers",
          "Networking",
-         "IP"
+         "IP",
+         "IPv4"
       ]
    },
    {
@@ -977,7 +1050,8 @@
       "Tags": [
          "Identifiers",
          "Networking",
-         "IP"
+         "IP",
+         "IPv6"
       ]
    },
    {
@@ -990,7 +1064,8 @@
       "Tags": [
          "Finance",
          "Cryptocurrency Wallet",
-         "Bitcoin Wallet"
+         "Bitcoin Wallet",
+         "Bitcoin"
       ]
    },
    {
@@ -1001,7 +1076,9 @@
       "Rarity": 0.7,
       "URL": "https://www.google.com/maps/place/",
       "Tags": [
-         "Geo-location"
+         "Geo-location",
+         "Lat & Long",
+         "Coords"
       ]
    },
    {
@@ -1013,13 +1090,18 @@
       "URL": "https://maclookup.app/search/macs/",
       "Tags": [
          "Identifiers",
-         "Networking"
+         "Networking",
+         "EUI-48",
+         "Bluetooth Address",
+         "Ethernet Address",
+         "WiFi Address",
+         "Mac Address"
       ],
       "Children": {
-	      "path": "mac_vendors.json",
-	      "entry": "Vendor(s): ",
-	      "method": "hashmap",
-	      "deletion_pattern": "[:.-]"
+         "path": "mac_vendors.json",
+         "entry": "Vendor(s): ",
+         "method": "hashmap",
+         "deletion_pattern": "[:.-]"
       }
    },
    {
@@ -1032,7 +1114,8 @@
       "Tags": [
          "Finance",
          "Cryptocurrency Wallet",
-         "Dogecoin Wallet"
+         "Dogecoin Wallet",
+         "Dogecoin"
       ]
    },
    {
@@ -1045,7 +1128,8 @@
       "Tags": [
          "Identifiers",
          "Credentials",
-         "Email Address"
+         "Email Address",
+         "Email"
       ]
    },
    {
@@ -1058,7 +1142,8 @@
       "Tags": [
          "Identifiers",
          "Credentials",
-         "Phone Number"
+         "Phone Number",
+         "Phone"
       ],
       "Children": {
          "path": "phone_codes.json",
@@ -1076,6 +1161,7 @@
       "Tags": [
          "Credentials",
          "SSN",
+         "Social Security Number",
          "Bug Bounty"
       ]
    },
@@ -1090,7 +1176,8 @@
       "Tags": [
          "Bug Bounty",
          "Credentials",
-         "API Keys"
+         "API Keys",
+         "Bitly"
       ]
    },
    {
@@ -1099,12 +1186,14 @@
       "plural_name": false,
       "Description": null,
       "Rarity": 0.5,
-      "Exploit":null,
+      "Exploit": null,
       "URL": null,
       "Tags": [
          "Identifiers",
          "API Keys",
-         "Bug Bounty"
+         "Bug Bounty",
+         "Visual Studio",
+         "Microsoft"
       ]
    },
    {
@@ -1116,7 +1205,8 @@
       "URL": "https://www.youtube.com/channel/",
       "Tags": [
          "Media",
-         "YouTube"
+         "YouTube",
+         "YouTube Channel"
       ]
    },
    {
@@ -1127,10 +1217,24 @@
       "Rarity": 0.5,
       "URL": null,
       "Tags": [
-          "Credentials",
-          "Token",
-          "API Keys",
-          "Bug Bounty"
+         "Credentials",
+         "Token",
+         "API Keys",
+         "Bug Bounty",
+         "Discord",
+         "Discord Bot"
+      ]
+   },
+   {
+      "Name": "UUID",
+      "Regex": "^([0-9A-Fa-f]{8}-[0-9A-Fa-f]{4}-[12345][0-9A-Fa-f]{3}-[89ABab][0-9A-Fa-f]{3}-[0-9A-Fa-f]{12})$",
+      "plural_name": false,
+      "Description": null,
+      "Rarity": 0.5,
+      "URL": "https://www.uuidtools.com/api/decode/",
+      "Tags": [
+         "Identifiers",
+         "UUID"
       ]
    },
    {
@@ -1141,7 +1245,9 @@
       "Rarity": 0.4,
       "URL": null,
       "Tags": [
-         "Identifiers"
+         "Identifiers",
+         "License Plate",
+         "Turkish"
       ]
    },
    {
@@ -1152,7 +1258,9 @@
       "Rarity": 0.4,
       "URL": null,
       "Tags": [
-         "Identifiers"
+         "Identifiers",
+         "Date of Birth",
+         "DOB"
       ]
    },
    {
@@ -1165,7 +1273,8 @@
       "Tags": [
          "Finance",
          "Cryptocurrency Wallet",
-         "Monero Wallet"
+         "Monero Wallet",
+         "Monero"
       ]
    },
    {
@@ -1178,7 +1287,8 @@
       "Tags": [
          "Finance",
          "Cryptocurrency Wallet",
-         "Litecoin Wallet"
+         "Litecoin Wallet",
+         "Litecoin"
       ]
    },
    {
@@ -1191,7 +1301,9 @@
       "Tags": [
          "Finance",
          "Cryptocurrency Wallet",
-         "Ripple Wallet"
+         "Ripple Wallet",
+         "Ripple",
+         "XRP"
       ]
    },
    {
@@ -1385,10 +1497,11 @@
       "Tags": [
          "Finance",
          "Cryptocurrency Wallet",
-         "Ethereum Wallet"
+         "Ethereum Wallet",
+         "Ethereum"
       ]
    },
-    {
+   {
       "Name": "Slack Token",
       "Regex": "^(xox[a-zA-Z]-[a-zA-Z0-9-]+)$",
       "plural_name": false,
@@ -1399,10 +1512,11 @@
       "Tags": [
          "API Keys",
          "Credentials",
-         "Bug Bounty"
+         "Bug Bounty",
+         "Slack"
       ]
-    },
-    {
+   },
+   {
       "Name": "Amazon Web Services Organization identifier",
       "Regex": "^(o-[a-z0-9]{10,32})$",
       "plural_name": false,
@@ -1411,10 +1525,11 @@
       "URL": null,
       "Tags": [
          "Identifiers",
-         "AWS"
-       ]
-    },
-    {
+         "AWS",
+         "Amazon"
+      ]
+   },
+   {
       "Name": "Google API Key",
       "Regex": "^(AIza[0-9A-Za-z-_]{35})$",
       "plural_name": false,
@@ -1443,7 +1558,7 @@
          "Bug Bounty"
       ]
    },
-    {
+   {
       "Name": "Mailgun API Key",
       "Regex": "^(key-[0-9a-zA-Z]{32})$",
       "plural_name": false,
@@ -1454,7 +1569,8 @@
       "Tags": [
          "API Keys",
          "Credentials",
-         "Bug Bounty"
+         "Bug Bounty",
+         "Mailgun"
       ]
    },
    {
@@ -1468,7 +1584,8 @@
       "Tags": [
          "API Keys",
          "Credentials",
-         "Bug Bounty"
+         "Bug Bounty",
+         "Twilio"
       ]
    },
    {
@@ -1535,7 +1652,8 @@
       "Tags": [
          "Token",
          "Website",
-         "JWT Token"
+         "JWT Token",
+         "JWT"
       ]
    },
    {
@@ -1549,10 +1667,11 @@
       "Tags": [
          "Credentials",
          "API Keys",
-         "AWS"
-       ]
-    },
-    {
+         "AWS",
+         "Amazon"
+      ]
+   },
+   {
       "Name": "Amazon Web Services Secret Access Key",
       "Regex": "^((?<![A-Za-z0-9\\/+=])[A-Za-z0-9\\/+=]{40}(?![A-Za-z0-9\\/+=]))$",
       "plural_name": false,
@@ -1564,10 +1683,11 @@
          "Credentials",
          "API Keys",
          "AWS",
-         "Bug Bounty"
-       ]
-    },
-    {
+         "Bug Bounty",
+         "Amazon"
+      ]
+   },
+   {
       "Name": "Amazon Web Services EC2 Instance identifier",
       "Regex": "(?i)^(\\b[a-z]+-[a-z0-9]+)$",
       "plural_name": false,
@@ -1576,9 +1696,10 @@
       "URL": null,
       "Tags": [
          "Identifiers",
-         "AWS"
-       ]
-    },
+         "AWS",
+         "Amazon"
+      ]
+   },
    {
       "Name": "YouTube Video ID",
       "Regex": "^((?=.*[A-Z])(?=.*[a-z])[0-9A-Za-z_-]{10}[048AEIMQUYcgkosw]{1})$",
@@ -1588,7 +1709,8 @@
       "URL": "https://www.youtube.com/watch?v=",
       "Tags": [
          "Media",
-         "YouTube Video"
+         "YouTube Video",
+         "YouTube"
       ]
    },
    {
@@ -1599,7 +1721,9 @@
       "Rarity": 0.2,
       "URL": null,
       "Tags": [
-         "UNIX Timestamp"
+         "UNIX Timestamp",
+         "Timestamp",
+         "UNIX"
       ]
    },
    {
@@ -1610,7 +1734,9 @@
       "Rarity": 0.2,
       "URL": null,
       "Tags": [
-         "UNIX Timestamp"
+         "UNIX Timestamp",
+         "Timestamp",
+         "UNIX"
       ]
    },
    {
@@ -1621,7 +1747,9 @@
       "Rarity": 0.2,
       "URL": null,
       "Tags": [
-         "UNIX Timestamp"
+         "UNIX Timestamp",
+         "Timestamp",
+         "UNIX"
       ]
    },
    {
@@ -1632,7 +1760,9 @@
       "Rarity": 0.2,
       "URL": null,
       "Tags": [
-         "UNIX Timestamp"
+         "UNIX Timestamp",
+         "Timestamp",
+         "UNIX"
       ]
    },
    {
@@ -1644,7 +1774,32 @@
       "URL": null,
       "Tags": [
          "Credentials",
-         "Identifiers"
+         "Identifiers",
+         "Turkish"
+      ]
+   },
+   {
+      "Name": "ObjectID",
+      "Regex": "^([0-9a-fA-F]{24})$",
+      "plural_name": false,
+      "Description": null,
+      "Rarity": 0.2,
+      "URL": null,
+      "Tags": [
+         "Identifiers",
+         "ObjectID"
+      ]
+   },
+   {
+      "Name": "ULID",
+      "Regex": "^([0-9A-HJKMNP-TV-Z]{26})$",
+      "plural_name": false,
+      "Description": null,
+      "Rarity": 0.2,
+      "URL": null,
+      "Tags": [
+         "Identifiers",
+         "ULID"
       ]
    },
    {
@@ -1656,7 +1811,8 @@
       "URL": null,
       "Tags": [
          "Credentials",
-         "Identifiers"
+         "Identifiers",
+         "Turkish"
       ]
    },
    {
