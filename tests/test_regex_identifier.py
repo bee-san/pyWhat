@@ -896,6 +896,11 @@ def test_github_refresh_token():
     _assert_match_first_item("GitHub Refresh Token", res)
 
 
+def test_github_app_token():
+    res = r.check(["ghu_16C7e42F292c6912E7710c838347Ae178B4a"])
+    _assert_match_first_item("GitHub App Token", res)
+
+
 def test_zapier_webhook():
     res = r.check(["https://hooks.zapier.com/hooks/catch/1234567/f8f22dgg/"])
     _assert_match_first_item("Zapier Webhook Token", res)
