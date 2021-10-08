@@ -934,6 +934,30 @@
       ]
    },
    {
+      "Name": "Notion Note URI",
+      "Regex": "(?i)^(https:\/\/www\\.notion\\.so\/[A-Za-z0-9-_]+\/.*-[0-9a-f]{32})$",
+      "plural_name": false,
+      "Description": null,
+      "Rarity": 1,
+      "URL": null,
+      "Tags": [
+         "Bug Bounty",
+         "URL"
+      ]
+   },
+   {
+      "Name": "Notion Team Note URI",
+      "Regex": "(?i)^(https:\/\/[A-Za-z0-9-_]+\\.notion\\.site\/.*-[0-9a-f]{32})$",
+      "plural_name": false,
+      "Description": null,
+      "Rarity": 1,
+      "URL": null,
+      "Tags": [
+         "Bug Bounty",
+         "URL"
+      ]
+   },
+   {
       "Name": "Nano (NANO) Wallet Address",
       "Regex": "^((nano|xrb)_[13]{1}[1a-km-z3-9]{59})$",
       "plural_name": false,
@@ -976,6 +1000,19 @@
          "API Keys",
          "Credentials",
          "Mailchimp"
+      ]
+   },
+   {
+      "Name": "Notion Integration Token",
+      "Regex": "(?i)^((secret_)([a-zA-Z0-9]{43}))$",
+      "plural_name": false,
+      "Description": "A Notion API integration's internal integration token.",
+      "Rarity": 0.8,
+      "URL": null,
+      "Tags": [
+          "Credentials",
+          "API Keys",
+          "Bug Bounty"
       ]
    },
    {
