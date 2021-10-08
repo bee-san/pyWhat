@@ -90,7 +90,7 @@ class Identifier:
 
         for key_, value in identify_obj.items():
             # if there are zero regex or file signature matches, set it to None
-            if len(identify_obj[key_]) == 0:
+            if not value:
                 identify_obj[key_] = None
 
         if key != Keys.NONE:
