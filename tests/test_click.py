@@ -618,3 +618,10 @@ def test_file_fixture_ulid():
     result = runner.invoke(main, ["fixtures/file"])
     assert result.exit_code == 0
     assert re.findall("ULID", str(result.output))
+
+
+def test_file_fixture_totp_URI():
+    runner = CliRunner()
+    result = runner.invoke(main, ["fixtures/file"])
+    assert result.exit_code == 0
+    assert re.findall("Time-Based One-Time Password [(]TOTP[)] URI", str(result.output))

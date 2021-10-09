@@ -92,3 +92,5 @@ nano_1c46rz7xnk98ozhzdjq7thwty844sgnqxk9496yysit1bnio1rcdzshc5ymn
 b2ced6f5-2542-4f7d-b131-e3ada95d8b75
 5fc7c33a7ef88b139122a38a
 01ERJ58HMWDN3VTRRHZQV2T5R5
+
+otpauth://totp/Example:alice@google.com?secret=JBSWY3DPEHPK3PXP&issuer=Example
