@@ -1,10 +1,13 @@
 """Nox sessions."""
+from os import environ
 from typing import Any
 
 import nox
 from nox.sessions import Session
 
 nox.options.sessions = ["tests"]
+if environ.get("CI", None) == "true":
+    nox.options.sessions.append("coverage")
 locations = "src", "tests", "noxfile.py", "docs/conf.py"
 
 
@@ -41,9 +44,17 @@ def tests(session: Session) -> None:
         session,
         "pytest",
         "pytest-black",
+        "pytest-cov",
         "pytest-isort",
         "pytest-mypy",
         "types-requests",
         "types-orjson",
     )
-    session.run("pytest")
+    session.run("pytest", "--cov=./", "--cov-report=xml")
+
+
+@nox.session
+def coverage(session: Session) -> None:
+    """Upload coverage data."""
+    install_with_constraints(session, "codecov")
+    session.run("codecov", "--env", "OS", "PYTHON")
