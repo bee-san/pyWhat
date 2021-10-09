@@ -1,10 +1,13 @@
 """Nox sessions."""
+from os import environ
 from typing import Any
 
 import nox
 from nox.sessions import Session
 
-nox.options.sessions = ["tests", "coverage"]
+nox.options.sessions = ["tests"]
+if environ.get("CI", None) == "true":
+    nox.options.sessions.append("coverage")
 locations = "src", "tests", "noxfile.py", "docs/conf.py"
 
 
