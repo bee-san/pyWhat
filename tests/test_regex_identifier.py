@@ -1013,3 +1013,12 @@ def test_objectid():
 def test_ulid():
     res = r.check(["01ERJ58HMWDN3VTRRHZQV2T5R5"])
     assert "ULID" in str(res)
+
+
+def test_totp_URI():
+    res = r.check(
+        [
+            "otpauth://totp/Example:alice@google.com?secret=JBSWY3DPEHPK3PXP&issuer=Example"
+        ]
+    )
+    assert "TOTP URI" in str(res)

@@ -972,6 +972,18 @@
       ]
    },
    {
+      "Name": "TOTP URI",
+      "Regex": "^([^?\\n]+:\/\/totp\/[^\\n]+secret=[A-Z2-7=]+[^\\n]+)$",
+      "plural_name": false,
+      "Description": "TOTP URI with user secret key",
+      "Rarity": 1,
+      "URL": "",
+      "Tags": [
+         "Credentials",
+         "TOTP"
+      ]
+   },
+   {
       "Name": "Google Cloud Platform API Key",
       "Regex": "(?i)^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12})$",
       "plural_name": false,
