@@ -58,4 +58,4 @@ def coverage(session: Session) -> None:
     """Upload coverage data."""
     install_with_constraints(session, "coverage[toml]", "codecov")
     session.run("coverage", "xml", "--fail-under=50")
-    session.run("codecov", *session.posargs)
+    session.run("codecov", "--env", "OS", "PYTHON")
