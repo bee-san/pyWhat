@@ -597,3 +597,31 @@ def test_file_fixture_turkish_tax_number():
     result = runner.invoke(main, ["fixtures/file"])
     assert result.exit_code == 0
     assert re.findall("Turkish Tax Number", str(result.output))
+
+
+def test_file_fixture_uuid():
+    runner = CliRunner()
+    result = runner.invoke(main, ["fixtures/file"])
+    assert result.exit_code == 0
+    assert re.findall("UUID", str(result.output))
+
+
+def test_file_fixture_objectid():
+    runner = CliRunner()
+    result = runner.invoke(main, ["fixtures/file"])
+    assert result.exit_code == 0
+    assert re.findall("ObjectID", str(result.output))
+
+
+def test_file_fixture_ulid():
+    runner = CliRunner()
+    result = runner.invoke(main, ["fixtures/file"])
+    assert result.exit_code == 0
+    assert re.findall("ULID", str(result.output))
+
+
+def test_file_fixture_totp_URI():
+    runner = CliRunner()
+    result = runner.invoke(main, ["fixtures/file"])
+    assert result.exit_code == 0
+    assert re.findall("Time-Based One-Time Password [(]TOTP[)] URI", str(result.output))
