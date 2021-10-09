@@ -703,6 +703,20 @@ def test_google_cal():
     assert "Google Calendar URI" in str(res)
 
 
+def test_notion_note():
+    res = r.check(
+        ["https://www.notion.so/test-user/My-Note-fa45346d9dd4421abc6857ce2e7fb0db"]
+    )
+    assert "Notion Note URI" in str(res)
+
+
+def test_notion_team_note():
+    res = r.check(
+        ["https://testorg.notion.site/My-Note-9f8863871e024ea6acc64d6564004a22"]
+    )
+    assert "Notion Team Note URI" in str(res)
+
+
 def test_aws_access_key_id():
     res = r.check(["AKIA31OMZKYAARWZ3ERH"])
     _assert_match_first_item("Amazon Web Services Access Key", res)
@@ -766,6 +780,11 @@ def test_slack_token():
         "https://slack.com/api/auth.test?token=xoxb-51465443183-hgvhXVd2ISC2x7gaoRWBOUdQ",
         res,
     )
+
+
+def test_notion_integration_token():
+    res = r.check(["secret_n2ZeRrMx743JQ5wiucZ0DBEe47opfKubUp22N0wIrOy"])
+    _assert_match_first_item("Notion Integration Token", res)
 
 
 def test_pgp_public_key():
@@ -877,6 +896,11 @@ def test_github_refresh_token():
     _assert_match_first_item("GitHub Refresh Token", res)
 
 
+def test_github_app_token():
+    res = r.check(["ghu_16C7e42F292c6912E7710c838347Ae178B4a"])
+    _assert_match_first_item("GitHub App Token", res)
+
+
 def test_zapier_webhook():
     res = r.check(["https://hooks.zapier.com/hooks/catch/1234567/f8f22dgg/"])
     _assert_match_first_item("Zapier Webhook Token", res)
@@ -908,7 +932,7 @@ def test_pypi_upload_token():
             "pypi-AgEIcHlwaS5vcmcCJDZlNzEyNGJmLWQ4N2UtNGZhYS1iNWEzLWQzYzg2YjU3NzAxYgACJXsicGVybWlzc2lvbnMiOiAidXNlciIsICJ2ZXJzaW9uIjogMX0AAAYgeYcgrZO31PTS_3ipsd0fTSMy1kVkxCzhQvHN6m97yIE"
         ]
     )
-    _assert_match_first_item("PyPi Upload Token", res)
+    _assert_match_first_item("PyPI Upload Token", res)
 
 
 def test_turkish_car_plate():
@@ -974,3 +998,18 @@ def test_turkish_id_number2():
 def test_turkish_tax_number():
     res = r.check(["1234567890"])
     assert "Turkish Tax Number" in str(res)
+
+
+def test_uuid():
+    res = r.check(["b2ced6f5-2542-4f7d-b131-e3ada95d8b75"])
+    assert "UUID" in str(res)
+
+
+def test_objectid():
+    res = r.check(["5fc7c33a7ef88b139122a38a"])
+    assert "ObjectID" in str(res)
+
+
+def test_ulid():
+    res = r.check(["01ERJ58HMWDN3VTRRHZQV2T5R5"])
+    assert "ULID" in str(res)
