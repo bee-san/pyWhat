@@ -1026,7 +1026,8 @@
          "Identifiers",
          "Networking",
          "IP",
-         "IPv4"
+         "IPv4",
+         "Bug Bounty"
       ]
    },
    {
@@ -1052,7 +1053,8 @@
          "Identifiers",
          "Networking",
          "IP",
-         "IPv6"
+         "IPv6",
+         "Bug Bounty"
       ]
    },
    {
@@ -1702,19 +1704,6 @@
       ]
    },
    {
-      "Name": "YouTube Video ID",
-      "Regex": "^((?=.*[A-Z])(?=.*[a-z])[0-9A-Za-z_-]{10}[048AEIMQUYcgkosw]{1})$",
-      "plural_name": false,
-      "Description": null,
-      "Rarity": 0.2,
-      "URL": "https://www.youtube.com/watch?v=",
-      "Tags": [
-         "Media",
-         "YouTube Video",
-         "YouTube"
-      ]
-   },
-   {
       "Name": "Recent Unix Timestamp",
       "Regex": "^([0-9]{10})$",
       "plural_name": false,
@@ -1784,7 +1773,7 @@
       "Regex": "^([0-9a-fA-F]{24})$",
       "plural_name": false,
       "Description": null,
-      "Rarity": 0.2,
+      "Rarity": 0.1,
       "URL": null,
       "Tags": [
          "Identifiers",
@@ -1796,11 +1785,24 @@
       "Regex": "^([0-9A-HJKMNP-TV-Z]{26})$",
       "plural_name": false,
       "Description": null,
-      "Rarity": 0.2,
+      "Rarity": 0.1,
       "URL": null,
       "Tags": [
          "Identifiers",
          "ULID"
+      ]
+   },
+   {
+      "Name": "YouTube Video ID",
+      "Regex": "^((?=.*[A-Z])(?=.*[a-z])[0-9A-Za-z_-]{10}[048AEIMQUYcgkosw]{1})$",
+      "plural_name": false,
+      "Description": null,
+      "Rarity": 0.1,
+      "URL": "https://www.youtube.com/watch?v=",
+      "Tags": [
+         "Media",
+         "YouTube Video",
+         "YouTube"
       ]
    },
    {
