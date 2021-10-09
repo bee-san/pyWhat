@@ -906,6 +906,11 @@ def test_zapier_webhook():
     _assert_match_first_item("Zapier Webhook Token", res)
 
 
+def test_datadog_api_key():
+    res = r.check(["acb6d73d95a10d30aef9894603e90963"])
+    _assert_match_first_item("Datadog API Key", res)
+
+
 def test_datadog_client_token():
     res = r.check(["pub85abf45b82e2f86f25003d559bca07d9"])
     _assert_match_first_item("Datadog Client Token", res)

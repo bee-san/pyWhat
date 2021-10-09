@@ -686,16 +686,31 @@
       ]
    },
    {
+      "Name": "Datadog API Key",
+      "Regex": "^([a-f0-9]{32})$",
+      "plural_name": false,
+      "Description": null,
+      "Exploit": "Use the command below to verify that the API key is valid:\n  $ curl -X GET https://api.datadoghq.com/api/v1/validate -H \"Content-Type: application/json\" -H \"DD-API-KEY: API_KEY_HERE\"\n",
+      "Rarity": 1,
+      "URL": null,
+      "Tags": [
+         "API Keys",
+         "Bug Bounty",
+         "Credentials",
+         "Datadog"
+      ]
+   },
+   {
       "Name": "Datadog Client Token",
       "Regex": "^(pub[a-f0-9]{32})$",
       "plural_name": false,
-      "Description": "Client tokens are used to send events and logs from web and mobile applications.",
+      "Description": null,
       "Exploit": null,
       "Rarity": 1,
       "URL": null,
       "Tags": [
          "API Keys",
-         "Credentials",
+         "Bug Bounty",
          "Datadog"
       ]
    },
