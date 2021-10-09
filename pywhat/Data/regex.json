@@ -686,6 +686,20 @@
       ]
    },
    {
+      "Name": "Datadog Client Token",
+      "Regex": "^(pub[a-f0-9]{32})$",
+      "plural_name": false,
+      "Description": "Client tokens are used to send events and logs from web and mobile applications.",
+      "Exploit": null,
+      "Rarity": 1,
+      "URL": null,
+      "Tags": [
+         "API Keys",
+         "Credentials",
+         "Datadog"
+      ]
+   },
+   {
       "Name": "New Relic Admin API Key",
       "Regex": "(?i)^(NRAA-[a-f0-9]{27})$",
       "plural_name": false,
