@@ -1717,58 +1717,6 @@
       ]
    },
    {
-      "Name": "Recent Unix Timestamp",
-      "Regex": "^([0-9]{10})$",
-      "plural_name": false,
-      "Description": "Seconds elapsed since unix epoch: 1970, between year 2001 and 2286",
-      "Rarity": 0.2,
-      "URL": null,
-      "Tags": [
-         "UNIX Timestamp",
-         "Timestamp",
-         "UNIX"
-      ]
-   },
-   {
-      "Name": "Recent Unix Millisecond Timestamp",
-      "Regex": "^([0-9]{13})$",
-      "plural_name": false,
-      "Description": "Milliseconds elapsed since unix epoch: 1970, between year 2001 and 2286",
-      "Rarity": 0.2,
-      "URL": null,
-      "Tags": [
-         "UNIX Timestamp",
-         "Timestamp",
-         "UNIX"
-      ]
-   },
-   {
-      "Name": "Unix Timestamp",
-      "Regex": "^([0-9]{8,10})$",
-      "plural_name": false,
-      "Description": "Seconds elapsed since unix epoch: 1970",
-      "Rarity": 0.2,
-      "URL": null,
-      "Tags": [
-         "UNIX Timestamp",
-         "Timestamp",
-         "UNIX"
-      ]
-   },
-   {
-      "Name": "Unix Millisecond Timestamp",
-      "Regex": "^([0-9]{11,13})$",
-      "plural_name": false,
-      "Description": "Milliseconds elapsed since unix epoch: 1970",
-      "Rarity": 0.2,
-      "URL": null,
-      "Tags": [
-         "UNIX Timestamp",
-         "Timestamp",
-         "UNIX"
-      ]
-   },
-   {
       "Name": "Turkish Identification Number",
       "Regex": "^([1-9]{1}[0-9]{9}[02468]{1})$",
       "plural_name": false,
@@ -1791,6 +1739,59 @@
       "Tags": [
          "Identifiers",
          "ObjectID"
+      ]
+   },
+   
+   {
+      "Name": "Recent Unix Timestamp",
+      "Regex": "^([0-9]{10})$",
+      "plural_name": false,
+      "Description": "Seconds elapsed since unix epoch: 1970, between year 2001 and 2286",
+      "Rarity": 0.1,
+      "URL": null,
+      "Tags": [
+         "UNIX Timestamp",
+         "Timestamp",
+         "UNIX"
+      ]
+   },
+   {
+      "Name": "Recent Unix Millisecond Timestamp",
+      "Regex": "^([0-9]{13})$",
+      "plural_name": false,
+      "Description": "Milliseconds elapsed since unix epoch: 1970, between year 2001 and 2286",
+      "Rarity": 0.1,
+      "URL": null,
+      "Tags": [
+         "UNIX Timestamp",
+         "Timestamp",
+         "UNIX"
+      ]
+   },
+   {
+      "Name": "Unix Timestamp",
+      "Regex": "^([0-9]{8,10})$",
+      "plural_name": false,
+      "Description": "Seconds elapsed since unix epoch: 1970",
+      "Rarity": 0.1,
+      "URL": null,
+      "Tags": [
+         "UNIX Timestamp",
+         "Timestamp",
+         "UNIX"
+      ]
+   },
+   {
+      "Name": "Unix Millisecond Timestamp",
+      "Regex": "^([0-9]{11,13})$",
+      "plural_name": false,
+      "Description": "Milliseconds elapsed since unix epoch: 1970",
+      "Rarity": 0.1,
+      "URL": null,
+      "Tags": [
+         "UNIX Timestamp",
+         "Timestamp",
+         "UNIX"
       ]
    },
    {
