@@ -576,6 +576,61 @@ def test_ssh_rsa_key():
     _assert_match_first_item("SSH RSA Public Key", res)
 
 
+def test_pem_rsa_private_key():
+    # key size: 2048 bit
+    res = r.check(
+        [
+            "-----BEGIN RSA PRIVATE KEY-----MIIEoQIBAAKCAQBYNGcp1Jm7GOGffs9wvpIsi9RKPE/a4usQyEdf8G2C0pLcOoypfG1MiOQCDDRN4HtMDoe9KTVjVnnREfmQq2k1hT1BZHfaRu/3YvpFrleozzYmY1XRSeUiM6G71ADg8cPZlAuH1RjswlevJyhNVWzy+DLumpbRgv6nKR9dYSdy2GsFySX488l05+ZaVKgHwlGeKd33YNPRAUNLSPKLdd9wi1djGaQpSo7jWRb6lIFJUR7FdvxwjAVMhDljxXYHPP0GXFS6KTGcfB97dle90qu/4nwdKWd4RZ5pqIbFi1D5ejItUzY40GpsPuN/tkamwB5jY0AtFY8S9TMxHjRx05/DAgMBAAECggEAKU5pHYLNd3wAdTPqq27jf28APL+f2e64jIRuQHSUpFY+plnY86oseVIGDRtwByRgOU74rFI3CU0/APS8/c34GDNMa2pEYnkj+aNldupdbNWVE0cjsj47yteJHy/6NV2jDSqyd6sI4B9m9sSMsCKYQfSPzYOhq34ACYJNiOptke9PkxpNNODlFJrFQsRKKpv2KdF7Lh3/Yzc6p53gilYR9U+Sn4mBrkuURLm2Qq++r0CNTjpmbunbjAL5q/oK8bpJEz3uZqbSQ5GbSLCNroRyi7eIF1Evvk0Vb9nSyfm94VdP+yVr1VvtOt8WigHwAr8E+ujg0rrAKMswfbvNFroNMQKBgQCs/rQvlTfpRiHUlCB09HZzquM8o7pBxTpKAX9247SW81V41EHsIS69WGZzcYbYQlxOxQi7gHiALB/yRLFNiAHAhODFMGTYtprTdW/JK6TC8CPvK3TBnPSYDPP/ME2F2UZKVHWlD3FFtUqp9BppWCHDLp7N/+i5eJy+ankJYzeGywKBgQCChsDhaPJAnHp/zHJmhDXQkqVeoB8SW2WzH481xVgyu2gIsEGmgActfEAyCqRuzjnMSIjXBL5LSAZXft8d+wveR3PsUiVdUurbcrije1ku3jDPXdBQrjmyWZvCXXnZ8oqX18C05a0pgzX5oDluA1ShcI7uWNHkIPYcZskcp96z6QKBgG9gpP2lopOrtYg5vhPOeJzLvvWBrB9ALeELydbvj4tIKxVaAv9V9dOuIHfe9aQyRV/pd0/QzMQopIDEPSrfj9E1O8l4+NSV7GSMTWZFlRR0q44GemtU9B0Y6da4cJDmbFzat8uHf7QTnniBUqfUOBiD4XZbdqhCwRfPURH8MPm1AoGAWHZ9yQe4kAO9nlnw+vwGAQsymxRImsdpAOKVy+qpIREUrDbQ98hzlOdOFtxRn2uTjplmbNwhIKJ68dfh3c7kt0yUC4mNG1f0JrD05I/X3MToLdK2OcgrAG5s+2khCY6xUcH/MFstZiIwdbOa2K3XMOc5Z964ujWAt7UN/qbjb+kCgYBdPN6J1b6OuTt4xYTCenX+KlGBb9QsuK8uXMDkhJhrtcHAyuxyJrDjQu5i3djeZerflT0EESCet0zGPd5bGyP4KaIsmLwYheDLrziS6xqqXL0irMZiWVaVquC3JlWJMw6/Y66WRuxd+oRBbE62lHWnzT2J8dfG+su483KKgli02Q==-----END RSA PRIVATE KEY-----"
+        ]
+    )
+    _assert_match_first_item("PEM-formatted Private Key", res)
+
+
+def test_pem_dsa_private_key():
+    res = r.check(
+        [
+            "-----BEGIN DSA PRIVATE KEY-----MIIDTgIBAAKCAQEAj3k12bmq6b+r7Yh6z0lRtvMuxZ47rzcY6OrElh8+/TYG50NRqcQYMzm4CefCrhxTm6dHW4XQEa24tHmHdUmEaVysDo8UszYIKKIv+icRCj1iqZNFNAmg/mlsRlj4S90ggZw3CaAQV7GVrc0AIz26VIS2KR+dZI74g0SGd5ec7AS0NKasLnXpmF3iPbApL8ERjJ/6nYGB5zONt5K3MNe540lZL2gJmHIVORXqPWuLRlPGM0WPgDsypMLg8nKQJW5OP4o7CDihxFDk4YwaKaN9316hQ95LZv8EkD7VzxYj4VjUh8YI6X8hHNgdyiPLbjgHZfgi40K+SEwFdjk5YBzWZwIdALr2lqaFePff3uf6Z8l3x4XvMrIzuuWAwLzVaV0CggEAFqZcWCBIUHBOdQKjl1cEDTTaOjR4wVTU5KXALSQu4E+W5h5L0JBKvayPN+6x4J8xgtI8kEPLZC+IAEFg7fnKCbMgdqecMqYn8kc+kYebosTnRL0ggVRMtVuALDaNH6g+1InpTg+gaI4yQopceMR4xo0FJ7ccmjq7CwvhLERoljnn08502xAaZaorh/ZMaCbbPscvS1WZg0u07bAvfJDppJbTpV1TW+v8RdT2GfY/Pe27hzklwvIk4HcxKW2oh+weR0j4fvtf3rdUhDFrIjLe5VPdrwIRKw0fAtowlzIk/ieu2oudSyki2bqL457Z4QOmPFKBC8aIt+LtQxbh7xfb3gKCAQB87fMOaF3zru0d3blONyvU4kEclm0i79Shdm2r2dBQo9ru8KdmbBoBS3qS7k//hEuLCCdHAKdLrz8cdbah8ONEVVu/HTDS5TKcm1W/czHch0NhYIfMFschQcEAcswOLjGoRGHl2SZb90pF2dxMxKEgi1QLoPRRX8UWpGy5+ghkaIBEUE31p4dS3vJ1EevQc3itZ2Sh7UcY3hQ8idYptzTwL9p7c4V/aWXLFbQdzJCSi1Q5fr85Uj2eFZTHliYe5ZrZ3R+nl1fbk/ySajbLD6RaTm/ppRfWRxyw3MWjKxPapeLFIsxm1A9rnDyfeEDg1Ixahaq0xLk46RwBo6ZblI0aAh0An8MAVnsLGjtDHBGIlDH+XXPsMkClXnYeBRUGAQ==-----END DSA PRIVATE KEY-----"
+        ]
+    )
+    _assert_match_first_item("PEM-formatted Private Key", res)
+
+
+def test_pem_ecdsa_private_key():
+    res = r.check(
+        [
+            "-----BEGIN EC PRIVATE KEY-----MIHcAgEBBEIApe6jUvbal/QN6ZoQ9dZMe/pTx4CiFzd4ln9a5f0Ope+788+BwgLpl1888OThkaWMeg2wevZ/ErMId0T3kZGoE7mgBwYFK4EEACOhgYkDgYYABAE4SLWZJs6lE0bwYgMipcRxB1xtARXDwbPt3o7aDI7680kLnELXGYhIhGeXlhXgAXjE66GuM8TdbPsshqP9nRy9OAGbxJU/OA+7/zuZmo10IYWNu1IrcGYq0WZJwzZex+S12+VKVBEwPoLKlgm5r/sI8x7WnDtialy5i8ipkvUyOyPUxg==-----END EC PRIVATE KEY-----"
+        ]
+    )
+    _assert_match_in_items("PEM-formatted Private Key", res)
+
+
+def test_pem_openssl_pkcs8_private_key():
+    res = r.check(
+        [
+            "-----BEGIN PRIVATE KEY-----MIIEvwIBADANBgkqhkiG9w0BAQEFAASCBKkwggSlAgEAAoIBAQDaoE09/Cmh1T8I3J9lenqZ2pllw0WXAUrPi4pPV3jmJBsIsfpedZfakdI2ixw2XkWRayAklsxlFFtXCQ6U0yXSd7KJY9vuxb+5cMZejpOoHTZkVwxhlEodCt8DWf5tOc4UA5Ip88WYeszygxuIU6JP0bavJhtQnI5ER+0eZCY8xyNLqQ86h6iuxncAo5fxyc44IKFSm6MDh+GmHBlK5Eql536qfZtA6jMFYnORQ1gVp5J1hQ7bDmiLzFjyCvpNSYLOYbodvcCIWCSUKgp5Q5Uo0EX2h7mX6Z07ONCOQaFXfW3z5/xbn1bJKtI+JSNFS86owWb20EYcopnWwOimmsTXAgMBAAECggEAPW5Tpfon/Jg9+RB9HXeX4YliFw0SjcbILZ9JAthSWWCF1CCmeEpUnA7jYX4fNEuzApR2WLGixzg8Hi2mUj0uYIBPw3kywFoCcGn243Tumoty0CkBip2vYY+/cGKmMizO8iK6vF0KBbljwzUB1IGjlwgXbAmqHTGQbDFFuIdtkx/ggns9X/wNNqK7UPaJoYvlv/YX10/OgBgGQMBWTjvZ3rWg4+TUJymO4edlBK4VmPeBE+syPBcc/YNV+sYDnww8U1hucA5hJ4hOIomFYyaYYUtdWKoAwLJxGf7tZ6hgq16iMbzHcJ2gNCINcWKTByEosqX3aA3TvkyTDMwQguAn8QKBgQD2uViv8qyeVy+RrHH6pC3KoEIUYIz6LTulEDL2YcsRr5FKubzxOU6OEcx1TSmkCmUxyUAyFDyTH/aG0c1H8EWYAwMT7N25Pax1bgjJM+A1z3SU9qxOmdFqFz5v7YC9qnLkODErRByuFsfwdxxJedP4Vles/HZc1tnKYl/v8n81jwKBgQDi2IVlMx9LiBfgZeSI/dkUg3pLT1e3Mu52/WMGmUXRWFKta5P/URw/mgNqJ/nPFQRR3Jn3b6augGtMjomJ+l7pnlv/OX8oj0h46Brx08wrifZMHUStB6Rt2vOy9asLk84rQIgMh7I/PeZ3r/w8dZg7B1IUMyLuyjGcSoh2Q76oOQKBgQDsCy9aRiX35xnPmNgDH4ffz6roq+a0gwoJRZI8Pht19C5g+4pUjqslKMoff49TLc7a7tvIDaxWZcIKAjcPmEQ8xsTvDzKhwut3/anSNRtQ4AV9bvIy0N6VTV+i3erJioUY6tm/tw5pT8pBuPMLKM8vTAvdqDvlXnhHNA7tFWe26QKBgQCok922EiK8n9uWkEIgp/ztqLN2SfVWmIvsc2tm2Pqwk2GFrP+j6mQCw/Krrh+QC/9U0oq8/gUxgw+6Keb+Wci09lFJvzHHM4vZBiwX8Jy28mTNtaZ2q8o/NUqLgNPm26WIMQGpxiHpq5ec9HSPfZhurYcKqeHY8PujOSRmNvv1yQKBgQCx65dznLE32KQhJbN9lXbr7mYdqurJMrchQ4E9zI69cXf7M8kt6FqRHLVv0arPPK+xL6FqF4pq2BuKZlYTqwdG1xsOiEv3IHs3lioTFzbJ1NXhrIuV0H3AiQcw9TbhSs3sWkP7Ri90Uj/fHYQC+psvq5x0L4JZKE3dDTdgjP6vQA==-----END PRIVATE KEY-----"
+        ]
+    )
+    _assert_match_first_item("PEM-formatted Private Key", res)
+
+
+def test_pem_openssl_pkcs8_encrypted_private_key():
+    res = r.check(
+        [
+            "-----BEGIN ENCRYPTED PRIVATE KEY-----MIIE6TAbBgkqhkiG9w0BBQMwDgQIHHigg+fwQjQCAggABIIEyLP0cpU55sZ3QSZkCtNtGU425BnZZD57aqO/aa/fV9HGvWn5/GYANT6xDKbUi2kwc68QCi6Zla3C56jPvPsZoDeZ+g81DYjqBVMRsVra1kayQvnKeRvedYPBdfA0VL5n0ndRa9q31Vx6zzXnMYJd9VakUgXYLFntvVeTt/a+iW9LX7mx/ymUPZtD1IrNEJBpW6Al+vc1m6bYA8NpZaT5P6uiclsoEiPDMydEa52cBgcd5q5MfwKllPsQNYtyLsee8W/1k/Eu21pRkCPYreQWgh36gqAn+2zNySCyqiU7USQ1qHMIHPLxJV7awVfOy7eoRMhmbTJ8kCrEpI9r6JyQN3m1VbBN5QifF9p0N0v2yBM8hS6e0fdaSwkFUVFHeWz4140nhaXA6Xu9U+TvJwacdz/FYsN9wi1AIDl8nMT+gFC2v3HuiGmMD0ybA5TOJEsvhdLruxLNLok/uiu6oExDVAV6JI4zM/8ymLruuAibVxSc9bhVEY8FfYbQ5aDiGPm18MXtmCb5UNEG10ylsDl5khfGYwcfuOfgDy3PVst4aA3sHLbk996csBL8FPcGDx7iqgWPYkHEfhuHr4MUt2xqJloOsGlcs6Ts70ldgNHpNCA0DizHnrRY8EF4gXzAJghpJ5gcCllzcVjf26YsoVyNiIZ2IcMe2aoP2WtbnnFqtgl2gOJ6SNAbWyRLhtlSC74mYl0SLvtN5lm7U5bCIlAnAJbm1cqN+Muuxy9/U5TagQYfya4BZNUhHhI9ILH87QLpIWDeCa3v0UZfHi7CBirEusAq+jQGZslTt+fr/iRWQLwo819HA5Yhh4rems2p2aKeuUYPJ/gt5/KIPikYneAEJ2HzqByeS71hWbxpINtEtNz2M1SVGLbFsLrUjfKGTEc29qaaFvM24LpLxahiCTW2huM/1UZFjKyvrL0HYKAZyvA/07EHzY5K9DT3ocNIKApqMzq+D7P5L/gBNQ6E+cx/ZOA+9unVuE7OY6mmQHMsK9MAT6e4T0AxkBqAWg3cf5ovlQNr57mWwms8Zyy1wwIwLr2/wilJ5V3iWSHDIckK1kR92kCDu3MwNIhfM9dalWSsx9FRIg4iFzMIuidYO8pIVq1jJQKqVsgmGXCwioKvD6wDnQqijdDmVpX/Jg08O1iU7URD2MvGLbBRRfzcBFNrEUNjTrbQa3LS+wvDISbizryXKr/8K8okpxV6dBiW3YplePjde/yqrxWl7OQoDbG1F2f2zMmIe8ZNTP15K8aAlq9LC5qn6YnoRTRe2rLecxgP1SQVXUwFvrUKglozy1/cJsuKuCqiRecQneqyasc9mp/0wGu1t9GD3EroMfvuK4zXuaj6uTDyDPUBo6hfvNDG8zSHvEfDDGm4PTFI7kU7U7ohSQZZcGHZBUigFluq9KWJ3SHPgTkRul3nB/Im+89toHSHFoqH/B/GDokAbqsrUPgJ9xpK9lqFEhng5blX2kiae90VHRyb23oE7eIjf3j4G04Amh8m4/W7ER9JDn6nwWqMH4n2MBQRD3USO8DNTgBbggVZZ7MGIUVbv2/YcVZXftBtiS1u+lvVcpYPzwHIj29YrscmBV6ae0CLo1av0xquHYUOrVixSvhmOREOUSZvNSibizBIyNmLkA==-----END ENCRYPTED PRIVATE KEY-----"
+        ]
+    )
+    _assert_match_first_item("PEM-formatted Private Key", res)
+
+
+def test_pem_openssh_private_key():
+    res = r.check(
+        [
+            "-----BEGIN OPENSSH PRIVATE KEY-----b3BlbnNzaC1rZXktdjEAAAAACmFlczI1Ni1jdHIAAAAGYmNyeXB0AAAAGAAAABBDXVWIoOcQYPyoVODqYrhNAAAAEAAAAAEAAAAzAAAAC3NzaC1lZDI1NTE5AAAAIDDZHhPJKYsu2hV7bq/vtAbF2Guw8cupqcjv5SqRraVaAAAAoCfV/ZrS3mggJFx1X7aeKzfBFDN2hWrPTHmyJPsw0NaDW+wzL6/yYmWaAB90clbSiCQ7jALlA/RoU/tPz8HvEaKcnj9BgSMN8+Se4RBcfqxMx9eCRYtYcumc9PrQbKSCeywtvsQoCntPxLhyudxH/HYKx7lO5mrMGut9FjOy2s9Iz317p+2F1DJqRYNsEHKyZJpV0DwObF2ZPOlX3PDv3fg=-----END OPENSSH PRIVATE KEY-----"
+        ]
+    )
+    _assert_match_first_item("PEM-formatted Private Key", res)
+
+
 def test_ssh_ecdsa_key():
     res = r.check(
         [
@@ -761,7 +816,7 @@ def test_instapayment():
     _assert_match_first_item("Insta Payment Card Number", res)
 
 
-def test_instapayment():
+def test_stackhawk():
     res = r.check(["hawk.wz6bAoFDwcVQFCD9dofE.w2R1PWI8UTvEM4jd56XQ"])
     _assert_match_first_item("StackHawk API Key", res)
 
@@ -820,11 +875,6 @@ def test_github_refresh_token():
         ]
     )
     _assert_match_first_item("GitHub Refresh Token", res)
-
-
-def test_stripe_api_key():
-    res = r.check(["sk_live_26PHem9AhJZvU623DfE1x4sd"])
-    _assert_match_first_item("Stripe API Key", res)
 
 
 def test_zapier_webhook():
