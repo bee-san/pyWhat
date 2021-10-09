@@ -972,6 +972,19 @@
       ]
    },
    {
+    "Name": "Time-Based One-Time Password (TOTP) URI",
+    "Regex": "^([^?\\n]+:\/\/totp\/[^\\n]+secret=[A-Z2-7=]+[^\\n]+)$",
+    "plural_name": false,
+    "Description": null,
+    "Rarity": 1,
+    "URL": null,
+    "Tags": [
+         "Credentials",
+         "TOTP",
+         "Bug Bounty"
+    ]
+   },
+   {
       "Name": "Google Cloud Platform API Key",
       "Regex": "(?i)^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12})$",
       "plural_name": false,
