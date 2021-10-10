@@ -1,4 +1,5 @@
 import re
+from typing import List, Tuple
 
 import pytest
 
@@ -58,19 +59,17 @@ def test_sorted_by_rarity():
     ), "Regexes should be sorted by rarity in 'regex.json'. Regexes with rarity '1' are at the top of the file and '0' is at the bottom."
 
 
-def test_dogecoin():
-    res = r.check(["DANHz6EQVoWyZ9rER56DwTXHWUxfkv9k2o"])
-    _assert_match_first_item("Dogecoin (DOGE) Wallet Address", res)
-
-
-def test_url():
-    res = r.check(["tryhackme.com"])
-    _assert_match_first_item("Uniform Resource Locator (URL)", res)
-
-
-def test_url_2():
-    res = r.check(["http://username:password@example.com/"])
-    _assert_match_first_item("Uniform Resource Locator (URL)", res)
+@pytest.mark.parametrize(
+    "name,match",
+    [
+        (regex["Name"], match)
+        for regex in database
+        for match in regex.get("Matches", [])  # Matches is currently not in all entries
+    ],
+)
+def test_regex_match(name: str, match: str):
+    res = r.check([match])
+    _assert_match_first_item(name, res)
 
 
 def test_invalid_tld():
@@ -904,16 +903,6 @@ def test_github_app_token():
 def test_zapier_webhook():
     res = r.check(["https://hooks.zapier.com/hooks/catch/1234567/f8f22dgg/"])
     _assert_match_first_item("Zapier Webhook Token", res)
-
-
-def test_datadog_api_key():
-    res = r.check(["acb6d73d95a10d30aef9894603e90963"])
-    _assert_match_first_item("Datadog API Key", res)
-
-
-def test_datadog_client_token():
-    res = r.check(["pub85abf45b82e2f86f25003d559bca07d9"])
-    _assert_match_first_item("Datadog Client Token", res)
 
 
 def test_new_relic_rest_api_key():

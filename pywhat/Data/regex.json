@@ -1082,6 +1082,10 @@
       "Tags": [
          "Identifiers",
          "URL"
+      ],
+      "Matches":[
+         "tryhackme.com",
+         "http://username:password@example.com/"
       ]
    },
    {
@@ -1161,6 +1165,9 @@
          "Cryptocurrency Wallet",
          "Dogecoin Wallet",
          "Dogecoin"
+      ],
+      "Matches":[
+         "DANHz6EQVoWyZ9rER56DwTXHWUxfkv9k2o"
       ]
    },
    {
@@ -1872,4 +1879,5 @@
          "Credentials"
       ]
    }
-]
+ ]
+ 
