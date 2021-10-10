@@ -573,7 +573,7 @@ def test_pgp_private_key():
 
 def test_file_fixture_turkish_car_plate():
     runner = CliRunner()
-    result = runner.invoke(main, ["fixtures/file"])
+    result = runner.invoke(main, ["--rarity", "0:", "fixtures/file"])
     assert result.exit_code == 0
     assert re.findall("Turkish License Plate Number", str(result.output))
 
@@ -594,7 +594,7 @@ def test_file_fixture_turkish_id_number():
 
 def test_file_fixture_turkish_tax_number():
     runner = CliRunner()
-    result = runner.invoke(main, ["fixtures/file"])
+    result = runner.invoke(main, ["--rarity", "0:", "fixtures/file"])
     assert result.exit_code == 0
     assert re.findall("Turkish Tax Number", str(result.output))
 
@@ -608,14 +608,14 @@ def test_file_fixture_uuid():
 
 def test_file_fixture_objectid():
     runner = CliRunner()
-    result = runner.invoke(main, ["fixtures/file"])
+    result = runner.invoke(main, ["--rarity", "0:", "fixtures/file"])
     assert result.exit_code == 0
     assert re.findall("ObjectID", str(result.output))
 
 
 def test_file_fixture_ulid():
     runner = CliRunner()
-    result = runner.invoke(main, ["fixtures/file"])
+    result = runner.invoke(main, ["--rarity", "0:", "fixtures/file"])
     assert result.exit_code == 0
     assert re.findall("ULID", str(result.output))
 

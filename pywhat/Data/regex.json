@@ -1763,7 +1763,7 @@
       "Regex": "^([0-9a-fA-F]{24})$",
       "plural_name": false,
       "Description": null,
-      "Rarity": 0.1,
+      "Rarity": 0,
       "URL": null,
       "Tags": [
          "Identifiers",
@@ -1776,7 +1776,7 @@
       "Regex": "^([0-9]{10})$",
       "plural_name": false,
       "Description": "Seconds elapsed since unix epoch: 1970, between year 2001 and 2286",
-      "Rarity": 0.1,
+      "Rarity": 0,
       "URL": null,
       "Tags": [
          "UNIX Timestamp",
@@ -1789,7 +1789,7 @@
       "Regex": "^([0-9]{13})$",
       "plural_name": false,
       "Description": "Milliseconds elapsed since unix epoch: 1970, between year 2001 and 2286",
-      "Rarity": 0.1,
+      "Rarity": 0,
       "URL": null,
       "Tags": [
          "UNIX Timestamp",
@@ -1802,7 +1802,7 @@
       "Regex": "^([0-9]{8,10})$",
       "plural_name": false,
       "Description": "Seconds elapsed since unix epoch: 1970",
-      "Rarity": 0.1,
+      "Rarity": 0,
       "URL": null,
       "Tags": [
          "UNIX Timestamp",
@@ -1815,7 +1815,7 @@
       "Regex": "^([0-9]{11,13})$",
       "plural_name": false,
       "Description": "Milliseconds elapsed since unix epoch: 1970",
-      "Rarity": 0.1,
+      "Rarity": 0,
       "URL": null,
       "Tags": [
          "UNIX Timestamp",
@@ -1828,7 +1828,7 @@
       "Regex": "^([0-9A-HJKMNP-TV-Z]{26})$",
       "plural_name": false,
       "Description": null,
-      "Rarity": 0.1,
+      "Rarity": 0,
       "URL": null,
       "Tags": [
          "Identifiers",
@@ -1840,7 +1840,7 @@
       "Regex": "^((?=.*[A-Z])(?=.*[a-z])[0-9A-Za-z_-]{10}[048AEIMQUYcgkosw]{1})$",
       "plural_name": false,
       "Description": null,
-      "Rarity": 0.1,
+      "Rarity": 0,
       "URL": "https://www.youtube.com/watch?v=",
       "Tags": [
          "Media",
@@ -1853,7 +1853,7 @@
       "Regex": "^([0-9]{10})$",
       "plural_name": false,
       "Description": null,
-      "Rarity": 0.1,
+      "Rarity": 0,
       "URL": null,
       "Tags": [
          "Credentials",
