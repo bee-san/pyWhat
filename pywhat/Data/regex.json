@@ -686,6 +686,35 @@
       ]
    },
    {
+      "Name": "Datadog API Key",
+      "Regex": "^([a-f0-9]{32})$",
+      "plural_name": false,
+      "Description": null,
+      "Exploit": "Use the command below to verify that the API key is valid:\n  $ curl -X GET https://api.datadoghq.com/api/v1/validate -H \"Content-Type: application/json\" -H \"DD-API-KEY: API_KEY_HERE\"\n",
+      "Rarity": 1,
+      "URL": null,
+      "Tags": [
+         "API Keys",
+         "Bug Bounty",
+         "Credentials",
+         "Datadog"
+      ]
+   },
+   {
+      "Name": "Datadog Client Token",
+      "Regex": "^(pub[a-f0-9]{32})$",
+      "plural_name": false,
+      "Description": null,
+      "Exploit": null,
+      "Rarity": 1,
+      "URL": null,
+      "Tags": [
+         "API Keys",
+         "Bug Bounty",
+         "Datadog"
+      ]
+   },
+   {
       "Name": "New Relic Admin API Key",
       "Regex": "(?i)^(NRAA-[a-f0-9]{27})$",
       "plural_name": false,

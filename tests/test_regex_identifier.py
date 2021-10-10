@@ -906,6 +906,16 @@ def test_zapier_webhook():
     _assert_match_first_item("Zapier Webhook Token", res)
 
 
+def test_datadog_api_key():
+    res = r.check(["acb6d73d95a10d30aef9894603e90963"])
+    _assert_match_first_item("Datadog API Key", res)
+
+
+def test_datadog_client_token():
+    res = r.check(["pub85abf45b82e2f86f25003d559bca07d9"])
+    _assert_match_first_item("Datadog Client Token", res)
+
+
 def test_new_relic_rest_api_key():
     res = r.check(["NRRA-2a2d50d7d9449f3bb7ef65ac1184c488bd4fe7a8bd"])
     _assert_match_first_item("New Relic REST API Key", res)
