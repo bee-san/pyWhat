@@ -115,7 +115,7 @@ def test_identifier_sorting6():
 
 def test_only_text():
     out = r.identify("fixtures/file")
-    assert None is out["Regexes"]
+    assert out["Regexes"] is None
 
     out = r.identify("THM{7281j}}", only_text=True)
     assert "TryHackMe Flag Format" in out["Regexes"]["text"][0]["Regex Pattern"]["Name"]
