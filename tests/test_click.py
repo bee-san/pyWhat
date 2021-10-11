@@ -632,3 +632,66 @@ def test_file_fixture_sshpass():
     result = runner.invoke(main, ["fixtures/file"])
     assert result.exit_code == 0
     assert re.findall("SSHPass Clear Password Argument", str(result.output))
+
+
+def test_format():
+    runner = CliRunner()
+    result = runner.invoke(
+        main, ["-db", "--format", " json ", "rBPAQmwMrt7FDDPNyjwFgwSqbWZPf6SLkk"]
+    )
+    assert result.exit_code == 0
+    assert '"File Signatures":' in result.output
+
+
+def test_format2():
+    runner = CliRunner()
+    result = runner.invoke(
+        main, ["-db", "--format", " pretty ", "rBPAQmwMrt7FDDPNyjwFgwSqbWZPf6SLkk"]
+    )
+    assert result.exit_code == 0
+    assert "Possible Identification" in result.output
+
+
+def test_format3():
+    runner = CliRunner()
+    result = runner.invoke(
+        main,
+        [
+            "-db",
+            "--format",
+            r"%m 2%n %d --- -%e%r %l %t \%d",
+            "rBPAQmwMrt7FDDPNyjwFgwSqbWZPf6SLkk",
+        ],
+    )
+    assert result.exit_code == 0
+    assert (
+        "rBPAQmwMrt7FDDPNyjwFgwSqbWZPf6SLkk 2Ripple (XRP) Wallet Address  --- -0.3 https://xrpscan.com/account/rBPAQmwMrt7FDDPNyjwFgwSqbWZPf6SLkk Finance, Cryptocurrency Wallet, Ripple Wallet, Ripple, XRP %d"
+        in result.output.replace("\n", "")
+    )
+
+
+def test_format4():
+    runner = CliRunner()
+    result = runner.invoke(
+        main,
+        [
+            "-db",
+            "--include",
+            "Bug Bounty",
+            "--format",
+            r"\\%e %l %z",
+            "heroku00000000-0000-0000-0000-000000000000",
+        ],
+    )
+    assert result.exit_code == 0
+    assert (
+        '\\Use the command below to verify that the API key is valid:\n  $ curl -X POST https://api.heroku.com/apps -H "Accept: application/vnd.heroku+json; version=3" -H "Authorization: Bearer heroku00000000-0000-0000-0000-000000000000"\n  %z'.split()
+        == result.output.split()
+    )
+
+
+def test_format5():
+    runner = CliRunner()
+    result = runner.invoke(main, ["-db", "--format", r"%e", "thm{2}"])
+    assert result.exit_code == 0
+    assert len(result.output) == 0

@@ -1,5 +1,6 @@
 import json
 import os
+import re
 
 from rich.console import Console
 from rich.table import Table
@@ -179,6 +180,46 @@ class Printing:
             self.console.print(output_str.rstrip())
 
         return output_str
+
+    def format_print(self, text: dict, format_str: str):
+        if text["Regexes"]:
+            output = []
+            format_list = []
+
+            # Split format_str so that format_list's item will either be r'\\' or something else
+            start = 0
+            while (i := format_str.find(r"\\", start)) != -1:
+                if format_str[start:i]:
+                    format_list.append(format_str[start:i])
+                format_list.append("\\")
+                start = i + 2
+            format_list.append(format_str[start:])
+
+            for key, value in text["Regexes"].items():
+                for i in value:
+                    temp = ""
+                    for s in format_list:
+                        formats = {
+                            "%m": i["Matched"],
+                            "%n": i["Regex Pattern"]["Name"],
+                            "%d": i["Regex Pattern"]["Description"],
+                            "%e": i["Regex Pattern"].get("Exploit"),
+                            "%r": str(i["Regex Pattern"]["Rarity"]),
+                            "%l": i["Regex Pattern"]["URL"] + i["Matched"]
+                            if i["Regex Pattern"]["URL"] is not None
+                            else None,
+                            "%t": ", ".join(i["Regex Pattern"]["Tags"]),
+                        }
+                        for format, value in formats.items():
+                            value = str() if value is None else value
+                            s = re.sub(r"(?<!\\)" + format, value, s)
+                        s = re.sub(r"\\%", "%", s)
+                        temp += s
+                    output.append(temp)
+
+            str_output = "\n".join(output)
+            if str_output.strip():
+                self.console.print(str_output)
 
     def _check_if_exploit_in_json(self, text: dict) -> bool:
         if "File Signatures" in text and text["File Signatures"]:

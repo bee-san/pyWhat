@@ -118,7 +118,7 @@ def get_text(ctx, opts, value):
 @click.option(
     "--format",
     required=False,
-    help="--format json for json output. --format pretty for a pretty table output.",
+    help="Format output according to specified rules.",
 )
 def main(**kwargs):
     """
@@ -184,6 +184,44 @@ def main(**kwargs):
 
         Refer to the Filtration section for more information.
 
+    Formatting the output:
+
+        --format format_str
+
+            format_str can be equal to:
+
+                pretty - Output data in the table
+
+                json - Ouput data in json format
+
+                CUSTOM_STRING - Print data in the way you want. For every match CUSTOM_STRING will be printed and '%x' (See below for possible x values) will be substituted with a match value.
+
+                For example:
+
+                    pywhat --format '%m - %n' 'google.com htb{flag}'
+
+                    will print:
+
+                    htb{flag} - HackTheBox Flag Format
+                    google.com - Uniform Resource Locator (URL)
+
+                Possible '%x' values:
+
+                    %m - matched text
+
+                    %n - name of regex
+
+                    %d - description (will not output if absent)
+
+                    %e - exploit (will not ouput if absent)
+
+                    %r - rarity
+
+                    %l - link (will not ouput if absent)
+
+                    %t - tags (in 'tag1, tag2 ...' format)
+
+                If you want to print '%' or '\' character - escape it: '\%', '\\'.
 
     Examples:
 
@@ -246,6 +284,8 @@ def main(**kwargs):
         p.print_json(identified_output)
     elif kwargs["format"] == "pretty":
         p.pretty_print(identified_output, kwargs["text_input"])
+    elif kwargs["format"] is not None:
+        p.format_print(identified_output, kwargs["format"])
     else:
         p.print_raw(identified_output, kwargs["text_input"])
 
