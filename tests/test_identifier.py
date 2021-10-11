@@ -7,22 +7,6 @@ from pywhat.helper import Keys, load_regexes
 r = identifier.Identifier()
 
 
-def test_check_keys_in_json():
-    database = load_regexes()
-
-    for entry in database:
-        keys = list(entry.keys())
-        entry_name = entry["Name"]
-
-        assert "Name" in keys, entry_name
-        assert "Regex" in keys, entry_name
-        assert "plural_name" in keys, entry_name
-        assert "Description" in keys, entry_name
-        assert "Rarity" in keys, entry_name
-        assert "URL" in keys, entry_name
-        assert "Tags" in keys, entry_name
-
-
 def test_identifier_works():
     out = r.identify("DANHz6EQVoWyZ9rER56DwTXHWUxfkv9k2o")
     assert (
