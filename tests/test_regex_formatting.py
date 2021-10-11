@@ -34,6 +34,20 @@ def test_regex_format():
         ), "Remove in-between boundaries. For example, '^|$' should only be '|'."
 
 
+def test_check_keys():
+    for entry in database:
+        keys = list(entry.keys())
+        entry_name = entry["Name"]
+
+        assert "Name" in keys, entry_name
+        assert "Regex" in keys, entry_name
+        assert "plural_name" in keys, entry_name
+        assert "Description" in keys, entry_name
+        assert "Rarity" in keys, entry_name
+        assert "URL" in keys, entry_name
+        assert "Tags" in keys, entry_name
+
+
 def test_sorted_by_rarity():
     rarity_num = [regex["Rarity"] for regex in database]
 
