@@ -1048,9 +1048,9 @@ def test_complex_totp_URI():
 
 def test_sshpass():
     res = r.check(["sshpass -p MyPassw0RD!"])
-    _assert_match_first_item("SSHPass clear password argument", res)
+    _assert_match_first_item("SSHPass Clear Password Argument", res)
 
 
 def test_sshpass_multiple_args():
     res = r.check(["sshpass -P 'Please enter your password' -p MyPassw0RD!"])
-    _assert_match_first_item("SSHPass clear password argument", res)
+    _assert_match_first_item("SSHPass Clear Password Argument", res)

@@ -631,4 +631,4 @@ def test_file_fixture_sshpass():
     runner = CliRunner()
     result = runner.invoke(main, ["fixtures/file"])
     assert result.exit_code == 0
-    assert re.findall("SSHPass clear password argument", str(result.output))
+    assert re.findall("SSHPass Clear Password Argument", str(result.output))
