@@ -30,7 +30,7 @@ def test_name_capitalization():
         entry_name = entry["Name"]
         for word in entry_name.split(" "):
             upper_and_num_count = sum(1 for c in word if c.isupper() or c.isnumeric())
-            if upper_and_num_count > 1:
+            if upper_and_num_count > 0:
                 continue
             cleaned_word = word.translate({ord(c): None for c in "(),."})
             if cleaned_word in ["a", "of", "etc"]:
