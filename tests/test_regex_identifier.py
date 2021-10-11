@@ -42,17 +42,6 @@ def test_if_all_tests_exist():
         ), "No test for this regex found in 'test_regex_identifier.py'. Note that a test needs to assert the whole name."
 
 
-def test_regex_format():
-    for regex in database:
-        assert re.findall(
-            r"^(?:\(\?i\))?\^\(.*\)\$$", regex["Regex"]
-        ), r"Please use ^(regex)$ regex format. If there is '\n' character, you have to escape it. If there is '(?i)', it is allowed and should be before the '^'."
-
-        assert (
-            re.findall(r"\^\||\|\^|\$\|\^|\$\||\|\$", regex["Regex"]) == []
-        ), "Remove in-between boundaries. For example, '^|$' should only be '|'."
-
-
 def test_sorted_by_rarity():
     rarity_num = [regex["Rarity"] for regex in database]
 

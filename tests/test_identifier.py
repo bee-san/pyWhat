@@ -23,22 +23,6 @@ def test_check_keys_in_json():
         assert "Tags" in keys, entry_name
 
 
-def test_name_capitalization():
-    database = load_regexes()
-
-    for entry in database:
-        entry_name = entry["Name"]
-        for word in entry_name.split(" "):
-            upper_and_num_count = sum(1 for c in word if c.isupper() or c.isnumeric())
-            if upper_and_num_count > 0:
-                continue
-            cleaned_word = word.translate({ord(c): None for c in "(),."})
-            if cleaned_word in ["a", "of", "etc"]:
-                continue
-
-            assert word.title() == word
-
-
 def test_identifier_works():
     out = r.identify("DANHz6EQVoWyZ9rER56DwTXHWUxfkv9k2o")
     assert (
