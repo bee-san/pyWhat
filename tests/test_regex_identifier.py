@@ -67,17 +67,25 @@ def test_sorted_by_rarity():
     [
         (regex["Name"], match)
         for regex in database
-        for match in regex.get("Matches", [])  # Matches is currently not in all entries
+        for match in regex.get("Examples", {}).get("Valid", [])  # not in all entries
     ],
 )
-def test_regex_match(name: str, match: str):
+def test_regex_valid_match(name: str, match: str):
     res = r.check([match])
     _assert_match_first_item(name, res)
 
 
-def test_invalid_tld():
-    res = r.check(["tryhackme.comm"])
-    assert "Uniform Resource Locator (URL)" not in res
+@pytest.mark.parametrize(
+    "name,match",
+    [
+        (regex["Name"], match)
+        for regex in database
+        for match in regex.get("Examples", {}).get("Invalid", [])  # not in all entries
+    ],
+)
+def test_regex_invalid_match(name: str, match: str):
+    res = r.check([match])
+    assert name not in str(res)
 
 
 def test_ip():
@@ -87,11 +95,6 @@ def test_ip():
     )
     _assert_match_first_item("Uniform Resource Locator (URL)", res)
     assert "Internet Protocol (IP) Address Version 4" in res[1]["Regex Pattern"]["Name"]
-
-
-def test_ip_not_url():
-    res = r.check(["http://10.1.1.1"])
-    assert "Uniform Resource Locator (URL)" not in res[0]
 
 
 def test_ip2():
@@ -213,11 +216,6 @@ def test_email3():
     assert "Email Address" in res[2]["Regex Pattern"]["Name"]
 
 
-def test_email4():
-    res = r.check(["email@example@example.com"])
-    assert "Email Address" not in res
-
-
 def test_phone_number2():
     res = r.check(["+1-202-555-0156"])
     _assert_match_first_item("Phone Number", res)
@@ -239,41 +237,6 @@ def test_phone_number4():
 def test_youtube_id():
     res = r.check(["dQw4w9WgXcQ"], dist=d)
     _assert_match_first_item("YouTube Video ID", res)
-
-
-def test_youtube_id2():
-    res = r.check(["078-05-1120"], dist=d)
-    assert "YouTube Video ID" not in res
-
-
-def test_ssn5():
-    res = r.check(["900-01-2222"])
-    assert "American Social Security Number" not in str(res)
-
-
-def test_ssn6():
-    res = r.check(["999-21-2222"])
-    assert "American Social Security Number" not in str(res)
-
-
-def test_ssn7():
-    res = r.check(["666-21-2222"])
-    assert "American Social Security Number" not in str(res)
-
-
-def test_ssn8():
-    res = r.check(["000-21-5544"])
-    assert "American Social Security Number" not in str(res)
-
-
-def test_ssn9():
-    res = r.check(["122-00-5544"])
-    assert "American Social Security Number" not in str(res)
-
-
-def test_ssn10():
-    res = r.check(["122-32-0000"])
-    assert "American Social Security Number" not in str(res)
 
 
 def test_unix_timestamp():

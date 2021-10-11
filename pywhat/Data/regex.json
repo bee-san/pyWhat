@@ -1299,7 +1299,10 @@
         "hTTPs://tryhackme.com",
         "https://xn--80aaxitdbjk.xn--p1ai/"
       ],
-      "Invalid": []
+      "Invalid": [
+        "tryhackme.comm",
+        "http://10.1.1.1"
+      ]
     }
   },
   {
@@ -1424,7 +1427,9 @@
         "github@skerritt.blog",
         "firstname+lastname@example.com"
       ],
-      "Invalid": []
+      "Invalid": [
+        "email@example@example.com"
+      ]
     }
   },
   {
@@ -1472,7 +1477,14 @@
         "001.01.0001",
         "001 01 0001"
       ],
-      "Invalid": []
+      "Invalid": [
+        "900-01-2222",
+        "999-21-2222",
+        "666-21-2222",
+        "000-21-5544",
+        "122-00-5544",
+        "122-32-0000"
+      ]
     }
   },
   {
@@ -1528,7 +1540,9 @@
       "Valid": [
         "UCjXfkj5iapKHJrhYfAF9ZGg"
       ],
-      "Invalid": []
+      "Invalid": [
+        "078-05-1120"
+      ]
     }
   },
   {
