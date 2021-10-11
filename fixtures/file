@@ -94,3 +94,5 @@ b2ced6f5-2542-4f7d-b131-e3ada95d8b75
 01ERJ58HMWDN3VTRRHZQV2T5R5
 
 otpauth://totp/Example:alice@google.com?secret=JBSWY3DPEHPK3PXP&issuer=Example
+
+sshpass -p MyPassw0RD! ssh root@10.0.0.10
