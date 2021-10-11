@@ -4,11 +4,14 @@ from typing import List, Tuple
 import pytest
 
 from pywhat import regex_identifier
-from pywhat.filter import Filter
+from pywhat.filter import Distribution, Filter
 from pywhat.helper import load_regexes
 
 database = load_regexes()
 r = regex_identifier.RegexIdentifier()
+filter1 = Filter({"MinRarity": 0.0})
+d = Distribution(filter1)
+r_rarity_0 = regex_identifier.RegexIdentifier()
 
 
 def _assert_match_first_item(name, res):
@@ -233,8 +236,13 @@ def test_phone_number4():
     assert "Malta" in res[0]["Regex Pattern"]["Description"]
 
 
+def test_youtube_id():
+    res = r.check(["dQw4w9WgXcQ"], dist=d)
+    _assert_match_first_item("YouTube Video ID", res)
+
+
 def test_youtube_id2():
-    res = r.check(["078-05-1120"])
+    res = r.check(["078-05-1120"], dist=d)
     assert "YouTube Video ID" not in res
 
 
@@ -269,35 +277,35 @@ def test_ssn10():
 
 
 def test_unix_timestamp():
-    res = r.check(["1577836800"])  # 2020-01-01
+    res = r.check(["1577836800"], dist=d)  # 2020-01-01
     keys = [m["Regex Pattern"]["Name"] for m in res]
     assert "Unix Timestamp" in keys
     assert "Recent Unix Timestamp" in keys
 
 
 def test_unix_timestamp2():
-    res = r.check(["94694400"])  # 1973-01-01
+    res = r.check(["94694400"], dist=d)  # 1973-01-01
     keys = [m["Regex Pattern"]["Name"] for m in res]
     assert "Unix Timestamp" in keys
     assert "Recent Unix Timestamp" not in keys
 
 
 def test_unix_timestamp3():
-    res = r.check(["1234567"])  # 7 numbers
+    res = r.check(["1234567"], dist=d)  # 7 numbers
     keys = [m["Regex Pattern"]["Name"] for m in res]
     assert "Unix Timestamp" not in keys
     assert "Recent Unix Timestamp" not in keys
 
 
 def test_unix_timestamp4():
-    res = r.check(["1577836800000"])  # 2020-01-01
+    res = r.check(["1577836800000"], dist=d)  # 2020-01-01
     keys = [m["Regex Pattern"]["Name"] for m in res]
     assert "Unix Millisecond Timestamp" in keys
     assert "Recent Unix Millisecond Timestamp" in keys
 
 
 def test_unix_timestamp5():
-    res = r.check(["94694400000"])  # 1973-01-01
+    res = r.check(["94694400000"], dist=d)  # 1973-01-01
     keys = [m["Regex Pattern"]["Name"] for m in res]
     assert "Unix Millisecond Timestamp" in keys
     assert "Recent Unix Millisecond Timestamp" not in keys
@@ -395,7 +403,7 @@ def test_turkish_id_number2():
 
 
 def test_turkish_tax_number():
-    res = r.check(["1234567890"])
+    res = r.check(["1234567890"], dist=d)
     assert "Turkish Tax Number" in str(res)
 
 
@@ -405,10 +413,10 @@ def test_uuid():
 
 
 def test_objectid():
-    res = r.check(["5fc7c33a7ef88b139122a38a"])
+    res = r_rarity_0.check(["5fc7c33a7ef88b139122a38a"], dist=d)
     assert "ObjectID" in str(res)
 
 
 def test_ulid():
-    res = r.check(["01ERJ58HMWDN3VTRRHZQV2T5R5"])
+    res = r_rarity_0.check(["01ERJ58HMWDN3VTRRHZQV2T5R5"], dist=d)
     assert "ULID" in str(res)
