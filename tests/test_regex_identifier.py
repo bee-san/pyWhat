@@ -16,6 +16,8 @@ r_rarity_0 = regex_identifier.RegexIdentifier()
 
 def _assert_match_first_item(name, res):
     assert name in res[0]["Regex Pattern"]["Name"]
+    # TODO:
+    # - http://10.1.1.1 == ip
 
 
 def _assert_match_exploit_first_item(search, res):

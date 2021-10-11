@@ -1297,11 +1297,11 @@
         "tryhackme.com",
         "http://username:password@example.com/",
         "hTTPs://tryhackme.com",
-        "https://xn--80aaxitdbjk.xn--p1ai/"
+        "https://xn--80aaxitdbjk.xn--p1ai/",
+        "http://10.1.1.1"
       ],
       "Invalid": [
-        "tryhackme.comm",
-        "http://10.1.1.1"
+        "tryhackme.comm"
       ]
     }
   },
