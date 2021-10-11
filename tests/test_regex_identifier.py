@@ -42,14 +42,6 @@ def test_if_all_tests_exist():
         ), "No test for this regex found in 'test_regex_identifier.py'. Note that a test needs to assert the whole name."
 
 
-def test_sorted_by_rarity():
-    rarity_num = [regex["Rarity"] for regex in database]
-
-    assert rarity_num == sorted(
-        rarity_num, reverse=True
-    ), "Regexes should be sorted by rarity in 'regex.json'. Regexes with rarity '1' are at the top of the file and '0' is at the bottom."
-
-
 def test_dogecoin():
     res = r.check(["DANHz6EQVoWyZ9rER56DwTXHWUxfkv9k2o"])
     _assert_match_first_item("Dogecoin (DOGE) Wallet Address", res)

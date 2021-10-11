@@ -32,3 +32,11 @@ def test_regex_format():
         assert (
             re.findall(r"\^\||\|\^|\$\|\^|\$\||\|\$", regex["Regex"]) == []
         ), "Remove in-between boundaries. For example, '^|$' should only be '|'."
+
+
+def test_sorted_by_rarity():
+    rarity_num = [regex["Rarity"] for regex in database]
+
+    assert rarity_num == sorted(
+        rarity_num, reverse=True
+    ), "Regexes should be sorted by rarity in 'regex.json'. Regexes with rarity '1' are at the top of the file and '0' is at the bottom."
