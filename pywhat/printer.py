@@ -11,7 +11,7 @@ class Printing:
         self.console = Console(highlight=False)
         self.bug_bounty_mode = False
 
-    def pretty_print(self, text: dict, text_input):
+    def pretty_print(self, text: dict, text_input, print_tags=False):
         to_out = ""
 
         if text["File Signatures"]:
@@ -70,7 +70,14 @@ class Printing:
                     ):
                         exploit = i["Regex Pattern"]["Exploit"]
 
-                    if not description:
+                    if print_tags:
+                        tags = f"Tags: {', '.join(i['Regex Pattern']['Tags'])}"
+                        if description is None:
+                            description = tags
+                        else:
+                            description += "\n" + tags
+
+                    if description is None:
                         description = "None"
 
                     # FIXME this is quite messy
@@ -117,7 +124,7 @@ class Printing:
     Returns the printable object
     """
 
-    def print_raw(self, text: dict, text_input) -> str:
+    def print_raw(self, text: dict, text_input, print_tags=False):
         output_str = ""
 
         if text["File Signatures"] and text["Regexes"]:
@@ -171,6 +178,10 @@ class Printing:
                             "\n[bold #D7Afff]Exploit: [/bold #D7Afff]"
                             + i["Regex Pattern"]["Exploit"]
                         )
+
+                    if print_tags:
+                        output_str += f"\n[bold #D7Afff]Tags: [/bold #D7Afff]{', '.join(i['Regex Pattern']['Tags'])}"
+
                     output_str += "\n\n"
 
         if output_str == "" and not self.bug_bounty_mode:

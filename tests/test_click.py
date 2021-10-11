@@ -695,3 +695,19 @@ def test_format5():
     result = runner.invoke(main, ["-db", "--format", r"%e", "thm{2}"])
     assert result.exit_code == 0
     assert len(result.output) == 0
+
+
+def test_print_tags():
+    runner = CliRunner()
+    result = runner.invoke(main, ["-db", "-pt", "thm{2}"])
+    assert result.exit_code == 0
+    assert "Tags: CTF Flag" in result.output
+
+
+def test_print_tags2():
+    runner = CliRunner()
+    result = runner.invoke(
+        main, ["-db", "--print-tags", "--format", "pretty", "thm{2}"]
+    )
+    assert result.exit_code == 0
+    assert "Tags: CTF Flag" in result.output

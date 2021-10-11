@@ -120,6 +120,7 @@ def get_text(ctx, opts, value):
     required=False,
     help="Format output according to specified rules.",
 )
+@click.option("-pt", "--print-tags", is_flag=True, help="Add flags to ouput")
 def main(**kwargs):
     """
     pyWhat - Identify what something is.
@@ -280,14 +281,14 @@ def main(**kwargs):
 
     p = printer.Printing()
 
-    if kwargs["json"] or kwargs["format"] == "json":
+    if kwargs["json"] or str(kwargs["format"]).strip() == "json":
         p.print_json(identified_output)
-    elif kwargs["format"] == "pretty":
-        p.pretty_print(identified_output, kwargs["text_input"])
+    elif str(kwargs["format"]).strip() == "pretty":
+        p.pretty_print(identified_output, kwargs["text_input"], kwargs["print_tags"])
     elif kwargs["format"] is not None:
         p.format_print(identified_output, kwargs["format"])
     else:
-        p.print_raw(identified_output, kwargs["text_input"])
+        p.print_raw(identified_output, kwargs["text_input"], kwargs["print_tags"])
 
 
 class What_Object:
