@@ -1575,7 +1575,7 @@
       ]
    },
    {
-      "Name": "Amazon Web Services Organization identifier",
+      "Name": "Amazon Web Services Organization Identifier",
       "Regex": "^(o-[a-z0-9]{10,32})$",
       "plural_name": false,
       "Description": null,
@@ -1746,7 +1746,7 @@
       ]
    },
    {
-      "Name": "Amazon Web Services EC2 Instance identifier",
+      "Name": "Amazon Web Services EC2 Instance Identifier",
       "Regex": "(?i)^(\\b[a-z]+-[a-z0-9]+)$",
       "plural_name": false,
       "Description": null,
