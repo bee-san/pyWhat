@@ -664,12 +664,12 @@ def test_aws_secret_access_key():
 
 def test_aws_ec2_id():
     res = r.check(["i-1234567890abcdef0"])
-    assert "Amazon Web Services EC2 Instance identifier" in str(res)
+    assert "Amazon Web Services EC2 Instance Identifier" in str(res)
 
 
 def test_aws_org_id():
     res = r.check(["o-aa111bb222"])
-    assert "Amazon Web Services Organization identifier" in str(res)
+    assert "Amazon Web Services Organization Identifier" in str(res)
 
 
 def test_aws_sns():
