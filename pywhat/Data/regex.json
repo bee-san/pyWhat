@@ -1027,6 +1027,30 @@
       ]
    },
    {
+    "Name": "Mount Command With Clear Credentials",
+    "Regex": "^(mount(.cifs)?[ ]+[^\\n]*(username=[^, \\n]+[^\\n ]*password=[^, \\n]+|password=[^, \\n]+[^\\n ]*username=[^, \\n]+))$",
+    "plural_name": false,
+    "Description": null,
+    "Rarity": 1,
+    "URL": null,
+    "Tags": [
+         "Credentials",
+         "Bug Bounty"
+      ]
+   },
+   {
+    "Name": "CIFS Fstab Entry With Clear Credentials",
+    "Regex": "^(cifs[ ]+[^\\n]*(username=[^, \\n]+[^\\n ]*password=[^, \\n]+|password=[^, \\n]+[^\\n ]*username=[^, \\n]+))$",
+    "plural_name": false,
+    "Description": null,
+    "Rarity": 1,
+    "URL": null,
+    "Tags": [
+         "Credentials",
+         "Bug Bounty"
+      ]
+   },
+   {
       "Name": "Google Cloud Platform API Key",
       "Regex": "(?i)^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12})$",
       "plural_name": false,
@@ -1783,7 +1807,7 @@
          "ObjectID"
       ]
    },
-   
+
    {
       "Name": "Recent Unix Timestamp",
       "Regex": "^([0-9]{10})$",

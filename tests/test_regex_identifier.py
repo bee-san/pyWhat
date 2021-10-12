@@ -1035,3 +1035,29 @@ def test_sshpass():
 def test_sshpass_multiple_args():
     res = r.check(["sshpass -P 'Please enter your password' -p MyPassw0RD!"])
     _assert_match_first_item("SSHPass Clear Password Argument", res)
+
+
+def test_mount_command():
+    res = r.check(["mount -o username=myuser,password=password"])
+    _assert_match_first_item("Mount Command With Clear Credentials", res)
+
+
+def test_mountcifs_command():
+    res = r.check(["mount.cifs -o username=myuser,password=password"])
+    _assert_match_first_item("Mount Command With Clear Credentials", res)
+
+
+def test_complex_mount_command():
+    res = r.check(
+        [
+            "mount -t cifs -osec=ntlmv2,password=S3cUr3D!,domain=mydomain,noserverino,username=H4x0r"
+        ]
+    )
+    _assert_match_first_item("Mount Command With Clear Credentials", res)
+
+
+def test_cifs_fstab_entry():
+    res = r.check(
+        ["cifs uid=1000,password=password,gid=1000,noperm,nofail,username=myuser"]
+    )
+    _assert_match_first_item("CIFS Fstab Entry With Clear Credentials", res)
