@@ -199,27 +199,29 @@ class Printing:
 
             # Split format_str so that format_list's item will either be r'\\' or something else
             start = 0
-            while (i := format_str.find(r"\\", start)) != -1:
+            i = format_str.find(r"\\", start)
+            while i != -1:
                 if format_str[start:i]:
                     format_list.append(format_str[start:i])
                 format_list.append("\\")
                 start = i + 2
+                i = format_str.find(r"\\", start)
             format_list.append(format_str[start:])
 
             for key, value in text["Regexes"].items():
-                for i in value:
+                for match in value:
                     temp = ""
                     for s in format_list:
                         formats = {
-                            "%m": i["Matched"],
-                            "%n": i["Regex Pattern"]["Name"],
-                            "%d": i["Regex Pattern"]["Description"],
-                            "%e": i["Regex Pattern"].get("Exploit"),
-                            "%r": str(i["Regex Pattern"]["Rarity"]),
-                            "%l": i["Regex Pattern"]["URL"] + i["Matched"]
-                            if i["Regex Pattern"]["URL"] is not None
+                            "%m": match["Matched"],
+                            "%n": match["Regex Pattern"]["Name"],
+                            "%d": match["Regex Pattern"]["Description"],
+                            "%e": match["Regex Pattern"].get("Exploit"),
+                            "%r": str(match["Regex Pattern"]["Rarity"]),
+                            "%l": match["Regex Pattern"]["URL"] + match["Matched"]
+                            if match["Regex Pattern"]["URL"] is not None
                             else None,
-                            "%t": ", ".join(i["Regex Pattern"]["Tags"]),
+                            "%t": ", ".join(match["Regex Pattern"]["Tags"]),
                         }
                         for format, value in formats.items():
                             value = str() if value is None else value
