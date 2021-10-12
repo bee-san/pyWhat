@@ -1015,7 +1015,7 @@
     ],
     "Examples": {
       "Valid": [
-        "https://calendar.google.com/calendar/embed?src=ht3jlfaac5lfd6263ulfh4tql8%40group.calendar.google.com&ctz=Europe%2FLondon",
+        "https://calendar.google.com/calendar/embed?src=ht3jlfaac5lfd6263ulfh4tql8%40group.calendar.google.com&ctz=Europe%2FLondon"
       ],
       "Invalid": []
     }
@@ -1356,7 +1356,12 @@
       "IPv6",
       "Bug Bounty"
     ],
-    "Examples":{"Valid":["192.0.2.235:80"],"Invalid":[]}
+    "Examples": {
+      "Valid": [
+        "192.0.2.235:80"
+      ],
+      "Invalid": []
+    }
   },
   {
     "Name": "Bitcoin (\u20bf) Wallet Address",
