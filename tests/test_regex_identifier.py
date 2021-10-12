@@ -99,21 +99,6 @@ def test_ip():
     assert "Internet Protocol (IP) Address Version 4" in res[1]["Regex Pattern"]["Name"]
 
 
-def test_ip2():
-    res = r.check(["192.0.2.235:80"])
-    assert "192.0.2.235:80" in res[0]["Matched"]
-
-
-def test_ip3():
-    res = r.check(["2001:0db8:85a3:0000:0000:8a2e:0370:7334"])
-    _assert_match_first_item("Internet Protocol (IP) Address Version 6", res)
-
-
-def test_ip4():
-    res = r.check(["[2001:db8::1]:8080"])
-    assert "[2001:db8::1]:8080" in res[0]["Matched"]
-
-
 def test_mac():
     res = r.check(["00:00:00:00:00:00"])
     assert (
@@ -276,54 +261,6 @@ def test_unix_timestamp5():
     assert "Recent Unix Millisecond Timestamp" not in keys
 
 
-def test_aws_access_key():
-    res = r.check(["AKIAIOSFODNN7EXAMPLE"])
-    assert "Amazon Web Services Access Key" in str(res)
-
-
-def test_aws_secret_access_key():
-    res = r.check(["Nw0XP0t2OdyUkaIk3B8TaAa2gEXAMPLEMvD2tW+g"])
-    assert "Amazon Web Services Secret Access Key" in str(res)
-
-
-def test_aws_ec2_id():
-    res = r.check(["i-1234567890abcdef0"])
-    assert "Amazon Web Services EC2 Instance identifier" in str(res)
-
-
-def test_aws_org_id():
-    res = r.check(["o-aa111bb222"])
-    assert "Amazon Web Services Organization identifier" in str(res)
-
-
-def test_aws_sns():
-    res = r.check(["arn:aws:sns:us-east-2:123456789012:MyTopic"])
-    assert "Amazon SNS Topic" in str(res)
-
-
-def test_google_cal():
-    res = r.check(
-        [
-            "https://calendar.google.com/calendar/embed?src=ht3jlfaac5lfd6263ulfh4tql8%40group.calendar.google.com&ctz=Europe%2FLondon"
-        ]
-    )
-    assert "Google Calendar URI" in str(res)
-
-
-def test_notion_note():
-    res = r.check(
-        ["https://www.notion.so/test-user/My-Note-fa45346d9dd4421abc6857ce2e7fb0db"]
-    )
-    assert "Notion Note URI" in str(res)
-
-
-def test_notion_team_note():
-    res = r.check(
-        ["https://testorg.notion.site/My-Note-9f8863871e024ea6acc64d6564004a22"]
-    )
-    assert "Notion Team Note URI" in str(res)
-
-
 def test_slack_api_key():
     res = r.check(
         ["xoxp-514654431830-843187921057-792480346180-d44d2r9b71f954o8z2k5llt41ovpip6v"]
@@ -342,46 +279,3 @@ def test_slack_token():
         "https://slack.com/api/auth.test?token=xoxb-51465443183-hgvhXVd2ISC2x7gaoRWBOUdQ",
         res,
     )
-
-
-def test_jcb_card():
-    res = r.check(["3537124887293334"])
-    _assert_match_first_item("JCB Card Number", res)
-
-    res = r.check(["3543824683332150682"])
-    _assert_match_first_item("JCB Card Number", res)
-
-
-def test_zapier_webhook():
-    res = r.check(["https://hooks.zapier.com/hooks/catch/1234567/f8f22dgg/"])
-    _assert_match_first_item("Zapier Webhook Token", res)
-
-
-def test_turkish_id_number():
-    res = r.check(["12345678902"])
-    assert "Turkish Identification Number" in str(res)
-
-
-def test_turkish_id_number2():
-    res = r.check(["12345678900"])
-    assert "Turkish Identification Number" in str(res)
-
-
-def test_turkish_tax_number():
-    res = r.check(["1234567890"], dist=d)
-    assert "Turkish Tax Number" in str(res)
-
-
-def test_uuid():
-    res = r.check(["b2ced6f5-2542-4f7d-b131-e3ada95d8b75"])
-    assert "UUID" in str(res)
-
-
-def test_objectid():
-    res = r_rarity_0.check(["5fc7c33a7ef88b139122a38a"], dist=d)
-    assert "ObjectID" in str(res)
-
-
-def test_ulid():
-    res = r_rarity_0.check(["01ERJ58HMWDN3VTRRHZQV2T5R5"], dist=d)
-    assert "ULID" in str(res)
