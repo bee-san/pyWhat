@@ -19,7 +19,7 @@ def test_name_capitalization():
             assert word.title() == word, (
                 f'Wrong capitalization in regex name: "{entry_name}"\n'
                 f'Expected: "{entry_name.title()}"\n'
-                "Please capitalize every the first letter of each word."
+                "Please capitalize the first letter of each word."
             )
 
 
