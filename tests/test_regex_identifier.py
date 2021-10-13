@@ -189,20 +189,32 @@ def test_youtube_id():
 
 
 @pytest.mark.parametrize(
-    "match",
+    "match, valid, valid_recent",
     [
-        "1577836800",  # 2020-01-01
-        "94694400",  # 1973-01-01
-        "1234567",  # 7 numbers
-        "1577836800000",  # 2020-01-01
-        "94694400000",  # 1973-01-01
+        ("1577836800", True, True),  # 2020-01-01
+        ("94694400", True, False),  # 1973-01-01
+        ("1234567", False, False),  # 7 numbers
     ],
 )
-def test_unix_timestamp(match: str):
-    res = r.check([match], dist=d)  # 2020-01-01
+def test_unix_timestamp(match: str, valid: bool, valid_recent: bool):
+    res = r.check([match], dist=d)
     keys = [m["Regex Pattern"]["Name"] for m in res]
-    assert "Unix Timestamp" in keys
-    assert "Recent Unix Timestamp" in keys
+    assert ("Unix Timestamp" in keys) == valid
+    assert ("Recent Unix Timestamp" in keys) == valid_recent
+
+
+@pytest.mark.parametrize(
+    "match, valid, valid_recent",
+    [
+        ("1577836800000", True, True),  # 2020-01-01
+        ("94694400000", True, False),  # 1973-01-01
+    ],
+)
+def test_unix_millisecond_timestamp(match: str, valid: bool, valid_recent: bool):
+    res = r.check([match], dist=d)
+    keys = [m["Regex Pattern"]["Name"] for m in res]
+    assert ("Unix Millisecond Timestamp" in keys) == valid
+    assert ("Recent Unix Millisecond Timestamp" in keys) == valid_recent
 
 
 def test_slack_api_key():
