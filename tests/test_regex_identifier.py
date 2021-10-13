@@ -99,59 +99,25 @@ def test_ip():
     assert "Internet Protocol (IP) Address Version 4" in res[1]["Regex Pattern"]["Name"]
 
 
-def test_mac():
-    res = r.check(["00:00:00:00:00:00"])
+@pytest.mark.parametrize(
+    "match", ["00:00:00:00:00:00", "00-00-00-00-00-00", "0000.0000.0000"]
+)
+def test_mac(match: str):
+    res = r.check([match])
     assert (
         res
-        and "00:00:00:00:00:00" in res[0]["Matched"]
+        and match in res[0]["Matched"]
         and res[0]["Regex Pattern"]["Name"]
         == "EUI-48 Identifier (Ethernet, WiFi, Bluetooth, etc)"
         and "Xerox Corp" in res[0]["Regex Pattern"]["Description"]
     )
 
 
-def test_mac2():
-    res = r.check(["00-00-00-00-00-00"])
-    assert (
-        res
-        and "00-00-00-00-00-00" in res[0]["Matched"]
-        and res[0]["Regex Pattern"]["Name"]
-        == "EUI-48 Identifier (Ethernet, WiFi, Bluetooth, etc)"
-        and "Xerox Corp" in res[0]["Regex Pattern"]["Description"]
-    )
-
-
-def test_mac3():
-    res = r.check(["0000.0000.0000"])
-    assert (
-        res
-        and "0000.0000.0000" in res[0]["Matched"]
-        and res[0]["Regex Pattern"]["Name"]
-        == "EUI-48 Identifier (Ethernet, WiFi, Bluetooth, etc)"
-        and "Xerox Corp" in res[0]["Regex Pattern"]["Description"]
-    )
-
-
-def test_mac4():
-    res = r.check(["00-00-00-00.00-00"])
-    assert (
-        not res
-        or res[0]["Regex Pattern"]["Name"]
-        != "EUI-48 Identifier (Ethernet, WiFi, Bluetooth, etc)"
-    )
-
-
-def test_mac5():
-    res = r.check(["00:00-00-00-00-00"])
-    assert (
-        not res
-        or res[0]["Regex Pattern"]["Name"]
-        != "EUI-48 Identifier (Ethernet, WiFi, Bluetooth, etc)"
-    )
-
-
-def test_mac6():
-    res = r.check(["00:00:0G:00:00:00"])
+@pytest.mark.parametrize(
+    "match", ["00-00-00-00.00-00", "00:00-00-00-00-00", "00:00:0G:00:00:00"]
+)
+def test_mac4(match: str):
+    res = r.check([match])
     assert (
         not res
         or res[0]["Regex Pattern"]["Name"]
@@ -203,22 +169,18 @@ def test_email3():
     assert "Email Address" in res[2]["Regex Pattern"]["Name"]
 
 
-def test_phone_number2():
-    res = r.check(["+1-202-555-0156"])
+@pytest.mark.parametrize(
+    "match,description",
+    [
+        ("+1-202-555-0156", "United States"),
+        ("+662025550156", "Thailand"),
+        ("+356 202 555 0156", "Malta"),
+    ],
+)
+def test_phone_number2(match: str, description: str):
+    res = r.check([match])
     _assert_match_first_item("Phone Number", res)
-    assert "United States" in res[0]["Regex Pattern"]["Description"]
-
-
-def test_phone_number3():
-    res = r.check(["+662025550156"])
-    _assert_match_first_item("Phone Number", res)
-    assert "Thailand" in res[0]["Regex Pattern"]["Description"]
-
-
-def test_phone_number4():
-    res = r.check(["+356 202 555 0156"])
-    _assert_match_first_item("Phone Number", res)
-    assert "Malta" in res[0]["Regex Pattern"]["Description"]
+    assert description in res[0]["Regex Pattern"]["Description"]
 
 
 def test_youtube_id():
@@ -226,39 +188,21 @@ def test_youtube_id():
     _assert_match_first_item("YouTube Video ID", res)
 
 
-def test_unix_timestamp():
-    res = r.check(["1577836800"], dist=d)  # 2020-01-01
+@pytest.mark.parametrize(
+    "match",
+    [
+        "1577836800",  # 2020-01-01
+        "94694400",  # 1973-01-01
+        "1234567",  # 7 numbers
+        "1577836800000",  # 2020-01-01
+        "94694400000",  # 1973-01-01
+    ],
+)
+def test_unix_timestamp(match: str):
+    res = r.check([match], dist=d)  # 2020-01-01
     keys = [m["Regex Pattern"]["Name"] for m in res]
     assert "Unix Timestamp" in keys
     assert "Recent Unix Timestamp" in keys
-
-
-def test_unix_timestamp2():
-    res = r.check(["94694400"], dist=d)  # 1973-01-01
-    keys = [m["Regex Pattern"]["Name"] for m in res]
-    assert "Unix Timestamp" in keys
-    assert "Recent Unix Timestamp" not in keys
-
-
-def test_unix_timestamp3():
-    res = r.check(["1234567"], dist=d)  # 7 numbers
-    keys = [m["Regex Pattern"]["Name"] for m in res]
-    assert "Unix Timestamp" not in keys
-    assert "Recent Unix Timestamp" not in keys
-
-
-def test_unix_timestamp4():
-    res = r.check(["1577836800000"], dist=d)  # 2020-01-01
-    keys = [m["Regex Pattern"]["Name"] for m in res]
-    assert "Unix Millisecond Timestamp" in keys
-    assert "Recent Unix Millisecond Timestamp" in keys
-
-
-def test_unix_timestamp5():
-    res = r.check(["94694400000"], dist=d)  # 1973-01-01
-    keys = [m["Regex Pattern"]["Name"] for m in res]
-    assert "Unix Millisecond Timestamp" in keys
-    assert "Recent Unix Millisecond Timestamp" not in keys
 
 
 def test_slack_api_key():
