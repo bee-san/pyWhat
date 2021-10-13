@@ -9,9 +9,7 @@ from pywhat.helper import load_regexes
 
 database = load_regexes()
 r = regex_identifier.RegexIdentifier()
-filter1 = Filter({"MinRarity": 0.0})
-d = Distribution(filter1)
-r_rarity_0 = regex_identifier.RegexIdentifier()
+dist = Distribution(Filter({"MinRarity": 0.0}))
 
 
 def _assert_match_first_item(name, res):
@@ -34,7 +32,8 @@ def _assert_match_in_items(name, res):
 
 def regex_valid_match(name: str, match: str) -> bool:
     return any(
-        name in matched["Regex Pattern"]["Name"] for matched in r.check([match], dist=d)
+        name in matched["Regex Pattern"]["Name"]
+        for matched in r.check([match], dist=dist)
     )
 
 
@@ -156,7 +155,7 @@ def test_phone_number2(match: str, description: str):
 
 
 def test_youtube_id():
-    res = r.check(["dQw4w9WgXcQ"], dist=d)
+    res = r.check(["dQw4w9WgXcQ"], dist=dist)
     _assert_match_first_item("YouTube Video ID", res)
 
 
@@ -169,7 +168,7 @@ def test_youtube_id():
     ],
 )
 def test_unix_timestamp(match: str, valid: bool, valid_recent: bool):
-    res = r.check([match], dist=d)
+    res = r.check([match], dist=dist)
     keys = [m["Regex Pattern"]["Name"] for m in res]
     assert ("Unix Timestamp" in keys) == valid
     assert ("Recent Unix Timestamp" in keys) == valid_recent
@@ -183,7 +182,7 @@ def test_unix_timestamp(match: str, valid: bool, valid_recent: bool):
     ],
 )
 def test_unix_millisecond_timestamp(match: str, valid: bool, valid_recent: bool):
-    res = r.check([match], dist=d)
+    res = r.check([match], dist=dist)
     keys = [m["Regex Pattern"]["Name"] for m in res]
     assert ("Unix Millisecond Timestamp" in keys) == valid
     assert ("Recent Unix Millisecond Timestamp" in keys) == valid_recent
