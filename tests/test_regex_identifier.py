@@ -33,7 +33,9 @@ def _assert_match_in_items(name, res):
 
 
 def regex_valid_match(name: str, match: str) -> bool:
-    return any(name in matched["Regex Pattern"]["Name"] for matched in r.check([match]))
+    return any(
+        name in matched["Regex Pattern"]["Name"] for matched in r.check([match], dist=d)
+    )
 
 
 @pytest.mark.parametrize(
