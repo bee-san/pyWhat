@@ -6,9 +6,7 @@
     "Description": null,
     "Rarity": 1,
     "URL": null,
-    "Tags": [
-      "PGP"
-    ],
+    "Tags": ["PGP"],
     "Examples": {
       "Valid": [
         "-----BEGIN PGP PUBLIC KEY BLOCK-----Comment: Alice's OpenPGP certificateComment: https://www.ietf.org/id/draft-bre-openpgp-samples-01.htmlmDMEXEcE6RYJKwYBBAHaRw8BAQdArjWwk3FAqyiFbFBKT4TzXcVBqPTB3gmzlC/Ub7O1u120JkFsaWNlIExvdmVsYWNlIDxhbGljZUBvcGVucGdwLmV4YW1wbGU+iJAEExYIADgCGwMFCwkIBwIGFQoJCAsCBBYCAwECHgECF4AWIQTrhbtfozp14V6UTmPyMVUMT0fjjgUCXaWfOgAKCRDyMVUMT0fjjukrAPoDnHBSogOmsHOsd9qGsiZpgRnOdypvbm+QtXZqth9rvwD9HcDC0tC+PHAsO7OTh1S1TC9RiJsvawAfCPaQZoed8gK4OARcRwTpEgorBgEEAZdVAQUBAQdAQv8GIa2rSTzgqbXCpDDYMiKRVitCsy203x3sE9+eviIDAQgHiHgEGBYIACAWIQTrhbtfozp14V6UTmPyMVUMT0fjjgUCXEcE6QIbDAAKCRDyMVUMT0fjjlnQAQDFHUs6TIcxrNTtEZFjUFm1M0PJ1Dng/cDW4xN80fsn0QEA22Kr7VkCjeAEC08VSTeV+QFsmz55/lntWkwYWhmvOgE==iIGO-----END PGP PUBLIC KEY BLOCK-----"
@@ -23,10 +21,7 @@
     "Description": null,
     "Rarity": 1,
     "URL": null,
-    "Tags": [
-      "PGP",
-      "Bug Bounty"
-    ],
+    "Tags": ["PGP", "Bug Bounty"],
     "Examples": {
       "Valid": [
         "-----BEGIN PGP PRIVATE KEY BLOCK-----Comment: Alice's OpenPGP Transferable Secret KeyComment: https://www.ietf.org/id/draft-bre-openpgp-samples-01.htmllFgEXEcE6RYJKwYBBAHaRw8BAQdArjWwk3FAqyiFbFBKT4TzXcVBqPTB3gmzlC/Ub7O1u10AAP9XBeW6lzGOLx7zHH9AsUDUTb2pggYGMzd0P3ulJ2AfvQ4RtCZBbGljZSBMb3ZlbGFjZSA8YWxpY2VAb3BlbnBncC5leGFtcGxlPoiQBBMWCAA4AhsDBQsJCAcCBhUKCQgLAgQWAgMBAh4BAheAFiEE64W7X6M6deFelE5j8jFVDE9H444FAl2lnzoACgkQ8jFVDE9H447pKwD6A5xwUqIDprBzrHfahrImaYEZzncqb25vkLV2arYfa78A/R3AwtLQvjxwLDuzk4dUtUwvUYibL2sAHwj2kGaHnfICnF0EXEcE6RIKKwYBBAGXVQEFAQEHQEL/BiGtq0k84Km1wqQw2DIikVYrQrMttN8d7BPfnr4iAwEIBwAA/3/xFPG6U17rhTuq+07gmEvaFYKfxRB6sgAYiW6TMTpQEK6IeAQYFggAIBYhBOuFu1+jOnXhXpROY/IxVQxPR+OOBQJcRwTpAhsMAAoJEPIxVQxPR+OOWdABAMUdSzpMhzGs1O0RkWNQWbUzQ8nUOeD9wNbjE3zR+yfRAQDbYqvtWQKN4AQLTxVJN5X5AWybPnn+We1aTBhaGa86AQ===n8OM-----END PGP PRIVATE KEY BLOCK-----"
@@ -41,10 +36,7 @@
     "Description": null,
     "Rarity": 1,
     "URL": null,
-    "Tags": [
-      "Credentials",
-      "SSH Public Key"
-    ],
+    "Tags": ["Credentials", "SSH Public Key"],
     "Examples": {
       "Valid": [
         "ssh-rsa AAAAB3NzaC1tc2EAAAADAQABAAACAQDrnjkGtf3iA46rtwsvRiscvMTCw30l5Mmln/sf8Wohg4RPc7nuIx3/fB86K9jzBNoQk6Fb00p2cSW0dX6c3OTL5R5Q0rBjOFy6GV07MkS7rXa7WYh4ObxBh+M+LEzxVIw29anzQFZkR0TAf6x2rBoErK7JYU4fyqFBDFupTt3coQDPEEmVwtLLUCEnJrurbbnJKcWJ+/FbItLxYyMLPl8TwEn0iqiJ97onCU2DuBtiYv3hp1WoEH08b5WDF0F04zEPRdJT+WisxlEFRgaj51o2BtjOC+D2qZQDb4LHaAfJ0WcO4nu7YocdlcLp2JPfXKKgu9P5J8UDsmXbR3KCJ1oddFa2R6TbHc6d2hKyG4amBzMX5ltxXu7D6FLPZlFqua8YooY7A2zwIVirOUH/cfx+5O9o0CtspkNmj/iYzN0FPaOpELncWsuauy9hrGql/1cF4SUr20zHFoBoDQUtmvmBnWnKoGfpWXzuda449FVtmcrEjvBzCvCb3RStu0BbyOOybJagbKif3MkcYVO10pRbTveIUwgCD6F3ypD11XztoPNsgScmjme0sj/KWWNLyQkLWtpJEQ4k46745NAC5g+nP28TR2JM8doeqsxA8JovQkLWwDcR+WYZu2z/I8dfhOmalnoMRTJ2NzWDc0OSkKGYWjexR4fN6lAKCUOUptl9Nw== r00t@my-random_host"
@@ -59,10 +51,7 @@
     "Description": null,
     "Rarity": 1,
     "URL": null,
-    "Tags": [
-      "Credentials",
-      "Bug Bounty"
-    ],
+    "Tags": ["Credentials", "Bug Bounty"],
     "Examples": {
       "Valid": [
         "-----BEGIN RSA PRIVATE KEY-----MIIEoQIBAAKCAQBYNGcp1Jm7GOGffs9wvpIsi9RKPE/a4usQyEdf8G2C0pLcOoypfG1MiOQCDDRN4HtMDoe9KTVjVnnREfmQq2k1hT1BZHfaRu/3YvpFrleozzYmY1XRSeUiM6G71ADg8cPZlAuH1RjswlevJyhNVWzy+DLumpbRgv6nKR9dYSdy2GsFySX488l05+ZaVKgHwlGeKd33YNPRAUNLSPKLdd9wi1djGaQpSo7jWRb6lIFJUR7FdvxwjAVMhDljxXYHPP0GXFS6KTGcfB97dle90qu/4nwdKWd4RZ5pqIbFi1D5ejItUzY40GpsPuN/tkamwB5jY0AtFY8S9TMxHjRx05/DAgMBAAECggEAKU5pHYLNd3wAdTPqq27jf28APL+f2e64jIRuQHSUpFY+plnY86oseVIGDRtwByRgOU74rFI3CU0/APS8/c34GDNMa2pEYnkj+aNldupdbNWVE0cjsj47yteJHy/6NV2jDSqyd6sI4B9m9sSMsCKYQfSPzYOhq34ACYJNiOptke9PkxpNNODlFJrFQsRKKpv2KdF7Lh3/Yzc6p53gilYR9U+Sn4mBrkuURLm2Qq++r0CNTjpmbunbjAL5q/oK8bpJEz3uZqbSQ5GbSLCNroRyi7eIF1Evvk0Vb9nSyfm94VdP+yVr1VvtOt8WigHwAr8E+ujg0rrAKMswfbvNFroNMQKBgQCs/rQvlTfpRiHUlCB09HZzquM8o7pBxTpKAX9247SW81V41EHsIS69WGZzcYbYQlxOxQi7gHiALB/yRLFNiAHAhODFMGTYtprTdW/JK6TC8CPvK3TBnPSYDPP/ME2F2UZKVHWlD3FFtUqp9BppWCHDLp7N/+i5eJy+ankJYzeGywKBgQCChsDhaPJAnHp/zHJmhDXQkqVeoB8SW2WzH481xVgyu2gIsEGmgActfEAyCqRuzjnMSIjXBL5LSAZXft8d+wveR3PsUiVdUurbcrije1ku3jDPXdBQrjmyWZvCXXnZ8oqX18C05a0pgzX5oDluA1ShcI7uWNHkIPYcZskcp96z6QKBgG9gpP2lopOrtYg5vhPOeJzLvvWBrB9ALeELydbvj4tIKxVaAv9V9dOuIHfe9aQyRV/pd0/QzMQopIDEPSrfj9E1O8l4+NSV7GSMTWZFlRR0q44GemtU9B0Y6da4cJDmbFzat8uHf7QTnniBUqfUOBiD4XZbdqhCwRfPURH8MPm1AoGAWHZ9yQe4kAO9nlnw+vwGAQsymxRImsdpAOKVy+qpIREUrDbQ98hzlOdOFtxRn2uTjplmbNwhIKJ68dfh3c7kt0yUC4mNG1f0JrD05I/X3MToLdK2OcgrAG5s+2khCY6xUcH/MFstZiIwdbOa2K3XMOc5Z964ujWAt7UN/qbjb+kCgYBdPN6J1b6OuTt4xYTCenX+KlGBb9QsuK8uXMDkhJhrtcHAyuxyJrDjQu5i3djeZerflT0EESCet0zGPd5bGyP4KaIsmLwYheDLrziS6xqqXL0irMZiWVaVquC3JlWJMw6/Y66WRuxd+oRBbE62lHWnzT2J8dfG+su483KKgli02Q==-----END RSA PRIVATE KEY-----",
@@ -82,10 +71,7 @@
     "Description": null,
     "Rarity": 1,
     "URL": null,
-    "Tags": [
-      "Credentials",
-      "SSH Public Key"
-    ],
+    "Tags": ["Credentials", "SSH Public Key"],
     "Examples": {
       "Valid": [
         "ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBCE9Uli8bGnD4hOWdeo5KKQJ/P/vOazI4MgqJK54w37emP2JwOAOdMmXuwpxbKng3KZz27mz+nKWIlXJ3rzSGMo= r00t@my-random_host"
@@ -100,10 +86,7 @@
     "Description": null,
     "Rarity": 1,
     "URL": null,
-    "Tags": [
-      "Credentials",
-      "SSH Public Key"
-    ],
+    "Tags": ["Credentials", "SSH Public Key"],
     "Examples": {
       "Valid": [
         "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIK0wmN/Cr3JXqmLW7u+g9pTh+wyqDHpSQEIQczXkVx9q r00t@my-random_host"
@@ -118,14 +101,9 @@
     "Description": "Used for [#CAE4F1][link=https://en.wikipedia.org/wiki/Cross-origin_resource_sharing]Cross-Origin Resource Sharing (CORS)[/link][/#CAE4F1]",
     "Rarity": 1,
     "URL": null,
-    "Tags": [
-      "Networking",
-      "Website"
-    ],
+    "Tags": ["Networking", "Website"],
     "Examples": {
-      "Valid": [
-        "Access-Control-Allow: *"
-      ],
+      "Valid": ["Access-Control-Allow: *"],
       "Invalid": []
     }
   },
@@ -136,13 +114,9 @@
     "Description": "Used for Capture The Flags at https://tryhackme.com",
     "Rarity": 1,
     "URL": null,
-    "Tags": [
-      "CTF Flag"
-    ],
+    "Tags": ["CTF Flag"],
     "Examples": {
-      "Valid": [
-        "thm{hello}"
-      ],
+      "Valid": ["thm{hello}"],
       "Invalid": []
     }
   },
@@ -153,13 +127,9 @@
     "Description": "Used for Capture The Flags at https://hackthebox.eu",
     "Rarity": 1,
     "URL": null,
-    "Tags": [
-      "CTF Flag"
-    ],
+    "Tags": ["CTF Flag"],
     "Examples": {
-      "Valid": [
-        "htb{just_a_test}"
-      ],
+      "Valid": ["htb{just_a_test}"],
       "Invalid": []
     }
   },
@@ -170,13 +140,9 @@
     "Description": null,
     "Rarity": 1,
     "URL": null,
-    "Tags": [
-      "CTF Flag"
-    ],
+    "Tags": ["CTF Flag"],
     "Examples": {
-      "Valid": [
-        "FLAG{hello}"
-      ],
+      "Valid": ["FLAG{hello}"],
       "Invalid": []
     }
   },
@@ -187,11 +153,7 @@
     "Description": null,
     "Rarity": 1,
     "URL": null,
-    "Tags": [
-      "Media",
-      "YouTube",
-      "YouTube Video"
-    ],
+    "Tags": ["Media", "YouTube", "YouTube Video"],
     "Examples": {
       "Valid": [
         "https://www.youtube.com/watch?v=ScOAntcCa78",
@@ -214,9 +176,7 @@
       "Bitcoin"
     ],
     "Examples": {
-      "Valid": [
-        "bitcoincash:qzlg6uvceehgzgtz6phmvy8gtdqyt6vf359at4n3lq"
-      ],
+      "Valid": ["bitcoincash:qzlg6uvceehgzgtz6phmvy8gtdqyt6vf359at4n3lq"],
       "Invalid": []
     }
   },
@@ -228,12 +188,7 @@
     "Exploit": "Use the command below to verify that the API key is valid:\n  $ curl -X POST https://api.heroku.com/apps -H \"Accept: application/vnd.heroku+json; version=3\" -H \"Authorization: Bearer API_KEY_HERE\"\n",
     "Rarity": 1,
     "URL": null,
-    "Tags": [
-      "Bug Bounty",
-      "API Keys",
-      "Credentials",
-      "Heroku"
-    ]
+    "Tags": ["Bug Bounty", "API Keys", "Credentials", "Heroku"]
   },
   {
     "Name": "Slack API Key",
@@ -243,12 +198,13 @@
     "Exploit": "Use the command below to verify that the API key is valid:\n  $ curl -sX POST \"https://slack.com/api/auth.test?token=API_KEY_HERE&pretty=1\"\n",
     "Rarity": 1,
     "URL": null,
-    "Tags": [
-      "Bug Bounty",
-      "API Keys",
-      "Credentials",
-      "Slack"
-    ]
+    "Tags": ["Bug Bounty", "API Keys", "Credentials", "Slack"],
+    "Examples": {
+      "Valid": [
+        "xoxp-514654431830-843187921057-792480346180-d44d2r9b71f954o8z2k5llt41ovpip6v"
+      ],
+      "Invalid": []
+    }
   },
   {
     "Name": "Slack Webhook",
@@ -258,12 +214,7 @@
     "Exploit": "If the command below returns 'missing_text_or_fallback_or_attachments', it means\nthat the URL is valid, any other responses would mean that the URL is invalid.\n  $ curl -s -X POST -H \"Content-type: application/json\" -d '{\"text\":\"\"}' \"SLACK_WEBOOK_URL_HERE\"\n",
     "Rarity": 1,
     "URL": null,
-    "Tags": [
-      "Bug Bounty",
-      "API Keys",
-      "Credentials",
-      "Slack"
-    ]
+    "Tags": ["Bug Bounty", "API Keys", "Credentials", "Slack"]
   },
   {
     "Name": "Amazon Web Services Simple Storage (AWS S3) URL",
@@ -272,15 +223,9 @@
     "Description": null,
     "Rarity": 1,
     "URL": null,
-    "Tags": [
-      "Networking",
-      "AWS",
-      "Bug Bounty"
-    ],
+    "Tags": ["Networking", "AWS", "Bug Bounty"],
     "Examples": {
-      "Valid": [
-        "http://s3.amazonaws.com/bucket"
-      ],
+      "Valid": ["http://s3.amazonaws.com/bucket"],
       "Invalid": []
     }
   },
@@ -291,16 +236,9 @@
     "Description": "Internal URL, only accessible via the virtual private cloud.",
     "Rarity": 1,
     "URL": null,
-    "Tags": [
-      "Networking",
-      "AWS",
-      "Bug Bounty"
-    ],
+    "Tags": ["Networking", "AWS", "Bug Bounty"],
     "Examples": {
-      "Valid": [
-        "s3://bucket/path/key",
-        "s3://bucket/path/directory/"
-      ],
+      "Valid": ["s3://bucket/path/key", "s3://bucket/path/directory/"],
       "Invalid": []
     }
   },
@@ -312,16 +250,9 @@
     "Exploit": "Use the command below to verify that the secret is valid:\n  $ curl \"https://squareup.com/oauth2/revoke\" -d '{\"access_token\":\"[RANDOM_STRING]\",\"client_id\":\"[APP_ID]\"}'  -H \"Content-Type: application/json\" -H \"Authorization: Client SECRET_HERE\"\n",
     "Rarity": 1,
     "URL": null,
-    "Tags": [
-      "API Keys",
-      "Credentials",
-      "Square",
-      "Bug Bounty"
-    ],
+    "Tags": ["API Keys", "Credentials", "Square", "Bug Bounty"],
     "Examples": {
-      "Valid": [
-        "sq0csp-LBptIQ85io8CvbjVDvmzD1drQbOERgjlhnNrMgscFGk"
-      ],
+      "Valid": ["sq0csp-LBptIQ85io8CvbjVDvmzD1drQbOERgjlhnNrMgscFGk"],
       "Invalid": []
     }
   },
@@ -333,12 +264,7 @@
     "Exploit": "Use the command below to verify that the access token is valid:\n  $ curl https://connect.squareup.com/v2/locations -H \"Authorization: Bearer TOKEN_HERE\"\n",
     "Rarity": 1,
     "URL": null,
-    "Tags": [
-      "API Keys",
-      "Credentials",
-      "Square",
-      "Bug Bounty"
-    ],
+    "Tags": ["API Keys", "Credentials", "Square", "Bug Bounty"],
     "Examples": {
       "Valid": [
         "EAAAEBQZoq15Ub0PBBr_kw0zK-uIHcBPBZcfjPFT05ODfjng9GqFK9Dbgtj1ILcU"
@@ -354,16 +280,9 @@
     "Exploit": "Use the command below to verify that the API key is valid:\n  $ curl https://api.stripe.com/v1/charges -u \"API_KEY_HERE:\"\n",
     "Rarity": 1,
     "URL": null,
-    "Tags": [
-      "API Keys",
-      "Credentials",
-      "Bug Bounty",
-      "Stripe"
-    ],
+    "Tags": ["API Keys", "Credentials", "Bug Bounty", "Stripe"],
     "Examples": {
-      "Valid": [
-        "sk_live_vHDDrL02ioRF5vYtyqiYBKma"
-      ],
+      "Valid": ["sk_live_vHDDrL02ioRF5vYtyqiYBKma"],
       "Invalid": []
     }
   },
@@ -375,16 +294,9 @@
     "Exploit": "Use the command below to verify that the access token is valid:\n  $ curl -s -u \"user:TOKEN_HERE\" https://api.github.com/user\n  curl -s -H \"Authorization: token TOKEN_HERE\" \"https://api.github.com/users/[USERNAME]/orgs\"\n . # Check scope of your api token\n $  curl \"https://api.github.com/rate_limit\" -i -u \"user:TOKEN_HERE\" | grep \"X-OAuth-Scopes:\"\n",
     "Rarity": 1,
     "URL": null,
-    "Tags": [
-      "API Keys",
-      "Credentials",
-      "Bug Bounty",
-      "GitHub"
-    ],
+    "Tags": ["API Keys", "Credentials", "Bug Bounty", "GitHub"],
     "Examples": {
-      "Valid": [
-        "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:test@github.com"
-      ],
+      "Valid": ["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:test@github.com"],
       "Invalid": []
     }
   },
@@ -395,12 +307,7 @@
     "Description": null,
     "Rarity": 1,
     "URL": null,
-    "Tags": [
-      "Identifiers",
-      "Networking",
-      "AWS",
-      "Bug Bounty"
-    ],
+    "Tags": ["Identifiers", "Networking", "AWS", "Bug Bounty"],
     "Examples": {
       "Valid": [
         "arn:partition:service:region:account-id:resource",
@@ -419,12 +326,7 @@
     "Exploit": null,
     "Rarity": 1,
     "URL": "https://developers.facebook.com/tools/debug/accesstoken/?access_token=",
-    "Tags": [
-      "API Keys",
-      "Bug Bounty",
-      "Credentials",
-      "Facebook"
-    ]
+    "Tags": ["API Keys", "Bug Bounty", "Credentials", "Facebook"]
   },
   {
     "Name": "Facebook Secret Key",
@@ -434,12 +336,7 @@
     "Exploit": "Use the command below to verify that the secret key is valid:\n  $ curl \"https://graph.facebook.com/oauth/access_token?client_id=[ID]&client_secret=SECRET_KEY_HERE&redirect_uri=&grant_type=client_credentials\"\n",
     "Rarity": 1,
     "URL": null,
-    "Tags": [
-      "API Keys",
-      "Bug Bounty",
-      "Credentials",
-      "Facebook"
-    ]
+    "Tags": ["API Keys", "Bug Bounty", "Credentials", "Facebook"]
   },
   {
     "Name": "Facebook Client ID",
@@ -449,10 +346,7 @@
     "Exploit": "Use the command below to verify that the secret key is valid:\n  $ curl \"https://graph.facebook.com/oauth/access_token?client_id=ID_HERE&client_secret=[SECRET_KEY]&redirect_uri=&grant_type=client_credentials\"\n",
     "Rarity": 1,
     "URL": null,
-    "Tags": [
-      "Bug Bounty",
-      "Facebook"
-    ]
+    "Tags": ["Bug Bounty", "Facebook"]
   },
   {
     "Name": "Twitter Secret API Key",
@@ -462,12 +356,7 @@
     "Exploit": "Use the command below to verify that the API key is valid:\n  $ curl -u 'API key:API_KEY_HERE' --data 'grant_type=client_credentials' 'https://api.twitter.com/oauth2/token'\n",
     "Rarity": 1,
     "URL": null,
-    "Tags": [
-      "API Keys",
-      "Bug Bounty",
-      "Credentials",
-      "Twitter"
-    ]
+    "Tags": ["API Keys", "Bug Bounty", "Credentials", "Twitter"]
   },
   {
     "Name": "Twitter Client ID",
@@ -477,10 +366,7 @@
     "Exploit": null,
     "Rarity": 1,
     "URL": null,
-    "Tags": [
-      "Bug Bounty",
-      "Twitter"
-    ]
+    "Tags": ["Bug Bounty", "Twitter"]
   },
   {
     "Name": "Node Package Manager (NPM) Token",
@@ -490,15 +376,9 @@
     "Exploit": null,
     "Rarity": 1,
     "URL": null,
-    "Tags": [
-      "Token",
-      "Bug Bounty",
-      "NPM"
-    ],
+    "Tags": ["Token", "Bug Bounty", "NPM"],
     "Examples": {
-      "Valid": [
-        "npm_ir3kktsOr4JeXqeD72C3cWo2mbs5sQ2pfnt9"
-      ],
+      "Valid": ["npm_ir3kktsOr4JeXqeD72C3cWo2mbs5sQ2pfnt9"],
       "Invalid": []
     }
   },
@@ -510,16 +390,9 @@
     "Exploit": "Use the command below to verify that the access token is valid:\n  $ curl -s -u \"user:TOKEN_HERE\" https://api.github.com/user\n  curl -s -H \"Authorization: token TOKEN_HERE\" \"https://api.github.com/users/[USERNAME]/orgs\"\n . # Check scope of your api token\n $  curl \"https://api.github.com/rate_limit\" -i -u \"user:TOKEN_HERE\" | grep \"X-OAuth-Scopes:\"\n",
     "Rarity": 1,
     "URL": null,
-    "Tags": [
-      "API Keys",
-      "Bug Bounty",
-      "Credentials",
-      "GitHub"
-    ],
+    "Tags": ["API Keys", "Bug Bounty", "Credentials", "GitHub"],
     "Examples": {
-      "Valid": [
-        "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"
-      ],
+      "Valid": ["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"],
       "Invalid": []
     }
   },
@@ -531,16 +404,9 @@
     "Exploit": "Use the command below to verify that the access token is valid:\n  $ curl -s -u \"user:TOKEN_HERE\" https://api.github.com/user\n  curl -s -H \"Authorization: token TOKEN_HERE\" \"https://api.github.com/users/[USERNAME]/orgs\"\n . # Check scope of your api token\n $  curl \"https://api.github.com/rate_limit\" -i -u \"user:TOKEN_HERE\" | grep \"X-OAuth-Scopes:\"\n",
     "Rarity": 1,
     "URL": null,
-    "Tags": [
-      "API Keys",
-      "Bug Bounty",
-      "Credentials",
-      "GitHub"
-    ],
+    "Tags": ["API Keys", "Bug Bounty", "Credentials", "GitHub"],
     "Examples": {
-      "Valid": [
-        "gho_16C7e42F292c6912E7710c838347Ae178B4a"
-      ],
+      "Valid": ["gho_16C7e42F292c6912E7710c838347Ae178B4a"],
       "Invalid": []
     }
   },
@@ -552,16 +418,9 @@
     "Exploit": "Use the command below to verify that the app token is valid:\n  $ curl -s -u \"user:TOKEN_HERE\" https://api.github.com/user\n  curl -s -H \"Authorization: token TOKEN_HERE\" \"https://api.github.com/users/[USERNAME]/orgs\"\n . # Check scope of your api token\n $  curl \"https://api.github.com/rate_limit\" -i -u \"user:TOKEN_HERE\" | grep \"X-OAuth-Scopes:\"\n",
     "Rarity": 1,
     "URL": null,
-    "Tags": [
-      "API Keys",
-      "Bug Bounty",
-      "Credentials",
-      "GitHub"
-    ],
+    "Tags": ["API Keys", "Bug Bounty", "Credentials", "GitHub"],
     "Examples": {
-      "Valid": [
-        "ghu_16C7e42F292c6912E7710c838347Ae178B4a"
-      ],
+      "Valid": ["ghu_16C7e42F292c6912E7710c838347Ae178B4a"],
       "Invalid": []
     }
   },
@@ -573,12 +432,7 @@
     "Exploit": null,
     "Rarity": 1,
     "URL": null,
-    "Tags": [
-      "API Keys",
-      "Bug Bounty",
-      "Credentials",
-      "GitHub"
-    ],
+    "Tags": ["API Keys", "Bug Bounty", "Credentials", "GitHub"],
     "Examples": {
       "Valid": [
         "ghr_1B4a2e77838347a7E420ce178F2E7c6912E169246c34E1ccbF66C46812d16D5B1A9Dc86A1498"
@@ -594,10 +448,7 @@
     "Exploit": null,
     "Rarity": 1,
     "URL": null,
-    "Tags": [
-      "Bug Bounty",
-      "LinkedIn"
-    ]
+    "Tags": ["Bug Bounty", "LinkedIn"]
   },
   {
     "Name": "LinkedIn Secret Key",
@@ -607,12 +458,7 @@
     "Exploit": null,
     "Rarity": 1,
     "URL": null,
-    "Tags": [
-      "API Keys",
-      "Bug Bounty",
-      "Credentials",
-      "LinkedIn"
-    ]
+    "Tags": ["API Keys", "Bug Bounty", "Credentials", "LinkedIn"]
   },
   {
     "Name": "GitHub Access Token",
@@ -622,12 +468,7 @@
     "Exploit": null,
     "Rarity": 1,
     "URL": null,
-    "Tags": [
-      "API Keys",
-      "Bug Bounty",
-      "Credentials",
-      "GitHub"
-    ]
+    "Tags": ["API Keys", "Bug Bounty", "Credentials", "GitHub"]
   },
   {
     "Name": "Stripe Restricted API Token",
@@ -637,12 +478,7 @@
     "Exploit": null,
     "Rarity": 1,
     "URL": null,
-    "Tags": [
-      "API Keys",
-      "Bug Bounty",
-      "Credentials",
-      "Stripe"
-    ]
+    "Tags": ["API Keys", "Bug Bounty", "Credentials", "Stripe"]
   },
   {
     "Name": "Stripe Standard API Token",
@@ -652,12 +488,7 @@
     "Exploit": "Use the command below to verify that the Stripe Standard Live API Token is valid.\n  $ curl https://api.stripe.com/v1/charges -u TOKEN_HERE:\n\nKeep the colon at the end of the token to prevent cURL from requesting a password.\n\nThe live key can be used to extract/retrieve a lot of info ranging from the charges\nto the complete product list.\n\nKeep in mind that you will never be able to get the full credit card information since\nStripe only gives you the last 4 digits.\n",
     "Rarity": 1,
     "URL": null,
-    "Tags": [
-      "API Keys",
-      "Bug Bounty",
-      "Credentials",
-      "Stripe"
-    ]
+    "Tags": ["API Keys", "Bug Bounty", "Credentials", "Stripe"]
   },
   {
     "Name": "Square Access Token",
@@ -667,12 +498,7 @@
     "Exploit": "Use the command below to verify that the access token is valid:\n  $ curl \"https://squareup.com/oauth2/revoke\" -d '{\"access_token\":\"[RANDOM_STRING]\",\"client_id\":\"[APP_ID]\"}'  -H \"Content-Type: application/json\" -H \"Authorization: Client TOKEN_HERE\"\n",
     "Rarity": 1,
     "URL": null,
-    "Tags": [
-      "API Keys",
-      "Bug Bounty",
-      "Credentials",
-      "Square"
-    ]
+    "Tags": ["API Keys", "Bug Bounty", "Credentials", "Square"]
   },
   {
     "Name": "Square OAuth Token",
@@ -682,12 +508,7 @@
     "Exploit": "Use the command below to verify that the token is valid:\n  $ curl \"https://squareup.com/oauth2/revoke\" -d '{\"access_token\":\"[RANDOM_STRING]\",\"client_id\":\"[APP_ID]\"}'  -H \"Content-Type: application/json\" -H \"Authorization: Client TOKEN_HERE\"\n",
     "Rarity": 1,
     "URL": null,
-    "Tags": [
-      "API Keys",
-      "Bug Bounty",
-      "Credentials",
-      "Square"
-    ]
+    "Tags": ["API Keys", "Bug Bounty", "Credentials", "Square"]
   },
   {
     "Name": "PayPal/Braintree Access Token",
@@ -697,13 +518,7 @@
     "Exploit": null,
     "Rarity": 1,
     "URL": null,
-    "Tags": [
-      "API Keys",
-      "Bug Bounty",
-      "Credentials",
-      "PayPal",
-      "Braintree"
-    ]
+    "Tags": ["API Keys", "Bug Bounty", "Credentials", "PayPal", "Braintree"]
   },
   {
     "Name": "MWS Auth Token",
@@ -713,13 +528,7 @@
     "Exploit": null,
     "Rarity": 1,
     "URL": null,
-    "Tags": [
-      "API Keys",
-      "Bug Bounty",
-      "Credentials",
-      "Amazon",
-      "MWS"
-    ]
+    "Tags": ["API Keys", "Bug Bounty", "Credentials", "Amazon", "MWS"]
   },
   {
     "Name": "Picatic API Key",
@@ -729,12 +538,7 @@
     "Exploit": null,
     "Rarity": 1,
     "URL": null,
-    "Tags": [
-      "API Keys",
-      "Bug Bounty",
-      "Credentials",
-      "Picatic"
-    ]
+    "Tags": ["API Keys", "Bug Bounty", "Credentials", "Picatic"]
   },
   {
     "Name": "Google OAuth Access Key",
@@ -744,12 +548,7 @@
     "Exploit": null,
     "Rarity": 1,
     "URL": null,
-    "Tags": [
-      "API Keys",
-      "Bug Bounty",
-      "Credentials",
-      "Google"
-    ]
+    "Tags": ["API Keys", "Bug Bounty", "Credentials", "Google"]
   },
   {
     "Name": "Google OAuth ID",
@@ -759,12 +558,7 @@
     "Exploit": null,
     "Rarity": 1,
     "URL": null,
-    "Tags": [
-      "API Keys",
-      "Bug Bounty",
-      "Credentials",
-      "Google"
-    ]
+    "Tags": ["API Keys", "Bug Bounty", "Credentials", "Google"]
   },
   {
     "Name": "StackHawk API Key",
@@ -774,16 +568,9 @@
     "Exploit": null,
     "Rarity": 1,
     "URL": null,
-    "Tags": [
-      "API Keys",
-      "Bug Bounty",
-      "Credentials",
-      "StackHawk"
-    ],
+    "Tags": ["API Keys", "Bug Bounty", "Credentials", "StackHawk"],
     "Examples": {
-      "Valid": [
-        "hawk.wz6bAoFDwcVQFCD9dofE.w2R1PWI8UTvEM4jd56XQ"
-      ],
+      "Valid": ["hawk.wz6bAoFDwcVQFCD9dofE.w2R1PWI8UTvEM4jd56XQ"],
       "Invalid": []
     }
   },
@@ -795,12 +582,7 @@
     "Exploit": null,
     "Rarity": 1,
     "URL": null,
-    "Tags": [
-      "API Keys",
-      "Bug Bounty",
-      "Credentials",
-      "NuGet"
-    ]
+    "Tags": ["API Keys", "Bug Bounty", "Credentials", "NuGet"]
   },
   {
     "Name": "SendGrid Token",
@@ -810,12 +592,7 @@
     "Exploit": "Use the command below to verify that the SendGrid Token is valid.\n  $ curl -X \"GET\" \"https://api.sendgrid.com/v3/scopes\" -H \"Authorization: Bearer SENDGRID_TOKEN_HERE\" -H \"Content-Type: application/json\"\n",
     "Rarity": 1,
     "URL": null,
-    "Tags": [
-      "API Keys",
-      "Bug Bounty",
-      "Credentials",
-      "SendGrid"
-    ]
+    "Tags": ["API Keys", "Bug Bounty", "Credentials", "SendGrid"]
   },
   {
     "Name": "Zoho Webhook Token",
@@ -825,10 +602,7 @@
     "Exploit": null,
     "Rarity": 1,
     "URL": null,
-    "Tags": [
-      "Bug Bounty",
-      "Zoho"
-    ]
+    "Tags": ["Bug Bounty", "Zoho"]
   },
   {
     "Name": "Zapier Webhook Token",
@@ -838,16 +612,9 @@
     "Exploit": "Verify that the Zapier Webook url is valid:\n  curl -H \"Accept: application/json\" -H \"Content-Type: application/json\" -X POST -d '{\"name\":\"PyWhat\"}' \"WEBHOOK_URL_HERE\"\n",
     "Rarity": 1,
     "URL": null,
-    "Tags": [
-      "API Keys",
-      "Bug Bounty",
-      "Credentials",
-      "Zapier"
-    ],
+    "Tags": ["API Keys", "Bug Bounty", "Credentials", "Zapier"],
     "Examples": {
-      "Valid": [
-        "https://hooks.zapier.com/hooks/catch/1234567/f8f22dgg/"
-      ],
+      "Valid": ["https://hooks.zapier.com/hooks/catch/1234567/f8f22dgg/"],
       "Invalid": []
     }
   },
@@ -859,12 +626,7 @@
     "Exploit": "Use the command below to verify that the API key is valid:\n  $ curl -X GET https://api.datadoghq.com/api/v1/validate -H \"Content-Type: application/json\" -H \"DD-API-KEY: API_KEY_HERE\"\n",
     "Rarity": 1,
     "URL": null,
-    "Tags": [
-      "API Keys",
-      "Bug Bounty",
-      "Credentials",
-      "Datadog"
-    ]
+    "Tags": ["API Keys", "Bug Bounty", "Credentials", "Datadog"]
   },
   {
     "Name": "Datadog Client Token",
@@ -874,11 +636,7 @@
     "Exploit": null,
     "Rarity": 1,
     "URL": null,
-    "Tags": [
-      "API Keys",
-      "Bug Bounty",
-      "Datadog"
-    ]
+    "Tags": ["API Keys", "Bug Bounty", "Datadog"]
   },
   {
     "Name": "New Relic Admin API Key",
@@ -888,12 +646,7 @@
     "Exploit": "Use the command below to verify that API key is valid:\n  $ curl -X POST https://api.newrelic.com/graphql -H 'Content-Type: application/json' -H 'API-Key: API_KEY_HERE' -d '{ \"query\": \"{ requestContext { userId apiKey } }\" } '\n",
     "Rarity": 1,
     "URL": null,
-    "Tags": [
-      "API Keys",
-      "Bug Bounty",
-      "Credentials",
-      "New Relic"
-    ]
+    "Tags": ["API Keys", "Bug Bounty", "Credentials", "New Relic"]
   },
   {
     "Name": "New Relic Insights API Key",
@@ -903,12 +656,7 @@
     "Exploit": null,
     "Rarity": 1,
     "URL": null,
-    "Tags": [
-      "API Keys",
-      "Bug Bounty",
-      "Credentials",
-      "New Relic"
-    ]
+    "Tags": ["API Keys", "Bug Bounty", "Credentials", "New Relic"]
   },
   {
     "Name": "New Relic REST API Key",
@@ -918,16 +666,9 @@
     "Exploit": "Use the command below to verify that the New Relic REST API Key is valid.\n  $ curl -X GET 'https://api.newrelic.com/v2/applications.json' -H \"X-Api-Key:${API_KEY_HERE}\" -i\n\nIf valid, test furher to see if its an admin key (https://docs.newrelic.com/docs/apis/intro-apis/new-relic-api-keys/)\n",
     "Rarity": 1,
     "URL": null,
-    "Tags": [
-      "API Keys",
-      "Bug Bounty",
-      "Credentials",
-      "New Relic"
-    ],
+    "Tags": ["API Keys", "Bug Bounty", "Credentials", "New Relic"],
     "Examples": {
-      "Valid": [
-        "NRRA-2a2d50d7d9449f3bb7ef65ac1184c488bd4fe7a8bd"
-      ],
+      "Valid": ["NRRA-2a2d50d7d9449f3bb7ef65ac1184c488bd4fe7a8bd"],
       "Invalid": []
     }
   },
@@ -939,14 +680,9 @@
     "Exploit": null,
     "Rarity": 1,
     "URL": null,
-    "Tags": [
-      "Bug Bounty",
-      "New Relic"
-    ],
+    "Tags": ["Bug Bounty", "New Relic"],
     "Examples": {
-      "Valid": [
-        "NRSP-us010E1E3D1716F721FF39F726B3E4CBCB7"
-      ],
+      "Valid": ["NRSP-us010E1E3D1716F721FF39F726B3E4CBCB7"],
       "Invalid": []
     }
   },
@@ -958,16 +694,9 @@
     "Exploit": "Use the command below to verify that API key is valid:\n  $ curl -X POST https://api.newrelic.com/graphql -H 'Content-Type: application/json' -H 'API-Key: API_KEY_HERE' -d '{ \"query\": \"{ requestContext { userId apiKey } }\" } '\n",
     "Rarity": 1,
     "URL": null,
-    "Tags": [
-      "API Keys",
-      "Bug Bounty",
-      "Credentials",
-      "New Relic"
-    ],
+    "Tags": ["API Keys", "Bug Bounty", "Credentials", "New Relic"],
     "Examples": {
-      "Valid": [
-        "NRAK-WI4JTVS049IF5A3FGS5N51XS3Y5"
-      ],
+      "Valid": ["NRAK-WI4JTVS049IF5A3FGS5N51XS3Y5"],
       "Invalid": []
     }
   },
@@ -979,12 +708,7 @@
     "Exploit": null,
     "Rarity": 1,
     "URL": null,
-    "Tags": [
-      "Bug Bounty",
-      "URL",
-      "Microsoft Teams",
-      "Microsoft"
-    ]
+    "Tags": ["Bug Bounty", "URL", "Microsoft Teams", "Microsoft"]
   },
   {
     "Name": "Google FCM Server Key",
@@ -994,10 +718,7 @@
     "Exploit": null,
     "Rarity": 1,
     "URL": null,
-    "Tags": [
-      "Bug Bounty",
-      "Google"
-    ]
+    "Tags": ["Bug Bounty", "Google"]
   },
   {
     "Name": "Google Calendar URI",
@@ -1007,12 +728,7 @@
     "Exploit": null,
     "Rarity": 1,
     "URL": null,
-    "Tags": [
-      "Bug Bounty",
-      "URL",
-      "Google Calendar",
-      "Google"
-    ],
+    "Tags": ["Bug Bounty", "URL", "Google Calendar", "Google"],
     "Examples": {
       "Valid": [
         "https://calendar.google.com/calendar/embed?src=ht3jlfaac5lfd6263ulfh4tql8%40group.calendar.google.com&ctz=Europe%2FLondon"
@@ -1028,11 +744,7 @@
     "Exploit": null,
     "Rarity": 1,
     "URL": null,
-    "Tags": [
-      "Bug Bounty",
-      "URL",
-      "Discord"
-    ],
+    "Tags": ["Bug Bounty", "URL", "Discord"],
     "Examples": {
       "Valid": [
         "https://discord.com/api/webhooks/894893734582452235/KhNc2-_zwY9FfCAK0iGUa_KfYyW8m5Ja_5i-V24fEY6ETwvLLn-GmdT_vq0Do9-YRsij"
@@ -1048,11 +760,7 @@
     "Exploit": null,
     "Rarity": 1,
     "URL": null,
-    "Tags": [
-      "Bug Bounty",
-      "Credentials",
-      "Cloudinary"
-    ]
+    "Tags": ["Bug Bounty", "Credentials", "Cloudinary"]
   },
   {
     "Name": "PyPI Upload Token",
@@ -1062,12 +770,7 @@
     "Exploit": "Anyone with this token is able to upload to the PyPI for the package that belongs to this token.\n",
     "Rarity": 1,
     "URL": null,
-    "Tags": [
-      "Bug Bounty",
-      "Credentials",
-      "API Keys",
-      "PyPI"
-    ],
+    "Tags": ["Bug Bounty", "Credentials", "API Keys", "PyPI"],
     "Examples": {
       "Valid": [
         "pypi-AgEIcHlwaS5vcmcCJDZlNzEyNGJmLWQ4N2UtNGZhYS1iNWEzLWQzYzg2YjU3NzAxYgACJXsicGVybWlzc2lvbnMiOiAidXNlciIsICJ2ZXJzaW9uIjogMX0AAAYgeYcgrZO31PTS_3ipsd0fTSMy1kVkxCzhQvHN6m97yIE"
@@ -1083,12 +786,7 @@
     "Exploit": null,
     "Rarity": 1,
     "URL": null,
-    "Tags": [
-      "Bug Bounty",
-      "Credentials",
-      "API Keys",
-      "Shopify"
-    ]
+    "Tags": ["Bug Bounty", "Credentials", "API Keys", "Shopify"]
   },
   {
     "Name": "Shopify Custom App Access Token",
@@ -1098,12 +796,7 @@
     "Exploit": null,
     "Rarity": 1,
     "URL": null,
-    "Tags": [
-      "Bug Bounty",
-      "Credentials",
-      "API Keys",
-      "Shopify"
-    ]
+    "Tags": ["Bug Bounty", "Credentials", "API Keys", "Shopify"]
   },
   {
     "Name": "Shopify Access Token",
@@ -1113,12 +806,7 @@
     "Exploit": null,
     "Rarity": 1,
     "URL": null,
-    "Tags": [
-      "Bug Bounty",
-      "Credentials",
-      "API Keys",
-      "Shopify"
-    ]
+    "Tags": ["Bug Bounty", "Credentials", "API Keys", "Shopify"]
   },
   {
     "Name": "Shopify Shared Secret",
@@ -1128,12 +816,7 @@
     "Exploit": null,
     "Rarity": 1,
     "URL": null,
-    "Tags": [
-      "Bug Bounty",
-      "Credentials",
-      "API Keys",
-      "Shopify"
-    ]
+    "Tags": ["Bug Bounty", "Credentials", "API Keys", "Shopify"]
   },
   {
     "Name": "Dynatrace Token",
@@ -1143,12 +826,7 @@
     "Exploit": null,
     "Rarity": 1,
     "URL": null,
-    "Tags": [
-      "Bug Bounty",
-      "Credentials",
-      "API Keys",
-      "Dynatrace"
-    ]
+    "Tags": ["Bug Bounty", "Credentials", "API Keys", "Dynatrace"]
   },
   {
     "Name": "Amazon SNS Topic",
@@ -1158,15 +836,9 @@
     "Exploit": null,
     "Rarity": 1,
     "URL": null,
-    "Tags": [
-      "Bug Bounty",
-      "AWS",
-      "Amazon"
-    ],
+    "Tags": ["Bug Bounty", "AWS", "Amazon"],
     "Examples": {
-      "Valid": [
-        "arn:aws:sns:us-east-2:123456789012:MyTopic"
-      ],
+      "Valid": ["arn:aws:sns:us-east-2:123456789012:MyTopic"],
       "Invalid": []
     }
   },
@@ -1177,10 +849,7 @@
     "Description": null,
     "Rarity": 1,
     "URL": null,
-    "Tags": [
-      "Bug Bounty",
-      "URL"
-    ],
+    "Tags": ["Bug Bounty", "URL"],
     "Examples": {
       "Valid": [
         "https://www.notion.so/test-user/My-Note-fa45346d9dd4421abc6857ce2e7fb0db"
@@ -1195,10 +864,7 @@
     "Description": null,
     "Rarity": 1,
     "URL": null,
-    "Tags": [
-      "Bug Bounty",
-      "URL"
-    ],
+    "Tags": ["Bug Bounty", "URL"],
     "Examples": {
       "Valid": [
         "https://testorg.notion.site/My-Note-9f8863871e024ea6acc64d6564004a22"
@@ -1213,12 +879,7 @@
     "Description": null,
     "Rarity": 1,
     "URL": "https://nanocrawler.cc/explorer/account/",
-    "Tags": [
-      "Finance",
-      "Cryptocurrency Wallet",
-      "Nano Wallet",
-      "Nano"
-    ],
+    "Tags": ["Finance", "Cryptocurrency Wallet", "Nano Wallet", "Nano"],
     "Examples": {
       "Valid": [
         "nano_1c46rz7xnk98ozhzdjq7thwty844sgnqxk9496yysit1bnio1rcdzshc5ymn"
@@ -1233,11 +894,7 @@
     "Description": null,
     "Rarity": 1,
     "URL": null,
-    "Tags": [
-      "Credentials",
-      "TOTP",
-      "Bug Bounty"
-    ],
+    "Tags": ["Credentials", "TOTP", "Bug Bounty"],
     "Examples": {
       "Valid": [
         "otpauth://totp/Example:alice@google.com?secret=JBSWY3DPEHPK3PXP&issuer=Example",
@@ -1254,13 +911,7 @@
     "Exploit": null,
     "Rarity": 0.8,
     "URL": null,
-    "Tags": [
-      "API Keys",
-      "Bug Bounty",
-      "Credentials",
-      "Google Cloud",
-      "Google"
-    ]
+    "Tags": ["API Keys", "Bug Bounty", "Credentials", "Google Cloud", "Google"]
   },
   {
     "Name": "Mailchimp API Key",
@@ -1270,12 +921,7 @@
     "Exploit": "Use the command below to verify that the API key is valid:\n  $ curl --request GET --url 'https://<dc>.api.mailchimp.com/3.0/' --user 'anystring:API_KEY_HERE' --include\n",
     "Rarity": 0.8,
     "URL": null,
-    "Tags": [
-      "Bug Bounty",
-      "API Keys",
-      "Credentials",
-      "Mailchimp"
-    ]
+    "Tags": ["Bug Bounty", "API Keys", "Credentials", "Mailchimp"]
   },
   {
     "Name": "Notion Integration Token",
@@ -1284,15 +930,9 @@
     "Description": "A Notion API integration's internal integration token.",
     "Rarity": 0.8,
     "URL": null,
-    "Tags": [
-      "Credentials",
-      "API Keys",
-      "Bug Bounty"
-    ],
+    "Tags": ["Credentials", "API Keys", "Bug Bounty"],
     "Examples": {
-      "Valid": [
-        "secret_n2ZeRrMx743JQ5wiucZ0DBEe47opfKubUp22N0wIrOy"
-      ],
+      "Valid": ["secret_n2ZeRrMx743JQ5wiucZ0DBEe47opfKubUp22N0wIrOy"],
       "Invalid": []
     }
   },
@@ -1303,13 +943,7 @@
     "Description": null,
     "Rarity": 0.7,
     "URL": "https://www.shodan.io/host/",
-    "Tags": [
-      "Identifiers",
-      "Networking",
-      "IP",
-      "IPv4",
-      "Bug Bounty"
-    ],
+    "Tags": ["Identifiers", "Networking", "IP", "IPv4", "Bug Bounty"],
     "Examples": {
       "Valid": [
         "2001:0db8:85a3:0000:0000:8a2e:0370:7334",
@@ -1325,10 +959,7 @@
     "Description": null,
     "Rarity": 0.7,
     "URL": null,
-    "Tags": [
-      "Identifiers",
-      "URL"
-    ],
+    "Tags": ["Identifiers", "URL"],
     "Examples": {
       "Valid": [
         "tryhackme.com",
@@ -1337,9 +968,7 @@
         "https://xn--80aaxitdbjk.xn--p1ai/",
         "http://10.1.1.1"
       ],
-      "Invalid": [
-        "tryhackme.comm"
-      ]
+      "Invalid": ["tryhackme.comm"]
     }
   },
   {
@@ -1349,17 +978,9 @@
     "Description": null,
     "Rarity": 0.7,
     "URL": "https://www.shodan.io/host/",
-    "Tags": [
-      "Identifiers",
-      "Networking",
-      "IP",
-      "IPv6",
-      "Bug Bounty"
-    ],
+    "Tags": ["Identifiers", "Networking", "IP", "IPv6", "Bug Bounty"],
     "Examples": {
-      "Valid": [
-        "192.0.2.235:80"
-      ],
+      "Valid": ["192.0.2.235:80"],
       "Invalid": []
     }
   },
@@ -1370,12 +991,7 @@
     "Description": null,
     "Rarity": 0.7,
     "URL": "https://www.blockchain.com/btc/address/",
-    "Tags": [
-      "Finance",
-      "Cryptocurrency Wallet",
-      "Bitcoin Wallet",
-      "Bitcoin"
-    ],
+    "Tags": ["Finance", "Cryptocurrency Wallet", "Bitcoin Wallet", "Bitcoin"],
     "Examples": {
       "Valid": [
         "1KFHE7w8BhaENAswwryaoccDb6qcT6DbYY",
@@ -1392,11 +1008,7 @@
     "Description": null,
     "Rarity": 0.7,
     "URL": "https://www.google.com/maps/place/",
-    "Tags": [
-      "Geo-location",
-      "Lat & Long",
-      "Coords"
-    ],
+    "Tags": ["Geo-location", "Lat & Long", "Coords"],
     "Examples": {
       "Valid": [
         "52.6169586, -1.9779857",
@@ -1439,16 +1051,9 @@
     "Description": null,
     "Rarity": 0.5,
     "URL": "https://dogechain.info/address/",
-    "Tags": [
-      "Finance",
-      "Cryptocurrency Wallet",
-      "Dogecoin Wallet",
-      "Dogecoin"
-    ],
+    "Tags": ["Finance", "Cryptocurrency Wallet", "Dogecoin Wallet", "Dogecoin"],
     "Examples": {
-      "Valid": [
-        "DANHz6EQVoWyZ9rER56DwTXHWUxfkv9k2o"
-      ],
+      "Valid": ["DANHz6EQVoWyZ9rER56DwTXHWUxfkv9k2o"],
       "Invalid": []
     }
   },
@@ -1459,20 +1064,14 @@
     "Description": null,
     "Rarity": 0.5,
     "URL": null,
-    "Tags": [
-      "Identifiers",
-      "Credentials",
-      "Email Address",
-      "Email"
-    ],
+    "Tags": ["Identifiers", "Credentials", "Email Address", "Email"],
     "Examples": {
       "Valid": [
         "github@skerritt.blog",
-        "firstname+lastname@example.com"
+        "firstname+lastname@example.com",
+        "john.smith@[123.123.123.123]"
       ],
-      "Invalid": [
-        "email@example@example.com"
-      ]
+      "Invalid": ["email@example@example.com"]
     }
   },
   {
@@ -1482,21 +1081,14 @@
     "Description": null,
     "Rarity": 0.5,
     "URL": null,
-    "Tags": [
-      "Identifiers",
-      "Credentials",
-      "Phone Number",
-      "Phone"
-    ],
+    "Tags": ["Identifiers", "Credentials", "Phone Number", "Phone"],
     "Children": {
       "path": "phone_codes.json",
       "entry": "Location(s): ",
       "method": "hashmap"
     },
     "Examples": {
-      "Valid": [
-        "202-555-0178"
-      ],
+      "Valid": ["202-555-0178"],
       "Invalid": []
     }
   },
@@ -1507,19 +1099,9 @@
     "Description": "An [#CAE4F1][link=https://en.wikipedia.org/wiki/Social_Security_number]American Identification Number[/link][/#CAE4F1]",
     "Rarity": 0.5,
     "URL": null,
-    "Tags": [
-      "Credentials",
-      "SSN",
-      "Social Security Number",
-      "Bug Bounty"
-    ],
+    "Tags": ["Credentials", "SSN", "Social Security Number", "Bug Bounty"],
     "Examples": {
-      "Valid": [
-        "001-01-0001",
-        "001:01:0001",
-        "001.01.0001",
-        "001 01 0001"
-      ],
+      "Valid": ["001-01-0001", "001:01:0001", "001.01.0001", "001 01 0001"],
       "Invalid": [
         "900-01-2222",
         "999-21-2222",
@@ -1538,16 +1120,9 @@
     "Exploit": "Use the command below to verify that the secret key is valid:\n  $ curl \"https://api-ssl.bitly.com/v3/shorten?access_token=SECRET_KEY_HERE&longUrl=https://www.google.com\"\n",
     "Rarity": 0.5,
     "URL": null,
-    "Tags": [
-      "Bug Bounty",
-      "Credentials",
-      "API Keys",
-      "Bitly"
-    ],
+    "Tags": ["Bug Bounty", "Credentials", "API Keys", "Bitly"],
     "Examples": {
-      "Valid": [
-        "96f79079f1d658895d188a78f303220c6f161b05"
-      ],
+      "Valid": ["96f79079f1d658895d188a78f303220c6f161b05"],
       "Invalid": []
     }
   },
@@ -1565,7 +1140,11 @@
       "Bug Bounty",
       "Visual Studio",
       "Microsoft"
-    ]
+    ],
+    "Examples": {
+      "Valid": ["4435bc4358816be97a3f014499116c83ab224fb2"],
+      "Invalid": []
+    }
   },
   {
     "Name": "YouTube Channel ID",
@@ -1574,18 +1153,10 @@
     "Description": null,
     "Rarity": 0.5,
     "URL": "https://www.youtube.com/channel/",
-    "Tags": [
-      "Media",
-      "YouTube",
-      "YouTube Channel"
-    ],
+    "Tags": ["Media", "YouTube", "YouTube Channel"],
     "Examples": {
-      "Valid": [
-        "UCjXfkj5iapKHJrhYfAF9ZGg"
-      ],
-      "Invalid": [
-        "078-05-1120"
-      ]
+      "Valid": ["UCjXfkj5iapKHJrhYfAF9ZGg"],
+      "Invalid": ["078-05-1120"]
     }
   },
   {
@@ -1619,14 +1190,9 @@
     "Description": null,
     "Rarity": 0.5,
     "URL": "https://www.uuidtools.com/api/decode/",
-    "Tags": [
-      "Identifiers",
-      "UUID"
-    ],
+    "Tags": ["Identifiers", "UUID"],
     "Examples": {
-      "Valid": [
-        "b2ced6f5-2542-4f7d-b131-e3ada95d8b75"
-      ],
+      "Valid": ["b2ced6f5-2542-4f7d-b131-e3ada95d8b75"],
       "Invalid": []
     }
   },
@@ -1637,19 +1203,9 @@
     "Description": "The [#CAE4F1][link=https://en.wikipedia.org/wiki/Vehicle_registration_plates_of_Turkey]vehicle registration plate number of Turkey[/link][/#CAE4F1]",
     "Rarity": 0.4,
     "URL": null,
-    "Tags": [
-      "Identifiers",
-      "License Plate",
-      "Turkish"
-    ],
+    "Tags": ["Identifiers", "License Plate", "Turkish"],
     "Examples": {
-      "Valid": [
-        "34A2344",
-        "34A23415",
-        "06BK123",
-        "06JK1234",
-        "81ABC75"
-      ],
+      "Valid": ["34A2344", "34A23415", "06BK123", "06JK1234", "81ABC75"],
       "Invalid": []
     }
   },
@@ -1660,11 +1216,7 @@
     "Description": null,
     "Rarity": 0.4,
     "URL": null,
-    "Tags": [
-      "Identifiers",
-      "Date of Birth",
-      "DOB"
-    ],
+    "Tags": ["Identifiers", "Date of Birth", "DOB"],
     "Examples": {
       "Valid": [
         "13.08.1987",
@@ -1683,12 +1235,7 @@
     "Description": null,
     "Rarity": 0.3,
     "URL": null,
-    "Tags": [
-      "Finance",
-      "Cryptocurrency Wallet",
-      "Monero Wallet",
-      "Monero"
-    ],
+    "Tags": ["Finance", "Cryptocurrency Wallet", "Monero Wallet", "Monero"],
     "Examples": {
       "Valid": [
         "47DF8D9NwtmefhFUghynYRMqrexiZTsm48T1hhi2jZcbfcwoPbkhMrrED6zqJRfeYpXFfdaqAT3jnBEwoMwCx6BYDJ1W3ub"
@@ -1703,16 +1250,9 @@
     "Description": null,
     "Rarity": 0.3,
     "URL": "https://live.blockcypher.com/ltc/address/",
-    "Tags": [
-      "Finance",
-      "Cryptocurrency Wallet",
-      "Litecoin Wallet",
-      "Litecoin"
-    ],
+    "Tags": ["Finance", "Cryptocurrency Wallet", "Litecoin Wallet", "Litecoin"],
     "Examples": {
-      "Valid": [
-        "LRX8rSPVjifTxoLeoJtLf2JYdJFTQFcE7m"
-      ],
+      "Valid": ["LRX8rSPVjifTxoLeoJtLf2JYdJFTQFcE7m"],
       "Invalid": []
     }
   },
@@ -1731,9 +1271,7 @@
       "XRP"
     ],
     "Examples": {
-      "Valid": [
-        "rBPAQmwMrt7FDDPNyjwFgwSqbWZPf6SLkk"
-      ],
+      "Valid": ["rBPAQmwMrt7FDDPNyjwFgwSqbWZPf6SLkk"],
       "Invalid": []
     }
   },
@@ -1744,12 +1282,7 @@
     "Description": null,
     "Rarity": 0.3,
     "URL": null,
-    "Tags": [
-      "Credit Card",
-      "Finance",
-      "AMEX CC",
-      "Bug Bounty"
-    ]
+    "Tags": ["Credit Card", "Finance", "AMEX CC", "Bug Bounty"]
   },
   {
     "Name": "BCGlobal Card Number",
@@ -1758,14 +1291,9 @@
     "Description": null,
     "Rarity": 0.3,
     "URL": null,
-    "Tags": [
-      "Credit Card",
-      "Finance"
-    ],
+    "Tags": ["Credit Card", "Finance"],
     "Examples": {
-      "Valid": [
-        "6556123456789012"
-      ],
+      "Valid": ["6556123456789012"],
       "Invalid": []
     }
   },
@@ -1776,14 +1304,9 @@
     "Description": null,
     "Rarity": 0.3,
     "URL": null,
-    "Tags": [
-      "Credit Card",
-      "Finance"
-    ],
+    "Tags": ["Credit Card", "Finance"],
     "Examples": {
-      "Valid": [
-        "30137891521480"
-      ],
+      "Valid": ["30137891521480"],
       "Invalid": []
     }
   },
@@ -1794,14 +1317,9 @@
     "Description": null,
     "Rarity": 0.3,
     "URL": null,
-    "Tags": [
-      "Credit Card",
-      "Finance"
-    ],
+    "Tags": ["Credit Card", "Finance"],
     "Examples": {
-      "Valid": [
-        "3056 9309 0259 04"
-      ],
+      "Valid": ["3056 9309 0259 04", "30000000000004"],
       "Invalid": []
     }
   },
@@ -1812,16 +1330,9 @@
     "Description": null,
     "Rarity": 0.3,
     "URL": null,
-    "Tags": [
-      "Credit Card",
-      "Finance",
-      "Discover CC"
-    ],
+    "Tags": ["Credit Card", "Finance", "Discover CC"],
     "Examples": {
-      "Valid": [
-        "6011000000000004",
-        "6011 1111 1111 1117"
-      ],
+      "Valid": ["6011000000000004", "6011 1111 1111 1117"],
       "Invalid": []
     }
   },
@@ -1832,12 +1343,7 @@
     "Description": null,
     "Rarity": 0.3,
     "URL": null,
-    "Tags": [
-      "Credit Card",
-      "Finance",
-      "MasterCard CC",
-      "Bug Bounty"
-    ],
+    "Tags": ["Credit Card", "Finance", "MasterCard CC", "Bug Bounty"],
     "Children": {
       "path": "mastercard_companies.json",
       "entry": "Issuer(s): ",
@@ -1852,15 +1358,9 @@
     "Description": null,
     "Rarity": 0.3,
     "URL": null,
-    "Tags": [
-      "Credit Card",
-      "Finance"
-    ],
+    "Tags": ["Credit Card", "Finance"],
     "Examples": {
-      "Valid": [
-        "5038146401278870",
-        "6759 6498 2643 8453"
-      ],
+      "Valid": ["5038146401278870", "6759 6498 2643 8453"],
       "Invalid": []
     }
   },
@@ -1871,17 +1371,9 @@
     "Description": null,
     "Rarity": 0.3,
     "URL": null,
-    "Tags": [
-      "Credit Card",
-      "Finance",
-      "Visa CC",
-      "Bug Bounty"
-    ],
+    "Tags": ["Credit Card", "Finance", "Visa CC", "Bug Bounty"],
     "Examples": {
-      "Valid": [
-        "4111111111111111",
-        "4607 0000 0000 0009"
-      ],
+      "Valid": ["4111111111111111", "4607 0000 0000 0009"],
       "Invalid": []
     }
   },
@@ -1892,14 +1384,9 @@
     "Description": null,
     "Rarity": 0.3,
     "URL": null,
-    "Tags": [
-      "Credit Card",
-      "Finance"
-    ],
+    "Tags": ["Credit Card", "Finance"],
     "Examples": {
-      "Valid": [
-        "6387849878080951"
-      ],
+      "Valid": ["6387849878080951"],
       "Invalid": []
     }
   },
@@ -1910,15 +1397,9 @@
     "Description": null,
     "Rarity": 0.3,
     "URL": null,
-    "Tags": [
-      "Credit Card",
-      "Finance"
-    ],
+    "Tags": ["Credit Card", "Finance"],
     "Examples": {
-      "Valid": [
-        "3537124887293334",
-        "3543824683332150682"
-      ],
+      "Valid": ["3537124887293334", "3543824683332150682"],
       "Invalid": []
     }
   },
@@ -1929,14 +1410,9 @@
     "Description": null,
     "Rarity": 0.3,
     "URL": null,
-    "Tags": [
-      "Credit Card",
-      "Finance"
-    ],
+    "Tags": ["Credit Card", "Finance"],
     "Examples": {
-      "Valid": [
-        "9837282929900015"
-      ],
+      "Valid": ["9837282929900015"],
       "Invalid": []
     }
   },
@@ -1947,14 +1423,9 @@
     "Description": null,
     "Rarity": 0.3,
     "URL": null,
-    "Tags": [
-      "Credit Card",
-      "Finance"
-    ],
+    "Tags": ["Credit Card", "Finance"],
     "Examples": {
-      "Valid": [
-        "630495060000000000"
-      ],
+      "Valid": ["630495060000000000"],
       "Invalid": []
     }
   },
@@ -1965,14 +1436,9 @@
     "Description": null,
     "Rarity": 0.3,
     "URL": null,
-    "Tags": [
-      "Credit Card",
-      "Finance"
-    ],
+    "Tags": ["Credit Card", "Finance"],
     "Examples": {
-      "Valid": [
-        "6334498823141663"
-      ],
+      "Valid": ["6334498823141663"],
       "Invalid": []
     }
   },
@@ -1983,14 +1449,9 @@
     "Description": null,
     "Rarity": 0.3,
     "URL": null,
-    "Tags": [
-      "Credit Card",
-      "Finance"
-    ],
+    "Tags": ["Credit Card", "Finance"],
     "Examples": {
-      "Valid": [
-        "633341812811453789"
-      ],
+      "Valid": ["633341812811453789"],
       "Invalid": []
     }
   },
@@ -2001,16 +1462,9 @@
     "Description": null,
     "Rarity": 0.3,
     "URL": "https://etherscan.io/address/",
-    "Tags": [
-      "Finance",
-      "Cryptocurrency Wallet",
-      "Ethereum Wallet",
-      "Ethereum"
-    ],
+    "Tags": ["Finance", "Cryptocurrency Wallet", "Ethereum Wallet", "Ethereum"],
     "Examples": {
-      "Valid": [
-        "0x52908400098527886E0F7030069857D2E4169EE7"
-      ],
+      "Valid": ["0x52908400098527886E0F7030069857D2E4169EE7"],
       "Invalid": []
     }
   },
@@ -2022,12 +1476,11 @@
     "Exploit": "Use the command below to verify that private key is valid:\n  $ curl -sX POST \"https://slack.com/api/auth.test?token=TOKEN_HERE&pretty=1\"\n",
     "Rarity": 0.3,
     "URL": null,
-    "Tags": [
-      "API Keys",
-      "Credentials",
-      "Bug Bounty",
-      "Slack"
-    ]
+    "Tags": ["API Keys", "Credentials", "Bug Bounty", "Slack"],
+    "Examples": {
+      "Valid": ["xoxb-51465443183-hgvhXVd2ISC2x7gaoRWBOUdQ"],
+      "Invalid": []
+    }
   },
   {
     "Name": "Amazon Web Services Organization identifier",
@@ -2036,15 +1489,9 @@
     "Description": null,
     "Rarity": 0.3,
     "URL": null,
-    "Tags": [
-      "Identifiers",
-      "AWS",
-      "Amazon"
-    ],
+    "Tags": ["Identifiers", "AWS", "Amazon"],
     "Examples": {
-      "Valid": [
-        "o-aa111bb222"
-      ],
+      "Valid": ["o-aa111bb222"],
       "Invalid": []
     }
   },
@@ -2056,16 +1503,9 @@
     "Exploit": "There is a change this could be a Google Maps API key, so could try using 'gmapapiscanner'[1] or 'gap'[2]\nto check which Google Maps service it is valid for and generate a PoC that you can show in your report. To\nget a better understanding on the severity of having the Google Maps API key exposed, make sure to to to\nread \"Unauthorized Google Maps API Key Usage Cases, and Why You Need to Care\"[3] written by Ozgur Alp (@ozguralp)\n\nReferences:\n [1] https://github.com/ozguralp/gmapsapiscanner\n [2] https://github.com/joanbono/gap\n [3] https://ozguralp.medium.com/unauthorized-google-maps-api-key-usage-cases-and-why-you-need-to-care-1ccb28bf21e\n\nAPI Documentation: https://developers.google.com/maps/documentation/javascript/get-api-key",
     "Rarity": 0.3,
     "URL": null,
-    "Tags": [
-      "API Keys",
-      "Credentials",
-      "Google",
-      "Bug Bounty"
-    ],
+    "Tags": ["API Keys", "Credentials", "Google", "Bug Bounty"],
     "Examples": {
-      "Valid": [
-        "AIzaSyD7CQl6fRhagGok6CzFGOOPne2X1u1spoA"
-      ],
+      "Valid": ["AIzaSyD7CQl6fRhagGok6CzFGOOPne2X1u1spoA"],
       "Invalid": []
     }
   },
@@ -2076,16 +1516,9 @@
     "Description": null,
     "Rarity": 0.3,
     "URL": null,
-    "Tags": [
-      "API Keys",
-      "Credentials",
-      "Google",
-      "Bug Bounty"
-    ],
+    "Tags": ["API Keys", "Credentials", "Google", "Bug Bounty"],
     "Examples": {
-      "Valid": [
-        "ya29.AHES6ZRnn6CfjjaK6GCQ84vikePv_hk4NUAJwzaAXamCL0s"
-      ],
+      "Valid": ["ya29.AHES6ZRnn6CfjjaK6GCQ84vikePv_hk4NUAJwzaAXamCL0s"],
       "Invalid": []
     }
   },
@@ -2097,16 +1530,9 @@
     "Exploit": "Use the command below to verify that private key is valid:\n  $ curl --user 'api:key-PRIVATE_KEY_HERE' \"https://api.mailgun.net/v3/domains\"\n",
     "Rarity": 0.3,
     "URL": null,
-    "Tags": [
-      "API Keys",
-      "Credentials",
-      "Bug Bounty",
-      "Mailgun"
-    ],
+    "Tags": ["API Keys", "Credentials", "Bug Bounty", "Mailgun"],
     "Examples": {
-      "Valid": [
-        "key-1e1631a9414aff7c262721e7b6ff6e43"
-      ],
+      "Valid": ["key-1e1631a9414aff7c262721e7b6ff6e43"],
       "Invalid": []
     }
   },
@@ -2118,16 +1544,9 @@
     "Exploit": "Use the command below to verify that API key is valid:\n  $ curl -X GET 'https://api.twilio.com/2010-04-01/Accounts.json' -u [ACCOUNT_SID]:AUTH_TOKEN_HERE\n",
     "Rarity": 0.3,
     "URL": null,
-    "Tags": [
-      "API Keys",
-      "Credentials",
-      "Bug Bounty",
-      "Twilio"
-    ],
+    "Tags": ["API Keys", "Credentials", "Bug Bounty", "Twilio"],
     "Examples": {
-      "Valid": [
-        "SK012dab2d3f4dab1c2f33dffafdf23142"
-      ],
+      "Valid": ["SK012dab2d3f4dab1c2f33dffafdf23142"],
       "Invalid": []
     }
   },
@@ -2139,15 +1558,9 @@
     "Exploit": "Use the command below to verify that the SID is valid:\n  $ curl -X GET 'https://api.twilio.com/2010-04-01/Accounts.json' -u ACCOUNT_SID_HERE:[AUTH_TOKEN]\n",
     "Rarity": 0.3,
     "URL": null,
-    "Tags": [
-      "API Keys",
-      "Credentials",
-      "Twilio"
-    ],
+    "Tags": ["API Keys", "Credentials", "Twilio"],
     "Examples": {
-      "Valid": [
-        "AC10a133ffdfb112abb2d3f42d1d2d3b14"
-      ],
+      "Valid": ["AC10a133ffdfb112abb2d3f42d1d2d3b14"],
       "Invalid": []
     }
   },
@@ -2158,15 +1571,9 @@
     "Description": null,
     "Rarity": 0.3,
     "URL": null,
-    "Tags": [
-      "API Keys",
-      "Credentials",
-      "Twilio"
-    ],
+    "Tags": ["API Keys", "Credentials", "Twilio"],
     "Examples": {
-      "Valid": [
-        "APfff01abd2b134a2aff3adc243ab211ab"
-      ],
+      "Valid": ["APfff01abd2b134a2aff3adc243ab211ab"],
       "Invalid": []
     }
   },
@@ -2178,16 +1585,9 @@
     "Exploit": "Use the command below to verify that API key is valid:\n  $ curl -X POST -d \"secret=API_KEY_HERE&response=RESPONSE_TO_VERIFY\" https://www.google.com/recaptcha/api/siteverify\n",
     "Rarity": 0.3,
     "URL": null,
-    "Tags": [
-      "API Keys",
-      "Credentials",
-      "Google",
-      "Bug Bounty"
-    ],
+    "Tags": ["API Keys", "Credentials", "Google", "Bug Bounty"],
     "Examples": {
-      "Valid": [
-        "6Le3W6QUAAAANNT8X_9JwlNnK4kZGLaYTB3KqFLM"
-      ],
+      "Valid": ["6Le3W6QUAAAANNT8X_9JwlNnK4kZGLaYTB3KqFLM"],
       "Invalid": []
     }
   },
@@ -2198,14 +1598,9 @@
     "Description": null,
     "Rarity": 0.3,
     "URL": "https://amzn.com/",
-    "Tags": [
-      "Identifiers",
-      "Amazon"
-    ],
+    "Tags": ["Identifiers", "Amazon"],
     "Examples": {
-      "Valid": [
-        "B07ND5BB8V"
-      ],
+      "Valid": ["B07ND5BB8V"],
       "Invalid": []
     }
   },
@@ -2216,12 +1611,7 @@
     "Description": null,
     "Rarity": 0.2,
     "URL": null,
-    "Tags": [
-      "Token",
-      "Website",
-      "JWT Token",
-      "JWT"
-    ],
+    "Tags": ["Token", "Website", "JWT Token", "JWT"],
     "Examples": {
       "Valid": [
         "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c"
@@ -2237,17 +1627,9 @@
     "Exploit": "Install awscli (https://aws.amazon.com/cli/), set the access key and secret to environment variables, and execute the following command: $ AWS_ACCESS_KEY_ID=ACCESS_KEY_HERE AWS_SECRET_ACCESS_KEY=[SECRET_KEY] aws sts get-caller-identity\n AWS credentials' permissions can be determined using enumerate-IAM (https://github.com/andresriancho/enumerate-iam).\n This gives broader view of the discovered AWS credentials privileges instead of just checking S3 buckets.\n $ git clone https://github.com/andresriancho/enumerate-iam\n  cd  enumerate-iam\n  ./enumerate-iam.py --access-key ACCESS_KEY_HERE --secret-key [SECRET_KEY]\n",
     "Rarity": 0.2,
     "URL": null,
-    "Tags": [
-      "Credentials",
-      "API Keys",
-      "AWS",
-      "Amazon"
-    ],
+    "Tags": ["Credentials", "API Keys", "AWS", "Amazon"],
     "Examples": {
-      "Valid": [
-        "AKIA31OMZKYAARWZ3ERH",
-        "AKIAIOSFODNN7EXAMPLE"
-      ],
+      "Valid": ["AKIA31OMZKYAARWZ3ERH", "AKIAIOSFODNN7EXAMPLE"],
       "Invalid": []
     }
   },
@@ -2259,17 +1641,9 @@
     "Exploit": "Install awscli (https://aws.amazon.com/cli/), set the access key and secret to environment variables, and execute the following command: $ AWS_ACCESS_KEY_ID=[ACCESS_KEY] AWS_SECRET_ACCESS_KEY=SECRET_KEY_HERE aws sts get-caller-identity\n AWS credentials' permissions can be determined using enumerate-IAM (https://github.com/andresriancho/enumerate-iam).\n This gives broader view of the discovered AWS credentials privileges instead of just checking S3 buckets.\n $ git clone https://github.com/andresriancho/enumerate-iam\n  cd  enumerate-iam\n  ./enumerate-iam.py --access-key [ACCESS_KEY] --secret-key SECRET_KEY_HERE\n",
     "Rarity": 0.2,
     "URL": null,
-    "Tags": [
-      "Credentials",
-      "API Keys",
-      "AWS",
-      "Bug Bounty",
-      "Amazon"
-    ],
+    "Tags": ["Credentials", "API Keys", "AWS", "Bug Bounty", "Amazon"],
     "Examples": {
-      "Valid": [
-        "Nw0XP0t2OdyUkaIk3B8TaAa2gEXAMPLEMvD2tW+g"
-      ],
+      "Valid": ["Nw0XP0t2OdyUkaIk3B8TaAa2gEXAMPLEMvD2tW+g"],
       "Invalid": []
     }
   },
@@ -2280,15 +1654,9 @@
     "Description": null,
     "Rarity": 0.2,
     "URL": null,
-    "Tags": [
-      "Identifiers",
-      "AWS",
-      "Amazon"
-    ],
+    "Tags": ["Identifiers", "AWS", "Amazon"],
     "Examples": {
-      "Valid": [
-        "i-1234567890abcdef0"
-      ],
+      "Valid": ["i-1234567890abcdef0"],
       "Invalid": []
     }
   },
@@ -2299,16 +1667,9 @@
     "Description": null,
     "Rarity": 0.2,
     "URL": null,
-    "Tags": [
-      "Credentials",
-      "Identifiers",
-      "Turkish"
-    ],
+    "Tags": ["Credentials", "Identifiers", "Turkish"],
     "Examples": {
-      "Valid": [
-        "12345678902",
-        "12345678900"
-      ],
+      "Valid": ["12345678902", "12345678900"],
       "Invalid": []
     }
   },
@@ -2319,14 +1680,9 @@
     "Description": null,
     "Rarity": 0,
     "URL": null,
-    "Tags": [
-      "Identifiers",
-      "ObjectID"
-    ],
+    "Tags": ["Identifiers", "ObjectID"],
     "Examples": {
-      "Valid": [
-        "5fc7c33a7ef88b139122a38a"
-      ],
+      "Valid": ["5fc7c33a7ef88b139122a38a"],
       "Invalid": []
     }
   },
@@ -2337,11 +1693,11 @@
     "Description": "Seconds elapsed since unix epoch: 1970, between year 2001 and 2286",
     "Rarity": 0,
     "URL": null,
-    "Tags": [
-      "UNIX Timestamp",
-      "Timestamp",
-      "UNIX"
-    ]
+    "Tags": ["UNIX Timestamp", "Timestamp", "UNIX"],
+    "Examples": {
+      "Valid": ["1577836800"],
+      "Invalid": ["94694400", "1234567"]
+    }
   },
   {
     "Name": "Recent Unix Millisecond Timestamp",
@@ -2350,11 +1706,8 @@
     "Description": "Milliseconds elapsed since unix epoch: 1970, between year 2001 and 2286",
     "Rarity": 0,
     "URL": null,
-    "Tags": [
-      "UNIX Timestamp",
-      "Timestamp",
-      "UNIX"
-    ]
+    "Tags": ["UNIX Timestamp", "Timestamp", "UNIX"],
+    "Examples": { "Valid": ["1577836800000"], "Invalid": ["94694400000"] }
   },
   {
     "Name": "Unix Timestamp",
@@ -2363,11 +1716,8 @@
     "Description": "Seconds elapsed since unix epoch: 1970",
     "Rarity": 0,
     "URL": null,
-    "Tags": [
-      "UNIX Timestamp",
-      "Timestamp",
-      "UNIX"
-    ]
+    "Tags": ["UNIX Timestamp", "Timestamp", "UNIX"],
+    "Examples": { "Valid": ["1577836800", "94694400"], "Invalid": ["1234567"] }
   },
   {
     "Name": "Unix Millisecond Timestamp",
@@ -2376,11 +1726,8 @@
     "Description": "Milliseconds elapsed since unix epoch: 1970",
     "Rarity": 0,
     "URL": null,
-    "Tags": [
-      "UNIX Timestamp",
-      "Timestamp",
-      "UNIX"
-    ]
+    "Tags": ["UNIX Timestamp", "Timestamp", "UNIX"],
+    "Examples": { "Valid": ["1577836800000", "94694400000"], "Invalid": [] }
   },
   {
     "Name": "ULID",
@@ -2389,14 +1736,9 @@
     "Description": null,
     "Rarity": 0,
     "URL": null,
-    "Tags": [
-      "Identifiers",
-      "ULID"
-    ],
+    "Tags": ["Identifiers", "ULID"],
     "Examples": {
-      "Valid": [
-        "01ERJ58HMWDN3VTRRHZQV2T5R5"
-      ],
+      "Valid": ["01ERJ58HMWDN3VTRRHZQV2T5R5"],
       "Invalid": []
     }
   },
@@ -2407,11 +1749,11 @@
     "Description": null,
     "Rarity": 0,
     "URL": "https://www.youtube.com/watch?v=",
-    "Tags": [
-      "Media",
-      "YouTube Video",
-      "YouTube"
-    ]
+    "Tags": ["Media", "YouTube Video", "YouTube"],
+    "Examples": {
+      "Valid": ["dQw4w9WgXcQ"],
+      "Invalid": []
+    }
   },
   {
     "Name": "Turkish Tax Number",
@@ -2420,15 +1762,9 @@
     "Description": null,
     "Rarity": 0,
     "URL": null,
-    "Tags": [
-      "Credentials",
-      "Identifiers",
-      "Turkish"
-    ],
+    "Tags": ["Credentials", "Identifiers", "Turkish"],
     "Examples": {
-      "Valid": [
-        "1234567890"
-      ],
+      "Valid": ["1234567890"],
       "Invalid": []
     }
   },
@@ -2439,8 +1775,6 @@
     "Description": null,
     "Rarity": 0,
     "URL": null,
-    "Tags": [
-      "Credentials"
-    ]
+    "Tags": ["Credentials"]
   }
 ]

@@ -104,40 +104,17 @@ def test_international_url():
     _assert_match_first_item("Uniform Resource Locator (URL)", res)
 
 
-def test_visual_studio_token():
-    res = r.check(["4435bc4358816be97a3f014499116c83ab224fb2"])
-    _assert_match_in_items("Visual Studio App Center API Token", res)
-
-
-def test_master_Card():
-    res = r.check(["5409010000000004"])
+@pytest.mark.parametrize("match", ["5409010000000004", "5409 0100 0000 0004"])
+def test_master_card(match: str):
+    res = r.check([match])
     _assert_match_first_item("MasterCard Number", res)
     assert "UNION NATIONAL BANK" in res[0]["Regex Pattern"]["Description"]
-
-
-def test_master_card_spaces():
-    res = r.check(["5409 0100 0000 0004"])
-    _assert_match_first_item("MasterCard Number", res)
-    assert "UNION NATIONAL BANK" in res[0]["Regex Pattern"]["Description"]
-
-
-def test_american_diners_club():
-    res = r.check(["30000000000004"])
-    assert "Diners Club Card Number" in res[1]["Regex Pattern"]["Name"]
 
 
 @pytest.mark.skip("Key:Value Pair is not ran by default because of low rarity.")
 def test_username():
     res = r.check(["james:S3cr37_P@$$W0rd"])
     _assert_match_first_item("Key:Value Pair", res)
-
-
-def test_email3():
-    res = r.check(
-        ["john.smith@[123.123.123.123]"],
-        boundaryless=Filter({"Tags": ["Identifiers"]}),
-    )
-    assert "Email Address" in res[2]["Regex Pattern"]["Name"]
 
 
 @pytest.mark.parametrize(
@@ -154,55 +131,18 @@ def test_phone_number2(match: str, description: str):
     assert description in res[0]["Regex Pattern"]["Description"]
 
 
-def test_youtube_id():
-    res = r.check(["dQw4w9WgXcQ"], dist=dist)
-    _assert_match_first_item("YouTube Video ID", res)
-
-
 @pytest.mark.parametrize(
-    "match, valid, valid_recent",
+    "match, exploit",
     [
-        ("1577836800", True, True),  # 2020-01-01
-        ("94694400", True, False),  # 1973-01-01
-        ("1234567", False, False),  # 7 numbers
+        (
+            "xoxp-514654431830-843187921057-792480346180-d44d2r9b71f954o8z2k5llt41ovpip6v",
+            "https://slack.com/api/auth.test?token=xoxp-514654431830-843187921057-792480346180-d44d2r9b71f954o8z2k5llt41ovpip6v",
+        ),
+        (
+            "xoxb-51465443183-hgvhXVd2ISC2x7gaoRWBOUdQ",
+            "https://slack.com/api/auth.test?token=xoxb-51465443183-hgvhXVd2ISC2x7gaoRWBOUdQ",
+        ),
     ],
 )
-def test_unix_timestamp(match: str, valid: bool, valid_recent: bool):
-    res = r.check([match], dist=dist)
-    keys = [m["Regex Pattern"]["Name"] for m in res]
-    assert ("Unix Timestamp" in keys) == valid
-    assert ("Recent Unix Timestamp" in keys) == valid_recent
-
-
-@pytest.mark.parametrize(
-    "match, valid, valid_recent",
-    [
-        ("1577836800000", True, True),  # 2020-01-01
-        ("94694400000", True, False),  # 1973-01-01
-    ],
-)
-def test_unix_millisecond_timestamp(match: str, valid: bool, valid_recent: bool):
-    res = r.check([match], dist=dist)
-    keys = [m["Regex Pattern"]["Name"] for m in res]
-    assert ("Unix Millisecond Timestamp" in keys) == valid
-    assert ("Recent Unix Millisecond Timestamp" in keys) == valid_recent
-
-
-def test_slack_api_key():
-    res = r.check(
-        ["xoxp-514654431830-843187921057-792480346180-d44d2r9b71f954o8z2k5llt41ovpip6v"]
-    )
-    _assert_match_first_item("Slack API Key", res)
-    _assert_match_exploit_first_item(
-        "https://slack.com/api/auth.test?token=xoxp-514654431830-843187921057-792480346180-d44d2r9b71f954o8z2k5llt41ovpip6v",
-        res,
-    )
-
-
-def test_slack_token():
-    res = r.check(["xoxb-51465443183-hgvhXVd2ISC2x7gaoRWBOUdQ"])
-    _assert_match_first_item("Slack Token", res)
-    _assert_match_exploit_first_item(
-        "https://slack.com/api/auth.test?token=xoxb-51465443183-hgvhXVd2ISC2x7gaoRWBOUdQ",
-        res,
-    )
+def test_match_exploit_first_item(match: str, exploit: str):
+    _assert_match_exploit_first_item(exploit, r.check([match]))
