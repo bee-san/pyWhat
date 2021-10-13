@@ -1081,7 +1081,7 @@
          "Identifiers",
          "Networking",
          "IP",
-         "IPv4",
+         "IPv6",
          "Bug Bounty"
       ]
    },
@@ -1108,7 +1108,7 @@
          "Identifiers",
          "Networking",
          "IP",
-         "IPv6",
+         "IPv4",
          "Bug Bounty"
       ]
    },

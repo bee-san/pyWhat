@@ -1,5 +1,6 @@
 import json
 import os
+import re
 
 from rich.console import Console
 from rich.table import Table
@@ -10,7 +11,7 @@ class Printing:
         self.console = Console(highlight=False)
         self.bug_bounty_mode = False
 
-    def pretty_print(self, text: dict, text_input):
+    def pretty_print(self, text: dict, text_input, print_tags=False):
         to_out = ""
 
         if text["File Signatures"]:
@@ -69,7 +70,14 @@ class Printing:
                     ):
                         exploit = i["Regex Pattern"]["Exploit"]
 
-                    if not description:
+                    if print_tags:
+                        tags = f"Tags: {', '.join(i['Regex Pattern']['Tags'])}"
+                        if description is None:
+                            description = tags
+                        else:
+                            description += "\n" + tags
+
+                    if description is None:
                         description = "None"
 
                     # FIXME this is quite messy
@@ -116,7 +124,7 @@ class Printing:
     Returns the printable object
     """
 
-    def print_raw(self, text: dict, text_input) -> str:
+    def print_raw(self, text: dict, text_input, print_tags=False):
         output_str = ""
 
         if text["File Signatures"] and text["Regexes"]:
@@ -170,6 +178,10 @@ class Printing:
                             "\n[bold #D7Afff]Exploit: [/bold #D7Afff]"
                             + i["Regex Pattern"]["Exploit"]
                         )
+
+                    if print_tags:
+                        output_str += f"\n[bold #D7Afff]Tags: [/bold #D7Afff]{', '.join(i['Regex Pattern']['Tags'])}"
+
                     output_str += "\n\n"
 
         if output_str == "" and not self.bug_bounty_mode:
@@ -179,6 +191,48 @@ class Printing:
             self.console.print(output_str.rstrip())
 
         return output_str
+
+    def format_print(self, text: dict, format_str: str):
+        if text["Regexes"]:
+            output = []
+            format_list = []
+
+            # Split format_str so that format_list's item will either be r'\\' or something else
+            start = 0
+            i = format_str.find(r"\\", start)
+            while i != -1:
+                if format_str[start:i]:
+                    format_list.append(format_str[start:i])
+                format_list.append("\\")
+                start = i + 2
+                i = format_str.find(r"\\", start)
+            format_list.append(format_str[start:])
+
+            for key, value in text["Regexes"].items():
+                for match in value:
+                    temp = ""
+                    for s in format_list:
+                        formats = {
+                            "%m": match["Matched"],
+                            "%n": match["Regex Pattern"]["Name"],
+                            "%d": match["Regex Pattern"]["Description"],
+                            "%e": match["Regex Pattern"].get("Exploit"),
+                            "%r": str(match["Regex Pattern"]["Rarity"]),
+                            "%l": match["Regex Pattern"]["URL"] + match["Matched"]
+                            if match["Regex Pattern"]["URL"] is not None
+                            else None,
+                            "%t": ", ".join(match["Regex Pattern"]["Tags"]),
+                        }
+                        for format, value in formats.items():
+                            value = str() if value is None else value
+                            s = re.sub(r"(?<!\\)" + format, value, s)
+                        s = re.sub(r"\\%", "%", s)
+                        temp += s
+                    output.append(temp)
+
+            str_output = "\n".join(output)
+            if str_output.strip():
+                self.console.print(str_output)
 
     def _check_if_exploit_in_json(self, text: dict) -> bool:
         if "File Signatures" in text and text["File Signatures"]:
