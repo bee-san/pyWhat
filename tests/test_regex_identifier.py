@@ -64,6 +64,10 @@ def test_sorted_by_rarity():
     ), "Regexes should be sorted by rarity in 'regex.json'. Regexes with rarity '1' are at the top of the file and '0' is at the bottom."
 
 
+def regex_valid_match(name: str, match: str) -> bool:
+    return any(name in matched["Regex Pattern"]["Name"] for matched in r.check([match]))
+
+
 @pytest.mark.parametrize(
     "name,match",
     [
@@ -73,8 +77,7 @@ def test_sorted_by_rarity():
     ],
 )
 def test_regex_valid_match(name: str, match: str):
-    res = r.check([match])
-    _assert_match_first_item(name, res)
+    assert regex_valid_match(name, match)
 
 
 @pytest.mark.parametrize(
@@ -86,8 +89,7 @@ def test_regex_valid_match(name: str, match: str):
     ],
 )
 def test_regex_invalid_match(name: str, match: str):
-    res = r.check([match])
-    assert name not in str(res)
+    assert not regex_valid_match(name, match)
 
 
 def test_ip():
