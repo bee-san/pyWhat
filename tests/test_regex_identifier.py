@@ -1034,4 +1034,8 @@ def test_sshpass():
 
 def test_sshpass_multiple_args():
     res = r.check(["sshpass -P 'Please enter your password' -p MyPassw0RD!"])
-    _assert_match_first_item("SSHPass Clear Password Argument", res)
+    _assert_match_first_item("SSHPass Clear Password Argument", res) 
+    
+def test_google_api_key():
+    res = r.check(["a4db08b7-5729-4ba9-8c08-f2df493465a1"])
+    _assert_match_first_item("Google Cloud API Key", res)
