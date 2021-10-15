@@ -1015,7 +1015,7 @@
    },
    {
     "Name": "SSHPass Clear Password Argument",
-    "Regex": "^(sshpass [^\\n]*-p[ ]+[^ ]+)$",
+    "Regex": "^(sshpass [^\\n]*-p\\s+[^ ]+)$",
     "plural_name": false,
     "Description": null,
     "Rarity": 1,
@@ -1023,6 +1023,30 @@
     "Tags": [
          "Credentials",
          "SSH",
+         "Bug Bounty"
+      ]
+   },
+   {
+    "Name": "Mount Command With Clear Credentials",
+    "Regex": "^(mount(.cifs)?\\s+[^\\n]*(username=[^, \\n]+[^\\n ]*password=[^, \\n]+|password=[^, \\n]+[^\\n ]*username=[^, \\n]+))$",
+    "plural_name": false,
+    "Description": null,
+    "Rarity": 1,
+    "URL": null,
+    "Tags": [
+         "Credentials",
+         "Bug Bounty"
+      ]
+   },
+   {
+    "Name": "CIFS Fstab Entry With Clear Credentials",
+    "Regex": "^(cifs\\s+[^\\n]*(username=[^, \\n]+[^\\n ]*password=[^, \\n]+|password=[^, \\n]+[^\\n ]*username=[^, \\n]+))$",
+    "plural_name": false,
+    "Description": null,
+    "Rarity": 1,
+    "URL": null,
+    "Tags": [
+         "Credentials",
          "Bug Bounty"
       ]
    },
@@ -1783,7 +1807,7 @@
          "ObjectID"
       ]
    },
-   
+
    {
       "Name": "Recent Unix Timestamp",
       "Regex": "^([0-9]{10})$",
