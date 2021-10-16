@@ -23,7 +23,22 @@ def _assert_match_exploit_first_item(search, res):
 
 
 def test_regex_successfully_parses():
-    assert "Name" in r.distribution.get_regexes()[0]
+    regexes = r.distribution.get_regexes()
+    assert type(regexes) == list
+    assert len(regexes) != 0
+    regex = regexes[0]
+    assert type(regex) == dict
+    for key in [
+        "Name",
+        "Regex",
+        "plural_name",
+        "Description",
+        "Rarity",
+        "URL",
+        "Tags",
+        "Examples",
+    ]:
+        assert key in regex
 
 
 def _assert_match_in_items(name, res):
