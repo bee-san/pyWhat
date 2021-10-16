@@ -2,7 +2,7 @@ import re
 
 from pywhat import identifier
 from pywhat.filter import Distribution, Filter
-from pywhat.helper import Keys, load_regexes
+from pywhat.helper import Keys
 
 r = identifier.Identifier()
 
