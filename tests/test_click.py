@@ -10,14 +10,14 @@ from pywhat.what import main
 
 def test_nothing_found():
     runner = CliRunner()
-    result = runner.invoke(main, [""])
+    result = runner.invoke(main, ["-db", ""])
     assert result.exit_code == 0
     assert "Nothing found!" in result.output
 
 
 def test_hello_world():
     runner = CliRunner()
-    result = runner.invoke(main, ["THM{this is a flag}"])
+    result = runner.invoke(main, ["-db", "THM{this is a flag}"])
     assert result.exit_code == 0
     assert "THM{" in result.output
 
@@ -47,14 +47,14 @@ def test_tag_printing():
 def test_json_printing():
     """Test for valid json"""
     runner = CliRunner()
-    result = runner.invoke(main, ["10.0.0.1", "--json"])
+    result = runner.invoke(main, ["-db", "10.0.0.1", "--json"])
     assert json.loads(result.output.replace("\n", ""))
 
 
 def test_json_printing2():
     """Test for empty json return"""
     runner = CliRunner()
-    result = runner.invoke(main, ["", "--json"])
+    result = runner.invoke(main, ["-db", "", "--json"])
     assert result.output.strip("\n") == '{"File Signatures": null, "Regexes": null}'
 
 
@@ -159,7 +159,7 @@ def test_file_fixture14():
 
 def test_arg_parsing():
     runner = CliRunner()
-    result = runner.invoke(main, ["1KFHE7w8BhaENAswwryaoccDb6qcT6DbYY"])
+    result = runner.invoke(main, ["-db", "1KFHE7w8BhaENAswwryaoccDb6qcT6DbYY"])
     assert result.exit_code == 0
     assert re.findall("blockchain", str(result.output))
 
@@ -223,7 +223,7 @@ def test_file_fixture_email():
 
 def test_file_fixture_email2():
     runner = CliRunner()
-    result = runner.invoke(main, ["firstname+lastname@example.com"])
+    result = runner.invoke(main, ["-db", "firstname+lastname@example.com"])
     assert result.exit_code == 0
     assert re.findall("Email", str(result.output))
 
@@ -251,28 +251,28 @@ def test_file_fixture_youtube_id():
 
 def test_file_fixture_ip4():
     runner = CliRunner()
-    result = runner.invoke(main, ["118.103.238.230"])
+    result = runner.invoke(main, ["-db", "118.103.238.230"])
     assert result.exit_code == 0
     assert re.findall("Address Version 4", str(result.output))
 
 
 def test_file_fixture_ip4_shodan():
     runner = CliRunner()
-    result = runner.invoke(main, ["118.103.238.230"])
+    result = runner.invoke(main, ["-db", "118.103.238.230"])
     assert result.exit_code == 0
     assert re.findall("shodan", str(result.output))
 
 
 def test_file_fixture_ip6():
     runner = CliRunner()
-    result = runner.invoke(main, ["2001:0db8:85a3:0000:0000:8a2e:0370:7334"])
+    result = runner.invoke(main, ["-db", "2001:0db8:85a3:0000:0000:8a2e:0370:7334"])
     assert result.exit_code == 0
     assert re.findall("Address Version 6", str(result.output))
 
 
 def test_file_fixture_ip6_shodan():
     runner = CliRunner()
-    result = runner.invoke(main, ["2001:0db8:85a3:0000:0000:8a2e:0370:7334"])
+    result = runner.invoke(main, ["-db", "2001:0db8:85a3:0000:0000:8a2e:0370:7334"])
     assert result.exit_code == 0
     assert re.findall("shodan", str(result.output))
 
@@ -294,7 +294,7 @@ def test_file_pcap():
 
 def test_file_coords():
     runner = CliRunner()
-    result = runner.invoke(main, ["52.6169586, -1.9779857"])
+    result = runner.invoke(main, ["-db", "52.6169586, -1.9779857"])
     assert result.exit_code == 0
     assert re.findall("Latitude", str(result.output))
 
@@ -323,7 +323,7 @@ def test_file_fixture_bch():
 def test_file_fixture_bch2():
     runner = CliRunner()
     result = runner.invoke(
-        main, ["bitcoincash:qzlg6uvceehgzgtz6phmvy8gtdqyt6vf359at4n3lq"]
+        main, ["-db", "bitcoincash:qzlg6uvceehgzgtz6phmvy8gtdqyt6vf359at4n3lq"]
     )
     assert result.exit_code == 0
     assert re.findall("blockchain", str(result.output))
@@ -352,7 +352,7 @@ def test_file_fixture_xmr():
 
 def test_file_cors():
     runner = CliRunner()
-    result = runner.invoke(main, ["Access-Control-Allow: *"])
+    result = runner.invoke(main, ["-db", "Access-Control-Allow: *"])
     assert result.exit_code == 0
     assert re.findall("Access", str(result.output))
 
@@ -362,7 +362,8 @@ def test_file_jwt():
     result = runner.invoke(
         main,
         [
-            "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c"
+            "-db",
+            "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c",
         ],
     )
     assert result.exit_code == 0
@@ -371,28 +372,30 @@ def test_file_jwt():
 
 def test_file_s3():
     runner = CliRunner()
-    result = runner.invoke(main, ["http://s3.amazonaws.com/bucket/"])
+    result = runner.invoke(main, ["-db", "http://s3.amazonaws.com/bucket/"])
     assert result.exit_code == 0
     assert re.findall("S3", str(result.output))
 
 
 def test_file_s3_2():
     runner = CliRunner()
-    result = runner.invoke(main, ["s3://bucket/path/key"])
+    result = runner.invoke(main, ["-db", "s3://bucket/path/key"])
     assert result.exit_code == 0
     assert re.findall("S3", str(result.output))
 
 
 def test_file_s3_3():
     runner = CliRunner()
-    result = runner.invoke(main, ["s3://bucket/path/directory/"])
+    result = runner.invoke(main, ["-db", "s3://bucket/path/directory/"])
     assert result.exit_code == 0
     assert re.findall("S3", str(result.output))
 
 
 def test_file_arn():
     runner = CliRunner()
-    result = runner.invoke(main, ["arn:partition:service:region:account-id:resource"])
+    result = runner.invoke(
+        main, ["-db", "arn:partition:service:region:account-id:resource"]
+    )
     assert result.exit_code == 0
     assert re.findall("ARN", str(result.output))
 
@@ -400,7 +403,7 @@ def test_file_arn():
 def test_file_arn2():
     runner = CliRunner()
     result = runner.invoke(
-        main, ["arn:partition:service:region:account-id:resourcetype/resource"]
+        main, ["-db", "arn:partition:service:region:account-id:resourcetype/resource"]
     )
     assert result.exit_code == 0
     assert re.findall("ARN", str(result.output))
@@ -409,7 +412,7 @@ def test_file_arn2():
 def test_file_arn3():
     runner = CliRunner()
     result = runner.invoke(
-        main, ["arn:partition:service:region:account-id:resourcetype:resource"]
+        main, ["-db", "arn:partition:service:region:account-id:resourcetype:resource"]
     )
     assert result.exit_code == 0
     assert re.findall("ARN", str(result.output))
@@ -417,49 +420,51 @@ def test_file_arn3():
 
 def test_file_arn4():
     runner = CliRunner()
-    result = runner.invoke(main, ["arn:aws:s3:::my_corporate_bucket/Development/*"])
+    result = runner.invoke(
+        main, ["-db", "arn:aws:s3:::my_corporate_bucket/Development/*"]
+    )
     assert result.exit_code == 0
     assert re.findall("ARN", str(result.output))
 
 
 def test_key_value_min_rarity_0():
     runner = CliRunner()
-    result = runner.invoke(main, ["--rarity", "0:", "key:value"])
+    result = runner.invoke(main, ["-db", "--rarity", "0:", "key:value"])
     assert result.exit_code == 0
     assert re.findall("Key:Value", str(result.output))
 
 
 def test_key_value_min_rarity_0_1():
     runner = CliRunner()
-    result = runner.invoke(main, ["--rarity", "0:", "key : value"])
+    result = runner.invoke(main, ["-db", "--rarity", "0:", "key : value"])
     assert result.exit_code == 0
     assert re.findall("Key:Value", str(result.output))
 
 
 def test_key_value_min_rarity_0_2():
     runner = CliRunner()
-    result = runner.invoke(main, ["--rarity", "0:", "key: value"])
+    result = runner.invoke(main, ["-db", "--rarity", "0:", "key: value"])
     assert result.exit_code == 0
     assert re.findall("Key:Value", str(result.output))
 
 
 def test_key_value_min_rarity_0_3():
     runner = CliRunner()
-    result = runner.invoke(main, ["--rarity", "0:", ":a:"])
+    result = runner.invoke(main, ["-db", "--rarity", "0:", ":a:"])
     assert result.exit_code == 0
     assert not re.findall("Key:Value", str(result.output))
 
 
 def test_key_value_min_rarity_0_4():
     runner = CliRunner()
-    result = runner.invoke(main, ["--rarity", "0:", ":::::"])
+    result = runner.invoke(main, ["-db", "--rarity", "0:", ":::::"])
     assert result.exit_code == 0
     assert not re.findall("Key:Value", str(result.output))
 
 
 def test_key_value_min_rarity_0_5():
     runner = CliRunner()
-    result = runner.invoke(main, ["--rarity", "0:", "a:b:c"])
+    result = runner.invoke(main, ["-db", "--rarity", "0:", "a:b:c"])
     assert result.exit_code == 0
     assert not re.findall("a:b:c", str(result.output))
 
@@ -573,28 +578,28 @@ def test_pgp_private_key():
 
 def test_file_fixture_turkish_car_plate():
     runner = CliRunner()
-    result = runner.invoke(main, ["fixtures/file"])
+    result = runner.invoke(main, ["--rarity", "0:", "fixtures/file"])
     assert result.exit_code == 0
     assert re.findall("Turkish License Plate Number", str(result.output))
 
 
 def test_file_fixture_date_of_birth():
     runner = CliRunner()
-    result = runner.invoke(main, ["fixtures/file"])
+    result = runner.invoke(main, ["-db", "fixtures/file"])
     assert result.exit_code == 0
     assert re.findall("Date of Birth", str(result.output))
 
 
 def test_file_fixture_turkish_id_number():
     runner = CliRunner()
-    result = runner.invoke(main, ["fixtures/file"])
+    result = runner.invoke(main, ["-db", "fixtures/file"])
     assert result.exit_code == 0
     assert re.findall("Turkish Identification Number", str(result.output))
 
 
 def test_file_fixture_turkish_tax_number():
     runner = CliRunner()
-    result = runner.invoke(main, ["fixtures/file"])
+    result = runner.invoke(main, ["--rarity", "0:", "fixtures/file"])
     assert result.exit_code == 0
     assert re.findall("Turkish Tax Number", str(result.output))
 
@@ -608,14 +613,14 @@ def test_file_fixture_uuid():
 
 def test_file_fixture_objectid():
     runner = CliRunner()
-    result = runner.invoke(main, ["fixtures/file"])
+    result = runner.invoke(main, ["--rarity", "0:", "fixtures/file"])
     assert result.exit_code == 0
     assert re.findall("ObjectID", str(result.output))
 
 
 def test_file_fixture_ulid():
     runner = CliRunner()
-    result = runner.invoke(main, ["fixtures/file"])
+    result = runner.invoke(main, ["--rarity", "0:", "fixtures/file"])
     assert result.exit_code == 0
     assert re.findall("ULID", str(result.output))
 
@@ -625,3 +630,89 @@ def test_file_fixture_totp_URI():
     result = runner.invoke(main, ["fixtures/file"])
     assert result.exit_code == 0
     assert re.findall("Time-Based One-Time Password [(]TOTP[)] URI", str(result.output))
+
+
+def test_file_fixture_sshpass():
+    runner = CliRunner()
+    result = runner.invoke(main, ["fixtures/file"])
+    assert result.exit_code == 0
+    assert re.findall("SSHPass Clear Password Argument", str(result.output))
+
+
+def test_format():
+    runner = CliRunner()
+    result = runner.invoke(
+        main, ["-db", "--format", " json ", "rBPAQmwMrt7FDDPNyjwFgwSqbWZPf6SLkk"]
+    )
+    assert result.exit_code == 0
+    assert '"File Signatures":' in result.output
+
+
+def test_format2():
+    runner = CliRunner()
+    result = runner.invoke(
+        main, ["-db", "--format", " pretty ", "rBPAQmwMrt7FDDPNyjwFgwSqbWZPf6SLkk"]
+    )
+    assert result.exit_code == 0
+    assert "Possible Identification" in result.output
+
+
+def test_format3():
+    runner = CliRunner()
+    result = runner.invoke(
+        main,
+        [
+            "-db",
+            "--format",
+            r"%m 2%n %d --- -%e%r %l %t \%d",
+            "rBPAQmwMrt7FDDPNyjwFgwSqbWZPf6SLkk",
+        ],
+    )
+    assert result.exit_code == 0
+    assert (
+        "rBPAQmwMrt7FDDPNyjwFgwSqbWZPf6SLkk 2Ripple (XRP) Wallet Address  --- -0.3 https://xrpscan.com/account/rBPAQmwMrt7FDDPNyjwFgwSqbWZPf6SLkk Finance, Cryptocurrency Wallet, Ripple Wallet, Ripple, XRP %d"
+        in result.output.replace("\n", "")
+    )
+
+
+def test_format4():
+    runner = CliRunner()
+    result = runner.invoke(
+        main,
+        [
+            "-db",
+            "--include",
+            "Bug Bounty",
+            "--format",
+            r"\\%e %l %z",
+            "heroku00000000-0000-0000-0000-000000000000",
+        ],
+    )
+    assert result.exit_code == 0
+    assert (
+        '\\Use the command below to verify that the API key is valid:\n  $ curl -X POST https://api.heroku.com/apps -H "Accept: application/vnd.heroku+json; version=3" -H "Authorization: Bearer heroku00000000-0000-0000-0000-000000000000"\n  %z'.split()
+        == result.output.split()
+    )
+
+
+def test_format5():
+    runner = CliRunner()
+    result = runner.invoke(main, ["-db", "--format", r"%e", "thm{2}"])
+    assert result.exit_code == 0
+    assert len(result.output) == 0
+
+
+def test_print_tags():
+    runner = CliRunner()
+    result = runner.invoke(main, ["-db", "-pt", "thm{2}"])
+    assert result.exit_code == 0
+    assert "Tags: CTF Flag" in result.output
+
+
+def test_print_tags2():
+    runner = CliRunner()
+    result = runner.invoke(
+        main, ["-db", "--print-tags", "--format", "pretty", "thm{2}"]
+    )
+    assert result.exit_code == 0
+    assert "Tags: CTF Flag" in result.output
