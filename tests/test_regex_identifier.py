@@ -12,16 +12,6 @@ r = regex_identifier.RegexIdentifier()
 dist = Distribution(Filter({"MinRarity": 0.0}))
 
 
-def _assert_match_first_item(name, res):
-    assert name in res[0]["Regex Pattern"]["Name"]
-    # TODO:
-    # - http://10.1.1.1 == ip
-
-
-def _assert_match_exploit_first_item(search, res):
-    assert search in res[0]["Regex Pattern"]["Exploit"]
-
-
 def test_regex_successfully_parses():
     regexes = r.distribution.get_regexes()
     assert type(regexes) == list
@@ -41,17 +31,6 @@ def test_regex_successfully_parses():
         assert key in regex
 
 
-def _assert_match_in_items(name, res):
-    assert any(name in i["Regex Pattern"]["Name"] for i in res)
-
-
-def regex_valid_match(name: str, match: str) -> bool:
-    return any(
-        name in matched["Regex Pattern"]["Name"]
-        for matched in r.check([match], dist=dist)
-    )
-
-
 @pytest.mark.skip(
     reason="Not all regex have tests now, check https://github.com/bee-san/pyWhat/pull/146#issuecomment-927087231 for info."
 )
@@ -65,12 +44,19 @@ def test_if_all_tests_exist():
         ), "No test for this regex found in 'test_regex_identifier.py'. Note that a test needs to assert the whole name."
 
 
+def regex_valid_match(name: str, match: str) -> bool:
+    return any(
+        name in matched["Regex Pattern"]["Name"]
+        for matched in r.check([match], dist=dist)
+    )
+
+
 @pytest.mark.parametrize(
     "name,match",
     [
         (regex["Name"], match)
         for regex in database
-        for match in regex.get("Examples", {}).get("Valid", [])  # not in all entries
+        for match in regex.get("Examples", {}).get("Valid", [])
     ],
 )
 def test_regex_valid_match(name: str, match: str):
@@ -82,7 +68,7 @@ def test_regex_valid_match(name: str, match: str):
     [
         (regex["Name"], match)
         for regex in database
-        for match in regex.get("Examples", {}).get("Invalid", [])  # not in all entries
+        for match in regex.get("Examples", {}).get("Invalid", [])
     ],
 )
 def test_regex_invalid_match(name: str, match: str):
@@ -93,8 +79,9 @@ def test_regex_invalid_match(name: str, match: str):
     reason="Fails because not a valid TLD. If presented in punycode, it works."
 )
 def test_international_url():
-    res = r.check(["http://папироска.рф"])
-    _assert_match_first_item("Uniform Resource Locator (URL)", res)
+    assert regex_valid_match(
+        "Uniform Resource Locator (URL)", r.check(["http://папироска.рф"])
+    )
 
 
 @pytest.mark.parametrize(
