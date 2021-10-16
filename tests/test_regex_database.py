@@ -1,8 +1,23 @@
 import re
 
+import pytest
+
 from pywhat.helper import load_regexes
 
 database = load_regexes()
+
+
+@pytest.mark.skip(
+    reason="Not all regex have tests now, check https://github.com/bee-san/pyWhat/pull/146#issuecomment-927087231 for info."
+)
+def test_if_all_tests_exist():
+    with open("tests/test_regex_identifier.py", "r", encoding="utf-8") as file:
+        tests = file.read()
+
+    for regex in database:
+        assert (
+            regex["Name"] in tests
+        ), "No test for this regex found in 'test_regex_identifier.py'. Note that a test needs to assert the whole name."
 
 
 def test_name_capitalization():
@@ -36,16 +51,17 @@ def test_regex_format():
 
 def test_check_keys():
     for entry in database:
-        keys = list(entry.keys())
-        entry_name = entry["Name"]
-
-        assert "Name" in keys, entry_name
-        assert "Regex" in keys, entry_name
-        assert "plural_name" in keys, entry_name
-        assert "Description" in keys, entry_name
-        assert "Rarity" in keys, entry_name
-        assert "URL" in keys, entry_name
-        assert "Tags" in keys, entry_name
+        for key in [
+            "Name",
+            "Regex",
+            "plural_name",
+            "Description",
+            "Rarity",
+            "URL",
+            "Tags",
+            # "Examples", # TODO
+        ]:
+            assert key in entry, f"{key} is missing in {entry['Name']}"
 
 
 def test_sorted_by_rarity():

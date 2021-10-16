@@ -16,32 +16,7 @@ def test_regex_successfully_parses():
     regexes = r.distribution.get_regexes()
     assert type(regexes) == list
     assert len(regexes) != 0
-    regex = regexes[0]
-    assert type(regex) == dict
-    for key in [
-        "Name",
-        "Regex",
-        "plural_name",
-        "Description",
-        "Rarity",
-        "URL",
-        "Tags",
-        "Examples",
-    ]:
-        assert key in regex
-
-
-@pytest.mark.skip(
-    reason="Not all regex have tests now, check https://github.com/bee-san/pyWhat/pull/146#issuecomment-927087231 for info."
-)
-def test_if_all_tests_exist():
-    with open("tests/test_regex_identifier.py", "r", encoding="utf-8") as file:
-        tests = file.read()
-
-    for regex in database:
-        assert (
-            regex["Name"] in tests
-        ), "No test for this regex found in 'test_regex_identifier.py'. Note that a test needs to assert the whole name."
+    assert all([type(regex) == dict for regex in regexes])
 
 
 def regex_valid_match(name: str, match: str) -> bool:
