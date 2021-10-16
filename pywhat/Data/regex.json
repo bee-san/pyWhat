@@ -964,7 +964,7 @@
    },
    {
       "Name": "Notion Note URI",
-      "Regex": "(?i)^(https:\/\/www\\.notion\\.so\/[A-Za-z0-9-_]+\/.*-[0-9a-f]{32})$",
+      "Regex": "(?i)^(https://www\\.notion\\.so/[A-Za-z0-9-_]+/.*-[0-9a-f]{32})$",
       "plural_name": false,
       "Description": null,
       "Rarity": 1,
@@ -976,7 +976,7 @@
    },
    {
       "Name": "Notion Team Note URI",
-      "Regex": "(?i)^(https:\/\/[A-Za-z0-9-_]+\\.notion\\.site\/.*-[0-9a-f]{32})$",
+      "Regex": "(?i)^(https://[A-Za-z0-9-_]+\\.notion\\.site/.*-[0-9a-f]{32})$",
       "plural_name": false,
       "Description": null,
       "Rarity": 1,
@@ -1001,26 +1001,26 @@
       ]
    },
    {
-    "Name": "Time-Based One-Time Password (TOTP) URI",
-    "Regex": "^([^?\\n]+:\/\/totp\/[^\\n]+secret=[A-Z2-7=]+[^\\n]+)$",
-    "plural_name": false,
-    "Description": null,
-    "Rarity": 1,
-    "URL": null,
-    "Tags": [
+      "Name": "Time-Based One-Time Password (TOTP) URI",
+      "Regex": "^([^?\\n]+://totp/[^\\n]+secret=[A-Z2-7=]+[^\\n]+)$",
+      "plural_name": false,
+      "Description": null,
+      "Rarity": 1,
+      "URL": null,
+      "Tags": [
          "Credentials",
          "TOTP",
          "Bug Bounty"
       ]
    },
    {
-    "Name": "SSHPass Clear Password Argument",
-    "Regex": "^(sshpass [^\\n]*-p[ ]+[^ ]+)$",
-    "plural_name": false,
-    "Description": null,
-    "Rarity": 1,
-    "URL": null,
-    "Tags": [
+      "Name": "SSHPass Clear Password Argument",
+      "Regex": "^(sshpass [^\\n]*-p[ ]+[^ ]+)$",
+      "plural_name": false,
+      "Description": null,
+      "Rarity": 1,
+      "URL": null,
+      "Tags": [
          "Credentials",
          "SSH",
          "Bug Bounty"
@@ -1065,9 +1065,9 @@
       "Rarity": 0.8,
       "URL": null,
       "Tags": [
-          "Credentials",
-          "API Keys",
-          "Bug Bounty"
+         "Credentials",
+         "API Keys",
+         "Bug Bounty"
       ]
    },
    {
@@ -1113,7 +1113,7 @@
       ]
    },
    {
-      "Name": "Bitcoin (₿) Wallet Address",
+      "Name": "Bitcoin (\u20bf) Wallet Address",
       "Regex": "^(([1][a-km-zA-HJ-NP-Z1-9]{25,35})|([3][a-km-zA-HJ-NP-Z1-9]{33})|(bc|tb)1(?!.*[1bio])[a-z0-9]{39,59})$",
       "plural_name": false,
       "Description": null,
@@ -1783,7 +1783,6 @@
          "ObjectID"
       ]
    },
-   
    {
       "Name": "Recent Unix Timestamp",
       "Regex": "^([0-9]{10})$",
