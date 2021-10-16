@@ -1263,7 +1263,14 @@
       "Credentials",
       "SSH",
       "Bug Bounty"
-    ]
+    ],
+    "Examples": {
+      "Valid": [
+        "sshpass -P 'Please enter your password' -p MyPassw0RD!",
+        "sshpass -p MyPassw0RD!"
+      ],
+      "Invalid": []
+    }
   },
   {
     "Name": "Mount Command With Clear Credentials",
@@ -1275,7 +1282,15 @@
     "Tags": [
       "Credentials",
       "Bug Bounty"
-    ]
+    ],
+    "Examples": {
+      "Valid": [
+        "mount -o username=myuser,password=password",
+        "mount.cifs -o username=myuser,password=password",
+        "mount -t cifs -osec=ntlmv2,password=S3cUr3D!,domain=mydomain,noserverino,username=H4x0r"
+      ],
+      "Invalid": []
+    }
   },
   {
     "Name": "CIFS Fstab Entry With Clear Credentials",
@@ -1287,7 +1302,12 @@
     "Tags": [
       "Credentials",
       "Bug Bounty"
-    ]
+    ],
+    "Examples": {
+      "Valid": [
+        "cifs uid=1000,password=password,gid=1000,noperm,nofail,username=myuser"
+      ]
+    }
   },
   {
     "Name": "Google Cloud Platform API Key",
