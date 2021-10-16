@@ -8,7 +8,13 @@
       "URL": null,
       "Tags": [
          "PGP"
-      ]
+      ],
+      "Examples": {
+         "Valid": [
+            "-----BEGIN PGP PUBLIC KEY BLOCK-----Comment: Alice's OpenPGP certificateComment: https://www.ietf.org/id/draft-bre-openpgp-samples-01.htmlmDMEXEcE6RYJKwYBBAHaRw8BAQdArjWwk3FAqyiFbFBKT4TzXcVBqPTB3gmzlC/Ub7O1u120JkFsaWNlIExvdmVsYWNlIDxhbGljZUBvcGVucGdwLmV4YW1wbGU+iJAEExYIADgCGwMFCwkIBwIGFQoJCAsCBBYCAwECHgECF4AWIQTrhbtfozp14V6UTmPyMVUMT0fjjgUCXaWfOgAKCRDyMVUMT0fjjukrAPoDnHBSogOmsHOsd9qGsiZpgRnOdypvbm+QtXZqth9rvwD9HcDC0tC+PHAsO7OTh1S1TC9RiJsvawAfCPaQZoed8gK4OARcRwTpEgorBgEEAZdVAQUBAQdAQv8GIa2rSTzgqbXCpDDYMiKRVitCsy203x3sE9+eviIDAQgHiHgEGBYIACAWIQTrhbtfozp14V6UTmPyMVUMT0fjjgUCXEcE6QIbDAAKCRDyMVUMT0fjjlnQAQDFHUs6TIcxrNTtEZFjUFm1M0PJ1Dng/cDW4xN80fsn0QEA22Kr7VkCjeAEC08VSTeV+QFsmz55/lntWkwYWhmvOgE==iIGO-----END PGP PUBLIC KEY BLOCK-----"
+         ],
+         "Invalid": []
+      }
    },
    {
       "Name": "PGP Private Key",
@@ -20,7 +26,13 @@
       "Tags": [
          "PGP",
          "Bug Bounty"
-      ]
+      ],
+      "Examples": {
+         "Valid": [
+            "-----BEGIN PGP PRIVATE KEY BLOCK-----Comment: Alice's OpenPGP Transferable Secret KeyComment: https://www.ietf.org/id/draft-bre-openpgp-samples-01.htmllFgEXEcE6RYJKwYBBAHaRw8BAQdArjWwk3FAqyiFbFBKT4TzXcVBqPTB3gmzlC/Ub7O1u10AAP9XBeW6lzGOLx7zHH9AsUDUTb2pggYGMzd0P3ulJ2AfvQ4RtCZBbGljZSBMb3ZlbGFjZSA8YWxpY2VAb3BlbnBncC5leGFtcGxlPoiQBBMWCAA4AhsDBQsJCAcCBhUKCQgLAgQWAgMBAh4BAheAFiEE64W7X6M6deFelE5j8jFVDE9H444FAl2lnzoACgkQ8jFVDE9H447pKwD6A5xwUqIDprBzrHfahrImaYEZzncqb25vkLV2arYfa78A/R3AwtLQvjxwLDuzk4dUtUwvUYibL2sAHwj2kGaHnfICnF0EXEcE6RIKKwYBBAGXVQEFAQEHQEL/BiGtq0k84Km1wqQw2DIikVYrQrMttN8d7BPfnr4iAwEIBwAA/3/xFPG6U17rhTuq+07gmEvaFYKfxRB6sgAYiW6TMTpQEK6IeAQYFggAIBYhBOuFu1+jOnXhXpROY/IxVQxPR+OOBQJcRwTpAhsMAAoJEPIxVQxPR+OOWdABAMUdSzpMhzGs1O0RkWNQWbUzQ8nUOeD9wNbjE3zR+yfRAQDbYqvtWQKN4AQLTxVJN5X5AWybPnn+We1aTBhaGa86AQ===n8OM-----END PGP PRIVATE KEY BLOCK-----"
+         ],
+         "Invalid": []
+      }
    },
    {
       "Name": "SSH RSA Public Key",
@@ -32,7 +44,13 @@
       "Tags": [
          "Credentials",
          "SSH Public Key"
-      ]
+      ],
+      "Examples": {
+         "Valid": [
+            "ssh-rsa AAAAB3NzaC1tc2EAAAADAQABAAACAQDrnjkGtf3iA46rtwsvRiscvMTCw30l5Mmln/sf8Wohg4RPc7nuIx3/fB86K9jzBNoQk6Fb00p2cSW0dX6c3OTL5R5Q0rBjOFy6GV07MkS7rXa7WYh4ObxBh+M+LEzxVIw29anzQFZkR0TAf6x2rBoErK7JYU4fyqFBDFupTt3coQDPEEmVwtLLUCEnJrurbbnJKcWJ+/FbItLxYyMLPl8TwEn0iqiJ97onCU2DuBtiYv3hp1WoEH08b5WDF0F04zEPRdJT+WisxlEFRgaj51o2BtjOC+D2qZQDb4LHaAfJ0WcO4nu7YocdlcLp2JPfXKKgu9P5J8UDsmXbR3KCJ1oddFa2R6TbHc6d2hKyG4amBzMX5ltxXu7D6FLPZlFqua8YooY7A2zwIVirOUH/cfx+5O9o0CtspkNmj/iYzN0FPaOpELncWsuauy9hrGql/1cF4SUr20zHFoBoDQUtmvmBnWnKoGfpWXzuda449FVtmcrEjvBzCvCb3RStu0BbyOOybJagbKif3MkcYVO10pRbTveIUwgCD6F3ypD11XztoPNsgScmjme0sj/KWWNLyQkLWtpJEQ4k46745NAC5g+nP28TR2JM8doeqsxA8JovQkLWwDcR+WYZu2z/I8dfhOmalnoMRTJ2NzWDc0OSkKGYWjexR4fN6lAKCUOUptl9Nw== r00t@my-random_host"
+         ],
+         "Invalid": []
+      }
    },
    {
       "Name": "PEM-formatted Private Key",
@@ -44,7 +62,18 @@
       "Tags": [
          "Credentials",
          "Bug Bounty"
-      ]
+      ],
+      "Examples": {
+         "Valid": [
+            "-----BEGIN RSA PRIVATE KEY-----MIIEoQIBAAKCAQBYNGcp1Jm7GOGffs9wvpIsi9RKPE/a4usQyEdf8G2C0pLcOoypfG1MiOQCDDRN4HtMDoe9KTVjVnnREfmQq2k1hT1BZHfaRu/3YvpFrleozzYmY1XRSeUiM6G71ADg8cPZlAuH1RjswlevJyhNVWzy+DLumpbRgv6nKR9dYSdy2GsFySX488l05+ZaVKgHwlGeKd33YNPRAUNLSPKLdd9wi1djGaQpSo7jWRb6lIFJUR7FdvxwjAVMhDljxXYHPP0GXFS6KTGcfB97dle90qu/4nwdKWd4RZ5pqIbFi1D5ejItUzY40GpsPuN/tkamwB5jY0AtFY8S9TMxHjRx05/DAgMBAAECggEAKU5pHYLNd3wAdTPqq27jf28APL+f2e64jIRuQHSUpFY+plnY86oseVIGDRtwByRgOU74rFI3CU0/APS8/c34GDNMa2pEYnkj+aNldupdbNWVE0cjsj47yteJHy/6NV2jDSqyd6sI4B9m9sSMsCKYQfSPzYOhq34ACYJNiOptke9PkxpNNODlFJrFQsRKKpv2KdF7Lh3/Yzc6p53gilYR9U+Sn4mBrkuURLm2Qq++r0CNTjpmbunbjAL5q/oK8bpJEz3uZqbSQ5GbSLCNroRyi7eIF1Evvk0Vb9nSyfm94VdP+yVr1VvtOt8WigHwAr8E+ujg0rrAKMswfbvNFroNMQKBgQCs/rQvlTfpRiHUlCB09HZzquM8o7pBxTpKAX9247SW81V41EHsIS69WGZzcYbYQlxOxQi7gHiALB/yRLFNiAHAhODFMGTYtprTdW/JK6TC8CPvK3TBnPSYDPP/ME2F2UZKVHWlD3FFtUqp9BppWCHDLp7N/+i5eJy+ankJYzeGywKBgQCChsDhaPJAnHp/zHJmhDXQkqVeoB8SW2WzH481xVgyu2gIsEGmgActfEAyCqRuzjnMSIjXBL5LSAZXft8d+wveR3PsUiVdUurbcrije1ku3jDPXdBQrjmyWZvCXXnZ8oqX18C05a0pgzX5oDluA1ShcI7uWNHkIPYcZskcp96z6QKBgG9gpP2lopOrtYg5vhPOeJzLvvWBrB9ALeELydbvj4tIKxVaAv9V9dOuIHfe9aQyRV/pd0/QzMQopIDEPSrfj9E1O8l4+NSV7GSMTWZFlRR0q44GemtU9B0Y6da4cJDmbFzat8uHf7QTnniBUqfUOBiD4XZbdqhCwRfPURH8MPm1AoGAWHZ9yQe4kAO9nlnw+vwGAQsymxRImsdpAOKVy+qpIREUrDbQ98hzlOdOFtxRn2uTjplmbNwhIKJ68dfh3c7kt0yUC4mNG1f0JrD05I/X3MToLdK2OcgrAG5s+2khCY6xUcH/MFstZiIwdbOa2K3XMOc5Z964ujWAt7UN/qbjb+kCgYBdPN6J1b6OuTt4xYTCenX+KlGBb9QsuK8uXMDkhJhrtcHAyuxyJrDjQu5i3djeZerflT0EESCet0zGPd5bGyP4KaIsmLwYheDLrziS6xqqXL0irMZiWVaVquC3JlWJMw6/Y66WRuxd+oRBbE62lHWnzT2J8dfG+su483KKgli02Q==-----END RSA PRIVATE KEY-----",
+            "-----BEGIN DSA PRIVATE KEY-----MIIDTgIBAAKCAQEAj3k12bmq6b+r7Yh6z0lRtvMuxZ47rzcY6OrElh8+/TYG50NRqcQYMzm4CefCrhxTm6dHW4XQEa24tHmHdUmEaVysDo8UszYIKKIv+icRCj1iqZNFNAmg/mlsRlj4S90ggZw3CaAQV7GVrc0AIz26VIS2KR+dZI74g0SGd5ec7AS0NKasLnXpmF3iPbApL8ERjJ/6nYGB5zONt5K3MNe540lZL2gJmHIVORXqPWuLRlPGM0WPgDsypMLg8nKQJW5OP4o7CDihxFDk4YwaKaN9316hQ95LZv8EkD7VzxYj4VjUh8YI6X8hHNgdyiPLbjgHZfgi40K+SEwFdjk5YBzWZwIdALr2lqaFePff3uf6Z8l3x4XvMrIzuuWAwLzVaV0CggEAFqZcWCBIUHBOdQKjl1cEDTTaOjR4wVTU5KXALSQu4E+W5h5L0JBKvayPN+6x4J8xgtI8kEPLZC+IAEFg7fnKCbMgdqecMqYn8kc+kYebosTnRL0ggVRMtVuALDaNH6g+1InpTg+gaI4yQopceMR4xo0FJ7ccmjq7CwvhLERoljnn08502xAaZaorh/ZMaCbbPscvS1WZg0u07bAvfJDppJbTpV1TW+v8RdT2GfY/Pe27hzklwvIk4HcxKW2oh+weR0j4fvtf3rdUhDFrIjLe5VPdrwIRKw0fAtowlzIk/ieu2oudSyki2bqL457Z4QOmPFKBC8aIt+LtQxbh7xfb3gKCAQB87fMOaF3zru0d3blONyvU4kEclm0i79Shdm2r2dBQo9ru8KdmbBoBS3qS7k//hEuLCCdHAKdLrz8cdbah8ONEVVu/HTDS5TKcm1W/czHch0NhYIfMFschQcEAcswOLjGoRGHl2SZb90pF2dxMxKEgi1QLoPRRX8UWpGy5+ghkaIBEUE31p4dS3vJ1EevQc3itZ2Sh7UcY3hQ8idYptzTwL9p7c4V/aWXLFbQdzJCSi1Q5fr85Uj2eFZTHliYe5ZrZ3R+nl1fbk/ySajbLD6RaTm/ppRfWRxyw3MWjKxPapeLFIsxm1A9rnDyfeEDg1Ixahaq0xLk46RwBo6ZblI0aAh0An8MAVnsLGjtDHBGIlDH+XXPsMkClXnYeBRUGAQ==-----END DSA PRIVATE KEY-----",
+            "-----BEGIN EC PRIVATE KEY-----MIHcAgEBBEIApe6jUvbal/QN6ZoQ9dZMe/pTx4CiFzd4ln9a5f0Ope+788+BwgLpl1888OThkaWMeg2wevZ/ErMId0T3kZGoE7mgBwYFK4EEACOhgYkDgYYABAE4SLWZJs6lE0bwYgMipcRxB1xtARXDwbPt3o7aDI7680kLnELXGYhIhGeXlhXgAXjE66GuM8TdbPsshqP9nRy9OAGbxJU/OA+7/zuZmo10IYWNu1IrcGYq0WZJwzZex+S12+VKVBEwPoLKlgm5r/sI8x7WnDtialy5i8ipkvUyOyPUxg==-----END EC PRIVATE KEY-----",
+            "-----BEGIN PRIVATE KEY-----MIIEvwIBADANBgkqhkiG9w0BAQEFAASCBKkwggSlAgEAAoIBAQDaoE09/Cmh1T8I3J9lenqZ2pllw0WXAUrPi4pPV3jmJBsIsfpedZfakdI2ixw2XkWRayAklsxlFFtXCQ6U0yXSd7KJY9vuxb+5cMZejpOoHTZkVwxhlEodCt8DWf5tOc4UA5Ip88WYeszygxuIU6JP0bavJhtQnI5ER+0eZCY8xyNLqQ86h6iuxncAo5fxyc44IKFSm6MDh+GmHBlK5Eql536qfZtA6jMFYnORQ1gVp5J1hQ7bDmiLzFjyCvpNSYLOYbodvcCIWCSUKgp5Q5Uo0EX2h7mX6Z07ONCOQaFXfW3z5/xbn1bJKtI+JSNFS86owWb20EYcopnWwOimmsTXAgMBAAECggEAPW5Tpfon/Jg9+RB9HXeX4YliFw0SjcbILZ9JAthSWWCF1CCmeEpUnA7jYX4fNEuzApR2WLGixzg8Hi2mUj0uYIBPw3kywFoCcGn243Tumoty0CkBip2vYY+/cGKmMizO8iK6vF0KBbljwzUB1IGjlwgXbAmqHTGQbDFFuIdtkx/ggns9X/wNNqK7UPaJoYvlv/YX10/OgBgGQMBWTjvZ3rWg4+TUJymO4edlBK4VmPeBE+syPBcc/YNV+sYDnww8U1hucA5hJ4hOIomFYyaYYUtdWKoAwLJxGf7tZ6hgq16iMbzHcJ2gNCINcWKTByEosqX3aA3TvkyTDMwQguAn8QKBgQD2uViv8qyeVy+RrHH6pC3KoEIUYIz6LTulEDL2YcsRr5FKubzxOU6OEcx1TSmkCmUxyUAyFDyTH/aG0c1H8EWYAwMT7N25Pax1bgjJM+A1z3SU9qxOmdFqFz5v7YC9qnLkODErRByuFsfwdxxJedP4Vles/HZc1tnKYl/v8n81jwKBgQDi2IVlMx9LiBfgZeSI/dkUg3pLT1e3Mu52/WMGmUXRWFKta5P/URw/mgNqJ/nPFQRR3Jn3b6augGtMjomJ+l7pnlv/OX8oj0h46Brx08wrifZMHUStB6Rt2vOy9asLk84rQIgMh7I/PeZ3r/w8dZg7B1IUMyLuyjGcSoh2Q76oOQKBgQDsCy9aRiX35xnPmNgDH4ffz6roq+a0gwoJRZI8Pht19C5g+4pUjqslKMoff49TLc7a7tvIDaxWZcIKAjcPmEQ8xsTvDzKhwut3/anSNRtQ4AV9bvIy0N6VTV+i3erJioUY6tm/tw5pT8pBuPMLKM8vTAvdqDvlXnhHNA7tFWe26QKBgQCok922EiK8n9uWkEIgp/ztqLN2SfVWmIvsc2tm2Pqwk2GFrP+j6mQCw/Krrh+QC/9U0oq8/gUxgw+6Keb+Wci09lFJvzHHM4vZBiwX8Jy28mTNtaZ2q8o/NUqLgNPm26WIMQGpxiHpq5ec9HSPfZhurYcKqeHY8PujOSRmNvv1yQKBgQCx65dznLE32KQhJbN9lXbr7mYdqurJMrchQ4E9zI69cXf7M8kt6FqRHLVv0arPPK+xL6FqF4pq2BuKZlYTqwdG1xsOiEv3IHs3lioTFzbJ1NXhrIuV0H3AiQcw9TbhSs3sWkP7Ri90Uj/fHYQC+psvq5x0L4JZKE3dDTdgjP6vQA==-----END PRIVATE KEY-----",
+            "-----BEGIN ENCRYPTED PRIVATE KEY-----MIIE6TAbBgkqhkiG9w0BBQMwDgQIHHigg+fwQjQCAggABIIEyLP0cpU55sZ3QSZkCtNtGU425BnZZD57aqO/aa/fV9HGvWn5/GYANT6xDKbUi2kwc68QCi6Zla3C56jPvPsZoDeZ+g81DYjqBVMRsVra1kayQvnKeRvedYPBdfA0VL5n0ndRa9q31Vx6zzXnMYJd9VakUgXYLFntvVeTt/a+iW9LX7mx/ymUPZtD1IrNEJBpW6Al+vc1m6bYA8NpZaT5P6uiclsoEiPDMydEa52cBgcd5q5MfwKllPsQNYtyLsee8W/1k/Eu21pRkCPYreQWgh36gqAn+2zNySCyqiU7USQ1qHMIHPLxJV7awVfOy7eoRMhmbTJ8kCrEpI9r6JyQN3m1VbBN5QifF9p0N0v2yBM8hS6e0fdaSwkFUVFHeWz4140nhaXA6Xu9U+TvJwacdz/FYsN9wi1AIDl8nMT+gFC2v3HuiGmMD0ybA5TOJEsvhdLruxLNLok/uiu6oExDVAV6JI4zM/8ymLruuAibVxSc9bhVEY8FfYbQ5aDiGPm18MXtmCb5UNEG10ylsDl5khfGYwcfuOfgDy3PVst4aA3sHLbk996csBL8FPcGDx7iqgWPYkHEfhuHr4MUt2xqJloOsGlcs6Ts70ldgNHpNCA0DizHnrRY8EF4gXzAJghpJ5gcCllzcVjf26YsoVyNiIZ2IcMe2aoP2WtbnnFqtgl2gOJ6SNAbWyRLhtlSC74mYl0SLvtN5lm7U5bCIlAnAJbm1cqN+Muuxy9/U5TagQYfya4BZNUhHhI9ILH87QLpIWDeCa3v0UZfHi7CBirEusAq+jQGZslTt+fr/iRWQLwo819HA5Yhh4rems2p2aKeuUYPJ/gt5/KIPikYneAEJ2HzqByeS71hWbxpINtEtNz2M1SVGLbFsLrUjfKGTEc29qaaFvM24LpLxahiCTW2huM/1UZFjKyvrL0HYKAZyvA/07EHzY5K9DT3ocNIKApqMzq+D7P5L/gBNQ6E+cx/ZOA+9unVuE7OY6mmQHMsK9MAT6e4T0AxkBqAWg3cf5ovlQNr57mWwms8Zyy1wwIwLr2/wilJ5V3iWSHDIckK1kR92kCDu3MwNIhfM9dalWSsx9FRIg4iFzMIuidYO8pIVq1jJQKqVsgmGXCwioKvD6wDnQqijdDmVpX/Jg08O1iU7URD2MvGLbBRRfzcBFNrEUNjTrbQa3LS+wvDISbizryXKr/8K8okpxV6dBiW3YplePjde/yqrxWl7OQoDbG1F2f2zMmIe8ZNTP15K8aAlq9LC5qn6YnoRTRe2rLecxgP1SQVXUwFvrUKglozy1/cJsuKuCqiRecQneqyasc9mp/0wGu1t9GD3EroMfvuK4zXuaj6uTDyDPUBo6hfvNDG8zSHvEfDDGm4PTFI7kU7U7ohSQZZcGHZBUigFluq9KWJ3SHPgTkRul3nB/Im+89toHSHFoqH/B/GDokAbqsrUPgJ9xpK9lqFEhng5blX2kiae90VHRyb23oE7eIjf3j4G04Amh8m4/W7ER9JDn6nwWqMH4n2MBQRD3USO8DNTgBbggVZZ7MGIUVbv2/YcVZXftBtiS1u+lvVcpYPzwHIj29YrscmBV6ae0CLo1av0xquHYUOrVixSvhmOREOUSZvNSibizBIyNmLkA==-----END ENCRYPTED PRIVATE KEY-----",
+            "-----BEGIN OPENSSH PRIVATE KEY-----b3BlbnNzaC1rZXktdjEAAAAACmFlczI1Ni1jdHIAAAAGYmNyeXB0AAAAGAAAABBDXVWIoOcQYPyoVODqYrhNAAAAEAAAAAEAAAAzAAAAC3NzaC1lZDI1NTE5AAAAIDDZHhPJKYsu2hV7bq/vtAbF2Guw8cupqcjv5SqRraVaAAAAoCfV/ZrS3mggJFx1X7aeKzfBFDN2hWrPTHmyJPsw0NaDW+wzL6/yYmWaAB90clbSiCQ7jALlA/RoU/tPz8HvEaKcnj9BgSMN8+Se4RBcfqxMx9eCRYtYcumc9PrQbKSCeywtvsQoCntPxLhyudxH/HYKx7lO5mrMGut9FjOy2s9Iz317p+2F1DJqRYNsEHKyZJpV0DwObF2ZPOlX3PDv3fg=-----END OPENSSH PRIVATE KEY-----"
+         ],
+         "Invalid": []
+      }
    },
    {
       "Name": "SSH ECDSA Public Key",
@@ -56,7 +85,13 @@
       "Tags": [
          "Credentials",
          "SSH Public Key"
-      ]
+      ],
+      "Examples": {
+         "Valid": [
+            "ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBCE9Uli8bGnD4hOWdeo5KKQJ/P/vOazI4MgqJK54w37emP2JwOAOdMmXuwpxbKng3KZz27mz+nKWIlXJ3rzSGMo= r00t@my-random_host"
+         ],
+         "Invalid": []
+      }
    },
    {
       "Name": "SSH ED25519 Public Key",
@@ -68,7 +103,13 @@
       "Tags": [
          "Credentials",
          "SSH Public Key"
-      ]
+      ],
+      "Examples": {
+         "Valid": [
+            "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIK0wmN/Cr3JXqmLW7u+g9pTh+wyqDHpSQEIQczXkVx9q r00t@my-random_host"
+         ],
+         "Invalid": []
+      }
    },
    {
       "Name": "Access-Control-Allow-Header",
@@ -80,7 +121,13 @@
       "Tags": [
          "Networking",
          "Website"
-      ]
+      ],
+      "Examples": {
+         "Valid": [
+            "Access-Control-Allow: *"
+         ],
+         "Invalid": []
+      }
    },
    {
       "Name": "TryHackMe Flag Format",
@@ -91,7 +138,13 @@
       "URL": null,
       "Tags": [
          "CTF Flag"
-      ]
+      ],
+      "Examples": {
+         "Valid": [
+            "thm{hello}"
+         ],
+         "Invalid": []
+      }
    },
    {
       "Name": "HackTheBox Flag Format",
@@ -102,7 +155,13 @@
       "URL": null,
       "Tags": [
          "CTF Flag"
-      ]
+      ],
+      "Examples": {
+         "Valid": [
+            "htb{just_a_test}"
+         ],
+         "Invalid": []
+      }
    },
    {
       "Name": "Capture The Flag (CTF) Flag",
@@ -113,7 +172,13 @@
       "URL": null,
       "Tags": [
          "CTF Flag"
-      ]
+      ],
+      "Examples": {
+         "Valid": [
+            "FLAG{hello}"
+         ],
+         "Invalid": []
+      }
    },
    {
       "Name": "YouTube Video",
@@ -126,7 +191,14 @@
          "Media",
          "YouTube",
          "YouTube Video"
-      ]
+      ],
+      "Examples": {
+         "Valid": [
+            "https://www.youtube.com/watch?v=ScOAntcCa78",
+            "http://www.youtube.com/watch?v=dQw4w9WgXcQ"
+         ],
+         "Invalid": []
+      }
    },
    {
       "Name": "Bitcoin Cash (BCH) Wallet Address",
@@ -140,7 +212,13 @@
          "Cryptocurrency Wallet",
          "Bitcoin Cash Wallet",
          "Bitcoin"
-      ]
+      ],
+      "Examples": {
+         "Valid": [
+            "bitcoincash:qzlg6uvceehgzgtz6phmvy8gtdqyt6vf359at4n3lq"
+         ],
+         "Invalid": []
+      }
    },
    {
       "Name": "Heroku API Key",
@@ -170,7 +248,13 @@
          "API Keys",
          "Credentials",
          "Slack"
-      ]
+      ],
+      "Examples": {
+         "Valid": [
+            "xoxp-514654431830-843187921057-792480346180-d44d2r9b71f954o8z2k5llt41ovpip6v"
+         ],
+         "Invalid": []
+      }
    },
    {
       "Name": "Slack Webhook",
@@ -198,7 +282,13 @@
          "Networking",
          "AWS",
          "Bug Bounty"
-      ]
+      ],
+      "Examples": {
+         "Valid": [
+            "http://s3.amazonaws.com/bucket"
+         ],
+         "Invalid": []
+      }
    },
    {
       "Name": "Amazon Web Services Simple Storage (AWS S3) Internal URL",
@@ -211,7 +301,14 @@
          "Networking",
          "AWS",
          "Bug Bounty"
-      ]
+      ],
+      "Examples": {
+         "Valid": [
+            "s3://bucket/path/key",
+            "s3://bucket/path/directory/"
+         ],
+         "Invalid": []
+      }
    },
    {
       "Name": "Square Application Secret",
@@ -226,7 +323,13 @@
          "Credentials",
          "Square",
          "Bug Bounty"
-      ]
+      ],
+      "Examples": {
+         "Valid": [
+            "sq0csp-LBptIQ85io8CvbjVDvmzD1drQbOERgjlhnNrMgscFGk"
+         ],
+         "Invalid": []
+      }
    },
    {
       "Name": "Square Access Token",
@@ -241,7 +344,13 @@
          "Credentials",
          "Square",
          "Bug Bounty"
-      ]
+      ],
+      "Examples": {
+         "Valid": [
+            "EAAAEBQZoq15Ub0PBBr_kw0zK-uIHcBPBZcfjPFT05ODfjng9GqFK9Dbgtj1ILcU"
+         ],
+         "Invalid": []
+      }
    },
    {
       "Name": "Stripe API Key",
@@ -256,7 +365,13 @@
          "Credentials",
          "Bug Bounty",
          "Stripe"
-      ]
+      ],
+      "Examples": {
+         "Valid": [
+            "sk_live_vHDDrL02ioRF5vYtyqiYBKma"
+         ],
+         "Invalid": []
+      }
    },
    {
       "Name": "GitHub Access Token",
@@ -271,7 +386,13 @@
          "Credentials",
          "Bug Bounty",
          "GitHub"
-      ]
+      ],
+      "Examples": {
+         "Valid": [
+            "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:test@github.com"
+         ],
+         "Invalid": []
+      }
    },
    {
       "Name": "Amazon Resource Name (ARN)",
@@ -285,7 +406,16 @@
          "Networking",
          "AWS",
          "Bug Bounty"
-      ]
+      ],
+      "Examples": {
+         "Valid": [
+            "arn:partition:service:region:account-id:resource",
+            "arn:partition:service:region:account-id:resourcetype/resource",
+            "arn:partition:service:region:account-id:resourcetype:resource",
+            "arn:aws:s3:::my_corporate_bucket/Development/*"
+         ],
+         "Invalid": []
+      }
    },
    {
       "Name": "Facebook Access Token",
@@ -370,7 +500,13 @@
          "Token",
          "Bug Bounty",
          "NPM"
-      ]
+      ],
+      "Examples": {
+         "Valid": [
+            "npm_ir3kktsOr4JeXqeD72C3cWo2mbs5sQ2pfnt9"
+         ],
+         "Invalid": []
+      }
    },
    {
       "Name": "GitHub Personal Access Token",
@@ -385,7 +521,13 @@
          "Bug Bounty",
          "Credentials",
          "GitHub"
-      ]
+      ],
+      "Examples": {
+         "Valid": [
+            "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"
+         ],
+         "Invalid": []
+      }
    },
    {
       "Name": "GitHub OAuth Access Token",
@@ -400,7 +542,13 @@
          "Bug Bounty",
          "Credentials",
          "GitHub"
-      ]
+      ],
+      "Examples": {
+         "Valid": [
+            "gho_16C7e42F292c6912E7710c838347Ae178B4a"
+         ],
+         "Invalid": []
+      }
    },
    {
       "Name": "GitHub App Token",
@@ -415,7 +563,13 @@
          "Bug Bounty",
          "Credentials",
          "GitHub"
-      ]
+      ],
+      "Examples": {
+         "Valid": [
+            "ghu_16C7e42F292c6912E7710c838347Ae178B4a"
+         ],
+         "Invalid": []
+      }
    },
    {
       "Name": "GitHub Refresh Token",
@@ -430,7 +584,13 @@
          "Bug Bounty",
          "Credentials",
          "GitHub"
-      ]
+      ],
+      "Examples": {
+         "Valid": [
+            "ghr_1B4a2e77838347a7E420ce178F2E7c6912E169246c34E1ccbF66C46812d16D5B1A9Dc86A1498"
+         ],
+         "Invalid": []
+      }
    },
    {
       "Name": "LinkedIn Client ID",
@@ -625,7 +785,13 @@
          "Bug Bounty",
          "Credentials",
          "StackHawk"
-      ]
+      ],
+      "Examples": {
+         "Valid": [
+            "hawk.wz6bAoFDwcVQFCD9dofE.w2R1PWI8UTvEM4jd56XQ"
+         ],
+         "Invalid": []
+      }
    },
    {
       "Name": "NuGet API Key",
@@ -683,7 +849,13 @@
          "Bug Bounty",
          "Credentials",
          "Zapier"
-      ]
+      ],
+      "Examples": {
+         "Valid": [
+            "https://hooks.zapier.com/hooks/catch/1234567/f8f22dgg/"
+         ],
+         "Invalid": []
+      }
    },
    {
       "Name": "Datadog API Key",
@@ -757,7 +929,13 @@
          "Bug Bounty",
          "Credentials",
          "New Relic"
-      ]
+      ],
+      "Examples": {
+         "Valid": [
+            "NRRA-2a2d50d7d9449f3bb7ef65ac1184c488bd4fe7a8bd"
+         ],
+         "Invalid": []
+      }
    },
    {
       "Name": "New Relic Synthetics Location Key",
@@ -770,7 +948,13 @@
       "Tags": [
          "Bug Bounty",
          "New Relic"
-      ]
+      ],
+      "Examples": {
+         "Valid": [
+            "NRSP-us010E1E3D1716F721FF39F726B3E4CBCB7"
+         ],
+         "Invalid": []
+      }
    },
    {
       "Name": "New Relic User API Key",
@@ -785,7 +969,13 @@
          "Bug Bounty",
          "Credentials",
          "New Relic"
-      ]
+      ],
+      "Examples": {
+         "Valid": [
+            "NRAK-WI4JTVS049IF5A3FGS5N51XS3Y5"
+         ],
+         "Invalid": []
+      }
    },
    {
       "Name": "Microsoft Teams Webhook",
@@ -828,7 +1018,13 @@
          "URL",
          "Google Calendar",
          "Google"
-      ]
+      ],
+      "Examples": {
+         "Valid": [
+            "https://calendar.google.com/calendar/embed?src=ht3jlfaac5lfd6263ulfh4tql8%40group.calendar.google.com&ctz=Europe%2FLondon"
+         ],
+         "Invalid": []
+      }
    },
    {
       "Name": "Discord Webhook",
@@ -842,7 +1038,13 @@
          "Bug Bounty",
          "URL",
          "Discord"
-      ]
+      ],
+      "Examples": {
+         "Valid": [
+            "https://discord.com/api/webhooks/894893734582452235/KhNc2-_zwY9FfCAK0iGUa_KfYyW8m5Ja_5i-V24fEY6ETwvLLn-GmdT_vq0Do9-YRsij"
+         ],
+         "Invalid": []
+      }
    },
    {
       "Name": "Cloudinary Credentials",
@@ -871,7 +1073,13 @@
          "Credentials",
          "API Keys",
          "PyPI"
-      ]
+      ],
+      "Examples": {
+         "Valid": [
+            "pypi-AgEIcHlwaS5vcmcCJDZlNzEyNGJmLWQ4N2UtNGZhYS1iNWEzLWQzYzg2YjU3NzAxYgACJXsicGVybWlzc2lvbnMiOiAidXNlciIsICJ2ZXJzaW9uIjogMX0AAAYgeYcgrZO31PTS_3ipsd0fTSMy1kVkxCzhQvHN6m97yIE"
+         ],
+         "Invalid": []
+      }
    },
    {
       "Name": "Shopify Private App Access Token",
@@ -960,11 +1168,17 @@
          "Bug Bounty",
          "AWS",
          "Amazon"
-      ]
+      ],
+      "Examples": {
+         "Valid": [
+            "arn:aws:sns:us-east-2:123456789012:MyTopic"
+         ],
+         "Invalid": []
+      }
    },
    {
       "Name": "Notion Note URI",
-      "Regex": "(?i)^(https:\/\/www\\.notion\\.so\/[A-Za-z0-9-_]+\/.*-[0-9a-f]{32})$",
+      "Regex": "(?i)^(https://www\\.notion\\.so/[A-Za-z0-9-_]+/.*-[0-9a-f]{32})$",
       "plural_name": false,
       "Description": null,
       "Rarity": 1,
@@ -972,11 +1186,17 @@
       "Tags": [
          "Bug Bounty",
          "URL"
-      ]
+      ],
+      "Examples": {
+         "Valid": [
+            "https://www.notion.so/test-user/My-Note-fa45346d9dd4421abc6857ce2e7fb0db"
+         ],
+         "Invalid": []
+      }
    },
    {
       "Name": "Notion Team Note URI",
-      "Regex": "(?i)^(https:\/\/[A-Za-z0-9-_]+\\.notion\\.site\/.*-[0-9a-f]{32})$",
+      "Regex": "(?i)^(https://[A-Za-z0-9-_]+\\.notion\\.site/.*-[0-9a-f]{32})$",
       "plural_name": false,
       "Description": null,
       "Rarity": 1,
@@ -984,7 +1204,13 @@
       "Tags": [
          "Bug Bounty",
          "URL"
-      ]
+      ],
+      "Examples": {
+         "Valid": [
+            "https://testorg.notion.site/My-Note-9f8863871e024ea6acc64d6564004a22"
+         ],
+         "Invalid": []
+      }
    },
    {
       "Name": "Nano (NANO) Wallet Address",
@@ -998,57 +1224,90 @@
          "Cryptocurrency Wallet",
          "Nano Wallet",
          "Nano"
-      ]
+      ],
+      "Examples": {
+         "Valid": [
+            "nano_1c46rz7xnk98ozhzdjq7thwty844sgnqxk9496yysit1bnio1rcdzshc5ymn"
+         ],
+         "Invalid": []
+      }
    },
    {
-    "Name": "Time-Based One-Time Password (TOTP) URI",
-    "Regex": "^([^?\\n]+:\/\/totp\/[^\\n]+secret=[A-Z2-7=]+[^\\n]+)$",
-    "plural_name": false,
-    "Description": null,
-    "Rarity": 1,
-    "URL": null,
-    "Tags": [
+      "Name": "Time-Based One-Time Password (TOTP) URI",
+      "Regex": "^([^?\\n]+://totp/[^\\n]+secret=[A-Z2-7=]+[^\\n]+)$",
+      "plural_name": false,
+      "Description": null,
+      "Rarity": 1,
+      "URL": null,
+      "Tags": [
          "Credentials",
          "TOTP",
          "Bug Bounty"
-      ]
+      ],
+      "Examples": {
+         "Valid": [
+            "otpauth://totp/Example:alice@google.com?secret=JBSWY3DPEHPK3PXP&issuer=Example",
+            "otpauth://totp/My_Ex0T1c-L00king.name?issuer=ArgsShouldBeCommutable&secret=JBSWY3DPEHPK3PXP&digits=6&period=30"
+         ],
+         "Invalid": []
+      }
    },
    {
-    "Name": "SSHPass Clear Password Argument",
-    "Regex": "^(sshpass [^\\n]*-p\\s+[^ ]+)$",
-    "plural_name": false,
-    "Description": null,
-    "Rarity": 1,
-    "URL": null,
-    "Tags": [
+      "Name": "SSHPass Clear Password Argument",
+      "Regex": "^(sshpass [^\\n]*-p[ ]+[^ ]+)$",
+      "plural_name": false,
+      "Description": null,
+      "Rarity": 1,
+      "URL": null,
+      "Tags": [
          "Credentials",
          "SSH",
          "Bug Bounty"
-      ]
+      ],
+      "Examples": {
+         "Valid": [
+            "sshpass -P 'Please enter your password' -p MyPassw0RD!",
+            "sshpass -p MyPassw0RD!"
+         ],
+         "Invalid": []
+      }
    },
    {
-    "Name": "Mount Command With Clear Credentials",
-    "Regex": "^(mount(.cifs)?\\s+[^\\n]*(username=[^, \\n]+[^\\n ]*password=[^, \\n]+|password=[^, \\n]+[^\\n ]*username=[^, \\n]+))$",
-    "plural_name": false,
-    "Description": null,
-    "Rarity": 1,
-    "URL": null,
-    "Tags": [
+      "Name": "Mount Command With Clear Credentials",
+      "Regex": "^(mount(.cifs)?\\s+[^\\n]*(username=[^, \\n]+[^\\n ]*password=[^, \\n]+|password=[^, \\n]+[^\\n ]*username=[^, \\n]+))$",
+      "plural_name": false,
+      "Description": null,
+      "Rarity": 1,
+      "URL": null,
+      "Tags": [
          "Credentials",
          "Bug Bounty"
-      ]
+      ],
+      "Examples": {
+         "Valid": [
+            "mount -o username=myuser,password=password",
+            "mount.cifs -o username=myuser,password=password",
+            "mount -t cifs -osec=ntlmv2,password=S3cUr3D!,domain=mydomain,noserverino,username=H4x0r"
+         ],
+         "Invalid": []
+      }
    },
    {
-    "Name": "CIFS Fstab Entry With Clear Credentials",
-    "Regex": "^(cifs\\s+[^\\n]*(username=[^, \\n]+[^\\n ]*password=[^, \\n]+|password=[^, \\n]+[^\\n ]*username=[^, \\n]+))$",
-    "plural_name": false,
-    "Description": null,
-    "Rarity": 1,
-    "URL": null,
-    "Tags": [
+      "Name": "CIFS Fstab Entry With Clear Credentials",
+      "Regex": "^(cifs\\s+[^\\n]*(username=[^, \\n]+[^\\n ]*password=[^, \\n]+|password=[^, \\n]+[^\\n ]*username=[^, \\n]+))$",
+      "plural_name": false,
+      "Description": null,
+      "Rarity": 1,
+      "URL": null,
+      "Tags": [
          "Credentials",
          "Bug Bounty"
-      ]
+      ],
+      "Examples": {
+         "Valid": [
+            "cifs uid=1000,password=password,gid=1000,noperm,nofail,username=myuser"
+         ]
+      }
    },
    {
       "Name": "Google Cloud Platform API Key",
@@ -1089,10 +1348,16 @@
       "Rarity": 0.8,
       "URL": null,
       "Tags": [
-          "Credentials",
-          "API Keys",
-          "Bug Bounty"
-      ]
+         "Credentials",
+         "API Keys",
+         "Bug Bounty"
+      ],
+      "Examples": {
+         "Valid": [
+            "secret_n2ZeRrMx743JQ5wiucZ0DBEe47opfKubUp22N0wIrOy"
+         ],
+         "Invalid": []
+      }
    },
    {
       "Name": "Internet Protocol (IP) Address Version 6",
@@ -1107,7 +1372,14 @@
          "IP",
          "IPv6",
          "Bug Bounty"
-      ]
+      ],
+      "Examples": {
+         "Valid": [
+            "2001:0db8:85a3:0000:0000:8a2e:0370:7334",
+            "[2001:db8::1]:8080"
+         ],
+         "Invalid": []
+      }
    },
    {
       "Name": "Uniform Resource Locator (URL)",
@@ -1119,7 +1391,20 @@
       "Tags": [
          "Identifiers",
          "URL"
-      ]
+      ],
+      "Examples": {
+         "Valid": [
+            "tryhackme.com",
+            "http://username:password@example.com/",
+            "hTTPs://tryhackme.com",
+            "https://xn--80aaxitdbjk.xn--p1ai/",
+            "http://10.1.1.1",
+            "http://10.1.1.1/just/a/test"
+         ],
+         "Invalid": [
+            "tryhackme.comm"
+         ]
+      }
    },
    {
       "Name": "Internet Protocol (IP) Address Version 4",
@@ -1134,10 +1419,16 @@
          "IP",
          "IPv4",
          "Bug Bounty"
-      ]
+      ],
+      "Examples": {
+         "Valid": [
+            "192.0.2.235:80"
+         ],
+         "Invalid": []
+      }
    },
    {
-      "Name": "Bitcoin (₿) Wallet Address",
+      "Name": "Bitcoin (\u20bf) Wallet Address",
       "Regex": "^(([1][a-km-zA-HJ-NP-Z1-9]{25,35})|([3][a-km-zA-HJ-NP-Z1-9]{33})|(bc|tb)1(?!.*[1bio])[a-z0-9]{39,59})$",
       "plural_name": false,
       "Description": null,
@@ -1148,7 +1439,15 @@
          "Cryptocurrency Wallet",
          "Bitcoin Wallet",
          "Bitcoin"
-      ]
+      ],
+      "Examples": {
+         "Valid": [
+            "1KFHE7w8BhaENAswwryaoccDb6qcT6DbYY",
+            "3EmUH8Uh9EXE7axgyAeBsCc2vdUdKkDqWK",
+            "bc1qj89046x7zv6pm4n00qgqp505nvljnfp6xfznyw"
+         ],
+         "Invalid": []
+      }
    },
    {
       "Name": "Latitude & Longitude Coordinates",
@@ -1161,7 +1460,18 @@
          "Geo-location",
          "Lat & Long",
          "Coords"
-      ]
+      ],
+      "Examples": {
+         "Valid": [
+            "52.6169586, -1.9779857",
+            "53.76297,-1.9388732",
+            "77\u00b0 30' 29.9988\" N",
+            "N 32\u00b0 53.733 W 096\u00b0 48.358",
+            "41\u00b024'12.2\" N 2\u00b010'26.5\" E",
+            "40.741895,-73.989308"
+         ],
+         "Invalid": []
+      }
    },
    {
       "Name": "EUI-48 Identifier (Ethernet, WiFi, Bluetooth, etc)",
@@ -1184,6 +1494,18 @@
          "entry": "Vendor(s): ",
          "method": "hashmap",
          "deletion_pattern": "[:.-]"
+      },
+      "Examples": {
+         "Valid": [
+            "00:00:00:00:00:00",
+            "00-00-00-00-00-00",
+            "0000.0000.0000"
+         ],
+         "Invalid": [
+            "00-00-00-00.00-00",
+            "00:00-00-00-00-00",
+            "00:00:0G:00:00:00"
+         ]
       }
    },
    {
@@ -1198,7 +1520,13 @@
          "Cryptocurrency Wallet",
          "Dogecoin Wallet",
          "Dogecoin"
-      ]
+      ],
+      "Examples": {
+         "Valid": [
+            "DANHz6EQVoWyZ9rER56DwTXHWUxfkv9k2o"
+         ],
+         "Invalid": []
+      }
    },
    {
       "Name": "Email Address",
@@ -1212,7 +1540,17 @@
          "Credentials",
          "Email Address",
          "Email"
-      ]
+      ],
+      "Examples": {
+         "Valid": [
+            "github@skerritt.blog",
+            "firstname+lastname@example.com",
+            "john.smith@[123.123.123.123]"
+         ],
+         "Invalid": [
+            "email@example@example.com"
+         ]
+      }
    },
    {
       "Name": "Phone Number",
@@ -1231,6 +1569,15 @@
          "path": "phone_codes.json",
          "entry": "Location(s): ",
          "method": "hashmap"
+      },
+      "Examples": {
+         "Valid": [
+            "202-555-0178",
+            "+1-202-555-0156",
+            "+662025550156",
+            "+356 202 555 0156"
+         ],
+         "Invalid": []
       }
    },
    {
@@ -1245,7 +1592,23 @@
          "SSN",
          "Social Security Number",
          "Bug Bounty"
-      ]
+      ],
+      "Examples": {
+         "Valid": [
+            "001-01-0001",
+            "001:01:0001",
+            "001.01.0001",
+            "001 01 0001"
+         ],
+         "Invalid": [
+            "900-01-2222",
+            "999-21-2222",
+            "666-21-2222",
+            "000-21-5544",
+            "122-00-5544",
+            "122-32-0000"
+         ]
+      }
    },
    {
       "Name": "Bitly Secret Key",
@@ -1260,7 +1623,13 @@
          "Credentials",
          "API Keys",
          "Bitly"
-      ]
+      ],
+      "Examples": {
+         "Valid": [
+            "96f79079f1d658895d188a78f303220c6f161b05"
+         ],
+         "Invalid": []
+      }
    },
    {
       "Name": "Visual Studio App Center API Token",
@@ -1276,7 +1645,13 @@
          "Bug Bounty",
          "Visual Studio",
          "Microsoft"
-      ]
+      ],
+      "Examples": {
+         "Valid": [
+            "4435bc4358816be97a3f014499116c83ab224fb2"
+         ],
+         "Invalid": []
+      }
    },
    {
       "Name": "YouTube Channel ID",
@@ -1289,7 +1664,15 @@
          "Media",
          "YouTube",
          "YouTube Channel"
-      ]
+      ],
+      "Examples": {
+         "Valid": [
+            "UCjXfkj5iapKHJrhYfAF9ZGg"
+         ],
+         "Invalid": [
+            "078-05-1120"
+         ]
+      }
    },
    {
       "Name": "Discord Bot Token",
@@ -1305,7 +1688,15 @@
          "Bug Bounty",
          "Discord",
          "Discord Bot"
-      ]
+      ],
+      "Examples": {
+         "Valid": [
+            "NzQ4MDk3ODM3OTgzODU4NzIz.X0YeZw.UlcjuCywUAWvPH9s-3cXNBaq3M4",
+            "MTE4NDQyNjQ0NTAxMjk5MjAz.DPM2DQ.vLNMR02Qxb9DJFucGZK1UtTs__s",
+            "ODYyOTUyOTE3NTg4NjM5NzY1.YOf1iA.7lARgFXmodxpgmPvOXapaKUga6M"
+         ],
+         "Invalid": []
+      }
    },
    {
       "Name": "UUID",
@@ -1317,7 +1708,13 @@
       "Tags": [
          "Identifiers",
          "UUID"
-      ]
+      ],
+      "Examples": {
+         "Valid": [
+            "b2ced6f5-2542-4f7d-b131-e3ada95d8b75"
+         ],
+         "Invalid": []
+      }
    },
    {
       "Name": "Turkish License Plate Number",
@@ -1330,7 +1727,17 @@
          "Identifiers",
          "License Plate",
          "Turkish"
-      ]
+      ],
+      "Examples": {
+         "Valid": [
+            "34A2344",
+            "34A23415",
+            "06BK123",
+            "06JK1234",
+            "81ABC75"
+         ],
+         "Invalid": []
+      }
    },
    {
       "Name": "Date of Birth",
@@ -1343,7 +1750,17 @@
          "Identifiers",
          "Date of Birth",
          "DOB"
-      ]
+      ],
+      "Examples": {
+         "Valid": [
+            "13.08.1987",
+            "13081987",
+            "13/08/1987",
+            "13-08-1987",
+            "13 08 1987"
+         ],
+         "Invalid": []
+      }
    },
    {
       "Name": "Monero (XMR) Wallet Address",
@@ -1357,7 +1774,13 @@
          "Cryptocurrency Wallet",
          "Monero Wallet",
          "Monero"
-      ]
+      ],
+      "Examples": {
+         "Valid": [
+            "47DF8D9NwtmefhFUghynYRMqrexiZTsm48T1hhi2jZcbfcwoPbkhMrrED6zqJRfeYpXFfdaqAT3jnBEwoMwCx6BYDJ1W3ub"
+         ],
+         "Invalid": []
+      }
    },
    {
       "Name": "Litecoin (LTC) Wallet Address",
@@ -1371,7 +1794,13 @@
          "Cryptocurrency Wallet",
          "Litecoin Wallet",
          "Litecoin"
-      ]
+      ],
+      "Examples": {
+         "Valid": [
+            "LRX8rSPVjifTxoLeoJtLf2JYdJFTQFcE7m"
+         ],
+         "Invalid": []
+      }
    },
    {
       "Name": "Ripple (XRP) Wallet Address",
@@ -1386,7 +1815,13 @@
          "Ripple Wallet",
          "Ripple",
          "XRP"
-      ]
+      ],
+      "Examples": {
+         "Valid": [
+            "rBPAQmwMrt7FDDPNyjwFgwSqbWZPf6SLkk"
+         ],
+         "Invalid": []
+      }
    },
    {
       "Name": "American Express Card Number",
@@ -1412,7 +1847,13 @@
       "Tags": [
          "Credit Card",
          "Finance"
-      ]
+      ],
+      "Examples": {
+         "Valid": [
+            "6556123456789012"
+         ],
+         "Invalid": []
+      }
    },
    {
       "Name": "Carte Blanche Card Number",
@@ -1424,7 +1865,13 @@
       "Tags": [
          "Credit Card",
          "Finance"
-      ]
+      ],
+      "Examples": {
+         "Valid": [
+            "30137891521480"
+         ],
+         "Invalid": []
+      }
    },
    {
       "Name": "Diners Club Card Number",
@@ -1436,7 +1883,14 @@
       "Tags": [
          "Credit Card",
          "Finance"
-      ]
+      ],
+      "Examples": {
+         "Valid": [
+            "3056 9309 0259 04",
+            "30000000000004"
+         ],
+         "Invalid": []
+      }
    },
    {
       "Name": "Discover Card Number",
@@ -1449,7 +1903,14 @@
          "Credit Card",
          "Finance",
          "Discover CC"
-      ]
+      ],
+      "Examples": {
+         "Valid": [
+            "6011000000000004",
+            "6011 1111 1111 1117"
+         ],
+         "Invalid": []
+      }
    },
    {
       "Name": "MasterCard Number",
@@ -1469,6 +1930,12 @@
          "entry": "Issuer(s): ",
          "deletion_pattern": "\\s",
          "method": "hashmap"
+      },
+      "Examples": {
+         "Valid": [
+            "5409010000000004",
+            "5409 0100 0000 0004"
+         ]
       }
    },
    {
@@ -1481,7 +1948,14 @@
       "Tags": [
          "Credit Card",
          "Finance"
-      ]
+      ],
+      "Examples": {
+         "Valid": [
+            "5038146401278870",
+            "6759 6498 2643 8453"
+         ],
+         "Invalid": []
+      }
    },
    {
       "Name": "Visa Card Number",
@@ -1495,7 +1969,14 @@
          "Finance",
          "Visa CC",
          "Bug Bounty"
-      ]
+      ],
+      "Examples": {
+         "Valid": [
+            "4111111111111111",
+            "4607 0000 0000 0009"
+         ],
+         "Invalid": []
+      }
    },
    {
       "Name": "Insta Payment Card Number",
@@ -1507,7 +1988,13 @@
       "Tags": [
          "Credit Card",
          "Finance"
-      ]
+      ],
+      "Examples": {
+         "Valid": [
+            "6387849878080951"
+         ],
+         "Invalid": []
+      }
    },
    {
       "Name": "JCB Card Number",
@@ -1519,7 +2006,14 @@
       "Tags": [
          "Credit Card",
          "Finance"
-      ]
+      ],
+      "Examples": {
+         "Valid": [
+            "3537124887293334",
+            "3543824683332150682"
+         ],
+         "Invalid": []
+      }
    },
    {
       "Name": "Korean Local Card Number",
@@ -1531,7 +2025,13 @@
       "Tags": [
          "Credit Card",
          "Finance"
-      ]
+      ],
+      "Examples": {
+         "Valid": [
+            "9837282929900015"
+         ],
+         "Invalid": []
+      }
    },
    {
       "Name": "Laser Card Number",
@@ -1543,7 +2043,13 @@
       "Tags": [
          "Credit Card",
          "Finance"
-      ]
+      ],
+      "Examples": {
+         "Valid": [
+            "630495060000000000"
+         ],
+         "Invalid": []
+      }
    },
    {
       "Name": "Solo Card Number",
@@ -1555,7 +2061,13 @@
       "Tags": [
          "Credit Card",
          "Finance"
-      ]
+      ],
+      "Examples": {
+         "Valid": [
+            "6334498823141663"
+         ],
+         "Invalid": []
+      }
    },
    {
       "Name": "Switch Card Number",
@@ -1567,7 +2079,13 @@
       "Tags": [
          "Credit Card",
          "Finance"
-      ]
+      ],
+      "Examples": {
+         "Valid": [
+            "633341812811453789"
+         ],
+         "Invalid": []
+      }
    },
    {
       "Name": "Ethereum (ETH) Wallet Address",
@@ -1581,7 +2099,13 @@
          "Cryptocurrency Wallet",
          "Ethereum Wallet",
          "Ethereum"
-      ]
+      ],
+      "Examples": {
+         "Valid": [
+            "0x52908400098527886E0F7030069857D2E4169EE7"
+         ],
+         "Invalid": []
+      }
    },
    {
       "Name": "Slack Token",
@@ -1596,7 +2120,13 @@
          "Credentials",
          "Bug Bounty",
          "Slack"
-      ]
+      ],
+      "Examples": {
+         "Valid": [
+            "xoxb-51465443183-hgvhXVd2ISC2x7gaoRWBOUdQ"
+         ],
+         "Invalid": []
+      }
    },
    {
       "Name": "Amazon Web Services Organization Identifier",
@@ -1609,7 +2139,13 @@
          "Identifiers",
          "AWS",
          "Amazon"
-      ]
+      ],
+      "Examples": {
+         "Valid": [
+            "o-aa111bb222"
+         ],
+         "Invalid": []
+      }
    },
    {
       "Name": "Google API Key",
@@ -1624,7 +2160,13 @@
          "Credentials",
          "Google",
          "Bug Bounty"
-      ]
+      ],
+      "Examples": {
+         "Valid": [
+            "AIzaSyD7CQl6fRhagGok6CzFGOOPne2X1u1spoA"
+         ],
+         "Invalid": []
+      }
    },
    {
       "Name": "Google OAuth Token",
@@ -1638,7 +2180,13 @@
          "Credentials",
          "Google",
          "Bug Bounty"
-      ]
+      ],
+      "Examples": {
+         "Valid": [
+            "ya29.AHES6ZRnn6CfjjaK6GCQ84vikePv_hk4NUAJwzaAXamCL0s"
+         ],
+         "Invalid": []
+      }
    },
    {
       "Name": "Mailgun API Key",
@@ -1653,7 +2201,13 @@
          "Credentials",
          "Bug Bounty",
          "Mailgun"
-      ]
+      ],
+      "Examples": {
+         "Valid": [
+            "key-1e1631a9414aff7c262721e7b6ff6e43"
+         ],
+         "Invalid": []
+      }
    },
    {
       "Name": "Twilio API Key",
@@ -1668,7 +2222,13 @@
          "Credentials",
          "Bug Bounty",
          "Twilio"
-      ]
+      ],
+      "Examples": {
+         "Valid": [
+            "SK012dab2d3f4dab1c2f33dffafdf23142"
+         ],
+         "Invalid": []
+      }
    },
    {
       "Name": "Twilio Account SID",
@@ -1682,7 +2242,13 @@
          "API Keys",
          "Credentials",
          "Twilio"
-      ]
+      ],
+      "Examples": {
+         "Valid": [
+            "AC10a133ffdfb112abb2d3f42d1d2d3b14"
+         ],
+         "Invalid": []
+      }
    },
    {
       "Name": "Twilio Application SID",
@@ -1695,7 +2261,13 @@
          "API Keys",
          "Credentials",
          "Twilio"
-      ]
+      ],
+      "Examples": {
+         "Valid": [
+            "APfff01abd2b134a2aff3adc243ab211ab"
+         ],
+         "Invalid": []
+      }
    },
    {
       "Name": "Google ReCaptcha API Key",
@@ -1710,7 +2282,13 @@
          "Credentials",
          "Google",
          "Bug Bounty"
-      ]
+      ],
+      "Examples": {
+         "Valid": [
+            "6Le3W6QUAAAANNT8X_9JwlNnK4kZGLaYTB3KqFLM"
+         ],
+         "Invalid": []
+      }
    },
    {
       "Name": "Amazon Standard Identification Number (ASIN)",
@@ -1722,7 +2300,13 @@
       "Tags": [
          "Identifiers",
          "Amazon"
-      ]
+      ],
+      "Examples": {
+         "Valid": [
+            "B07ND5BB8V"
+         ],
+         "Invalid": []
+      }
    },
    {
       "Name": "JSON Web Token (JWT)",
@@ -1736,7 +2320,13 @@
          "Website",
          "JWT Token",
          "JWT"
-      ]
+      ],
+      "Examples": {
+         "Valid": [
+            "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c"
+         ],
+         "Invalid": []
+      }
    },
    {
       "Name": "Amazon Web Services Access Key",
@@ -1751,7 +2341,14 @@
          "API Keys",
          "AWS",
          "Amazon"
-      ]
+      ],
+      "Examples": {
+         "Valid": [
+            "AKIA31OMZKYAARWZ3ERH",
+            "AKIAIOSFODNN7EXAMPLE"
+         ],
+         "Invalid": []
+      }
    },
    {
       "Name": "Amazon Web Services Secret Access Key",
@@ -1767,7 +2364,13 @@
          "AWS",
          "Bug Bounty",
          "Amazon"
-      ]
+      ],
+      "Examples": {
+         "Valid": [
+            "Nw0XP0t2OdyUkaIk3B8TaAa2gEXAMPLEMvD2tW+g"
+         ],
+         "Invalid": []
+      }
    },
    {
       "Name": "Amazon Web Services EC2 Instance Identifier",
@@ -1780,7 +2383,13 @@
          "Identifiers",
          "AWS",
          "Amazon"
-      ]
+      ],
+      "Examples": {
+         "Valid": [
+            "i-1234567890abcdef0"
+         ],
+         "Invalid": []
+      }
    },
    {
       "Name": "Turkish Identification Number",
@@ -1793,7 +2402,14 @@
          "Credentials",
          "Identifiers",
          "Turkish"
-      ]
+      ],
+      "Examples": {
+         "Valid": [
+            "12345678902",
+            "12345678900"
+         ],
+         "Invalid": []
+      }
    },
    {
       "Name": "ObjectID",
@@ -1805,9 +2421,14 @@
       "Tags": [
          "Identifiers",
          "ObjectID"
-      ]
+      ],
+      "Examples": {
+         "Valid": [
+            "5fc7c33a7ef88b139122a38a"
+         ],
+         "Invalid": []
+      }
    },
-
    {
       "Name": "Recent Unix Timestamp",
       "Regex": "^([0-9]{10})$",
@@ -1819,7 +2440,16 @@
          "UNIX Timestamp",
          "Timestamp",
          "UNIX"
-      ]
+      ],
+      "Examples": {
+         "Valid": [
+            "1577836800"
+         ],
+         "Invalid": [
+            "94694400",
+            "1234567"
+         ]
+      }
    },
    {
       "Name": "Recent Unix Millisecond Timestamp",
@@ -1832,7 +2462,15 @@
          "UNIX Timestamp",
          "Timestamp",
          "UNIX"
-      ]
+      ],
+      "Examples": {
+         "Valid": [
+            "1577836800000"
+         ],
+         "Invalid": [
+            "94694400000"
+         ]
+      }
    },
    {
       "Name": "Unix Timestamp",
@@ -1845,7 +2483,16 @@
          "UNIX Timestamp",
          "Timestamp",
          "UNIX"
-      ]
+      ],
+      "Examples": {
+         "Valid": [
+            "1577836800",
+            "94694400"
+         ],
+         "Invalid": [
+            "1234567"
+         ]
+      }
    },
    {
       "Name": "Unix Millisecond Timestamp",
@@ -1858,7 +2505,14 @@
          "UNIX Timestamp",
          "Timestamp",
          "UNIX"
-      ]
+      ],
+      "Examples": {
+         "Valid": [
+            "1577836800000",
+            "94694400000"
+         ],
+         "Invalid": []
+      }
    },
    {
       "Name": "ULID",
@@ -1870,7 +2524,13 @@
       "Tags": [
          "Identifiers",
          "ULID"
-      ]
+      ],
+      "Examples": {
+         "Valid": [
+            "01ERJ58HMWDN3VTRRHZQV2T5R5"
+         ],
+         "Invalid": []
+      }
    },
    {
       "Name": "YouTube Video ID",
@@ -1883,7 +2543,13 @@
          "Media",
          "YouTube Video",
          "YouTube"
-      ]
+      ],
+      "Examples": {
+         "Valid": [
+            "dQw4w9WgXcQ"
+         ],
+         "Invalid": []
+      }
    },
    {
       "Name": "Turkish Tax Number",
@@ -1896,7 +2562,13 @@
          "Credentials",
          "Identifiers",
          "Turkish"
-      ]
+      ],
+      "Examples": {
+         "Valid": [
+            "1234567890"
+         ],
+         "Invalid": []
+      }
    },
    {
       "Name": "Key:Value Pair",
@@ -1907,6 +2579,12 @@
       "URL": null,
       "Tags": [
          "Credentials"
-      ]
+      ],
+      "Examples": {
+         "Valid": [
+            "james:S3cr37_P@$$W0rd"
+         ],
+         "Invalid": []
+      }
    }
 ]
