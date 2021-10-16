@@ -86,9 +86,15 @@ class CaseInsensitiveSet(collections.abc.Set):
 
 
 class Keys(Enum):
-    NAME = lambda match: match["Regex Pattern"]["Name"]
-    RARITY = lambda match: match["Regex Pattern"]["Rarity"]
-    MATCHED = lambda match: match["Matched"]
+    def NAME(match):
+        return match["Regex Pattern"]["Name"]
+
+    def RARITY(match):
+        return match["Regex Pattern"]["Rarity"]
+
+    def MATCHED(match):
+        return match["Matched"]
+
     NONE = auto()
 
 
