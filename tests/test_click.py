@@ -639,6 +639,13 @@ def test_file_fixture_sshpass():
     assert re.findall("SSHPass Clear Password Argument", str(result.output))
 
 
+def test_file_fixture_slack_webhook():
+    runner = CliRunner()
+    result = runner.invoke(main, ["fixtures/file"])
+    assert result.exit_code == 0
+    assert re.findall("Slack Webhook", str(result.output))
+
+
 def test_format():
     runner = CliRunner()
     result = runner.invoke(

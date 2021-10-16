@@ -96,3 +96,5 @@ b2ced6f5-2542-4f7d-b131-e3ada95d8b75
 otpauth://totp/Example:alice@google.com?secret=JBSWY3DPEHPK3PXP&issuer=Example
 
 sshpass -p MyPassw0RD! ssh root@10.0.0.10
+
+https://hooks.slack.com/services/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
