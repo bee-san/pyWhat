@@ -52,6 +52,19 @@ def regex_valid_match(name: str, match: str) -> bool:
     )
 
 
+@pytest.mark.skip(
+    reason="Not all regex have tests now, check https://github.com/bee-san/pyWhat/pull/146#issuecomment-927087231 for info."
+)
+def test_if_all_tests_exist():
+    with open("tests/test_regex_identifier.py", "r", encoding="utf-8") as file:
+        tests = file.read()
+
+    for regex in database:
+        assert (
+            regex["Name"] in tests
+        ), "No test for this regex found in 'test_regex_identifier.py'. Note that a test needs to assert the whole name."
+
+
 @pytest.mark.parametrize(
     "name,match",
     [
@@ -161,3 +174,13 @@ def test_phone_number2(match: str, description: str):
 )
 def test_match_exploit_first_item(match: str, exploit: str):
     _assert_match_exploit_first_item(exploit, r.check([match]))
+
+
+def test_sshpass():
+    res = r.check(["sshpass -p MyPassw0RD!"])
+    _assert_match_first_item("SSHPass Clear Password Argument", res)
+
+
+def test_sshpass_multiple_args():
+    res = r.check(["sshpass -P 'Please enter your password' -p MyPassw0RD!"])
+    _assert_match_first_item("SSHPass Clear Password Argument", res)

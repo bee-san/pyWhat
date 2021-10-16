@@ -1253,6 +1253,19 @@
       }
    },
    {
+      "Name": "SSHPass Clear Password Argument",
+      "Regex": "^(sshpass [^\\n]*-p[ ]+[^ ]+)$",
+      "plural_name": false,
+      "Description": null,
+      "Rarity": 1,
+      "URL": null,
+      "Tags": [
+         "Credentials",
+         "SSH",
+         "Bug Bounty"
+      ]
+   },
+   {
       "Name": "Google Cloud Platform API Key",
       "Regex": "(?i)^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12})$",
       "plural_name": false,
@@ -1313,7 +1326,7 @@
          "Identifiers",
          "Networking",
          "IP",
-         "IPv4",
+         "IPv6",
          "Bug Bounty"
       ],
       "Examples": {
@@ -1359,7 +1372,7 @@
          "Identifiers",
          "Networking",
          "IP",
-         "IPv6",
+         "IPv4",
          "Bug Bounty"
       ],
       "Examples": {
@@ -2050,7 +2063,7 @@
       }
    },
    {
-      "Name": "Amazon Web Services Organization identifier",
+      "Name": "Amazon Web Services Organization Identifier",
       "Regex": "^(o-[a-z0-9]{10,32})$",
       "plural_name": false,
       "Description": null,
@@ -2294,7 +2307,7 @@
       }
    },
    {
-      "Name": "Amazon Web Services EC2 Instance identifier",
+      "Name": "Amazon Web Services EC2 Instance Identifier",
       "Regex": "(?i)^(\\b[a-z]+-[a-z0-9]+)$",
       "plural_name": false,
       "Description": null,
