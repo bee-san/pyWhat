@@ -1,1780 +1,2505 @@
 [
-  {
-    "Name": "PGP Public Key",
-    "Regex": "^(?:-----BEGIN PGP PUBLIC KEY BLOCK-----\\n?(?:(?:(?:Version|Comment|MessageID|Hash|Charset):.*)\\n?)*[a-zA-Z0-9\\/\\.\\n\\:\\+\\=]+-----END PGP PUBLIC KEY BLOCK-----)$",
-    "plural_name": false,
-    "Description": null,
-    "Rarity": 1,
-    "URL": null,
-    "Tags": ["PGP"],
-    "Examples": {
-      "Valid": [
-        "-----BEGIN PGP PUBLIC KEY BLOCK-----Comment: Alice's OpenPGP certificateComment: https://www.ietf.org/id/draft-bre-openpgp-samples-01.htmlmDMEXEcE6RYJKwYBBAHaRw8BAQdArjWwk3FAqyiFbFBKT4TzXcVBqPTB3gmzlC/Ub7O1u120JkFsaWNlIExvdmVsYWNlIDxhbGljZUBvcGVucGdwLmV4YW1wbGU+iJAEExYIADgCGwMFCwkIBwIGFQoJCAsCBBYCAwECHgECF4AWIQTrhbtfozp14V6UTmPyMVUMT0fjjgUCXaWfOgAKCRDyMVUMT0fjjukrAPoDnHBSogOmsHOsd9qGsiZpgRnOdypvbm+QtXZqth9rvwD9HcDC0tC+PHAsO7OTh1S1TC9RiJsvawAfCPaQZoed8gK4OARcRwTpEgorBgEEAZdVAQUBAQdAQv8GIa2rSTzgqbXCpDDYMiKRVitCsy203x3sE9+eviIDAQgHiHgEGBYIACAWIQTrhbtfozp14V6UTmPyMVUMT0fjjgUCXEcE6QIbDAAKCRDyMVUMT0fjjlnQAQDFHUs6TIcxrNTtEZFjUFm1M0PJ1Dng/cDW4xN80fsn0QEA22Kr7VkCjeAEC08VSTeV+QFsmz55/lntWkwYWhmvOgE==iIGO-----END PGP PUBLIC KEY BLOCK-----"
+   {
+      "Name": "PGP Public Key",
+      "Regex": "^(?:-----BEGIN PGP PUBLIC KEY BLOCK-----\\n?(?:(?:(?:Version|Comment|MessageID|Hash|Charset):.*)\\n?)*[a-zA-Z0-9\\/\\.\\n\\:\\+\\=]+-----END PGP PUBLIC KEY BLOCK-----)$",
+      "plural_name": false,
+      "Description": null,
+      "Rarity": 1,
+      "URL": null,
+      "Tags": [
+         "PGP"
       ],
-      "Invalid": []
-    }
-  },
-  {
-    "Name": "PGP Private Key",
-    "Regex": "^(?:-----BEGIN PGP PRIVATE KEY BLOCK-----\\n?(?:(?:(?:Version|Comment|MessageID|Hash|Charset):.*)\\n?)*[a-zA-Z0-9\\/\\.\\n\\:\\+\\=]+-----END PGP PRIVATE KEY BLOCK-----)$",
-    "plural_name": false,
-    "Description": null,
-    "Rarity": 1,
-    "URL": null,
-    "Tags": ["PGP", "Bug Bounty"],
-    "Examples": {
-      "Valid": [
-        "-----BEGIN PGP PRIVATE KEY BLOCK-----Comment: Alice's OpenPGP Transferable Secret KeyComment: https://www.ietf.org/id/draft-bre-openpgp-samples-01.htmllFgEXEcE6RYJKwYBBAHaRw8BAQdArjWwk3FAqyiFbFBKT4TzXcVBqPTB3gmzlC/Ub7O1u10AAP9XBeW6lzGOLx7zHH9AsUDUTb2pggYGMzd0P3ulJ2AfvQ4RtCZBbGljZSBMb3ZlbGFjZSA8YWxpY2VAb3BlbnBncC5leGFtcGxlPoiQBBMWCAA4AhsDBQsJCAcCBhUKCQgLAgQWAgMBAh4BAheAFiEE64W7X6M6deFelE5j8jFVDE9H444FAl2lnzoACgkQ8jFVDE9H447pKwD6A5xwUqIDprBzrHfahrImaYEZzncqb25vkLV2arYfa78A/R3AwtLQvjxwLDuzk4dUtUwvUYibL2sAHwj2kGaHnfICnF0EXEcE6RIKKwYBBAGXVQEFAQEHQEL/BiGtq0k84Km1wqQw2DIikVYrQrMttN8d7BPfnr4iAwEIBwAA/3/xFPG6U17rhTuq+07gmEvaFYKfxRB6sgAYiW6TMTpQEK6IeAQYFggAIBYhBOuFu1+jOnXhXpROY/IxVQxPR+OOBQJcRwTpAhsMAAoJEPIxVQxPR+OOWdABAMUdSzpMhzGs1O0RkWNQWbUzQ8nUOeD9wNbjE3zR+yfRAQDbYqvtWQKN4AQLTxVJN5X5AWybPnn+We1aTBhaGa86AQ===n8OM-----END PGP PRIVATE KEY BLOCK-----"
+      "Examples": {
+         "Valid": [
+            "-----BEGIN PGP PUBLIC KEY BLOCK-----Comment: Alice's OpenPGP certificateComment: https://www.ietf.org/id/draft-bre-openpgp-samples-01.htmlmDMEXEcE6RYJKwYBBAHaRw8BAQdArjWwk3FAqyiFbFBKT4TzXcVBqPTB3gmzlC/Ub7O1u120JkFsaWNlIExvdmVsYWNlIDxhbGljZUBvcGVucGdwLmV4YW1wbGU+iJAEExYIADgCGwMFCwkIBwIGFQoJCAsCBBYCAwECHgECF4AWIQTrhbtfozp14V6UTmPyMVUMT0fjjgUCXaWfOgAKCRDyMVUMT0fjjukrAPoDnHBSogOmsHOsd9qGsiZpgRnOdypvbm+QtXZqth9rvwD9HcDC0tC+PHAsO7OTh1S1TC9RiJsvawAfCPaQZoed8gK4OARcRwTpEgorBgEEAZdVAQUBAQdAQv8GIa2rSTzgqbXCpDDYMiKRVitCsy203x3sE9+eviIDAQgHiHgEGBYIACAWIQTrhbtfozp14V6UTmPyMVUMT0fjjgUCXEcE6QIbDAAKCRDyMVUMT0fjjlnQAQDFHUs6TIcxrNTtEZFjUFm1M0PJ1Dng/cDW4xN80fsn0QEA22Kr7VkCjeAEC08VSTeV+QFsmz55/lntWkwYWhmvOgE==iIGO-----END PGP PUBLIC KEY BLOCK-----"
+         ],
+         "Invalid": []
+      }
+   },
+   {
+      "Name": "PGP Private Key",
+      "Regex": "^(?:-----BEGIN PGP PRIVATE KEY BLOCK-----\\n?(?:(?:(?:Version|Comment|MessageID|Hash|Charset):.*)\\n?)*[a-zA-Z0-9\\/\\.\\n\\:\\+\\=]+-----END PGP PRIVATE KEY BLOCK-----)$",
+      "plural_name": false,
+      "Description": null,
+      "Rarity": 1,
+      "URL": null,
+      "Tags": [
+         "PGP",
+         "Bug Bounty"
       ],
-      "Invalid": []
-    }
-  },
-  {
-    "Name": "SSH RSA Public Key",
-    "Regex": "^(ssh-rsa [A-Za-z0-9+\\/=]+ [^ \\n]+)$",
-    "plural_name": false,
-    "Description": null,
-    "Rarity": 1,
-    "URL": null,
-    "Tags": ["Credentials", "SSH Public Key"],
-    "Examples": {
-      "Valid": [
-        "ssh-rsa AAAAB3NzaC1tc2EAAAADAQABAAACAQDrnjkGtf3iA46rtwsvRiscvMTCw30l5Mmln/sf8Wohg4RPc7nuIx3/fB86K9jzBNoQk6Fb00p2cSW0dX6c3OTL5R5Q0rBjOFy6GV07MkS7rXa7WYh4ObxBh+M+LEzxVIw29anzQFZkR0TAf6x2rBoErK7JYU4fyqFBDFupTt3coQDPEEmVwtLLUCEnJrurbbnJKcWJ+/FbItLxYyMLPl8TwEn0iqiJ97onCU2DuBtiYv3hp1WoEH08b5WDF0F04zEPRdJT+WisxlEFRgaj51o2BtjOC+D2qZQDb4LHaAfJ0WcO4nu7YocdlcLp2JPfXKKgu9P5J8UDsmXbR3KCJ1oddFa2R6TbHc6d2hKyG4amBzMX5ltxXu7D6FLPZlFqua8YooY7A2zwIVirOUH/cfx+5O9o0CtspkNmj/iYzN0FPaOpELncWsuauy9hrGql/1cF4SUr20zHFoBoDQUtmvmBnWnKoGfpWXzuda449FVtmcrEjvBzCvCb3RStu0BbyOOybJagbKif3MkcYVO10pRbTveIUwgCD6F3ypD11XztoPNsgScmjme0sj/KWWNLyQkLWtpJEQ4k46745NAC5g+nP28TR2JM8doeqsxA8JovQkLWwDcR+WYZu2z/I8dfhOmalnoMRTJ2NzWDc0OSkKGYWjexR4fN6lAKCUOUptl9Nw== r00t@my-random_host"
+      "Examples": {
+         "Valid": [
+            "-----BEGIN PGP PRIVATE KEY BLOCK-----Comment: Alice's OpenPGP Transferable Secret KeyComment: https://www.ietf.org/id/draft-bre-openpgp-samples-01.htmllFgEXEcE6RYJKwYBBAHaRw8BAQdArjWwk3FAqyiFbFBKT4TzXcVBqPTB3gmzlC/Ub7O1u10AAP9XBeW6lzGOLx7zHH9AsUDUTb2pggYGMzd0P3ulJ2AfvQ4RtCZBbGljZSBMb3ZlbGFjZSA8YWxpY2VAb3BlbnBncC5leGFtcGxlPoiQBBMWCAA4AhsDBQsJCAcCBhUKCQgLAgQWAgMBAh4BAheAFiEE64W7X6M6deFelE5j8jFVDE9H444FAl2lnzoACgkQ8jFVDE9H447pKwD6A5xwUqIDprBzrHfahrImaYEZzncqb25vkLV2arYfa78A/R3AwtLQvjxwLDuzk4dUtUwvUYibL2sAHwj2kGaHnfICnF0EXEcE6RIKKwYBBAGXVQEFAQEHQEL/BiGtq0k84Km1wqQw2DIikVYrQrMttN8d7BPfnr4iAwEIBwAA/3/xFPG6U17rhTuq+07gmEvaFYKfxRB6sgAYiW6TMTpQEK6IeAQYFggAIBYhBOuFu1+jOnXhXpROY/IxVQxPR+OOBQJcRwTpAhsMAAoJEPIxVQxPR+OOWdABAMUdSzpMhzGs1O0RkWNQWbUzQ8nUOeD9wNbjE3zR+yfRAQDbYqvtWQKN4AQLTxVJN5X5AWybPnn+We1aTBhaGa86AQ===n8OM-----END PGP PRIVATE KEY BLOCK-----"
+         ],
+         "Invalid": []
+      }
+   },
+   {
+      "Name": "SSH RSA Public Key",
+      "Regex": "^(ssh-rsa [A-Za-z0-9+\\/=]+ [^ \\n]+)$",
+      "plural_name": false,
+      "Description": null,
+      "Rarity": 1,
+      "URL": null,
+      "Tags": [
+         "Credentials",
+         "SSH Public Key"
       ],
-      "Invalid": []
-    }
-  },
-  {
-    "Name": "PEM-formatted Private Key",
-    "Regex": "^(-----BEGIN( ANY| RSA| DSA| ENCRYPTED| EC| OPENSSH)? PRIVATE KEY-----\\n?[a-zA-Z0-9\\/\\.\\n\\:\\+\\=]+-----END( ANY| RSA| DSA| ENCRYPTED| EC| OPENSSH)? PRIVATE KEY-----)$",
-    "plural_name": false,
-    "Description": null,
-    "Rarity": 1,
-    "URL": null,
-    "Tags": ["Credentials", "Bug Bounty"],
-    "Examples": {
-      "Valid": [
-        "-----BEGIN RSA PRIVATE KEY-----MIIEoQIBAAKCAQBYNGcp1Jm7GOGffs9wvpIsi9RKPE/a4usQyEdf8G2C0pLcOoypfG1MiOQCDDRN4HtMDoe9KTVjVnnREfmQq2k1hT1BZHfaRu/3YvpFrleozzYmY1XRSeUiM6G71ADg8cPZlAuH1RjswlevJyhNVWzy+DLumpbRgv6nKR9dYSdy2GsFySX488l05+ZaVKgHwlGeKd33YNPRAUNLSPKLdd9wi1djGaQpSo7jWRb6lIFJUR7FdvxwjAVMhDljxXYHPP0GXFS6KTGcfB97dle90qu/4nwdKWd4RZ5pqIbFi1D5ejItUzY40GpsPuN/tkamwB5jY0AtFY8S9TMxHjRx05/DAgMBAAECggEAKU5pHYLNd3wAdTPqq27jf28APL+f2e64jIRuQHSUpFY+plnY86oseVIGDRtwByRgOU74rFI3CU0/APS8/c34GDNMa2pEYnkj+aNldupdbNWVE0cjsj47yteJHy/6NV2jDSqyd6sI4B9m9sSMsCKYQfSPzYOhq34ACYJNiOptke9PkxpNNODlFJrFQsRKKpv2KdF7Lh3/Yzc6p53gilYR9U+Sn4mBrkuURLm2Qq++r0CNTjpmbunbjAL5q/oK8bpJEz3uZqbSQ5GbSLCNroRyi7eIF1Evvk0Vb9nSyfm94VdP+yVr1VvtOt8WigHwAr8E+ujg0rrAKMswfbvNFroNMQKBgQCs/rQvlTfpRiHUlCB09HZzquM8o7pBxTpKAX9247SW81V41EHsIS69WGZzcYbYQlxOxQi7gHiALB/yRLFNiAHAhODFMGTYtprTdW/JK6TC8CPvK3TBnPSYDPP/ME2F2UZKVHWlD3FFtUqp9BppWCHDLp7N/+i5eJy+ankJYzeGywKBgQCChsDhaPJAnHp/zHJmhDXQkqVeoB8SW2WzH481xVgyu2gIsEGmgActfEAyCqRuzjnMSIjXBL5LSAZXft8d+wveR3PsUiVdUurbcrije1ku3jDPXdBQrjmyWZvCXXnZ8oqX18C05a0pgzX5oDluA1ShcI7uWNHkIPYcZskcp96z6QKBgG9gpP2lopOrtYg5vhPOeJzLvvWBrB9ALeELydbvj4tIKxVaAv9V9dOuIHfe9aQyRV/pd0/QzMQopIDEPSrfj9E1O8l4+NSV7GSMTWZFlRR0q44GemtU9B0Y6da4cJDmbFzat8uHf7QTnniBUqfUOBiD4XZbdqhCwRfPURH8MPm1AoGAWHZ9yQe4kAO9nlnw+vwGAQsymxRImsdpAOKVy+qpIREUrDbQ98hzlOdOFtxRn2uTjplmbNwhIKJ68dfh3c7kt0yUC4mNG1f0JrD05I/X3MToLdK2OcgrAG5s+2khCY6xUcH/MFstZiIwdbOa2K3XMOc5Z964ujWAt7UN/qbjb+kCgYBdPN6J1b6OuTt4xYTCenX+KlGBb9QsuK8uXMDkhJhrtcHAyuxyJrDjQu5i3djeZerflT0EESCet0zGPd5bGyP4KaIsmLwYheDLrziS6xqqXL0irMZiWVaVquC3JlWJMw6/Y66WRuxd+oRBbE62lHWnzT2J8dfG+su483KKgli02Q==-----END RSA PRIVATE KEY-----",
-        "-----BEGIN DSA PRIVATE KEY-----MIIDTgIBAAKCAQEAj3k12bmq6b+r7Yh6z0lRtvMuxZ47rzcY6OrElh8+/TYG50NRqcQYMzm4CefCrhxTm6dHW4XQEa24tHmHdUmEaVysDo8UszYIKKIv+icRCj1iqZNFNAmg/mlsRlj4S90ggZw3CaAQV7GVrc0AIz26VIS2KR+dZI74g0SGd5ec7AS0NKasLnXpmF3iPbApL8ERjJ/6nYGB5zONt5K3MNe540lZL2gJmHIVORXqPWuLRlPGM0WPgDsypMLg8nKQJW5OP4o7CDihxFDk4YwaKaN9316hQ95LZv8EkD7VzxYj4VjUh8YI6X8hHNgdyiPLbjgHZfgi40K+SEwFdjk5YBzWZwIdALr2lqaFePff3uf6Z8l3x4XvMrIzuuWAwLzVaV0CggEAFqZcWCBIUHBOdQKjl1cEDTTaOjR4wVTU5KXALSQu4E+W5h5L0JBKvayPN+6x4J8xgtI8kEPLZC+IAEFg7fnKCbMgdqecMqYn8kc+kYebosTnRL0ggVRMtVuALDaNH6g+1InpTg+gaI4yQopceMR4xo0FJ7ccmjq7CwvhLERoljnn08502xAaZaorh/ZMaCbbPscvS1WZg0u07bAvfJDppJbTpV1TW+v8RdT2GfY/Pe27hzklwvIk4HcxKW2oh+weR0j4fvtf3rdUhDFrIjLe5VPdrwIRKw0fAtowlzIk/ieu2oudSyki2bqL457Z4QOmPFKBC8aIt+LtQxbh7xfb3gKCAQB87fMOaF3zru0d3blONyvU4kEclm0i79Shdm2r2dBQo9ru8KdmbBoBS3qS7k//hEuLCCdHAKdLrz8cdbah8ONEVVu/HTDS5TKcm1W/czHch0NhYIfMFschQcEAcswOLjGoRGHl2SZb90pF2dxMxKEgi1QLoPRRX8UWpGy5+ghkaIBEUE31p4dS3vJ1EevQc3itZ2Sh7UcY3hQ8idYptzTwL9p7c4V/aWXLFbQdzJCSi1Q5fr85Uj2eFZTHliYe5ZrZ3R+nl1fbk/ySajbLD6RaTm/ppRfWRxyw3MWjKxPapeLFIsxm1A9rnDyfeEDg1Ixahaq0xLk46RwBo6ZblI0aAh0An8MAVnsLGjtDHBGIlDH+XXPsMkClXnYeBRUGAQ==-----END DSA PRIVATE KEY-----",
-        "-----BEGIN EC PRIVATE KEY-----MIHcAgEBBEIApe6jUvbal/QN6ZoQ9dZMe/pTx4CiFzd4ln9a5f0Ope+788+BwgLpl1888OThkaWMeg2wevZ/ErMId0T3kZGoE7mgBwYFK4EEACOhgYkDgYYABAE4SLWZJs6lE0bwYgMipcRxB1xtARXDwbPt3o7aDI7680kLnELXGYhIhGeXlhXgAXjE66GuM8TdbPsshqP9nRy9OAGbxJU/OA+7/zuZmo10IYWNu1IrcGYq0WZJwzZex+S12+VKVBEwPoLKlgm5r/sI8x7WnDtialy5i8ipkvUyOyPUxg==-----END EC PRIVATE KEY-----",
-        "-----BEGIN PRIVATE KEY-----MIIEvwIBADANBgkqhkiG9w0BAQEFAASCBKkwggSlAgEAAoIBAQDaoE09/Cmh1T8I3J9lenqZ2pllw0WXAUrPi4pPV3jmJBsIsfpedZfakdI2ixw2XkWRayAklsxlFFtXCQ6U0yXSd7KJY9vuxb+5cMZejpOoHTZkVwxhlEodCt8DWf5tOc4UA5Ip88WYeszygxuIU6JP0bavJhtQnI5ER+0eZCY8xyNLqQ86h6iuxncAo5fxyc44IKFSm6MDh+GmHBlK5Eql536qfZtA6jMFYnORQ1gVp5J1hQ7bDmiLzFjyCvpNSYLOYbodvcCIWCSUKgp5Q5Uo0EX2h7mX6Z07ONCOQaFXfW3z5/xbn1bJKtI+JSNFS86owWb20EYcopnWwOimmsTXAgMBAAECggEAPW5Tpfon/Jg9+RB9HXeX4YliFw0SjcbILZ9JAthSWWCF1CCmeEpUnA7jYX4fNEuzApR2WLGixzg8Hi2mUj0uYIBPw3kywFoCcGn243Tumoty0CkBip2vYY+/cGKmMizO8iK6vF0KBbljwzUB1IGjlwgXbAmqHTGQbDFFuIdtkx/ggns9X/wNNqK7UPaJoYvlv/YX10/OgBgGQMBWTjvZ3rWg4+TUJymO4edlBK4VmPeBE+syPBcc/YNV+sYDnww8U1hucA5hJ4hOIomFYyaYYUtdWKoAwLJxGf7tZ6hgq16iMbzHcJ2gNCINcWKTByEosqX3aA3TvkyTDMwQguAn8QKBgQD2uViv8qyeVy+RrHH6pC3KoEIUYIz6LTulEDL2YcsRr5FKubzxOU6OEcx1TSmkCmUxyUAyFDyTH/aG0c1H8EWYAwMT7N25Pax1bgjJM+A1z3SU9qxOmdFqFz5v7YC9qnLkODErRByuFsfwdxxJedP4Vles/HZc1tnKYl/v8n81jwKBgQDi2IVlMx9LiBfgZeSI/dkUg3pLT1e3Mu52/WMGmUXRWFKta5P/URw/mgNqJ/nPFQRR3Jn3b6augGtMjomJ+l7pnlv/OX8oj0h46Brx08wrifZMHUStB6Rt2vOy9asLk84rQIgMh7I/PeZ3r/w8dZg7B1IUMyLuyjGcSoh2Q76oOQKBgQDsCy9aRiX35xnPmNgDH4ffz6roq+a0gwoJRZI8Pht19C5g+4pUjqslKMoff49TLc7a7tvIDaxWZcIKAjcPmEQ8xsTvDzKhwut3/anSNRtQ4AV9bvIy0N6VTV+i3erJioUY6tm/tw5pT8pBuPMLKM8vTAvdqDvlXnhHNA7tFWe26QKBgQCok922EiK8n9uWkEIgp/ztqLN2SfVWmIvsc2tm2Pqwk2GFrP+j6mQCw/Krrh+QC/9U0oq8/gUxgw+6Keb+Wci09lFJvzHHM4vZBiwX8Jy28mTNtaZ2q8o/NUqLgNPm26WIMQGpxiHpq5ec9HSPfZhurYcKqeHY8PujOSRmNvv1yQKBgQCx65dznLE32KQhJbN9lXbr7mYdqurJMrchQ4E9zI69cXf7M8kt6FqRHLVv0arPPK+xL6FqF4pq2BuKZlYTqwdG1xsOiEv3IHs3lioTFzbJ1NXhrIuV0H3AiQcw9TbhSs3sWkP7Ri90Uj/fHYQC+psvq5x0L4JZKE3dDTdgjP6vQA==-----END PRIVATE KEY-----",
-        "-----BEGIN ENCRYPTED PRIVATE KEY-----MIIE6TAbBgkqhkiG9w0BBQMwDgQIHHigg+fwQjQCAggABIIEyLP0cpU55sZ3QSZkCtNtGU425BnZZD57aqO/aa/fV9HGvWn5/GYANT6xDKbUi2kwc68QCi6Zla3C56jPvPsZoDeZ+g81DYjqBVMRsVra1kayQvnKeRvedYPBdfA0VL5n0ndRa9q31Vx6zzXnMYJd9VakUgXYLFntvVeTt/a+iW9LX7mx/ymUPZtD1IrNEJBpW6Al+vc1m6bYA8NpZaT5P6uiclsoEiPDMydEa52cBgcd5q5MfwKllPsQNYtyLsee8W/1k/Eu21pRkCPYreQWgh36gqAn+2zNySCyqiU7USQ1qHMIHPLxJV7awVfOy7eoRMhmbTJ8kCrEpI9r6JyQN3m1VbBN5QifF9p0N0v2yBM8hS6e0fdaSwkFUVFHeWz4140nhaXA6Xu9U+TvJwacdz/FYsN9wi1AIDl8nMT+gFC2v3HuiGmMD0ybA5TOJEsvhdLruxLNLok/uiu6oExDVAV6JI4zM/8ymLruuAibVxSc9bhVEY8FfYbQ5aDiGPm18MXtmCb5UNEG10ylsDl5khfGYwcfuOfgDy3PVst4aA3sHLbk996csBL8FPcGDx7iqgWPYkHEfhuHr4MUt2xqJloOsGlcs6Ts70ldgNHpNCA0DizHnrRY8EF4gXzAJghpJ5gcCllzcVjf26YsoVyNiIZ2IcMe2aoP2WtbnnFqtgl2gOJ6SNAbWyRLhtlSC74mYl0SLvtN5lm7U5bCIlAnAJbm1cqN+Muuxy9/U5TagQYfya4BZNUhHhI9ILH87QLpIWDeCa3v0UZfHi7CBirEusAq+jQGZslTt+fr/iRWQLwo819HA5Yhh4rems2p2aKeuUYPJ/gt5/KIPikYneAEJ2HzqByeS71hWbxpINtEtNz2M1SVGLbFsLrUjfKGTEc29qaaFvM24LpLxahiCTW2huM/1UZFjKyvrL0HYKAZyvA/07EHzY5K9DT3ocNIKApqMzq+D7P5L/gBNQ6E+cx/ZOA+9unVuE7OY6mmQHMsK9MAT6e4T0AxkBqAWg3cf5ovlQNr57mWwms8Zyy1wwIwLr2/wilJ5V3iWSHDIckK1kR92kCDu3MwNIhfM9dalWSsx9FRIg4iFzMIuidYO8pIVq1jJQKqVsgmGXCwioKvD6wDnQqijdDmVpX/Jg08O1iU7URD2MvGLbBRRfzcBFNrEUNjTrbQa3LS+wvDISbizryXKr/8K8okpxV6dBiW3YplePjde/yqrxWl7OQoDbG1F2f2zMmIe8ZNTP15K8aAlq9LC5qn6YnoRTRe2rLecxgP1SQVXUwFvrUKglozy1/cJsuKuCqiRecQneqyasc9mp/0wGu1t9GD3EroMfvuK4zXuaj6uTDyDPUBo6hfvNDG8zSHvEfDDGm4PTFI7kU7U7ohSQZZcGHZBUigFluq9KWJ3SHPgTkRul3nB/Im+89toHSHFoqH/B/GDokAbqsrUPgJ9xpK9lqFEhng5blX2kiae90VHRyb23oE7eIjf3j4G04Amh8m4/W7ER9JDn6nwWqMH4n2MBQRD3USO8DNTgBbggVZZ7MGIUVbv2/YcVZXftBtiS1u+lvVcpYPzwHIj29YrscmBV6ae0CLo1av0xquHYUOrVixSvhmOREOUSZvNSibizBIyNmLkA==-----END ENCRYPTED PRIVATE KEY-----",
-        "-----BEGIN OPENSSH PRIVATE KEY-----b3BlbnNzaC1rZXktdjEAAAAACmFlczI1Ni1jdHIAAAAGYmNyeXB0AAAAGAAAABBDXVWIoOcQYPyoVODqYrhNAAAAEAAAAAEAAAAzAAAAC3NzaC1lZDI1NTE5AAAAIDDZHhPJKYsu2hV7bq/vtAbF2Guw8cupqcjv5SqRraVaAAAAoCfV/ZrS3mggJFx1X7aeKzfBFDN2hWrPTHmyJPsw0NaDW+wzL6/yYmWaAB90clbSiCQ7jALlA/RoU/tPz8HvEaKcnj9BgSMN8+Se4RBcfqxMx9eCRYtYcumc9PrQbKSCeywtvsQoCntPxLhyudxH/HYKx7lO5mrMGut9FjOy2s9Iz317p+2F1DJqRYNsEHKyZJpV0DwObF2ZPOlX3PDv3fg=-----END OPENSSH PRIVATE KEY-----"
+      "Examples": {
+         "Valid": [
+            "ssh-rsa AAAAB3NzaC1tc2EAAAADAQABAAACAQDrnjkGtf3iA46rtwsvRiscvMTCw30l5Mmln/sf8Wohg4RPc7nuIx3/fB86K9jzBNoQk6Fb00p2cSW0dX6c3OTL5R5Q0rBjOFy6GV07MkS7rXa7WYh4ObxBh+M+LEzxVIw29anzQFZkR0TAf6x2rBoErK7JYU4fyqFBDFupTt3coQDPEEmVwtLLUCEnJrurbbnJKcWJ+/FbItLxYyMLPl8TwEn0iqiJ97onCU2DuBtiYv3hp1WoEH08b5WDF0F04zEPRdJT+WisxlEFRgaj51o2BtjOC+D2qZQDb4LHaAfJ0WcO4nu7YocdlcLp2JPfXKKgu9P5J8UDsmXbR3KCJ1oddFa2R6TbHc6d2hKyG4amBzMX5ltxXu7D6FLPZlFqua8YooY7A2zwIVirOUH/cfx+5O9o0CtspkNmj/iYzN0FPaOpELncWsuauy9hrGql/1cF4SUr20zHFoBoDQUtmvmBnWnKoGfpWXzuda449FVtmcrEjvBzCvCb3RStu0BbyOOybJagbKif3MkcYVO10pRbTveIUwgCD6F3ypD11XztoPNsgScmjme0sj/KWWNLyQkLWtpJEQ4k46745NAC5g+nP28TR2JM8doeqsxA8JovQkLWwDcR+WYZu2z/I8dfhOmalnoMRTJ2NzWDc0OSkKGYWjexR4fN6lAKCUOUptl9Nw== r00t@my-random_host"
+         ],
+         "Invalid": []
+      }
+   },
+   {
+      "Name": "PEM-formatted Private Key",
+      "Regex": "^(-----BEGIN( ANY| RSA| DSA| ENCRYPTED| EC| OPENSSH)? PRIVATE KEY-----\\n?[a-zA-Z0-9\\/\\.\\n\\:\\+\\=]+-----END( ANY| RSA| DSA| ENCRYPTED| EC| OPENSSH)? PRIVATE KEY-----)$",
+      "plural_name": false,
+      "Description": null,
+      "Rarity": 1,
+      "URL": null,
+      "Tags": [
+         "Credentials",
+         "Bug Bounty"
       ],
-      "Invalid": []
-    }
-  },
-  {
-    "Name": "SSH ECDSA Public Key",
-    "Regex": "^(ecdsa-sha2-nistp[0-9]{3} [A-Za-z0-9+\\/=]+ [^ \\n]+)$",
-    "plural_name": false,
-    "Description": null,
-    "Rarity": 1,
-    "URL": null,
-    "Tags": ["Credentials", "SSH Public Key"],
-    "Examples": {
-      "Valid": [
-        "ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBCE9Uli8bGnD4hOWdeo5KKQJ/P/vOazI4MgqJK54w37emP2JwOAOdMmXuwpxbKng3KZz27mz+nKWIlXJ3rzSGMo= r00t@my-random_host"
+      "Examples": {
+         "Valid": [
+            "-----BEGIN RSA PRIVATE KEY-----MIIEoQIBAAKCAQBYNGcp1Jm7GOGffs9wvpIsi9RKPE/a4usQyEdf8G2C0pLcOoypfG1MiOQCDDRN4HtMDoe9KTVjVnnREfmQq2k1hT1BZHfaRu/3YvpFrleozzYmY1XRSeUiM6G71ADg8cPZlAuH1RjswlevJyhNVWzy+DLumpbRgv6nKR9dYSdy2GsFySX488l05+ZaVKgHwlGeKd33YNPRAUNLSPKLdd9wi1djGaQpSo7jWRb6lIFJUR7FdvxwjAVMhDljxXYHPP0GXFS6KTGcfB97dle90qu/4nwdKWd4RZ5pqIbFi1D5ejItUzY40GpsPuN/tkamwB5jY0AtFY8S9TMxHjRx05/DAgMBAAECggEAKU5pHYLNd3wAdTPqq27jf28APL+f2e64jIRuQHSUpFY+plnY86oseVIGDRtwByRgOU74rFI3CU0/APS8/c34GDNMa2pEYnkj+aNldupdbNWVE0cjsj47yteJHy/6NV2jDSqyd6sI4B9m9sSMsCKYQfSPzYOhq34ACYJNiOptke9PkxpNNODlFJrFQsRKKpv2KdF7Lh3/Yzc6p53gilYR9U+Sn4mBrkuURLm2Qq++r0CNTjpmbunbjAL5q/oK8bpJEz3uZqbSQ5GbSLCNroRyi7eIF1Evvk0Vb9nSyfm94VdP+yVr1VvtOt8WigHwAr8E+ujg0rrAKMswfbvNFroNMQKBgQCs/rQvlTfpRiHUlCB09HZzquM8o7pBxTpKAX9247SW81V41EHsIS69WGZzcYbYQlxOxQi7gHiALB/yRLFNiAHAhODFMGTYtprTdW/JK6TC8CPvK3TBnPSYDPP/ME2F2UZKVHWlD3FFtUqp9BppWCHDLp7N/+i5eJy+ankJYzeGywKBgQCChsDhaPJAnHp/zHJmhDXQkqVeoB8SW2WzH481xVgyu2gIsEGmgActfEAyCqRuzjnMSIjXBL5LSAZXft8d+wveR3PsUiVdUurbcrije1ku3jDPXdBQrjmyWZvCXXnZ8oqX18C05a0pgzX5oDluA1ShcI7uWNHkIPYcZskcp96z6QKBgG9gpP2lopOrtYg5vhPOeJzLvvWBrB9ALeELydbvj4tIKxVaAv9V9dOuIHfe9aQyRV/pd0/QzMQopIDEPSrfj9E1O8l4+NSV7GSMTWZFlRR0q44GemtU9B0Y6da4cJDmbFzat8uHf7QTnniBUqfUOBiD4XZbdqhCwRfPURH8MPm1AoGAWHZ9yQe4kAO9nlnw+vwGAQsymxRImsdpAOKVy+qpIREUrDbQ98hzlOdOFtxRn2uTjplmbNwhIKJ68dfh3c7kt0yUC4mNG1f0JrD05I/X3MToLdK2OcgrAG5s+2khCY6xUcH/MFstZiIwdbOa2K3XMOc5Z964ujWAt7UN/qbjb+kCgYBdPN6J1b6OuTt4xYTCenX+KlGBb9QsuK8uXMDkhJhrtcHAyuxyJrDjQu5i3djeZerflT0EESCet0zGPd5bGyP4KaIsmLwYheDLrziS6xqqXL0irMZiWVaVquC3JlWJMw6/Y66WRuxd+oRBbE62lHWnzT2J8dfG+su483KKgli02Q==-----END RSA PRIVATE KEY-----",
+            "-----BEGIN DSA PRIVATE KEY-----MIIDTgIBAAKCAQEAj3k12bmq6b+r7Yh6z0lRtvMuxZ47rzcY6OrElh8+/TYG50NRqcQYMzm4CefCrhxTm6dHW4XQEa24tHmHdUmEaVysDo8UszYIKKIv+icRCj1iqZNFNAmg/mlsRlj4S90ggZw3CaAQV7GVrc0AIz26VIS2KR+dZI74g0SGd5ec7AS0NKasLnXpmF3iPbApL8ERjJ/6nYGB5zONt5K3MNe540lZL2gJmHIVORXqPWuLRlPGM0WPgDsypMLg8nKQJW5OP4o7CDihxFDk4YwaKaN9316hQ95LZv8EkD7VzxYj4VjUh8YI6X8hHNgdyiPLbjgHZfgi40K+SEwFdjk5YBzWZwIdALr2lqaFePff3uf6Z8l3x4XvMrIzuuWAwLzVaV0CggEAFqZcWCBIUHBOdQKjl1cEDTTaOjR4wVTU5KXALSQu4E+W5h5L0JBKvayPN+6x4J8xgtI8kEPLZC+IAEFg7fnKCbMgdqecMqYn8kc+kYebosTnRL0ggVRMtVuALDaNH6g+1InpTg+gaI4yQopceMR4xo0FJ7ccmjq7CwvhLERoljnn08502xAaZaorh/ZMaCbbPscvS1WZg0u07bAvfJDppJbTpV1TW+v8RdT2GfY/Pe27hzklwvIk4HcxKW2oh+weR0j4fvtf3rdUhDFrIjLe5VPdrwIRKw0fAtowlzIk/ieu2oudSyki2bqL457Z4QOmPFKBC8aIt+LtQxbh7xfb3gKCAQB87fMOaF3zru0d3blONyvU4kEclm0i79Shdm2r2dBQo9ru8KdmbBoBS3qS7k//hEuLCCdHAKdLrz8cdbah8ONEVVu/HTDS5TKcm1W/czHch0NhYIfMFschQcEAcswOLjGoRGHl2SZb90pF2dxMxKEgi1QLoPRRX8UWpGy5+ghkaIBEUE31p4dS3vJ1EevQc3itZ2Sh7UcY3hQ8idYptzTwL9p7c4V/aWXLFbQdzJCSi1Q5fr85Uj2eFZTHliYe5ZrZ3R+nl1fbk/ySajbLD6RaTm/ppRfWRxyw3MWjKxPapeLFIsxm1A9rnDyfeEDg1Ixahaq0xLk46RwBo6ZblI0aAh0An8MAVnsLGjtDHBGIlDH+XXPsMkClXnYeBRUGAQ==-----END DSA PRIVATE KEY-----",
+            "-----BEGIN EC PRIVATE KEY-----MIHcAgEBBEIApe6jUvbal/QN6ZoQ9dZMe/pTx4CiFzd4ln9a5f0Ope+788+BwgLpl1888OThkaWMeg2wevZ/ErMId0T3kZGoE7mgBwYFK4EEACOhgYkDgYYABAE4SLWZJs6lE0bwYgMipcRxB1xtARXDwbPt3o7aDI7680kLnELXGYhIhGeXlhXgAXjE66GuM8TdbPsshqP9nRy9OAGbxJU/OA+7/zuZmo10IYWNu1IrcGYq0WZJwzZex+S12+VKVBEwPoLKlgm5r/sI8x7WnDtialy5i8ipkvUyOyPUxg==-----END EC PRIVATE KEY-----",
+            "-----BEGIN PRIVATE KEY-----MIIEvwIBADANBgkqhkiG9w0BAQEFAASCBKkwggSlAgEAAoIBAQDaoE09/Cmh1T8I3J9lenqZ2pllw0WXAUrPi4pPV3jmJBsIsfpedZfakdI2ixw2XkWRayAklsxlFFtXCQ6U0yXSd7KJY9vuxb+5cMZejpOoHTZkVwxhlEodCt8DWf5tOc4UA5Ip88WYeszygxuIU6JP0bavJhtQnI5ER+0eZCY8xyNLqQ86h6iuxncAo5fxyc44IKFSm6MDh+GmHBlK5Eql536qfZtA6jMFYnORQ1gVp5J1hQ7bDmiLzFjyCvpNSYLOYbodvcCIWCSUKgp5Q5Uo0EX2h7mX6Z07ONCOQaFXfW3z5/xbn1bJKtI+JSNFS86owWb20EYcopnWwOimmsTXAgMBAAECggEAPW5Tpfon/Jg9+RB9HXeX4YliFw0SjcbILZ9JAthSWWCF1CCmeEpUnA7jYX4fNEuzApR2WLGixzg8Hi2mUj0uYIBPw3kywFoCcGn243Tumoty0CkBip2vYY+/cGKmMizO8iK6vF0KBbljwzUB1IGjlwgXbAmqHTGQbDFFuIdtkx/ggns9X/wNNqK7UPaJoYvlv/YX10/OgBgGQMBWTjvZ3rWg4+TUJymO4edlBK4VmPeBE+syPBcc/YNV+sYDnww8U1hucA5hJ4hOIomFYyaYYUtdWKoAwLJxGf7tZ6hgq16iMbzHcJ2gNCINcWKTByEosqX3aA3TvkyTDMwQguAn8QKBgQD2uViv8qyeVy+RrHH6pC3KoEIUYIz6LTulEDL2YcsRr5FKubzxOU6OEcx1TSmkCmUxyUAyFDyTH/aG0c1H8EWYAwMT7N25Pax1bgjJM+A1z3SU9qxOmdFqFz5v7YC9qnLkODErRByuFsfwdxxJedP4Vles/HZc1tnKYl/v8n81jwKBgQDi2IVlMx9LiBfgZeSI/dkUg3pLT1e3Mu52/WMGmUXRWFKta5P/URw/mgNqJ/nPFQRR3Jn3b6augGtMjomJ+l7pnlv/OX8oj0h46Brx08wrifZMHUStB6Rt2vOy9asLk84rQIgMh7I/PeZ3r/w8dZg7B1IUMyLuyjGcSoh2Q76oOQKBgQDsCy9aRiX35xnPmNgDH4ffz6roq+a0gwoJRZI8Pht19C5g+4pUjqslKMoff49TLc7a7tvIDaxWZcIKAjcPmEQ8xsTvDzKhwut3/anSNRtQ4AV9bvIy0N6VTV+i3erJioUY6tm/tw5pT8pBuPMLKM8vTAvdqDvlXnhHNA7tFWe26QKBgQCok922EiK8n9uWkEIgp/ztqLN2SfVWmIvsc2tm2Pqwk2GFrP+j6mQCw/Krrh+QC/9U0oq8/gUxgw+6Keb+Wci09lFJvzHHM4vZBiwX8Jy28mTNtaZ2q8o/NUqLgNPm26WIMQGpxiHpq5ec9HSPfZhurYcKqeHY8PujOSRmNvv1yQKBgQCx65dznLE32KQhJbN9lXbr7mYdqurJMrchQ4E9zI69cXf7M8kt6FqRHLVv0arPPK+xL6FqF4pq2BuKZlYTqwdG1xsOiEv3IHs3lioTFzbJ1NXhrIuV0H3AiQcw9TbhSs3sWkP7Ri90Uj/fHYQC+psvq5x0L4JZKE3dDTdgjP6vQA==-----END PRIVATE KEY-----",
+            "-----BEGIN ENCRYPTED PRIVATE KEY-----MIIE6TAbBgkqhkiG9w0BBQMwDgQIHHigg+fwQjQCAggABIIEyLP0cpU55sZ3QSZkCtNtGU425BnZZD57aqO/aa/fV9HGvWn5/GYANT6xDKbUi2kwc68QCi6Zla3C56jPvPsZoDeZ+g81DYjqBVMRsVra1kayQvnKeRvedYPBdfA0VL5n0ndRa9q31Vx6zzXnMYJd9VakUgXYLFntvVeTt/a+iW9LX7mx/ymUPZtD1IrNEJBpW6Al+vc1m6bYA8NpZaT5P6uiclsoEiPDMydEa52cBgcd5q5MfwKllPsQNYtyLsee8W/1k/Eu21pRkCPYreQWgh36gqAn+2zNySCyqiU7USQ1qHMIHPLxJV7awVfOy7eoRMhmbTJ8kCrEpI9r6JyQN3m1VbBN5QifF9p0N0v2yBM8hS6e0fdaSwkFUVFHeWz4140nhaXA6Xu9U+TvJwacdz/FYsN9wi1AIDl8nMT+gFC2v3HuiGmMD0ybA5TOJEsvhdLruxLNLok/uiu6oExDVAV6JI4zM/8ymLruuAibVxSc9bhVEY8FfYbQ5aDiGPm18MXtmCb5UNEG10ylsDl5khfGYwcfuOfgDy3PVst4aA3sHLbk996csBL8FPcGDx7iqgWPYkHEfhuHr4MUt2xqJloOsGlcs6Ts70ldgNHpNCA0DizHnrRY8EF4gXzAJghpJ5gcCllzcVjf26YsoVyNiIZ2IcMe2aoP2WtbnnFqtgl2gOJ6SNAbWyRLhtlSC74mYl0SLvtN5lm7U5bCIlAnAJbm1cqN+Muuxy9/U5TagQYfya4BZNUhHhI9ILH87QLpIWDeCa3v0UZfHi7CBirEusAq+jQGZslTt+fr/iRWQLwo819HA5Yhh4rems2p2aKeuUYPJ/gt5/KIPikYneAEJ2HzqByeS71hWbxpINtEtNz2M1SVGLbFsLrUjfKGTEc29qaaFvM24LpLxahiCTW2huM/1UZFjKyvrL0HYKAZyvA/07EHzY5K9DT3ocNIKApqMzq+D7P5L/gBNQ6E+cx/ZOA+9unVuE7OY6mmQHMsK9MAT6e4T0AxkBqAWg3cf5ovlQNr57mWwms8Zyy1wwIwLr2/wilJ5V3iWSHDIckK1kR92kCDu3MwNIhfM9dalWSsx9FRIg4iFzMIuidYO8pIVq1jJQKqVsgmGXCwioKvD6wDnQqijdDmVpX/Jg08O1iU7URD2MvGLbBRRfzcBFNrEUNjTrbQa3LS+wvDISbizryXKr/8K8okpxV6dBiW3YplePjde/yqrxWl7OQoDbG1F2f2zMmIe8ZNTP15K8aAlq9LC5qn6YnoRTRe2rLecxgP1SQVXUwFvrUKglozy1/cJsuKuCqiRecQneqyasc9mp/0wGu1t9GD3EroMfvuK4zXuaj6uTDyDPUBo6hfvNDG8zSHvEfDDGm4PTFI7kU7U7ohSQZZcGHZBUigFluq9KWJ3SHPgTkRul3nB/Im+89toHSHFoqH/B/GDokAbqsrUPgJ9xpK9lqFEhng5blX2kiae90VHRyb23oE7eIjf3j4G04Amh8m4/W7ER9JDn6nwWqMH4n2MBQRD3USO8DNTgBbggVZZ7MGIUVbv2/YcVZXftBtiS1u+lvVcpYPzwHIj29YrscmBV6ae0CLo1av0xquHYUOrVixSvhmOREOUSZvNSibizBIyNmLkA==-----END ENCRYPTED PRIVATE KEY-----",
+            "-----BEGIN OPENSSH PRIVATE KEY-----b3BlbnNzaC1rZXktdjEAAAAACmFlczI1Ni1jdHIAAAAGYmNyeXB0AAAAGAAAABBDXVWIoOcQYPyoVODqYrhNAAAAEAAAAAEAAAAzAAAAC3NzaC1lZDI1NTE5AAAAIDDZHhPJKYsu2hV7bq/vtAbF2Guw8cupqcjv5SqRraVaAAAAoCfV/ZrS3mggJFx1X7aeKzfBFDN2hWrPTHmyJPsw0NaDW+wzL6/yYmWaAB90clbSiCQ7jALlA/RoU/tPz8HvEaKcnj9BgSMN8+Se4RBcfqxMx9eCRYtYcumc9PrQbKSCeywtvsQoCntPxLhyudxH/HYKx7lO5mrMGut9FjOy2s9Iz317p+2F1DJqRYNsEHKyZJpV0DwObF2ZPOlX3PDv3fg=-----END OPENSSH PRIVATE KEY-----"
+         ],
+         "Invalid": []
+      }
+   },
+   {
+      "Name": "SSH ECDSA Public Key",
+      "Regex": "^(ecdsa-sha2-nistp[0-9]{3} [A-Za-z0-9+\\/=]+ [^ \\n]+)$",
+      "plural_name": false,
+      "Description": null,
+      "Rarity": 1,
+      "URL": null,
+      "Tags": [
+         "Credentials",
+         "SSH Public Key"
       ],
-      "Invalid": []
-    }
-  },
-  {
-    "Name": "SSH ED25519 Public Key",
-    "Regex": "^(ssh-ed25519 [A-Za-z0-9+\\/=]+ [^ \\n]+)$",
-    "plural_name": false,
-    "Description": null,
-    "Rarity": 1,
-    "URL": null,
-    "Tags": ["Credentials", "SSH Public Key"],
-    "Examples": {
-      "Valid": [
-        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIK0wmN/Cr3JXqmLW7u+g9pTh+wyqDHpSQEIQczXkVx9q r00t@my-random_host"
+      "Examples": {
+         "Valid": [
+            "ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBCE9Uli8bGnD4hOWdeo5KKQJ/P/vOazI4MgqJK54w37emP2JwOAOdMmXuwpxbKng3KZz27mz+nKWIlXJ3rzSGMo= r00t@my-random_host"
+         ],
+         "Invalid": []
+      }
+   },
+   {
+      "Name": "SSH ED25519 Public Key",
+      "Regex": "^(ssh-ed25519 [A-Za-z0-9+\\/=]+ [^ \\n]+)$",
+      "plural_name": false,
+      "Description": null,
+      "Rarity": 1,
+      "URL": null,
+      "Tags": [
+         "Credentials",
+         "SSH Public Key"
       ],
-      "Invalid": []
-    }
-  },
-  {
-    "Name": "Access-Control-Allow-Header",
-    "Regex": "(?i)^(Access-Control-Allow: [a-z0-9\\-*])$",
-    "plural_name": false,
-    "Description": "Used for [#CAE4F1][link=https://en.wikipedia.org/wiki/Cross-origin_resource_sharing]Cross-Origin Resource Sharing (CORS)[/link][/#CAE4F1]",
-    "Rarity": 1,
-    "URL": null,
-    "Tags": ["Networking", "Website"],
-    "Examples": {
-      "Valid": ["Access-Control-Allow: *"],
-      "Invalid": []
-    }
-  },
-  {
-    "Name": "TryHackMe Flag Format",
-    "Regex": "(?i)^(thm{.*}|tryhackme{.*})$",
-    "plural_name": false,
-    "Description": "Used for Capture The Flags at https://tryhackme.com",
-    "Rarity": 1,
-    "URL": null,
-    "Tags": ["CTF Flag"],
-    "Examples": {
-      "Valid": ["thm{hello}"],
-      "Invalid": []
-    }
-  },
-  {
-    "Name": "HackTheBox Flag Format",
-    "Regex": "(?i)^(hackthebox{.*}|htb{.*})$",
-    "plural_name": false,
-    "Description": "Used for Capture The Flags at https://hackthebox.eu",
-    "Rarity": 1,
-    "URL": null,
-    "Tags": ["CTF Flag"],
-    "Examples": {
-      "Valid": ["htb{just_a_test}"],
-      "Invalid": []
-    }
-  },
-  {
-    "Name": "Capture The Flag (CTF) Flag",
-    "Regex": "(?i)^(flag{.*}|ctf{.*}|ctfa{.*})$",
-    "plural_name": false,
-    "Description": null,
-    "Rarity": 1,
-    "URL": null,
-    "Tags": ["CTF Flag"],
-    "Examples": {
-      "Valid": ["FLAG{hello}"],
-      "Invalid": []
-    }
-  },
-  {
-    "Name": "YouTube Video",
-    "Regex": "^(https?:\\/\\/(?:youtu\\.be\\/|(?:[a-z]{2,3}\\.)?youtube\\.com\\/watch(?:\\?|#\\!)v=)([\\w-]{11}))$",
-    "plural_name": false,
-    "Description": null,
-    "Rarity": 1,
-    "URL": null,
-    "Tags": ["Media", "YouTube", "YouTube Video"],
-    "Examples": {
-      "Valid": [
-        "https://www.youtube.com/watch?v=ScOAntcCa78",
-        "http://www.youtube.com/watch?v=dQw4w9WgXcQ"
+      "Examples": {
+         "Valid": [
+            "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIK0wmN/Cr3JXqmLW7u+g9pTh+wyqDHpSQEIQczXkVx9q r00t@my-random_host"
+         ],
+         "Invalid": []
+      }
+   },
+   {
+      "Name": "Access-Control-Allow-Header",
+      "Regex": "(?i)^(Access-Control-Allow: [a-z0-9\\-*])$",
+      "plural_name": false,
+      "Description": "Used for [#CAE4F1][link=https://en.wikipedia.org/wiki/Cross-origin_resource_sharing]Cross-Origin Resource Sharing (CORS)[/link][/#CAE4F1]",
+      "Rarity": 1,
+      "URL": null,
+      "Tags": [
+         "Networking",
+         "Website"
       ],
-      "Invalid": []
-    }
-  },
-  {
-    "Name": "Bitcoin Cash (BCH) Wallet Address",
-    "Regex": "(?i)^(((bitcoincash|bchreg|bchtest):)?(q|p)[a-z0-9]{41})$",
-    "plural_name": false,
-    "Description": null,
-    "Rarity": 1,
-    "URL": "https://www.blockchain.com/bch/address/",
-    "Tags": [
-      "Finance",
-      "Cryptocurrency Wallet",
-      "Bitcoin Cash Wallet",
-      "Bitcoin"
-    ],
-    "Examples": {
-      "Valid": ["bitcoincash:qzlg6uvceehgzgtz6phmvy8gtdqyt6vf359at4n3lq"],
-      "Invalid": []
-    }
-  },
-  {
-    "Name": "Heroku API Key",
-    "Regex": "(?i)^(heroku.{0,30}[0-9A-F]{8}-[0-9A-F]{4}-[0-9A-F]{4}-[0-9A-F]{4}-[0-9A-F]{12})$",
-    "plural_name": false,
-    "Description": null,
-    "Exploit": "Use the command below to verify that the API key is valid:\n  $ curl -X POST https://api.heroku.com/apps -H \"Accept: application/vnd.heroku+json; version=3\" -H \"Authorization: Bearer API_KEY_HERE\"\n",
-    "Rarity": 1,
-    "URL": null,
-    "Tags": ["Bug Bounty", "API Keys", "Credentials", "Heroku"]
-  },
-  {
-    "Name": "Slack API Key",
-    "Regex": "(?i)^(xox[p|b|o|a]-[0-9]{12}-[0-9]{12}-[0-9]{12}-[a-z0-9]{32})$",
-    "plural_name": false,
-    "Description": null,
-    "Exploit": "Use the command below to verify that the API key is valid:\n  $ curl -sX POST \"https://slack.com/api/auth.test?token=API_KEY_HERE&pretty=1\"\n",
-    "Rarity": 1,
-    "URL": null,
-    "Tags": ["Bug Bounty", "API Keys", "Credentials", "Slack"],
-    "Examples": {
-      "Valid": [
-        "xoxp-514654431830-843187921057-792480346180-d44d2r9b71f954o8z2k5llt41ovpip6v"
+      "Examples": {
+         "Valid": [
+            "Access-Control-Allow: *"
+         ],
+         "Invalid": []
+      }
+   },
+   {
+      "Name": "TryHackMe Flag Format",
+      "Regex": "(?i)^(thm{.*}|tryhackme{.*})$",
+      "plural_name": false,
+      "Description": "Used for Capture The Flags at https://tryhackme.com",
+      "Rarity": 1,
+      "URL": null,
+      "Tags": [
+         "CTF Flag"
       ],
-      "Invalid": []
-    }
-  },
-  {
-    "Name": "Slack Webhook",
-    "Regex": "(?i)^(https://hooks.slack.com/services/T[a-zA-Z0-9_]{8}/B[a-zA-Z0-9_]{8}/[a-zA-Z0-9_]{24})$",
-    "plural_name": false,
-    "Description": null,
-    "Exploit": "If the command below returns 'missing_text_or_fallback_or_attachments', it means\nthat the URL is valid, any other responses would mean that the URL is invalid.\n  $ curl -s -X POST -H \"Content-type: application/json\" -d '{\"text\":\"\"}' \"SLACK_WEBOOK_URL_HERE\"\n",
-    "Rarity": 1,
-    "URL": null,
-    "Tags": ["Bug Bounty", "API Keys", "Credentials", "Slack"]
-  },
-  {
-    "Name": "Amazon Web Services Simple Storage (AWS S3) URL",
-    "Regex": "(?i)^([https:\\/\\/]*s3\\.amazonaws.com[\\/]+.*|[a-zA-Z0-9_-]*\\.s3\\.amazonaws.com\\/.*)$",
-    "plural_name": false,
-    "Description": null,
-    "Rarity": 1,
-    "URL": null,
-    "Tags": ["Networking", "AWS", "Bug Bounty"],
-    "Examples": {
-      "Valid": ["http://s3.amazonaws.com/bucket"],
-      "Invalid": []
-    }
-  },
-  {
-    "Name": "Amazon Web Services Simple Storage (AWS S3) Internal URL",
-    "Regex": "(?i)^(s3:\\/\\/([^\\/]+)\\/(.*?([^\\/]+)\\/?))$",
-    "plural_name": false,
-    "Description": "Internal URL, only accessible via the virtual private cloud.",
-    "Rarity": 1,
-    "URL": null,
-    "Tags": ["Networking", "AWS", "Bug Bounty"],
-    "Examples": {
-      "Valid": ["s3://bucket/path/key", "s3://bucket/path/directory/"],
-      "Invalid": []
-    }
-  },
-  {
-    "Name": "Square Application Secret",
-    "Regex": "^(sandbox-?sq0csp-[0-9A-Za-z-_]{43}|sq0[a-z]{3}-[0-9A-Za-z-_]{22,43})$",
-    "plural_name": false,
-    "Description": null,
-    "Exploit": "Use the command below to verify that the secret is valid:\n  $ curl \"https://squareup.com/oauth2/revoke\" -d '{\"access_token\":\"[RANDOM_STRING]\",\"client_id\":\"[APP_ID]\"}'  -H \"Content-Type: application/json\" -H \"Authorization: Client SECRET_HERE\"\n",
-    "Rarity": 1,
-    "URL": null,
-    "Tags": ["API Keys", "Credentials", "Square", "Bug Bounty"],
-    "Examples": {
-      "Valid": ["sq0csp-LBptIQ85io8CvbjVDvmzD1drQbOERgjlhnNrMgscFGk"],
-      "Invalid": []
-    }
-  },
-  {
-    "Name": "Square Access Token",
-    "Regex": "^(sqOatp-[0-9A-Za-z-_]{22}|EAAA[a-zA-Z0-9-_]{60})$",
-    "plural_name": false,
-    "Description": null,
-    "Exploit": "Use the command below to verify that the access token is valid:\n  $ curl https://connect.squareup.com/v2/locations -H \"Authorization: Bearer TOKEN_HERE\"\n",
-    "Rarity": 1,
-    "URL": null,
-    "Tags": ["API Keys", "Credentials", "Square", "Bug Bounty"],
-    "Examples": {
-      "Valid": [
-        "EAAAEBQZoq15Ub0PBBr_kw0zK-uIHcBPBZcfjPFT05ODfjng9GqFK9Dbgtj1ILcU"
+      "Examples": {
+         "Valid": [
+            "thm{hello}"
+         ],
+         "Invalid": []
+      }
+   },
+   {
+      "Name": "HackTheBox Flag Format",
+      "Regex": "(?i)^(hackthebox{.*}|htb{.*})$",
+      "plural_name": false,
+      "Description": "Used for Capture The Flags at https://hackthebox.eu",
+      "Rarity": 1,
+      "URL": null,
+      "Tags": [
+         "CTF Flag"
       ],
-      "Invalid": []
-    }
-  },
-  {
-    "Name": "Stripe API Key",
-    "Regex": "^([srp]k_live_[0-9a-zA-Z]{24})$",
-    "plural_name": false,
-    "Description": null,
-    "Exploit": "Use the command below to verify that the API key is valid:\n  $ curl https://api.stripe.com/v1/charges -u \"API_KEY_HERE:\"\n",
-    "Rarity": 1,
-    "URL": null,
-    "Tags": ["API Keys", "Credentials", "Bug Bounty", "Stripe"],
-    "Examples": {
-      "Valid": ["sk_live_vHDDrL02ioRF5vYtyqiYBKma"],
-      "Invalid": []
-    }
-  },
-  {
-    "Name": "GitHub Access Token",
-    "Regex": "^([a-zA-Z0-9_-]*:[a-zA-Z0-9_-]+@github.com*)$",
-    "plural_name": false,
-    "Description": null,
-    "Exploit": "Use the command below to verify that the access token is valid:\n  $ curl -s -u \"user:TOKEN_HERE\" https://api.github.com/user\n  curl -s -H \"Authorization: token TOKEN_HERE\" \"https://api.github.com/users/[USERNAME]/orgs\"\n . # Check scope of your api token\n $  curl \"https://api.github.com/rate_limit\" -i -u \"user:TOKEN_HERE\" | grep \"X-OAuth-Scopes:\"\n",
-    "Rarity": 1,
-    "URL": null,
-    "Tags": ["API Keys", "Credentials", "Bug Bounty", "GitHub"],
-    "Examples": {
-      "Valid": ["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:test@github.com"],
-      "Invalid": []
-    }
-  },
-  {
-    "Name": "Amazon Resource Name (ARN)",
-    "Regex": "(?i)^(arn:(?P<Partition>[^:\\n]*):(?P<Service>[^:\\n]*):(?P<Region>[^:\\n]*):(?P<AccountID>[^:\\n]*):(?P<Ignore>(?P<ResourceType>[^:\\/\\n]*)[:\\/])?(?P<Resource>.*))$",
-    "plural_name": false,
-    "Description": null,
-    "Rarity": 1,
-    "URL": null,
-    "Tags": ["Identifiers", "Networking", "AWS", "Bug Bounty"],
-    "Examples": {
-      "Valid": [
-        "arn:partition:service:region:account-id:resource",
-        "arn:partition:service:region:account-id:resourcetype/resource",
-        "arn:partition:service:region:account-id:resourcetype:resource",
-        "arn:aws:s3:::my_corporate_bucket/Development/*"
+      "Examples": {
+         "Valid": [
+            "htb{just_a_test}"
+         ],
+         "Invalid": []
+      }
+   },
+   {
+      "Name": "Capture The Flag (CTF) Flag",
+      "Regex": "(?i)^(flag{.*}|ctf{.*}|ctfa{.*})$",
+      "plural_name": false,
+      "Description": null,
+      "Rarity": 1,
+      "URL": null,
+      "Tags": [
+         "CTF Flag"
       ],
-      "Invalid": []
-    }
-  },
-  {
-    "Name": "Facebook Access Token",
-    "Regex": "^(EAACEdEose0cBA[0-9A-Za-z]{512})$",
-    "plural_name": false,
-    "Description": null,
-    "Exploit": null,
-    "Rarity": 1,
-    "URL": "https://developers.facebook.com/tools/debug/accesstoken/?access_token=",
-    "Tags": ["API Keys", "Bug Bounty", "Credentials", "Facebook"]
-  },
-  {
-    "Name": "Facebook Secret Key",
-    "Regex": "(?i)^((facebook|fb)(.{0,20})?['\\\"][0-9a-f]{32}['\\\"])$",
-    "plural_name": false,
-    "Description": null,
-    "Exploit": "Use the command below to verify that the secret key is valid:\n  $ curl \"https://graph.facebook.com/oauth/access_token?client_id=[ID]&client_secret=SECRET_KEY_HERE&redirect_uri=&grant_type=client_credentials\"\n",
-    "Rarity": 1,
-    "URL": null,
-    "Tags": ["API Keys", "Bug Bounty", "Credentials", "Facebook"]
-  },
-  {
-    "Name": "Facebook Client ID",
-    "Regex": "(?i)^((facebook|fb)(.{0,20})?['\\\"][0-9]{13,17}['\\\"])$",
-    "plural_name": false,
-    "Description": null,
-    "Exploit": "Use the command below to verify that the secret key is valid:\n  $ curl \"https://graph.facebook.com/oauth/access_token?client_id=ID_HERE&client_secret=[SECRET_KEY]&redirect_uri=&grant_type=client_credentials\"\n",
-    "Rarity": 1,
-    "URL": null,
-    "Tags": ["Bug Bounty", "Facebook"]
-  },
-  {
-    "Name": "Twitter Secret API Key",
-    "Regex": "(?i)^(twitter(.{0,20})?['\\\"][0-9a-z]{35,44}['\\\"])$",
-    "plural_name": false,
-    "Description": null,
-    "Exploit": "Use the command below to verify that the API key is valid:\n  $ curl -u 'API key:API_KEY_HERE' --data 'grant_type=client_credentials' 'https://api.twitter.com/oauth2/token'\n",
-    "Rarity": 1,
-    "URL": null,
-    "Tags": ["API Keys", "Bug Bounty", "Credentials", "Twitter"]
-  },
-  {
-    "Name": "Twitter Client ID",
-    "Regex": "(?i)^(twitter(.{0,20})?['\\\"][0-9a-z]{18,25}['\\\"])$",
-    "plural_name": false,
-    "Description": null,
-    "Exploit": null,
-    "Rarity": 1,
-    "URL": null,
-    "Tags": ["Bug Bounty", "Twitter"]
-  },
-  {
-    "Name": "Node Package Manager (NPM) Token",
-    "Regex": "^(npm_[0-9a-zA-Z]{36})$",
-    "plural_name": false,
-    "Description": null,
-    "Exploit": null,
-    "Rarity": 1,
-    "URL": null,
-    "Tags": ["Token", "Bug Bounty", "NPM"],
-    "Examples": {
-      "Valid": ["npm_ir3kktsOr4JeXqeD72C3cWo2mbs5sQ2pfnt9"],
-      "Invalid": []
-    }
-  },
-  {
-    "Name": "GitHub Personal Access Token",
-    "Regex": "^(ghp_[0-9a-zA-Z]{36})$",
-    "plural_name": false,
-    "Description": null,
-    "Exploit": "Use the command below to verify that the access token is valid:\n  $ curl -s -u \"user:TOKEN_HERE\" https://api.github.com/user\n  curl -s -H \"Authorization: token TOKEN_HERE\" \"https://api.github.com/users/[USERNAME]/orgs\"\n . # Check scope of your api token\n $  curl \"https://api.github.com/rate_limit\" -i -u \"user:TOKEN_HERE\" | grep \"X-OAuth-Scopes:\"\n",
-    "Rarity": 1,
-    "URL": null,
-    "Tags": ["API Keys", "Bug Bounty", "Credentials", "GitHub"],
-    "Examples": {
-      "Valid": ["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"],
-      "Invalid": []
-    }
-  },
-  {
-    "Name": "GitHub OAuth Access Token",
-    "Regex": "^(gho_[0-9a-zA-Z]{36})$",
-    "plural_name": false,
-    "Description": null,
-    "Exploit": "Use the command below to verify that the access token is valid:\n  $ curl -s -u \"user:TOKEN_HERE\" https://api.github.com/user\n  curl -s -H \"Authorization: token TOKEN_HERE\" \"https://api.github.com/users/[USERNAME]/orgs\"\n . # Check scope of your api token\n $  curl \"https://api.github.com/rate_limit\" -i -u \"user:TOKEN_HERE\" | grep \"X-OAuth-Scopes:\"\n",
-    "Rarity": 1,
-    "URL": null,
-    "Tags": ["API Keys", "Bug Bounty", "Credentials", "GitHub"],
-    "Examples": {
-      "Valid": ["gho_16C7e42F292c6912E7710c838347Ae178B4a"],
-      "Invalid": []
-    }
-  },
-  {
-    "Name": "GitHub App Token",
-    "Regex": "^((ghu|ghs)_[0-9a-zA-Z]{36})$",
-    "plural_name": false,
-    "Description": null,
-    "Exploit": "Use the command below to verify that the app token is valid:\n  $ curl -s -u \"user:TOKEN_HERE\" https://api.github.com/user\n  curl -s -H \"Authorization: token TOKEN_HERE\" \"https://api.github.com/users/[USERNAME]/orgs\"\n . # Check scope of your api token\n $  curl \"https://api.github.com/rate_limit\" -i -u \"user:TOKEN_HERE\" | grep \"X-OAuth-Scopes:\"\n",
-    "Rarity": 1,
-    "URL": null,
-    "Tags": ["API Keys", "Bug Bounty", "Credentials", "GitHub"],
-    "Examples": {
-      "Valid": ["ghu_16C7e42F292c6912E7710c838347Ae178B4a"],
-      "Invalid": []
-    }
-  },
-  {
-    "Name": "GitHub Refresh Token",
-    "Regex": "^(ghr_[0-9a-zA-Z]+)$",
-    "plural_name": false,
-    "Description": null,
-    "Exploit": null,
-    "Rarity": 1,
-    "URL": null,
-    "Tags": ["API Keys", "Bug Bounty", "Credentials", "GitHub"],
-    "Examples": {
-      "Valid": [
-        "ghr_1B4a2e77838347a7E420ce178F2E7c6912E169246c34E1ccbF66C46812d16D5B1A9Dc86A1498"
+      "Examples": {
+         "Valid": [
+            "FLAG{hello}"
+         ],
+         "Invalid": []
+      }
+   },
+   {
+      "Name": "YouTube Video",
+      "Regex": "^(https?:\\/\\/(?:youtu\\.be\\/|(?:[a-z]{2,3}\\.)?youtube\\.com\\/watch(?:\\?|#\\!)v=)([\\w-]{11}))$",
+      "plural_name": false,
+      "Description": null,
+      "Rarity": 1,
+      "URL": null,
+      "Tags": [
+         "Media",
+         "YouTube",
+         "YouTube Video"
       ],
-      "Invalid": []
-    }
-  },
-  {
-    "Name": "LinkedIn Client ID",
-    "Regex": "(?i)^((linkedin(.{0,20})?[0-9a-z]{12}))$",
-    "plural_name": false,
-    "Description": null,
-    "Exploit": null,
-    "Rarity": 1,
-    "URL": null,
-    "Tags": ["Bug Bounty", "LinkedIn"]
-  },
-  {
-    "Name": "LinkedIn Secret Key",
-    "Regex": "(?i)^(linkedin(.{0,20})?[0-9a-z]{16})$",
-    "plural_name": false,
-    "Description": null,
-    "Exploit": null,
-    "Rarity": 1,
-    "URL": null,
-    "Tags": ["API Keys", "Bug Bounty", "Credentials", "LinkedIn"]
-  },
-  {
-    "Name": "GitHub Access Token",
-    "Regex": "(?i)^([a-zA-Z0-9_-]*:[a-zA-Z0-9_-]+@github\\.com)$",
-    "plural_name": false,
-    "Description": null,
-    "Exploit": null,
-    "Rarity": 1,
-    "URL": null,
-    "Tags": ["API Keys", "Bug Bounty", "Credentials", "GitHub"]
-  },
-  {
-    "Name": "Stripe Restricted API Token",
-    "Regex": "(?i)^(rk_live_[0-9a-zA-Z]{24})$",
-    "plural_name": false,
-    "Description": null,
-    "Exploit": null,
-    "Rarity": 1,
-    "URL": null,
-    "Tags": ["API Keys", "Bug Bounty", "Credentials", "Stripe"]
-  },
-  {
-    "Name": "Stripe Standard API Token",
-    "Regex": "(?i)^(sk_live_[0-9a-zA-Z]{24})$",
-    "plural_name": false,
-    "Description": null,
-    "Exploit": "Use the command below to verify that the Stripe Standard Live API Token is valid.\n  $ curl https://api.stripe.com/v1/charges -u TOKEN_HERE:\n\nKeep the colon at the end of the token to prevent cURL from requesting a password.\n\nThe live key can be used to extract/retrieve a lot of info ranging from the charges\nto the complete product list.\n\nKeep in mind that you will never be able to get the full credit card information since\nStripe only gives you the last 4 digits.\n",
-    "Rarity": 1,
-    "URL": null,
-    "Tags": ["API Keys", "Bug Bounty", "Credentials", "Stripe"]
-  },
-  {
-    "Name": "Square Access Token",
-    "Regex": "(?i)^(sqOatp-[0-9A-Za-z\\-_]{22})$",
-    "plural_name": false,
-    "Description": null,
-    "Exploit": "Use the command below to verify that the access token is valid:\n  $ curl \"https://squareup.com/oauth2/revoke\" -d '{\"access_token\":\"[RANDOM_STRING]\",\"client_id\":\"[APP_ID]\"}'  -H \"Content-Type: application/json\" -H \"Authorization: Client TOKEN_HERE\"\n",
-    "Rarity": 1,
-    "URL": null,
-    "Tags": ["API Keys", "Bug Bounty", "Credentials", "Square"]
-  },
-  {
-    "Name": "Square OAuth Token",
-    "Regex": "(?i)^(sq0csp-[ 0-9A-Za-z\\-_]{43})$",
-    "plural_name": false,
-    "Description": null,
-    "Exploit": "Use the command below to verify that the token is valid:\n  $ curl \"https://squareup.com/oauth2/revoke\" -d '{\"access_token\":\"[RANDOM_STRING]\",\"client_id\":\"[APP_ID]\"}'  -H \"Content-Type: application/json\" -H \"Authorization: Client TOKEN_HERE\"\n",
-    "Rarity": 1,
-    "URL": null,
-    "Tags": ["API Keys", "Bug Bounty", "Credentials", "Square"]
-  },
-  {
-    "Name": "PayPal/Braintree Access Token",
-    "Regex": "(?i)^(access_token\\$production\\$[0-9a-z]{16}\\$[0-9a-f]{32})$",
-    "plural_name": false,
-    "Description": null,
-    "Exploit": null,
-    "Rarity": 1,
-    "URL": null,
-    "Tags": ["API Keys", "Bug Bounty", "Credentials", "PayPal", "Braintree"]
-  },
-  {
-    "Name": "MWS Auth Token",
-    "Regex": "(?i)^(amzn\\.mws\\.[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})$",
-    "plural_name": false,
-    "Description": null,
-    "Exploit": null,
-    "Rarity": 1,
-    "URL": null,
-    "Tags": ["API Keys", "Bug Bounty", "Credentials", "Amazon", "MWS"]
-  },
-  {
-    "Name": "Picatic API Key",
-    "Regex": "(?i)^(sk_[live|test]_[0-9a-z]{32})$",
-    "plural_name": false,
-    "Description": null,
-    "Exploit": null,
-    "Rarity": 1,
-    "URL": null,
-    "Tags": ["API Keys", "Bug Bounty", "Credentials", "Picatic"]
-  },
-  {
-    "Name": "Google OAuth Access Key",
-    "Regex": "(?i)^(ya29\\.[0-9A-Za-z\\-_]{64})$",
-    "plural_name": false,
-    "Description": null,
-    "Exploit": null,
-    "Rarity": 1,
-    "URL": null,
-    "Tags": ["API Keys", "Bug Bounty", "Credentials", "Google"]
-  },
-  {
-    "Name": "Google OAuth ID",
-    "Regex": "(?i)^([0-9(+-[0-9A-Za-z_]{32}.apps.googleusercontent.com)$",
-    "plural_name": false,
-    "Description": null,
-    "Exploit": null,
-    "Rarity": 1,
-    "URL": null,
-    "Tags": ["API Keys", "Bug Bounty", "Credentials", "Google"]
-  },
-  {
-    "Name": "StackHawk API Key",
-    "Regex": "(?i)^(hawk\\.[0-9A-Za-z\\-_]{20}\\.[0-9A-Za-z\\-_]{20})$",
-    "plural_name": false,
-    "Description": null,
-    "Exploit": null,
-    "Rarity": 1,
-    "URL": null,
-    "Tags": ["API Keys", "Bug Bounty", "Credentials", "StackHawk"],
-    "Examples": {
-      "Valid": ["hawk.wz6bAoFDwcVQFCD9dofE.w2R1PWI8UTvEM4jd56XQ"],
-      "Invalid": []
-    }
-  },
-  {
-    "Name": "NuGet API Key",
-    "Regex": "(?i)^(oy2[a-z0-9]{43})$",
-    "plural_name": false,
-    "Description": null,
-    "Exploit": null,
-    "Rarity": 1,
-    "URL": null,
-    "Tags": ["API Keys", "Bug Bounty", "Credentials", "NuGet"]
-  },
-  {
-    "Name": "SendGrid Token",
-    "Regex": "(?i)^(SG\\.[0-9A-Za-z\\-_]{22}\\.[0-9A-Za-z-_]{43})$",
-    "plural_name": false,
-    "Description": null,
-    "Exploit": "Use the command below to verify that the SendGrid Token is valid.\n  $ curl -X \"GET\" \"https://api.sendgrid.com/v3/scopes\" -H \"Authorization: Bearer SENDGRID_TOKEN_HERE\" -H \"Content-Type: application/json\"\n",
-    "Rarity": 1,
-    "URL": null,
-    "Tags": ["API Keys", "Bug Bounty", "Credentials", "SendGrid"]
-  },
-  {
-    "Name": "Zoho Webhook Token",
-    "Regex": "(?i)^(https://creator\\.zoho\\.com/api/[A-Za-z0-9/\\-_\\.]+\\?authtoken=[A-Za-z0-9]+)$",
-    "plural_name": false,
-    "Description": null,
-    "Exploit": null,
-    "Rarity": 1,
-    "URL": null,
-    "Tags": ["Bug Bounty", "Zoho"]
-  },
-  {
-    "Name": "Zapier Webhook Token",
-    "Regex": "(?i)^(https://(?:www.)?hooks\\.zapier\\.com/hooks/catch/[A-Za-z0-9]+/[A-Za-z0-9]+/)$",
-    "plural_name": false,
-    "Description": null,
-    "Exploit": "Verify that the Zapier Webook url is valid:\n  curl -H \"Accept: application/json\" -H \"Content-Type: application/json\" -X POST -d '{\"name\":\"PyWhat\"}' \"WEBHOOK_URL_HERE\"\n",
-    "Rarity": 1,
-    "URL": null,
-    "Tags": ["API Keys", "Bug Bounty", "Credentials", "Zapier"],
-    "Examples": {
-      "Valid": ["https://hooks.zapier.com/hooks/catch/1234567/f8f22dgg/"],
-      "Invalid": []
-    }
-  },
-  {
-    "Name": "Datadog API Key",
-    "Regex": "^([a-f0-9]{32})$",
-    "plural_name": false,
-    "Description": null,
-    "Exploit": "Use the command below to verify that the API key is valid:\n  $ curl -X GET https://api.datadoghq.com/api/v1/validate -H \"Content-Type: application/json\" -H \"DD-API-KEY: API_KEY_HERE\"\n",
-    "Rarity": 1,
-    "URL": null,
-    "Tags": ["API Keys", "Bug Bounty", "Credentials", "Datadog"]
-  },
-  {
-    "Name": "Datadog Client Token",
-    "Regex": "^(pub[a-f0-9]{32})$",
-    "plural_name": false,
-    "Description": null,
-    "Exploit": null,
-    "Rarity": 1,
-    "URL": null,
-    "Tags": ["API Keys", "Bug Bounty", "Datadog"]
-  },
-  {
-    "Name": "New Relic Admin API Key",
-    "Regex": "(?i)^(NRAA-[a-f0-9]{27})$",
-    "plural_name": false,
-    "Description": null,
-    "Exploit": "Use the command below to verify that API key is valid:\n  $ curl -X POST https://api.newrelic.com/graphql -H 'Content-Type: application/json' -H 'API-Key: API_KEY_HERE' -d '{ \"query\": \"{ requestContext { userId apiKey } }\" } '\n",
-    "Rarity": 1,
-    "URL": null,
-    "Tags": ["API Keys", "Bug Bounty", "Credentials", "New Relic"]
-  },
-  {
-    "Name": "New Relic Insights API Key",
-    "Regex": "(?i)^(NRI(?:I|Q)-[A-Za-z0-9\\-_]{32})$",
-    "plural_name": false,
-    "Description": null,
-    "Exploit": null,
-    "Rarity": 1,
-    "URL": null,
-    "Tags": ["API Keys", "Bug Bounty", "Credentials", "New Relic"]
-  },
-  {
-    "Name": "New Relic REST API Key",
-    "Regex": "(?i)^(NRRA-[a-f0-9]{42})$",
-    "plural_name": false,
-    "Description": null,
-    "Exploit": "Use the command below to verify that the New Relic REST API Key is valid.\n  $ curl -X GET 'https://api.newrelic.com/v2/applications.json' -H \"X-Api-Key:${API_KEY_HERE}\" -i\n\nIf valid, test furher to see if its an admin key (https://docs.newrelic.com/docs/apis/intro-apis/new-relic-api-keys/)\n",
-    "Rarity": 1,
-    "URL": null,
-    "Tags": ["API Keys", "Bug Bounty", "Credentials", "New Relic"],
-    "Examples": {
-      "Valid": ["NRRA-2a2d50d7d9449f3bb7ef65ac1184c488bd4fe7a8bd"],
-      "Invalid": []
-    }
-  },
-  {
-    "Name": "New Relic Synthetics Location Key",
-    "Regex": "(?i)^(NRSP-[a-z]{2}[0-9]{2}[a-f0-9]{31})$",
-    "plural_name": false,
-    "Description": null,
-    "Exploit": null,
-    "Rarity": 1,
-    "URL": null,
-    "Tags": ["Bug Bounty", "New Relic"],
-    "Examples": {
-      "Valid": ["NRSP-us010E1E3D1716F721FF39F726B3E4CBCB7"],
-      "Invalid": []
-    }
-  },
-  {
-    "Name": "New Relic User API Key",
-    "Regex": "(?i)^(NRAK-[a-z0-9]{27})$",
-    "plural_name": false,
-    "Description": null,
-    "Exploit": "Use the command below to verify that API key is valid:\n  $ curl -X POST https://api.newrelic.com/graphql -H 'Content-Type: application/json' -H 'API-Key: API_KEY_HERE' -d '{ \"query\": \"{ requestContext { userId apiKey } }\" } '\n",
-    "Rarity": 1,
-    "URL": null,
-    "Tags": ["API Keys", "Bug Bounty", "Credentials", "New Relic"],
-    "Examples": {
-      "Valid": ["NRAK-WI4JTVS049IF5A3FGS5N51XS3Y5"],
-      "Invalid": []
-    }
-  },
-  {
-    "Name": "Microsoft Teams Webhook",
-    "Regex": "(?i)^(https://outlook\\.office\\.com/webhook/[A-Za-z0-9\\-@]{64}/IncomingWebhook/[A-Za-z0-9\\-]{64}/[A-Za-z0-9\\-]{64})$",
-    "plural_name": false,
-    "Description": null,
-    "Exploit": null,
-    "Rarity": 1,
-    "URL": null,
-    "Tags": ["Bug Bounty", "URL", "Microsoft Teams", "Microsoft"]
-  },
-  {
-    "Name": "Google FCM Server Key",
-    "Regex": "(?i)^(AAAA[a-zA-Z0-9_-]{7}:[a-zA-Z0-9_-]{140})$",
-    "plural_name": false,
-    "Description": null,
-    "Exploit": null,
-    "Rarity": 1,
-    "URL": null,
-    "Tags": ["Bug Bounty", "Google"]
-  },
-  {
-    "Name": "Google Calendar URI",
-    "Regex": "(?i)^(https://calendar.google.com/calendar/embed\\?src=[A-Za-z0-9%@&;=\\-_\\./]+)$",
-    "plural_name": false,
-    "Description": null,
-    "Exploit": null,
-    "Rarity": 1,
-    "URL": null,
-    "Tags": ["Bug Bounty", "URL", "Google Calendar", "Google"],
-    "Examples": {
-      "Valid": [
-        "https://calendar.google.com/calendar/embed?src=ht3jlfaac5lfd6263ulfh4tql8%40group.calendar.google.com&ctz=Europe%2FLondon"
+      "Examples": {
+         "Valid": [
+            "https://www.youtube.com/watch?v=ScOAntcCa78",
+            "http://www.youtube.com/watch?v=dQw4w9WgXcQ"
+         ],
+         "Invalid": []
+      }
+   },
+   {
+      "Name": "Bitcoin Cash (BCH) Wallet Address",
+      "Regex": "(?i)^(((bitcoincash|bchreg|bchtest):)?(q|p)[a-z0-9]{41})$",
+      "plural_name": false,
+      "Description": null,
+      "Rarity": 1,
+      "URL": "https://www.blockchain.com/bch/address/",
+      "Tags": [
+         "Finance",
+         "Cryptocurrency Wallet",
+         "Bitcoin Cash Wallet",
+         "Bitcoin"
       ],
-      "Invalid": []
-    }
-  },
-  {
-    "Name": "Discord Webhook",
-    "Regex": "(?i)^(https://discord\\.com/api/webhooks/[0-9]+/[A-Za-z0-9-_]+)$",
-    "plural_name": false,
-    "Description": null,
-    "Exploit": null,
-    "Rarity": 1,
-    "URL": null,
-    "Tags": ["Bug Bounty", "URL", "Discord"],
-    "Examples": {
-      "Valid": [
-        "https://discord.com/api/webhooks/894893734582452235/KhNc2-_zwY9FfCAK0iGUa_KfYyW8m5Ja_5i-V24fEY6ETwvLLn-GmdT_vq0Do9-YRsij"
-      ],
-      "Invalid": []
-    }
-  },
-  {
-    "Name": "Cloudinary Credentials",
-    "Regex": "(?i)^(cloudinary://[0-9]+:[A-Za-z0-9-_.]+@[A-Za-z0-9-_.]+)$",
-    "plural_name": false,
-    "Description": null,
-    "Exploit": null,
-    "Rarity": 1,
-    "URL": null,
-    "Tags": ["Bug Bounty", "Credentials", "Cloudinary"]
-  },
-  {
-    "Name": "PyPI Upload Token",
-    "Regex": "(?i)^(pypi-AgEIcHlwaS5vcmc[A-Za-z0-9-_]+)$",
-    "plural_name": false,
-    "Description": null,
-    "Exploit": "Anyone with this token is able to upload to the PyPI for the package that belongs to this token.\n",
-    "Rarity": 1,
-    "URL": null,
-    "Tags": ["Bug Bounty", "Credentials", "API Keys", "PyPI"],
-    "Examples": {
-      "Valid": [
-        "pypi-AgEIcHlwaS5vcmcCJDZlNzEyNGJmLWQ4N2UtNGZhYS1iNWEzLWQzYzg2YjU3NzAxYgACJXsicGVybWlzc2lvbnMiOiAidXNlciIsICJ2ZXJzaW9uIjogMX0AAAYgeYcgrZO31PTS_3ipsd0fTSMy1kVkxCzhQvHN6m97yIE"
-      ],
-      "Invalid": []
-    }
-  },
-  {
-    "Name": "Shopify Private App Access Token",
-    "Regex": "(?i)^(shppa_[a-fA-F0-9]{32})$",
-    "plural_name": false,
-    "Description": null,
-    "Exploit": null,
-    "Rarity": 1,
-    "URL": null,
-    "Tags": ["Bug Bounty", "Credentials", "API Keys", "Shopify"]
-  },
-  {
-    "Name": "Shopify Custom App Access Token",
-    "Regex": "(?i)^(shpca_[a-fA-F0-9]{32})$",
-    "plural_name": false,
-    "Description": null,
-    "Exploit": null,
-    "Rarity": 1,
-    "URL": null,
-    "Tags": ["Bug Bounty", "Credentials", "API Keys", "Shopify"]
-  },
-  {
-    "Name": "Shopify Access Token",
-    "Regex": "(?i)^(shpat_[a-fA-F0-9]{32})$",
-    "plural_name": false,
-    "Description": null,
-    "Exploit": null,
-    "Rarity": 1,
-    "URL": null,
-    "Tags": ["Bug Bounty", "Credentials", "API Keys", "Shopify"]
-  },
-  {
-    "Name": "Shopify Shared Secret",
-    "Regex": "(?i)^(shpss_[a-fA-F0-9]{32})$",
-    "plural_name": false,
-    "Description": null,
-    "Exploit": null,
-    "Rarity": 1,
-    "URL": null,
-    "Tags": ["Bug Bounty", "Credentials", "API Keys", "Shopify"]
-  },
-  {
-    "Name": "Dynatrace Token",
-    "Regex": "(?i)^(dt0[a-zA-Z]{1}[0-9]{2}\\.[A-Z0-9]{24}\\.[A-Z0-9]{64})$",
-    "plural_name": false,
-    "Description": null,
-    "Exploit": null,
-    "Rarity": 1,
-    "URL": null,
-    "Tags": ["Bug Bounty", "Credentials", "API Keys", "Dynatrace"]
-  },
-  {
-    "Name": "Amazon SNS Topic",
-    "Regex": "(?i)^((arn:aws:sns:)[a-z0-9-]+:[0-9]+:[A-Za-z0-9-_]{1,128})$",
-    "plural_name": false,
-    "Description": null,
-    "Exploit": null,
-    "Rarity": 1,
-    "URL": null,
-    "Tags": ["Bug Bounty", "AWS", "Amazon"],
-    "Examples": {
-      "Valid": ["arn:aws:sns:us-east-2:123456789012:MyTopic"],
-      "Invalid": []
-    }
-  },
-  {
-    "Name": "Notion Note URI",
-    "Regex": "(?i)^(https://www\\.notion\\.so/[A-Za-z0-9-_]+/.*-[0-9a-f]{32})$",
-    "plural_name": false,
-    "Description": null,
-    "Rarity": 1,
-    "URL": null,
-    "Tags": ["Bug Bounty", "URL"],
-    "Examples": {
-      "Valid": [
-        "https://www.notion.so/test-user/My-Note-fa45346d9dd4421abc6857ce2e7fb0db"
-      ],
-      "Invalid": []
-    }
-  },
-  {
-    "Name": "Notion Team Note URI",
-    "Regex": "(?i)^(https://[A-Za-z0-9-_]+\\.notion\\.site/.*-[0-9a-f]{32})$",
-    "plural_name": false,
-    "Description": null,
-    "Rarity": 1,
-    "URL": null,
-    "Tags": ["Bug Bounty", "URL"],
-    "Examples": {
-      "Valid": [
-        "https://testorg.notion.site/My-Note-9f8863871e024ea6acc64d6564004a22"
-      ],
-      "Invalid": []
-    }
-  },
-  {
-    "Name": "Nano (NANO) Wallet Address",
-    "Regex": "^((nano|xrb)_[13]{1}[1a-km-z3-9]{59})$",
-    "plural_name": false,
-    "Description": null,
-    "Rarity": 1,
-    "URL": "https://nanocrawler.cc/explorer/account/",
-    "Tags": ["Finance", "Cryptocurrency Wallet", "Nano Wallet", "Nano"],
-    "Examples": {
-      "Valid": [
-        "nano_1c46rz7xnk98ozhzdjq7thwty844sgnqxk9496yysit1bnio1rcdzshc5ymn"
-      ],
-      "Invalid": []
-    }
-  },
-  {
-    "Name": "Time-Based One-Time Password (TOTP) URI",
-    "Regex": "^([^?\\n]+://totp/[^\\n]+secret=[A-Z2-7=]+[^\\n]+)$",
-    "plural_name": false,
-    "Description": null,
-    "Rarity": 1,
-    "URL": null,
-    "Tags": ["Credentials", "TOTP", "Bug Bounty"],
-    "Examples": {
-      "Valid": [
-        "otpauth://totp/Example:alice@google.com?secret=JBSWY3DPEHPK3PXP&issuer=Example",
-        "otpauth://totp/My_Ex0T1c-L00king.name?issuer=ArgsShouldBeCommutable&secret=JBSWY3DPEHPK3PXP&digits=6&period=30"
-      ],
-      "Invalid": []
-    }
-  },
-  {
-    "Name": "Google Cloud Platform API Key",
-    "Regex": "(?i)^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12})$",
-    "plural_name": false,
-    "Description": null,
-    "Exploit": null,
-    "Rarity": 0.8,
-    "URL": null,
-    "Tags": ["API Keys", "Bug Bounty", "Credentials", "Google Cloud", "Google"]
-  },
-  {
-    "Name": "Mailchimp API Key",
-    "Regex": "(?i)^([0-9a-f]{32}-us[0-9]{1,2})$",
-    "plural_name": false,
-    "Description": null,
-    "Exploit": "Use the command below to verify that the API key is valid:\n  $ curl --request GET --url 'https://<dc>.api.mailchimp.com/3.0/' --user 'anystring:API_KEY_HERE' --include\n",
-    "Rarity": 0.8,
-    "URL": null,
-    "Tags": ["Bug Bounty", "API Keys", "Credentials", "Mailchimp"]
-  },
-  {
-    "Name": "Notion Integration Token",
-    "Regex": "(?i)^((secret_)([a-zA-Z0-9]{43}))$",
-    "plural_name": false,
-    "Description": "A Notion API integration's internal integration token.",
-    "Rarity": 0.8,
-    "URL": null,
-    "Tags": ["Credentials", "API Keys", "Bug Bounty"],
-    "Examples": {
-      "Valid": ["secret_n2ZeRrMx743JQ5wiucZ0DBEe47opfKubUp22N0wIrOy"],
-      "Invalid": []
-    }
-  },
-  {
-    "Name": "Internet Protocol (IP) Address Version 6",
-    "Regex": "^((?=.*[0-9])\\[?(?:(?:[0-9a-f]{1,4}:){7,7}[0-9a-f]{1,4}|([0-9a-f]{4}:){1,7}:|([0-9a-f]{1,4}:){1,6}:[0-9a-f]{1,4}|([0-9a-f]{1,4}:){1,5}(:[0-9a-f]{1,4}){1,2}|([0-9a-f]{1,4}:){1,4}(:[0-9a-f]{1,4}){1,3}|([0-9a-f]{1,4}:){1,3}(:[0-9a-f]{1,4}){1,4}|([0-9a-fA]{1,4}:){1,2}(:[0-9a-f]{1,4}){1,5}|[0-9a-f]{1,4}:((:[0-9a-f]{1,4}){1,6})|:((:[0-9a-f]{1,4}){1,7}|:)|fe80:(:[0-9a-f]{0,4}){0,4}%[0-9a-z]{1,}|::(ffff(:0{1,4}){0,1}:){0,1}((25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])\\.){3,3}(25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])|(?:[0-9a-f]{1,4}:){1,4}:(?:(25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])\\.){3,3}(25[0-5]|(?:2[0-4]|1{0,1}[0-9]){0,1}[0-9]))\\]?(?::[0-9]{1,5})?)$",
-    "plural_name": false,
-    "Description": null,
-    "Rarity": 0.7,
-    "URL": "https://www.shodan.io/host/",
-    "Tags": ["Identifiers", "Networking", "IP", "IPv4", "Bug Bounty"],
-    "Examples": {
-      "Valid": [
-        "2001:0db8:85a3:0000:0000:8a2e:0370:7334",
-        "[2001:db8::1]:8080"
-      ],
-      "Invalid": []
-    }
-  },
-  {
-    "Name": "Uniform Resource Locator (URL)",
-    "Regex": "(?i)^((?:(?:https?|ftp):\\/\\/(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)(?::[0-9]{1,5})?)([a-z0-9-_\\/]?\\.?)*|(?:(?:https?|ftp):\\/\\/)?(?:\\S+:\\S+@)?(?:[a-z0-9-_]?\\.?)+?(?:[a-z0-9-_][a-z0-9-_]{0,62})\\.(?:XN--VERMGENSBERATUNG-PWB|XN--VERMGENSBERATER-CTB|XN--CLCHC0EA0B2G2A9GCD|XN--W4R85EL8FHU5DNRA|NORTHWESTERNMUTUAL|TRAVELERSINSURANCE|XN--3OQ18VL8PN36A|XN--5SU34J936BGSG|XN--BCK1B9A5DRE4C|XN--MGBAH1A3HJKRD|XN--MGBAI9AZGQP6J|XN--MGBERP4A5D4AR|XN--XKC2DL3A5EE0H|XN--FZYS8D69UVGM|XN--MGBA7C0BBN0A|XN--MGBCPQ6GPA1A|XN--XKC2AL3HYE2A|AMERICANEXPRESS|KERRYPROPERTIES|SANDVIKCOROMANT|XN--I1B6B1A6A2E|XN--KCRX77D1X4A|XN--LGBBAT1AD8J|XN--MGBA3A4F16A|XN--MGBAAKC7DVF|XN--MGBC0A9AZCG|XN--NQV7FS00EMA|AFAMILYCOMPANY|AMERICANFAMILY|BANANAREPUBLIC|CANCERRESEARCH|COOKINGCHANNEL|KERRYLOGISTICS|WEATHERCHANNEL|XN--54B7FTA0CC|XN--6QQ986B3XL|XN--80AQECDR1A|XN--B4W605FERD|XN--FIQ228C5HS|XN--H2BREG3EVE|XN--JLQ480N2RG|XN--JLQ61U9W7B|XN--MGBA3A3EJT|XN--MGBAAM7A8H|XN--MGBAYH7GPA|XN--MGBBH1A71E|XN--MGBCA7DZDO|XN--MGBI4ECEXP|XN--MGBX4CD0AB|XN--RVC1E0AM3E|INTERNATIONAL|LIFEINSURANCE|TRAVELCHANNEL|WOLTERSKLUWER|XN--CCKWCXETD|XN--ECKVDTC9D|XN--FPCRJ9C3D|XN--FZC2C9E2C|XN--H2BRJ9C8C|XN--TIQ49XQYJ|XN--YFRO4I67O|XN--YGBI2AMMX|CONSTRUCTION|LPLFINANCIAL|SCHOLARSHIPS|VERSICHERUNG|XN--3E0B707E|XN--45BR5CYL|XN--4DBRK0CE|XN--80ADXHKS|XN--80ASEHDB|XN--8Y0A063A|XN--GCKR3F0F|XN--MGB9AWBF|XN--MGBAB2BD|XN--MGBGU82A|XN--MGBPL2FH|XN--MGBT3DHD|XN--MK1BU44C|XN--NGBC5AZD|XN--NGBE9E0A|XN--OGBPF8FL|XN--QCKA1PMC|ACCOUNTANTS|BARCLAYCARD|BLACKFRIDAY|BLOCKBUSTER|BRIDGESTONE|CALVINKLEIN|CONTRACTORS|CREDITUNION|ENGINEERING|ENTERPRISES|FOODNETWORK|INVESTMENTS|KERRYHOTELS|LAMBORGHINI|MOTORCYCLES|OLAYANGROUP|PHOTOGRAPHY|PLAYSTATION|PRODUCTIONS|PROGRESSIVE|REDUMBRELLA|WILLIAMHILL|XN--11B4C3D|XN--1CK2E1B|XN--1QQW23A|XN--2SCRJ9C|XN--3BST00M|XN--3DS443G|XN--3HCRJ9C|XN--42C2D9A|XN--45BRJ9C|XN--55QW42G|XN--6FRZ82G|XN--80AO21A|XN--9KRT00A|XN--CCK2B3B|XN--CZR694B|XN--D1ACJ3B|XN--EFVY88H|XN--FCT429K|XN--FJQ720A|XN--FLW351E|XN--G2XX48C|XN--GECRJ9C|XN--GK3AT1E|XN--H2BRJ9C|XN--HXT814E|XN--IMR513N|XN--J6W193G|XN--JVR189M|XN--KPRW13D|XN--KPRY57D|XN--MGBBH1A|XN--MGBTX2B|XN--MIX891F|XN--NYQY26A|XN--OTU796D|XN--PGBS0DH|XN--Q9JYB4C|XN--RHQV96G|XN--ROVU88B|XN--S9BRJ9C|XN--SES554G|XN--T60B56A|XN--VUQ861B|XN--W4RS40L|XN--XHQ521B|XN--ZFR164B|ACCOUNTANT|APARTMENTS|ASSOCIATES|BASKETBALL|BNPPARIBAS|BOEHRINGER|CAPITALONE|CONSULTING|CREDITCARD|CUISINELLA|EUROVISION|EXTRASPACE|FOUNDATION|HEALTHCARE|IMMOBILIEN|INDUSTRIES|MANAGEMENT|MITSUBISHI|NEXTDIRECT|PROPERTIES|PROTECTION|PRUDENTIAL|REALESTATE|REPUBLICAN|RESTAURANT|SCHAEFFLER|SWIFTCOVER|TATAMOTORS|TECHNOLOGY|UNIVERSITY|VLAANDEREN|VOLKSWAGEN|XN--30RR7Y|XN--3PXU8K|XN--45Q11C|XN--4GBRIM|XN--55QX5D|XN--5TZM5G|XN--80ASWG|XN--90A3AC|XN--9DBQ2A|XN--9ET52U|XN--C2BR7G|XN--CG4BKI|XN--CZRS0T|XN--CZRU2D|XN--FIQ64B|XN--FIQS8S|XN--FIQZ9S|XN--IO0A7I|XN--KPUT3I|XN--MXTQ1M|XN--O3CW4H|XN--PSSY2U|XN--Q7CE6A|XN--UNUP4Y|XN--WGBH1C|XN--WGBL6A|XN--Y9A3AQ|ACCENTURE|ALFAROMEO|ALLFINANZ|AMSTERDAM|ANALYTICS|AQUARELLE|BARCELONA|BLOOMBERG|CHRISTMAS|COMMUNITY|DIRECTORY|EDUCATION|EQUIPMENT|FAIRWINDS|FINANCIAL|FIRESTONE|FRESENIUS|FRONTDOOR|FURNITURE|GOLDPOINT|HISAMITSU|HOMEDEPOT|HOMEGOODS|HOMESENSE|INSTITUTE|INSURANCE|KUOKGROUP|LANCASTER|LANDROVER|LIFESTYLE|MARKETING|MARSHALLS|MELBOURNE|MICROSOFT|PANASONIC|PASSAGENS|PRAMERICA|RICHARDLI|SCJOHNSON|SHANGRILA|SOLUTIONS|STATEBANK|STATEFARM|STOCKHOLM|TRAVELERS|VACATIONS|XN--90AIS|XN--C1AVG|XN--D1ALF|XN--E1A4C|XN--FHBEI|XN--J1AEF|XN--J1AMH|XN--L1ACC|XN--NGBRX|XN--NQV7F|XN--P1ACF|XN--QXA6A|XN--TCKWE|XN--VHQUV|YODOBASHI|ABUDHABI|AIRFORCE|ALLSTATE|ATTORNEY|BARCLAYS|BAREFOOT|BARGAINS|BASEBALL|BOUTIQUE|BRADESCO|BROADWAY|BRUSSELS|BUDAPEST|BUILDERS|BUSINESS|CAPETOWN|CATERING|CATHOLIC|CIPRIANI|CITYEATS|CLEANING|CLINIQUE|CLOTHING|COMMBANK|COMPUTER|DELIVERY|DELOITTE|DEMOCRAT|DIAMONDS|DISCOUNT|DISCOVER|DOWNLOAD|ENGINEER|ERICSSON|ETISALAT|EXCHANGE|FEEDBACK|FIDELITY|FIRMDALE|FOOTBALL|FRONTIER|GOODYEAR|GRAINGER|GRAPHICS|GUARDIAN|HDFCBANK|HELSINKI|HOLDINGS|HOSPITAL|INFINITI|IPIRANGA|ISTANBUL|JPMORGAN|LIGHTING|LUNDBECK|MARRIOTT|MASERATI|MCKINSEY|MEMORIAL|MERCKMSD|MORTGAGE|OBSERVER|PARTNERS|PHARMACY|PICTURES|PLUMBING|PROPERTY|REDSTONE|RELIANCE|SAARLAND|SAMSCLUB|SECURITY|SERVICES|SHOPPING|SHOWTIME|SOFTBANK|SOFTWARE|STCGROUP|SUPPLIES|TRAINING|VANGUARD|VENTURES|VERISIGN|WOODSIDE|XN--90AE|XN--NODE|XN--P1AI|XN--QXAM|YOKOHAMA|ABOGADO|ACADEMY|AGAKHAN|ALIBABA|ANDROID|ATHLETA|AUCTION|AUDIBLE|AUSPOST|AVIANCA|BANAMEX|BAUHAUS|BENTLEY|BESTBUY|BOOKING|BROTHER|BUGATTI|CAPITAL|CARAVAN|CAREERS|CHANNEL|CHARITY|CHINTAI|CITADEL|CLUBMED|COLLEGE|COLOGNE|COMCAST|COMPANY|COMPARE|CONTACT|COOKING|CORSICA|COUNTRY|COUPONS|COURSES|CRICKET|CRUISES|DENTIST|DIGITAL|DOMAINS|EXPOSED|EXPRESS|FARMERS|FASHION|FERRARI|FERRERO|FINANCE|FISHING|FITNESS|FLIGHTS|FLORIST|FLOWERS|FORSALE|FROGANS|FUJITSU|GALLERY|GENTING|GODADDY|GROCERY|GUITARS|HAMBURG|HANGOUT|HITACHI|HOLIDAY|HOSTING|HOTELES|HOTMAIL|HYUNDAI|ISMAILI|JEWELRY|JUNIPER|KITCHEN|KOMATSU|LACAIXA|LANXESS|LASALLE|LATROBE|LECLERC|LIMITED|LINCOLN|MARKETS|MONSTER|NETBANK|NETFLIX|NETWORK|NEUSTAR|OKINAWA|OLDNAVY|ORGANIC|ORIGINS|PHILIPS|PIONEER|POLITIE|REALTOR|RECIPES|RENTALS|REVIEWS|REXROTH|SAMSUNG|SANDVIK|SCHMIDT|SCHWARZ|SCIENCE|SHIKSHA|SINGLES|STAPLES|STORAGE|SUPPORT|SURGERY|SYSTEMS|TEMASEK|THEATER|THEATRE|TICKETS|TIFFANY|TOSHIBA|TRADING|WALMART|WANGGOU|WATCHES|WEATHER|WEBSITE|WEDDING|WHOSWHO|WINDOWS|WINNERS|XFINITY|YAMAXUN|YOUTUBE|ZUERICH|ABARTH|ABBOTT|ABBVIE|AFRICA|AGENCY|AIRBUS|AIRTEL|ALIPAY|ALSACE|ALSTOM|AMAZON|ANQUAN|ARAMCO|AUTHOR|BAYERN|BEAUTY|BERLIN|BHARTI|BOSTIK|BOSTON|BROKER|CAMERA|CAREER|CASINO|CENTER|CHANEL|CHROME|CHURCH|CIRCLE|CLAIMS|CLINIC|COFFEE|COMSEC|CONDOS|COUPON|CREDIT|CRUISE|DATING|DATSUN|DEALER|DEGREE|DENTAL|DESIGN|DIRECT|DOCTOR|DUNLOP|DUPONT|DURBAN|EMERCK|ENERGY|ESTATE|EVENTS|EXPERT|FAMILY|FLICKR|FUTBOL|GALLUP|GARDEN|GEORGE|GIVING|GLOBAL|GOOGLE|GRATIS|HEALTH|HERMES|HIPHOP|HOCKEY|HOTELS|HUGHES|IMAMAT|INSURE|INTUIT|JAGUAR|JOBURG|JUEGOS|KAUFEN|KINDER|KINDLE|KOSHER|LANCIA|LATINO|LAWYER|LEFRAK|LIVING|LOCKER|LONDON|LUXURY|MADRID|MAISON|MAKEUP|MARKET|MATTEL|MOBILE|MONASH|MORMON|MOSCOW|MUSEUM|MUTUAL|NAGOYA|NATURA|NISSAN|NISSAY|NORTON|NOWRUZ|OFFICE|OLAYAN|ONLINE|ORACLE|ORANGE|OTSUKA|PFIZER|PHOTOS|PHYSIO|PICTET|QUEBEC|RACING|REALTY|REISEN|REPAIR|REPORT|REVIEW|ROCHER|ROGERS|RYUKYU|SAFETY|SAKURA|SANOFI|SCHOOL|SCHULE|SEARCH|SECURE|SELECT|SHOUJI|SOCCER|SOCIAL|STREAM|STUDIO|SUPPLY|SUZUKI|SWATCH|SYDNEY|TAIPEI|TAOBAO|TARGET|TATTOO|TENNIS|TIENDA|TJMAXX|TKMAXX|TOYOTA|TRAVEL|UNICOM|VIAJES|VIKING|VILLAS|VIRGIN|VISION|VOTING|VOYAGE|VUELOS|WALTER|WEBCAM|XIHUAN|YACHTS|YANDEX|ZAPPOS|ACTOR|ADULT|AETNA|AMFAM|AMICA|APPLE|ARCHI|AUDIO|AUTOS|AZURE|BAIDU|BEATS|BIBLE|BINGO|BLACK|BOATS|BOSCH|BUILD|CANON|CARDS|CHASE|CHEAP|CISCO|CITIC|CLICK|CLOUD|COACH|CODES|CROWN|CYMRU|DABUR|DANCE|DEALS|DELTA|DRIVE|DUBAI|EARTH|EDEKA|EMAIL|EPSON|FAITH|FEDEX|FINAL|FOREX|FORUM|GALLO|GAMES|GIFTS|GIVES|GLADE|GLASS|GLOBO|GMAIL|GREEN|GRIPE|GROUP|GUCCI|GUIDE|HOMES|HONDA|HORSE|HOUSE|HYATT|IKANO|IRISH|JETZT|KOELN|KYOTO|LAMER|LEASE|LEGAL|LEXUS|LILLY|LINDE|LIPSY|LIXIL|LOANS|LOCUS|LOTTE|LOTTO|MACYS|MANGO|MEDIA|MIAMI|MONEY|MOVIE|NEXUS|NIKON|NINJA|NOKIA|NOWTV|OMEGA|OSAKA|PARIS|PARTS|PARTY|PHONE|PHOTO|PIZZA|PLACE|POKER|PRAXI|PRESS|PRIME|PROMO|QUEST|RADIO|REHAB|REISE|RICOH|ROCKS|RODEO|RUGBY|SALON|SENER|SEVEN|SHARP|SHELL|SHOES|SKYPE|SLING|SMART|SMILE|SOLAR|SPACE|SPORT|STADA|STORE|STUDY|STYLE|SUCKS|SWISS|TATAR|TIRES|TIROL|TMALL|TODAY|TOKYO|TOOLS|TORAY|TOTAL|TOURS|TRADE|TRUST|TUNES|TUSHU|UBANK|VEGAS|VIDEO|VODKA|VOLVO|WALES|WATCH|WEBER|WEIBO|WORKS|WORLD|XEROX|YAHOO|AARP|ABLE|ADAC|AERO|AKDN|ALLY|AMEX|ARAB|ARMY|ARPA|ARTE|ASDA|ASIA|AUDI|AUTO|BABY|BAND|BANK|BBVA|BEER|BEST|BIKE|BING|BLOG|BLUE|BOFA|BOND|BOOK|BUZZ|CAFE|CALL|CAMP|CARE|CARS|CASA|CASE|CASH|CBRE|CERN|CHAT|CITI|CITY|CLUB|COOL|COOP|CYOU|DATA|DATE|DCLK|DEAL|DELL|DESI|DIET|DISH|DOCS|DUCK|DVAG|ERNI|FAGE|FAIL|FANS|FARM|FAST|FIAT|FIDO|FILM|FIRE|FISH|FLIR|FOOD|FORD|FREE|FUND|GAME|GBIZ|GENT|GGEE|GIFT|GMBH|GOLD|GOLF|GOOG|GUGE|GURU|HAIR|HAUS|HDFC|HELP|HERE|HGTV|HOST|HSBC|ICBC|IEEE|IMDB|IMMO|INFO|ITAU|JAVA|JEEP|JOBS|JPRS|KDDI|KIWI|KPMG|KRED|LAND|LEGO|LGBT|LIDL|LIFE|LIKE|LIMO|LINK|LIVE|LOAN|LOFT|LOVE|LTDA|LUXE|MAIF|MEET|MEME|MENU|MINI|MINT|MOBI|MODA|MOTO|NAME|NAVY|NEWS|NEXT|NICO|NIKE|OLLO|OPEN|PAGE|PARS|PCCW|PICS|PING|PINK|PLAY|PLUS|POHL|PORN|POST|PROD|PROF|QPON|RAID|READ|REIT|RENT|REST|RICH|RMIT|ROOM|RSVP|RUHR|SAFE|SALE|SARL|SAVE|SAXO|SCOT|SEAT|SEEK|SEXY|SHAW|SHIA|SHOP|SHOW|SILK|SINA|SITE|SKIN|SNCF|SOHU|SONG|SONY|SPOT|STAR|SURF|TALK|TAXI|TEAM|TECH|TEVA|TIAA|TIPS|TOWN|TOYS|TUBE|VANA|VISA|VIVA|VIVO|VOTE|VOTO|WANG|WEIR|WIEN|WIKI|WINE|WORK|XBOX|YOGA|ZARA|ZERO|ZONE|AAA|ABB|ABC|ACO|ADS|AEG|AFL|AIG|ANZ|AOL|APP|ART|AWS|AXA|BAR|BBC|BBT|BCG|BCN|BET|BID|BIO|BIZ|BMS|BMW|BOM|BOO|BOT|BOX|BUY|BZH|CAB|CAL|CAM|CAR|CAT|CBA|CBN|CBS|CEO|CFA|CFD|COM|CPA|CRS|CSC|DAD|DAY|DDS|DEV|DHL|DIY|DNP|DOG|DOT|DTV|DVR|EAT|ECO|EDU|ESQ|EUS|FAN|FIT|FLY|FOO|FOX|FRL|FTR|FUN|FYI|GAL|GAP|GAY|GDN|GEA|GLE|GMO|GMX|GOO|GOP|GOT|GOV|HBO|HIV|HKT|HOT|HOW|IBM|ICE|ICU|IFM|INC|ING|INK|INT|IST|ITV|JCB|JIO|JLL|JMP|JNJ|JOT|JOY|KFH|KIA|KIM|KPN|KRD|LAT|LAW|LDS|LLC|LLP|LOL|LPL|LTD|MAN|MAP|MBA|MED|MEN|MIL|MIT|MLB|MLS|MMA|MOE|MOI|MOM|MOV|MSD|MTN|MTR|NAB|NBA|NEC|NET|NEW|NFL|NGO|NHK|NOW|NRA|NRW|NTT|NYC|OBI|OFF|ONE|ONG|ONL|OOO|ORG|OTT|OVH|PAY|PET|PHD|PID|PIN|PNC|PRO|PRU|PUB|PWC|QVC|RED|REN|RIL|RIO|RIP|RUN|RWE|SAP|SAS|SBI|SBS|SCA|SCB|SES|SEW|SEX|SFR|SKI|SKY|SOY|SPA|SRL|STC|TAB|TAX|TCI|TDK|TEL|THD|TJX|TOP|TRV|TUI|TVS|UBS|UNO|UOL|UPS|VET|VIG|VIN|VIP|WED|WIN|WME|WOW|WTC|WTF|XIN|XXX|XYZ|YOU|YUN|ZIP|AC|AD|AE|AF|AG|AI|AL|AM|AO|AQ|AR|AS|AT|AU|AW|AX|AZ|BA|BB|BD|BE|BF|BG|BH|BI|BJ|BM|BN|BO|BR|BS|BT|BV|BW|BY|BZ|CA|CC|CD|CF|CG|CH|CI|CK|CL|CM|CN|CO|CR|CU|CV|CW|CX|CY|CZ|DE|DJ|DK|DM|DO|DZ|EC|EE|EG|ER|ES|ET|EU|FI|FJ|FK|FM|FO|FR|GA|GB|GD|GE|GF|GG|GH|GI|GL|GM|GN|GP|GQ|GR|GS|GT|GU|GW|GY|HK|HM|HN|HR|HT|HU|ID|IE|IL|IM|IN|IO|IQ|IR|IS|IT|JE|JM|JO|JP|KE|KG|KH|KI|KM|KN|KP|KR|KW|KY|KZ|LA|LB|LC|LI|LK|LR|LS|LT|LU|LV|LY|MA|MC|MD|ME|MG|MH|MK|ML|MM|MN|MO|MP|MQ|MR|MS|MT|MU|MV|MW|MX|MY|MZ|NA|NC|NE|NF|NG|NI|NL|NO|NP|NR|NU|NZ|OM|PA|PE|PF|PG|PH|PK|PL|PM|PN|PR|PS|PT|PW|PY|QA|RE|RO|RS|RU|RW|SA|SB|SC|SD|SE|SG|SH|SI|SJ|SK|SL|SM|SN|SO|SR|SS|ST|SU|SV|SX|SY|SZ|TC|TD|TF|TG|TH|TJ|TK|TL|TM|TN|TO|TR|TT|TV|TW|TZ|UA|UG|UK|US|UY|UZ|VA|VC|VE|VG|VI|VN|VU|WF|WS|YE|YT|ZA|ZM|ZW)(?::\\d{2,5})?(?:[\\/?#]\\S*)?)$",
-    "plural_name": false,
-    "Description": null,
-    "Rarity": 0.7,
-    "URL": null,
-    "Tags": ["Identifiers", "URL"],
-    "Examples": {
-      "Valid": [
-        "tryhackme.com",
-        "http://username:password@example.com/",
-        "hTTPs://tryhackme.com",
-        "https://xn--80aaxitdbjk.xn--p1ai/",
-        "http://10.1.1.1"
-      ],
-      "Invalid": ["tryhackme.comm"]
-    }
-  },
-  {
-    "Name": "Internet Protocol (IP) Address Version 4",
-    "Regex": "^((?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)(?::[0-9]{1,5})?)$",
-    "plural_name": false,
-    "Description": null,
-    "Rarity": 0.7,
-    "URL": "https://www.shodan.io/host/",
-    "Tags": ["Identifiers", "Networking", "IP", "IPv6", "Bug Bounty"],
-    "Examples": {
-      "Valid": ["192.0.2.235:80"],
-      "Invalid": []
-    }
-  },
-  {
-    "Name": "Bitcoin (\u20bf) Wallet Address",
-    "Regex": "^(([1][a-km-zA-HJ-NP-Z1-9]{25,35})|([3][a-km-zA-HJ-NP-Z1-9]{33})|(bc|tb)1(?!.*[1bio])[a-z0-9]{39,59})$",
-    "plural_name": false,
-    "Description": null,
-    "Rarity": 0.7,
-    "URL": "https://www.blockchain.com/btc/address/",
-    "Tags": ["Finance", "Cryptocurrency Wallet", "Bitcoin Wallet", "Bitcoin"],
-    "Examples": {
-      "Valid": [
-        "1KFHE7w8BhaENAswwryaoccDb6qcT6DbYY",
-        "3EmUH8Uh9EXE7axgyAeBsCc2vdUdKkDqWK",
-        "bc1qj89046x7zv6pm4n00qgqp505nvljnfp6xfznyw"
-      ],
-      "Invalid": []
-    }
-  },
-  {
-    "Name": "Latitude & Longitude Coordinates",
-    "Regex": "(?i)^((?:(?:N|W|S|E)\\s?\\d+\\s?\\u00B0?\\s?\\d+\\.?\\d*\\s?\\'?\\s?\\d*\\.?\\,?\\d*?\"?\\s?){1,2}|(?:\\d+\\s?\\u00B0\\s?\\d+\\s?\\'\\s?\\d+\\.?\\,?\\d{0,}?\"\\s?(?:N|W|S|E)\\s?){1,2}|(?:[-+]?(?:[0-8]?\\d+\\.\\d{4,}|90(?:\\.0+)?),\\s*[-+]?(?:180(?:\\.0+)?|(?:(?:1[0-7]\\d)|(?:[1-9]?\\d))(?:\\.\\d+)?)))$",
-    "plural_name": true,
-    "Description": null,
-    "Rarity": 0.7,
-    "URL": "https://www.google.com/maps/place/",
-    "Tags": ["Geo-location", "Lat & Long", "Coords"],
-    "Examples": {
-      "Valid": [
-        "52.6169586, -1.9779857",
-        "53.76297,-1.9388732",
-        "77\u00b0 30' 29.9988\" N",
-        "N 32\u00b0 53.733 W 096\u00b0 48.358",
-        "41\u00b024'12.2\" N 2\u00b010'26.5\" E",
-        "40.741895,-73.989308"
-      ],
-      "Invalid": []
-    }
-  },
-  {
-    "Name": "EUI-48 Identifier (Ethernet, WiFi, Bluetooth, etc)",
-    "Regex": "^(([0-9A-Fa-f]{2}[:]){5}[0-9A-Fa-f]{2}|([0-9A-Fa-f]{2}[-]){5}[0-9A-Fa-f]{2}|([0-9A-Fa-f]{4}[\\.]){2}[0-9A-Fa-f]{4})$",
-    "plural_name": false,
-    "Description": null,
-    "Rarity": 0.5,
-    "URL": "https://maclookup.app/search/macs/",
-    "Tags": [
-      "Identifiers",
-      "Networking",
-      "EUI-48",
-      "Bluetooth Address",
-      "Ethernet Address",
-      "WiFi Address",
-      "Mac Address"
-    ],
-    "Children": {
-      "path": "mac_vendors.json",
-      "entry": "Vendor(s): ",
-      "method": "hashmap",
-      "deletion_pattern": "[:.-]"
-    }
-  },
-  {
-    "Name": "Dogecoin (DOGE) Wallet Address",
-    "Regex": "^(D{1}[5-9A-HJ-NP-U]{1}[1-9A-HJ-NP-Za-km-z]{32})$",
-    "plural_name": false,
-    "Description": null,
-    "Rarity": 0.5,
-    "URL": "https://dogechain.info/address/",
-    "Tags": ["Finance", "Cryptocurrency Wallet", "Dogecoin Wallet", "Dogecoin"],
-    "Examples": {
-      "Valid": ["DANHz6EQVoWyZ9rER56DwTXHWUxfkv9k2o"],
-      "Invalid": []
-    }
-  },
-  {
-    "Name": "Email Address",
-    "Regex": "^((?:[a-z0-9!#$%&'\"*+\\/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'\"*+\\/=?^_`{|}~-]+)*)@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\\[(?:(?:(?:2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9]))\\.){3}(?:(?:2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9])|[a-z0-9-]*[a-z0-9]:)\\]))$",
-    "plural_name": false,
-    "Description": null,
-    "Rarity": 0.5,
-    "URL": null,
-    "Tags": ["Identifiers", "Credentials", "Email Address", "Email"],
-    "Examples": {
-      "Valid": [
-        "github@skerritt.blog",
-        "firstname+lastname@example.com",
-        "john.smith@[123.123.123.123]"
-      ],
-      "Invalid": ["email@example@example.com"]
-    }
-  },
-  {
-    "Name": "Phone Number",
-    "Regex": "^(\\s*(?:\\+?(\\d{1,3}))?[-. (]*(\\d{3})[-. )]*(\\d{3})[-. ]*(\\d{4})(?: *x(\\d+))?\\s*)$",
-    "plural_name": false,
-    "Description": null,
-    "Rarity": 0.5,
-    "URL": null,
-    "Tags": ["Identifiers", "Credentials", "Phone Number", "Phone"],
-    "Children": {
-      "path": "phone_codes.json",
-      "entry": "Location(s): ",
-      "method": "hashmap"
-    },
-    "Examples": {
-      "Valid": ["202-555-0178"],
-      "Invalid": []
-    }
-  },
-  {
-    "Name": "American Social Security Number",
-    "Regex": "^(([0-9][0-9][0-9])(?<!666|000|9[0-9][0-9])(=|\\+|_|\\#|:|;|\\.|-|\\s){0,3}([1-9][1-9]|0[1-9]|[1-9]0)(=|\\+|_|\\#|:|;|\\.|-|\\s){0,3}([0-9][0-9][0-9][0-9])(?<!0000)(=|\\+|_|\\#|:|;|\\.|-|\\s){0,3}?)$",
-    "plural_name": false,
-    "Description": "An [#CAE4F1][link=https://en.wikipedia.org/wiki/Social_Security_number]American Identification Number[/link][/#CAE4F1]",
-    "Rarity": 0.5,
-    "URL": null,
-    "Tags": ["Credentials", "SSN", "Social Security Number", "Bug Bounty"],
-    "Examples": {
-      "Valid": ["001-01-0001", "001:01:0001", "001.01.0001", "001 01 0001"],
-      "Invalid": [
-        "900-01-2222",
-        "999-21-2222",
-        "666-21-2222",
-        "000-21-5544",
-        "122-00-5544",
-        "122-32-0000"
+      "Examples": {
+         "Valid": [
+            "bitcoincash:qzlg6uvceehgzgtz6phmvy8gtdqyt6vf359at4n3lq"
+         ],
+         "Invalid": []
+      }
+   },
+   {
+      "Name": "Heroku API Key",
+      "Regex": "(?i)^(heroku.{0,30}[0-9A-F]{8}-[0-9A-F]{4}-[0-9A-F]{4}-[0-9A-F]{4}-[0-9A-F]{12})$",
+      "plural_name": false,
+      "Description": null,
+      "Exploit": "Use the command below to verify that the API key is valid:\n  $ curl -X POST https://api.heroku.com/apps -H \"Accept: application/vnd.heroku+json; version=3\" -H \"Authorization: Bearer API_KEY_HERE\"\n",
+      "Rarity": 1,
+      "URL": null,
+      "Tags": [
+         "Bug Bounty",
+         "API Keys",
+         "Credentials",
+         "Heroku"
       ]
-    }
-  },
-  {
-    "Name": "Bitly Secret Key",
-    "Regex": "^([0-9a-f]{40})$",
-    "plural_name": false,
-    "Description": null,
-    "Exploit": "Use the command below to verify that the secret key is valid:\n  $ curl \"https://api-ssl.bitly.com/v3/shorten?access_token=SECRET_KEY_HERE&longUrl=https://www.google.com\"\n",
-    "Rarity": 0.5,
-    "URL": null,
-    "Tags": ["Bug Bounty", "Credentials", "API Keys", "Bitly"],
-    "Examples": {
-      "Valid": ["96f79079f1d658895d188a78f303220c6f161b05"],
-      "Invalid": []
-    }
-  },
-  {
-    "Name": "Visual Studio App Center API Token",
-    "Regex": "^([0-9a-f]{40})$",
-    "plural_name": false,
-    "Description": null,
-    "Rarity": 0.5,
-    "Exploit": null,
-    "URL": null,
-    "Tags": [
-      "Identifiers",
-      "API Keys",
-      "Bug Bounty",
-      "Visual Studio",
-      "Microsoft"
-    ],
-    "Examples": {
-      "Valid": ["4435bc4358816be97a3f014499116c83ab224fb2"],
-      "Invalid": []
-    }
-  },
-  {
-    "Name": "YouTube Channel ID",
-    "Regex": "^(UC[0-9A-Za-z_-]{21}[AQgw]{1})$",
-    "plural_name": false,
-    "Description": null,
-    "Rarity": 0.5,
-    "URL": "https://www.youtube.com/channel/",
-    "Tags": ["Media", "YouTube", "YouTube Channel"],
-    "Examples": {
-      "Valid": ["UCjXfkj5iapKHJrhYfAF9ZGg"],
-      "Invalid": ["078-05-1120"]
-    }
-  },
-  {
-    "Name": "Discord Bot Token",
-    "Regex": "^((?:N|M|O)[a-zA-Z0-9]{23}\\.[a-zA-Z0-9-_]{6}\\.[a-zA-Z0-9-_]{27})$",
-    "plural_name": false,
-    "Description": null,
-    "Rarity": 0.5,
-    "URL": null,
-    "Tags": [
-      "Credentials",
-      "Token",
-      "API Keys",
-      "Bug Bounty",
-      "Discord",
-      "Discord Bot"
-    ],
-    "Examples": {
-      "Valid": [
-        "NzQ4MDk3ODM3OTgzODU4NzIz.X0YeZw.UlcjuCywUAWvPH9s-3cXNBaq3M4",
-        "MTE4NDQyNjQ0NTAxMjk5MjAz.DPM2DQ.vLNMR02Qxb9DJFucGZK1UtTs__s",
-        "ODYyOTUyOTE3NTg4NjM5NzY1.YOf1iA.7lARgFXmodxpgmPvOXapaKUga6M"
+   },
+   {
+      "Name": "Slack API Key",
+      "Regex": "(?i)^(xox[p|b|o|a]-[0-9]{12}-[0-9]{12}-[0-9]{12}-[a-z0-9]{32})$",
+      "plural_name": false,
+      "Description": null,
+      "Exploit": "Use the command below to verify that the API key is valid:\n  $ curl -sX POST \"https://slack.com/api/auth.test?token=API_KEY_HERE&pretty=1\"\n",
+      "Rarity": 1,
+      "URL": null,
+      "Tags": [
+         "Bug Bounty",
+         "API Keys",
+         "Credentials",
+         "Slack"
       ],
-      "Invalid": []
-    }
-  },
-  {
-    "Name": "UUID",
-    "Regex": "^([0-9A-Fa-f]{8}-[0-9A-Fa-f]{4}-[12345][0-9A-Fa-f]{3}-[89ABab][0-9A-Fa-f]{3}-[0-9A-Fa-f]{12})$",
-    "plural_name": false,
-    "Description": null,
-    "Rarity": 0.5,
-    "URL": "https://www.uuidtools.com/api/decode/",
-    "Tags": ["Identifiers", "UUID"],
-    "Examples": {
-      "Valid": ["b2ced6f5-2542-4f7d-b131-e3ada95d8b75"],
-      "Invalid": []
-    }
-  },
-  {
-    "Name": "Turkish License Plate Number",
-    "Regex": "^(0[1-9]|[1-7][0-9]|8[01])(([A-Z])(\\d{4,5})|([A-Z]{2})(\\d{3,4})|([A-Z]{3})(\\d{2,3}))$",
-    "plural_name": false,
-    "Description": "The [#CAE4F1][link=https://en.wikipedia.org/wiki/Vehicle_registration_plates_of_Turkey]vehicle registration plate number of Turkey[/link][/#CAE4F1]",
-    "Rarity": 0.4,
-    "URL": null,
-    "Tags": ["Identifiers", "License Plate", "Turkish"],
-    "Examples": {
-      "Valid": ["34A2344", "34A23415", "06BK123", "06JK1234", "81ABC75"],
-      "Invalid": []
-    }
-  },
-  {
-    "Name": "Date of Birth",
-    "Regex": "^([1-9]|[12][0-9]|3[01])(|\\/|\\.|\\-|\\s)?(0[1-9]|1[12])\\2(19[0-9]{2}|200[0-9]|201[0-8])$",
-    "plural_name": false,
-    "Description": null,
-    "Rarity": 0.4,
-    "URL": null,
-    "Tags": ["Identifiers", "Date of Birth", "DOB"],
-    "Examples": {
-      "Valid": [
-        "13.08.1987",
-        "13081987",
-        "13/08/1987",
-        "13-08-1987",
-        "13 08 1987"
+      "Examples": {
+         "Valid": [
+            "xoxp-514654431830-843187921057-792480346180-d44d2r9b71f954o8z2k5llt41ovpip6v"
+         ],
+         "Invalid": []
+      }
+   },
+   {
+      "Name": "Slack Webhook",
+      "Regex": "(?i)^(https://hooks.slack.com/services/T[a-zA-Z0-9_]{8}/B[a-zA-Z0-9_]{8}/[a-zA-Z0-9_]{24})$",
+      "plural_name": false,
+      "Description": null,
+      "Exploit": "If the command below returns 'missing_text_or_fallback_or_attachments', it means\nthat the URL is valid, any other responses would mean that the URL is invalid.\n  $ curl -s -X POST -H \"Content-type: application/json\" -d '{\"text\":\"\"}' \"SLACK_WEBOOK_URL_HERE\"\n",
+      "Rarity": 1,
+      "URL": null,
+      "Tags": [
+         "Bug Bounty",
+         "API Keys",
+         "Credentials",
+         "Slack"
+      ]
+   },
+   {
+      "Name": "Amazon Web Services Simple Storage (AWS S3) URL",
+      "Regex": "(?i)^([https:\\/\\/]*s3\\.amazonaws.com[\\/]+.*|[a-zA-Z0-9_-]*\\.s3\\.amazonaws.com\\/.*)$",
+      "plural_name": false,
+      "Description": null,
+      "Rarity": 1,
+      "URL": null,
+      "Tags": [
+         "Networking",
+         "AWS",
+         "Bug Bounty"
       ],
-      "Invalid": []
-    }
-  },
-  {
-    "Name": "Monero (XMR) Wallet Address",
-    "Regex": "(?i)^([48][0-9AB][1-9A-HJ-NP-Za-km-z]{93})$",
-    "plural_name": false,
-    "Description": null,
-    "Rarity": 0.3,
-    "URL": null,
-    "Tags": ["Finance", "Cryptocurrency Wallet", "Monero Wallet", "Monero"],
-    "Examples": {
-      "Valid": [
-        "47DF8D9NwtmefhFUghynYRMqrexiZTsm48T1hhi2jZcbfcwoPbkhMrrED6zqJRfeYpXFfdaqAT3jnBEwoMwCx6BYDJ1W3ub"
+      "Examples": {
+         "Valid": [
+            "http://s3.amazonaws.com/bucket"
+         ],
+         "Invalid": []
+      }
+   },
+   {
+      "Name": "Amazon Web Services Simple Storage (AWS S3) Internal URL",
+      "Regex": "(?i)^(s3:\\/\\/([^\\/]+)\\/(.*?([^\\/]+)\\/?))$",
+      "plural_name": false,
+      "Description": "Internal URL, only accessible via the virtual private cloud.",
+      "Rarity": 1,
+      "URL": null,
+      "Tags": [
+         "Networking",
+         "AWS",
+         "Bug Bounty"
       ],
-      "Invalid": []
-    }
-  },
-  {
-    "Name": "Litecoin (LTC) Wallet Address",
-    "Regex": "(?i)^((?:L|M)[a-z0-9]{33})$",
-    "plural_name": false,
-    "Description": null,
-    "Rarity": 0.3,
-    "URL": "https://live.blockcypher.com/ltc/address/",
-    "Tags": ["Finance", "Cryptocurrency Wallet", "Litecoin Wallet", "Litecoin"],
-    "Examples": {
-      "Valid": ["LRX8rSPVjifTxoLeoJtLf2JYdJFTQFcE7m"],
-      "Invalid": []
-    }
-  },
-  {
-    "Name": "Ripple (XRP) Wallet Address",
-    "Regex": "(?i)^(r[a-z0-9]{33})$",
-    "plural_name": false,
-    "Description": null,
-    "Rarity": 0.3,
-    "URL": "https://xrpscan.com/account/",
-    "Tags": [
-      "Finance",
-      "Cryptocurrency Wallet",
-      "Ripple Wallet",
-      "Ripple",
-      "XRP"
-    ],
-    "Examples": {
-      "Valid": ["rBPAQmwMrt7FDDPNyjwFgwSqbWZPf6SLkk"],
-      "Invalid": []
-    }
-  },
-  {
-    "Name": "American Express Card Number",
-    "Regex": "^(3[47][0-9]{2}\\s?(?:[0-9]{4}\\s?){2}[0-9]{3})$",
-    "plural_name": false,
-    "Description": null,
-    "Rarity": 0.3,
-    "URL": null,
-    "Tags": ["Credit Card", "Finance", "AMEX CC", "Bug Bounty"]
-  },
-  {
-    "Name": "BCGlobal Card Number",
-    "Regex": "^((?:6541|6556)[0-9]{12})$",
-    "plural_name": false,
-    "Description": null,
-    "Rarity": 0.3,
-    "URL": null,
-    "Tags": ["Credit Card", "Finance"],
-    "Examples": {
-      "Valid": ["6556123456789012"],
-      "Invalid": []
-    }
-  },
-  {
-    "Name": "Carte Blanche Card Number",
-    "Regex": "^(30[0-5][0-9]{11})$",
-    "plural_name": false,
-    "Description": null,
-    "Rarity": 0.3,
-    "URL": null,
-    "Tags": ["Credit Card", "Finance"],
-    "Examples": {
-      "Valid": ["30137891521480"],
-      "Invalid": []
-    }
-  },
-  {
-    "Name": "Diners Club Card Number",
-    "Regex": "^(3(?:0[0-5]|[68][0-9])[0-9]\\s?(?:[0-9]{4}\\s?){2}[0-9]{2})$",
-    "plural_name": false,
-    "Description": null,
-    "Rarity": 0.3,
-    "URL": null,
-    "Tags": ["Credit Card", "Finance"],
-    "Examples": {
-      "Valid": ["3056 9309 0259 04", "30000000000004"],
-      "Invalid": []
-    }
-  },
-  {
-    "Name": "Discover Card Number",
-    "Regex": "^((?:64[4-9][0-9]|65[0-9]{2}|6011)\\s?(?:[0-9]{4}\\s?){3}|622(?:1\\s?2[6-9][0-9]{2}|1\\s?[3-9][0-9]{3}|[2-8]\\s?[0-9]{4}|9\\s?[01][0-9]{3}|9\\s?2[0-5][0-9]{2})\\s?(?:[0-9]{4}\\s?){2})$",
-    "plural_name": false,
-    "Description": null,
-    "Rarity": 0.3,
-    "URL": null,
-    "Tags": ["Credit Card", "Finance", "Discover CC"],
-    "Examples": {
-      "Valid": ["6011000000000004", "6011 1111 1111 1117"],
-      "Invalid": []
-    }
-  },
-  {
-    "Name": "MasterCard Number",
-    "Regex": "^((?:5[1-5][0-9]{2}|222[1-9]|22[3-9][0-9]|2[3-6][0-9]{2}|27[01][0-9]|2720)\\s?(?:[0-9]{4}\\s?){3})$",
-    "plural_name": false,
-    "Description": null,
-    "Rarity": 0.3,
-    "URL": null,
-    "Tags": ["Credit Card", "Finance", "MasterCard CC", "Bug Bounty"],
-    "Children": {
-      "path": "mastercard_companies.json",
-      "entry": "Issuer(s): ",
-      "deletion_pattern": "\\s",
-      "method": "hashmap"
-    }
-  },
-  {
-    "Name": "Maestro Card Number",
-    "Regex": "^((?:5018|5020|5038|5612|5893|6304|6759|676[1-3]|0604|6390)\\s?(?:[0-9]{4}\\s?){3}\\s?(?:[0-9]{3,7})?)$",
-    "plural_name": false,
-    "Description": null,
-    "Rarity": 0.3,
-    "URL": null,
-    "Tags": ["Credit Card", "Finance"],
-    "Examples": {
-      "Valid": ["5038146401278870", "6759 6498 2643 8453"],
-      "Invalid": []
-    }
-  },
-  {
-    "Name": "Visa Card Number",
-    "Regex": "^(4[0-9]{12}(?:[0-9]{3})?|4[0-9]{3}\\s(?:[0-9]{2,4}\\s?){3}(?:[0-9])?)$",
-    "plural_name": false,
-    "Description": null,
-    "Rarity": 0.3,
-    "URL": null,
-    "Tags": ["Credit Card", "Finance", "Visa CC", "Bug Bounty"],
-    "Examples": {
-      "Valid": ["4111111111111111", "4607 0000 0000 0009"],
-      "Invalid": []
-    }
-  },
-  {
-    "Name": "Insta Payment Card Number",
-    "Regex": "^(63[7-9][0-9]{13})$",
-    "plural_name": false,
-    "Description": null,
-    "Rarity": 0.3,
-    "URL": null,
-    "Tags": ["Credit Card", "Finance"],
-    "Examples": {
-      "Valid": ["6387849878080951"],
-      "Invalid": []
-    }
-  },
-  {
-    "Name": "JCB Card Number",
-    "Regex": "^((?:2131|1800|35\\d{3})\\d{11,14})$",
-    "plural_name": false,
-    "Description": null,
-    "Rarity": 0.3,
-    "URL": null,
-    "Tags": ["Credit Card", "Finance"],
-    "Examples": {
-      "Valid": ["3537124887293334", "3543824683332150682"],
-      "Invalid": []
-    }
-  },
-  {
-    "Name": "Korean Local Card Number",
-    "Regex": "^(9[0-9]{15})$",
-    "plural_name": false,
-    "Description": null,
-    "Rarity": 0.3,
-    "URL": null,
-    "Tags": ["Credit Card", "Finance"],
-    "Examples": {
-      "Valid": ["9837282929900015"],
-      "Invalid": []
-    }
-  },
-  {
-    "Name": "Laser Card Number",
-    "Regex": "^((?:6304|6706|6709|6771)[0-9]{12,15})$",
-    "plural_name": false,
-    "Description": null,
-    "Rarity": 0.3,
-    "URL": null,
-    "Tags": ["Credit Card", "Finance"],
-    "Examples": {
-      "Valid": ["630495060000000000"],
-      "Invalid": []
-    }
-  },
-  {
-    "Name": "Solo Card Number",
-    "Regex": "^((?:6334|6767)[0-9]{12}|(?:6334|6767)[0-9]{14}|(?:6334|6767)[0-9]{15})$",
-    "plural_name": false,
-    "Description": null,
-    "Rarity": 0.3,
-    "URL": null,
-    "Tags": ["Credit Card", "Finance"],
-    "Examples": {
-      "Valid": ["6334498823141663"],
-      "Invalid": []
-    }
-  },
-  {
-    "Name": "Switch Card Number",
-    "Regex": "^((?:4903|4905|4911|4936|6333|6759)[0-9]{12}|(?:4903|4905|4911|4936|6333|6759)[0-9]{14}|(?:4903|4905|4911|4936|6333|6759)[0-9]{15}|564182[0-9]{10}|564182[0-9]{12}|564182[0-9]{13}|633110[0-9]{10}|633110[0-9]{12}|633110[0-9]{13})$",
-    "plural_name": false,
-    "Description": null,
-    "Rarity": 0.3,
-    "URL": null,
-    "Tags": ["Credit Card", "Finance"],
-    "Examples": {
-      "Valid": ["633341812811453789"],
-      "Invalid": []
-    }
-  },
-  {
-    "Name": "Ethereum (ETH) Wallet Address",
-    "Regex": "(?i)^(0x[a-f0-9]{40})$",
-    "plural_name": false,
-    "Description": null,
-    "Rarity": 0.3,
-    "URL": "https://etherscan.io/address/",
-    "Tags": ["Finance", "Cryptocurrency Wallet", "Ethereum Wallet", "Ethereum"],
-    "Examples": {
-      "Valid": ["0x52908400098527886E0F7030069857D2E4169EE7"],
-      "Invalid": []
-    }
-  },
-  {
-    "Name": "Slack Token",
-    "Regex": "^(xox[a-zA-Z]-[a-zA-Z0-9-]+)$",
-    "plural_name": false,
-    "Description": null,
-    "Exploit": "Use the command below to verify that private key is valid:\n  $ curl -sX POST \"https://slack.com/api/auth.test?token=TOKEN_HERE&pretty=1\"\n",
-    "Rarity": 0.3,
-    "URL": null,
-    "Tags": ["API Keys", "Credentials", "Bug Bounty", "Slack"],
-    "Examples": {
-      "Valid": ["xoxb-51465443183-hgvhXVd2ISC2x7gaoRWBOUdQ"],
-      "Invalid": []
-    }
-  },
-  {
-    "Name": "Amazon Web Services Organization identifier",
-    "Regex": "^(o-[a-z0-9]{10,32})$",
-    "plural_name": false,
-    "Description": null,
-    "Rarity": 0.3,
-    "URL": null,
-    "Tags": ["Identifiers", "AWS", "Amazon"],
-    "Examples": {
-      "Valid": ["o-aa111bb222"],
-      "Invalid": []
-    }
-  },
-  {
-    "Name": "Google API Key",
-    "Regex": "^(AIza[0-9A-Za-z-_]{35})$",
-    "plural_name": false,
-    "Description": null,
-    "Exploit": "There is a change this could be a Google Maps API key, so could try using 'gmapapiscanner'[1] or 'gap'[2]\nto check which Google Maps service it is valid for and generate a PoC that you can show in your report. To\nget a better understanding on the severity of having the Google Maps API key exposed, make sure to to to\nread \"Unauthorized Google Maps API Key Usage Cases, and Why You Need to Care\"[3] written by Ozgur Alp (@ozguralp)\n\nReferences:\n [1] https://github.com/ozguralp/gmapsapiscanner\n [2] https://github.com/joanbono/gap\n [3] https://ozguralp.medium.com/unauthorized-google-maps-api-key-usage-cases-and-why-you-need-to-care-1ccb28bf21e\n\nAPI Documentation: https://developers.google.com/maps/documentation/javascript/get-api-key",
-    "Rarity": 0.3,
-    "URL": null,
-    "Tags": ["API Keys", "Credentials", "Google", "Bug Bounty"],
-    "Examples": {
-      "Valid": ["AIzaSyD7CQl6fRhagGok6CzFGOOPne2X1u1spoA"],
-      "Invalid": []
-    }
-  },
-  {
-    "Name": "Google OAuth Token",
-    "Regex": "^(ya29.[0-9A-Za-z-_]+)$",
-    "plural_name": false,
-    "Description": null,
-    "Rarity": 0.3,
-    "URL": null,
-    "Tags": ["API Keys", "Credentials", "Google", "Bug Bounty"],
-    "Examples": {
-      "Valid": ["ya29.AHES6ZRnn6CfjjaK6GCQ84vikePv_hk4NUAJwzaAXamCL0s"],
-      "Invalid": []
-    }
-  },
-  {
-    "Name": "Mailgun API Key",
-    "Regex": "^(key-[0-9a-zA-Z]{32})$",
-    "plural_name": false,
-    "Description": null,
-    "Exploit": "Use the command below to verify that private key is valid:\n  $ curl --user 'api:key-PRIVATE_KEY_HERE' \"https://api.mailgun.net/v3/domains\"\n",
-    "Rarity": 0.3,
-    "URL": null,
-    "Tags": ["API Keys", "Credentials", "Bug Bounty", "Mailgun"],
-    "Examples": {
-      "Valid": ["key-1e1631a9414aff7c262721e7b6ff6e43"],
-      "Invalid": []
-    }
-  },
-  {
-    "Name": "Twilio API Key",
-    "Regex": "^(SK[0-9a-fA-F]{32})$",
-    "plural_name": false,
-    "Description": null,
-    "Exploit": "Use the command below to verify that API key is valid:\n  $ curl -X GET 'https://api.twilio.com/2010-04-01/Accounts.json' -u [ACCOUNT_SID]:AUTH_TOKEN_HERE\n",
-    "Rarity": 0.3,
-    "URL": null,
-    "Tags": ["API Keys", "Credentials", "Bug Bounty", "Twilio"],
-    "Examples": {
-      "Valid": ["SK012dab2d3f4dab1c2f33dffafdf23142"],
-      "Invalid": []
-    }
-  },
-  {
-    "Name": "Twilio Account SID",
-    "Regex": "^(AC[a-zA-Z0-9_-]{32})$",
-    "plural_name": false,
-    "Description": null,
-    "Exploit": "Use the command below to verify that the SID is valid:\n  $ curl -X GET 'https://api.twilio.com/2010-04-01/Accounts.json' -u ACCOUNT_SID_HERE:[AUTH_TOKEN]\n",
-    "Rarity": 0.3,
-    "URL": null,
-    "Tags": ["API Keys", "Credentials", "Twilio"],
-    "Examples": {
-      "Valid": ["AC10a133ffdfb112abb2d3f42d1d2d3b14"],
-      "Invalid": []
-    }
-  },
-  {
-    "Name": "Twilio Application SID",
-    "Regex": "^(AP[a-zA-Z0-9_-]{32})$",
-    "plural_name": false,
-    "Description": null,
-    "Rarity": 0.3,
-    "URL": null,
-    "Tags": ["API Keys", "Credentials", "Twilio"],
-    "Examples": {
-      "Valid": ["APfff01abd2b134a2aff3adc243ab211ab"],
-      "Invalid": []
-    }
-  },
-  {
-    "Name": "Google ReCaptcha API Key",
-    "Regex": "^(6L[0-9A-Za-z-_]{38}|6[0-9a-zA-Z_-]{39})$",
-    "plural_name": false,
-    "Description": null,
-    "Exploit": "Use the command below to verify that API key is valid:\n  $ curl -X POST -d \"secret=API_KEY_HERE&response=RESPONSE_TO_VERIFY\" https://www.google.com/recaptcha/api/siteverify\n",
-    "Rarity": 0.3,
-    "URL": null,
-    "Tags": ["API Keys", "Credentials", "Google", "Bug Bounty"],
-    "Examples": {
-      "Valid": ["6Le3W6QUAAAANNT8X_9JwlNnK4kZGLaYTB3KqFLM"],
-      "Invalid": []
-    }
-  },
-  {
-    "Name": "Amazon Standard Identification Number (ASIN)",
-    "Regex": "^(B[A-Z0-9]{9})$",
-    "plural_name": false,
-    "Description": null,
-    "Rarity": 0.3,
-    "URL": "https://amzn.com/",
-    "Tags": ["Identifiers", "Amazon"],
-    "Examples": {
-      "Valid": ["B07ND5BB8V"],
-      "Invalid": []
-    }
-  },
-  {
-    "Name": "JSON Web Token (JWT)",
-    "Regex": "(?i)^((?=.*[a-z])(?=.*[0-9])(?:[a-z0-9_=]+\\.){2}(?:[a-z0-9_\\-\\+\\/=]*))$",
-    "plural_name": false,
-    "Description": null,
-    "Rarity": 0.2,
-    "URL": null,
-    "Tags": ["Token", "Website", "JWT Token", "JWT"],
-    "Examples": {
-      "Valid": [
-        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c"
+      "Examples": {
+         "Valid": [
+            "s3://bucket/path/key",
+            "s3://bucket/path/directory/"
+         ],
+         "Invalid": []
+      }
+   },
+   {
+      "Name": "Square Application Secret",
+      "Regex": "^(sandbox-?sq0csp-[0-9A-Za-z-_]{43}|sq0[a-z]{3}-[0-9A-Za-z-_]{22,43})$",
+      "plural_name": false,
+      "Description": null,
+      "Exploit": "Use the command below to verify that the secret is valid:\n  $ curl \"https://squareup.com/oauth2/revoke\" -d '{\"access_token\":\"[RANDOM_STRING]\",\"client_id\":\"[APP_ID]\"}'  -H \"Content-Type: application/json\" -H \"Authorization: Client SECRET_HERE\"\n",
+      "Rarity": 1,
+      "URL": null,
+      "Tags": [
+         "API Keys",
+         "Credentials",
+         "Square",
+         "Bug Bounty"
       ],
-      "Invalid": []
-    }
-  },
-  {
-    "Name": "Amazon Web Services Access Key",
-    "Regex": "^((?<![A-Z0-9])[A-Z0-9]{20}(?![A-Z0-9]))$",
-    "plural_name": false,
-    "Description": null,
-    "Exploit": "Install awscli (https://aws.amazon.com/cli/), set the access key and secret to environment variables, and execute the following command: $ AWS_ACCESS_KEY_ID=ACCESS_KEY_HERE AWS_SECRET_ACCESS_KEY=[SECRET_KEY] aws sts get-caller-identity\n AWS credentials' permissions can be determined using enumerate-IAM (https://github.com/andresriancho/enumerate-iam).\n This gives broader view of the discovered AWS credentials privileges instead of just checking S3 buckets.\n $ git clone https://github.com/andresriancho/enumerate-iam\n  cd  enumerate-iam\n  ./enumerate-iam.py --access-key ACCESS_KEY_HERE --secret-key [SECRET_KEY]\n",
-    "Rarity": 0.2,
-    "URL": null,
-    "Tags": ["Credentials", "API Keys", "AWS", "Amazon"],
-    "Examples": {
-      "Valid": ["AKIA31OMZKYAARWZ3ERH", "AKIAIOSFODNN7EXAMPLE"],
-      "Invalid": []
-    }
-  },
-  {
-    "Name": "Amazon Web Services Secret Access Key",
-    "Regex": "^((?<![A-Za-z0-9\\/+=])[A-Za-z0-9\\/+=]{40}(?![A-Za-z0-9\\/+=]))$",
-    "plural_name": false,
-    "Description": null,
-    "Exploit": "Install awscli (https://aws.amazon.com/cli/), set the access key and secret to environment variables, and execute the following command: $ AWS_ACCESS_KEY_ID=[ACCESS_KEY] AWS_SECRET_ACCESS_KEY=SECRET_KEY_HERE aws sts get-caller-identity\n AWS credentials' permissions can be determined using enumerate-IAM (https://github.com/andresriancho/enumerate-iam).\n This gives broader view of the discovered AWS credentials privileges instead of just checking S3 buckets.\n $ git clone https://github.com/andresriancho/enumerate-iam\n  cd  enumerate-iam\n  ./enumerate-iam.py --access-key [ACCESS_KEY] --secret-key SECRET_KEY_HERE\n",
-    "Rarity": 0.2,
-    "URL": null,
-    "Tags": ["Credentials", "API Keys", "AWS", "Bug Bounty", "Amazon"],
-    "Examples": {
-      "Valid": ["Nw0XP0t2OdyUkaIk3B8TaAa2gEXAMPLEMvD2tW+g"],
-      "Invalid": []
-    }
-  },
-  {
-    "Name": "Amazon Web Services EC2 Instance identifier",
-    "Regex": "(?i)^(\\b[a-z]+-[a-z0-9]+)$",
-    "plural_name": false,
-    "Description": null,
-    "Rarity": 0.2,
-    "URL": null,
-    "Tags": ["Identifiers", "AWS", "Amazon"],
-    "Examples": {
-      "Valid": ["i-1234567890abcdef0"],
-      "Invalid": []
-    }
-  },
-  {
-    "Name": "Turkish Identification Number",
-    "Regex": "^([1-9]{1}[0-9]{9}[02468]{1})$",
-    "plural_name": false,
-    "Description": null,
-    "Rarity": 0.2,
-    "URL": null,
-    "Tags": ["Credentials", "Identifiers", "Turkish"],
-    "Examples": {
-      "Valid": ["12345678902", "12345678900"],
-      "Invalid": []
-    }
-  },
-  {
-    "Name": "ObjectID",
-    "Regex": "^([0-9a-fA-F]{24})$",
-    "plural_name": false,
-    "Description": null,
-    "Rarity": 0,
-    "URL": null,
-    "Tags": ["Identifiers", "ObjectID"],
-    "Examples": {
-      "Valid": ["5fc7c33a7ef88b139122a38a"],
-      "Invalid": []
-    }
-  },
-  {
-    "Name": "Recent Unix Timestamp",
-    "Regex": "^([0-9]{10})$",
-    "plural_name": false,
-    "Description": "Seconds elapsed since unix epoch: 1970, between year 2001 and 2286",
-    "Rarity": 0,
-    "URL": null,
-    "Tags": ["UNIX Timestamp", "Timestamp", "UNIX"],
-    "Examples": {
-      "Valid": ["1577836800"],
-      "Invalid": ["94694400", "1234567"]
-    }
-  },
-  {
-    "Name": "Recent Unix Millisecond Timestamp",
-    "Regex": "^([0-9]{13})$",
-    "plural_name": false,
-    "Description": "Milliseconds elapsed since unix epoch: 1970, between year 2001 and 2286",
-    "Rarity": 0,
-    "URL": null,
-    "Tags": ["UNIX Timestamp", "Timestamp", "UNIX"],
-    "Examples": { "Valid": ["1577836800000"], "Invalid": ["94694400000"] }
-  },
-  {
-    "Name": "Unix Timestamp",
-    "Regex": "^([0-9]{8,10})$",
-    "plural_name": false,
-    "Description": "Seconds elapsed since unix epoch: 1970",
-    "Rarity": 0,
-    "URL": null,
-    "Tags": ["UNIX Timestamp", "Timestamp", "UNIX"],
-    "Examples": { "Valid": ["1577836800", "94694400"], "Invalid": ["1234567"] }
-  },
-  {
-    "Name": "Unix Millisecond Timestamp",
-    "Regex": "^([0-9]{11,13})$",
-    "plural_name": false,
-    "Description": "Milliseconds elapsed since unix epoch: 1970",
-    "Rarity": 0,
-    "URL": null,
-    "Tags": ["UNIX Timestamp", "Timestamp", "UNIX"],
-    "Examples": { "Valid": ["1577836800000", "94694400000"], "Invalid": [] }
-  },
-  {
-    "Name": "ULID",
-    "Regex": "^([0-9A-HJKMNP-TV-Z]{26})$",
-    "plural_name": false,
-    "Description": null,
-    "Rarity": 0,
-    "URL": null,
-    "Tags": ["Identifiers", "ULID"],
-    "Examples": {
-      "Valid": ["01ERJ58HMWDN3VTRRHZQV2T5R5"],
-      "Invalid": []
-    }
-  },
-  {
-    "Name": "YouTube Video ID",
-    "Regex": "^((?=.*[A-Z])(?=.*[a-z])[0-9A-Za-z_-]{10}[048AEIMQUYcgkosw]{1})$",
-    "plural_name": false,
-    "Description": null,
-    "Rarity": 0,
-    "URL": "https://www.youtube.com/watch?v=",
-    "Tags": ["Media", "YouTube Video", "YouTube"],
-    "Examples": {
-      "Valid": ["dQw4w9WgXcQ"],
-      "Invalid": []
-    }
-  },
-  {
-    "Name": "Turkish Tax Number",
-    "Regex": "^([0-9]{10})$",
-    "plural_name": false,
-    "Description": null,
-    "Rarity": 0,
-    "URL": null,
-    "Tags": ["Credentials", "Identifiers", "Turkish"],
-    "Examples": {
-      "Valid": ["1234567890"],
-      "Invalid": []
-    }
-  },
-  {
-    "Name": "Key:Value Pair",
-    "Regex": "^([^:\\s]+[ ]?:[ ]?[^:\\s]+)$",
-    "plural_name": false,
-    "Description": null,
-    "Rarity": 0,
-    "URL": null,
-    "Tags": ["Credentials"]
-  }
+      "Examples": {
+         "Valid": [
+            "sq0csp-LBptIQ85io8CvbjVDvmzD1drQbOERgjlhnNrMgscFGk"
+         ],
+         "Invalid": []
+      }
+   },
+   {
+      "Name": "Square Access Token",
+      "Regex": "^(sqOatp-[0-9A-Za-z-_]{22}|EAAA[a-zA-Z0-9-_]{60})$",
+      "plural_name": false,
+      "Description": null,
+      "Exploit": "Use the command below to verify that the access token is valid:\n  $ curl https://connect.squareup.com/v2/locations -H \"Authorization: Bearer TOKEN_HERE\"\n",
+      "Rarity": 1,
+      "URL": null,
+      "Tags": [
+         "API Keys",
+         "Credentials",
+         "Square",
+         "Bug Bounty"
+      ],
+      "Examples": {
+         "Valid": [
+            "EAAAEBQZoq15Ub0PBBr_kw0zK-uIHcBPBZcfjPFT05ODfjng9GqFK9Dbgtj1ILcU"
+         ],
+         "Invalid": []
+      }
+   },
+   {
+      "Name": "Stripe API Key",
+      "Regex": "^([srp]k_live_[0-9a-zA-Z]{24})$",
+      "plural_name": false,
+      "Description": null,
+      "Exploit": "Use the command below to verify that the API key is valid:\n  $ curl https://api.stripe.com/v1/charges -u \"API_KEY_HERE:\"\n",
+      "Rarity": 1,
+      "URL": null,
+      "Tags": [
+         "API Keys",
+         "Credentials",
+         "Bug Bounty",
+         "Stripe"
+      ],
+      "Examples": {
+         "Valid": [
+            "sk_live_vHDDrL02ioRF5vYtyqiYBKma"
+         ],
+         "Invalid": []
+      }
+   },
+   {
+      "Name": "GitHub Access Token",
+      "Regex": "^([a-zA-Z0-9_-]*:[a-zA-Z0-9_-]+@github.com*)$",
+      "plural_name": false,
+      "Description": null,
+      "Exploit": "Use the command below to verify that the access token is valid:\n  $ curl -s -u \"user:TOKEN_HERE\" https://api.github.com/user\n  curl -s -H \"Authorization: token TOKEN_HERE\" \"https://api.github.com/users/[USERNAME]/orgs\"\n . # Check scope of your api token\n $  curl \"https://api.github.com/rate_limit\" -i -u \"user:TOKEN_HERE\" | grep \"X-OAuth-Scopes:\"\n",
+      "Rarity": 1,
+      "URL": null,
+      "Tags": [
+         "API Keys",
+         "Credentials",
+         "Bug Bounty",
+         "GitHub"
+      ],
+      "Examples": {
+         "Valid": [
+            "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:test@github.com"
+         ],
+         "Invalid": []
+      }
+   },
+   {
+      "Name": "Amazon Resource Name (ARN)",
+      "Regex": "(?i)^(arn:(?P<Partition>[^:\\n]*):(?P<Service>[^:\\n]*):(?P<Region>[^:\\n]*):(?P<AccountID>[^:\\n]*):(?P<Ignore>(?P<ResourceType>[^:\\/\\n]*)[:\\/])?(?P<Resource>.*))$",
+      "plural_name": false,
+      "Description": null,
+      "Rarity": 1,
+      "URL": null,
+      "Tags": [
+         "Identifiers",
+         "Networking",
+         "AWS",
+         "Bug Bounty"
+      ],
+      "Examples": {
+         "Valid": [
+            "arn:partition:service:region:account-id:resource",
+            "arn:partition:service:region:account-id:resourcetype/resource",
+            "arn:partition:service:region:account-id:resourcetype:resource",
+            "arn:aws:s3:::my_corporate_bucket/Development/*"
+         ],
+         "Invalid": []
+      }
+   },
+   {
+      "Name": "Facebook Access Token",
+      "Regex": "^(EAACEdEose0cBA[0-9A-Za-z]{512})$",
+      "plural_name": false,
+      "Description": null,
+      "Exploit": null,
+      "Rarity": 1,
+      "URL": "https://developers.facebook.com/tools/debug/accesstoken/?access_token=",
+      "Tags": [
+         "API Keys",
+         "Bug Bounty",
+         "Credentials",
+         "Facebook"
+      ]
+   },
+   {
+      "Name": "Facebook Secret Key",
+      "Regex": "(?i)^((facebook|fb)(.{0,20})?['\\\"][0-9a-f]{32}['\\\"])$",
+      "plural_name": false,
+      "Description": null,
+      "Exploit": "Use the command below to verify that the secret key is valid:\n  $ curl \"https://graph.facebook.com/oauth/access_token?client_id=[ID]&client_secret=SECRET_KEY_HERE&redirect_uri=&grant_type=client_credentials\"\n",
+      "Rarity": 1,
+      "URL": null,
+      "Tags": [
+         "API Keys",
+         "Bug Bounty",
+         "Credentials",
+         "Facebook"
+      ]
+   },
+   {
+      "Name": "Facebook Client ID",
+      "Regex": "(?i)^((facebook|fb)(.{0,20})?['\\\"][0-9]{13,17}['\\\"])$",
+      "plural_name": false,
+      "Description": null,
+      "Exploit": "Use the command below to verify that the secret key is valid:\n  $ curl \"https://graph.facebook.com/oauth/access_token?client_id=ID_HERE&client_secret=[SECRET_KEY]&redirect_uri=&grant_type=client_credentials\"\n",
+      "Rarity": 1,
+      "URL": null,
+      "Tags": [
+         "Bug Bounty",
+         "Facebook"
+      ]
+   },
+   {
+      "Name": "Twitter Secret API Key",
+      "Regex": "(?i)^(twitter(.{0,20})?['\\\"][0-9a-z]{35,44}['\\\"])$",
+      "plural_name": false,
+      "Description": null,
+      "Exploit": "Use the command below to verify that the API key is valid:\n  $ curl -u 'API key:API_KEY_HERE' --data 'grant_type=client_credentials' 'https://api.twitter.com/oauth2/token'\n",
+      "Rarity": 1,
+      "URL": null,
+      "Tags": [
+         "API Keys",
+         "Bug Bounty",
+         "Credentials",
+         "Twitter"
+      ]
+   },
+   {
+      "Name": "Twitter Client ID",
+      "Regex": "(?i)^(twitter(.{0,20})?['\\\"][0-9a-z]{18,25}['\\\"])$",
+      "plural_name": false,
+      "Description": null,
+      "Exploit": null,
+      "Rarity": 1,
+      "URL": null,
+      "Tags": [
+         "Bug Bounty",
+         "Twitter"
+      ]
+   },
+   {
+      "Name": "Node Package Manager (NPM) Token",
+      "Regex": "^(npm_[0-9a-zA-Z]{36})$",
+      "plural_name": false,
+      "Description": null,
+      "Exploit": null,
+      "Rarity": 1,
+      "URL": null,
+      "Tags": [
+         "Token",
+         "Bug Bounty",
+         "NPM"
+      ],
+      "Examples": {
+         "Valid": [
+            "npm_ir3kktsOr4JeXqeD72C3cWo2mbs5sQ2pfnt9"
+         ],
+         "Invalid": []
+      }
+   },
+   {
+      "Name": "GitHub Personal Access Token",
+      "Regex": "^(ghp_[0-9a-zA-Z]{36})$",
+      "plural_name": false,
+      "Description": null,
+      "Exploit": "Use the command below to verify that the access token is valid:\n  $ curl -s -u \"user:TOKEN_HERE\" https://api.github.com/user\n  curl -s -H \"Authorization: token TOKEN_HERE\" \"https://api.github.com/users/[USERNAME]/orgs\"\n . # Check scope of your api token\n $  curl \"https://api.github.com/rate_limit\" -i -u \"user:TOKEN_HERE\" | grep \"X-OAuth-Scopes:\"\n",
+      "Rarity": 1,
+      "URL": null,
+      "Tags": [
+         "API Keys",
+         "Bug Bounty",
+         "Credentials",
+         "GitHub"
+      ],
+      "Examples": {
+         "Valid": [
+            "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"
+         ],
+         "Invalid": []
+      }
+   },
+   {
+      "Name": "GitHub OAuth Access Token",
+      "Regex": "^(gho_[0-9a-zA-Z]{36})$",
+      "plural_name": false,
+      "Description": null,
+      "Exploit": "Use the command below to verify that the access token is valid:\n  $ curl -s -u \"user:TOKEN_HERE\" https://api.github.com/user\n  curl -s -H \"Authorization: token TOKEN_HERE\" \"https://api.github.com/users/[USERNAME]/orgs\"\n . # Check scope of your api token\n $  curl \"https://api.github.com/rate_limit\" -i -u \"user:TOKEN_HERE\" | grep \"X-OAuth-Scopes:\"\n",
+      "Rarity": 1,
+      "URL": null,
+      "Tags": [
+         "API Keys",
+         "Bug Bounty",
+         "Credentials",
+         "GitHub"
+      ],
+      "Examples": {
+         "Valid": [
+            "gho_16C7e42F292c6912E7710c838347Ae178B4a"
+         ],
+         "Invalid": []
+      }
+   },
+   {
+      "Name": "GitHub App Token",
+      "Regex": "^((ghu|ghs)_[0-9a-zA-Z]{36})$",
+      "plural_name": false,
+      "Description": null,
+      "Exploit": "Use the command below to verify that the app token is valid:\n  $ curl -s -u \"user:TOKEN_HERE\" https://api.github.com/user\n  curl -s -H \"Authorization: token TOKEN_HERE\" \"https://api.github.com/users/[USERNAME]/orgs\"\n . # Check scope of your api token\n $  curl \"https://api.github.com/rate_limit\" -i -u \"user:TOKEN_HERE\" | grep \"X-OAuth-Scopes:\"\n",
+      "Rarity": 1,
+      "URL": null,
+      "Tags": [
+         "API Keys",
+         "Bug Bounty",
+         "Credentials",
+         "GitHub"
+      ],
+      "Examples": {
+         "Valid": [
+            "ghu_16C7e42F292c6912E7710c838347Ae178B4a"
+         ],
+         "Invalid": []
+      }
+   },
+   {
+      "Name": "GitHub Refresh Token",
+      "Regex": "^(ghr_[0-9a-zA-Z]+)$",
+      "plural_name": false,
+      "Description": null,
+      "Exploit": null,
+      "Rarity": 1,
+      "URL": null,
+      "Tags": [
+         "API Keys",
+         "Bug Bounty",
+         "Credentials",
+         "GitHub"
+      ],
+      "Examples": {
+         "Valid": [
+            "ghr_1B4a2e77838347a7E420ce178F2E7c6912E169246c34E1ccbF66C46812d16D5B1A9Dc86A1498"
+         ],
+         "Invalid": []
+      }
+   },
+   {
+      "Name": "LinkedIn Client ID",
+      "Regex": "(?i)^((linkedin(.{0,20})?[0-9a-z]{12}))$",
+      "plural_name": false,
+      "Description": null,
+      "Exploit": null,
+      "Rarity": 1,
+      "URL": null,
+      "Tags": [
+         "Bug Bounty",
+         "LinkedIn"
+      ]
+   },
+   {
+      "Name": "LinkedIn Secret Key",
+      "Regex": "(?i)^(linkedin(.{0,20})?[0-9a-z]{16})$",
+      "plural_name": false,
+      "Description": null,
+      "Exploit": null,
+      "Rarity": 1,
+      "URL": null,
+      "Tags": [
+         "API Keys",
+         "Bug Bounty",
+         "Credentials",
+         "LinkedIn"
+      ]
+   },
+   {
+      "Name": "GitHub Access Token",
+      "Regex": "(?i)^([a-zA-Z0-9_-]*:[a-zA-Z0-9_-]+@github\\.com)$",
+      "plural_name": false,
+      "Description": null,
+      "Exploit": null,
+      "Rarity": 1,
+      "URL": null,
+      "Tags": [
+         "API Keys",
+         "Bug Bounty",
+         "Credentials",
+         "GitHub"
+      ]
+   },
+   {
+      "Name": "Stripe Restricted API Token",
+      "Regex": "(?i)^(rk_live_[0-9a-zA-Z]{24})$",
+      "plural_name": false,
+      "Description": null,
+      "Exploit": null,
+      "Rarity": 1,
+      "URL": null,
+      "Tags": [
+         "API Keys",
+         "Bug Bounty",
+         "Credentials",
+         "Stripe"
+      ]
+   },
+   {
+      "Name": "Stripe Standard API Token",
+      "Regex": "(?i)^(sk_live_[0-9a-zA-Z]{24})$",
+      "plural_name": false,
+      "Description": null,
+      "Exploit": "Use the command below to verify that the Stripe Standard Live API Token is valid.\n  $ curl https://api.stripe.com/v1/charges -u TOKEN_HERE:\n\nKeep the colon at the end of the token to prevent cURL from requesting a password.\n\nThe live key can be used to extract/retrieve a lot of info ranging from the charges\nto the complete product list.\n\nKeep in mind that you will never be able to get the full credit card information since\nStripe only gives you the last 4 digits.\n",
+      "Rarity": 1,
+      "URL": null,
+      "Tags": [
+         "API Keys",
+         "Bug Bounty",
+         "Credentials",
+         "Stripe"
+      ]
+   },
+   {
+      "Name": "Square Access Token",
+      "Regex": "(?i)^(sqOatp-[0-9A-Za-z\\-_]{22})$",
+      "plural_name": false,
+      "Description": null,
+      "Exploit": "Use the command below to verify that the access token is valid:\n  $ curl \"https://squareup.com/oauth2/revoke\" -d '{\"access_token\":\"[RANDOM_STRING]\",\"client_id\":\"[APP_ID]\"}'  -H \"Content-Type: application/json\" -H \"Authorization: Client TOKEN_HERE\"\n",
+      "Rarity": 1,
+      "URL": null,
+      "Tags": [
+         "API Keys",
+         "Bug Bounty",
+         "Credentials",
+         "Square"
+      ]
+   },
+   {
+      "Name": "Square OAuth Token",
+      "Regex": "(?i)^(sq0csp-[ 0-9A-Za-z\\-_]{43})$",
+      "plural_name": false,
+      "Description": null,
+      "Exploit": "Use the command below to verify that the token is valid:\n  $ curl \"https://squareup.com/oauth2/revoke\" -d '{\"access_token\":\"[RANDOM_STRING]\",\"client_id\":\"[APP_ID]\"}'  -H \"Content-Type: application/json\" -H \"Authorization: Client TOKEN_HERE\"\n",
+      "Rarity": 1,
+      "URL": null,
+      "Tags": [
+         "API Keys",
+         "Bug Bounty",
+         "Credentials",
+         "Square"
+      ]
+   },
+   {
+      "Name": "PayPal/Braintree Access Token",
+      "Regex": "(?i)^(access_token\\$production\\$[0-9a-z]{16}\\$[0-9a-f]{32})$",
+      "plural_name": false,
+      "Description": null,
+      "Exploit": null,
+      "Rarity": 1,
+      "URL": null,
+      "Tags": [
+         "API Keys",
+         "Bug Bounty",
+         "Credentials",
+         "PayPal",
+         "Braintree"
+      ]
+   },
+   {
+      "Name": "MWS Auth Token",
+      "Regex": "(?i)^(amzn\\.mws\\.[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})$",
+      "plural_name": false,
+      "Description": null,
+      "Exploit": null,
+      "Rarity": 1,
+      "URL": null,
+      "Tags": [
+         "API Keys",
+         "Bug Bounty",
+         "Credentials",
+         "Amazon",
+         "MWS"
+      ]
+   },
+   {
+      "Name": "Picatic API Key",
+      "Regex": "(?i)^(sk_[live|test]_[0-9a-z]{32})$",
+      "plural_name": false,
+      "Description": null,
+      "Exploit": null,
+      "Rarity": 1,
+      "URL": null,
+      "Tags": [
+         "API Keys",
+         "Bug Bounty",
+         "Credentials",
+         "Picatic"
+      ]
+   },
+   {
+      "Name": "Google OAuth Access Key",
+      "Regex": "(?i)^(ya29\\.[0-9A-Za-z\\-_]{64})$",
+      "plural_name": false,
+      "Description": null,
+      "Exploit": null,
+      "Rarity": 1,
+      "URL": null,
+      "Tags": [
+         "API Keys",
+         "Bug Bounty",
+         "Credentials",
+         "Google"
+      ]
+   },
+   {
+      "Name": "Google OAuth ID",
+      "Regex": "(?i)^([0-9(+-[0-9A-Za-z_]{32}.apps.googleusercontent.com)$",
+      "plural_name": false,
+      "Description": null,
+      "Exploit": null,
+      "Rarity": 1,
+      "URL": null,
+      "Tags": [
+         "API Keys",
+         "Bug Bounty",
+         "Credentials",
+         "Google"
+      ]
+   },
+   {
+      "Name": "StackHawk API Key",
+      "Regex": "(?i)^(hawk\\.[0-9A-Za-z\\-_]{20}\\.[0-9A-Za-z\\-_]{20})$",
+      "plural_name": false,
+      "Description": null,
+      "Exploit": null,
+      "Rarity": 1,
+      "URL": null,
+      "Tags": [
+         "API Keys",
+         "Bug Bounty",
+         "Credentials",
+         "StackHawk"
+      ],
+      "Examples": {
+         "Valid": [
+            "hawk.wz6bAoFDwcVQFCD9dofE.w2R1PWI8UTvEM4jd56XQ"
+         ],
+         "Invalid": []
+      }
+   },
+   {
+      "Name": "NuGet API Key",
+      "Regex": "(?i)^(oy2[a-z0-9]{43})$",
+      "plural_name": false,
+      "Description": null,
+      "Exploit": null,
+      "Rarity": 1,
+      "URL": null,
+      "Tags": [
+         "API Keys",
+         "Bug Bounty",
+         "Credentials",
+         "NuGet"
+      ]
+   },
+   {
+      "Name": "SendGrid Token",
+      "Regex": "(?i)^(SG\\.[0-9A-Za-z\\-_]{22}\\.[0-9A-Za-z-_]{43})$",
+      "plural_name": false,
+      "Description": null,
+      "Exploit": "Use the command below to verify that the SendGrid Token is valid.\n  $ curl -X \"GET\" \"https://api.sendgrid.com/v3/scopes\" -H \"Authorization: Bearer SENDGRID_TOKEN_HERE\" -H \"Content-Type: application/json\"\n",
+      "Rarity": 1,
+      "URL": null,
+      "Tags": [
+         "API Keys",
+         "Bug Bounty",
+         "Credentials",
+         "SendGrid"
+      ]
+   },
+   {
+      "Name": "Zoho Webhook Token",
+      "Regex": "(?i)^(https://creator\\.zoho\\.com/api/[A-Za-z0-9/\\-_\\.]+\\?authtoken=[A-Za-z0-9]+)$",
+      "plural_name": false,
+      "Description": null,
+      "Exploit": null,
+      "Rarity": 1,
+      "URL": null,
+      "Tags": [
+         "Bug Bounty",
+         "Zoho"
+      ]
+   },
+   {
+      "Name": "Zapier Webhook Token",
+      "Regex": "(?i)^(https://(?:www.)?hooks\\.zapier\\.com/hooks/catch/[A-Za-z0-9]+/[A-Za-z0-9]+/)$",
+      "plural_name": false,
+      "Description": null,
+      "Exploit": "Verify that the Zapier Webook url is valid:\n  curl -H \"Accept: application/json\" -H \"Content-Type: application/json\" -X POST -d '{\"name\":\"PyWhat\"}' \"WEBHOOK_URL_HERE\"\n",
+      "Rarity": 1,
+      "URL": null,
+      "Tags": [
+         "API Keys",
+         "Bug Bounty",
+         "Credentials",
+         "Zapier"
+      ],
+      "Examples": {
+         "Valid": [
+            "https://hooks.zapier.com/hooks/catch/1234567/f8f22dgg/"
+         ],
+         "Invalid": []
+      }
+   },
+   {
+      "Name": "Datadog API Key",
+      "Regex": "^([a-f0-9]{32})$",
+      "plural_name": false,
+      "Description": null,
+      "Exploit": "Use the command below to verify that the API key is valid:\n  $ curl -X GET https://api.datadoghq.com/api/v1/validate -H \"Content-Type: application/json\" -H \"DD-API-KEY: API_KEY_HERE\"\n",
+      "Rarity": 1,
+      "URL": null,
+      "Tags": [
+         "API Keys",
+         "Bug Bounty",
+         "Credentials",
+         "Datadog"
+      ]
+   },
+   {
+      "Name": "Datadog Client Token",
+      "Regex": "^(pub[a-f0-9]{32})$",
+      "plural_name": false,
+      "Description": null,
+      "Exploit": null,
+      "Rarity": 1,
+      "URL": null,
+      "Tags": [
+         "API Keys",
+         "Bug Bounty",
+         "Datadog"
+      ]
+   },
+   {
+      "Name": "New Relic Admin API Key",
+      "Regex": "(?i)^(NRAA-[a-f0-9]{27})$",
+      "plural_name": false,
+      "Description": null,
+      "Exploit": "Use the command below to verify that API key is valid:\n  $ curl -X POST https://api.newrelic.com/graphql -H 'Content-Type: application/json' -H 'API-Key: API_KEY_HERE' -d '{ \"query\": \"{ requestContext { userId apiKey } }\" } '\n",
+      "Rarity": 1,
+      "URL": null,
+      "Tags": [
+         "API Keys",
+         "Bug Bounty",
+         "Credentials",
+         "New Relic"
+      ]
+   },
+   {
+      "Name": "New Relic Insights API Key",
+      "Regex": "(?i)^(NRI(?:I|Q)-[A-Za-z0-9\\-_]{32})$",
+      "plural_name": false,
+      "Description": null,
+      "Exploit": null,
+      "Rarity": 1,
+      "URL": null,
+      "Tags": [
+         "API Keys",
+         "Bug Bounty",
+         "Credentials",
+         "New Relic"
+      ]
+   },
+   {
+      "Name": "New Relic REST API Key",
+      "Regex": "(?i)^(NRRA-[a-f0-9]{42})$",
+      "plural_name": false,
+      "Description": null,
+      "Exploit": "Use the command below to verify that the New Relic REST API Key is valid.\n  $ curl -X GET 'https://api.newrelic.com/v2/applications.json' -H \"X-Api-Key:${API_KEY_HERE}\" -i\n\nIf valid, test furher to see if its an admin key (https://docs.newrelic.com/docs/apis/intro-apis/new-relic-api-keys/)\n",
+      "Rarity": 1,
+      "URL": null,
+      "Tags": [
+         "API Keys",
+         "Bug Bounty",
+         "Credentials",
+         "New Relic"
+      ],
+      "Examples": {
+         "Valid": [
+            "NRRA-2a2d50d7d9449f3bb7ef65ac1184c488bd4fe7a8bd"
+         ],
+         "Invalid": []
+      }
+   },
+   {
+      "Name": "New Relic Synthetics Location Key",
+      "Regex": "(?i)^(NRSP-[a-z]{2}[0-9]{2}[a-f0-9]{31})$",
+      "plural_name": false,
+      "Description": null,
+      "Exploit": null,
+      "Rarity": 1,
+      "URL": null,
+      "Tags": [
+         "Bug Bounty",
+         "New Relic"
+      ],
+      "Examples": {
+         "Valid": [
+            "NRSP-us010E1E3D1716F721FF39F726B3E4CBCB7"
+         ],
+         "Invalid": []
+      }
+   },
+   {
+      "Name": "New Relic User API Key",
+      "Regex": "(?i)^(NRAK-[a-z0-9]{27})$",
+      "plural_name": false,
+      "Description": null,
+      "Exploit": "Use the command below to verify that API key is valid:\n  $ curl -X POST https://api.newrelic.com/graphql -H 'Content-Type: application/json' -H 'API-Key: API_KEY_HERE' -d '{ \"query\": \"{ requestContext { userId apiKey } }\" } '\n",
+      "Rarity": 1,
+      "URL": null,
+      "Tags": [
+         "API Keys",
+         "Bug Bounty",
+         "Credentials",
+         "New Relic"
+      ],
+      "Examples": {
+         "Valid": [
+            "NRAK-WI4JTVS049IF5A3FGS5N51XS3Y5"
+         ],
+         "Invalid": []
+      }
+   },
+   {
+      "Name": "Microsoft Teams Webhook",
+      "Regex": "(?i)^(https://outlook\\.office\\.com/webhook/[A-Za-z0-9\\-@]{64}/IncomingWebhook/[A-Za-z0-9\\-]{64}/[A-Za-z0-9\\-]{64})$",
+      "plural_name": false,
+      "Description": null,
+      "Exploit": null,
+      "Rarity": 1,
+      "URL": null,
+      "Tags": [
+         "Bug Bounty",
+         "URL",
+         "Microsoft Teams",
+         "Microsoft"
+      ]
+   },
+   {
+      "Name": "Google FCM Server Key",
+      "Regex": "(?i)^(AAAA[a-zA-Z0-9_-]{7}:[a-zA-Z0-9_-]{140})$",
+      "plural_name": false,
+      "Description": null,
+      "Exploit": null,
+      "Rarity": 1,
+      "URL": null,
+      "Tags": [
+         "Bug Bounty",
+         "Google"
+      ]
+   },
+   {
+      "Name": "Google Calendar URI",
+      "Regex": "(?i)^(https://calendar.google.com/calendar/embed\\?src=[A-Za-z0-9%@&;=\\-_\\./]+)$",
+      "plural_name": false,
+      "Description": null,
+      "Exploit": null,
+      "Rarity": 1,
+      "URL": null,
+      "Tags": [
+         "Bug Bounty",
+         "URL",
+         "Google Calendar",
+         "Google"
+      ],
+      "Examples": {
+         "Valid": [
+            "https://calendar.google.com/calendar/embed?src=ht3jlfaac5lfd6263ulfh4tql8%40group.calendar.google.com&ctz=Europe%2FLondon"
+         ],
+         "Invalid": []
+      }
+   },
+   {
+      "Name": "Discord Webhook",
+      "Regex": "(?i)^(https://discord\\.com/api/webhooks/[0-9]+/[A-Za-z0-9-_]+)$",
+      "plural_name": false,
+      "Description": null,
+      "Exploit": null,
+      "Rarity": 1,
+      "URL": null,
+      "Tags": [
+         "Bug Bounty",
+         "URL",
+         "Discord"
+      ],
+      "Examples": {
+         "Valid": [
+            "https://discord.com/api/webhooks/894893734582452235/KhNc2-_zwY9FfCAK0iGUa_KfYyW8m5Ja_5i-V24fEY6ETwvLLn-GmdT_vq0Do9-YRsij"
+         ],
+         "Invalid": []
+      }
+   },
+   {
+      "Name": "Cloudinary Credentials",
+      "Regex": "(?i)^(cloudinary://[0-9]+:[A-Za-z0-9-_.]+@[A-Za-z0-9-_.]+)$",
+      "plural_name": false,
+      "Description": null,
+      "Exploit": null,
+      "Rarity": 1,
+      "URL": null,
+      "Tags": [
+         "Bug Bounty",
+         "Credentials",
+         "Cloudinary"
+      ]
+   },
+   {
+      "Name": "PyPI Upload Token",
+      "Regex": "(?i)^(pypi-AgEIcHlwaS5vcmc[A-Za-z0-9-_]+)$",
+      "plural_name": false,
+      "Description": null,
+      "Exploit": "Anyone with this token is able to upload to the PyPI for the package that belongs to this token.\n",
+      "Rarity": 1,
+      "URL": null,
+      "Tags": [
+         "Bug Bounty",
+         "Credentials",
+         "API Keys",
+         "PyPI"
+      ],
+      "Examples": {
+         "Valid": [
+            "pypi-AgEIcHlwaS5vcmcCJDZlNzEyNGJmLWQ4N2UtNGZhYS1iNWEzLWQzYzg2YjU3NzAxYgACJXsicGVybWlzc2lvbnMiOiAidXNlciIsICJ2ZXJzaW9uIjogMX0AAAYgeYcgrZO31PTS_3ipsd0fTSMy1kVkxCzhQvHN6m97yIE"
+         ],
+         "Invalid": []
+      }
+   },
+   {
+      "Name": "Shopify Private App Access Token",
+      "Regex": "(?i)^(shppa_[a-fA-F0-9]{32})$",
+      "plural_name": false,
+      "Description": null,
+      "Exploit": null,
+      "Rarity": 1,
+      "URL": null,
+      "Tags": [
+         "Bug Bounty",
+         "Credentials",
+         "API Keys",
+         "Shopify"
+      ]
+   },
+   {
+      "Name": "Shopify Custom App Access Token",
+      "Regex": "(?i)^(shpca_[a-fA-F0-9]{32})$",
+      "plural_name": false,
+      "Description": null,
+      "Exploit": null,
+      "Rarity": 1,
+      "URL": null,
+      "Tags": [
+         "Bug Bounty",
+         "Credentials",
+         "API Keys",
+         "Shopify"
+      ]
+   },
+   {
+      "Name": "Shopify Access Token",
+      "Regex": "(?i)^(shpat_[a-fA-F0-9]{32})$",
+      "plural_name": false,
+      "Description": null,
+      "Exploit": null,
+      "Rarity": 1,
+      "URL": null,
+      "Tags": [
+         "Bug Bounty",
+         "Credentials",
+         "API Keys",
+         "Shopify"
+      ]
+   },
+   {
+      "Name": "Shopify Shared Secret",
+      "Regex": "(?i)^(shpss_[a-fA-F0-9]{32})$",
+      "plural_name": false,
+      "Description": null,
+      "Exploit": null,
+      "Rarity": 1,
+      "URL": null,
+      "Tags": [
+         "Bug Bounty",
+         "Credentials",
+         "API Keys",
+         "Shopify"
+      ]
+   },
+   {
+      "Name": "Dynatrace Token",
+      "Regex": "(?i)^(dt0[a-zA-Z]{1}[0-9]{2}\\.[A-Z0-9]{24}\\.[A-Z0-9]{64})$",
+      "plural_name": false,
+      "Description": null,
+      "Exploit": null,
+      "Rarity": 1,
+      "URL": null,
+      "Tags": [
+         "Bug Bounty",
+         "Credentials",
+         "API Keys",
+         "Dynatrace"
+      ]
+   },
+   {
+      "Name": "Amazon SNS Topic",
+      "Regex": "(?i)^((arn:aws:sns:)[a-z0-9-]+:[0-9]+:[A-Za-z0-9-_]{1,128})$",
+      "plural_name": false,
+      "Description": null,
+      "Exploit": null,
+      "Rarity": 1,
+      "URL": null,
+      "Tags": [
+         "Bug Bounty",
+         "AWS",
+         "Amazon"
+      ],
+      "Examples": {
+         "Valid": [
+            "arn:aws:sns:us-east-2:123456789012:MyTopic"
+         ],
+         "Invalid": []
+      }
+   },
+   {
+      "Name": "Notion Note URI",
+      "Regex": "(?i)^(https://www\\.notion\\.so/[A-Za-z0-9-_]+/.*-[0-9a-f]{32})$",
+      "plural_name": false,
+      "Description": null,
+      "Rarity": 1,
+      "URL": null,
+      "Tags": [
+         "Bug Bounty",
+         "URL"
+      ],
+      "Examples": {
+         "Valid": [
+            "https://www.notion.so/test-user/My-Note-fa45346d9dd4421abc6857ce2e7fb0db"
+         ],
+         "Invalid": []
+      }
+   },
+   {
+      "Name": "Notion Team Note URI",
+      "Regex": "(?i)^(https://[A-Za-z0-9-_]+\\.notion\\.site/.*-[0-9a-f]{32})$",
+      "plural_name": false,
+      "Description": null,
+      "Rarity": 1,
+      "URL": null,
+      "Tags": [
+         "Bug Bounty",
+         "URL"
+      ],
+      "Examples": {
+         "Valid": [
+            "https://testorg.notion.site/My-Note-9f8863871e024ea6acc64d6564004a22"
+         ],
+         "Invalid": []
+      }
+   },
+   {
+      "Name": "Nano (NANO) Wallet Address",
+      "Regex": "^((nano|xrb)_[13]{1}[1a-km-z3-9]{59})$",
+      "plural_name": false,
+      "Description": null,
+      "Rarity": 1,
+      "URL": "https://nanocrawler.cc/explorer/account/",
+      "Tags": [
+         "Finance",
+         "Cryptocurrency Wallet",
+         "Nano Wallet",
+         "Nano"
+      ],
+      "Examples": {
+         "Valid": [
+            "nano_1c46rz7xnk98ozhzdjq7thwty844sgnqxk9496yysit1bnio1rcdzshc5ymn"
+         ],
+         "Invalid": []
+      }
+   },
+   {
+      "Name": "Time-Based One-Time Password (TOTP) URI",
+      "Regex": "^([^?\\n]+://totp/[^\\n]+secret=[A-Z2-7=]+[^\\n]+)$",
+      "plural_name": false,
+      "Description": null,
+      "Rarity": 1,
+      "URL": null,
+      "Tags": [
+         "Credentials",
+         "TOTP",
+         "Bug Bounty"
+      ],
+      "Examples": {
+         "Valid": [
+            "otpauth://totp/Example:alice@google.com?secret=JBSWY3DPEHPK3PXP&issuer=Example",
+            "otpauth://totp/My_Ex0T1c-L00king.name?issuer=ArgsShouldBeCommutable&secret=JBSWY3DPEHPK3PXP&digits=6&period=30"
+         ],
+         "Invalid": []
+      }
+   },
+   {
+      "Name": "Google Cloud Platform API Key",
+      "Regex": "(?i)^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12})$",
+      "plural_name": false,
+      "Description": null,
+      "Exploit": null,
+      "Rarity": 0.8,
+      "URL": null,
+      "Tags": [
+         "API Keys",
+         "Bug Bounty",
+         "Credentials",
+         "Google Cloud",
+         "Google"
+      ]
+   },
+   {
+      "Name": "Mailchimp API Key",
+      "Regex": "(?i)^([0-9a-f]{32}-us[0-9]{1,2})$",
+      "plural_name": false,
+      "Description": null,
+      "Exploit": "Use the command below to verify that the API key is valid:\n  $ curl --request GET --url 'https://<dc>.api.mailchimp.com/3.0/' --user 'anystring:API_KEY_HERE' --include\n",
+      "Rarity": 0.8,
+      "URL": null,
+      "Tags": [
+         "Bug Bounty",
+         "API Keys",
+         "Credentials",
+         "Mailchimp"
+      ]
+   },
+   {
+      "Name": "Notion Integration Token",
+      "Regex": "(?i)^((secret_)([a-zA-Z0-9]{43}))$",
+      "plural_name": false,
+      "Description": "A Notion API integration's internal integration token.",
+      "Rarity": 0.8,
+      "URL": null,
+      "Tags": [
+         "Credentials",
+         "API Keys",
+         "Bug Bounty"
+      ],
+      "Examples": {
+         "Valid": [
+            "secret_n2ZeRrMx743JQ5wiucZ0DBEe47opfKubUp22N0wIrOy"
+         ],
+         "Invalid": []
+      }
+   },
+   {
+      "Name": "Internet Protocol (IP) Address Version 6",
+      "Regex": "^((?=.*[0-9])\\[?(?:(?:[0-9a-f]{1,4}:){7,7}[0-9a-f]{1,4}|([0-9a-f]{4}:){1,7}:|([0-9a-f]{1,4}:){1,6}:[0-9a-f]{1,4}|([0-9a-f]{1,4}:){1,5}(:[0-9a-f]{1,4}){1,2}|([0-9a-f]{1,4}:){1,4}(:[0-9a-f]{1,4}){1,3}|([0-9a-f]{1,4}:){1,3}(:[0-9a-f]{1,4}){1,4}|([0-9a-fA]{1,4}:){1,2}(:[0-9a-f]{1,4}){1,5}|[0-9a-f]{1,4}:((:[0-9a-f]{1,4}){1,6})|:((:[0-9a-f]{1,4}){1,7}|:)|fe80:(:[0-9a-f]{0,4}){0,4}%[0-9a-z]{1,}|::(ffff(:0{1,4}){0,1}:){0,1}((25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])\\.){3,3}(25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])|(?:[0-9a-f]{1,4}:){1,4}:(?:(25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])\\.){3,3}(25[0-5]|(?:2[0-4]|1{0,1}[0-9]){0,1}[0-9]))\\]?(?::[0-9]{1,5})?)$",
+      "plural_name": false,
+      "Description": null,
+      "Rarity": 0.7,
+      "URL": "https://www.shodan.io/host/",
+      "Tags": [
+         "Identifiers",
+         "Networking",
+         "IP",
+         "IPv4",
+         "Bug Bounty"
+      ],
+      "Examples": {
+         "Valid": [
+            "2001:0db8:85a3:0000:0000:8a2e:0370:7334",
+            "[2001:db8::1]:8080"
+         ],
+         "Invalid": []
+      }
+   },
+   {
+      "Name": "Uniform Resource Locator (URL)",
+      "Regex": "(?i)^((?:(?:https?|ftp):\\/\\/(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)(?::[0-9]{1,5})?)([a-z0-9-_\\/]?\\.?)*|(?:(?:https?|ftp):\\/\\/)?(?:\\S+:\\S+@)?(?:[a-z0-9-_]?\\.?)+?(?:[a-z0-9-_][a-z0-9-_]{0,62})\\.(?:XN--VERMGENSBERATUNG-PWB|XN--VERMGENSBERATER-CTB|XN--CLCHC0EA0B2G2A9GCD|XN--W4R85EL8FHU5DNRA|NORTHWESTERNMUTUAL|TRAVELERSINSURANCE|XN--3OQ18VL8PN36A|XN--5SU34J936BGSG|XN--BCK1B9A5DRE4C|XN--MGBAH1A3HJKRD|XN--MGBAI9AZGQP6J|XN--MGBERP4A5D4AR|XN--XKC2DL3A5EE0H|XN--FZYS8D69UVGM|XN--MGBA7C0BBN0A|XN--MGBCPQ6GPA1A|XN--XKC2AL3HYE2A|AMERICANEXPRESS|KERRYPROPERTIES|SANDVIKCOROMANT|XN--I1B6B1A6A2E|XN--KCRX77D1X4A|XN--LGBBAT1AD8J|XN--MGBA3A4F16A|XN--MGBAAKC7DVF|XN--MGBC0A9AZCG|XN--NQV7FS00EMA|AFAMILYCOMPANY|AMERICANFAMILY|BANANAREPUBLIC|CANCERRESEARCH|COOKINGCHANNEL|KERRYLOGISTICS|WEATHERCHANNEL|XN--54B7FTA0CC|XN--6QQ986B3XL|XN--80AQECDR1A|XN--B4W605FERD|XN--FIQ228C5HS|XN--H2BREG3EVE|XN--JLQ480N2RG|XN--JLQ61U9W7B|XN--MGBA3A3EJT|XN--MGBAAM7A8H|XN--MGBAYH7GPA|XN--MGBBH1A71E|XN--MGBCA7DZDO|XN--MGBI4ECEXP|XN--MGBX4CD0AB|XN--RVC1E0AM3E|INTERNATIONAL|LIFEINSURANCE|TRAVELCHANNEL|WOLTERSKLUWER|XN--CCKWCXETD|XN--ECKVDTC9D|XN--FPCRJ9C3D|XN--FZC2C9E2C|XN--H2BRJ9C8C|XN--TIQ49XQYJ|XN--YFRO4I67O|XN--YGBI2AMMX|CONSTRUCTION|LPLFINANCIAL|SCHOLARSHIPS|VERSICHERUNG|XN--3E0B707E|XN--45BR5CYL|XN--4DBRK0CE|XN--80ADXHKS|XN--80ASEHDB|XN--8Y0A063A|XN--GCKR3F0F|XN--MGB9AWBF|XN--MGBAB2BD|XN--MGBGU82A|XN--MGBPL2FH|XN--MGBT3DHD|XN--MK1BU44C|XN--NGBC5AZD|XN--NGBE9E0A|XN--OGBPF8FL|XN--QCKA1PMC|ACCOUNTANTS|BARCLAYCARD|BLACKFRIDAY|BLOCKBUSTER|BRIDGESTONE|CALVINKLEIN|CONTRACTORS|CREDITUNION|ENGINEERING|ENTERPRISES|FOODNETWORK|INVESTMENTS|KERRYHOTELS|LAMBORGHINI|MOTORCYCLES|OLAYANGROUP|PHOTOGRAPHY|PLAYSTATION|PRODUCTIONS|PROGRESSIVE|REDUMBRELLA|WILLIAMHILL|XN--11B4C3D|XN--1CK2E1B|XN--1QQW23A|XN--2SCRJ9C|XN--3BST00M|XN--3DS443G|XN--3HCRJ9C|XN--42C2D9A|XN--45BRJ9C|XN--55QW42G|XN--6FRZ82G|XN--80AO21A|XN--9KRT00A|XN--CCK2B3B|XN--CZR694B|XN--D1ACJ3B|XN--EFVY88H|XN--FCT429K|XN--FJQ720A|XN--FLW351E|XN--G2XX48C|XN--GECRJ9C|XN--GK3AT1E|XN--H2BRJ9C|XN--HXT814E|XN--IMR513N|XN--J6W193G|XN--JVR189M|XN--KPRW13D|XN--KPRY57D|XN--MGBBH1A|XN--MGBTX2B|XN--MIX891F|XN--NYQY26A|XN--OTU796D|XN--PGBS0DH|XN--Q9JYB4C|XN--RHQV96G|XN--ROVU88B|XN--S9BRJ9C|XN--SES554G|XN--T60B56A|XN--VUQ861B|XN--W4RS40L|XN--XHQ521B|XN--ZFR164B|ACCOUNTANT|APARTMENTS|ASSOCIATES|BASKETBALL|BNPPARIBAS|BOEHRINGER|CAPITALONE|CONSULTING|CREDITCARD|CUISINELLA|EUROVISION|EXTRASPACE|FOUNDATION|HEALTHCARE|IMMOBILIEN|INDUSTRIES|MANAGEMENT|MITSUBISHI|NEXTDIRECT|PROPERTIES|PROTECTION|PRUDENTIAL|REALESTATE|REPUBLICAN|RESTAURANT|SCHAEFFLER|SWIFTCOVER|TATAMOTORS|TECHNOLOGY|UNIVERSITY|VLAANDEREN|VOLKSWAGEN|XN--30RR7Y|XN--3PXU8K|XN--45Q11C|XN--4GBRIM|XN--55QX5D|XN--5TZM5G|XN--80ASWG|XN--90A3AC|XN--9DBQ2A|XN--9ET52U|XN--C2BR7G|XN--CG4BKI|XN--CZRS0T|XN--CZRU2D|XN--FIQ64B|XN--FIQS8S|XN--FIQZ9S|XN--IO0A7I|XN--KPUT3I|XN--MXTQ1M|XN--O3CW4H|XN--PSSY2U|XN--Q7CE6A|XN--UNUP4Y|XN--WGBH1C|XN--WGBL6A|XN--Y9A3AQ|ACCENTURE|ALFAROMEO|ALLFINANZ|AMSTERDAM|ANALYTICS|AQUARELLE|BARCELONA|BLOOMBERG|CHRISTMAS|COMMUNITY|DIRECTORY|EDUCATION|EQUIPMENT|FAIRWINDS|FINANCIAL|FIRESTONE|FRESENIUS|FRONTDOOR|FURNITURE|GOLDPOINT|HISAMITSU|HOMEDEPOT|HOMEGOODS|HOMESENSE|INSTITUTE|INSURANCE|KUOKGROUP|LANCASTER|LANDROVER|LIFESTYLE|MARKETING|MARSHALLS|MELBOURNE|MICROSOFT|PANASONIC|PASSAGENS|PRAMERICA|RICHARDLI|SCJOHNSON|SHANGRILA|SOLUTIONS|STATEBANK|STATEFARM|STOCKHOLM|TRAVELERS|VACATIONS|XN--90AIS|XN--C1AVG|XN--D1ALF|XN--E1A4C|XN--FHBEI|XN--J1AEF|XN--J1AMH|XN--L1ACC|XN--NGBRX|XN--NQV7F|XN--P1ACF|XN--QXA6A|XN--TCKWE|XN--VHQUV|YODOBASHI|ABUDHABI|AIRFORCE|ALLSTATE|ATTORNEY|BARCLAYS|BAREFOOT|BARGAINS|BASEBALL|BOUTIQUE|BRADESCO|BROADWAY|BRUSSELS|BUDAPEST|BUILDERS|BUSINESS|CAPETOWN|CATERING|CATHOLIC|CIPRIANI|CITYEATS|CLEANING|CLINIQUE|CLOTHING|COMMBANK|COMPUTER|DELIVERY|DELOITTE|DEMOCRAT|DIAMONDS|DISCOUNT|DISCOVER|DOWNLOAD|ENGINEER|ERICSSON|ETISALAT|EXCHANGE|FEEDBACK|FIDELITY|FIRMDALE|FOOTBALL|FRONTIER|GOODYEAR|GRAINGER|GRAPHICS|GUARDIAN|HDFCBANK|HELSINKI|HOLDINGS|HOSPITAL|INFINITI|IPIRANGA|ISTANBUL|JPMORGAN|LIGHTING|LUNDBECK|MARRIOTT|MASERATI|MCKINSEY|MEMORIAL|MERCKMSD|MORTGAGE|OBSERVER|PARTNERS|PHARMACY|PICTURES|PLUMBING|PROPERTY|REDSTONE|RELIANCE|SAARLAND|SAMSCLUB|SECURITY|SERVICES|SHOPPING|SHOWTIME|SOFTBANK|SOFTWARE|STCGROUP|SUPPLIES|TRAINING|VANGUARD|VENTURES|VERISIGN|WOODSIDE|XN--90AE|XN--NODE|XN--P1AI|XN--QXAM|YOKOHAMA|ABOGADO|ACADEMY|AGAKHAN|ALIBABA|ANDROID|ATHLETA|AUCTION|AUDIBLE|AUSPOST|AVIANCA|BANAMEX|BAUHAUS|BENTLEY|BESTBUY|BOOKING|BROTHER|BUGATTI|CAPITAL|CARAVAN|CAREERS|CHANNEL|CHARITY|CHINTAI|CITADEL|CLUBMED|COLLEGE|COLOGNE|COMCAST|COMPANY|COMPARE|CONTACT|COOKING|CORSICA|COUNTRY|COUPONS|COURSES|CRICKET|CRUISES|DENTIST|DIGITAL|DOMAINS|EXPOSED|EXPRESS|FARMERS|FASHION|FERRARI|FERRERO|FINANCE|FISHING|FITNESS|FLIGHTS|FLORIST|FLOWERS|FORSALE|FROGANS|FUJITSU|GALLERY|GENTING|GODADDY|GROCERY|GUITARS|HAMBURG|HANGOUT|HITACHI|HOLIDAY|HOSTING|HOTELES|HOTMAIL|HYUNDAI|ISMAILI|JEWELRY|JUNIPER|KITCHEN|KOMATSU|LACAIXA|LANXESS|LASALLE|LATROBE|LECLERC|LIMITED|LINCOLN|MARKETS|MONSTER|NETBANK|NETFLIX|NETWORK|NEUSTAR|OKINAWA|OLDNAVY|ORGANIC|ORIGINS|PHILIPS|PIONEER|POLITIE|REALTOR|RECIPES|RENTALS|REVIEWS|REXROTH|SAMSUNG|SANDVIK|SCHMIDT|SCHWARZ|SCIENCE|SHIKSHA|SINGLES|STAPLES|STORAGE|SUPPORT|SURGERY|SYSTEMS|TEMASEK|THEATER|THEATRE|TICKETS|TIFFANY|TOSHIBA|TRADING|WALMART|WANGGOU|WATCHES|WEATHER|WEBSITE|WEDDING|WHOSWHO|WINDOWS|WINNERS|XFINITY|YAMAXUN|YOUTUBE|ZUERICH|ABARTH|ABBOTT|ABBVIE|AFRICA|AGENCY|AIRBUS|AIRTEL|ALIPAY|ALSACE|ALSTOM|AMAZON|ANQUAN|ARAMCO|AUTHOR|BAYERN|BEAUTY|BERLIN|BHARTI|BOSTIK|BOSTON|BROKER|CAMERA|CAREER|CASINO|CENTER|CHANEL|CHROME|CHURCH|CIRCLE|CLAIMS|CLINIC|COFFEE|COMSEC|CONDOS|COUPON|CREDIT|CRUISE|DATING|DATSUN|DEALER|DEGREE|DENTAL|DESIGN|DIRECT|DOCTOR|DUNLOP|DUPONT|DURBAN|EMERCK|ENERGY|ESTATE|EVENTS|EXPERT|FAMILY|FLICKR|FUTBOL|GALLUP|GARDEN|GEORGE|GIVING|GLOBAL|GOOGLE|GRATIS|HEALTH|HERMES|HIPHOP|HOCKEY|HOTELS|HUGHES|IMAMAT|INSURE|INTUIT|JAGUAR|JOBURG|JUEGOS|KAUFEN|KINDER|KINDLE|KOSHER|LANCIA|LATINO|LAWYER|LEFRAK|LIVING|LOCKER|LONDON|LUXURY|MADRID|MAISON|MAKEUP|MARKET|MATTEL|MOBILE|MONASH|MORMON|MOSCOW|MUSEUM|MUTUAL|NAGOYA|NATURA|NISSAN|NISSAY|NORTON|NOWRUZ|OFFICE|OLAYAN|ONLINE|ORACLE|ORANGE|OTSUKA|PFIZER|PHOTOS|PHYSIO|PICTET|QUEBEC|RACING|REALTY|REISEN|REPAIR|REPORT|REVIEW|ROCHER|ROGERS|RYUKYU|SAFETY|SAKURA|SANOFI|SCHOOL|SCHULE|SEARCH|SECURE|SELECT|SHOUJI|SOCCER|SOCIAL|STREAM|STUDIO|SUPPLY|SUZUKI|SWATCH|SYDNEY|TAIPEI|TAOBAO|TARGET|TATTOO|TENNIS|TIENDA|TJMAXX|TKMAXX|TOYOTA|TRAVEL|UNICOM|VIAJES|VIKING|VILLAS|VIRGIN|VISION|VOTING|VOYAGE|VUELOS|WALTER|WEBCAM|XIHUAN|YACHTS|YANDEX|ZAPPOS|ACTOR|ADULT|AETNA|AMFAM|AMICA|APPLE|ARCHI|AUDIO|AUTOS|AZURE|BAIDU|BEATS|BIBLE|BINGO|BLACK|BOATS|BOSCH|BUILD|CANON|CARDS|CHASE|CHEAP|CISCO|CITIC|CLICK|CLOUD|COACH|CODES|CROWN|CYMRU|DABUR|DANCE|DEALS|DELTA|DRIVE|DUBAI|EARTH|EDEKA|EMAIL|EPSON|FAITH|FEDEX|FINAL|FOREX|FORUM|GALLO|GAMES|GIFTS|GIVES|GLADE|GLASS|GLOBO|GMAIL|GREEN|GRIPE|GROUP|GUCCI|GUIDE|HOMES|HONDA|HORSE|HOUSE|HYATT|IKANO|IRISH|JETZT|KOELN|KYOTO|LAMER|LEASE|LEGAL|LEXUS|LILLY|LINDE|LIPSY|LIXIL|LOANS|LOCUS|LOTTE|LOTTO|MACYS|MANGO|MEDIA|MIAMI|MONEY|MOVIE|NEXUS|NIKON|NINJA|NOKIA|NOWTV|OMEGA|OSAKA|PARIS|PARTS|PARTY|PHONE|PHOTO|PIZZA|PLACE|POKER|PRAXI|PRESS|PRIME|PROMO|QUEST|RADIO|REHAB|REISE|RICOH|ROCKS|RODEO|RUGBY|SALON|SENER|SEVEN|SHARP|SHELL|SHOES|SKYPE|SLING|SMART|SMILE|SOLAR|SPACE|SPORT|STADA|STORE|STUDY|STYLE|SUCKS|SWISS|TATAR|TIRES|TIROL|TMALL|TODAY|TOKYO|TOOLS|TORAY|TOTAL|TOURS|TRADE|TRUST|TUNES|TUSHU|UBANK|VEGAS|VIDEO|VODKA|VOLVO|WALES|WATCH|WEBER|WEIBO|WORKS|WORLD|XEROX|YAHOO|AARP|ABLE|ADAC|AERO|AKDN|ALLY|AMEX|ARAB|ARMY|ARPA|ARTE|ASDA|ASIA|AUDI|AUTO|BABY|BAND|BANK|BBVA|BEER|BEST|BIKE|BING|BLOG|BLUE|BOFA|BOND|BOOK|BUZZ|CAFE|CALL|CAMP|CARE|CARS|CASA|CASE|CASH|CBRE|CERN|CHAT|CITI|CITY|CLUB|COOL|COOP|CYOU|DATA|DATE|DCLK|DEAL|DELL|DESI|DIET|DISH|DOCS|DUCK|DVAG|ERNI|FAGE|FAIL|FANS|FARM|FAST|FIAT|FIDO|FILM|FIRE|FISH|FLIR|FOOD|FORD|FREE|FUND|GAME|GBIZ|GENT|GGEE|GIFT|GMBH|GOLD|GOLF|GOOG|GUGE|GURU|HAIR|HAUS|HDFC|HELP|HERE|HGTV|HOST|HSBC|ICBC|IEEE|IMDB|IMMO|INFO|ITAU|JAVA|JEEP|JOBS|JPRS|KDDI|KIWI|KPMG|KRED|LAND|LEGO|LGBT|LIDL|LIFE|LIKE|LIMO|LINK|LIVE|LOAN|LOFT|LOVE|LTDA|LUXE|MAIF|MEET|MEME|MENU|MINI|MINT|MOBI|MODA|MOTO|NAME|NAVY|NEWS|NEXT|NICO|NIKE|OLLO|OPEN|PAGE|PARS|PCCW|PICS|PING|PINK|PLAY|PLUS|POHL|PORN|POST|PROD|PROF|QPON|RAID|READ|REIT|RENT|REST|RICH|RMIT|ROOM|RSVP|RUHR|SAFE|SALE|SARL|SAVE|SAXO|SCOT|SEAT|SEEK|SEXY|SHAW|SHIA|SHOP|SHOW|SILK|SINA|SITE|SKIN|SNCF|SOHU|SONG|SONY|SPOT|STAR|SURF|TALK|TAXI|TEAM|TECH|TEVA|TIAA|TIPS|TOWN|TOYS|TUBE|VANA|VISA|VIVA|VIVO|VOTE|VOTO|WANG|WEIR|WIEN|WIKI|WINE|WORK|XBOX|YOGA|ZARA|ZERO|ZONE|AAA|ABB|ABC|ACO|ADS|AEG|AFL|AIG|ANZ|AOL|APP|ART|AWS|AXA|BAR|BBC|BBT|BCG|BCN|BET|BID|BIO|BIZ|BMS|BMW|BOM|BOO|BOT|BOX|BUY|BZH|CAB|CAL|CAM|CAR|CAT|CBA|CBN|CBS|CEO|CFA|CFD|COM|CPA|CRS|CSC|DAD|DAY|DDS|DEV|DHL|DIY|DNP|DOG|DOT|DTV|DVR|EAT|ECO|EDU|ESQ|EUS|FAN|FIT|FLY|FOO|FOX|FRL|FTR|FUN|FYI|GAL|GAP|GAY|GDN|GEA|GLE|GMO|GMX|GOO|GOP|GOT|GOV|HBO|HIV|HKT|HOT|HOW|IBM|ICE|ICU|IFM|INC|ING|INK|INT|IST|ITV|JCB|JIO|JLL|JMP|JNJ|JOT|JOY|KFH|KIA|KIM|KPN|KRD|LAT|LAW|LDS|LLC|LLP|LOL|LPL|LTD|MAN|MAP|MBA|MED|MEN|MIL|MIT|MLB|MLS|MMA|MOE|MOI|MOM|MOV|MSD|MTN|MTR|NAB|NBA|NEC|NET|NEW|NFL|NGO|NHK|NOW|NRA|NRW|NTT|NYC|OBI|OFF|ONE|ONG|ONL|OOO|ORG|OTT|OVH|PAY|PET|PHD|PID|PIN|PNC|PRO|PRU|PUB|PWC|QVC|RED|REN|RIL|RIO|RIP|RUN|RWE|SAP|SAS|SBI|SBS|SCA|SCB|SES|SEW|SEX|SFR|SKI|SKY|SOY|SPA|SRL|STC|TAB|TAX|TCI|TDK|TEL|THD|TJX|TOP|TRV|TUI|TVS|UBS|UNO|UOL|UPS|VET|VIG|VIN|VIP|WED|WIN|WME|WOW|WTC|WTF|XIN|XXX|XYZ|YOU|YUN|ZIP|AC|AD|AE|AF|AG|AI|AL|AM|AO|AQ|AR|AS|AT|AU|AW|AX|AZ|BA|BB|BD|BE|BF|BG|BH|BI|BJ|BM|BN|BO|BR|BS|BT|BV|BW|BY|BZ|CA|CC|CD|CF|CG|CH|CI|CK|CL|CM|CN|CO|CR|CU|CV|CW|CX|CY|CZ|DE|DJ|DK|DM|DO|DZ|EC|EE|EG|ER|ES|ET|EU|FI|FJ|FK|FM|FO|FR|GA|GB|GD|GE|GF|GG|GH|GI|GL|GM|GN|GP|GQ|GR|GS|GT|GU|GW|GY|HK|HM|HN|HR|HT|HU|ID|IE|IL|IM|IN|IO|IQ|IR|IS|IT|JE|JM|JO|JP|KE|KG|KH|KI|KM|KN|KP|KR|KW|KY|KZ|LA|LB|LC|LI|LK|LR|LS|LT|LU|LV|LY|MA|MC|MD|ME|MG|MH|MK|ML|MM|MN|MO|MP|MQ|MR|MS|MT|MU|MV|MW|MX|MY|MZ|NA|NC|NE|NF|NG|NI|NL|NO|NP|NR|NU|NZ|OM|PA|PE|PF|PG|PH|PK|PL|PM|PN|PR|PS|PT|PW|PY|QA|RE|RO|RS|RU|RW|SA|SB|SC|SD|SE|SG|SH|SI|SJ|SK|SL|SM|SN|SO|SR|SS|ST|SU|SV|SX|SY|SZ|TC|TD|TF|TG|TH|TJ|TK|TL|TM|TN|TO|TR|TT|TV|TW|TZ|UA|UG|UK|US|UY|UZ|VA|VC|VE|VG|VI|VN|VU|WF|WS|YE|YT|ZA|ZM|ZW)(?::\\d{2,5})?(?:[\\/?#]\\S*)?)$",
+      "plural_name": false,
+      "Description": null,
+      "Rarity": 0.7,
+      "URL": null,
+      "Tags": [
+         "Identifiers",
+         "URL"
+      ],
+      "Examples": {
+         "Valid": [
+            "tryhackme.com",
+            "http://username:password@example.com/",
+            "hTTPs://tryhackme.com",
+            "https://xn--80aaxitdbjk.xn--p1ai/",
+            "http://10.1.1.1"
+         ],
+         "Invalid": [
+            "tryhackme.comm"
+         ]
+      }
+   },
+   {
+      "Name": "Internet Protocol (IP) Address Version 4",
+      "Regex": "^((?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)(?::[0-9]{1,5})?)$",
+      "plural_name": false,
+      "Description": null,
+      "Rarity": 0.7,
+      "URL": "https://www.shodan.io/host/",
+      "Tags": [
+         "Identifiers",
+         "Networking",
+         "IP",
+         "IPv6",
+         "Bug Bounty"
+      ],
+      "Examples": {
+         "Valid": [
+            "192.0.2.235:80"
+         ],
+         "Invalid": []
+      }
+   },
+   {
+      "Name": "Bitcoin (\u20bf) Wallet Address",
+      "Regex": "^(([1][a-km-zA-HJ-NP-Z1-9]{25,35})|([3][a-km-zA-HJ-NP-Z1-9]{33})|(bc|tb)1(?!.*[1bio])[a-z0-9]{39,59})$",
+      "plural_name": false,
+      "Description": null,
+      "Rarity": 0.7,
+      "URL": "https://www.blockchain.com/btc/address/",
+      "Tags": [
+         "Finance",
+         "Cryptocurrency Wallet",
+         "Bitcoin Wallet",
+         "Bitcoin"
+      ],
+      "Examples": {
+         "Valid": [
+            "1KFHE7w8BhaENAswwryaoccDb6qcT6DbYY",
+            "3EmUH8Uh9EXE7axgyAeBsCc2vdUdKkDqWK",
+            "bc1qj89046x7zv6pm4n00qgqp505nvljnfp6xfznyw"
+         ],
+         "Invalid": []
+      }
+   },
+   {
+      "Name": "Latitude & Longitude Coordinates",
+      "Regex": "(?i)^((?:(?:N|W|S|E)\\s?\\d+\\s?\\u00B0?\\s?\\d+\\.?\\d*\\s?\\'?\\s?\\d*\\.?\\,?\\d*?\"?\\s?){1,2}|(?:\\d+\\s?\\u00B0\\s?\\d+\\s?\\'\\s?\\d+\\.?\\,?\\d{0,}?\"\\s?(?:N|W|S|E)\\s?){1,2}|(?:[-+]?(?:[0-8]?\\d+\\.\\d{4,}|90(?:\\.0+)?),\\s*[-+]?(?:180(?:\\.0+)?|(?:(?:1[0-7]\\d)|(?:[1-9]?\\d))(?:\\.\\d+)?)))$",
+      "plural_name": true,
+      "Description": null,
+      "Rarity": 0.7,
+      "URL": "https://www.google.com/maps/place/",
+      "Tags": [
+         "Geo-location",
+         "Lat & Long",
+         "Coords"
+      ],
+      "Examples": {
+         "Valid": [
+            "52.6169586, -1.9779857",
+            "53.76297,-1.9388732",
+            "77\u00b0 30' 29.9988\" N",
+            "N 32\u00b0 53.733 W 096\u00b0 48.358",
+            "41\u00b024'12.2\" N 2\u00b010'26.5\" E",
+            "40.741895,-73.989308"
+         ],
+         "Invalid": []
+      }
+   },
+   {
+      "Name": "EUI-48 Identifier (Ethernet, WiFi, Bluetooth, etc)",
+      "Regex": "^(([0-9A-Fa-f]{2}[:]){5}[0-9A-Fa-f]{2}|([0-9A-Fa-f]{2}[-]){5}[0-9A-Fa-f]{2}|([0-9A-Fa-f]{4}[\\.]){2}[0-9A-Fa-f]{4})$",
+      "plural_name": false,
+      "Description": null,
+      "Rarity": 0.5,
+      "URL": "https://maclookup.app/search/macs/",
+      "Tags": [
+         "Identifiers",
+         "Networking",
+         "EUI-48",
+         "Bluetooth Address",
+         "Ethernet Address",
+         "WiFi Address",
+         "Mac Address"
+      ],
+      "Children": {
+         "path": "mac_vendors.json",
+         "entry": "Vendor(s): ",
+         "method": "hashmap",
+         "deletion_pattern": "[:.-]"
+      }
+   },
+   {
+      "Name": "Dogecoin (DOGE) Wallet Address",
+      "Regex": "^(D{1}[5-9A-HJ-NP-U]{1}[1-9A-HJ-NP-Za-km-z]{32})$",
+      "plural_name": false,
+      "Description": null,
+      "Rarity": 0.5,
+      "URL": "https://dogechain.info/address/",
+      "Tags": [
+         "Finance",
+         "Cryptocurrency Wallet",
+         "Dogecoin Wallet",
+         "Dogecoin"
+      ],
+      "Examples": {
+         "Valid": [
+            "DANHz6EQVoWyZ9rER56DwTXHWUxfkv9k2o"
+         ],
+         "Invalid": []
+      }
+   },
+   {
+      "Name": "Email Address",
+      "Regex": "^((?:[a-z0-9!#$%&'\"*+\\/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'\"*+\\/=?^_`{|}~-]+)*)@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\\[(?:(?:(?:2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9]))\\.){3}(?:(?:2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9])|[a-z0-9-]*[a-z0-9]:)\\]))$",
+      "plural_name": false,
+      "Description": null,
+      "Rarity": 0.5,
+      "URL": null,
+      "Tags": [
+         "Identifiers",
+         "Credentials",
+         "Email Address",
+         "Email"
+      ],
+      "Examples": {
+         "Valid": [
+            "github@skerritt.blog",
+            "firstname+lastname@example.com",
+            "john.smith@[123.123.123.123]"
+         ],
+         "Invalid": [
+            "email@example@example.com"
+         ]
+      }
+   },
+   {
+      "Name": "Phone Number",
+      "Regex": "^(\\s*(?:\\+?(\\d{1,3}))?[-. (]*(\\d{3})[-. )]*(\\d{3})[-. ]*(\\d{4})(?: *x(\\d+))?\\s*)$",
+      "plural_name": false,
+      "Description": null,
+      "Rarity": 0.5,
+      "URL": null,
+      "Tags": [
+         "Identifiers",
+         "Credentials",
+         "Phone Number",
+         "Phone"
+      ],
+      "Children": {
+         "path": "phone_codes.json",
+         "entry": "Location(s): ",
+         "method": "hashmap"
+      },
+      "Examples": {
+         "Valid": [
+            "202-555-0178"
+         ],
+         "Invalid": []
+      }
+   },
+   {
+      "Name": "American Social Security Number",
+      "Regex": "^(([0-9][0-9][0-9])(?<!666|000|9[0-9][0-9])(=|\\+|_|\\#|:|;|\\.|-|\\s){0,3}([1-9][1-9]|0[1-9]|[1-9]0)(=|\\+|_|\\#|:|;|\\.|-|\\s){0,3}([0-9][0-9][0-9][0-9])(?<!0000)(=|\\+|_|\\#|:|;|\\.|-|\\s){0,3}?)$",
+      "plural_name": false,
+      "Description": "An [#CAE4F1][link=https://en.wikipedia.org/wiki/Social_Security_number]American Identification Number[/link][/#CAE4F1]",
+      "Rarity": 0.5,
+      "URL": null,
+      "Tags": [
+         "Credentials",
+         "SSN",
+         "Social Security Number",
+         "Bug Bounty"
+      ],
+      "Examples": {
+         "Valid": [
+            "001-01-0001",
+            "001:01:0001",
+            "001.01.0001",
+            "001 01 0001"
+         ],
+         "Invalid": [
+            "900-01-2222",
+            "999-21-2222",
+            "666-21-2222",
+            "000-21-5544",
+            "122-00-5544",
+            "122-32-0000"
+         ]
+      }
+   },
+   {
+      "Name": "Bitly Secret Key",
+      "Regex": "^([0-9a-f]{40})$",
+      "plural_name": false,
+      "Description": null,
+      "Exploit": "Use the command below to verify that the secret key is valid:\n  $ curl \"https://api-ssl.bitly.com/v3/shorten?access_token=SECRET_KEY_HERE&longUrl=https://www.google.com\"\n",
+      "Rarity": 0.5,
+      "URL": null,
+      "Tags": [
+         "Bug Bounty",
+         "Credentials",
+         "API Keys",
+         "Bitly"
+      ],
+      "Examples": {
+         "Valid": [
+            "96f79079f1d658895d188a78f303220c6f161b05"
+         ],
+         "Invalid": []
+      }
+   },
+   {
+      "Name": "Visual Studio App Center API Token",
+      "Regex": "^([0-9a-f]{40})$",
+      "plural_name": false,
+      "Description": null,
+      "Rarity": 0.5,
+      "Exploit": null,
+      "URL": null,
+      "Tags": [
+         "Identifiers",
+         "API Keys",
+         "Bug Bounty",
+         "Visual Studio",
+         "Microsoft"
+      ],
+      "Examples": {
+         "Valid": [
+            "4435bc4358816be97a3f014499116c83ab224fb2"
+         ],
+         "Invalid": []
+      }
+   },
+   {
+      "Name": "YouTube Channel ID",
+      "Regex": "^(UC[0-9A-Za-z_-]{21}[AQgw]{1})$",
+      "plural_name": false,
+      "Description": null,
+      "Rarity": 0.5,
+      "URL": "https://www.youtube.com/channel/",
+      "Tags": [
+         "Media",
+         "YouTube",
+         "YouTube Channel"
+      ],
+      "Examples": {
+         "Valid": [
+            "UCjXfkj5iapKHJrhYfAF9ZGg"
+         ],
+         "Invalid": [
+            "078-05-1120"
+         ]
+      }
+   },
+   {
+      "Name": "Discord Bot Token",
+      "Regex": "^((?:N|M|O)[a-zA-Z0-9]{23}\\.[a-zA-Z0-9-_]{6}\\.[a-zA-Z0-9-_]{27})$",
+      "plural_name": false,
+      "Description": null,
+      "Rarity": 0.5,
+      "URL": null,
+      "Tags": [
+         "Credentials",
+         "Token",
+         "API Keys",
+         "Bug Bounty",
+         "Discord",
+         "Discord Bot"
+      ],
+      "Examples": {
+         "Valid": [
+            "NzQ4MDk3ODM3OTgzODU4NzIz.X0YeZw.UlcjuCywUAWvPH9s-3cXNBaq3M4",
+            "MTE4NDQyNjQ0NTAxMjk5MjAz.DPM2DQ.vLNMR02Qxb9DJFucGZK1UtTs__s",
+            "ODYyOTUyOTE3NTg4NjM5NzY1.YOf1iA.7lARgFXmodxpgmPvOXapaKUga6M"
+         ],
+         "Invalid": []
+      }
+   },
+   {
+      "Name": "UUID",
+      "Regex": "^([0-9A-Fa-f]{8}-[0-9A-Fa-f]{4}-[12345][0-9A-Fa-f]{3}-[89ABab][0-9A-Fa-f]{3}-[0-9A-Fa-f]{12})$",
+      "plural_name": false,
+      "Description": null,
+      "Rarity": 0.5,
+      "URL": "https://www.uuidtools.com/api/decode/",
+      "Tags": [
+         "Identifiers",
+         "UUID"
+      ],
+      "Examples": {
+         "Valid": [
+            "b2ced6f5-2542-4f7d-b131-e3ada95d8b75"
+         ],
+         "Invalid": []
+      }
+   },
+   {
+      "Name": "Turkish License Plate Number",
+      "Regex": "^(0[1-9]|[1-7][0-9]|8[01])(([A-Z])(\\d{4,5})|([A-Z]{2})(\\d{3,4})|([A-Z]{3})(\\d{2,3}))$",
+      "plural_name": false,
+      "Description": "The [#CAE4F1][link=https://en.wikipedia.org/wiki/Vehicle_registration_plates_of_Turkey]vehicle registration plate number of Turkey[/link][/#CAE4F1]",
+      "Rarity": 0.4,
+      "URL": null,
+      "Tags": [
+         "Identifiers",
+         "License Plate",
+         "Turkish"
+      ],
+      "Examples": {
+         "Valid": [
+            "34A2344",
+            "34A23415",
+            "06BK123",
+            "06JK1234",
+            "81ABC75"
+         ],
+         "Invalid": []
+      }
+   },
+   {
+      "Name": "Date of Birth",
+      "Regex": "^([1-9]|[12][0-9]|3[01])(|\\/|\\.|\\-|\\s)?(0[1-9]|1[12])\\2(19[0-9]{2}|200[0-9]|201[0-8])$",
+      "plural_name": false,
+      "Description": null,
+      "Rarity": 0.4,
+      "URL": null,
+      "Tags": [
+         "Identifiers",
+         "Date of Birth",
+         "DOB"
+      ],
+      "Examples": {
+         "Valid": [
+            "13.08.1987",
+            "13081987",
+            "13/08/1987",
+            "13-08-1987",
+            "13 08 1987"
+         ],
+         "Invalid": []
+      }
+   },
+   {
+      "Name": "Monero (XMR) Wallet Address",
+      "Regex": "(?i)^([48][0-9AB][1-9A-HJ-NP-Za-km-z]{93})$",
+      "plural_name": false,
+      "Description": null,
+      "Rarity": 0.3,
+      "URL": null,
+      "Tags": [
+         "Finance",
+         "Cryptocurrency Wallet",
+         "Monero Wallet",
+         "Monero"
+      ],
+      "Examples": {
+         "Valid": [
+            "47DF8D9NwtmefhFUghynYRMqrexiZTsm48T1hhi2jZcbfcwoPbkhMrrED6zqJRfeYpXFfdaqAT3jnBEwoMwCx6BYDJ1W3ub"
+         ],
+         "Invalid": []
+      }
+   },
+   {
+      "Name": "Litecoin (LTC) Wallet Address",
+      "Regex": "(?i)^((?:L|M)[a-z0-9]{33})$",
+      "plural_name": false,
+      "Description": null,
+      "Rarity": 0.3,
+      "URL": "https://live.blockcypher.com/ltc/address/",
+      "Tags": [
+         "Finance",
+         "Cryptocurrency Wallet",
+         "Litecoin Wallet",
+         "Litecoin"
+      ],
+      "Examples": {
+         "Valid": [
+            "LRX8rSPVjifTxoLeoJtLf2JYdJFTQFcE7m"
+         ],
+         "Invalid": []
+      }
+   },
+   {
+      "Name": "Ripple (XRP) Wallet Address",
+      "Regex": "(?i)^(r[a-z0-9]{33})$",
+      "plural_name": false,
+      "Description": null,
+      "Rarity": 0.3,
+      "URL": "https://xrpscan.com/account/",
+      "Tags": [
+         "Finance",
+         "Cryptocurrency Wallet",
+         "Ripple Wallet",
+         "Ripple",
+         "XRP"
+      ],
+      "Examples": {
+         "Valid": [
+            "rBPAQmwMrt7FDDPNyjwFgwSqbWZPf6SLkk"
+         ],
+         "Invalid": []
+      }
+   },
+   {
+      "Name": "American Express Card Number",
+      "Regex": "^(3[47][0-9]{2}\\s?(?:[0-9]{4}\\s?){2}[0-9]{3})$",
+      "plural_name": false,
+      "Description": null,
+      "Rarity": 0.3,
+      "URL": null,
+      "Tags": [
+         "Credit Card",
+         "Finance",
+         "AMEX CC",
+         "Bug Bounty"
+      ]
+   },
+   {
+      "Name": "BCGlobal Card Number",
+      "Regex": "^((?:6541|6556)[0-9]{12})$",
+      "plural_name": false,
+      "Description": null,
+      "Rarity": 0.3,
+      "URL": null,
+      "Tags": [
+         "Credit Card",
+         "Finance"
+      ],
+      "Examples": {
+         "Valid": [
+            "6556123456789012"
+         ],
+         "Invalid": []
+      }
+   },
+   {
+      "Name": "Carte Blanche Card Number",
+      "Regex": "^(30[0-5][0-9]{11})$",
+      "plural_name": false,
+      "Description": null,
+      "Rarity": 0.3,
+      "URL": null,
+      "Tags": [
+         "Credit Card",
+         "Finance"
+      ],
+      "Examples": {
+         "Valid": [
+            "30137891521480"
+         ],
+         "Invalid": []
+      }
+   },
+   {
+      "Name": "Diners Club Card Number",
+      "Regex": "^(3(?:0[0-5]|[68][0-9])[0-9]\\s?(?:[0-9]{4}\\s?){2}[0-9]{2})$",
+      "plural_name": false,
+      "Description": null,
+      "Rarity": 0.3,
+      "URL": null,
+      "Tags": [
+         "Credit Card",
+         "Finance"
+      ],
+      "Examples": {
+         "Valid": [
+            "3056 9309 0259 04",
+            "30000000000004"
+         ],
+         "Invalid": []
+      }
+   },
+   {
+      "Name": "Discover Card Number",
+      "Regex": "^((?:64[4-9][0-9]|65[0-9]{2}|6011)\\s?(?:[0-9]{4}\\s?){3}|622(?:1\\s?2[6-9][0-9]{2}|1\\s?[3-9][0-9]{3}|[2-8]\\s?[0-9]{4}|9\\s?[01][0-9]{3}|9\\s?2[0-5][0-9]{2})\\s?(?:[0-9]{4}\\s?){2})$",
+      "plural_name": false,
+      "Description": null,
+      "Rarity": 0.3,
+      "URL": null,
+      "Tags": [
+         "Credit Card",
+         "Finance",
+         "Discover CC"
+      ],
+      "Examples": {
+         "Valid": [
+            "6011000000000004",
+            "6011 1111 1111 1117"
+         ],
+         "Invalid": []
+      }
+   },
+   {
+      "Name": "MasterCard Number",
+      "Regex": "^((?:5[1-5][0-9]{2}|222[1-9]|22[3-9][0-9]|2[3-6][0-9]{2}|27[01][0-9]|2720)\\s?(?:[0-9]{4}\\s?){3})$",
+      "plural_name": false,
+      "Description": null,
+      "Rarity": 0.3,
+      "URL": null,
+      "Tags": [
+         "Credit Card",
+         "Finance",
+         "MasterCard CC",
+         "Bug Bounty"
+      ],
+      "Children": {
+         "path": "mastercard_companies.json",
+         "entry": "Issuer(s): ",
+         "deletion_pattern": "\\s",
+         "method": "hashmap"
+      }
+   },
+   {
+      "Name": "Maestro Card Number",
+      "Regex": "^((?:5018|5020|5038|5612|5893|6304|6759|676[1-3]|0604|6390)\\s?(?:[0-9]{4}\\s?){3}\\s?(?:[0-9]{3,7})?)$",
+      "plural_name": false,
+      "Description": null,
+      "Rarity": 0.3,
+      "URL": null,
+      "Tags": [
+         "Credit Card",
+         "Finance"
+      ],
+      "Examples": {
+         "Valid": [
+            "5038146401278870",
+            "6759 6498 2643 8453"
+         ],
+         "Invalid": []
+      }
+   },
+   {
+      "Name": "Visa Card Number",
+      "Regex": "^(4[0-9]{12}(?:[0-9]{3})?|4[0-9]{3}\\s(?:[0-9]{2,4}\\s?){3}(?:[0-9])?)$",
+      "plural_name": false,
+      "Description": null,
+      "Rarity": 0.3,
+      "URL": null,
+      "Tags": [
+         "Credit Card",
+         "Finance",
+         "Visa CC",
+         "Bug Bounty"
+      ],
+      "Examples": {
+         "Valid": [
+            "4111111111111111",
+            "4607 0000 0000 0009"
+         ],
+         "Invalid": []
+      }
+   },
+   {
+      "Name": "Insta Payment Card Number",
+      "Regex": "^(63[7-9][0-9]{13})$",
+      "plural_name": false,
+      "Description": null,
+      "Rarity": 0.3,
+      "URL": null,
+      "Tags": [
+         "Credit Card",
+         "Finance"
+      ],
+      "Examples": {
+         "Valid": [
+            "6387849878080951"
+         ],
+         "Invalid": []
+      }
+   },
+   {
+      "Name": "JCB Card Number",
+      "Regex": "^((?:2131|1800|35\\d{3})\\d{11,14})$",
+      "plural_name": false,
+      "Description": null,
+      "Rarity": 0.3,
+      "URL": null,
+      "Tags": [
+         "Credit Card",
+         "Finance"
+      ],
+      "Examples": {
+         "Valid": [
+            "3537124887293334",
+            "3543824683332150682"
+         ],
+         "Invalid": []
+      }
+   },
+   {
+      "Name": "Korean Local Card Number",
+      "Regex": "^(9[0-9]{15})$",
+      "plural_name": false,
+      "Description": null,
+      "Rarity": 0.3,
+      "URL": null,
+      "Tags": [
+         "Credit Card",
+         "Finance"
+      ],
+      "Examples": {
+         "Valid": [
+            "9837282929900015"
+         ],
+         "Invalid": []
+      }
+   },
+   {
+      "Name": "Laser Card Number",
+      "Regex": "^((?:6304|6706|6709|6771)[0-9]{12,15})$",
+      "plural_name": false,
+      "Description": null,
+      "Rarity": 0.3,
+      "URL": null,
+      "Tags": [
+         "Credit Card",
+         "Finance"
+      ],
+      "Examples": {
+         "Valid": [
+            "630495060000000000"
+         ],
+         "Invalid": []
+      }
+   },
+   {
+      "Name": "Solo Card Number",
+      "Regex": "^((?:6334|6767)[0-9]{12}|(?:6334|6767)[0-9]{14}|(?:6334|6767)[0-9]{15})$",
+      "plural_name": false,
+      "Description": null,
+      "Rarity": 0.3,
+      "URL": null,
+      "Tags": [
+         "Credit Card",
+         "Finance"
+      ],
+      "Examples": {
+         "Valid": [
+            "6334498823141663"
+         ],
+         "Invalid": []
+      }
+   },
+   {
+      "Name": "Switch Card Number",
+      "Regex": "^((?:4903|4905|4911|4936|6333|6759)[0-9]{12}|(?:4903|4905|4911|4936|6333|6759)[0-9]{14}|(?:4903|4905|4911|4936|6333|6759)[0-9]{15}|564182[0-9]{10}|564182[0-9]{12}|564182[0-9]{13}|633110[0-9]{10}|633110[0-9]{12}|633110[0-9]{13})$",
+      "plural_name": false,
+      "Description": null,
+      "Rarity": 0.3,
+      "URL": null,
+      "Tags": [
+         "Credit Card",
+         "Finance"
+      ],
+      "Examples": {
+         "Valid": [
+            "633341812811453789"
+         ],
+         "Invalid": []
+      }
+   },
+   {
+      "Name": "Ethereum (ETH) Wallet Address",
+      "Regex": "(?i)^(0x[a-f0-9]{40})$",
+      "plural_name": false,
+      "Description": null,
+      "Rarity": 0.3,
+      "URL": "https://etherscan.io/address/",
+      "Tags": [
+         "Finance",
+         "Cryptocurrency Wallet",
+         "Ethereum Wallet",
+         "Ethereum"
+      ],
+      "Examples": {
+         "Valid": [
+            "0x52908400098527886E0F7030069857D2E4169EE7"
+         ],
+         "Invalid": []
+      }
+   },
+   {
+      "Name": "Slack Token",
+      "Regex": "^(xox[a-zA-Z]-[a-zA-Z0-9-]+)$",
+      "plural_name": false,
+      "Description": null,
+      "Exploit": "Use the command below to verify that private key is valid:\n  $ curl -sX POST \"https://slack.com/api/auth.test?token=TOKEN_HERE&pretty=1\"\n",
+      "Rarity": 0.3,
+      "URL": null,
+      "Tags": [
+         "API Keys",
+         "Credentials",
+         "Bug Bounty",
+         "Slack"
+      ],
+      "Examples": {
+         "Valid": [
+            "xoxb-51465443183-hgvhXVd2ISC2x7gaoRWBOUdQ"
+         ],
+         "Invalid": []
+      }
+   },
+   {
+      "Name": "Amazon Web Services Organization identifier",
+      "Regex": "^(o-[a-z0-9]{10,32})$",
+      "plural_name": false,
+      "Description": null,
+      "Rarity": 0.3,
+      "URL": null,
+      "Tags": [
+         "Identifiers",
+         "AWS",
+         "Amazon"
+      ],
+      "Examples": {
+         "Valid": [
+            "o-aa111bb222"
+         ],
+         "Invalid": []
+      }
+   },
+   {
+      "Name": "Google API Key",
+      "Regex": "^(AIza[0-9A-Za-z-_]{35})$",
+      "plural_name": false,
+      "Description": null,
+      "Exploit": "There is a change this could be a Google Maps API key, so could try using 'gmapapiscanner'[1] or 'gap'[2]\nto check which Google Maps service it is valid for and generate a PoC that you can show in your report. To\nget a better understanding on the severity of having the Google Maps API key exposed, make sure to to to\nread \"Unauthorized Google Maps API Key Usage Cases, and Why You Need to Care\"[3] written by Ozgur Alp (@ozguralp)\n\nReferences:\n [1] https://github.com/ozguralp/gmapsapiscanner\n [2] https://github.com/joanbono/gap\n [3] https://ozguralp.medium.com/unauthorized-google-maps-api-key-usage-cases-and-why-you-need-to-care-1ccb28bf21e\n\nAPI Documentation: https://developers.google.com/maps/documentation/javascript/get-api-key",
+      "Rarity": 0.3,
+      "URL": null,
+      "Tags": [
+         "API Keys",
+         "Credentials",
+         "Google",
+         "Bug Bounty"
+      ],
+      "Examples": {
+         "Valid": [
+            "AIzaSyD7CQl6fRhagGok6CzFGOOPne2X1u1spoA"
+         ],
+         "Invalid": []
+      }
+   },
+   {
+      "Name": "Google OAuth Token",
+      "Regex": "^(ya29.[0-9A-Za-z-_]+)$",
+      "plural_name": false,
+      "Description": null,
+      "Rarity": 0.3,
+      "URL": null,
+      "Tags": [
+         "API Keys",
+         "Credentials",
+         "Google",
+         "Bug Bounty"
+      ],
+      "Examples": {
+         "Valid": [
+            "ya29.AHES6ZRnn6CfjjaK6GCQ84vikePv_hk4NUAJwzaAXamCL0s"
+         ],
+         "Invalid": []
+      }
+   },
+   {
+      "Name": "Mailgun API Key",
+      "Regex": "^(key-[0-9a-zA-Z]{32})$",
+      "plural_name": false,
+      "Description": null,
+      "Exploit": "Use the command below to verify that private key is valid:\n  $ curl --user 'api:key-PRIVATE_KEY_HERE' \"https://api.mailgun.net/v3/domains\"\n",
+      "Rarity": 0.3,
+      "URL": null,
+      "Tags": [
+         "API Keys",
+         "Credentials",
+         "Bug Bounty",
+         "Mailgun"
+      ],
+      "Examples": {
+         "Valid": [
+            "key-1e1631a9414aff7c262721e7b6ff6e43"
+         ],
+         "Invalid": []
+      }
+   },
+   {
+      "Name": "Twilio API Key",
+      "Regex": "^(SK[0-9a-fA-F]{32})$",
+      "plural_name": false,
+      "Description": null,
+      "Exploit": "Use the command below to verify that API key is valid:\n  $ curl -X GET 'https://api.twilio.com/2010-04-01/Accounts.json' -u [ACCOUNT_SID]:AUTH_TOKEN_HERE\n",
+      "Rarity": 0.3,
+      "URL": null,
+      "Tags": [
+         "API Keys",
+         "Credentials",
+         "Bug Bounty",
+         "Twilio"
+      ],
+      "Examples": {
+         "Valid": [
+            "SK012dab2d3f4dab1c2f33dffafdf23142"
+         ],
+         "Invalid": []
+      }
+   },
+   {
+      "Name": "Twilio Account SID",
+      "Regex": "^(AC[a-zA-Z0-9_-]{32})$",
+      "plural_name": false,
+      "Description": null,
+      "Exploit": "Use the command below to verify that the SID is valid:\n  $ curl -X GET 'https://api.twilio.com/2010-04-01/Accounts.json' -u ACCOUNT_SID_HERE:[AUTH_TOKEN]\n",
+      "Rarity": 0.3,
+      "URL": null,
+      "Tags": [
+         "API Keys",
+         "Credentials",
+         "Twilio"
+      ],
+      "Examples": {
+         "Valid": [
+            "AC10a133ffdfb112abb2d3f42d1d2d3b14"
+         ],
+         "Invalid": []
+      }
+   },
+   {
+      "Name": "Twilio Application SID",
+      "Regex": "^(AP[a-zA-Z0-9_-]{32})$",
+      "plural_name": false,
+      "Description": null,
+      "Rarity": 0.3,
+      "URL": null,
+      "Tags": [
+         "API Keys",
+         "Credentials",
+         "Twilio"
+      ],
+      "Examples": {
+         "Valid": [
+            "APfff01abd2b134a2aff3adc243ab211ab"
+         ],
+         "Invalid": []
+      }
+   },
+   {
+      "Name": "Google ReCaptcha API Key",
+      "Regex": "^(6L[0-9A-Za-z-_]{38}|6[0-9a-zA-Z_-]{39})$",
+      "plural_name": false,
+      "Description": null,
+      "Exploit": "Use the command below to verify that API key is valid:\n  $ curl -X POST -d \"secret=API_KEY_HERE&response=RESPONSE_TO_VERIFY\" https://www.google.com/recaptcha/api/siteverify\n",
+      "Rarity": 0.3,
+      "URL": null,
+      "Tags": [
+         "API Keys",
+         "Credentials",
+         "Google",
+         "Bug Bounty"
+      ],
+      "Examples": {
+         "Valid": [
+            "6Le3W6QUAAAANNT8X_9JwlNnK4kZGLaYTB3KqFLM"
+         ],
+         "Invalid": []
+      }
+   },
+   {
+      "Name": "Amazon Standard Identification Number (ASIN)",
+      "Regex": "^(B[A-Z0-9]{9})$",
+      "plural_name": false,
+      "Description": null,
+      "Rarity": 0.3,
+      "URL": "https://amzn.com/",
+      "Tags": [
+         "Identifiers",
+         "Amazon"
+      ],
+      "Examples": {
+         "Valid": [
+            "B07ND5BB8V"
+         ],
+         "Invalid": []
+      }
+   },
+   {
+      "Name": "JSON Web Token (JWT)",
+      "Regex": "(?i)^((?=.*[a-z])(?=.*[0-9])(?:[a-z0-9_=]+\\.){2}(?:[a-z0-9_\\-\\+\\/=]*))$",
+      "plural_name": false,
+      "Description": null,
+      "Rarity": 0.2,
+      "URL": null,
+      "Tags": [
+         "Token",
+         "Website",
+         "JWT Token",
+         "JWT"
+      ],
+      "Examples": {
+         "Valid": [
+            "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c"
+         ],
+         "Invalid": []
+      }
+   },
+   {
+      "Name": "Amazon Web Services Access Key",
+      "Regex": "^((?<![A-Z0-9])[A-Z0-9]{20}(?![A-Z0-9]))$",
+      "plural_name": false,
+      "Description": null,
+      "Exploit": "Install awscli (https://aws.amazon.com/cli/), set the access key and secret to environment variables, and execute the following command: $ AWS_ACCESS_KEY_ID=ACCESS_KEY_HERE AWS_SECRET_ACCESS_KEY=[SECRET_KEY] aws sts get-caller-identity\n AWS credentials' permissions can be determined using enumerate-IAM (https://github.com/andresriancho/enumerate-iam).\n This gives broader view of the discovered AWS credentials privileges instead of just checking S3 buckets.\n $ git clone https://github.com/andresriancho/enumerate-iam\n  cd  enumerate-iam\n  ./enumerate-iam.py --access-key ACCESS_KEY_HERE --secret-key [SECRET_KEY]\n",
+      "Rarity": 0.2,
+      "URL": null,
+      "Tags": [
+         "Credentials",
+         "API Keys",
+         "AWS",
+         "Amazon"
+      ],
+      "Examples": {
+         "Valid": [
+            "AKIA31OMZKYAARWZ3ERH",
+            "AKIAIOSFODNN7EXAMPLE"
+         ],
+         "Invalid": []
+      }
+   },
+   {
+      "Name": "Amazon Web Services Secret Access Key",
+      "Regex": "^((?<![A-Za-z0-9\\/+=])[A-Za-z0-9\\/+=]{40}(?![A-Za-z0-9\\/+=]))$",
+      "plural_name": false,
+      "Description": null,
+      "Exploit": "Install awscli (https://aws.amazon.com/cli/), set the access key and secret to environment variables, and execute the following command: $ AWS_ACCESS_KEY_ID=[ACCESS_KEY] AWS_SECRET_ACCESS_KEY=SECRET_KEY_HERE aws sts get-caller-identity\n AWS credentials' permissions can be determined using enumerate-IAM (https://github.com/andresriancho/enumerate-iam).\n This gives broader view of the discovered AWS credentials privileges instead of just checking S3 buckets.\n $ git clone https://github.com/andresriancho/enumerate-iam\n  cd  enumerate-iam\n  ./enumerate-iam.py --access-key [ACCESS_KEY] --secret-key SECRET_KEY_HERE\n",
+      "Rarity": 0.2,
+      "URL": null,
+      "Tags": [
+         "Credentials",
+         "API Keys",
+         "AWS",
+         "Bug Bounty",
+         "Amazon"
+      ],
+      "Examples": {
+         "Valid": [
+            "Nw0XP0t2OdyUkaIk3B8TaAa2gEXAMPLEMvD2tW+g"
+         ],
+         "Invalid": []
+      }
+   },
+   {
+      "Name": "Amazon Web Services EC2 Instance identifier",
+      "Regex": "(?i)^(\\b[a-z]+-[a-z0-9]+)$",
+      "plural_name": false,
+      "Description": null,
+      "Rarity": 0.2,
+      "URL": null,
+      "Tags": [
+         "Identifiers",
+         "AWS",
+         "Amazon"
+      ],
+      "Examples": {
+         "Valid": [
+            "i-1234567890abcdef0"
+         ],
+         "Invalid": []
+      }
+   },
+   {
+      "Name": "Turkish Identification Number",
+      "Regex": "^([1-9]{1}[0-9]{9}[02468]{1})$",
+      "plural_name": false,
+      "Description": null,
+      "Rarity": 0.2,
+      "URL": null,
+      "Tags": [
+         "Credentials",
+         "Identifiers",
+         "Turkish"
+      ],
+      "Examples": {
+         "Valid": [
+            "12345678902",
+            "12345678900"
+         ],
+         "Invalid": []
+      }
+   },
+   {
+      "Name": "ObjectID",
+      "Regex": "^([0-9a-fA-F]{24})$",
+      "plural_name": false,
+      "Description": null,
+      "Rarity": 0,
+      "URL": null,
+      "Tags": [
+         "Identifiers",
+         "ObjectID"
+      ],
+      "Examples": {
+         "Valid": [
+            "5fc7c33a7ef88b139122a38a"
+         ],
+         "Invalid": []
+      }
+   },
+   {
+      "Name": "Recent Unix Timestamp",
+      "Regex": "^([0-9]{10})$",
+      "plural_name": false,
+      "Description": "Seconds elapsed since unix epoch: 1970, between year 2001 and 2286",
+      "Rarity": 0,
+      "URL": null,
+      "Tags": [
+         "UNIX Timestamp",
+         "Timestamp",
+         "UNIX"
+      ],
+      "Examples": {
+         "Valid": [
+            "1577836800"
+         ],
+         "Invalid": [
+            "94694400",
+            "1234567"
+         ]
+      }
+   },
+   {
+      "Name": "Recent Unix Millisecond Timestamp",
+      "Regex": "^([0-9]{13})$",
+      "plural_name": false,
+      "Description": "Milliseconds elapsed since unix epoch: 1970, between year 2001 and 2286",
+      "Rarity": 0,
+      "URL": null,
+      "Tags": [
+         "UNIX Timestamp",
+         "Timestamp",
+         "UNIX"
+      ],
+      "Examples": {
+         "Valid": [
+            "1577836800000"
+         ],
+         "Invalid": [
+            "94694400000"
+         ]
+      }
+   },
+   {
+      "Name": "Unix Timestamp",
+      "Regex": "^([0-9]{8,10})$",
+      "plural_name": false,
+      "Description": "Seconds elapsed since unix epoch: 1970",
+      "Rarity": 0,
+      "URL": null,
+      "Tags": [
+         "UNIX Timestamp",
+         "Timestamp",
+         "UNIX"
+      ],
+      "Examples": {
+         "Valid": [
+            "1577836800",
+            "94694400"
+         ],
+         "Invalid": [
+            "1234567"
+         ]
+      }
+   },
+   {
+      "Name": "Unix Millisecond Timestamp",
+      "Regex": "^([0-9]{11,13})$",
+      "plural_name": false,
+      "Description": "Milliseconds elapsed since unix epoch: 1970",
+      "Rarity": 0,
+      "URL": null,
+      "Tags": [
+         "UNIX Timestamp",
+         "Timestamp",
+         "UNIX"
+      ],
+      "Examples": {
+         "Valid": [
+            "1577836800000",
+            "94694400000"
+         ],
+         "Invalid": []
+      }
+   },
+   {
+      "Name": "ULID",
+      "Regex": "^([0-9A-HJKMNP-TV-Z]{26})$",
+      "plural_name": false,
+      "Description": null,
+      "Rarity": 0,
+      "URL": null,
+      "Tags": [
+         "Identifiers",
+         "ULID"
+      ],
+      "Examples": {
+         "Valid": [
+            "01ERJ58HMWDN3VTRRHZQV2T5R5"
+         ],
+         "Invalid": []
+      }
+   },
+   {
+      "Name": "YouTube Video ID",
+      "Regex": "^((?=.*[A-Z])(?=.*[a-z])[0-9A-Za-z_-]{10}[048AEIMQUYcgkosw]{1})$",
+      "plural_name": false,
+      "Description": null,
+      "Rarity": 0,
+      "URL": "https://www.youtube.com/watch?v=",
+      "Tags": [
+         "Media",
+         "YouTube Video",
+         "YouTube"
+      ],
+      "Examples": {
+         "Valid": [
+            "dQw4w9WgXcQ"
+         ],
+         "Invalid": []
+      }
+   },
+   {
+      "Name": "Turkish Tax Number",
+      "Regex": "^([0-9]{10})$",
+      "plural_name": false,
+      "Description": null,
+      "Rarity": 0,
+      "URL": null,
+      "Tags": [
+         "Credentials",
+         "Identifiers",
+         "Turkish"
+      ],
+      "Examples": {
+         "Valid": [
+            "1234567890"
+         ],
+         "Invalid": []
+      }
+   },
+   {
+      "Name": "Key:Value Pair",
+      "Regex": "^([^:\\s]+[ ]?:[ ]?[^:\\s]+)$",
+      "plural_name": false,
+      "Description": null,
+      "Rarity": 0,
+      "URL": null,
+      "Tags": [
+         "Credentials"
+      ]
+   }
 ]
