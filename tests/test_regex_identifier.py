@@ -89,41 +89,6 @@ def test_regex_invalid_match(name: str, match: str):
     assert not regex_valid_match(name, match)
 
 
-def test_ip():
-    res = r.check(
-        ["http://10.1.1.1/just/a/test"],
-        boundaryless=Filter({"Tags": ["Identifiers"]}),
-    )
-    _assert_match_first_item("Uniform Resource Locator (URL)", res)
-    assert "Internet Protocol (IP) Address Version 4" in res[1]["Regex Pattern"]["Name"]
-
-
-@pytest.mark.parametrize(
-    "match", ["00:00:00:00:00:00", "00-00-00-00-00-00", "0000.0000.0000"]
-)
-def test_mac(match: str):
-    res = r.check([match])
-    assert (
-        res
-        and match in res[0]["Matched"]
-        and res[0]["Regex Pattern"]["Name"]
-        == "EUI-48 Identifier (Ethernet, WiFi, Bluetooth, etc)"
-        and "Xerox Corp" in res[0]["Regex Pattern"]["Description"]
-    )
-
-
-@pytest.mark.parametrize(
-    "match", ["00-00-00-00.00-00", "00:00-00-00-00-00", "00:00:0G:00:00:00"]
-)
-def test_mac4(match: str):
-    res = r.check([match])
-    assert (
-        not res
-        or res[0]["Regex Pattern"]["Name"]
-        != "EUI-48 Identifier (Ethernet, WiFi, Bluetooth, etc)"
-    )
-
-
 @pytest.mark.skip(
     reason="Fails because not a valid TLD. If presented in punycode, it works."
 )
@@ -132,31 +97,24 @@ def test_international_url():
     _assert_match_first_item("Uniform Resource Locator (URL)", res)
 
 
-@pytest.mark.parametrize("match", ["5409010000000004", "5409 0100 0000 0004"])
-def test_master_card(match: str):
-    res = r.check([match])
-    _assert_match_first_item("MasterCard Number", res)
-    assert "UNION NATIONAL BANK" in res[0]["Regex Pattern"]["Description"]
-
-
-@pytest.mark.skip("Key:Value Pair is not ran by default because of low rarity.")
-def test_username():
-    res = r.check(["james:S3cr37_P@$$W0rd"])
-    _assert_match_first_item("Key:Value Pair", res)
-
-
 @pytest.mark.parametrize(
-    "match,description",
+    "match, description",
     [
+        # EUI-48 Identifier (Ethernet, WiFi, Bluetooth, etc)
+        ("00:00:00:00:00:00", "Xerox Corp"),
+        ("00-00-00-00-00-00", "Xerox Corp"),
+        ("0000.0000.0000", "Xerox Corp"),
+        # MasterCard Number
+        ("5409010000000004", "UNION NATIONAL BANK"),
+        ("5409 0100 0000 0004", "UNION NATIONAL BANK"),
+        # Phone Number
         ("+1-202-555-0156", "United States"),
         ("+662025550156", "Thailand"),
         ("+356 202 555 0156", "Malta"),
     ],
 )
-def test_phone_number2(match: str, description: str):
-    res = r.check([match])
-    _assert_match_first_item("Phone Number", res)
-    assert description in res[0]["Regex Pattern"]["Description"]
+def test_match_description(match: str, description: str):
+    assert description in r.check([match])[0]["Regex Pattern"]["Description"]
 
 
 @pytest.mark.parametrize(
@@ -172,5 +130,5 @@ def test_phone_number2(match: str, description: str):
         ),
     ],
 )
-def test_match_exploit_first_item(match: str, exploit: str):
-    _assert_match_exploit_first_item(exploit, r.check([match]))
+def test_match_exploit(match: str, exploit: str):
+    assert exploit in r.check([match])[0]["Regex Pattern"]["Exploit"]

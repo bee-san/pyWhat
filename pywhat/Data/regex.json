@@ -1398,7 +1398,8 @@
         "http://username:password@example.com/",
         "hTTPs://tryhackme.com",
         "https://xn--80aaxitdbjk.xn--p1ai/",
-        "http://10.1.1.1"
+        "http://10.1.1.1",
+        "http://10.1.1.1/just/a/test"
       ],
       "Invalid": [
         "tryhackme.comm"
@@ -1493,6 +1494,18 @@
       "entry": "Vendor(s): ",
       "method": "hashmap",
       "deletion_pattern": "[:.-]"
+    },
+    "Examples": {
+      "Valid": [
+        "00:00:00:00:00:00",
+        "00-00-00-00-00-00",
+        "0000.0000.0000"
+      ],
+      "Invalid": [
+        "00-00-00-00.00-00",
+        "00:00-00-00-00-00",
+        "00:00:0G:00:00:00"
+      ]
     }
   },
   {
@@ -1559,7 +1572,10 @@
     },
     "Examples": {
       "Valid": [
-        "202-555-0178"
+        "202-555-0178",
+        "+1-202-555-0156",
+        "+662025550156",
+        "+356 202 555 0156"
       ],
       "Invalid": []
     }
@@ -1914,6 +1930,12 @@
       "entry": "Issuer(s): ",
       "deletion_pattern": "\\s",
       "method": "hashmap"
+    },
+    "Examples": {
+      "Valid": [
+        "5409010000000004",
+        "5409 0100 0000 0004"
+      ]
     }
   },
   {
@@ -2557,6 +2579,12 @@
     "URL": null,
     "Tags": [
       "Credentials"
-    ]
+    ],
+    "Examples": {
+      "Valid": [
+        "james:S3cr37_P@$$W0rd"
+      ],
+      "Invalid": []
+    }
   }
 ]
