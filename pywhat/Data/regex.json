@@ -258,7 +258,7 @@
    },
    {
       "Name": "Slack Webhook",
-      "Regex": "(?i)^(https://hooks.slack.com/services/T[a-zA-Z0-9_]{8}/B[a-zA-Z0-9_]{8}/[a-zA-Z0-9_]{24})$",
+      "Regex": "(?i)^(https://hooks.slack.com/services/T[a-zA-Z0-9_]{8,10}/B[a-zA-Z0-9_]{8,10}/[a-zA-Z0-9_]{24})$",
       "plural_name": false,
       "Description": null,
       "Exploit": "If the command below returns 'missing_text_or_fallback_or_attachments', it means\nthat the URL is valid, any other responses would mean that the URL is invalid.\n  $ curl -s -X POST -H \"Content-type: application/json\" -d '{\"text\":\"\"}' \"SLACK_WEBOOK_URL_HERE\"\n",
@@ -269,7 +269,14 @@
          "API Keys",
          "Credentials",
          "Slack"
-      ]
+      ],
+      "Examples": {
+         "Valid": [
+            "https://hooks.slack.com/services/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",
+            "https://hooks.slack.com/services/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"
+         ],
+         "Invalid": []
+      }
    },
    {
       "Name": "Amazon Web Services Simple Storage (AWS S3) URL",
