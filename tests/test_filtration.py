@@ -149,8 +149,3 @@ def test_filter3():
             and "Identifiers" not in regex["Tags"]
         ):
             assert regex in dist.get_regexes()
-
-
-def test_invalid_contains_returns_false():
-    filter = Filter()
-    assert ({} in filter) is False
