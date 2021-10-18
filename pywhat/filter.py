@@ -97,7 +97,7 @@ class Filter(Mapping):
                 and set(item["Tags"]) & self["Tags"]
                 and not set(item["Tags"]) & self["ExcludeTags"]
             )
-        except:
+        except KeyError:
             return False
 
     def setdefault(self, key, default=None):
