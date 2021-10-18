@@ -628,21 +628,6 @@
       ]
    },
    {
-      "Name": "GitHub Access Token",
-      "Regex": "(?i)^([a-zA-Z0-9_-]*:[a-zA-Z0-9_-]+@github\\.com)$",
-      "plural_name": false,
-      "Description": null,
-      "Exploit": null,
-      "Rarity": 1,
-      "URL": null,
-      "Tags": [
-         "API Keys",
-         "Bug Bounty",
-         "Credentials",
-         "GitHub"
-      ]
-   },
-   {
       "Name": "Stripe Restricted API Token",
       "Regex": "(?i)^(rk_live_[0-9a-zA-Z]{24})$",
       "plural_name": false,
@@ -670,21 +655,6 @@
          "Bug Bounty",
          "Credentials",
          "Stripe"
-      ]
-   },
-   {
-      "Name": "Square Access Token",
-      "Regex": "(?i)^(sqOatp-[0-9A-Za-z\\-_]{22})$",
-      "plural_name": false,
-      "Description": null,
-      "Exploit": "Use the command below to verify that the access token is valid:\n  $ curl \"https://squareup.com/oauth2/revoke\" -d '{\"access_token\":\"[RANDOM_STRING]\",\"client_id\":\"[APP_ID]\"}'  -H \"Content-Type: application/json\" -H \"Authorization: Client TOKEN_HERE\"\n",
-      "Rarity": 1,
-      "URL": null,
-      "Tags": [
-         "API Keys",
-         "Bug Bounty",
-         "Credentials",
-         "Square"
       ]
    },
    {

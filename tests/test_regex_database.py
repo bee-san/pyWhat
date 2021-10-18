@@ -70,3 +70,11 @@ def test_sorted_by_rarity():
     assert rarity_num == sorted(
         rarity_num, reverse=True
     ), "Regexes should be sorted by rarity in 'regex.json'. Regexes with rarity '1' are at the top of the file and '0' is at the bottom."
+
+
+def test_no_duplicate_regexes():
+    names = [regex["Name"] for regex in database]
+    duplicate_names = {name for name in names if names.count(name) > 1}
+    assert duplicate_names == set(), (
+        ", ".join(duplicate_names) + " present in 'regex.json' more than once."
+    )
