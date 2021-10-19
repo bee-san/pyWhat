@@ -1,6 +1,3 @@
-import re
-from typing import List, Tuple
-
 import pytest
 
 from pywhat import regex_identifier

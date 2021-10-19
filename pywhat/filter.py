@@ -91,14 +91,11 @@ class Filter(Mapping):
         return len(self._dict)
 
     def __contains__(self, item):
-        try:
-            return (
-                self["MinRarity"] <= item["Rarity"] <= self["MaxRarity"]
-                and set(item["Tags"]) & self["Tags"]
-                and not set(item["Tags"]) & self["ExcludeTags"]
-            )
-        except:
-            return False
+        return (
+            self["MinRarity"] <= item["Rarity"] <= self["MaxRarity"]
+            and set(item["Tags"]) & self["Tags"]
+            and not set(item["Tags"]) & self["ExcludeTags"]
+        )
 
     def setdefault(self, key, default=None):
         return self._dict.setdefault(key, default)

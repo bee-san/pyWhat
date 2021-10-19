@@ -222,7 +222,7 @@ def main(**kwargs):
 
                     %t - tags (in 'tag1, tag2 ...' format)
 
-                If you want to print '%' or '\' character - escape it: '\%', '\\'.
+                If you want to print '%' or '\\' character - escape it: '\\%', '\\\\'.
 
     Examples:
 
