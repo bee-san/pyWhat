@@ -17,9 +17,8 @@ jobs:
         python-version: ${{ matrix.python-version }}
         architecture: x64
     - run: python -m pip install flake8 nox poetry
-    - run: flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
+    - run: flake8 . --count --show-source --statistics
     - run: python -m nox
       env:
         OS: ${{ matrix.os }}
         PYTHON: ${{ matrix.python-version }}
-

@@ -7,13 +7,11 @@ __version__ = "4.3.1"
 tags = AvailableTags().get_tags()
 pywhat_tags = tags  # left for backward compatibility purposes
 
-_contents = ["Identifier", "Distribution", "tags", "pywhat_tags", "Keys", "Filter"]
+__all__ = ["Identifier", "Distribution", "tags", "pywhat_tags", "Keys", "Filter"]
 
-
-__all__ = _contents
 
 del AvailableTags, filter
 
 
 def __dir__():
-    return _contents + ["__version__"]
+    return __all__ + ["__version__"]
