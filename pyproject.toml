@@ -14,13 +14,14 @@ rich = ">=9.9,<11.0"
 orjson = {version = "^3.6.1", optional = true}
 
 [tool.poetry.dev-dependencies]
-pytest = "^6.2.4"
-black = {version = "^21.6b0", python = "^3.6.2"} 
-isort = {version = "^5.9.2", python = "^3.6.1"}
-flake8 = "3.8.4"
+pytest = "^6.2.5"
+black = {version = "^21.9b0", python = "^3.6.2"} 
+isort = {version = "^5.9.3", python = "^3.6.1"}
+flake8 = "<4.0"
 requests = "^2.26.0"
 pytest-black = "^0.3.12"
 pytest-isort = "^2.0.0"
+pytest-flake8 = "^1.0.7"
 pytest-mypy = "^0.8.1"
 types-requests = "^2.25.9"
 types-orjson = "^3.6.0"
@@ -49,4 +50,6 @@ line_length = 88
 ignore_missing_imports = true
 
 [tool.pytest.ini_options]
-addopts = "--black --isort --mypy"
+flake8-max-line-length = 88
+flake8-ignore = ["E501", "E203", "W503"]
+addopts = "--black --isort --flake8 --mypy"
