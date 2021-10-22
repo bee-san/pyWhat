@@ -50,6 +50,4 @@ line_length = 88
 ignore_missing_imports = true
 
 [tool.pytest.ini_options]
-flake8-max-line-length = 88
-flake8-ignore = ["E501", "E203", "W503"]
 addopts = "--black --isort --flake8 --mypy"
