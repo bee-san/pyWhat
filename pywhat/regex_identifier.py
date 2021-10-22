@@ -1,4 +1,3 @@
-import copy
 import re
 from typing import Optional
 
@@ -28,7 +27,7 @@ class RegexIdentifier:
                     reg["Boundaryless Regex"] if reg in boundaryless else reg["Regex"]
                 )
                 for matched_regex in re.finditer(regex, string, re.MULTILINE):
-                    reg_match = copy.deepcopy(reg)
+                    reg_match = dict(reg)
                     matched = self.clean_text(matched_regex.group(0))
 
                     if (
