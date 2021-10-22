@@ -350,6 +350,13 @@ def test_file_fixture_xmr():
     assert re.findall("Monero", str(result.output))
 
 
+def test_file_fixture_doi():
+    runner = CliRunner()
+    result = runner.invoke(main, ["-db", "fixtures/file"])
+    assert result.exit_code == 0
+    assert re.findall("DOI", str(result.output))
+
+
 def test_file_cors():
     runner = CliRunner()
     result = runner.invoke(main, ["-db", "Access-Control-Allow: *"])
