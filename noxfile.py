@@ -46,6 +46,7 @@ def tests(session: Session) -> None:
         "pytest-black",
         "pytest-cov",
         "pytest-isort",
+        "pytest-flake8",
         "pytest-mypy",
         "types-requests",
         "types-orjson",
