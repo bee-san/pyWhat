@@ -98,3 +98,6 @@ otpauth://totp/Example:alice@google.com?secret=JBSWY3DPEHPK3PXP&issuer=Example
 sshpass -p MyPassw0RD! ssh root@10.0.0.10
 
 https://hooks.slack.com/services/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
+
+doi:10.1392/BC1.0
+10.1000/123
