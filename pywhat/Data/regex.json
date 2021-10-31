@@ -130,6 +130,17 @@
       }
    },
    {
+      "Name": "SHA-1 hash format",
+      "Regex": "\b[0-9a-fA-F]{40}\b",
+      "plural_name": false,
+      "Description": "SHA-1 algoritm, used to check integrability of a file.",
+      "Rarity": 1,
+      "URL": "https://en.wikipedia.org/wiki/SHA-1",
+      "Tags": [
+         "Hash"
+      ]
+   },
+   {
       "Name": "TryHackMe Flag Format",
       "Regex": "(?i)^(thm{.*}|tryhackme{.*})$",
       "plural_name": false,
