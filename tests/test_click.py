@@ -660,6 +660,20 @@ def test_file_fixture_slack_webhook():
     assert re.findall("Slack Webhook", str(result.output))
 
 
+def test_file_fixture_facebook_access_token():
+    runner = CliRunner()
+    result = runner.invoke(main, ["fixtures/file"])
+    assert result.exit_code == 0
+    assert re.findall("Facebook Access Token", str(result.output))
+
+
+def test_file_fixture_facebook_app_token():
+    runner = CliRunner()
+    result = runner.invoke(main, ["fixtures/file"])
+    assert result.exit_code == 0
+    assert re.findall("Facebook App Token", str(result.output))
+
+
 def test_format():
     runner = CliRunner()
     result = runner.invoke(
