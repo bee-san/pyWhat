@@ -1330,7 +1330,7 @@
       "Regex": "(?i)^([0-9a-f]{32}-us[0-9]{1,2})$",
       "plural_name": false,
       "Description": null,
-      "Exploit": "Use the command below to verify that the API key is valid:\n  $ curl --request GET --url 'https://<dc>.api.mailchimp.com/3.0/' --user 'anystring:API_KEY_HERE' --include\n",
+      "Exploit": "Use the command below to verify that the API key is valid (substitute <dc> for your datacenter, i. e. us5):\n  $ curl --request GET --url 'https://<dc>.api.mailchimp.com/3.0/' --user 'anystring:API_KEY_HERE' --include\n",
       "Rarity": 0.8,
       "URL": null,
       "Tags": [
@@ -1338,7 +1338,15 @@
          "API Keys",
          "Credentials",
          "Mailchimp"
-      ]
+      ],
+      "Examples": {
+         "Valid": [
+            "d619ce3b691e29ec064fede7ff9afbff-us5",
+            "4bf6010e49fb0791f3940681791934e7-us5",
+            "a80122b2565c3e26a61cbf58d1d1aad7-us5"
+         ],
+         "Invalid": []
+      }
    },
    {
       "Name": "Notion Integration Token",
