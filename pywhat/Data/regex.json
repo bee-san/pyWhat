@@ -2406,8 +2406,8 @@
       }
    },
    {
-      "Name": "Amazon Web Services EC2 Instance Identifier",
-      "Regex": "(?i)^(\\b[a-z]+-[a-z0-9]+)$",
+      "Name": "Amazon Web Services EC2 Instance ID",
+      "Regex": "(?i)^(i-([a-z0-9]{8}|[a-z0-9]{17}))$",
       "plural_name": false,
       "Description": null,
       "Rarity": 0.2,
@@ -2419,7 +2419,8 @@
       ],
       "Examples": {
          "Valid": [
-            "i-1234567890abcdef0"
+            "i-1234567890abcdef0",
+            "i-1a2b3c4d"
          ],
          "Invalid": []
       }
