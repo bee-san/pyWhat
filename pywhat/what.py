@@ -120,7 +120,7 @@ def get_text(ctx, opts, value):
     required=False,
     help="Format output according to specified rules.",
 )
-@click.option("-pt", "--print-tags", is_flag=True, help="Add flags to ouput")
+@click.option("-pt", "--print-tags", is_flag=True, help="Add flags to output")
 def main(**kwargs):
     """
     pyWhat - Identify what something is.
@@ -193,7 +193,7 @@ def main(**kwargs):
 
                 pretty - Output data in the table
 
-                json - Ouput data in json format
+                json - Output data in json format
 
                 CUSTOM_STRING - Print data in the way you want. For every match CUSTOM_STRING will be printed and '%x' (See below for possible x values) will be substituted with a match value.
 
@@ -214,11 +214,11 @@ def main(**kwargs):
 
                     %d - description (will not output if absent)
 
-                    %e - exploit (will not ouput if absent)
+                    %e - exploit (will not output if absent)
 
                     %r - rarity
 
-                    %l - link (will not ouput if absent)
+                    %l - link (will not output if absent)
 
                     %t - tags (in 'tag1, tag2 ...' format)
 
