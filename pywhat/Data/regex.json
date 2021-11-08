@@ -1739,6 +1739,28 @@
       }
    },
    {
+      "Name": "United States Postal Service (UPS) Tracking Number",
+      "Regex": "^(1Z[0-9A-Z]{6}[0-9]{10})$",
+      "plural_name": false,
+      "Description": null,
+      "Rarity": 0.5,
+      "URL": "https://www.ups.com/track?tracknum=",
+      "Tags": [
+         "Tracking",
+         "Bug Bounty",
+         "Identifiers",
+         "Mailing"
+      ],
+      "Examples": {
+         "Valid": [
+            "1Z123ABC0012345678",
+            "1Z9999999999999999",
+            "1Z999AA10123456784"
+         ],
+         "Invalid": []
+      }
+   },
+   {
       "Name": "Turkish License Plate Number",
       "Regex": "^(0[1-9]|[1-7][0-9]|8[01])(([A-Z])(\\d{4,5})|([A-Z]{2})(\\d{3,4})|([A-Z]{3})(\\d{2,3}))$",
       "plural_name": false,
