@@ -425,21 +425,6 @@
       }
    },
    {
-      "Name": "Facebook Access Token",
-      "Regex": "^(EAACEdEose0cBA[0-9A-Za-z]{512})$",
-      "plural_name": false,
-      "Description": null,
-      "Exploit": null,
-      "Rarity": 1,
-      "URL": "https://developers.facebook.com/tools/debug/accesstoken/?access_token=",
-      "Tags": [
-         "API Keys",
-         "Bug Bounty",
-         "Credentials",
-         "Facebook"
-      ]
-   },
-   {
       "Name": "Facebook Secret Key",
       "Regex": "(?i)^((facebook|fb)(.{0,20})?['\\\"][0-9a-f]{32}['\\\"])$",
       "plural_name": false,
@@ -2368,6 +2353,28 @@
       }
    },
    {
+      "Name": "Facebook App Token",
+      "Regex": "^([0-9]{6,}\\|[A-Za-z0-9\\-]{24,})$",
+      "plural_name": false,
+      "Description": null,
+      "Exploit": null,
+      "Rarity": 0.3,
+      "URL": "https://developers.facebook.com/tools/debug/accesstoken/?access_token=",
+      "Tags": [
+         "API Keys",
+         "Bug Bounty",
+         "Credentials",
+         "Facebook"
+      ],
+      "Examples": {
+         "Valid": [
+            "1201566843289141|401fec62f46bc340d4c0e7e75132f731",
+            "1201566843289141|WG1OAKQ-dY0lSj5NKyA6uFkvF7w"
+         ],
+         "Invalid": []
+      }
+   },
+   {
       "Name": "JSON Web Token (JWT)",
       "Regex": "(?i)^((?=.*[a-z])(?=.*[0-9])(?:[a-z0-9_=]+\\.){2}(?:[a-z0-9_\\-\\+\\/=]*))$",
       "plural_name": false,
@@ -2467,6 +2474,28 @@
          "Valid": [
             "12345678902",
             "12345678900"
+         ],
+         "Invalid": []
+      }
+   },
+   {
+      "Name": "Facebook Access Token",
+      "Regex": "^(EA[0-9A-Za-z]{190,})$",
+      "plural_name": false,
+      "Description": null,
+      "Exploit": null,
+      "Rarity": 0.2,
+      "URL": "https://developers.facebook.com/tools/debug/accesstoken/?access_token=",
+      "Tags": [
+         "API Keys",
+         "Bug Bounty",
+         "Credentials",
+         "Facebook"
+      ],
+      "Examples": {
+         "Valid": [
+            "EAARE0ZATePjUBAFxfm2L2aWdtNXOSscOnMYktEPYJuOSrteSQZCh9VWVVKnhSSYNumEnju6XItaRhija3pA7LFPHquTbi4IDZC8k9EMByeQ4NJzCFsc40FMIQIgvnCTOK5qt6xBZCUMf7S95X6nnqCUVw2iS0DRDbqttxauxIDgBRYJ7zZABXe9V0CY872DUl3BfyINIYfCXmRZC8loACc",
+            "EAARE0ZATePjUBAHVHoVVbRc9N0u2lNC5eJab59qwD9mG5ZCRgcg3qlbPZC07EkP65Ji3BnPzPKZBMqN7WyOfJ8Riky4RD66aSqX8U0d14EWwHx94rZCtM6qfULiXOrqWKiG2KLyJJnRzAus3ubodKUwTuZCBcPmcGJcvq5Krfk8xgLQVZBoFLGLJs5wT4SlBxiWAdytlggqzQZDZD"
          ],
          "Invalid": []
       }
