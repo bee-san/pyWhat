@@ -820,35 +820,6 @@
       }
    },
    {
-      "Name": "Datadog API Key",
-      "Regex": "^([a-f0-9]{32})$",
-      "plural_name": false,
-      "Description": null,
-      "Exploit": "Use the command below to verify that the API key is valid:\n  $ curl -X GET https://api.datadoghq.com/api/v1/validate -H \"Content-Type: application/json\" -H \"DD-API-KEY: API_KEY_HERE\"\n",
-      "Rarity": 1,
-      "URL": null,
-      "Tags": [
-         "API Keys",
-         "Bug Bounty",
-         "Credentials",
-         "Datadog"
-      ]
-   },
-   {
-      "Name": "Datadog Client Token",
-      "Regex": "^(pub[a-f0-9]{32})$",
-      "plural_name": false,
-      "Description": null,
-      "Exploit": null,
-      "Rarity": 1,
-      "URL": null,
-      "Tags": [
-         "API Keys",
-         "Bug Bounty",
-         "Datadog"
-      ]
-   },
-   {
       "Name": "New Relic Admin API Key",
       "Regex": "(?i)^(NRAA-[a-f0-9]{27})$",
       "plural_name": false,
@@ -2501,6 +2472,26 @@
       }
    },
    {
+      "Name": "Datadog Client Token",
+      "Regex": "^(pub[a-f0-9]{32})$",
+      "plural_name": false,
+      "Description": "An [#CAE4F1][link=https://docs.datadoghq.com/logs/log_collection/javascript/]Datadog client token[/link][/#CAE4F1]",
+      "Exploit": null,
+      "Rarity": 0.2,
+      "URL": null,
+      "Tags": [
+         "API Keys",
+         "Bug Bounty",
+         "Datadog"
+      ],
+      "Examples": {
+         "Valid": [
+            "pub8261e4a07b29d0a148e00a93106ae711"
+         ],
+         "Invalid": []
+      }
+   },
+   {
       "Name": "ObjectID",
       "Regex": "^([0-9a-fA-F]{24})$",
       "plural_name": false,
@@ -2619,6 +2610,58 @@
             "01ERJ58HMWDN3VTRRHZQV2T5R5"
          ],
          "Invalid": []
+      }
+   },
+   {
+      "Name": "Datadog API Key",
+      "Regex": "^([a-f0-9]{32})$",
+      "plural_name": false,
+      "Description": "An [#CAE4F1][link=https://docs.datadoghq.com/api/latest/]Datadog API Key[/link][/#CAE4F1]",
+      "Exploit": "Use the command below to verify that the API key is valid:\n  $ curl -X GET https://api.datadoghq.com/api/v1/validate -H \"Content-Type: application/json\" -H \"DD-API-KEY: API_KEY_HERE\"\n",
+      "Rarity": 0,
+      "URL": null,
+      "Tags": [
+         "API Keys",
+         "Bug Bounty",
+         "Credentials",
+         "Datadog"
+      ],
+      "Examples": {
+         "Valid": [
+            "68ec0cbd7d0da6770545614dfa573eec",
+            "683bba7d7f759e0907d35f39a7c36eb5",
+            "c8561e9b786a07855cbc2983d47eaf93"
+         ],
+         "Invalid": [
+            "ba36266055c7495ce26bb12e86c7536b4a5e00cd",
+            "pub8261e4a07b29d0a148e00a93106ae711"
+         ]
+      }
+   },
+   {
+      "Name": "Datadog Application Key",
+      "Regex": "^([a-f0-9]{40})$",
+      "plural_name": false,
+      "Description": "An [#CAE4F1][link=https://docs.datadoghq.com/api/latest/]Datadog Application Key[/link][/#CAE4F1]",
+      "Exploit": null,
+      "Rarity": 0,
+      "URL": null,
+      "Tags": [
+         "API Keys",
+         "Bug Bounty",
+         "Credentials",
+         "Datadog"
+      ],
+      "Examples": {
+         "Valid": [
+            "ba36266055c7495ce26bb12e86c7536b4a5e00cd"
+         ],
+         "Invalid": [
+            "68ec0cbd7d0da6770545614dfa573eec",
+            "683bba7d7f759e0907d35f39a7c36eb5",
+            "c8561e9b786a07855cbc2983d47eaf93",
+            "pub8261e4a07b29d0a148e00a93106ae711"
+         ]
       }
    },
    {

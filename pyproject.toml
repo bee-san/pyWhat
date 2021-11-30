@@ -15,7 +15,7 @@ orjson = {version = "^3.6.1", optional = true}
 
 [tool.poetry.dev-dependencies]
 pytest = "^6.2.5"
-black = {version = "^21.9b0", python = "^3.6.2"} 
+black = {version = "^21.9b0", python = "^3.6.2"}
 isort = {version = "^5.9.3", python = "^3.6.1"}
 flake8 = "<4.0"
 requests = "^2.26.0"
