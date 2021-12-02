@@ -350,6 +350,20 @@ def test_file_fixture_xmr():
     assert re.findall("Monero", str(result.output))
 
 
+def test_file_fixture_doi():
+    runner = CliRunner()
+    result = runner.invoke(main, ["-db", "fixtures/file"])
+    assert result.exit_code == 0
+    assert re.findall("DOI", str(result.output))
+
+
+def test_file_fixture_mailchimp():
+    runner = CliRunner()
+    result = runner.invoke(main, ["-db", "fixtures/file"])
+    assert result.exit_code == 0
+    assert re.findall("Mailchimp", str(result.output))
+
+
 def test_file_cors():
     runner = CliRunner()
     result = runner.invoke(main, ["-db", "Access-Control-Allow: *"])
@@ -637,6 +651,13 @@ def test_file_fixture_sshpass():
     result = runner.invoke(main, ["fixtures/file"])
     assert result.exit_code == 0
     assert re.findall("SSHPass Clear Password Argument", str(result.output))
+
+
+def test_file_fixture_slack_webhook():
+    runner = CliRunner()
+    result = runner.invoke(main, ["fixtures/file"])
+    assert result.exit_code == 0
+    assert re.findall("Slack Webhook", str(result.output))
 
 
 def test_format():

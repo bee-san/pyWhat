@@ -6,7 +6,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        python-version: ['3.6', '3.7', '3.8', '3.9']
+        python-version: ['3.6', '3.7', '3.8', '3.9', '3.10']
         os: [ubuntu-latest, windows-latest, macos-latest]
         exclude:
           - os: macos-latest
@@ -19,8 +19,7 @@ jobs:
       with:
         python-version: ${{ matrix.python-version }}
         architecture: x64
-    - run: python -m pip install flake8 nox poetry
-    - run: flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
+    - run: python -m pip install nox poetry
     - run: python -m nox
       env:
         OS: ${{ matrix.os }}

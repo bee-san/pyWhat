@@ -101,7 +101,7 @@ def test_distribution6():
 
 def test_distribution7():
     with pytest.raises(InvalidTag):
-        dist = Distribution({"Tags": "Media", "MinRarity": 0.7})
+        Distribution({"Tags": "Media", "MinRarity": 0.7})
 
 
 def test_filter():
