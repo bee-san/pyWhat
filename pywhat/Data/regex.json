@@ -1592,6 +1592,33 @@
       }
    },
    {
+      "Name": "Phone Number",
+      "Regex": "^[0-9]([\\.\\s\\-]?\\d){6}$",
+      "plural_name": false,
+      "Description": null,
+      "Rarity": 0.5,
+      "URL": null,
+      "Tags": [
+         "Identifiers",
+         "Credentials",
+         "Phone Number",
+         "Phone",
+         "Telephone"
+      ],
+      "Children": {
+         "path": "phone_codes.json",
+         "entry": "Location(s): ",
+         "method": "hashmap"
+      },
+      "Examples": {
+         "Valid": [
+            "1234567",
+            "7777777"
+         ],
+         "Invalid": []
+      }
+   },
+   {
       "Name": "American Social Security Number",
       "Regex": "^(([0-9][0-9][0-9])(?<!666|000|9[0-9][0-9])(=|\\+|_|\\#|:|;|\\.|-|\\s){0,3}([1-9][1-9]|0[1-9]|[1-9]0)(=|\\+|_|\\#|:|;|\\.|-|\\s){0,3}([0-9][0-9][0-9][0-9])(?<!0000)(=|\\+|_|\\#|:|;|\\.|-|\\s){0,3}?)$",
       "plural_name": false,
