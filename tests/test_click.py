@@ -660,14 +660,14 @@ def test_file_fixture_slack_webhook():
     assert re.findall("Slack Webhook", str(result.output))
   
 
-def test_discord_webhook():
+def test_file_fixture_discord_webhook():
     runner = CliRunner()
     result = runner.invoke(main, ["fixtures/file"])
     assert result.exit_code == 0
     assert re.findall("Discord Webhook", str(result.output))
 
  
-def test_guilded_webhook():
+def test_file_fixture_guilded_webhook():
     runner = CliRunner()
     result = runner.invoke(main, ["fixtures/file"])
     assert result.exit_code == 0
