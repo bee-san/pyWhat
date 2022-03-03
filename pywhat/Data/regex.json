@@ -1004,7 +1004,7 @@
    },
    {
       "Name": "Guilded Webhook",
-      "Regex": "^https?:\\/\\/(?:api\\.|media\\.|(?P<web>www.))guilded\\.gg(?(web)\\/api|)\\/webhooks\\/[a-f0-9]{8}-[a-f0-9]{4}-4[a-f0-9]{3}-[89abAB][a-f0-9]{3}-[a-f0-9]{12}\\/[\\w]{86}$",
+      "Regex": "(?i)^https?:\\/\\/(?:api\\.|media\\.|(?P<web>www.))guilded\\.gg(?(web)\\/api|)\\/webhooks\\/[a-f0-9]{8}-[a-f0-9]{4}-4[a-f0-9]{3}-[89abAB][a-f0-9]{3}-[a-f0-9]{12}\\/[\\w]{86}$",
       "plural_name": false,
       "Description": null,
       "Rarity": 1,
