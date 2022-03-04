@@ -658,7 +658,7 @@ def test_file_fixture_slack_webhook():
     result = runner.invoke(main, ["fixtures/file"])
     assert result.exit_code == 0
     assert re.findall("Slack Webhook", str(result.output))
-  
+
 
 def test_file_fixture_discord_webhook():
     runner = CliRunner()
@@ -666,7 +666,7 @@ def test_file_fixture_discord_webhook():
     assert result.exit_code == 0
     assert re.findall("Discord Webhook", str(result.output))
 
- 
+
 def test_file_fixture_guilded_webhook():
     runner = CliRunner()
     result = runner.invoke(main, ["fixtures/file"])
@@ -751,5 +751,3 @@ def test_print_tags2():
     )
     assert result.exit_code == 0
     assert "Tags: CTF Flag" in result.output
-
-  
