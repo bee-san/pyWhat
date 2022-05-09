@@ -1011,6 +1011,31 @@
       }
    },
    {
+      "Name": "Guilded Webhook",
+      "Regex": "(?i)^(https?:\\/\\/(?:api\\.|media\\.|(?P<web>www.))guilded\\.gg(?(web)\\/api|)\\/webhooks\\/[a-f0-9]{8}-[a-f0-9]{4}-4[a-f0-9]{3}-[89abAB][a-f0-9]{3}-[a-f0-9]{12}\\/[\\w]{86})$",
+      "plural_name": false,
+      "Description": null,
+      "Rarity": 1,
+      "URL": null,
+      "Tags": [
+         "Bug Bounty",
+         "URL",
+         "Guilded"
+      ],
+      "Examples": {
+         "Valid": [
+            "https://media.guilded.gg/webhooks/1fa5fe35-74e7-4f17-bf53-52d02293fea6/zhXzVecRvaMCWEcOCIuIMYQyeeKemUCswca24Q68cCQCgg4oYKeawamAiEkaI2uCS8Q2sgwy2qUOe2c4yE2em6",
+            "https://www.guilded.gg/api/webhooks/1fa5fe35-74e7-4f17-bf53-52d02293fea6/zhXzVecRvaMCWEcOCIuIMYQyeeKemUCswca24Q68cCQCgg4oYKeawamAiEkaI2uCS8Q2sgwy2qUOe2c4yE2em6",
+            "https://api.guilded.gg/webhooks/1fa5fe35-74e7-4f17-bf53-52d02293fea6/zhXzVecRvaMCWEcOCIuIMYQyeeKemUCswca24Q68cCQCgg4oYKeawamAiEkaI2uCS8Q2sgwy2qUOe2c4yE2em6"
+         ],
+         "Invalid": [
+            "https://media.guilded.gg/api/webhooks/1fa5fe35-74e7-4f17-bf53-52d02293fea6/zhXzVecRvaMCWEcOCIuIMYQyeeKemUCswca24Q68cCQCgg4oYKeawamAiEkaI2uCS8Q2sgwy2qUOe2c4yE2em6",
+            "https://www.guilded.gg/webhooks/1fa5fe35-74e7-4f17-bf53-52d02293fea6/zhXzVecRvaMCWEcOCIuIMYQyeeKemUCswca24Q68cCQCgg4oYKeawamAiEkaI2uCS8Q2sgwy2qUOe2c4yE2em6",
+            "https://api.guilded.gg/api/webhooks/1fa5fe35-74e7-4f17-bf53-52d02293fea6/zhXzVecRvaMCWEcOCIuIMYQyeeKemUCswca24Q68cCQCgg4oYKeawamAiEkaI2uCS8Q2sgwy2qUOe2c4yE2em6"
+	 ]
+      }
+   },
+   {
       "Name": "Cloudinary Credentials",
       "Regex": "(?i)^(cloudinary://[0-9]+:[A-Za-z0-9-_.]+@[A-Za-z0-9-_.]+)$",
       "plural_name": false,
