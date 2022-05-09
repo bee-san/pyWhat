@@ -117,7 +117,7 @@ class Printing:
             self.console.print((to_out + "\nNothing found!").lstrip())
 
     def print_json(self, text: dict):
-        self.console.print(json.dumps(text))
+        print(json.dumps(text))
 
     """
     Does not create a table, prints it as raw text

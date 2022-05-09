@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "pywhat"
-version = "5.0.0"
+version = "5.1.0"
 description = "What is that thing?"
 authors = ["Bee <github@skerritt.blog>"]
 license = "MIT"
@@ -8,16 +8,16 @@ documentation = "https://github.com/bee-san/pyWhat/wiki"
 readme = "README.md"
 
 [tool.poetry.dependencies]
-python = "^3.6"
-click = "^7.1.2"
-rich = ">=9.9,<11.0"
+python = "^3.7"
+click = "^8.0.0"
+rich = ">=11.0.0"
 orjson = {version = "^3.6.1", optional = true}
 
 [tool.poetry.dev-dependencies]
-pytest = "^6.2.5"
-black = {version = "^21.9b0", python = "^3.6.2"}
-isort = {version = "^5.9.3", python = "^3.6.1"}
-flake8 = "<4.0"
+pytest = "^7.0"
+black = "^22.1.0"
+isort = "^5.9.3"
+flake8 = "^4.0"
 requests = "^2.26.0"
 pytest-black = "^0.3.12"
 pytest-isort = "^2.0.0"
