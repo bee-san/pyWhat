@@ -66,7 +66,7 @@ def get_text(ctx, opts, value):
         ignore_unknown_options=True,
     )
 )
-@click.argument("text_input", callback=get_text, required=False)
+@click.argument("text_input", callback=get_text, nargs=-1)
 @click.option(
     "-t",
     "--tags",
@@ -248,7 +248,7 @@ def main(**kwargs):
         * what 'this/is/a/path'
 
     """
-    if kwargs["text_input"] is None:
+    if kwargs["text_input"] == ():
         sys.exit("Text input expected. Run 'pywhat --help' for help")
     dist = Distribution(
         create_filter(kwargs["rarity"], kwargs["include"], kwargs["exclude"])
@@ -270,25 +270,26 @@ def main(**kwargs):
         except ValueError:
             print("Invalid key")
             sys.exit(1)
-    identified_output = what_obj.what_is_this(
-        kwargs["text_input"],
-        kwargs["only_text"],
-        key,
-        kwargs["reverse"],
-        boundaryless,
-        kwargs["include_filenames"],
-    )
+    for text_input in kwargs["text_input"]:
+        identified_output = what_obj.what_is_this(
+           text_input ,
+            kwargs["only_text"],
+            key,
+            kwargs["reverse"],
+            boundaryless,
+            kwargs["include_filenames"],
+        )
 
-    p = printer.Printing()
+        p = printer.Printing()
 
-    if kwargs["json"] or str(kwargs["format"]).strip() == "json":
-        p.print_json(identified_output)
-    elif str(kwargs["format"]).strip() == "pretty":
-        p.pretty_print(identified_output, kwargs["text_input"], kwargs["print_tags"])
-    elif kwargs["format"] is not None:
-        p.format_print(identified_output, kwargs["format"])
-    else:
-        p.print_raw(identified_output, kwargs["text_input"], kwargs["print_tags"])
+        if kwargs["json"] or str(kwargs["format"]).strip() == "json":
+            p.print_json(identified_output)
+        elif str(kwargs["format"]).strip() == "pretty":
+            p.pretty_print(identified_output, text_input, kwargs["print_tags"])
+        elif kwargs["format"] is not None:
+            p.format_print(identified_output, kwargs["format"])
+        else:
+            p.print_raw(identified_output, text_input, kwargs["print_tags"])
 
 
 class What_Object:
