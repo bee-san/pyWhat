@@ -142,9 +142,8 @@ class Query():
 class Recorder():
 
     def __init__(self):
-        self.csv_path = Path(__file__).parent / "Data" / "record.csv"
+        self.csv_path = Path(os.getcwd()) / "Data" / "record.csv"
         
-
     def is_exist_csv(self):
         if os.path.exists(self.csv_path):
             return True
@@ -152,19 +151,19 @@ class Recorder():
             return False
     
     def create_csv(self):
-        with open(self.csv_path, 'w') as file:
+        with open(self.csv_path, 'w', newline='') as file:
             writer = csv.writer(file, delimiter=",")
             row = ["type", "content", "date"]
             writer.writerow(row)
     
     def write_query(self, is_file: bool, content: str):
         query = Query(is_file, content)
-        if not self.is_exist_csv:
+        if not self.is_exist_csv():
             self.create_csv()
         query.record()
     
     def get_len_csv(self):
-        if not self.is_exist_csv:
+        if not self.is_exist_csv():
             return 0
         else:
             with open(self.csv_path, 'r') as file:
@@ -172,8 +171,42 @@ class Recorder():
                 return length - 1
 
     def get_range_data(self, start_date, end_date):
+        if not self.is_exist_csv():
+            return []
+        queries = []
+        with open(self.csv_path, 'r') as file:
+            content = file.readlines()
+            content = content[::-2]
+            for row in content:
+                query = Query(row[0], row[1], row[2])
+                if query.early_than_start_date(start_date):
+                    break
+                elif query.late_than_end_date(end_date):
+                    continue
+                else:
+                    queries.append(row)
+            return queries
         
-    def print_csv(self, lines):
+    def print_csv(self, lines: int):
+        if not self.is_exist_csv():
+            print('No queries history so far')
+            return
+        else:
+            length = self.get_len_csv()
+            actual_lines = length
+            if lines > 100 and length > 100:
+                lines = 100
+                print("The required number is large. The output will show the lastest 100 queries.")
+            if length > lines:
+                actual_lines = lines
+            with open(self.csv_path, 'r') as file:
+                content = file.readlines()
+                content = content[::-1]
+                for row in content[: -1]:
+                    if actual_lines == 0:
+                        break
+                    print(row)
+                    actual_lines -= 1
 
 
 
