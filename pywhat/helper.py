@@ -116,8 +116,11 @@ class Query():
         self.content = content
         self.date = date.today() # record the date of the query in format "yyyy-mm-dd"
 
-    def is_in_peroid(self, start_date, end_date) -> bool:
-        return (self.date >= start_date and self.date <= end_date)
+    def early_than_start_date(self, date) -> bool:
+        return self.date < date
+
+    def late_than_end_date(self, date) -> bool:
+        return self.date > date
 
     def set_date(self, is_file: bool, content: str, date: str):
         self.is_file = is_file
@@ -169,7 +172,7 @@ class Recorder():
                 return length - 1
 
     def get_range_data(self, start_date, end_date):
-    
+        
     def print_csv(self, lines):
 
 
