@@ -4,6 +4,8 @@ import os.path
 import re
 from enum import Enum, auto
 from functools import lru_cache
+from datetime import date
+import csv
 
 try:
     import orjson as json
@@ -103,3 +105,25 @@ def str_to_key(s: str):
         return getattr(Keys, s.upper())
     except AttributeError:
         raise ValueError
+
+class Query():
+    def __init__(self, is_file: bool, content: str):
+        if is_file:
+            self.type = "File"
+        else:
+            self.type = "String"
+        self.content = content
+        self.date = date.today() # record the date of the query in format "yyyy-mm-dd"
+
+    def is_in_peroid(self, start_date, end_date) -> bool:
+        return (self.date >= start_date and self.date <= end_date)
+
+    def is_file(self):
+        return self.type == "File"
+
+    def record(self):
+        filename = "record.csv"
+        with open(filename, 'w') as file:
+            writer = csv.writer(file)
+            row = [self.type, self.content, self.date]
+            writer.writerow(row)      
