@@ -107,6 +107,7 @@ def str_to_key(s: str):
     except AttributeError:
         raise ValueError
 
+
 class Query():
     def __init__(self, is_file: bool, content: str):
         if is_file:
@@ -114,20 +115,20 @@ class Query():
         else:
             self.type = "String"
         self.content = content
-        self.date = date.today() # record the date of the query in format "yyyy-mm-dd"
+        self.query_date = date.today()  # record the date of the query in format "yyyy-mm-dd"
 
-    def early_than_start_date(self, date) -> bool:
-        return self.date < date
+    def early_than_start_date(self, another_date) -> bool:
+        return self.query_date < another_date
 
-    def late_than_end_date(self, date) -> bool:
-        return self.date > date
+    def late_than_end_date(self, another_date) -> bool:
+        return self.query_date > another_date
 
-    def set_date(self, is_file: bool, content: str, date: str):
+    def set_date(self, is_file, content, date_str):
         self.is_file = is_file
         self.content = content
-        date = date.split('-')
-        date = [int(s) for s in date]
-        self.date = date(date[0], date[1], date(2))
+        date_list = date_str.split('-')
+        date_int_list = [int(s) for s in date_list]
+        self.query_date = date(date_int_list[0], date_int_list[1], date_int_list(2))
 
     def is_file(self):
         return self.type == "File"
@@ -136,32 +137,33 @@ class Query():
         filename = Path(os.getcwd()) / "Data" / "record.csv"
         with open(filename, 'a', newline='') as file:
             writer = csv.writer(file)
-            row = [self.type, self.content, self.date]
+            row = [self.type, self.content, self.query_date]
             writer.writerow(row)
+
 
 class Recorder():
 
     def __init__(self):
         self.csv_path = Path(os.getcwd()) / "Data" / "record.csv"
-        
+  
     def is_exist_csv(self):
         if os.path.exists(self.csv_path):
             return True
         else:
             return False
-    
+
     def create_csv(self):
         with open(self.csv_path, 'w', newline='') as file:
             writer = csv.writer(file, delimiter=",")
             row = ["type", "content", "date"]
             writer.writerow(row)
-    
+
     def write_query(self, is_file: bool, content: str):
         query = Query(is_file, content)
         if not self.is_exist_csv():
             self.create_csv()
         query.record()
-    
+
     def get_len_csv(self):
         if not self.is_exist_csv():
             return 0
@@ -186,7 +188,7 @@ class Recorder():
                 else:
                     queries.append(row)
             return queries
-        
+     
     def print_csv(self, lines: int):
         if not self.is_exist_csv():
             print('No queries history so far')
