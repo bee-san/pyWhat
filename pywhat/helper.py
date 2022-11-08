@@ -119,12 +119,19 @@ class Query():
     def is_in_peroid(self, start_date, end_date) -> bool:
         return (self.date >= start_date and self.date <= end_date)
 
+    def set_date(self, is_file: bool, content: str, date: str):
+        self.is_file = is_file
+        self.content = content
+        date = date.split('-')
+        date = [int(s) for s in date]
+        self.date = date(date[0], date[1], date(2))
+
     def is_file(self):
         return self.type == "File"
 
     def record(self):
         filename = Path(os.getcwd()) / "Data" / "record.csv"
-        with open(filename, 'w') as file:
+        with open(filename, 'a', newline='') as file:
             writer = csv.writer(file)
             row = [self.type, self.content, self.date]
             writer.writerow(row)
@@ -136,14 +143,14 @@ class Recorder():
         
 
     def is_exist_csv(self):
-        if path.exists(csv_path):
+        if os.path.exists(self.csv_path):
             return True
         else:
             return False
     
     def create_csv(self):
         with open(self.csv_path, 'w') as file:
-            writer = csv.writer(file)
+            writer = csv.writer(file, delimiter=",")
             row = ["type", "content", "date"]
             writer.writerow(row)
     
