@@ -6,6 +6,7 @@ from enum import Enum, auto
 from functools import lru_cache
 from datetime import date
 import csv
+from pathlib import Path
 
 try:
     import orjson as json
@@ -122,8 +123,56 @@ class Query():
         return self.type == "File"
 
     def record(self):
-        filename = "record.csv"
+        filename = Path(os.getcwd()) / "Data" / "record.csv"
         with open(filename, 'w') as file:
             writer = csv.writer(file)
             row = [self.type, self.content, self.date]
-            writer.writerow(row)      
+            writer.writerow(row)
+
+class Recorder():
+
+    def __init__(self):
+        self.csv_path = Path(__file__).parent / "Data" / "record.csv"
+        
+
+    def is_exist_csv(self):
+        if path.exists(csv_path):
+            return True
+        else:
+            return False
+    
+    def create_csv(self):
+        with open(self.csv_path, 'w') as file:
+            writer = csv.writer(file)
+            row = ["type", "content", "date"]
+            writer.writerow(row)
+    
+    def write_query(self, is_file: bool, content: str):
+        query = Query(is_file, content)
+        if not self.is_exist_csv:
+            self.create_csv()
+        query.record()
+    
+    def get_len_csv(self):
+        if not self.is_exist_csv:
+            return 0
+        else:
+            with open(self.csv_path, 'r') as file:
+                length = len(file.readlines())
+                return length - 1
+
+    def get_range_data(self, start_date, end_date):
+    
+    def print_csv(self, lines):
+
+
+
+
+
+
+
+
+
+
+
+
