@@ -3,9 +3,13 @@ import sys
 import click
 from rich.console import Console
 
-from pywhat import __version__, identifier, printer
-from pywhat.filter import Distribution, Filter
-from pywhat.helper import AvailableTags, InvalidTag, Keys, str_to_key
+import identifier, filter, helper, printer
+from filter import Distribution, Filter
+from helper import AvailableTags, InvalidTag, Keys, str_to_key
+
+# from pywhat import __version__, identifier, printer
+# from pywhat.filter import Distribution, Filter
+# from pywhat.helper import AvailableTags, InvalidTag, Keys, str_to_key
 
 
 def print_tags(ctx, opts, value):
@@ -121,7 +125,7 @@ def get_text(ctx, opts, value):
     help="Format output according to specified rules.",
 )
 @click.option("-pt", "--print-tags", is_flag=True, help="Add flags to output")
-def main(**kwargs):
+def run(**kwargs):
     """
     pyWhat - Identify what something is.
 
@@ -248,6 +252,11 @@ def main(**kwargs):
         * what 'this/is/a/path'
 
     """
+
+    # print(kwargs["text_input"])
+
+    # kwargs["window"]
+
     if kwargs["text_input"] is None:
         sys.exit("Text input expected. Run 'pywhat --help' for help")
     dist = Distribution(
@@ -288,7 +297,9 @@ def main(**kwargs):
     elif kwargs["format"] is not None:
         p.format_print(identified_output, kwargs["format"])
     else:
-        p.print_raw(identified_output, kwargs["text_input"], kwargs["print_tags"])
+        # p.print_raw(identified_output, kwargs["text_input"], kwargs["print_tags"])
+        print("hellow")
+        return "hello"
 
 
 class What_Object:
@@ -317,5 +328,5 @@ class What_Object:
         )
 
 
-if __name__ == "__main__":
-    main()
+# if __name__ == "__main__":
+#     main()
