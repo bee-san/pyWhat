@@ -108,14 +108,16 @@ def str_to_key(s: str):
         raise ValueError
 
 
-class Query():
+class Query:
     def __init__(self, is_file: bool, content: str):
         if is_file:
             self.type = "File"
         else:
             self.type = "String"
         self.content = content
-        self.query_date = date.today()  # record the date of the query in format "yyyy-mm-dd"
+        self.query_date = (
+            date.today()
+        )  # record the date of the query in format "yyyy-mm-dd"
 
     def early_than_start_date(self, another_date) -> bool:
         return self.query_date < another_date
@@ -123,29 +125,26 @@ class Query():
     def late_than_end_date(self, another_date) -> bool:
         return self.query_date > another_date
 
-    def set_date(self, is_file, content, date_str):
-        self.is_file = is_file
-        self.content = content
-        date_list = date_str.split('-')
+    def set_date(self, date_str):
+        date_list = date_str.split("-")
         date_int_list = [int(s) for s in date_list]
-        self.query_date = date(date_int_list[0], date_int_list[1], date_int_list(2))
+        self.query_date = date(date_int_list[0], date_int_list[1], date_int_list[2])
 
     def is_file(self):
         return self.type == "File"
 
     def record(self):
         filename = Path(os.getcwd()) / "Data" / "record.csv"
-        with open(filename, 'a', newline='') as file:
+        with open(filename, "a", newline="") as file:
             writer = csv.writer(file)
             row = [self.type, self.content, self.query_date]
             writer.writerow(row)
 
 
-class Recorder():
-
+class Recorder:
     def __init__(self):
         self.csv_path = Path(os.getcwd()) / "Data" / "record.csv"
-  
+
     def is_exist_csv(self):
         if os.path.exists(self.csv_path):
             return True
@@ -153,7 +152,7 @@ class Recorder():
             return False
 
     def create_csv(self):
-        with open(self.csv_path, 'w', newline='') as file:
+        with open(self.csv_path, "w", newline="") as file:
             writer = csv.writer(file, delimiter=",")
             row = ["type", "content", "date"]
             writer.writerow(row)
@@ -168,7 +167,7 @@ class Recorder():
         if not self.is_exist_csv():
             return 0
         else:
-            with open(self.csv_path, 'r') as file:
+            with open(self.csv_path, "r") as file:
                 length = len(file.readlines())
                 return length - 1
 
@@ -176,11 +175,13 @@ class Recorder():
         if not self.is_exist_csv():
             return []
         queries = []
-        with open(self.csv_path, 'r') as file:
+        with open(self.csv_path, "r") as file:
             content = file.readlines()
-            content = content[::-2]
-            for row in content:
-                query = Query(row[0], row[1], row[2])
+            content = content[::-1]
+            for row in content[:-1]:
+                strings = row.split(",")
+                query = Query(strings[0], strings[1])
+                query.set_date(strings[2])
                 if query.early_than_start_date(start_date):
                     break
                 elif query.late_than_end_date(end_date):
@@ -188,36 +189,26 @@ class Recorder():
                 else:
                     queries.append(row)
             return queries
-     
+
     def print_csv(self, lines: int):
         if not self.is_exist_csv():
-            print('No queries history so far')
+            print("No queries history so far")
             return
         else:
             length = self.get_len_csv()
             actual_lines = length
             if lines > 100 and length > 100:
                 lines = 100
-                print("The required number is large. The output will show the lastest 100 queries.")
+                print(
+                    "The required number is large. The output will show the lastest 100 queries."
+                )
             if length > lines:
                 actual_lines = lines
-            with open(self.csv_path, 'r') as file:
+            with open(self.csv_path, "r") as file:
                 content = file.readlines()
                 content = content[::-1]
-                for row in content[: -1]:
+                for row in content[:-1]:
                     if actual_lines == 0:
                         break
                     print(row)
                     actual_lines -= 1
-
-
-
-
-
-
-
-
-
-
-
-
