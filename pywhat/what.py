@@ -7,7 +7,7 @@ import os
 from pywhat import __version__, identifier, printer
 from pywhat.filter import Distribution, Filter
 from pywhat.helper import AvailableTags, InvalidTag, Keys, str_to_key
-from helper import Query, Recorder
+from pywhat.helper import Query, Recorder
 from datetime import date
 
 

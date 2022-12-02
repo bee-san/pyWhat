@@ -134,7 +134,7 @@ class Query:
         return self.type == "File"
 
     def record(self):
-        filename = Path(os.getcwd()) / "Data" / "record.csv"
+        filename = Path(__file__).parent / "Data" / "record.csv"
         with open(filename, "a", newline="") as file:
             writer = csv.writer(file)
             row = [self.type, self.content, self.query_date]
@@ -143,7 +143,7 @@ class Query:
 
 class Recorder:
     def __init__(self):
-        self.csv_path = Path(os.getcwd()) / "Data" / "record.csv"
+        self.csv_path = Path(__file__).parent / "Data" / "record.csv"
 
     def is_exist_csv(self):
         if os.path.exists(self.csv_path):
