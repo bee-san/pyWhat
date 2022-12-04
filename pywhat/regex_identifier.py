@@ -1,8 +1,8 @@
 import re
 from typing import Optional
 
-# from pywhat.filter import Distribution, Filter
-from filter import Distribution, Filter
+from pywhat.filter import Distribution, Filter
+# from filter import Distribution, Filter
 
 
 class RegexIdentifier:

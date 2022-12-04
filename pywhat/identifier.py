@@ -2,15 +2,15 @@ import glob
 import os.path
 from typing import Callable, Optional
 
-# import pywhat.magic_numbers
-# from pywhat.filter import Distribution, Filter
-# from pywhat.helper import Keys
-# from pywhat.regex_identifier import RegexIdentifier
+import pywhat.magic_numbers
+from pywhat.filter import Distribution, Filter
+from pywhat.helper import Keys
+from pywhat.regex_identifier import RegexIdentifier
 
-import magic_numbers
-from filter import Distribution, Filter
-from helper import Keys
-from regex_identifier import RegexIdentifier
+# import magic_numbers
+# from filter import Distribution, Filter
+# from helper import Keys
+# from regex_identifier import RegexIdentifier
 
 
 class Identifier:

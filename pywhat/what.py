@@ -125,7 +125,7 @@ def get_text(ctx, opts, value):
     help="Format output according to specified rules.",
 )
 @click.option("-pt", "--print-tags", is_flag=True, help="Add flags to output")
-def run(**kwargs):
+def main(**kwargs):
     """
     pyWhat - Identify what something is.
 
@@ -328,5 +328,5 @@ class What_Object:
         )
 
 
-# if __name__ == "__main__":
-#     main()
+if __name__ == "__main__":
+    main()
