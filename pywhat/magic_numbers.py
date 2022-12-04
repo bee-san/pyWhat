@@ -1,7 +1,7 @@
 import binascii
 
-from pywhat.helper import read_json
-# from helper import read_json
+# from pywhat.helper import read_json
+from helper import read_json
 
 
 def get_magic_nums(file_loc):
