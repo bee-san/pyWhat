@@ -87,6 +87,8 @@ class Identifier:
 
             if regex:
                 identify_obj["Regexes"][short_name] = regex
+            
+            print("Processed a string or a file \'{}\'".format(string))
 
         for key_, value in identify_obj.items():
             # if there are zero regex or file signature matches, set it to None

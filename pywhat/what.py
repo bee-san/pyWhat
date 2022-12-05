@@ -255,6 +255,7 @@ def main(**kwargs):
         * what 'this/is/a/path'
 
     """
+
     if kwargs["text_input"] is None and not kwargs['query'] and not kwargs['print_history']:
         sys.exit("Text input expected. Run 'pywhat --help' for help")
 
@@ -263,7 +264,7 @@ def main(**kwargs):
         print(recorder.get_range_data(kwargs['start_date'].date(), kwargs['end_date'].date()))
         if kwargs['text_input'] is None:
             sys.exit()
-            
+
     if kwargs['print_history']:
         recorder.print_csv(kwargs['print_history'])
         if kwargs['text_input'] is None:
@@ -274,11 +275,10 @@ def main(**kwargs):
     is_file = False
     if os.path.exists(kwargs['text_input']):
         is_file = True
+        print("Recogined as the file(s)")
+    else:
+        print("Recogined as the string")
     recorder.write_query(is_file, content = kwargs['text_input'])
-    
-    
-
-
     dist = Distribution(
         create_filter(kwargs["rarity"], kwargs["include"], kwargs["exclude"])
     )
