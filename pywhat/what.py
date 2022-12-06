@@ -125,6 +125,7 @@ def get_text(ctx, opts, value):
     help="Format output according to specified rules.",
 )
 @click.option("-pt", "--print-tags", is_flag=True, help="Add flags to output")
+
 @click.option("--query", required = False, help = "Search queries history in a specific range", is_flag = True)
 @click.option("--start-date", type= click.DateTime(formats=["%Y-%m-%d"]), default = str(date.today()))
 @click.option("--end-date", type= click.DateTime(formats=["%Y-%m-%d"]), default = str(date.today()))
@@ -351,5 +352,5 @@ class What_Object:
         )
 
 
-# if __name__ == "__main__":
-#     main()
+if __name__ == "__main__":
+    main()
