@@ -1,6 +1,11 @@
-from pywhat.filter import Distribution, Filter
-from pywhat.helper import AvailableTags, Keys
-from pywhat.identifier import Identifier
+# from pywhat.filter import Distribution, Filter
+# from pywhat.helper import AvailableTags, Keys
+# from pywhat.identifier import Identifier
+
+from filter import Distribution, Filter
+from helper import AvailableTags, Keys
+from identifier import Identifier
+
 
 __version__ = "5.0.0"
 
@@ -10,7 +15,7 @@ pywhat_tags = tags  # left for backward compatibility purposes
 __all__ = ["Identifier", "Distribution", "tags", "pywhat_tags", "Keys", "Filter"]
 
 
-del AvailableTags, filter
+# del AvailableTags, filter
 
 
 def __dir__():

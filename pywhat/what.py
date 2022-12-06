@@ -6,6 +6,7 @@ from rich.console import Console
 import identifier, filter, helper, printer
 from filter import Distribution, Filter
 from helper import AvailableTags, InvalidTag, Keys, str_to_key
+from __init__ import __version__
 
 # from pywhat import __version__, identifier, printer
 # from pywhat.filter import Distribution, Filter
@@ -17,14 +18,15 @@ def print_tags(ctx, opts, value):
         tags = sorted(AvailableTags().get_tags())
         console = Console()
         console.print("[bold #D7AFFF]" + "\n".join(tags) + "[/bold #D7AFFF]")
-        sys.exit()
+        # sys.exit()
 
 
 def print_version(ctx, opts, value):
     if value:
         console = Console()
         console.print(f"PyWhat version [bold #49C3CE]{__version__}[/bold #49C3CE]")
-        sys.exit()
+        # return __version__
+        # sys.exit()
 
 
 def create_filter(rarity, include, exclude):
@@ -33,7 +35,7 @@ def create_filter(rarity, include, exclude):
         rarities = rarity.split(":")
         if len(rarities) != 2:
             print("Invalid rarity range format ('min:max' expected)")
-            sys.exit(1)
+            # sys.exit(1)
         try:
             if not rarities[0].isspace() and rarities[0]:
                 filters_dict["MinRarity"] = float(rarities[0])
@@ -41,7 +43,7 @@ def create_filter(rarity, include, exclude):
                 filters_dict["MaxRarity"] = float(rarities[1])
         except ValueError:
             print("Invalid rarity argument (float expected)")
-            sys.exit(1)
+            # sys.exit(1)
     if include is not None:
         filters_dict["Tags"] = list(map(str.strip, include.split(",")))
     if exclude is not None:
@@ -54,7 +56,7 @@ def create_filter(rarity, include, exclude):
             "Passed tags are not valid.\n"
             "You can check available tags by using: 'pywhat --tags'"
         )
-        sys.exit(1)
+        # sys.exit(1)
 
     return filter
 
@@ -278,7 +280,7 @@ def run(**kwargs):
             key = str_to_key(kwargs["key"])
         except ValueError:
             print("Invalid key")
-            sys.exit(1)
+            # sys.exit(1)
     identified_output = what_obj.what_is_this(
         kwargs["text_input"],
         kwargs["only_text"],
@@ -297,9 +299,7 @@ def run(**kwargs):
     elif kwargs["format"] is not None:
         p.format_print(identified_output, kwargs["format"])
     else:
-        # p.print_raw(identified_output, kwargs["text_input"], kwargs["print_tags"])
-        print("hellow")
-        return "hello"
+        p.print_raw(identified_output, kwargs["text_input"], kwargs["print_tags"])
 
 
 class What_Object:
