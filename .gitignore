@@ -135,6 +135,7 @@ ENV/
 env.bak/
 venv.bak/
 pythonenv*
+.query
 
 # Spyder project settings
 .spyderproject
@@ -172,3 +173,6 @@ Thumbs.db
 # Code editor files
 .vscode
 .idea
+
+# Record csv
+record.csv
