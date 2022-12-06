@@ -2,10 +2,15 @@ import glob
 import os.path
 from typing import Callable, Optional
 
-import pywhat.magic_numbers
-from pywhat.filter import Distribution, Filter
-from pywhat.helper import Keys
-from pywhat.regex_identifier import RegexIdentifier
+# import pywhat.magic_numbers
+# from pywhat.filter import Distribution, Filter
+# from pywhat.helper import Keys
+# from pywhat.regex_identifier import RegexIdentifier
+
+import magic_numbers
+from filter import Distribution, Filter
+from helper import Keys
+from regex_identifier import RegexIdentifier
 
 
 class Identifier:
@@ -63,7 +68,7 @@ class Identifier:
                 else:
                     short_name = os.path.basename(string)
 
-                magic_numbers = pywhat.magic_numbers.get_magic_nums(string)
+                magic_numbers = magic_numbers.get_magic_nums(string)
                 with open(string, "r", encoding="utf-8", errors="ignore") as file:
                     contents = [file.read()]
 
@@ -75,7 +80,7 @@ class Identifier:
                 )
 
                 if not magic_numbers:
-                    magic_numbers = pywhat.magic_numbers.check_magic_nums(string)
+                    magic_numbers = magic_numbers.check_magic_nums(string)
 
                 if magic_numbers:
                     identify_obj["File Signatures"][short_name] = magic_numbers

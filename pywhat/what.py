@@ -4,12 +4,13 @@ import click
 from rich.console import Console
 import os
 
-from pywhat import __version__, identifier, printer
-from pywhat.filter import Distribution, Filter
-from pywhat.helper import AvailableTags, InvalidTag, Keys, str_to_key
-from pywhat.helper import Query, Recorder
-from datetime import date
+import identifier, filter, helper, printer
+from filter import Distribution, Filter
+from helper import AvailableTags, InvalidTag, Keys, str_to_key
 
+# from pywhat import __version__, identifier, printer
+# from pywhat.filter import Distribution, Filter
+# from pywhat.helper import AvailableTags, InvalidTag, Keys, str_to_key
 
 def print_tags(ctx, opts, value):
     if value:
@@ -256,6 +257,8 @@ def main(**kwargs):
 
     """
     if kwargs["text_input"] is None and not kwargs['query'] and not kwargs['print_history']:
+    # kwargs["window"]
+    if kwargs["text_input"] is None:
         sys.exit("Text input expected. Run 'pywhat --help' for help")
 
     recorder = Recorder()
@@ -317,7 +320,9 @@ def main(**kwargs):
     elif kwargs["format"] is not None:
         p.format_print(identified_output, kwargs["format"])
     else:
-        p.print_raw(identified_output, kwargs["text_input"], kwargs["print_tags"])
+        # p.print_raw(identified_output, kwargs["text_input"], kwargs["print_tags"])
+        print("hellow")
+        return "hello"
 
 
 class What_Object:
@@ -346,5 +351,5 @@ class What_Object:
         )
 
 
-if __name__ == "__main__":
-    main()
+# if __name__ == "__main__":
+#     main()
