@@ -240,7 +240,7 @@ def run(**kwargs):
 
         * what --rarity 0.6: 'myEmail@host.org'
 
-        * what --rarity 0: --include "credentials, username, password" --exclude "aws, credentials" 'James:SecretPassword'
+        * what --rarity 0: --include "credentials" --exclude "aws" 'James:SecretPassword'
 
         * what -br 0.6: -be URL '123myEmail@host.org456'
 
