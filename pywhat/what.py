@@ -6,7 +6,8 @@ import os
 
 import identifier, filter, helper, printer
 from filter import Distribution, Filter
-from helper import AvailableTags, InvalidTag, Keys, str_to_key
+from helper import AvailableTags, InvalidTag, Keys, str_to_key, Recorder
+from datetime import date
 
 # from pywhat import __version__, identifier, printer
 # from pywhat.filter import Distribution, Filter
@@ -260,7 +261,6 @@ def main(**kwargs):
 
     if kwargs["text_input"] is None and not kwargs['query'] and not kwargs['print_history']:
     # kwargs["window"]
-    if kwargs["text_input"] is None:
         sys.exit("Text input expected. Run 'pywhat --help' for help")
 
     recorder = Recorder()
@@ -321,8 +321,7 @@ def main(**kwargs):
     elif kwargs["format"] is not None:
         p.format_print(identified_output, kwargs["format"])
     else:
-        # p.print_raw(identified_output, kwargs["text_input"], kwargs["print_tags"])
-        print("hellow")
+        p.print_raw(identified_output, kwargs["text_input"], kwargs["print_tags"])
         return "hello"
 
 

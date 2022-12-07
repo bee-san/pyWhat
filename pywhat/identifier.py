@@ -68,7 +68,7 @@ class Identifier:
                 else:
                     short_name = os.path.basename(string)
 
-                magic_numbers = magic_numbers.get_magic_nums(string)
+                magic_numberss = magic_numbers.get_magic_nums(string)
                 with open(string, "r", encoding="utf-8", errors="ignore") as file:
                     contents = [file.read()]
 
@@ -79,11 +79,11 @@ class Identifier:
                     contents, dist=dist, boundaryless=boundaryless
                 )
 
-                if not magic_numbers:
-                    magic_numbers = magic_numbers.check_magic_nums(string)
+                if not magic_numberss:
+                    magic_numberss = magic_numbers.check_magic_nums(string)
 
-                if magic_numbers:
-                    identify_obj["File Signatures"][short_name] = magic_numbers
+                if magic_numberss:
+                    identify_obj["File Signatures"][short_name] = magic_numberss
             else:
                 short_name = "text"
                 regex = self._regex_id.check(
