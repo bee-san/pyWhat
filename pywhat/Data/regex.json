@@ -2728,7 +2728,7 @@
    },
    {
       "Name": "YouTube Video ID",
-      "Regex": "^((?=.*[A-Z])(?=.*[a-z])[0-9A-Za-z_-]{10}[048AEIMQUYcgkosw]{1})$",
+      "Regex": "^([a-zA-Z0-9_-]{11})$",
       "plural_name": false,
       "Description": null,
       "Rarity": 0,
@@ -2740,9 +2740,15 @@
       ],
       "Examples": {
          "Valid": [
-            "dQw4w9WgXcQ"
+            "dQw4w9WgXcQ",
+            "fJ9rUzIMcZQ",
+            "xjDjIWPwcPU"
          ],
-         "Invalid": []
+         "Invalid": [
+            "randomstring123",
+            "abcdefghijkL",
+            "!@#$%^&*()_"
+         ]
       }
    },
    {
