@@ -1332,22 +1332,22 @@
       }
    },
    {
-	  "Name": "Digital Object Identifier (DOI)",
-	  "Regex": "^((?:https?:\\/\\/(?:(?:www\\.)?doi\\.org\\/)|doi:)?(10\\.[1-9][0-9]{3}[0-9]*\\/\\S+[^;,.\\s]))$",
-	  "plural_name": false,
-	  "Description": null,
-	  "Rarity": 0.7,
-	  "URL": null,
-	  "Tags": [
+      "Name": "Digital Object Identifier (DOI)",
+      "Regex": "^((?:https?:\\/\\/(?:(?:www\\.)?doi\\.org\\/)|doi:)?(10\\.[1-9][0-9]{3}[0-9]*\\/\\S+[^;,.\\s]))$",
+      "plural_name": false,
+      "Description": null,
+      "Rarity": 0.7,
+      "URL": null,
+      "Tags": [
          "Identifiers",
          "Media"
-	  ],
-	  "Examples": {
-	      "Valid": [
-	   	   "10.1000/182",
-		   "doi:10.1002/0470841559.ch1"
-	      ]
-	  }
+      ],
+      "Examples": {
+         "Valid": [
+            "10.1000/182",
+            "doi:10.1002/0470841559.ch1"
+         ]
+      }
    },
    {
       "Name": "Internet Protocol (IP) Address Version 6",
@@ -2728,7 +2728,7 @@
    },
    {
       "Name": "YouTube Video ID",
-      "Regex": "^([a-zA-Z0-9_-]{11})$",
+      "Regex": "^([0-9A-Za-z_-]{10}[048AEIMQUYcgkosw]{1})$",
       "plural_name": false,
       "Description": null,
       "Rarity": 0,
