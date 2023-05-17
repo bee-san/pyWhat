@@ -2,11 +2,16 @@ import sys
 
 import click
 from rich.console import Console
+import os
 
-from pywhat import __version__, identifier, printer
-from pywhat.filter import Distribution, Filter
-from pywhat.helper import AvailableTags, InvalidTag, Keys, str_to_key
+import identifier, filter, helper, printer
+from filter import Distribution, Filter
+from helper import AvailableTags, InvalidTag, Keys, str_to_key, Recorder
+from datetime import date
 
+# from pywhat import __version__, identifier, printer
+# from pywhat.filter import Distribution, Filter
+# from pywhat.helper import AvailableTags, InvalidTag, Keys, str_to_key
 
 def print_tags(ctx, opts, value):
     if value:
@@ -121,6 +126,11 @@ def get_text(ctx, opts, value):
     help="Format output according to specified rules.",
 )
 @click.option("-pt", "--print-tags", is_flag=True, help="Add flags to output")
+
+@click.option("--query", required = False, help = "Search queries history in a specific range", is_flag = True)
+@click.option("--start-date", type= click.DateTime(formats=["%Y-%m-%d"]), default = str(date.today()))
+@click.option("--end-date", type= click.DateTime(formats=["%Y-%m-%d"]), default = str(date.today()))
+@click.option("--print-history", type = int)
 def main(**kwargs):
     """
     pyWhat - Identify what something is.
@@ -248,8 +258,31 @@ def main(**kwargs):
         * what 'this/is/a/path'
 
     """
-    if kwargs["text_input"] is None:
+
+    if kwargs["text_input"] is None and not kwargs['query'] and not kwargs['print_history']:
+    # kwargs["window"]
         sys.exit("Text input expected. Run 'pywhat --help' for help")
+
+    recorder = Recorder()
+    if kwargs['query']:
+        print(recorder.get_range_data(kwargs['start_date'].date(), kwargs['end_date'].date()))
+        if kwargs['text_input'] is None:
+            sys.exit()
+
+    if kwargs['print_history']:
+        recorder.print_csv(kwargs['print_history'])
+        if kwargs['text_input'] is None:
+            sys.exit() 
+
+    # print(kwargs['text_input'])
+    
+    is_file = False
+    if os.path.exists(kwargs['text_input']):
+        is_file = True
+        print("Recogined as the file(s)")
+    else:
+        print("Recogined as the string")
+    recorder.write_query(is_file, content = kwargs['text_input'])
     dist = Distribution(
         create_filter(kwargs["rarity"], kwargs["include"], kwargs["exclude"])
     )
@@ -289,6 +322,7 @@ def main(**kwargs):
         p.format_print(identified_output, kwargs["format"])
     else:
         p.print_raw(identified_output, kwargs["text_input"], kwargs["print_tags"])
+        return "hello"
 
 
 class What_Object:

@@ -129,12 +129,14 @@ celerybeat.pid
 # .env
 .env/
 .venv/
+.query/
 env/
 venv/
 ENV/
 env.bak/
 venv.bak/
 pythonenv*
+.query
 
 # Spyder project settings
 .spyderproject
@@ -172,3 +174,6 @@ Thumbs.db
 # Code editor files
 .vscode
 .idea
+
+# Record csv
+record.csv
