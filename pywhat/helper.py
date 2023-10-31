@@ -1,9 +1,9 @@
 """Helper utilities"""
 import collections.abc
-import os.path
 import re
 from enum import Enum, auto
 from functools import lru_cache
+from pathlib import Path
 
 try:
     import orjson as json
@@ -33,7 +33,7 @@ class InvalidTag(Exception):
 
 @lru_cache()
 def read_json(path: str):
-    fullpath = os.path.join(os.path.dirname(os.path.abspath(__file__)), "Data/" + path)
+    fullpath = Path(__file__).resolve().parent / "Data" / path
     with open(fullpath, "rb") as myfile:
         return json.loads(myfile.read())
 
