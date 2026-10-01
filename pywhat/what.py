@@ -214,7 +214,7 @@ def main(**kwargs):
 
             Only print entries with rarity in range [min,max]. min and max can be omitted.
 
-            Note: PyWhat by default has a rarity of 0.1. To see all matches, with many potential false positives use `0:`.
+            Note: PyWhat by default has a rarity of 0.1. To see all matches, with many potential false positives use `0:`. For example, a YouTube video ID on its own, such as 'dQw4w9WgXcQ', is only shown with `--rarity 0:`.
 
         --include list
 

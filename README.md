@@ -136,6 +136,8 @@ Sometimes, you only care about seeing things which are related to AWS. Or bug bo
 
 You can filter output by using `what --rarity 0.2:0.8 --include Identifiers,URL https://skerritt.blog`. Use `what --help` to get more information.
 
+By default, `what` only shows matches with a rarity of 0.1 or more, as matches with a lower rarity are often false positives. For example, a YouTube video ID on its own, like `dQw4w9WgXcQ`, could be any 11 random characters, so `what dQw4w9WgXcQ` finds nothing, but `what --rarity 0: dQw4w9WgXcQ` shows it. YouTube links, like `https://youtu.be/dQw4w9WgXcQ` or `youtube.com/watch?v=dQw4w9WgXcQ&t=42s`, are shown by default.
+
 To see all filters, run `pywhat --tags`! You can also combine them, for example to see all cryptocurrency wallets minus Ripple you can do:
 
 ```console
