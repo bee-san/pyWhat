@@ -1,8 +1,9 @@
+import json
 import re
 
 import pytest
 
-from pywhat.helper import load_regexes
+from pywhat.helper import join_regexes, load_regexes
 
 database = load_regexes()
 
@@ -39,14 +40,55 @@ def test_name_capitalization():
 
 
 def test_regex_format():
-    for regex in database:
-        assert re.findall(
-            r"^(?:\(\?i\))?\^\(.*\)\$$", regex["Regex"]
-        ), r"Please use ^(regex)$ regex format. If there is '\n' character, you have to escape it. If there is '(?i)', it is allowed and should be before the '^'."
+    # Check the regexes as written in regex.json; "Regex" may be a list
+    with open("pywhat/Data/regex.json", "r", encoding="utf-8") as file:
+        raw_database = json.load(file)
 
-        assert (
-            re.findall(r"\^\||\|\^|\$\|\^|\$\||\|\$", regex["Regex"]) == []
-        ), "Remove in-between boundaries. For example, '^|$' should only be '|'."
+    for entry in raw_database:
+        patterns = entry["Regex"]
+        if not isinstance(patterns, list):
+            patterns = [patterns]
+        for pattern in patterns:
+            assert re.findall(
+                r"^(?:\(\?i\))?\^\(.*\)\$$", pattern
+            ), r"Please use ^(regex)$ regex format. If there is '\n' character, you have to escape it. If there is '(?i)', it is allowed and should be before the '^'."
+
+            assert (
+                re.findall(r"\^\||\|\^|\$\|\^|\$\||\|\$", pattern) == []
+            ), "Remove in-between boundaries. For example, '^|$' should only be '|'."
+
+
+@pytest.mark.parametrize(
+    "patterns, joined",
+    [
+        (["^(a)$"], "^(?:(a))$"),
+        (["^(a)$", "^(b|c)$"], "^(?:(a)|(b|c))$"),
+        (["(?i)^(a)$", "(?i)^(b)$"], "(?i)^(?:(a)|(b))$"),
+        (["(?i)^(a)$", "^(B)$"], "^(?:(?i:(a))|(B))$"),
+    ],
+)
+def test_join_regexes(patterns, joined):
+    assert join_regexes(patterns) == joined
+
+
+def test_join_regexes_case_sensitivity():
+    regex = join_regexes(["(?i)^(thm{.*})$", "^(FLAG{.*})$"])
+    assert re.search(regex, "THM{x}")
+    assert re.search(regex, "FLAG{x}")
+    assert not re.search(regex, "flag{x}")
+
+
+def test_join_regexes_rejects_unanchored_regex():
+    with pytest.raises(ValueError):
+        join_regexes(["^(a)$", "(b)"])
+
+
+def test_regex_list_is_joined_on_load():
+    entry = next(e for e in database if e["Name"] == "TryHackMe Flag Format")
+    assert isinstance(entry["Regex"], str)
+    assert re.search(entry["Regex"], "thm{a}")
+    assert re.search(entry["Regex"], "TryHackMe{a}")
+    assert re.search(entry["Boundaryless Regex"], "xx tryhackme{a} yy")
 
 
 def test_check_keys():

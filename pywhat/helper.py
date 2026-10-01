@@ -38,10 +38,39 @@ def read_json(path: str):
         return json.loads(myfile.read())
 
 
+def join_regexes(patterns: list) -> str:
+    """
+    Join a list of regexes in the ^(regex)$ format into a single regex.
+
+    ["^(a)$", "^(b)$"] becomes "^(?:(a)|(b))$". If every regex starts with
+    "(?i)" the result keeps one leading "(?i)", otherwise the flag is scoped
+    to the regexes that had it: ["(?i)^(a)$", "^(b)$"] becomes
+    "^(?:(?i:(a))|(b))$".
+
+    Capturing groups are renumbered, so numbered backreferences (\\1) only
+    work in the first regex of the list.
+    """
+    case_insensitive = [pattern.startswith("(?i)") for pattern in patterns]
+    bodies = []
+    for pattern, ignore_case in zip(patterns, case_insensitive):
+        body = pattern[len("(?i)") :] if ignore_case else pattern
+        if not (body.startswith("^") and body.endswith("$")):
+            raise ValueError(f"Regex {pattern!r} is not in the ^(regex)$ format")
+        body = body[1:-1]
+        if ignore_case and not all(case_insensitive):
+            body = f"(?i:{body})"
+        bodies.append(body)
+    prefix = "(?i)" if all(case_insensitive) else ""
+    return prefix + "^(?:" + "|".join(bodies) + ")$"
+
+
 @lru_cache()
 def load_regexes() -> list:
     regexes = read_json("regex.json")
     for regex in regexes:
+        # "Regex" may be a list of alternative formats (issue #227)
+        if isinstance(regex["Regex"], list):
+            regex["Regex"] = join_regexes(regex["Regex"])
         regex["Boundaryless Regex"] = re.sub(
             r"(?<!\\)\^(?![^\[\]]*(?<!\\)\])", "", regex["Regex"]
         )

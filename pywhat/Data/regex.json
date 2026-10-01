@@ -131,7 +131,10 @@
    },
    {
       "Name": "TryHackMe Flag Format",
-      "Regex": "(?i)^(thm{.*}|tryhackme{.*})$",
+      "Regex": [
+         "(?i)^(thm{.*})$",
+         "(?i)^(tryhackme{.*})$"
+      ],
       "plural_name": false,
       "Description": "Used for Capture The Flags at https://tryhackme.com",
       "Rarity": 1,
@@ -141,7 +144,8 @@
       ],
       "Examples": {
          "Valid": [
-            "thm{hello}"
+            "thm{hello}",
+            "tryhackme{hello}"
          ],
          "Invalid": []
       }
