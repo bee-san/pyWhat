@@ -1,24 +1,38 @@
 import re
-from typing import Optional
+from typing import Iterable, Optional
 
 from pywhat.filter import Distribution, Filter
+from pywhat.processors import (
+    Processor,
+    default_processors,
+    processors_by_name,
+    run_processors,
+)
 
 
 class RegexIdentifier:
-    def __init__(self):
+    def __init__(self, processors: Optional[Iterable[Processor]] = None):
         self.distribution = Distribution()
+        # Non-regex processing of the matches (issue #115)
+        self.processors = (
+            default_processors() if processors is None else list(processors)
+        )
 
     def check(
         self,
         text,
         dist: Optional[Distribution] = None,
         *,
-        boundaryless: Optional[Filter] = None
+        boundaryless: Optional[Filter] = None,
+        processors: Optional[Iterable[Processor]] = None,
     ):
         if dist is None:
             dist = self.distribution
         if boundaryless is None:
             boundaryless = Filter({"Tags": []})
+        if processors is None:
+            processors = self.processors
+        by_name = processors_by_name(processors)
         matches = []
 
         for string in text:
@@ -26,6 +40,7 @@ class RegexIdentifier:
                 regex = (
                     reg["Boundaryless Regex"] if reg in boundaryless else reg["Regex"]
                 )
+                reg_processors = by_name.get(reg["Name"])
                 for matched_regex in re.finditer(regex, string, re.MULTILINE):
                     reg_match = dict(reg)
                     matched = self.clean_text(matched_regex.group(0))
@@ -72,12 +87,15 @@ class RegexIdentifier:
                             ) + ", ".join(matched_children)
                     reg_match.pop("Children", None)
 
-                    matches.append(
-                        {
-                            "Matched": matched,
-                            "Regex Pattern": reg_match,
-                        }
-                    )
+                    match = {
+                        "Matched": matched,
+                        "Regex Pattern": reg_match,
+                    }
+                    processed: Optional[dict] = match
+                    if reg_processors:
+                        processed = run_processors(match, reg_processors, dist)
+                    if processed is not None:
+                        matches.append(processed)
 
         return matches
 

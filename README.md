@@ -146,6 +146,8 @@ pywhat --include "Cryptocurrency Wallet" --exclude "Ripple Wallet" 1KFHE7w8BhaEN
 
 **Boundaryless mode** `What` has a special mode to match identifiable information within strings. By default, it is enabled in CLI but disabled in API. Use `what --help` or refer to [API Documentation](https://github.com/bee-san/pyWhat/wiki/API) for more information.
 
+**Processing** Once a regex has found something, `What` can process it further, beyond what a regex can do. For example, the date of a Unix timestamp is added to its description: `what --rarity 0: --include "UNIX Timestamp" 1637093119` shows `Date: November 16, 2021 8:05:19 PM UTC`. Use `what --disable-processing` to turn this off.
+
 ### 💬 Interactive mode
 
 Analysing something big? Load it into memory once with `--interactive`, then search through what `What` found as often as you like, without scanning it again:
@@ -164,6 +166,28 @@ pywhat> load another/directory
 # 🍕 API
 
 PyWhat has an API! Click here [https://github.com/bee-san/pyWhat/wiki/API](https://github.com/bee-san/pyWhat/wiki/API) to read about it.
+
+You can also process the matches with your own code, for example to filter out false positives. A processor gets every match of the regexes named in `names` and returns it, possibly changed (its description, rarity, ...), or `None` to filter it out. It is an object, so it can keep state between matches:
+
+```python
+from pywhat import Identifier, Processor
+from pywhat.processors import default_processors
+
+
+class URLProcessor(Processor):
+    names = ["Uniform Resource Locator (URL)"]
+
+    def process(self, match):
+        if "trashurl.it" in match["Matched"]:
+            return None
+        return match
+
+
+id = Identifier(processors=[*default_processors(), URLProcessor()])
+id.identify("https://trashurl.it/page")
+```
+
+`Identifier(processors=[])` or `identify(text, processors=[])` turns processing off.
 
 # 👾 Contributing
 

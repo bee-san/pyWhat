@@ -35,6 +35,7 @@ from pywhat.filter import Distribution, Filter
 from pywhat.helper import AvailableTags, CaseInsensitiveSet, Keys
 from pywhat.identifier import Identifier
 from pywhat.printer import Printing
+from pywhat.processors import Processor
 
 # Search keys, including the "includes" and "excludes" spelling of #233
 _SEARCH_KEYS = {
@@ -323,8 +324,9 @@ class InteractiveShell(cmd.Cmd):
     The options are the ones of the command line interface: query is the
     search to start with (see Query). boundaryless (by default the one of
     the command line, Filter()), only_text and include_filenames are used to
-    identify the loaded input. key, reverse, json_output, format_str and
-    print_tags format the matches.
+    identify the loaded input, and processors (by default
+    pywhat.processors.default_processors()) to process its matches. key,
+    reverse, json_output, format_str and print_tags format the matches.
     """
 
     prompt = "pywhat> "
@@ -336,6 +338,7 @@ class InteractiveShell(cmd.Cmd):
         boundaryless: Optional[Filter] = None,
         only_text: bool = False,
         include_filenames: bool = False,
+        processors: Optional[Iterable[Processor]] = None,
         key: Any = Keys.NONE,
         reverse: bool = False,
         json_output: bool = False,
@@ -356,6 +359,7 @@ class InteractiveShell(cmd.Cmd):
         self._identifier = Identifier(
             dist=Distribution(Filter({"MinRarity": 0})),
             boundaryless=Filter() if boundaryless is None else boundaryless,
+            processors=processors,
         )
         self.only_text = only_text
         self.include_filenames = include_filenames

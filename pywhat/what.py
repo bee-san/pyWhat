@@ -107,6 +107,12 @@ def get_text(ctx, opts, value):
 @click.option(
     "-db", "--disable-boundaryless", is_flag=True, help="Disable boundaryless mode."
 )
+@click.option(
+    "-dp",
+    "--disable-processing",
+    is_flag=True,
+    help="Disable the processing of matches, e.g. adding dates to Unix timestamps.",
+)
 @click.option("--json", is_flag=True, help="Return results in json format.")
 @click.option(
     "--interactive",
@@ -197,6 +203,12 @@ def main(**kwargs):
 
         Refer to the Filtration section for more information.
 
+    Processing:
+
+        Matches are processed further once a regex has found them. For example, the date of a Unix timestamp, in UTC, is added to its description: pywhat --rarity 0: --include "UNIX Timestamp" 1637093119
+
+        '--disable-processing' flag can be used to show the matches as the regexes found them.
+
     Formatting the output:
 
         --format format_str
@@ -283,7 +295,9 @@ def main(**kwargs):
             kwargs["boundaryless_include"],
             kwargs["boundaryless_exclude"],
         )
-    what_obj = What_Object(dist)
+    # processors=None uses the default processors, [] disables processing
+    processors = [] if kwargs["disable_processing"] else None
+    what_obj = What_Object(dist, processors)
     if kwargs["key"] is None:
         key = Keys.NONE
     else:
@@ -298,6 +312,7 @@ def main(**kwargs):
             boundaryless=boundaryless,
             only_text=kwargs["only_text"],
             include_filenames=kwargs["include_filenames"],
+            processors=processors,
             key=key,
             reverse=kwargs["reverse"],
             json_output=kwargs["json"],
@@ -327,8 +342,8 @@ def main(**kwargs):
 
 
 class What_Object:
-    def __init__(self, distribution):
-        self.id = identifier.Identifier(dist=distribution)
+    def __init__(self, distribution, processors=None):
+        self.id = identifier.Identifier(dist=distribution, processors=processors)
 
     def what_is_this(
         self,
