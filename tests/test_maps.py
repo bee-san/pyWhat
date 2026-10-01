@@ -279,6 +279,22 @@ def test_cli_map_multiple_inputs():
     assert f"Link: https://xrpscan.com/account/{WALLET}" in output
 
 
+def test_cli_map_stream():
+    output = words(run_cli(["--stream", "--map", "osm", "-db", COORDINATES]))
+    assert f"Name: {NAME} Link: {OSM_LINK}" in output
+    assert "google" not in output
+
+
+def test_cli_map_stream_json():
+    output = run_cli(["--stream", "--json", "--map", "osm", "-db", COORDINATES])
+    regexes = [
+        match["Regex Pattern"]
+        for line in output.splitlines()
+        for match in json.loads(line)["Regexes"]["text"]
+    ]
+    assert [(regex["Name"], regex["Link"]) for regex in regexes] == [(NAME, OSM_LINK)]
+
+
 def test_cli_map_keeps_the_default_processors():
     output = words(run_cli(["--map", "osm"] + COORDS_AND_TIMESTAMPS + [COORDINATES]))
     assert f"Link: {OSM_LINK}" in output
