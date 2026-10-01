@@ -142,6 +142,14 @@ To see all filters, run `pywhat --tags`! You can also combine them, for example 
 pywhat --include "Cryptocurrency Wallet" --exclude "Ripple Wallet" 1KFHE7w8BhaENAswwryaoccDb6qcT6DbYY
 ```
 
+The names of the regexes work like tags, and many regexes have shorter alternative names too, such as `BTC Wallet` for `Bitcoin (₿) Wallet Address` or `ARN` for `Amazon Resource Name (ARN)`. To only see Bitcoin and Ethereum wallets:
+
+```console
+pywhat --include "BTC Wallet,ETH Wallet" TEXT
+```
+
+Run `pywhat --names` to see the name of every regex with its alternative names.
+
 ### 👽 Sorting, Exporting, and more!
 
 **Sorting** You can sort the output by using `what -k rarity --reverse TEXT`. Use `what --help` to get more information.
@@ -196,6 +204,8 @@ id.identify("https://trashurl.it/page")
 # 👾 Contributing
 
 `what` not only thrives on contributors, but can't exist without them! If you want to add a new regex to check for things, you can read our documentation [here](https://github.com/bee-san/what/wiki/Adding-your-own-Regex)
+
+If a regex is known by other names, such as an abbreviation, list them in its optional `"Alternative Names"` in [regex.json](pywhat/Data/regex.json) rather than adding them as tags. Tags are for groups of regexes, like `Bug Bounty`.
 
 We ask contributors to join the Discord for quicker discussions, but it's not needed:
 <a href="http://discord.skerritt.blog"><img alt="Discord" src="https://img.shields.io/discord/754001738184392704"></a>

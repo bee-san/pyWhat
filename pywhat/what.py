@@ -3,10 +3,19 @@ from typing import Sequence, Union
 
 import click
 from rich.console import Console
+from rich.markup import escape
 
 from pywhat import __version__, identifier, printer
 from pywhat.filter import Distribution, Filter
-from pywhat.helper import AvailableTags, InvalidTag, Keys, str_to_key
+from pywhat.helper import (
+    AvailableTags,
+    InvalidTag,
+    Keys,
+    get_names,
+    load_regexes,
+    split_tags,
+    str_to_key,
+)
 from pywhat.interactive import InteractiveShell, query_from_options
 from pywhat.unicode import escape_unencodable, texts
 
@@ -16,6 +25,24 @@ def print_tags(ctx, opts, value):
         tags = sorted(AvailableTags().get_tags())
         console = Console()
         console.print("[bold #D7AFFF]" + "\n".join(tags) + "[/bold #D7AFFF]")
+        sys.exit()
+
+
+def print_names(ctx, opts, value):
+    """Print every regex name, followed by its alternative names (issue #184)."""
+    if value:
+        # Options are parsed before main() runs escape_unencodable(), and
+        # names such as "Bitcoin (\u20bf) Wallet Address" are not ASCII
+        escape_unencodable(sys.stdout)
+        lines = []
+        for regex in sorted(load_regexes(), key=lambda regex: regex["Name"].lower()):
+            name, *alternative_names = get_names(regex)
+            line = f"[bold #D7AFFF]{escape(name)}[/bold #D7AFFF]"
+            if alternative_names:
+                line += ": " + escape(", ".join(alternative_names))
+            lines.append(line)
+        # One line per regex, also when the output is not a terminal
+        Console(highlight=False).print("\n".join(lines), soft_wrap=True)
         sys.exit()
 
 
@@ -42,16 +69,18 @@ def create_filter(rarity, include, exclude):
             print("Invalid rarity argument (float expected)")
             sys.exit(1)
     if include is not None:
-        filters_dict["Tags"] = list(map(str.strip, include.split(",")))
+        filters_dict["Tags"] = list(map(str.strip, split_tags(include)))
     if exclude is not None:
-        filters_dict["ExcludeTags"] = list(map(str.strip, exclude.split(",")))
+        filters_dict["ExcludeTags"] = list(map(str.strip, split_tags(exclude)))
 
     try:
         filter = Filter(filters_dict)
     except InvalidTag:
         print(
             "Passed tags are not valid.\n"
-            "You can check available tags by using: 'pywhat --tags'"
+            "You can check available tags by using: 'pywhat --tags'\n"
+            "and the names of the regexes, which work like tags, by using: "
+            "'pywhat --names'"
         )
         sys.exit(1)
 
@@ -99,13 +128,20 @@ def read_stdin() -> str:
     help="Show available tags and exit.",
 )
 @click.option(
+    "--names",
+    is_flag=True,
+    expose_value=False,
+    callback=print_names,
+    help="Show the names of the regexes, with their alternative names, and exit.",
+)
+@click.option(
     "-r",
     "--rarity",
     help="Filter by rarity. Rarity is how unlikely something is to be a false-positive. The higher the number, the more unlikely. This is in the range of 0:1. To filter only items past 0.5, use 0.5: with the colon on the end. Default 0.1:1",
     default="0.1:1",
 )
-@click.option("-i", "--include", help="Only show matches with these tags.")
-@click.option("-e", "--exclude", help="Exclude matches with these tags.")
+@click.option("-i", "--include", help="Only show matches with these tags or names.")
+@click.option("-e", "--exclude", help="Exclude matches with these tags or names.")
 @click.option("-o", "--only-text", is_flag=True, help="Do not scan files or folders.")
 @click.option("-k", "--key", help="Sort by the specified key.")
 @click.option("--reverse", is_flag=True, help="Sort in reverse order.")
@@ -181,6 +217,12 @@ def main(**kwargs):
         --exclude list
 
             Exclude specified tags. List is a comma separated list.
+
+        The names of the regexes work like tags. Many regexes have alternative names too, such as 'ETH Wallet' for 'Ethereum (ETH) Wallet Address', so --include 'BTC Wallet,ETH Wallet' only shows Bitcoin and Ethereum wallets.
+
+        --names
+
+            Show the name of every regex, followed by its alternative names.
 
     Sorting:
 

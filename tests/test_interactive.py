@@ -199,6 +199,41 @@ def test_query_text():
     assert not Query("flag skerritt").matches("text", FLAG)
 
 
+BITCOIN = {
+    "Matched": "1KFHE7w8BhaENAswwryaoccDb6qcT6DbYY",
+    "Regex Pattern": {
+        "Name": "Bitcoin (\u20bf) Wallet Address",
+        "Alternative Names": ["Bitcoin Wallet", "BTC Wallet"],
+        "Rarity": 0.7,
+        "Tags": ["Finance"],
+    },
+}
+
+
+def test_query_names():
+    # Names and alternative names work like tags (issue #184)
+    query = Query('include:"TryHackMe Flag Format,BTC Wallet" rarity:0:')
+    assert query.matches("text", FLAG)
+    assert query.matches("text", BITCOIN)
+    assert not query.matches("text", EMAIL)
+    query = Query('exclude:"btc wallet"')
+    assert not query.matches("text", BITCOIN)
+    assert query.matches("text", EMAIL)
+    # Text is searched for in the alternative names too
+    assert Query("btc").matches("text", BITCOIN)
+    assert not Query("btc").matches("text", FLAG)
+
+
+def test_query_names_with_commas():
+    query = Query('include:"EUI-48 Identifier (Ethernet, WiFi, Bluetooth, etc), UUID"')
+    assert (
+        str(query)
+        == 'include:"EUI-48 Identifier (Ethernet, WiFi, Bluetooth, etc),UUID",'
+        ' rarity:"0.1:1"'
+    )
+    assert Query(str(query)).parts == query.parts
+
+
 def test_query_from_options():
     assert query_from_options("0.1:1", None, None) == 'rarity:"0.1:1"'
     query = query_from_options("0.5:", "Bug Bounty,AWS", "Credit Card")
@@ -240,6 +275,22 @@ def test_complete_query(before, expected):
     rarities = [1, 0.5, 0.3, 0.5]
     locations = ["/sub/file", "/other"]
     assert complete_query(before, tags, rarities, locations) == expected
+
+
+def test_complete_names_with_commas():
+    # A comma in parentheses is part of a name, it does not separate tags
+    tags = [
+        "EUI-48 Identifier (Ethernet, WiFi, Bluetooth, etc)",
+        "WiFi Address",
+        "UUID",
+    ]
+    before = 'include:"EUI-48 Identifier (Ethernet, Wi'
+    assert complete_query(before, tags) == (
+        9,
+        ['EUI-48 Identifier (Ethernet, WiFi, Bluetooth, etc)"'],
+    )
+    before = 'include:"EUI-48 Identifier (Ethernet, WiFi, Bluetooth, etc), U'
+    assert complete_query(before, tags) == (len(before) - 1, ['UUID"'])
 
 
 def test_readline_matches():
@@ -307,6 +358,35 @@ def test_include_and_exclude_need_tags():
     assert "Which tags? Use 'include TAG[,TAG...]'." in outputs[1]
     assert "Which tags? Use 'exclude TAG[,TAG...]'." in outputs[2]
     assert "Unknown tag 'nope'" in outputs[3]
+
+
+def test_include_and_exclude_names():
+    shell, outputs = run_shell(
+        "include THM Flag,HTB Flag", "exclude HackTheBox Flag Format"
+    )
+    assert 'Search: include:"THM Flag,HTB Flag", rarity:"0.1:1"' in outputs[1]
+    assert "Name: TryHackMe Flag Format" in outputs[1]
+    assert "Name: HackTheBox Flag Format" in outputs[1]
+    assert "Name: HackTheBox Flag Format" not in outputs[2]
+    assert {found["Regex Pattern"]["Name"] for _, found in shell.search()} == {
+        "TryHackMe Flag Format"
+    }
+
+
+def test_completion_of_names():
+    shell, _ = run_shell()
+    # The names of the regexes of the loaded matches are completed like tags
+    assert shell.complete_include("TH", "include TH", 8, 10) == ["THM Flag"]
+    line = 'include:"EUI-48 Identifier (Ethernet, Wi'
+    assert shell.completenames(line, line, 0, len(line)) == [
+        'include:"EUI-48 Identifier (Ethernet, WiFi, Bluetooth, etc)"'
+    ]
+    line = "exclude EUI-48 Identifier (Ethernet, Wi"
+    assert shell.complete_exclude("Wi", line, len(line) - 2, len(line)) == [
+        "WiFi, Bluetooth, etc)"
+    ]
+    # A name that only differs from a tag in case is completed once
+    assert shell.complete_include("MAC", "include MAC", 8, 11) == ["Mac Address"]
 
 
 def test_include_quoted_tags():
