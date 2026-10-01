@@ -4,8 +4,8 @@ The most likely matches first, and only the top ones (issue #232).
 The most likely matches have the highest rarity, they are the least likely to
 be false positives. Fragments of a longer word or of a longer match, which
 boundaryless mode finds, are less likely than the other matches unless their
-rarity is 1: the phone number in the Ethereum address
-0x52908400098527886E0F7030069857D2E4169EE7 is not a phone number. See
+rarity is 1: the card number in the Ethereum address
+0x52908400098527886E0F7030069857D2E4169EE7 is not a card number. See
 pywhat.helper.likelihood().
 
 --top, the 'top' and 'more' commands of interactive mode and the 'likely'
@@ -53,7 +53,7 @@ def inside_word(text: str, span: Span) -> bool:
     """
     Whether the span of text is inside a longer word: it starts with a
     letter, digit or underscore right after another one, or ends with one
-    right before another one, like the phone number 5290840009852 in
+    right before another one, like the card number 5290840009852788 in
     0x52908400098527886E0F7030069857D2E4169EE7.
     """
     start, end = span

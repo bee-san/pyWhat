@@ -162,9 +162,9 @@ def likelihood(match: dict) -> Tuple[bool, float]:
     The higher the rarity of a match, the less likely it is a false positive.
     A fragment of a longer word or match is less likely than the other
     matches, unless its rarity is 1 (its regex contains something unique to
-    it, such as the THM{ in abcdTHM{hello}plze): the phone number in the
+    it, such as the THM{ in abcdTHM{hello}plze): the card number in the
     Ethereum address 0x52908400098527886E0F7030069857D2E4169EE7 is not a
-    phone number.
+    card number.
     """
     rarity = match["Regex Pattern"]["Rarity"]
     return bool(match.get(FRAGMENT)) and rarity < 1, -rarity
