@@ -308,7 +308,7 @@ def main(**kwargs):
 
         --json
 
-            Return results in json format.
+            Return results in json format, on one line, so that it can be piped to other programs such as jq: pywhat --json 'abc@example.com' | jq
 
     Boundaryless mode:
 
