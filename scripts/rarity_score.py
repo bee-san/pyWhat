@@ -319,8 +319,13 @@ def main(argv: Optional[Sequence[str]] = None) -> int:
         parser.error("give a regex or --database")
 
     # Print the regex names that the terminal cannot show, such as "Bitcoin (₿)
-    # Wallet Address" on Windows, with escape sequences instead of crashing
-    if isinstance(sys.stdout, io.TextIOWrapper) and sys.stdout.errors == "strict":
+    # Wallet Address" on Windows, with escape sequences instead of crashing.
+    # The default error handler is "strict", or "surrogateescape" on Windows
+    # and in the C locale, which cannot encode them either
+    if isinstance(sys.stdout, io.TextIOWrapper) and sys.stdout.errors in (
+        "strict",
+        "surrogateescape",
+    ):
         sys.stdout.reconfigure(errors="backslashreplace")
 
     tables = []

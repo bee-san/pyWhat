@@ -5,6 +5,7 @@ the regex itself (issue #238).
 import importlib.util
 import json
 import math
+import os
 import re
 import statistics
 import subprocess
@@ -242,15 +243,29 @@ def test_main_errors(argv, capsys):
     assert capsys.readouterr().err
 
 
-def test_script_runs_from_anywhere(tmp_path):
-    # Like python scripts/rarity_score.py --database, from another directory,
-    # including the names that the encoding of stdout may not have (₿)
+@pytest.mark.parametrize(
+    "encoding",
+    # The default, ASCII with the default (strict) error handler, and ASCII with
+    # the error handler that Windows uses for pipes and files
+    [None, "ascii", "ascii:surrogateescape"],
+)
+def test_script_runs_from_anywhere(tmp_path, encoding):
+    # Like python scripts/rarity_score.py --database, from another directory.
+    # The names that the encoding of stdout does not have, like the "₿" of
+    # "Bitcoin (₿) Wallet Address" in cp1252 on Windows, are escaped
+    env = dict(os.environ)
+    env.pop("PYTHONIOENCODING", None)
+    if encoding is not None:
+        env["PYTHONIOENCODING"] = encoding
     process = subprocess.run(
         [sys.executable, str(SCRIPT), "--database"],
         cwd=tmp_path,
+        env=env,
         stdout=subprocess.PIPE,
         stderr=subprocess.PIPE,
     )
     assert process.returncode == 0, process.stderr
     assert b"PGP Public Key" in process.stdout
     assert b"Bitcoin (" in process.stdout
+    if encoding is not None:
+        assert b"Bitcoin (\\u20bf) Wallet Address" in process.stdout
