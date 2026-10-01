@@ -251,7 +251,7 @@
    },
    {
       "Name": "YouTube Video",
-      "Regex": "^(https?:\\/\\/(?:youtu\\.be\\/|(?:[a-z]{2,3}\\.)?youtube\\.com\\/watch(?:\\?|#\\!)v=)([\\w-]{11}))$",
+      "Regex": "^((?:(?i:https?:)?\\/\\/|(?<![0-9A-Za-z_.\\-]))(?:(?i:(?:[a-z]+\\.)?youtube(?:-nocookie)?\\.com)\\/(?:watch(?:\\?|#!)(?:[0-9A-Za-z_\\-.~!$'*+,=:@%]*[&;])*v=|(?:shorts|embed|live|v|e)\\/(?!videoseries|live_stream))|(?i:youtu\\.be)\\/)([0-9A-Za-z_-]{11})(?![0-9A-Za-z_-])(?:[?&#][0-9A-Za-z_\\-.~!$&'*+,;=:@\\/?#%]*(?<![.,:;!?']))?)$",
       "plural_name": false,
       "Description": null,
       "Rarity": 1,
@@ -264,9 +264,38 @@
       "Examples": {
          "Valid": [
             "https://www.youtube.com/watch?v=ScOAntcCa78",
-            "http://www.youtube.com/watch?v=dQw4w9WgXcQ"
+            "http://www.youtube.com/watch?v=dQw4w9WgXcQ",
+            "https://youtube.com/watch?v=dQw4w9WgXcQ",
+            "www.youtube.com/watch?v=dQw4w9WgXcQ",
+            "youtube.com/watch?v=dQw4w9WgXcQ",
+            "YouTube.com/watch?v=dQw4w9WgXcQ",
+            "https://m.youtube.com/watch?v=dQw4w9WgXcQ",
+            "https://music.youtube.com/watch?v=dQw4w9WgXcQ&feature=share",
+            "https://www.youtube.com/watch?v=dQw4w9WgXcQ&t=42s",
+            "https://www.youtube.com/watch?v=dQw4w9WgXcQ&list=PLx0sYbCqOb8TBPRdmBHs5Iftvv9TPboYG&index=2",
+            "https://www.youtube.com/watch?feature=share&v=dQw4w9WgXcQ",
+            "https://www.youtube.com/watch#!v=dQw4w9WgXcQ",
+            "https://youtu.be/dQw4w9WgXcQ",
+            "youtu.be/dQw4w9WgXcQ",
+            "https://youtu.be/dQw4w9WgXcQ?t=42",
+            "https://youtu.be/dQw4w9WgXcQ?si=Ab_cD-eF0123gHiJ",
+            "https://www.youtube.com/shorts/dQw4w9WgXcQ",
+            "https://www.youtube.com/embed/dQw4w9WgXcQ?start=10&autoplay=1",
+            "https://www.youtube-nocookie.com/embed/dQw4w9WgXcQ",
+            "https://www.youtube.com/live/dQw4w9WgXcQ",
+            "https://www.youtube.com/v/dQw4w9WgXcQ"
          ],
-         "Invalid": []
+         "Invalid": [
+            "https://www.youtube.com/watch?v=dQw4w9WgXc",
+            "https://www.youtube.com/watch?v=dQw4w9WgXcQx",
+            "https://www.youtube.com/watch?xv=dQw4w9WgXcQ",
+            "https://www.youtube.com/channel/UCjXfkj5iapKHJrhYfAF9ZGg",
+            "https://www.youtube.com/playlist?list=PLx0sYbCqOb8TBPRdmBHs5Iftvv9TPboYG",
+            "https://www.youtube.com/embed/videoseries?list=PLx0sYbCqOb8TBPRdmBHs5Iftvv9TPboYG",
+            "https://notyoutube.com/watch?v=dQw4w9WgXcQ",
+            "https://youtube.com.example.org/watch?v=dQw4w9WgXcQ",
+            "https://youtu.be/"
+         ]
       }
    },
    {
