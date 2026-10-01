@@ -1,6 +1,7 @@
 import json
 import os
 import re
+from typing import Dict, Iterable, Optional, Tuple
 
 from rich.console import Console
 from rich.table import Table
@@ -125,19 +126,17 @@ class Printing:
     Returns the printable object
     """
 
-    def print_raw(self, text: dict, text_input, print_tags=False):
+    def print_raw(self, text: dict, text_input, print_tags=False, show_files=None):
         output_str = ""
 
         if text["File Signatures"] and text["Regexes"]:
             for key, value in text["File Signatures"].items():
                 if value:
-                    output_str += "\n"
-                    output_str += f"[bold #D7Afff]File Identified[/bold #D7Afff]: [bold]{key}[/bold] with Magic Numbers {value['ISO 8859-1']}."
-                    output_str += f"\n[bold #D7Afff]File Description:[/bold #D7Afff] {value['Description']}."
-                    output_str += "\n"
+                    output_str += self._raw_signature(key, value)
 
         if text["Regexes"]:
-            show_files = self._show_files(text, text_input)
+            if show_files is None:
+                show_files = self._show_files(text, text_input)
             for key, value in text["Regexes"].items():
                 for i in value:
                     description = None
@@ -236,6 +235,77 @@ class Printing:
             if str_output.strip():
                 self.console.print(str_output)
 
+    def print_stream(
+        self,
+        found: Iterable[Tuple[str, str, dict]],
+        text_input,
+        print_tags=False,
+        format_str: Optional[str] = None,
+        json_output=False,
+    ):
+        """
+        Print what Identifier.iter_identify() finds as soon as it is found
+        (issue #189), instead of everything once the search is complete.
+
+        Every match and file signature is printed like print_raw() prints it
+        or, with format_str, every match like format_print() does. With
+        json_output, every match and file signature is a JSON object of its
+        own, on one line (JSON Lines), in the format of print_json(), e.g.
+        {"File Signatures": null, "Regexes": {"text": [match]}}.
+        """
+        if json_output:
+            for kind, location, value in found:
+                line: Dict[str, Optional[dict]] = {
+                    "File Signatures": None,
+                    "Regexes": None,
+                }
+                line[kind] = {location: [value] if kind == "Regexes" else value}
+                # The console, not print(), so that progress bars on the same
+                # terminal stay below the output. soft_wrap does not break the
+                # lines.
+                self.console.print(
+                    json.dumps(line),
+                    markup=False,
+                    emoji=False,
+                    highlight=False,
+                    soft_wrap=True,
+                )
+            return
+
+        show_files = self._show_files_of_inputs(text_input)
+        previous = None  # (kind, location) of what was printed last
+        found_matches = False
+        for kind, location, value in found:
+            if kind == "File Signatures":
+                if format_str is None:
+                    # With an empty line before it, like print_raw()
+                    self.console.print(self._raw_signature(location, value).rstrip())
+                    previous = (kind, location)
+                continue
+            found_matches = True
+            match = {"File Signatures": None, "Regexes": {location: [value]}}
+            if format_str is not None:
+                self.format_print(match, format_str)
+            else:
+                # An empty line between the matches, like print_raw(), but not
+                # between a file signature and the matches in the file
+                if previous is not None and previous != ("File Signatures", location):
+                    self.console.print()
+                self.print_raw(match, text_input, print_tags, show_files=show_files)
+            previous = (kind, location)
+
+        if not found_matches and format_str is None:
+            self.console.print("Nothing found!")
+
+    def _raw_signature(self, location: str, signature: dict) -> str:
+        """A file signature as print_raw() prints it, with markup."""
+        return (
+            "\n"
+            f"[bold #D7Afff]File Identified[/bold #D7Afff]: [bold]{location}[/bold] with Magic Numbers {signature['ISO 8859-1']}."
+            f"\n[bold #D7Afff]File Description:[/bold #D7Afff] {signature['Description']}."
+            "\n"
+        )
+
     def _check_if_exploit_in_json(self, text: dict) -> bool:
         # The matches are under "text" for text, and under the file names for
         # a file or a directory (with or without file signatures)
@@ -260,3 +330,15 @@ class Printing:
         if len(text_input) == 1:
             return self._check_if_directory(text_input[0])
         return any(location != "text" for location in text["Regexes"] or ())
+
+    def _show_files_of_inputs(self, text_input) -> bool:
+        """
+        Like _show_files(), but before anything is found, for print_stream():
+        if text_input is a directory, or several inputs of which a file or a
+        directory is one.
+        """
+        if isinstance(text_input, str):
+            return self._check_if_directory(text_input)
+        if len(text_input) == 1:
+            return self._check_if_directory(text_input[0])
+        return any(os.path.exists(text) for text in text_input)

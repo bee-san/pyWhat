@@ -160,6 +160,8 @@ Run `pywhat --names` to see the name of every regex with its alternative names.
 
 **Exporting** You can export to json using `what --json` and results can be sent directly to a file using `what --json > file.json`.
 
+**Progress and streaming** When a search takes a while, like on a big file or directory, progress bars show how far `What` is: how many of the regexes it has searched the file for, with the one it is searching for now, and for a directory or several inputs how many of the files it has searched. They are only shown on a terminal (on stderr if the output is redirected to a file) and go away once the search is complete, `--no-progress` turns them off. With `--stream`, `What` prints every match as soon as it finds it, instead of once the search is complete: `what --stream big.log`, or `what --stream --json big.log > matches.jsonl` for a JSON object per match, one per line. As it does not wait for all the matches, `--stream` cannot sort them (`--key`) or only show the most likely ones (`--top`), and its JSON has no `"Fragment"` key.
+
 **Boundaryless mode** `What` has a special mode to match identifiable information within strings. By default, it is enabled in CLI but disabled in API. Use `what --help` or refer to [API Documentation](https://github.com/bee-san/pyWhat/wiki/API) for more information.
 
 **Processing** Once a regex has found something, `What` can process it further, beyond what a regex can do. For example, the date of a Unix timestamp is added to its description: `what --rarity 0: --include "UNIX Timestamp" 1637093119` shows `Date: November 16, 2021 8:05:19 PM UTC`. Bitcoin wallet addresses have a checksum, so a match whose checksum is wrong, like `3F3F3F3F3F3F3F3F3F3F3F3F3F3F3F3F3F`, is filtered out. Use `what --disable-processing` to turn this off.
@@ -210,6 +212,27 @@ id.identify("https://trashurl.it/page")
 `Identifier(processors=[])` or `identify(text, processors=[])` turns processing off.
 
 To verify keys with the API, like `--verify`, add the verifiers to the processors: `Identifier(processors=[*default_processors(), *verifiers()])`, with `verifiers` from `pywhat.processors`.
+
+To get the matches while a search goes on, `iter_identify()` is a generator which yields what `identify()` finds as soon as it is found, as `(kind, location, value)`: `kind` is `"File Signatures"` or `"Regexes"`, `location` is the file (or `"text"`) and `value` is the file signature or the match. `identify()`, `identify_inputs()` and `iter_identify()` also call `progress`, if it is given, with a `Progress` before every regex they search for and once a file has been searched:
+
+```python
+from pywhat import Identifier
+
+id = Identifier()
+for kind, location, value in id.iter_identify("big/directory", only_text=False):
+    if kind == "Regexes":
+        print(location, value["Matched"], value["Regex Pattern"]["Name"])
+
+
+def show(progress):
+    # Which file (or "text"), how many of how many files are done, how many of
+    # how many regexes, and the regex that is searched for (None once done)
+    print(progress.location, progress.files_done, progress.files,
+          progress.regexes_done, progress.regexes, progress.regex)
+
+
+id.identify("big.log", only_text=False, progress=show)
+```
 
 # 👾 Contributing
 

@@ -2,12 +2,17 @@ import io
 import json
 import os
 import re
+from contextlib import contextmanager
 
 import pytest
 from click.testing import CliRunner
+from rich.console import Console
 
+import pywhat.what
 from pywhat import pywhat_tags
-from pywhat.helper import get_names, load_regexes
+from pywhat.helper import FRAGMENT, get_names, load_regexes
+from pywhat.identifier import Identifier
+from pywhat.printer import Printing
 from pywhat.what import main
 
 
@@ -587,3 +592,183 @@ def test_stdin_with_several_lines():
     # stdin is a single text, not a list of inputs
     assert "TryHackMe Flag Format" in result.output
     assert "File:" not in result.output
+
+
+# Progress bars and --stream (issue #189)
+
+
+def squeeze(output):
+    """The output with every run of empty lines as a single empty line."""
+    return re.sub(r"\n{3,}", "\n\n", output)
+
+
+@pytest.mark.parametrize(
+    "args",
+    [
+        ["-db", "fixtures/file"],
+        ["fixtures"],
+        ["-pt", "THM{hello} dad@gmail.com"],
+        ["--format", "%m - %n", "fixtures"],
+        ["fixtures/file", "fixtures/test/file", "THM{hello}"],
+        ["THM{hello}", "THM{bye}"],
+        ["-db", ""],
+        ["-db", "--format", r"%e", "thm{2}"],
+    ],
+)
+def test_stream(args):
+    # What is printed once the search is complete, printed while searching
+    runner = CliRunner()
+    expected = runner.invoke(main, args)
+    streamed = runner.invoke(main, ["--stream", *args])
+    assert streamed.exit_code == expected.exit_code == 0
+    assert squeeze(streamed.output) == squeeze(expected.output)
+
+
+def test_stream_file_signature(tmp_path):
+    image = tmp_path / "image.png"
+    image.write_bytes(b"\x89PNG\r\n\x1a\nTHM{hello}\n")
+    runner = CliRunner()
+    streamed = runner.invoke(main, ["--stream", str(image)])
+    assert "File Identified" in streamed.output
+    assert streamed.output == runner.invoke(main, [str(image)]).output
+
+    # As soon as it is found, even if nothing is found in the file
+    image.write_bytes(b"\x89PNG\r\n\x1a\n")
+    streamed = runner.invoke(main, ["--stream", str(image)])
+    assert "File Identified" in streamed.output
+    assert streamed.output.rstrip().endswith("Nothing found!")
+
+
+def test_stream_json():
+    runner = CliRunner()
+    expected = json.loads(runner.invoke(main, ["--json", "fixtures"]).output)
+    result = runner.invoke(main, ["--stream", "--json", "fixtures"])
+    assert result.exit_code == 0
+    # A JSON object for every match, on its own line, in the format of --json
+    regexes = {}
+    for line in result.output.splitlines():
+        found = json.loads(line)
+        assert found["File Signatures"] is None
+        [(location, [match])] = found["Regexes"].items()
+        # Whether a match is a fragment is only known once its file has been
+        # searched, after the match has been printed
+        assert FRAGMENT not in match
+        regexes.setdefault(location, []).append(match)
+    for matches in expected["Regexes"].values():
+        for match in matches:
+            del match[FRAGMENT]
+    assert regexes == expected["Regexes"]
+
+
+def test_stream_json_file_signature(tmp_path):
+    image = tmp_path / "image.png"
+    image.write_bytes(b"\x89PNG\r\n\x1a\nTHM{hello}\n")
+    result = CliRunner().invoke(main, ["--stream", "--format", "json", str(image)])
+    assert result.exit_code == 0
+    signature, match = map(json.loads, result.output.splitlines())
+    assert signature["Regexes"] is None
+    assert signature["File Signatures"]["image.png"]["Filename Extension"] == "png"
+    assert match["File Signatures"] is None
+    assert match["Regexes"]["image.png"][0]["Matched"] == "THM{hello}"
+
+
+def test_stream_json_nothing_found():
+    result = CliRunner().invoke(main, ["--stream", "--json", "-db", ""])
+    assert result.exit_code == 0
+    assert result.output == ""
+
+
+@pytest.mark.parametrize(
+    "args, option",
+    [
+        (["--key", "name"], "--key"),
+        (["--format", "pretty"], "--format pretty"),
+        (["--top", "1"], "--top"),
+        (["--interactive"], "--interactive"),
+    ],
+)
+def test_stream_with_options_that_need_all_matches(args, option):
+    result = CliRunner().invoke(main, ["--stream", *args, "THM{hello}"])
+    assert result.exit_code == 1
+    assert option in result.output
+
+
+def test_stream_without_sorting():
+    result = CliRunner().invoke(main, ["--stream", "--key", "none", "THM{hello}"])
+    assert result.exit_code == 0
+    assert "Matched on: THM{hello}" in result.output
+
+
+def test_stream_prints_before_the_search_is_complete(monkeypatch):
+    match = Identifier().identify("THM{hello}")["Regexes"]["text"][0]
+
+    def iter_identify(self, text, **options):
+        yield "Regexes", "text", match
+        raise KeyboardInterrupt  # Ctrl+C before the search is complete
+
+    monkeypatch.setattr(Identifier, "iter_identify", iter_identify)
+    runner = CliRunner()
+    streamed = runner.invoke(main, ["--stream", "THM{hello}"])
+    assert "Matched on: THM{hello}" in streamed.output
+    assert "Aborted!" in streamed.output
+    complete = runner.invoke(main, ["THM{hello}"])
+    assert "Aborted!" in complete.output
+    assert "THM{hello}" not in complete.output
+
+
+@pytest.fixture
+def progress_bars(monkeypatch):
+    """Records the options of the progress bars, and the progress they get."""
+    shown = []
+
+    @contextmanager
+    def record(console, **options):
+        progress = []
+        shown.append((console, options, progress))
+        yield progress.append
+
+    monkeypatch.setattr(pywhat.what, "progress_bars", record)
+    return shown
+
+
+@pytest.mark.parametrize("args", [[], ["--stream"], ["--json"], ["--stream", "--json"]])
+def test_progress_bars(progress_bars, args):
+    result = CliRunner().invoke(main, [*args, "fixtures"])
+    assert result.exit_code == 0
+    [(console, options, progress)] = progress_bars
+    # On the terminal of the output, or on stderr if the output is redirected
+    assert options == {"enabled": True, "stderr": True}
+    assert progress[-1].files_done == progress[-1].files == 2
+
+
+def test_no_progress(progress_bars):
+    result = CliRunner().invoke(main, ["--no-progress", "fixtures"])
+    assert result.exit_code == 0
+    [(console, options, progress)] = progress_bars
+    assert options["enabled"] is False
+
+
+def test_no_progress_bars_in_the_output():
+    # The output is not a terminal here, so there are no progress bars
+    result = CliRunner().invoke(main, ["-db", "--json", "fixtures"])
+    assert json.loads(result.output)
+
+
+def test_print_stream_api():
+    # Printing.print_stream() with what Identifier.iter_identify() yields
+    printer = Printing()
+    printer.console = Console(file=io.StringIO(), width=200, color_system=None)
+    for text_input in ["fixtures", ["fixtures"]]:
+        printer.console.file = io.StringIO()
+        printer.print_stream(
+            Identifier().iter_identify(text_input, only_text=False), text_input
+        )
+        output = printer.console.file.getvalue()
+        location = os.path.join(os.sep, "test", "file")  # \test\file on Windows
+        assert f"File: {location}\nMatched on: https://google.com" in output
+
+        printer.console.file = io.StringIO()
+        printer.print_raw(
+            Identifier().identify("fixtures", only_text=False), text_input
+        )
+        assert squeeze(output) == squeeze(printer.console.file.getvalue())

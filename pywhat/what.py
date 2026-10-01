@@ -1,5 +1,5 @@
 import sys
-from typing import List, Optional, Sequence, Union
+from typing import Any, Callable, Iterator, List, Optional, Sequence, Union
 
 import click
 from rich.console import Console
@@ -16,8 +16,10 @@ from pywhat.helper import (
     split_tags,
     str_to_key,
 )
+from pywhat.identifier import Found, Progress
 from pywhat.interactive import InteractiveShell, query_from_options
 from pywhat.processors import Processor, default_processors, verifiers
+from pywhat.progress import progress_bars
 from pywhat.ranking import located_matches, parse_top, top_matches
 from pywhat.unicode import escape_unencodable, texts
 
@@ -216,6 +218,16 @@ def print_left_out(shown: int, total: int) -> None:
     help="Format output according to specified rules.",
 )
 @click.option("-pt", "--print-tags", is_flag=True, help="Add flags to output")
+@click.option(
+    "--stream",
+    is_flag=True,
+    help="Print every match as soon as it is found, not once the search is complete.",
+)
+@click.option(
+    "--no-progress",
+    is_flag=True,
+    help="Do not show progress bars while searching.",
+)
 def main(**kwargs):
     """
     pyWhat - Identify what something is.
@@ -363,6 +375,18 @@ def main(**kwargs):
 
             With --top N or the 'top N' command, searches show the N most likely matches and the 'more' command the next N.
 
+    Progress and streaming:
+
+        When a search takes a while, progress bars show how far it is: one for the regexes that are searched for in a file, with the regex that is searched for now, and one for the files of a directory or of several inputs. They are only shown on a terminal (on stderr if the output is redirected to a file), and they are removed once the search is complete.
+
+        --no-progress
+
+            Do not show the progress bars.
+
+        --stream
+
+            Print every match as soon as it is found, instead of once the search is complete. With --json, every match is a JSON object of its own, on one line, without the "Fragment" key, as whether a match is a fragment is only known once its file has been searched. --stream cannot sort the matches (--key), show only the most likely ones (--top) or print a table (--format pretty), as these need all the matches.
+
     Unicode:
 
         Files and text piped to pyWhat can be UTF-8, or UTF-16 or UTF-32 with a byte order mark (BOM). The UTF-16 strings in binary files, which 'strings -el' shows, are searched too.
@@ -395,6 +419,8 @@ def main(**kwargs):
         * what 'this/is/a/path'
 
         * what --interactive 'this/is/a/path'
+
+        * what --stream 'big.log'
 
     Several inputs, files, directories or text, can be searched at once. Then the file of every match is shown, and the matches in text are under "text":
 
@@ -444,6 +470,24 @@ def main(**kwargs):
         except ValueError as error:
             print(error)
             sys.exit(1)
+    json_output = kwargs["json"] or str(kwargs["format"]).strip() == "json"
+    if kwargs["stream"]:
+        # The matches are printed as soon as they are found (issue #189)
+        if key != Keys.NONE:
+            sys.exit(
+                "--stream cannot sort the matches, so it cannot be used with --key"
+            )
+        if not json_output and str(kwargs["format"]).strip() == "pretty":
+            sys.exit(
+                "--stream cannot print a table, so it cannot be used with --format pretty"
+            )
+        if top is not None:
+            sys.exit(
+                "--stream cannot pick the most likely matches, so it cannot be used "
+                "with --top"
+            )
+        if kwargs["interactive"]:
+            sys.exit("--stream cannot be used with --interactive")
     if kwargs["interactive"]:
         InteractiveShell(
             query_from_options(kwargs["rarity"], kwargs["include"], kwargs["exclude"]),
@@ -457,25 +501,47 @@ def main(**kwargs):
             json_output=kwargs["json"],
             format_str=kwargs["format"],
             print_tags=kwargs["print_tags"],
+            progress=not kwargs["no_progress"],
         ).run(kwargs["text_input"] or None)
         return
-    identified_output = what_obj.what_is_this(
-        kwargs["text_input"],
-        kwargs["only_text"],
-        key if top is None else Keys.NONE,  # top_matches() sorts the top ones
-        kwargs["reverse"],
-        boundaryless,
-        kwargs["include_filenames"],
-    )
+
+    p = printer.Printing()
+    # Progress bars on the terminal while searching (issue #189), on stderr if
+    # the output is redirected
+    with progress_bars(
+        p.console, enabled=not kwargs["no_progress"], stderr=True
+    ) as progress:
+        if kwargs["stream"]:
+            p.print_stream(
+                what_obj.iter_what_is_this(
+                    kwargs["text_input"],
+                    kwargs["only_text"],
+                    boundaryless,
+                    kwargs["include_filenames"],
+                    progress=progress,
+                ),
+                kwargs["text_input"],
+                kwargs["print_tags"],
+                format_str=None if json_output else kwargs["format"],
+                json_output=json_output,
+            )
+            return
+        identified_output = what_obj.what_is_this(
+            kwargs["text_input"],
+            kwargs["only_text"],
+            key if top is None else Keys.NONE,  # top_matches() sorts the top ones
+            kwargs["reverse"],
+            boundaryless,
+            kwargs["include_filenames"],
+            progress=progress,
+        )
     total = len(located_matches(identified_output))
     if top is not None:
         identified_output = top_matches(
             identified_output, top, key=key, reverse=kwargs["reverse"]
         )
 
-    p = printer.Printing()
-
-    if kwargs["json"] or str(kwargs["format"]).strip() == "json":
+    if json_output:
         p.print_json(identified_output)
     elif str(kwargs["format"]).strip() == "pretty":
         p.pretty_print(identified_output, kwargs["text_input"], kwargs["print_tags"])
@@ -499,6 +565,7 @@ class What_Object:
         reverse: bool,
         boundaryless: Filter,
         include_filenames: bool,
+        progress: Optional[Callable[[Progress], Any]] = None,
     ) -> dict:
         """
         Returns a Python dictionary of everything that has been identified in
@@ -512,6 +579,27 @@ class What_Object:
             reverse=reverse,
             boundaryless=boundaryless,
             include_filenames=include_filenames,
+            progress=progress,
+        )
+
+    def iter_what_is_this(
+        self,
+        text: Union[str, Sequence[str]],
+        only_text: bool,
+        boundaryless: Filter,
+        include_filenames: bool,
+        progress: Optional[Callable[[Progress], Any]] = None,
+    ) -> Iterator[Found]:
+        """
+        Yields everything that is identified as soon as it is found (issue
+        #189), see Identifier.iter_identify()
+        """
+        return self.id.iter_identify(
+            text,
+            only_text=only_text,
+            boundaryless=boundaryless,
+            include_filenames=include_filenames,
+            progress=progress,
         )
 
 
