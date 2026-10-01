@@ -23,7 +23,10 @@ def run_cli_command(command_args, expected_pattern):
         (["-db", "fixtures/file"], "Litecoin"),
         (["-db", "fixtures/file"], "live.block"),
         (["-db", "fixtures/file"], "Bitcoin Cash"),
-        (["-db", "bitcoincash:qzlg6uvceehgzgtz6phmvy8gtdqyt6vf359at4n3lq"], "blockchain"),
+        (
+            ["-db", "bitcoincash:qzlg6uvceehgzgtz6phmvy8gtdqyt6vf359at4n3lq"],
+            "blockchain",
+        ),
         (["-db", "fixtures/file"], "Ripple"),
         (["-db", "fixtures/file"], "thm"),
         (["-db", "fixtures/file"], "Ethereum"),
@@ -40,7 +43,7 @@ def run_cli_command(command_args, expected_pattern):
         (["-db", "fixtures/file"], "Diners Club Card"),
         (["-db", "fixtures/file"], "Discover"),
         (["-db", "fixtures/file"], "Email"),
-        (["-db", "fixtures/file"], "Phone Number"),
+        (["fixtures/file"], "Phone Number"),
         (["-db", "fixtures/file"], "YouTube"),
         (["-db", "118.103.238.230"], "Address Version 4"),
         (["-db", "118.103.238.230"], "shodan"),
@@ -57,71 +60,77 @@ def run_cli_command(command_args, expected_pattern):
         (["-db", "Access-Control-Allow: *"], "Access"),
         (
             [
-                "-db", 
+                "-db",
                 "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c",
-            ], 
-                "JWT"
+            ],
+            "JWT",
         ),
         (["-db", "http://s3.amazonaws.com/bucket/"], "S3"),
         (["-db", "s3://bucket/path/key"], "S3"),
         (["-db", "s3://bucket/path/directory/"], "S3"),
         (["-db", "arn:partition:service:region:account-id:resource"], "ARN"),
-        (["-db", "arn:partition:service:region:account-id:resourcetype/resource"], "ARN"),
-        (["-db", "arn:partition:service:region:account-id:resourcetype:resource"], "ARN"),
+        (
+            ["-db", "arn:partition:service:region:account-id:resourcetype/resource"],
+            "ARN",
+        ),
+        (
+            ["-db", "arn:partition:service:region:account-id:resourcetype:resource"],
+            "ARN",
+        ),
         (["-db", "arn:aws:s3:::my_corporate_bucket/Development/*"], "ARN"),
-        
         # key_value_min_rarity_0
         (["-db", "--rarity", "0:", "key:value"], "Key:Value"),
         (["-db", "--rarity", "0:", "key : value"], "Key:Value"),
         (["-db", "--rarity", "0:", "key: value"], "Key:Value"),
         (["--rarity", "0:", "--boundaryless-rarity", "0:", "a:b:c"], "a:b"),
         (["--rarity", "0:", "--boundaryless-rarity", "0:", "a : b:c"], "a : b"),
-
         # Encryption keys
         (["-db", "fixtures/file"], "SSH RSA"),
         (["-db", "fixtures/file"], "SSH ECDSA"),
         (["-db", "fixtures/file"], "SSH ED25519"),
-
         # PGP Keys
         (["-db", "fixtures/file"], "PGP Public Key"),
         (["-db", "fixtures/file"], "PGP Private Key"),
-
         # Turkish car plate
         (["--rarity", "0:", "fixtures/file"], "Turkish License Plate Number"),
-
         # Turkish Tax Number
         (["--rarity", "0:", "fixtures/file"], "Turkish Tax Number"),
-
         # date of birth
         (["-db", "fixtures/file"], "Date of Birth"),
-
         # Turkish ID #
         (["-db", "fixtures/file"], "Turkish Identification Number"),
-
         # arg parsing #1
         (["-db", "1KFHE7w8BhaENAswwryaoccDb6qcT6DbYY"], "blockchain"),
-
         # arg parsing #2
         (["http://10.1.1.1"], "Internet Protocol"),
-
         (["-db", "firstname+lastname@example.com"], "Email"),
         (["fixtures/file"], "UUID"),  # UUID
         (["--rarity", "0:", "fixtures/file"], "ObjectID"),  # Object ID
         (["--rarity", "0:", "fixtures/file"], "ULID"),  # ULID
-        (["fixtures/file"], "Time-Based One-Time Password [(]TOTP[)] URI"),  # ULID
+        (["fixtures/file"], "Time-Based One-Time Password [(]TOTP[)] URI"),  # TOTP
         (["fixtures/file"], "SSHPass Clear Password Argument"),  # SSHPass
         (["fixtures/file"], "Slack Webhook"),  # Slack webhook
         (["fixtures/file"], "Discord Webhook"),  # Discord webhook
         (["fixtures/file"], "Guilded Webhook"),  # Guilded webhook
-        
         # borderless cases
         (["-o", "-db", "fixtures/file"], "Nothing found"),  # test_only_text
-        (["-be", "identifiers, token", "abc118.103.238.230abc"], "Nothing found"),  # test_boundaryless
-        (["-bi", "media", "abc118.103.238.230abc"], "Nothing found"),  # test_boundaryless2
+        (
+            ["-be", "identifiers, token", "abc118.103.238.230abc"],
+            "Nothing found",
+        ),  # test_boundaryless
+        (
+            ["-bi", "media", "abc118.103.238.230abc"],
+            "Nothing found",
+        ),  # test_boundaryless2
         (["-db", "abc118.103.238.230abc"], "Nothing found"),  # test_boundaryless3
-        
-        (["-db", "--format", " json ", "rBPAQmwMrt7FDDPNyjwFgwSqbWZPf6SLkk"], '"File Signatures":'),  # test_format
-        (["-db", "--format", " pretty ", "rBPAQmwMrt7FDDPNyjwFgwSqbWZPf6SLkk"], "Possible Identification"),  # test_format2
+        (
+            ["-db", "--format", " json ", "rBPAQmwMrt7FDDPNyjwFgwSqbWZPf6SLkk"],
+            '"File Signatures":',
+        ),  # test_format
+        (
+            ["-db", "--format", " pretty ", "rBPAQmwMrt7FDDPNyjwFgwSqbWZPf6SLkk"],
+            "Possible Identification",
+        ),  # test_format2
         (["-db", ""], "Nothing found!"),  # test_nothing_found
         (["-db", "THM{this is a flag}"], "THM{"),  # test_hello_world
     ],
