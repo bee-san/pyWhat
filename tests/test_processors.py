@@ -18,6 +18,7 @@ from pywhat.helper import load_regexes
 from pywhat.interactive import InteractiveShell
 from pywhat.processors import (
     EPOCH,
+    BitcoinAddressProcessor,
     UnixTimestampProcessor,
     default_processors,
     format_datetime,
@@ -312,7 +313,10 @@ def test_processor_names_are_regexes_in_the_database():
 
 
 def test_default_processors_are_new_instances():
-    assert [type(p) for p in default_processors()] == [UnixTimestampProcessor]
+    assert [type(p) for p in default_processors()] == [
+        UnixTimestampProcessor,
+        BitcoinAddressProcessor,
+    ]
     assert default_processors()[0] is not default_processors()[0]
 
 
