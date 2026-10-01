@@ -47,13 +47,9 @@ def test_regex_invalid_match(name: str, match: str):
     assert not regex_valid_match(name, match)
 
 
-@pytest.mark.skip(
-    reason="Fails because not a valid TLD. If presented in punycode, it works."
-)
 def test_international_url():
-    assert regex_valid_match(
-        "Uniform Resource Locator (URL)", r.check(["http://папироска.рф"])
-    )
+    # The TLD is not in punycode (xn--p1ai)
+    assert regex_valid_match("Uniform Resource Locator (URL)", "http://папироска.рф")
 
 
 @pytest.mark.parametrize(
