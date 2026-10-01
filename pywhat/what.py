@@ -6,6 +6,7 @@ from rich.console import Console
 from pywhat import __version__, identifier, printer
 from pywhat.filter import Distribution, Filter
 from pywhat.helper import AvailableTags, InvalidTag, Keys, str_to_key
+from pywhat.interactive import InteractiveShell, query_from_options
 
 
 def print_tags(ctx, opts, value):
@@ -56,7 +57,12 @@ def create_filter(rarity, include, exclude):
 
 
 def get_text(ctx, opts, value):
-    if not value and not click.get_text_stream("stdin").isatty():
+    # In interactive mode, stdin is where the commands come from
+    if (
+        not value
+        and not ctx.params.get("interactive")
+        and not click.get_text_stream("stdin").isatty()
+    ):
         return click.get_text_stream("stdin").read().strip()
     return value
 
@@ -102,6 +108,12 @@ def get_text(ctx, opts, value):
     "-db", "--disable-boundaryless", is_flag=True, help="Disable boundaryless mode."
 )
 @click.option("--json", is_flag=True, help="Return results in json format.")
+@click.option(
+    "--interactive",
+    is_flag=True,
+    is_eager=True,  # get_text() needs to know about it
+    help="Load the input into memory and search through the matches interactively.",
+)
 @click.option(
     "-v",
     "--version",
@@ -224,6 +236,14 @@ def main(**kwargs):
 
                 If you want to print '%' or '\\' character - escape it: '\\%', '\\\\'.
 
+    Interactive mode:
+
+        --interactive
+
+            Identify the input once, keep the matches in memory and search through them as often as you like, with searches such as 'include:"Bug Bounty", rarity:"0.5:"'.
+
+            The --rarity, --include and --exclude options are the search to start with, the other options work as usual. The input is optional, the 'load' command loads a file, directory or text. Type 'help' in interactive mode to see all commands.
+
     Examples:
 
         * what 'HTB{this is a flag}'
@@ -247,8 +267,10 @@ def main(**kwargs):
 
         * what 'this/is/a/path'
 
+        * what --interactive 'this/is/a/path'
+
     """
-    if kwargs["text_input"] is None:
+    if kwargs["text_input"] is None and not kwargs["interactive"]:
         sys.exit("Text input expected. Run 'pywhat --help' for help")
     dist = Distribution(
         create_filter(kwargs["rarity"], kwargs["include"], kwargs["exclude"])
@@ -270,6 +292,19 @@ def main(**kwargs):
         except ValueError:
             print("Invalid key")
             sys.exit(1)
+    if kwargs["interactive"]:
+        InteractiveShell(
+            query_from_options(kwargs["rarity"], kwargs["include"], kwargs["exclude"]),
+            boundaryless=boundaryless,
+            only_text=kwargs["only_text"],
+            include_filenames=kwargs["include_filenames"],
+            key=key,
+            reverse=kwargs["reverse"],
+            json_output=kwargs["json"],
+            format_str=kwargs["format"],
+            print_tags=kwargs["print_tags"],
+        ).run(kwargs["text_input"])
+        return
     identified_output = what_obj.what_is_this(
         kwargs["text_input"],
         kwargs["only_text"],
