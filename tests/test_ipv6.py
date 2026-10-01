@@ -1,8 +1,8 @@
 """
 Test cases for IPv6 address identification.
 
-Tests for issue #201: IPv6 regex should not match on '::' alone.
-Also covers hexadecimal port support added in the regex update.
+Covers '::' alone not matching (issue #201, with boundaries), upper- and
+lowercase hex digits, and decimal-only ports.
 """
 
 from pywhat import identifier
@@ -57,9 +57,19 @@ def test_ipv6_matches_bracketed_with_numeric_port():
     assert len(_ipv6_matches("[2001:db8::1]:8080")) > 0
 
 
-def test_ipv6_matches_bracketed_with_hex_port():
-    """Verify IPv6 in brackets with a hexadecimal port is matched.
+def test_ipv6_rejects_bracketed_with_hex_port():
+    """Ports are decimal, so a hexadecimal port must not match."""
+    assert _ipv6_matches("[2001:db8::1]:808a") == []
 
-    The regex was updated so the port group accepts hex characters.
-    """
-    assert len(_ipv6_matches("[2001:db8::1]:808a")) > 0
+
+def test_ipv6_matches_uppercase_hex():
+    """IPv6 hex digits are case-insensitive (RFC 4291)."""
+    test_addresses = [
+        "2001:DB8::1",
+        "FE80::1",
+        "2001:0DB8:85A3:0000:0000:8A2E:0370:7334",
+        "2001:db8:3333:4444:CCCC:DDDD:EEEE:FFFF",
+    ]
+
+    for address in test_addresses:
+        assert len(_ipv6_matches(address)) > 0, f"{address} should match as IPv6"
