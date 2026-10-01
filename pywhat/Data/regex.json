@@ -2826,34 +2826,34 @@
       }
    },
    {
-	  "Name": "What3Words Address",
-	  "Regex": "^(\\/{0,3})?([a-z]{4,}\\.[a-z]{4,}\\.[a-z]{4,})$",
-	  "plural_name": false,
-	  "Description": "A geocoding system that identifies any 3m x 3m location using three dictionary words separated by dots",
-	  "Rarity": 0.7,
-	  "URL": "https://what3words.com/",
-	  "Tags": [
-	    "Identifiers",
-	    "Location",
-	    "Geocoding"
-	  ],
-	  "Examples": {
-	    "Valid": [
-	      "filled.count.soap",
-	      "///filled.count.soap",
-	      "table.lamp.spoon",
-	      "///index.home.raft",
-	      "slurs.this.shark",
-	      "///table.chair.lamp"
-	    ],
-	    "Invalid": [
-	      "word.word",
-	      "one.two.three.four",
-	      "has spaces.in.words",
-	      "has.123.numbers",
-	      "short.a.b",
-	      "UPPER.CASE.WORDS"
-	    ]
-	  }
-	}
+      "Name": "What3Words Address",
+      "Regex": "^(\\/{0,3}[a-z]{4,}\\.[a-z]{4,}\\.[a-z]{4,})$",
+      "plural_name": false,
+      "Description": "A geocoding system that identifies any 3m x 3m location using three dictionary words separated by dots",
+      "Rarity": 0,
+      "URL": "https://what3words.com/",
+      "Tags": [
+         "Identifiers",
+         "Location",
+         "Geocoding"
+      ],
+      "Examples": {
+         "Valid": [
+            "filled.count.soap",
+            "///filled.count.soap",
+            "table.lamp.spoon",
+            "///index.home.raft",
+            "slurs.this.shark",
+            "///table.chair.lamp"
+         ],
+         "Invalid": [
+            "word.word",
+            "one.two.three.four",
+            "has spaces.in.words",
+            "has.123.numbers",
+            "short.a.b",
+            "UPPER.CASE.WORDS"
+         ]
+      }
+   }
 ]
