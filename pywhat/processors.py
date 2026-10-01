@@ -7,10 +7,18 @@ text, or filtering out a false positive.
 
 Identifier and RegexIdentifier use default_processors() unless they are
 given other processors. processors=[] turns processing off.
+
+verifiers() are processors that ask a service if a key is valid (issue #245).
+They are not default processors because they send the keys to the service.
 """
+import json
 from datetime import datetime, timedelta, timezone
 from decimal import Decimal
+from http.client import HTTPException
 from typing import Collection, Dict, Iterable, List, Optional
+from urllib.error import HTTPError
+from urllib.parse import quote
+from urllib.request import Request, urlopen
 
 from pywhat.filter import Filter
 
@@ -147,6 +155,106 @@ class UnixTimestampProcessor(Processor):
         return match
 
 
+def google_error_reason(body: bytes) -> Optional[str]:
+    """
+    The reason of the google.rpc.ErrorInfo in an error that a Google API
+    answered, such as "API_KEY_INVALID", or None if there is none:
+    {"error": {"details": [{"@type": "type.googleapis.com/google.rpc.ErrorInfo",
+    "reason": "API_KEY_INVALID", ...}, ...], ...}}
+    """
+    try:
+        for detail in json.loads(body)["error"].get("details", []):
+            if detail.get("@type", "").endswith("google.rpc.ErrorInfo"):
+                return detail.get("reason")
+    except (ValueError, TypeError, KeyError, AttributeError):
+        pass  # not JSON (ValueError), or not a Google API error
+    return None
+
+
+class GoogleAPIKeyVerifier(Processor):
+    """
+    Asks Google if a Google API key is valid and adds the answer to the
+    description of the match (issue #245), e.g. "Verification: invalid, Google
+    rejected the key (API_KEY_INVALID)".
+
+    Google answers API_KEY_INVALID for an invalid key. A valid key can be
+    restricted to some APIs, so errors such as SERVICE_DISABLED (the API is not
+    enabled for the key) mean that the key is valid too. The request is made
+    to an API that does not cost money (the YouTube Data API's languages, 1
+    unit of quota). Every key is sent to Google once, however many times it
+    is found.
+    """
+
+    names = ["Google API Key"]
+    url = "https://www.googleapis.com/youtube/v3/i18nLanguages?part=snippet&key="
+    # The google.rpc.ErrorInfo reasons of the errors that Google answers when
+    # the key is valid, but cannot be used for the request
+    valid_key_reasons = frozenset(
+        {
+            "API_KEY_ANDROID_APP_BLOCKED",
+            "API_KEY_HTTP_REFERRER_BLOCKED",
+            "API_KEY_IOS_APP_BLOCKED",
+            "API_KEY_IP_ADDRESS_BLOCKED",
+            "API_KEY_SERVICE_BLOCKED",
+            "BILLING_DISABLED",
+            "RATE_LIMIT_EXCEEDED",
+            "RESOURCE_QUOTA_EXCEEDED",
+            "SERVICE_DISABLED",
+        }
+    )
+
+    def __init__(self, timeout: float = 10):
+        self.timeout = timeout
+        # The verification of each key, so that it is only sent once
+        self.results: Dict[str, str] = {}
+
+    def process(self, match: dict) -> Optional[dict]:
+        key = match["Matched"]
+        if key not in self.results:
+            self.results[key] = self.verify(key)
+        regex = match["Regex Pattern"]
+        result = f"Verification: {self.results[key]}"
+        description = regex.get("Description")
+        regex["Description"] = f"{description}. {result}" if description else result
+        return match
+
+    def verify(self, key: str) -> str:
+        """Ask Google if key is valid. Returns the answer, e.g. "valid, ..."."""
+        request = Request(
+            self.url + quote(key, safe=""), headers={"User-Agent": "pywhat"}
+        )
+        try:
+            try:
+                with urlopen(request, timeout=self.timeout) as response:
+                    response.read()
+            except HTTPError as error:
+                return self.describe_error(error.code, error.read())
+        except (OSError, HTTPException, ValueError) as error:
+            # No connection, a timeout (URLError and socket.timeout are OSErrors)
+            return f"unknown, could not ask Google ({error})"
+        return "valid, Google accepted the key"
+
+    def describe_error(self, code: int, body: bytes) -> str:
+        """The verification of a key that Google answered an error for."""
+        reason = google_error_reason(body)
+        if reason == "API_KEY_INVALID":
+            return f"invalid, Google rejected the key ({reason})"
+        if reason in self.valid_key_reasons:
+            return f"valid, but Google refused the request ({reason})"
+        if reason:
+            return f"unknown, Google answered HTTP {code} ({reason})"
+        return f"unknown, Google answered HTTP {code}"
+
+
 def default_processors() -> List[Processor]:
     """New instances of the processors that pyWhat uses by default."""
     return [UnixTimestampProcessor()]
+
+
+def verifiers() -> List[Processor]:
+    """
+    New instances of the processors that ask a service if a key is valid,
+    which pywhat --verify uses. They send the keys that are found to the
+    service, so they are not default processors.
+    """
+    return [GoogleAPIKeyVerifier()]

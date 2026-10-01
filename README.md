@@ -160,6 +160,8 @@ Run `pywhat --names` to see the name of every regex with its alternative names.
 
 **Processing** Once a regex has found something, `What` can process it further, beyond what a regex can do. For example, the date of a Unix timestamp is added to its description: `what --rarity 0: --include "UNIX Timestamp" 1637093119` shows `Date: November 16, 2021 8:05:19 PM UTC`. Use `what --disable-processing` to turn this off.
 
+**Verifying keys** `what --verify` asks the services whether the keys it finds are valid, and adds the answer to their description. For now it verifies Google API keys: `what --verify AIzaSyA00000000000000000000000000000000` shows `Verification: invalid, Google rejected the key (API_KEY_INVALID)`. A key that is valid but cannot use the API it was tested with (e.g. `SERVICE_DISABLED`) is reported as valid. Verification is off by default because it sends the keys to the services (over HTTPS, once per key), so only use it for keys you are allowed to test. The Exploit of a key also contains the `curl` command to verify it yourself.
+
 ### 💬 Interactive mode
 
 Analysing something big? Load it into memory once with `--interactive`, then search through what `What` found as often as you like, without scanning it again:
@@ -200,6 +202,8 @@ id.identify("https://trashurl.it/page")
 ```
 
 `Identifier(processors=[])` or `identify(text, processors=[])` turns processing off.
+
+To verify keys with the API, like `--verify`, add the verifiers to the processors: `Identifier(processors=[*default_processors(), *verifiers()])`, with `verifiers` from `pywhat.processors`.
 
 # 👾 Contributing
 
