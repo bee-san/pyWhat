@@ -1,3 +1,4 @@
+import os
 import re
 
 import pytest
@@ -5,6 +6,7 @@ import pytest
 from pywhat import identifier
 from pywhat.filter import Distribution, Filter
 from pywhat.helper import Keys
+from pywhat.processors import Processor
 
 r = identifier.Identifier()
 
@@ -176,3 +178,130 @@ def test_boundaryless_gf_regexes(text, name, matched):
         match["Regex Pattern"]["Name"] == name and match["Matched"] == matched
         for match in out["Regexes"]["text"]
     )
+
+
+def test_identifier_sorting_directory(tmp_path):
+    # The matches of every file of a directory are sorted, not only the
+    # matches of the last file (whichever file the file system lists last)
+    with open("fixtures/file", "rb") as file:
+        contents = file.read()
+    for name in ("a", "b"):
+        (tmp_path / name).write_bytes(contents)
+    out = r.identify(str(tmp_path), only_text=False, key=Keys.NAME)
+    assert len(out["Regexes"]) == 2
+    for matches in out["Regexes"].values():
+        names = [match["Regex Pattern"]["Name"] for match in matches]
+        assert names == sorted(names)
+
+
+def test_identifier_sorting_without_matches():
+    # Used to raise TypeError: 'NoneType' object is not subscriptable
+    out = r.identify("nothing", key=Keys.NAME)
+    assert out == {"File Signatures": None, "Regexes": None}
+
+
+# Multiple inputs (issue #171)
+
+
+def test_identify_inputs_single_input():
+    # A single input is identified like with identify()
+    for text in ["fixtures", "fixtures/file", "THM{hello}", "nothing"]:
+        assert r.identify_inputs([text], only_text=False) == r.identify(
+            text, only_text=False
+        )
+
+
+def test_identify_inputs_files():
+    out = r.identify_inputs(["fixtures/file", "fixtures/test/file"], only_text=False)
+    # Under their paths, as both files are called "file"
+    assert list(out["Regexes"]) == ["fixtures/file", "fixtures/test/file"]
+    assert (
+        out["Regexes"]["fixtures/file"]
+        == r.identify("fixtures/file", only_text=False)["Regexes"]["file"]
+    )
+    assert [match["Matched"] for match in out["Regexes"]["fixtures/test/file"]] == [
+        "https://google.com"
+    ]
+    assert out["File Signatures"] is None
+
+
+def test_identify_inputs_directory_and_text():
+    out = r.identify_inputs(["fixtures", "THM{hello}"], only_text=False)
+    assert set(out["Regexes"]) == {
+        os.path.join("fixtures", "file"),
+        os.path.join("fixtures", "test", "file"),
+        "text",
+    }
+    assert out["Regexes"]["text"][0]["Matched"] == "THM{hello}"
+
+
+def test_identify_inputs_texts():
+    out = r.identify_inputs(["THM{hello}", "DANHz6EQVoWyZ9rER56DwTXHWUxfkv9k2o"])
+    # The matches in every text are under "text", like in a single text
+    assert list(out["Regexes"]) == ["text"]
+    names = [match["Regex Pattern"]["Name"] for match in out["Regexes"]["text"]]
+    assert "TryHackMe Flag Format" in names
+    assert "Dogecoin (DOGE) Wallet Address" in names
+
+
+def test_identify_inputs_only_text():
+    # By default, like identify(), the inputs are text and not paths
+    out = r.identify_inputs(["fixtures/file", "THM{hello}"])
+    assert list(out["Regexes"]) == ["text"]
+    assert [match["Matched"] for match in out["Regexes"]["text"]] == ["THM{hello}"]
+
+
+def test_identify_inputs_nothing_found():
+    assert r.identify_inputs(["nothing", ""], only_text=False) == {
+        "File Signatures": None,
+        "Regexes": None,
+    }
+    assert r.identify_inputs([]) == {"File Signatures": None, "Regexes": None}
+
+
+def test_identify_inputs_file_signatures(tmp_path):
+    image = str(tmp_path / "image.png")
+    with open(image, "wb") as file:
+        file.write(b"\x89PNG\r\n\x1a\nTHM{hello}\n")
+    out = r.identify_inputs([image, "fixtures/test/file"], only_text=False)
+    assert list(out["File Signatures"]) == [image]
+    assert out["File Signatures"][image]["Filename Extension"] == "png"
+    assert [match["Matched"] for match in out["Regexes"][image]] == ["THM{hello}"]
+
+
+def test_identify_inputs_sorting():
+    out = r.identify_inputs(
+        ["fixtures/file", "THM{hello}", "fixtures"],
+        only_text=False,
+        key=Keys.NAME,
+        reverse=True,
+    )
+    for matches in out["Regexes"].values():
+        names = [match["Regex Pattern"]["Name"] for match in matches]
+        assert names == sorted(names, reverse=True)
+
+    # The key of the identifier is the default
+    r_sorted = identifier.Identifier(key=Keys.MATCHED)
+    out = r_sorted.identify_inputs(["THM{b}", "THM{a}"])
+    assert [match["Matched"] for match in out["Regexes"]["text"]] == [
+        "THM{a}",
+        "THM{b}",
+    ]
+
+
+def test_identify_inputs_processors():
+    class FlagCounter(Processor):
+        names = ["TryHackMe Flag Format"]
+
+        def __init__(self):
+            self.count = 0
+
+        def process(self, match):
+            self.count += 1
+            return match
+
+    counter = FlagCounter()
+    # A generator of processors is used for every input
+    out = r.identify_inputs(["THM{a}", "THM{b}"], processors=(p for p in [counter]))
+    assert counter.count == 2
+    assert len(out["Regexes"]["text"]) == 2

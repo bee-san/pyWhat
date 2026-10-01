@@ -126,6 +126,8 @@ Or if you come across some piece of text and you don't know what it is, `What` w
 
 What about a whole **directory**? `What` can handle that too! It will **recursively** search for files and output everything you need!
 
+**Multiple inputs** You can pass several files, directories or texts at once, like `what file1 file2 this/is/a/directory 'some text'` or `find . -name '*.log' -exec what {} +`. `What` shows the file of every match, the matches in text are under `text`, and `--json` returns everything in one JSON object.
+
 **Unicode** Files and text piped into `What` can be UTF-8, or UTF-16 or UTF-32 with a byte order mark, like the "Unicode" text files that Windows saves. `What` also searches the UTF-16 strings in binary files (like `strings -el`), which is how Windows programs store most of their text. Characters that your terminal cannot show are printed as escape sequences such as `\u20bf` instead of crashing.
 
 ### 🔍 Filtering your output

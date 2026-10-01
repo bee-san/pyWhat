@@ -1,4 +1,6 @@
+import io
 import json
+import os
 import re
 
 import pytest
@@ -298,3 +300,193 @@ def test_print_tags2():
     )
     assert result.exit_code == 0
     assert "Tags: CTF Flag" in result.output
+
+
+# Multiple inputs (issue #171)
+
+
+def test_multiple_files():
+    # Used to fail with "Error: Got unexpected extra arguments"
+    runner = CliRunner()
+    result = runner.invoke(main, ["-db", "fixtures/file", "fixtures/test/file"])
+    assert result.exit_code == 0
+    assert "File: fixtures/file" in result.output
+    assert "Dogecoin" in result.output
+    assert "File: fixtures/test/file" in result.output
+    assert "https://google.com" in result.output
+
+
+def test_multiple_texts():
+    runner = CliRunner()
+    result = runner.invoke(
+        main, ["-db", "THM{hello}", "0x52908400098527886E0F7030069857D2E4169EE7"]
+    )
+    assert result.exit_code == 0
+    assert "TryHackMe Flag Format" in result.output
+    assert "Ethereum (ETH) Wallet Address" in result.output
+    # Like for a single text, there are no files to show
+    assert "File:" not in result.output
+
+
+def test_multiple_inputs_file_and_text():
+    runner = CliRunner()
+    result = runner.invoke(main, ["-db", "fixtures/test/file", "THM{hello}"])
+    assert result.exit_code == 0
+    assert "File: fixtures/test/file\nMatched on: https://google.com" in result.output
+    assert "File: text\nMatched on: THM{hello}" in result.output
+
+
+def test_multiple_inputs_nothing_found():
+    runner = CliRunner()
+    result = runner.invoke(main, ["-db", "nothing", "here"])
+    assert result.exit_code == 0
+    assert result.output.strip() == "Nothing found!"
+
+
+def test_multiple_inputs_json():
+    runner = CliRunner()
+    result = runner.invoke(
+        main, ["-db", "--json", "fixtures/test", "fixtures/file", "THM{hello}"]
+    )
+    assert result.exit_code == 0
+    identified = json.loads(result.output)
+    # One JSON object, with the file of every match
+    assert set(identified["Regexes"]) == {
+        os.path.join("fixtures/test", "file"),
+        "fixtures/file",
+        "text",
+    }
+    assert identified["Regexes"]["text"][0]["Matched"] == "THM{hello}"
+    assert identified["File Signatures"] is None
+
+
+def test_multiple_inputs_json_nothing_found():
+    runner = CliRunner()
+    result = runner.invoke(main, ["-db", "--json", "nothing", "here"])
+    assert result.exit_code == 0
+    assert json.loads(result.output) == {"File Signatures": None, "Regexes": None}
+
+
+def test_multiple_inputs_format():
+    runner = CliRunner()
+    result = runner.invoke(
+        main, ["-db", "--format", "%m - %n", "fixtures/test/file", "THM{hello}"]
+    )
+    assert result.exit_code == 0
+    assert result.output.splitlines() == [
+        "https://google.com - Uniform Resource Locator (URL)",
+        "THM{hello} - TryHackMe Flag Format",
+    ]
+
+
+def test_multiple_inputs_pretty():
+    runner = CliRunner()
+    result = runner.invoke(
+        main,
+        ["-db", "--format", "pretty", "fixtures/test/file", "THM{hello}"],
+        env={"COLUMNS": "200"},  # so that the table does not fold the text
+    )
+    assert result.exit_code == 0
+    assert "Possible Identification" in result.output
+    lines = result.output.splitlines()
+    assert any(re.search(r"Description.+File", line) for line in lines)
+    assert any(
+        re.search(r"https://google\.com.+fixtures/test/file", line) for line in lines
+    )
+    assert any(re.search(r"THM\{hello\}.+text", line) for line in lines)
+
+
+def test_multiple_texts_pretty():
+    runner = CliRunner()
+    result = runner.invoke(
+        main,
+        ["-db", "--format", "pretty", "THM{hello}", "github@skerritt.blog"],
+        env={"COLUMNS": "200"},
+    )
+    assert result.exit_code == 0
+    assert "Possible Identification" in result.output
+    assert "github@skerritt.blog" in result.output
+    # Like for a single text, there is no file column
+    assert "File" not in result.output
+
+
+def test_multiple_inputs_file_signatures(tmp_path, monkeypatch):
+    # Relative paths, so that the output is not wrapped
+    monkeypatch.chdir(tmp_path)
+    (tmp_path / "image.png").write_bytes(b"\x89PNG\r\n\x1a\nTHM{hello}\n")
+    (tmp_path / "page.html").write_text("https://google.com\n")
+    runner = CliRunner()
+    result = runner.invoke(main, ["-db", "image.png", "page.html"])
+    assert result.exit_code == 0
+    assert "File Identified: image.png with Magic Numbers .PNG...." in result.output
+    assert "File: image.png\nMatched on: THM{hello}" in result.output
+    assert "File: page.html\nMatched on: https://google.com" in result.output
+
+    result = runner.invoke(main, ["-db", "--json", "image.png", "page.html"])
+    identified = json.loads(result.output)
+    assert list(identified["File Signatures"]) == ["image.png"]
+    assert list(identified["Regexes"]) == ["image.png", "page.html"]
+
+
+def test_multiple_inputs_sorting():
+    runner = CliRunner()
+    result = runner.invoke(
+        main,
+        ["-db", "--json", "-k", "name", "--reverse", "fixtures/file", "THM{hello}"],
+    )
+    assert result.exit_code == 0
+    identified = json.loads(result.output)
+    names = [
+        match["Regex Pattern"]["Name"]
+        for match in identified["Regexes"]["fixtures/file"]
+    ]
+    assert len(names) > 1
+    assert names == sorted(names, reverse=True)
+
+
+def test_sorting_without_matches():
+    # Used to raise TypeError: 'NoneType' object is not subscriptable
+    runner = CliRunner()
+    result = runner.invoke(main, ["-db", "-k", "name", "nothing"])
+    assert result.exit_code == 0
+    assert "Nothing found!" in result.output
+
+
+def test_multiple_inputs_only_text():
+    # With --only-text the paths are text, like for a single input
+    runner = CliRunner()
+    result = runner.invoke(main, ["-db", "-o", "--json", "fixtures/file", "THM{hello}"])
+    assert result.exit_code == 0
+    identified = json.loads(result.output)
+    assert list(identified["Regexes"]) == ["text"]
+    assert [match["Matched"] for match in identified["Regexes"]["text"]] == [
+        "THM{hello}"
+    ]
+
+
+def test_no_input():
+    runner = CliRunner()
+    result = runner.invoke(main, [])
+    # Without input, stdin is read (it is empty here)
+    assert result.exit_code == 0
+    assert "Nothing found!" in result.output
+
+
+def test_no_input_on_a_terminal():
+    class Terminal(io.BytesIO):
+        def isatty(self):
+            return True
+
+    runner = CliRunner()
+    result = runner.invoke(main, [], input=Terminal())
+    assert result.exit_code == 1
+    assert "Text input expected" in result.output
+
+
+def test_stdin_with_several_lines():
+    runner = CliRunner()
+    result = runner.invoke(main, ["-db"], input="THM{hello}\nfixtures/file\n")
+    assert result.exit_code == 0
+    # stdin is a single text, not a list of inputs
+    assert "TryHackMe Flag Format" in result.output
+    assert "File:" not in result.output
