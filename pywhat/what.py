@@ -18,6 +18,7 @@ from pywhat.helper import (
 )
 from pywhat.interactive import InteractiveShell, query_from_options
 from pywhat.processors import Processor, default_processors, verifiers
+from pywhat.ranking import located_matches, parse_top, top_matches
 from pywhat.unicode import escape_unencodable, texts
 
 
@@ -114,6 +115,18 @@ def read_stdin() -> str:
     return "\n".join(texts(data, getattr(stdin, "encoding", None))).strip()
 
 
+def print_left_out(shown: int, total: int) -> None:
+    """
+    Say how many matches --top left out. On stderr, so that the output (e.g.
+    JSON) is the same as without --top.
+    """
+    if shown < total:
+        Console(stderr=True, highlight=False, soft_wrap=True).print(
+            f"\nShowing the {shown} most likely of {total} matches. Use --top to "
+            "show more of them, or --interactive to search through all of them."
+        )
+
+
 @click.command(
     context_settings=dict(
         ignore_unknown_options=True,
@@ -146,6 +159,11 @@ def read_stdin() -> str:
 @click.option("-o", "--only-text", is_flag=True, help="Do not scan files or folders.")
 @click.option("-k", "--key", help="Sort by the specified key.")
 @click.option("--reverse", is_flag=True, help="Sort in reverse order.")
+@click.option(
+    "--top",
+    metavar="N",
+    help="Only show the N most likely matches, or N% of them, e.g. --top 10 or --top 5%.",
+)
 @click.option(
     "-br",
     "--boundaryless-rarity",
@@ -248,7 +266,19 @@ def main(**kwargs):
 
             matched - Sort by a matched string
 
+            likely - Sort the most likely matches first, see Top matches
+
             none - No sorting is done (the default)
+
+    Top matches:
+
+        --top N
+
+            Only show the N most likely matches, e.g. --top 10. --top N% shows the most likely N percent of them, e.g. --top 5%. For a directory or several inputs, these are the most likely matches of all of them.
+
+            The most likely matches are shown first, unless --key sorts them. They have the highest rarity, but fragments of a longer word or match, which boundaryless mode finds, are less likely unless their rarity is 1. For example, the phone numbers in '0x52908400098527886E0F7030069857D2E4169EE7' are fragments of the Ethereum address, which is the most likely match.
+
+            How many matches were left out is shown on stderr. Use --interactive to page through all of them.
 
     Exporting:
 
@@ -329,6 +359,8 @@ def main(**kwargs):
 
             The --rarity, --include and --exclude options are the search to start with, the other options work as usual. The input is optional, the 'load' command loads a file, directory or text. Type 'help' in interactive mode to see all commands.
 
+            With --top N or the 'top N' command, searches show the N most likely matches and the 'more' command the next N.
+
     Unicode:
 
         Files and text piped to pyWhat can be UTF-8, or UTF-16 or UTF-32 with a byte order mark (BOM). The UTF-16 strings in binary files, which 'strings -el' shows, are searched too.
@@ -348,6 +380,8 @@ def main(**kwargs):
         * what --rarity 0: --include "credentials" --exclude "aws" 'James:SecretPassword'
 
         * what -br 0.6: -be URL '123myEmail@host.org456'
+
+        * what --top 1 '0x52908400098527886E0F7030069857D2E4169EE7'
 
     Your text must either be in quotation marks, or use the POSIX standard of "--" to mean "anything after -- is textual input".
 
@@ -401,6 +435,13 @@ def main(**kwargs):
         except ValueError:
             print("Invalid key")
             sys.exit(1)
+    top = None
+    if kwargs["top"] is not None:
+        try:
+            top = parse_top(kwargs["top"])
+        except ValueError as error:
+            print(error)
+            sys.exit(1)
     if kwargs["interactive"]:
         InteractiveShell(
             query_from_options(kwargs["rarity"], kwargs["include"], kwargs["exclude"]),
@@ -410,6 +451,7 @@ def main(**kwargs):
             processors=processors,
             key=key,
             reverse=kwargs["reverse"],
+            top=top,
             json_output=kwargs["json"],
             format_str=kwargs["format"],
             print_tags=kwargs["print_tags"],
@@ -418,11 +460,16 @@ def main(**kwargs):
     identified_output = what_obj.what_is_this(
         kwargs["text_input"],
         kwargs["only_text"],
-        key,
+        key if top is None else Keys.NONE,  # top_matches() sorts the top ones
         kwargs["reverse"],
         boundaryless,
         kwargs["include_filenames"],
     )
+    total = len(located_matches(identified_output))
+    if top is not None:
+        identified_output = top_matches(
+            identified_output, top, key=key, reverse=kwargs["reverse"]
+        )
 
     p = printer.Printing()
 
@@ -434,6 +481,8 @@ def main(**kwargs):
         p.format_print(identified_output, kwargs["format"])
     else:
         p.print_raw(identified_output, kwargs["text_input"], kwargs["print_tags"])
+
+    print_left_out(len(located_matches(identified_output)), total)
 
 
 class What_Object:

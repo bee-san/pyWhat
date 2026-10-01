@@ -4,7 +4,7 @@ import re
 from enum import Enum, auto
 from functools import lru_cache
 from pathlib import Path
-from typing import List, Set
+from typing import List, Set, Tuple
 
 try:
     import orjson as json
@@ -150,6 +150,26 @@ class CaseInsensitiveSet(collections.abc.Set):
         return all(value in other for value in self)
 
 
+# The key of a match that says whether it is a fragment of a longer word or
+# of a longer match, see pywhat.ranking.mark_fragments()
+FRAGMENT = "Fragment"
+
+
+def likelihood(match: dict) -> Tuple[bool, float]:
+    """
+    The key to sort the most likely matches first (issue #232).
+
+    The higher the rarity of a match, the less likely it is a false positive.
+    A fragment of a longer word or match is less likely than the other
+    matches, unless its rarity is 1 (its regex contains something unique to
+    it, such as the THM{ in abcdTHM{hello}plze): the phone number in the
+    Ethereum address 0x52908400098527886E0F7030069857D2E4169EE7 is not a
+    phone number.
+    """
+    rarity = match["Regex Pattern"]["Rarity"]
+    return bool(match.get(FRAGMENT)) and rarity < 1, -rarity
+
+
 class Keys(Enum):
     def NAME(match):
         return match["Regex Pattern"]["Name"]
@@ -159,6 +179,9 @@ class Keys(Enum):
 
     def MATCHED(match):
         return match["Matched"]
+
+    def LIKELY(match):
+        return likelihood(match)
 
     NONE = auto()
 
