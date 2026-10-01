@@ -1,5 +1,5 @@
 import sys
-from typing import Sequence, Union
+from typing import List, Optional, Sequence, Union
 
 import click
 from rich.console import Console
@@ -17,6 +17,7 @@ from pywhat.helper import (
     str_to_key,
 )
 from pywhat.interactive import InteractiveShell, query_from_options
+from pywhat.processors import Processor, default_processors, verifiers
 from pywhat.unicode import escape_unencodable, texts
 
 
@@ -166,6 +167,11 @@ def read_stdin() -> str:
     is_flag=True,
     help="Disable the processing of matches, e.g. adding dates to Unix timestamps.",
 )
+@click.option(
+    "--verify",
+    is_flag=True,
+    help="Ask the services if the keys found are valid, e.g. Google API keys. This sends the keys to the services.",
+)
 @click.option("--json", is_flag=True, help="Return results in json format.")
 @click.option(
     "--interactive",
@@ -267,6 +273,14 @@ def main(**kwargs):
         Matches are processed further once a regex has found them. For example, the date of a Unix timestamp, in UTC, is added to its description: pywhat --rarity 0: --include "UNIX Timestamp" 1637093119
 
         '--disable-processing' flag can be used to show the matches as the regexes found them.
+
+    Verification:
+
+        --verify
+
+            Ask the services if the keys that are found are valid, and add the answer to the description, e.g. 'Verification: invalid, Google rejected the key (API_KEY_INVALID)'. Currently Google API keys are verified: pywhat --verify 'AIzaSyA00000000000000000000000000000000'
+
+            Only use it for keys that you are allowed to test: it sends the keys to the services (over HTTPS), once per key. It works with '--disable-processing' too.
 
     Formatting the output:
 
@@ -372,7 +386,12 @@ def main(**kwargs):
             kwargs["boundaryless_exclude"],
         )
     # processors=None uses the default processors, [] disables processing
-    processors = [] if kwargs["disable_processing"] else None
+    processors: Optional[List[Processor]] = [] if kwargs["disable_processing"] else None
+    if kwargs["verify"]:
+        # Verification is asked for, so --disable-processing keeps it
+        processors = (
+            [] if kwargs["disable_processing"] else default_processors()
+        ) + verifiers()
     what_obj = What_Object(dist, processors)
     if kwargs["key"] is None:
         key = Keys.NONE
