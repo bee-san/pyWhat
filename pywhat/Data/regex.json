@@ -2753,7 +2753,7 @@
    },
    {
       "Name": "YouTube Video ID",
-      "Regex": "^([0-9A-Za-z_-]{10}[048AEIMQUYcgkosw]{1})$",
+      "Regex": "^((?=.*[A-Z])(?=.*[a-z])[0-9A-Za-z_-]{10}[048AEIMQUYcgkosw]{1})$",
       "plural_name": false,
       "Description": null,
       "Rarity": 0,
@@ -2772,7 +2772,9 @@
          "Invalid": [
             "randomstring123",
             "abcdefghijkL",
-            "!@#$%^&*()_"
+            "!@#$%^&*()_",
+            "078-05-1120",
+            "00000000000"
          ]
       }
    },
