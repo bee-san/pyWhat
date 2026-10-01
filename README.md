@@ -156,6 +156,8 @@ Run `pywhat --names` to see the name of every regex with its alternative names.
 
 **Sorting** You can sort the output by using `what -k rarity --reverse TEXT`. Use `what --help` to get more information.
 
+**Top matches** Found too much? `what --top 10 TEXT` only shows the 10 most likely matches, most likely first, and `what --top 5% TEXT` the most likely 5% of them. For a directory, these are the most likely matches of all of its files. The most likely matches have the highest rarity, but fragments of a longer word or match, which boundaryless mode finds, are less likely: `what --top 1 0x52908400098527886E0F7030069857D2E4169EE7` shows the Ethereum address, not the phone numbers in it. `what -k likely TEXT` shows all matches in this order. In the API, `pywhat.ranking.top_matches(identified, 10)` keeps the 10 most likely matches of what `Identifier.identify()` returns, and the `"Fragment"` key of a match says whether it is a fragment.
+
 **Exporting** You can export to json using `what --json` and results can be sent directly to a file using `what --json > file.json`.
 
 **Boundaryless mode** `What` has a special mode to match identifiable information within strings. By default, it is enabled in CLI but disabled in API. Use `what --help` or refer to [API Documentation](https://github.com/bee-san/pyWhat/wiki/API) for more information.
@@ -172,11 +174,13 @@ Analysing something big? Load it into memory once with `--interactive`, then sea
 $ pywhat --interactive .
 pywhat> tags
 pywhat> include Bug Bounty
+pywhat> top 10
+pywhat> more
 pywhat> location:"/src", include:"Bug Bounty", exclude:"Credit Card", rarity:"0.1:0.6"
 pywhat> load another/directory
 ```
 
-`tags` shows the tags of the current matches and how many matches have each of them, `include TAG` and `exclude TAG` narrow the search down. A search combines `location:`, `include:`, `exclude:`, `rarity:` and text to look for, and every part of it has to match. Where readline is available, Tab completes commands, search keys, tags, rarities and paths. Type `help` in interactive mode to see all commands.
+`tags` shows the tags of the current matches and how many matches have each of them, `include TAG` and `exclude TAG` narrow the search down. `top 10` only shows the 10 most likely matches of a search (`--top 10` does this from the start) and `more` the next 10. A search combines `location:`, `include:`, `exclude:`, `rarity:` and text to look for, and every part of it has to match. Where readline is available, Tab completes commands, search keys, tags, rarities and paths. Type `help` in interactive mode to see all commands.
 
 
 # 🍕 API

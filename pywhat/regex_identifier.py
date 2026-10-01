@@ -1,5 +1,5 @@
 import re
-from typing import Iterable, Optional
+from typing import Iterable, List, Optional, Tuple
 
 from pywhat.filter import Distribution, Filter
 from pywhat.processors import (
@@ -8,6 +8,7 @@ from pywhat.processors import (
     processors_by_name,
     run_processors,
 )
+from pywhat.ranking import Span, mark_fragments
 
 
 class RegexIdentifier:
@@ -33,9 +34,11 @@ class RegexIdentifier:
         if processors is None:
             processors = self.processors
         by_name = processors_by_name(processors)
-        matches = []
+        matches: List[dict] = []
 
         for string in text:
+            # The matches of string, with their spans to mark the fragments
+            found: List[Tuple[dict, Span]] = []
             for reg in dist.get_regexes():
                 regex = (
                     reg["Boundaryless Regex"] if reg in boundaryless else reg["Regex"]
@@ -95,7 +98,11 @@ class RegexIdentifier:
                     if reg_processors:
                         processed = run_processors(match, reg_processors, dist)
                     if processed is not None:
-                        matches.append(processed)
+                        found.append((processed, matched_regex.span()))
+
+            # Fragments of longer words or matches are less likely (issue #232)
+            mark_fragments(string, found)
+            matches.extend(match for match, _ in found)
 
         return matches
 

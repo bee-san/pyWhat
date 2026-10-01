@@ -44,6 +44,14 @@ from pywhat.helper import (
 from pywhat.identifier import Identifier
 from pywhat.printer import Printing
 from pywhat.processors import Processor
+from pywhat.ranking import (
+    SUGGEST_TOP_AFTER,
+    SUGGESTED_TOP,
+    Top,
+    group_by_location,
+    parse_top,
+    select,
+)
 
 # Search keys, including the "includes" and "excludes" spelling of #233
 _SEARCH_KEYS = {
@@ -78,6 +86,7 @@ INTRO = (
     "commands, 'help search' for the search syntax and 'quit' to leave."
 )
 NOTHING_LOADED = "Nothing is loaded yet, use 'load FILE, DIRECTORY or TEXT'."
+NO_MORE = "No more matches."
 
 
 class QueryError(ValueError):
@@ -342,7 +351,10 @@ class InteractiveShell(cmd.Cmd):
     the command line, Filter()), only_text and include_filenames are used to
     identify the loaded input, and processors (by default
     pywhat.processors.default_processors()) to process its matches. key,
-    reverse, json_output, format_str and print_tags format the matches.
+    reverse, json_output, format_str and print_tags format the matches. top
+    is how many of the most likely matches of a search to show at a time,
+    like the 'top' command (see pywhat.ranking.parse_top()). By default all
+    of them are shown.
     """
 
     prompt = "pywhat> "
@@ -357,6 +369,7 @@ class InteractiveShell(cmd.Cmd):
         processors: Optional[Iterable[Processor]] = None,
         key: Any = Keys.NONE,
         reverse: bool = False,
+        top: Union[Top, int, str, None] = None,
         json_output: bool = False,
         format_str: Optional[str] = None,
         print_tags: bool = False,
@@ -381,12 +394,17 @@ class InteractiveShell(cmd.Cmd):
         self.include_filenames = include_filenames
         self.key = key
         self.reverse = reverse
+        # None until 'top' (or --top) chooses how many matches to show
+        self.top: Optional[Top] = None if top is None else parse_top(top)
         self.json_output = json_output
         self.format_str = format_str
         self.print_tags = print_tags
         self.input: Union[None, str, List[str]] = None
         self.matches: List[Tuple[str, dict]] = []  # (location, match)
         self.signatures: Dict[str, dict] = {}
+        # How many of the most likely matches of the search have been shown
+        self.shown = 0
+        self._suggested_top = False
 
     def run(self, text_input: Union[None, str, Sequence[str]] = None) -> None:
         """
@@ -424,6 +442,7 @@ class InteractiveShell(cmd.Cmd):
             for location, matches in (identified["Regexes"] or {}).items()
             for match in matches
         ]
+        self.shown = 0
         source = "the text"
         if len(inputs) != 1:
             source = f"{len(inputs)} inputs"
@@ -444,38 +463,76 @@ class InteractiveShell(cmd.Cmd):
             if self.query.matches(location, match)
         ]
 
-    def show_matches(self) -> None:
-        """Print the matches of the current search, like pywhat does."""
+    def show_matches(self, start: int = 0) -> None:
+        """
+        Print the matches of the current search, like pywhat does. After
+        'top N', only N of them: the most likely ones after the start most
+        likely ones.
+        """
         found = self.search()
         self._print_search(found)
-        regexes: Dict[str, List[dict]] = {}
-        for location, match in found:
-            regexes.setdefault(location, []).append(match)
-        if self.key != Keys.NONE:
-            for matches in regexes.values():
-                matches.sort(key=self.key, reverse=self.reverse)
+        shown = select(found, self.top or Top(), start)
+        self.shown = start + len(shown)
         identified = {
+            # The next matches ('more') are shown without the file signatures again
             "File Signatures": {
                 location: signature
                 for location, signature in self.signatures.items()
-                if self.query.matches_location(location)
+                if start == 0 and self.query.matches_location(location)
             }
             or None,
-            "Regexes": regexes or None,
+            "Regexes": group_by_location(shown, self.key, self.reverse) or None,
         }
 
         if self.json_output or str(self.format_str).strip() == "json":
             # Like Printing.print_json(), but to the stdout of the shell
             self.stdout.write(json.dumps(identified) + "\n")
-            return
-        printer = Printing()
-        printer.console = self.console
-        if str(self.format_str).strip() == "pretty":
-            printer.pretty_print(identified, self.input, self.print_tags)
-        elif self.format_str is not None:
-            printer.format_print(identified, self.format_str)
         else:
-            printer.print_raw(identified, self.input, self.print_tags)
+            printer = Printing()
+            printer.console = self.console
+            if str(self.format_str).strip() == "pretty":
+                printer.pretty_print(identified, self.input, self.print_tags)
+            elif self.format_str is not None:
+                printer.format_print(identified, self.format_str)
+            else:
+                printer.print_raw(identified, self.input, self.print_tags)
+        self._print_paging(start, len(found))
+
+    def _print_paging(self, start: int, found: int) -> None:
+        """Say which of the found matches are shown, and how to see the others."""
+        if self.top is None:
+            if found > SUGGEST_TOP_AFTER and not self._suggested_top:
+                # Once, "There are 157 results, would you like to only show
+                # the top 10?"
+                self._suggested_top = True
+                self.console.print(
+                    f"\nThere are {found} matches. Type 'top {SUGGESTED_TOP}' to "
+                    f"only see the {SUGGESTED_TOP} most likely, then 'more' to "
+                    "see the next ones."
+                )
+            return
+        if self.top.is_all or (start == 0 and self.shown == found):
+            return  # all matches are shown
+        if start == 0:
+            note = f"Showing the {self.shown} most likely of {found} matches."
+        else:
+            note = f"Showing matches {start + 1} to {self.shown} of {found}."
+        if self.shown < found:
+            next_ones = min(self.top.of(found), found - self.shown)
+            note += f" Type 'more' to see the next {next_ones}."
+        self.console.print("\n" + note)
+
+    def _describe_top(self) -> str:
+        if self.top is None or self.top.is_all:
+            return (
+                "Searches show all of their matches. Use 'top N' to only see "
+                "the N most likely ones."
+            )
+        if self.top.number is not None:
+            how_many = _count_matches(self.top.number)
+        else:
+            how_many = f"{self.top} of their matches"
+        return f"Searches show the most likely {how_many}, 'more' shows the next ones."
 
     def _print_search(self, found: list) -> None:
         self.console.print(
@@ -561,6 +618,7 @@ class InteractiveShell(cmd.Cmd):
             location:"/", include:"Bug Bounty", exclude:"Credit Card", rarity:"0.1:0.6"
 
         Press Tab to complete search keys, tags, names, rarities and locations.
+        After 'top N', a search shows its N most likely matches.
         """
         if arg.strip():
             try:
@@ -617,6 +675,50 @@ class InteractiveShell(cmd.Cmd):
                 column_first=True,
             )
         )
+
+    def do_top(self, arg: str) -> None:
+        """
+        top [N, N% or all]
+
+        Only show the N most likely matches of a search, then 'more' shows
+        the next N. 'top 5%' shows the most likely 5 percent of the matches,
+        and 'top all' all of them in the order they were found, as pyWhat
+        does by default. 'top' alone tells how many matches are shown.
+
+        The most likely matches have the highest rarity, but fragments of a
+        longer word or match, which boundaryless mode finds, are less likely
+        unless their rarity is 1. They are shown first, unless pyWhat was
+        started with --key to sort them.
+        """
+        if arg.strip():
+            try:
+                self.top = parse_top(arg)
+            except ValueError as error:
+                self._error(str(error))
+                return
+            if self.input is not None:
+                self.show_matches()
+                return
+        self.console.print(self._describe_top())
+
+    def do_more(self, arg: str) -> None:
+        """
+        more
+
+        Show the next most likely matches of the search, after 'top N' showed
+        the N most likely ones.
+        """
+        if not self._loaded():
+            return
+        if self.top is None or self.top.is_all:
+            self.console.print(
+                "All matches of the search are shown. Use 'top N' to see N of "
+                "them at a time."
+            )
+        elif self.shown >= len(self.search()):
+            self.console.print(NO_MORE)
+        else:
+            self.show_matches(self.shown)
 
     def do_clear(self, arg: str) -> None:
         """
@@ -750,6 +852,10 @@ class InteractiveShell(cmd.Cmd):
         return _readline_matches(line, begidx, start, found)
 
     complete_exclude = complete_include
+
+    def complete_top(self, text: str, line: str, begidx: int, endidx: int) -> List[str]:
+        values = [str(SUGGESTED_TOP), "5%", "all"]
+        return [value for value in values if value.startswith(text.lower())]
 
     def complete_load(
         self, text: str, line: str, begidx: int, endidx: int
