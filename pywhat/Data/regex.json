@@ -138,6 +138,55 @@
       }
    },
    {
+      "Name": "Browser User Agent",
+      "Regex": "^(Mozilla/[0-9]\\.[0-9](?: [\\w.+~-]+/[\\w.+~-]+)* \\([^()\"\\n]+\\)(?: [\\w.+~-]+/[\\w.+~-]+| \\([^()\"\\n]*\\)| Mobile| like Gecko)*)$",
+      "plural_name": false,
+      "Description": null,
+      "Rarity": 1,
+      "URL": null,
+      "Tags": [
+         "Networking",
+         "Website",
+         "User Agent"
+      ],
+      "Children": {
+         "entry": "Detected: ",
+         "method": "regex",
+         "Items": {
+            "Windows": "Windows",
+            "Android": "Android",
+            "iPhone|iPad|iPod": "iOS",
+            "Macintosh": "macOS",
+            "CrOS": "ChromeOS",
+            "^(?!.*Android).*Linux": "Linux",
+            "Edg(?:e|A|iOS)?/": "Microsoft Edge",
+            "OPR/|Opera": "Opera",
+            "SamsungBrowser/": "Samsung Internet",
+            "Firefox/|FxiOS/": "Firefox",
+            "^(?!.*(?:Edg(?:e|A|iOS)?|OPR|SamsungBrowser)/).*(?:Chrome|CriOS)/": "Chrome",
+            "Version/[0-9.]+ (?:Mobile/[0-9A-Za-z]+ )?Safari/": "Safari",
+            "MSIE |Trident/": "Internet Explorer",
+            "(?i)(?:bot|crawler|spider)/|\\+https?://": "Bot"
+         }
+      },
+      "Examples": {
+         "Valid": [
+            "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
+            "Mozilla/5.0 (X11; Linux x86_64; rv:121.0) Gecko/20100101 Firefox/121.0",
+            "Mozilla/5.0 (iPhone; CPU iPhone OS 17_2 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.2 Mobile/15E148 Safari/604.1",
+            "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Mobile Safari/537.36",
+            "Mozilla/5.0 (Windows NT 10.0; WOW64; Trident/7.0; rv:11.0) like Gecko",
+            "Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)",
+            "Mozilla/5.0 AppleWebKit/537.36 (KHTML, like Gecko; compatible; Googlebot/2.1; +http://www.google.com/bot.html) Chrome/120.0.6099.71 Safari/537.36"
+         ],
+         "Invalid": [
+            "Mozilla/5.0",
+            "Mozilla Firefox",
+            "curl/8.4.0"
+         ]
+      }
+   },
+   {
       "Name": "TryHackMe Flag Format",
       "Regex": [
          "(?i)^(thm{.*})$",
@@ -1227,6 +1276,31 @@
       }
    },
    {
+      "Name": "Regex101 Permalink",
+      "Regex": "^((?=[hrw])(?:https?://)?(?:www\\.)?regex101\\.com/(?:r|library)/[a-zA-Z0-9]{6}(?![a-zA-Z0-9])(?:/[0-9]+)?/?)$",
+      "plural_name": false,
+      "Description": null,
+      "Rarity": 1,
+      "URL": null,
+      "Tags": [
+         "URL",
+         "Regex101"
+      ],
+      "Examples": {
+         "Valid": [
+            "https://regex101.com/r/wY0rM7/3",
+            "http://regex101.com/r/mH1fN5",
+            "regex101.com/r/vY5eL1/1",
+            "https://regex101.com/library/aL8lD7"
+         ],
+         "Invalid": [
+            "https://regex101.com/",
+            "https://regex101.com/r/abc",
+            "https://example.com/r/wY0rM7/3"
+         ]
+      }
+   },
+   {
       "Name": "Nano (NANO) Wallet Address",
       "Regex": "^((nano|xrb)_[13]{1}[1a-km-z3-9]{59})$",
       "plural_name": false,
@@ -1753,6 +1827,37 @@
       }
    },
    {
+      "Name": "ISO 8601 Timestamp",
+      "Regex": "^((?<![0-9])[0-9]{4}-(?:0[1-9]|1[0-2])-(?:0[1-9]|[12][0-9]|3[01])[Tt](?:[01][0-9]|2[0-3]):[0-5][0-9]:(?:[0-5][0-9]|60)(?:\\.[0-9]+)?(?:[Zz]|[+-](?:[01][0-9]|2[0-3]):?[0-5][0-9])?(?![0-9]))$",
+      "plural_name": false,
+      "Description": "A date and time in the [#CAE4F1][link=https://en.wikipedia.org/wiki/ISO_8601]ISO 8601[/link][/#CAE4F1] (RFC 3339) format",
+      "Rarity": 0.7,
+      "URL": null,
+      "Tags": [
+         "Timestamp",
+         "ISO 8601"
+      ],
+      "Examples": {
+         "Valid": [
+            "2016-01-19T15:21:32+02:00",
+            "2016-01-19T15:21:32Z",
+            "2016-01-19T15:21:32.321Z",
+            "2016-01-19T15:21:32",
+            "2016-01-19T15:21:32.45+03:30",
+            "1985-04-12t23:20:50.52z",
+            "2016-12-31T23:59:60Z"
+         ],
+         "Invalid": [
+            "2016-01-19T15:21:32.13.45Z",
+            "2016-01-19T15:21:32.Z",
+            "2016-01-19T15:21:32-Z",
+            "2016-13-01T00:00:00Z",
+            "2016-01-19T25:00:00Z",
+            "2016-01-19 15:21:32"
+         ]
+      }
+   },
+   {
       "Name": "Internet Protocol (IP) Address Version 4 CIDR Block",
       "Regex": "^((?<![0-9.])(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\/(?:3[0-2]|[12][0-9]|[0-9])(?![0-9]))$",
       "plural_name": false,
@@ -1876,6 +1981,38 @@
             "RSSMRA00A01H501C"
          ],
          "Invalid": []
+      }
+   },
+   {
+      "Name": "United Kingdom (UK) Postcode",
+      "Regex": "^(\\b(?:(?:[A-PR-UWYZ][0-9][0-9]?|[A-PR-UWYZ][A-HK-Y][0-9][0-9]?|[A-PR-UWYZ][0-9][A-HJKPSTUW]|[A-PR-UWYZ][A-HK-Y][0-9][ABEHMNPRVWXY]) [0-9][ABD-HJLNP-UW-Z]{2}|GIR 0AA)\\b)$",
+      "plural_name": false,
+      "Description": null,
+      "Rarity": 0.5,
+      "URL": null,
+      "Tags": [
+         "Identifiers",
+         "Location",
+         "Postal Code",
+         "UK"
+      ],
+      "Examples": {
+         "Valid": [
+            "SW1A 1AA",
+            "EC1A 1BB",
+            "W1A 0AX",
+            "M1 1AE",
+            "B33 8TH",
+            "CR2 6XH",
+            "DN55 1PT",
+            "GIR 0AA"
+         ],
+         "Invalid": [
+            "SW1A 1AC",
+            "QA1 1AA",
+            "AB12 CDE",
+            "W1A 0AXX"
+         ]
       }
    },
    {
@@ -2040,6 +2177,42 @@
             "b2ced6f5-2542-4f7d-b131-e3ada95d8b75"
          ],
          "Invalid": []
+      }
+   },
+   {
+      "Name": "Cron Schedule",
+      "Regex": "(?i)^((?=[0-9*])(?<![\\w*/,.-])(?<!\\*[ \\t])(?=[\\w*/,-]+[ \\t]+[\\w*/,-]+[ \\t]+(?:[\\w,/-]+[ \\t]+){0,2}[\\w,/-]*\\*)(?!(?:[0-9]+[ \\t]+\\*[ \\t]+){2}[0-9]+(?![\\w*/,-])|(?:\\*[ \\t]+[0-9]+[ \\t]+){2}\\*(?![\\w*/,-]))(?:\\*|[0-5]?[0-9](?:-[0-5]?[0-9])?)(?:/[0-9]{1,2})?(?:,(?:\\*|[0-5]?[0-9](?:-[0-5]?[0-9])?)(?:/[0-9]{1,2})?)*[ \\t]+(?:\\*|(?:[01]?[0-9]|2[0-3])(?:-(?:[01]?[0-9]|2[0-3]))?)(?:/[0-9]{1,2})?(?:,(?:\\*|(?:[01]?[0-9]|2[0-3])(?:-(?:[01]?[0-9]|2[0-3]))?)(?:/[0-9]{1,2})?)*[ \\t]+(?:\\*|(?:0?[1-9]|[12][0-9]|3[01])(?:-(?:0?[1-9]|[12][0-9]|3[01]))?)(?:/[0-9]{1,2})?(?:,(?:\\*|(?:0?[1-9]|[12][0-9]|3[01])(?:-(?:0?[1-9]|[12][0-9]|3[01]))?)(?:/[0-9]{1,2})?)*[ \\t]+(?:\\*|(?:0?[1-9]|1[0-2]|jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec)(?:-(?:0?[1-9]|1[0-2]|jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec))?)(?:/[0-9]{1,2})?(?:,(?:\\*|(?:0?[1-9]|1[0-2]|jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec)(?:-(?:0?[1-9]|1[0-2]|jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec))?)(?:/[0-9]{1,2})?)*[ \\t]+(?:\\*|(?:[0-7]|sun|mon|tue|wed|thu|fri|sat)(?:-(?:[0-7]|sun|mon|tue|wed|thu|fri|sat))?)(?:/[0-9]{1,2})?(?:,(?:\\*|(?:[0-7]|sun|mon|tue|wed|thu|fri|sat)(?:-(?:[0-7]|sun|mon|tue|wed|thu|fri|sat))?)(?:/[0-9]{1,2})?)*(?=[\\s\"'`<),;|\\]}]|\\.(?!\\S)|\\Z)(?![ \\t]+\\*)(?:[ \\t]+[^\\s][^\\n]*)?)$",
+      "plural_name": false,
+      "Description": "The schedule of a [#CAE4F1][link=https://en.wikipedia.org/wiki/Cron]cron job[/link][/#CAE4F1] (minute, hour, day of month, month and day of week), possibly followed by the command it runs",
+      "Rarity": 0.5,
+      "URL": null,
+      "Tags": [
+         "Cron"
+      ],
+      "Examples": {
+         "Valid": [
+            "* * * * *",
+            "*/5 * * * *",
+            "0 0 * * *",
+            "30 2 * * 1-5",
+            "0 9-17 * * MON-FRI",
+            "15,45 */2 1 jan,jul *",
+            "0 4 * * 7 /usr/local/bin/weekly-report.sh",
+            "*/10 * * * * root /usr/local/bin/backup > /dev/null 2>&1"
+         ],
+         "Invalid": [
+            "1 2 3 4 5",
+            "60 * * * *",
+            "* 24 * * *",
+            "* * 32 * *",
+            "* * * 13 *",
+            "* * * * 8",
+            "* * * * wednesday",
+            "* * * *",
+            "* * * * * *",
+            "2 * 3 * 4",
+            "* 0 1 2 3"
+         ]
       }
    },
    {
