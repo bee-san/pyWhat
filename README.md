@@ -207,6 +207,8 @@ id.identify("https://trashurl.it/page")
 
 If a regex is known by other names, such as an abbreviation, list them in its optional `"Alternative Names"` in [regex.json](pywhat/Data/regex.json) rather than adding them as tags. Tags are for groups of regexes, like `Bug Bounty`.
 
+Not sure which rarity to give your regex? `python scripts/rarity_score.py 'REGEX'` estimates it from the regex itself: the more specific characters a match has to contain, like the `ghp_` of a GitHub token, the rarer it is. `python scripts/rarity_score.py --database` compares the rarities in `regex.json` with their estimates, and `--help` explains how the estimate works.
+
 We ask contributors to join the Discord for quicker discussions, but it's not needed:
 <a href="http://discord.skerritt.blog"><img alt="Discord" src="https://img.shields.io/discord/754001738184392704"></a>
 
