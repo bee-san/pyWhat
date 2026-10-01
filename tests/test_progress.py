@@ -15,7 +15,7 @@ from pywhat.progress import ProgressBars, progress_bars
 def terminal():
     """A console that writes to a string, like to a terminal."""
     return Console(
-        file=io.StringIO(),
+        file=FakeTerminal(),
         force_terminal=True,
         force_interactive=True,
         width=100,
@@ -228,6 +228,45 @@ def test_no_progress_bars_on_stderr_for_a_pipe(monkeypatch):
         os.close(read)
     with progress_bars(not_a_terminal(), stderr=True) as bars:
         assert bars is None
+
+
+def test_no_progress_bars_in_a_pipe_with_force_color(monkeypatch):
+    # FORCE_COLOR and TTY_COMPATIBLE=1 make rich take a pipe for a terminal, to
+    # write colours to it, but the bars would break the output, e.g. the JSON
+    # of pywhat --json ... | jq (issue #264)
+    monkeypatch.setenv("FORCE_COLOR", "1")
+    monkeypatch.setenv("TTY_COMPATIBLE", "1")
+    monkeypatch.setattr(sys, "stderr", FakeTerminal())
+    read, write = os.pipe()
+    try:
+        with open(write, "w") as pipe:
+            # force_terminal does what FORCE_COLOR does, with every rich version
+            for console in Console(file=pipe), Console(file=pipe, force_terminal=True):
+                with progress_bars(console, stderr=True) as bars:
+                    assert bars is None
+    finally:
+        os.close(read)
+    to_a_string = Console(file=io.StringIO(), force_terminal=True)
+    with progress_bars(to_a_string, stderr=True) as bars:
+        assert bars is None
+
+
+def test_progress_bars_on_stderr_with_force_color(monkeypatch, tmp_path):
+    # Not in the file that the output is redirected to, which rich takes for a
+    # terminal with FORCE_COLOR (issue #264), but on stderr if it is a terminal
+    monkeypatch.setenv("FORCE_COLOR", "1")
+    monkeypatch.setenv("TTY_COMPATIBLE", "1")
+    stderr = FakeTerminal()
+    monkeypatch.setattr(sys, "stderr", stderr)
+    with open(tmp_path / "output.json", "w") as output:
+        consoles = [Console(file=output), Console(file=output, force_terminal=True)]
+        for to_a_file in consoles:
+            with progress_bars(to_a_file, stderr=True) as bars:
+                assert bars is not None
+                assert bars.console.file is stderr
+            with progress_bars(to_a_file) as bars:
+                assert bars is None
+        assert output.tell() == 0  # nothing is written to the output
 
 
 def test_bars_with_a_search():

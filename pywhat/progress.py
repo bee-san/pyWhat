@@ -156,6 +156,23 @@ def _writes_to_a_file(console: Console) -> bool:
         return False
 
 
+def _is_a_terminal(console: Console) -> bool:
+    """
+    Whether console writes to a terminal that the progress bars can be drawn
+    on. console.is_terminal is not enough: rich also takes a pipe or a file for
+    a terminal if FORCE_COLOR or TTY_COMPATIBLE=1 is set, to write colours to
+    it, and the bars would break the output there, e.g. the JSON of
+    pywhat --json ... | jq (issue #264).
+    """
+    if not console.is_terminal or console.is_dumb_terminal:
+        return False
+    isatty = getattr(console.file, "isatty", None)
+    try:
+        return isatty is not None and bool(isatty())
+    except ValueError:  # the file is closed
+        return False
+
+
 @contextmanager
 def progress_bars(
     console: Console, *, enabled: bool = True, stderr: bool = False
@@ -170,9 +187,9 @@ def progress_bars(
     Yields the ProgressBars, the progress callback for the search, or None if
     the bars are not shown because there is no terminal or they are disabled.
     """
-    if enabled and stderr and not console.is_terminal and _writes_to_a_file(console):
+    if enabled and stderr and _writes_to_a_file(console):
         console = Console(stderr=True, highlight=False)
-    if not enabled or not console.is_terminal or console.is_dumb_terminal:
+    if not enabled or not _is_a_terminal(console):
         yield None
         return
     with ProgressBars(console) as bars:
