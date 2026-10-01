@@ -166,7 +166,9 @@ def test_identify_marks_fragments():
         for found in out["Regexes"]["text"]
     }
     assert fragments["Ethereum (ETH) Wallet Address"] is False
-    assert fragments["Phone Number"] is True
+    assert fragments["MasterCard Number"] is True
+    # The digits in it are not a phone number (issue #240)
+    assert "Phone Number" not in fragments
 
 
 def test_fragments_of_each_text():
