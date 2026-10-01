@@ -28,7 +28,8 @@ def install_with_constraints(session: Session, *args: str, **kwargs: Any) -> Non
         "poetry",
         "export",
         "--without-hashes",
-        "--dev",
+        "--with",
+        "dev",
         "--format=requirements.txt",
         "--output=requirements.txt",
         external=True,
@@ -39,12 +40,14 @@ def install_with_constraints(session: Session, *args: str, **kwargs: Any) -> Non
 @nox.session
 def tests(session: Session) -> None:
     """Run the test suite."""
-    session.run("poetry", "install", "--no-dev", external=True)
+    session.run("poetry", "install", "--only", "main", external=True)
     install_with_constraints(
         session,
         "pytest",
         "pytest-black",
-        "pytest-cov",
+        # pytest-cov is not in poetry.lock; newer releases need pluggy>=1.2,
+        # which conflicts with the locked pytest 7.1 / pluggy 1.0.
+        "pytest-cov==5.0.0",
         "pytest-isort",
         "pytest-flake8",
         "pytest-mypy",
