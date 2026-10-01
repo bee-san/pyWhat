@@ -2854,8 +2854,7 @@
       ],
       "Examples": {
          "Valid": [
-            "AIzaSyD7CQl6fRhagGok6CzFGOOPne2X1u1spoA",
-            "AIzaSyA-1b2C3d4E5f6G7h8I9j0K_LmNoPqRsTu"
+            "AIzaSyD7CQl6fRhagGok6CzFGOOPne2X1u1spoA"
          ],
          "Invalid": [
             "AIzaSyD7CQl6fRhagGok6CzFGOOPne2X1u1spo",
