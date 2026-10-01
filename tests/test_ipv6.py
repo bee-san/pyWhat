@@ -1,17 +1,18 @@
 """
 Test cases for IPv6 address identification.
 
-Covers '::' alone not matching (issue #201, with boundaries), upper- and
+Covers false positives in boundaryless mode (issue #201), upper- and
 lowercase hex digits, and decimal-only ports.
 """
 
 from pywhat import identifier
+from pywhat.filter import Filter
 
 r = identifier.Identifier()
 
 
-def _ipv6_matches(text):
-    out = r.identify(text)
+def _ipv6_matches(text, *, boundaryless=None):
+    out = r.identify(text, boundaryless=boundaryless)
     if out["Regexes"] is None:
         return []
     matches = out["Regexes"]["text"]
@@ -21,6 +22,10 @@ def _ipv6_matches(text):
 def test_ipv6_rejects_lone_double_colon():
     """Verify that '::' alone is NOT identified as IPv6 (issue #201)."""
     assert _ipv6_matches("::") == [], "'::' should not match any regex patterns"
+
+
+def test_ipv6_rejects_scope_operator_false_positive_in_boundaryless_mode():
+    assert _ipv6_matches("std::vector<int> v(10);", boundaryless=Filter()) == []
 
 
 def test_ipv6_rejects_multiple_double_colons():
