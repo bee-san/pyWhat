@@ -326,9 +326,18 @@ def test_addresses_in_a_file():
     assert all(is_bitcoin_address(address) for address in found)
 
 
+# Short ids: pytest puts the id of the running test in an environment variable,
+# and on Windows those cannot be longer than 32767 characters
+ADVERSARIAL_INPUTS = {
+    "separators": "bc1" * 20000,
+    "ones": "1" * 50000,
+    "issue": "3F" * 25000,
+    "long segwit": "bc1q" + "q" * 50000,
+}
+
+
 @pytest.mark.parametrize(
-    "text",
-    ["bc1" * 20000, "1" * 50000, "3F" * 25000, "bc1q" + "q" * 50000],
+    "text", ADVERSARIAL_INPUTS.values(), ids=ADVERSARIAL_INPUTS.keys()
 )
 def test_no_catastrophic_backtracking(text):
     start = time.perf_counter()
