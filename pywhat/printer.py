@@ -235,15 +235,11 @@ class Printing:
                 self.console.print(str_output)
 
     def _check_if_exploit_in_json(self, text: dict) -> bool:
-        if "File Signatures" in text and text["File Signatures"]:
-            # loops files
-            for file in text["Regexes"].keys():
-                for i in text["Regexes"][file]:
-                    if "Exploit" in i.keys():
-                        self.bug_bounty_mode = True
-        else:
-            for value in text["Regexes"]["text"]:
-                if "Exploit" in value["Regex Pattern"].keys():
+        # The matches are under "text" for text, and under the file names for
+        # a file or a directory (with or without file signatures)
+        for matches in text["Regexes"].values():
+            for match in matches:
+                if "Exploit" in match["Regex Pattern"]:
                     self.bug_bounty_mode = True
 
         return self.bug_bounty_mode

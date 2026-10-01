@@ -146,6 +146,20 @@ pywhat --include "Cryptocurrency Wallet" --exclude "Ripple Wallet" 1KFHE7w8BhaEN
 
 **Boundaryless mode** `What` has a special mode to match identifiable information within strings. By default, it is enabled in CLI but disabled in API. Use `what --help` or refer to [API Documentation](https://github.com/bee-san/pyWhat/wiki/API) for more information.
 
+### 💬 Interactive mode
+
+Analysing something big? Load it into memory once with `--interactive`, then search through what `What` found as often as you like, without scanning it again:
+
+```console
+$ pywhat --interactive .
+pywhat> tags
+pywhat> include Bug Bounty
+pywhat> location:"/src", include:"Bug Bounty", exclude:"Credit Card", rarity:"0.1:0.6"
+pywhat> load another/directory
+```
+
+`tags` shows the tags of the current matches and how many matches have each of them, `include TAG` and `exclude TAG` narrow the search down. A search combines `location:`, `include:`, `exclude:`, `rarity:` and text to look for, and every part of it has to match. Where readline is available, Tab completes commands, search keys, tags, rarities and paths. Type `help` in interactive mode to see all commands.
+
 
 # 🍕 API
 
