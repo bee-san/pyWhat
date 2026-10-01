@@ -38,12 +38,39 @@ def read_json(path: str):
         return json.loads(myfile.read())
 
 
+def join_regexes(patterns: list) -> str:
+    """
+    Join a list of regexes in the ^(regex)$ format into a single regex.
+
+    ["^(a)$", "^(b)$"] becomes "^(?:(a)|(b))$". If every regex starts with
+    "(?i)" the result keeps one leading "(?i)", otherwise the flag is scoped
+    to the regexes that had it: ["(?i)^(a)$", "^(b)$"] becomes
+    "^(?:(?i:(a))|(b))$".
+
+    Capturing groups are renumbered, so numbered backreferences (\\1) only
+    work in the first regex of the list.
+    """
+    case_insensitive = [pattern.startswith("(?i)") for pattern in patterns]
+    bodies = []
+    for pattern, ignore_case in zip(patterns, case_insensitive):
+        body = pattern[len("(?i)") :] if ignore_case else pattern
+        if not (body.startswith("^") and body.endswith("$")):
+            raise ValueError(f"Regex {pattern!r} is not in the ^(regex)$ format")
+        body = body[1:-1]
+        if ignore_case and not all(case_insensitive):
+            body = f"(?i:{body})"
+        bodies.append(body)
+    prefix = "(?i)" if all(case_insensitive) else ""
+    return prefix + "^(?:" + "|".join(bodies) + ")$"
+
+
 @lru_cache()
 def load_regexes() -> list:
-    combined_regexes = []
-    regex_index_mapping = {}
     regexes = read_json("regex.json")
     for regex in regexes:
+        # "Regex" may be a list of alternative formats (issue #227)
+        if isinstance(regex["Regex"], list):
+            regex["Regex"] = join_regexes(regex["Regex"])
         regex["Boundaryless Regex"] = re.sub(
             r"(?<!\\)\^(?![^\[\]]*(?<!\\)\])", "", regex["Regex"]
         )
@@ -59,35 +86,8 @@ def load_regexes() -> list:
             children["lengths"] = set()
             for element in children["Items"]:
                 children["lengths"].add(len(element))
-        # Check if multiple regex patterns present
-        regex_name = regex["Name"]
-        if(regex_name in regex_index_mapping):
-            # Update regex pattern
-            existing_regex = combined_regexes[regex_index_mapping[regex_name]]["Regex"]
-            updated_regex = existing_regex + "|" + regex["Regex"]
-            combined_regexes[regex_index_mapping[regex_name]]["Regex"] = updated_regex
-            # Combine tags
-            updated_tags = combined_regexes[regex_index_mapping[regex_name]]["Tags"]
-            for tag in regex["Tags"]:
-                if(tag not in updated_tags):
-                    updated_tags.append(tag)
-            # Combine examples
-            updated_valid_examples = combined_regexes[regex_index_mapping[regex_name]]["Examples"]["Valid"]
-            for valid_example in regex["Examples"]["Valid"]:
-                if(valid_example not in updated_valid_examples):
-                    updated_valid_examples.append(valid_example)
-            updated_invalid_examples = combined_regexes[regex_index_mapping[regex_name]]["Examples"]["Invalid"]
-            for invalid_example in regex["Examples"]["Invalid"]:
-                if(invalid_example not in updated_invalid_examples):
-                    updated_invalid_examples.append(invalid_example)
-            # Update boundaryless regex pattern
-            existing_boundaryless_regex = combined_regexes[regex_index_mapping[regex_name]]["Boundaryless Regex"]
-            updated_boundaryless_regex = existing_boundaryless_regex + "|" + regex["Boundaryless Regex"]
-            combined_regexes[regex_index_mapping[regex_name]]["Boundaryless Regex"] = updated_boundaryless_regex
-        else:
-            regex_index_mapping[regex_name] = len(combined_regexes)
-            combined_regexes.append(regex)
-    return combined_regexes
+    return regexes
+
 
 class CaseInsensitiveSet(collections.abc.Set):
     def __init__(self, iterable=None):
