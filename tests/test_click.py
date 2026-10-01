@@ -764,7 +764,8 @@ def test_print_stream_api():
             Identifier().iter_identify(text_input, only_text=False), text_input
         )
         output = printer.console.file.getvalue()
-        assert "File: /test/file\nMatched on: https://google.com" in output
+        location = os.path.join(os.sep, "test", "file")  # \test\file on Windows
+        assert f"File: {location}\nMatched on: https://google.com" in output
 
         printer.console.file = io.StringIO()
         printer.print_raw(
