@@ -357,16 +357,17 @@ def test_iter_identify_fragments():
     # known once the whole text has been searched. The matches are yielded
     # before that, and get their "Fragment" key afterwards.
     r = identifier.Identifier(boundaryless=Filter())
-    text = "0x52908400098527886E0F7030069857D2E4169EE7"
+    text = "github@skerritt.blog"
     found = r.iter_identify(text)
-    _, _, first = next(found)
-    assert FRAGMENT not in first
+    _, _, url = next(found)
+    # The URL in the email address is found first, the email address later
+    assert url["Matched"] == "skerritt.blog"
+    assert FRAGMENT not in url
     rest = [match for _, _, match in found]
-    assert all(FRAGMENT in match for match in [first, *rest])
-    by_name = {match["Regex Pattern"]["Name"]: match for match in [first, *rest]}
-    assert by_name["Ethereum (ETH) Wallet Address"][FRAGMENT] is False
-    assert by_name["Phone Number"][FRAGMENT] is True
-    assert [first, *rest] == r.identify(text)["Regexes"]["text"]
+    email = next(match for match in rest if match["Matched"] == text)
+    assert url[FRAGMENT] is True
+    assert email[FRAGMENT] is False
+    assert [url, *rest] == r.identify(text)["Regexes"]["text"]
 
 
 def test_iter_identify_file_signature(tmp_path):
