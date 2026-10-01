@@ -126,6 +126,8 @@ Or if you come across some piece of text and you don't know what it is, `What` w
 
 What about a whole **directory**? `What` can handle that too! It will **recursively** search for files and output everything you need!
 
+**Unicode** Files and text piped into `What` can be UTF-8, or UTF-16 or UTF-32 with a byte order mark, like the "Unicode" text files that Windows saves. `What` also searches the UTF-16 strings in binary files (like `strings -el`), which is how Windows programs store most of their text. Characters that your terminal cannot show are printed as escape sequences such as `\u20bf` instead of crashing.
+
 ### 🔍 Filtering your output
 
 Sometimes, you only care about seeing things which are related to AWS. Or bug bounties, or cryptocurrencies!
