@@ -269,7 +269,7 @@ def test_json_printing():
     """Test for valid json"""
     runner = CliRunner()
     result = runner.invoke(main, ["-db", "10.0.0.1", "--json"])
-    assert json.loads(result.output.replace("\n", ""))
+    assert json.loads(result.output)
 
 
 def test_json_printing2():
@@ -282,7 +282,54 @@ def test_json_printing2():
 def test_json_printing3():
     runner = CliRunner()
     result = runner.invoke(main, ["-db", "fixtures/file", "--json"])
-    assert json.loads(result.output.replace("\n", ""))
+    assert json.loads(result.output)
+
+
+@pytest.mark.parametrize("json_option", [["--json"], ["--format", "json"]])
+@pytest.mark.parametrize(
+    "inputs",
+    [
+        ["abc@example.com"],  # the example of issue #264
+        ["fixtures/file"],
+        ["fixtures/test", "fixtures/file", "THM{caf\u00e9 \u20bf}"],
+    ],
+)
+def test_json_printing_narrow_terminal(json_option, inputs):
+    """
+    The JSON is one line that can be parsed as it is, e.g. by jq, also when the
+    terminal is narrow like on a phone (issue #264). rich, which prints the
+    other formats, wraps lines at the width of the terminal.
+    """
+    runner = CliRunner()
+    result = runner.invoke(main, json_option + inputs, env={"COLUMNS": "40"})
+    assert result.exit_code == 0
+    assert result.output.endswith("\n")
+    assert result.output.count("\n") == 1
+    # Non-ASCII characters are escaped, so the JSON is valid whatever the
+    # encoding of stdout
+    assert result.stdout_bytes.isascii()
+    assert json.loads(result.output)["Regexes"]
+
+
+def test_json_printing_unchanged():
+    """
+    The JSON has the matched texts and the regexes as they are. rich treats
+    "[...]" as markup and ":smile:" as an emoji code, and would change the
+    character classes of regexes and the matched text (issue #264).
+    """
+    flag = "THM{[bold]flag[/bold] :smile:}"
+    runner = CliRunner()
+    result = runner.invoke(main, ["-db", "--json", "abc@example.com", flag])
+    assert result.exit_code == 0
+    matches = json.loads(result.output)["Regexes"]["text"]
+    assert {"abc@example.com", flag} <= {match["Matched"] for match in matches}
+    database = {regex["Name"]: regex for regex in load_regexes()}
+    for match in matches:
+        regex = database[match["Regex Pattern"]["Name"]]
+        assert match["Regex Pattern"]["Regex"] == regex["Regex"]
+        assert match["Regex Pattern"]["Boundaryless Regex"] == (
+            regex["Boundaryless Regex"]
+        )
 
 
 def test_file_fixture():

@@ -131,6 +131,11 @@ class Printing:
             self.console.print((to_out + "\nNothing found!").lstrip())
 
     def print_json(self, text: dict):
+        # Not self.console.print(): rich wraps lines at the width of the
+        # terminal, even when stdout is a pipe, and treats "[...]" as markup
+        # and ":name:" as emoji codes, which breaks the JSON (issue #264).
+        # json.dumps() escapes line breaks and non-ASCII characters, so this
+        # is one line of ASCII, valid JSON whatever the encoding of stdout.
         print(json.dumps(text))
 
     """
