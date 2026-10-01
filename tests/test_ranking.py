@@ -482,6 +482,22 @@ def test_cli_top_json():
     assert "Showing the 3 most likely of" in result.stderr
 
 
+def test_cli_top_of_several_inputs():
+    # The most likely matches of all inputs (issue #171 added several inputs)
+    inputs = ["THM{hello}", ETHEREUM, "fixtures/test/file"]
+    assert len(located_matches(identify_json(["--rarity", "0:", *inputs]))) > 3
+    top = identify_json(["--rarity", "0:", "--top", "3", *inputs])
+    assert {
+        location: [found["Matched"] for found in matches]
+        for location, matches in top["Regexes"].items()
+    } == {
+        "text": ["THM{hello}", ETHEREUM],
+        "fixtures/test/file": ["https://google.com"],
+    }
+    # The input with the most likely match is first
+    assert list(top["Regexes"]) == ["text", "fixtures/test/file"]
+
+
 def test_cli_top_and_key():
     top = identify_json(["--top", "5", "fixtures/file"])["Regexes"]["file"]
     by_name = identify_json(["--top", "5", "-k", "name", "fixtures/file"])

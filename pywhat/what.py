@@ -274,7 +274,7 @@ def main(**kwargs):
 
         --top N
 
-            Only show the N most likely matches, e.g. --top 10. --top N% shows the most likely N percent of them, e.g. --top 5%. For a directory, these are the most likely matches of all of its files.
+            Only show the N most likely matches, e.g. --top 10. --top N% shows the most likely N percent of them, e.g. --top 5%. For a directory or several inputs, these are the most likely matches of all of them.
 
             The most likely matches are shown first, unless --key sorts them. They have the highest rarity, but fragments of a longer word or match, which boundaryless mode finds, are less likely unless their rarity is 1. For example, the phone numbers in '0x52908400098527886E0F7030069857D2E4169EE7' are fragments of the Ethereum address, which is the most likely match.
 
