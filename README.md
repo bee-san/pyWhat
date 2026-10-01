@@ -203,3 +203,5 @@ We ask contributors to join the Discord for quicker discussions, but it's not ne
 We would like to thank [Dora](https://github.com/sdushantha/dora) for their work on a bug bounty specific regex database which we have used.
 
 We would also like to thank [tomnomnom](https://github.com/tomnomnom) for the patterns in [gf](https://github.com/tomnomnom/gf), which some of our regexes are based on.
+
+Some of our regexes, like cron schedules, browser user agents, ISO 8601 timestamps, UK postcodes and regex101 permalinks, are based on the community library of [regex101](https://regex101.com/library).
