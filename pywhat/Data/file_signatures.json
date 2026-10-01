@@ -417,16 +417,30 @@
     },
     {
         "Hexadecimal File Signature": "FFFE",
-        "ISO 8859-1": null,
+        "ISO 8859-1": "\u00ff\u00fe",
         "Filename Extension": null,
-        "Description": "Byte-order mark for text file encoded in Endianness#Little-endianlittle-endian UTF-1616-bit Unicode Transfer Format",
+        "Description": "Byte-order mark for text file encoded in little-endian UTF-16 (16-bit Unicode Transformation Format)",
         "Popular": 0
     },
     {
         "Hexadecimal File Signature": "FFFE0000",
-        "ISO 8859-1": null,
+        "ISO 8859-1": "\u00ff\u00fe..",
         "Filename Extension": null,
-        "Description": "Byte-order mark for text file encoded in little-endian UTF-3232-bit Unicode Transfer Format",
+        "Description": "Byte-order mark for text file encoded in little-endian UTF-32 (32-bit Unicode Transformation Format)",
+        "Popular": 0
+    },
+    {
+        "Hexadecimal File Signature": "FEFF",
+        "ISO 8859-1": "\u00fe\u00ff",
+        "Filename Extension": null,
+        "Description": "Byte-order mark for text file encoded in big-endian UTF-16 (16-bit Unicode Transformation Format)",
+        "Popular": 0
+    },
+    {
+        "Hexadecimal File Signature": "0000FEFF",
+        "ISO 8859-1": "..\u00fe\u00ff",
+        "Filename Extension": null,
+        "Description": "Byte-order mark for text file encoded in big-endian UTF-32 (32-bit Unicode Transformation Format)",
         "Popular": 0
     },
     {

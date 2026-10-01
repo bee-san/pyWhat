@@ -7,6 +7,7 @@ from pywhat import __version__, identifier, printer
 from pywhat.filter import Distribution, Filter
 from pywhat.helper import AvailableTags, InvalidTag, Keys, str_to_key
 from pywhat.interactive import InteractiveShell, query_from_options
+from pywhat.unicode import escape_unencodable, texts
 
 
 def print_tags(ctx, opts, value):
@@ -63,8 +64,22 @@ def get_text(ctx, opts, value):
         and not ctx.params.get("interactive")
         and not click.get_text_stream("stdin").isatty()
     ):
-        return click.get_text_stream("stdin").read().strip()
+        return read_stdin()
     return value
+
+
+def read_stdin() -> str:
+    """
+    Read the input from stdin like a file (see pywhat.unicode.texts), so that
+    UTF-16 text and binary data can be piped in too. Input that is not UTF-8
+    is decoded with the encoding of stdin, as it was before.
+    """
+    stdin = click.get_text_stream("stdin")
+    try:
+        data = click.get_binary_stream("stdin").read()
+    except RuntimeError:  # stdin is a text stream without a binary buffer
+        return stdin.read().strip()
+    return "\n".join(texts(data, getattr(stdin, "encoding", None))).strip()
 
 
 @click.command(
@@ -244,6 +259,12 @@ def main(**kwargs):
 
             The --rarity, --include and --exclude options are the search to start with, the other options work as usual. The input is optional, the 'load' command loads a file, directory or text. Type 'help' in interactive mode to see all commands.
 
+    Unicode:
+
+        Files and text piped to pyWhat can be UTF-8, or UTF-16 or UTF-32 with a byte order mark (BOM). The UTF-16 strings in binary files, which 'strings -el' shows, are searched too.
+
+        Characters that the terminal cannot show are printed as escape sequences such as '\\u20bf'.
+
     Examples:
 
         * what 'HTB{this is a flag}'
@@ -270,6 +291,9 @@ def main(**kwargs):
         * what --interactive 'this/is/a/path'
 
     """
+    # Print the characters that the terminal cannot show as escape sequences
+    # instead of crashing, e.g. the Bitcoin sign (U+20BF) on Windows
+    escape_unencodable(sys.stdout)
     if kwargs["text_input"] is None and not kwargs["interactive"]:
         sys.exit("Text input expected. Run 'pywhat --help' for help")
     dist = Distribution(

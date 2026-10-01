@@ -6,6 +6,7 @@ import pywhat.magic_numbers
 from pywhat.filter import Distribution, Filter
 from pywhat.helper import Keys
 from pywhat.regex_identifier import RegexIdentifier
+from pywhat.unicode import read_file
 
 
 class Identifier:
@@ -64,8 +65,9 @@ class Identifier:
                     short_name = os.path.basename(string)
 
                 magic_numbers = pywhat.magic_numbers.get_magic_nums(string)
-                with open(string, "r", encoding="utf-8", errors="ignore") as file:
-                    contents = [file.read()]
+                # UTF-8, UTF-16 or UTF-32 text, and the UTF-16LE strings in
+                # binary files (issue #34)
+                contents = read_file(string)
 
                 if include_filenames:
                     contents.append(os.path.basename(string))
