@@ -10,8 +10,12 @@ given other processors. processors=[] turns processing off.
 
 verifiers() are processors that ask a service if a key is valid (issue #245).
 They are not default processors because they send the keys to the service.
+
+OpenStreetMapProcessor links coordinates to OpenStreetMap instead of Google
+Maps (issue #263), which pywhat --map osm does.
 """
 import json
+import re
 from datetime import datetime, timedelta, timezone
 from decimal import Decimal
 from http.client import HTTPException
@@ -166,6 +170,56 @@ class BitcoinAddressProcessor(Processor):
 
     def process(self, match: dict) -> Optional[dict]:
         return match if is_bitcoin_address(match["Matched"]) else None
+
+
+# The @latitude,longitude,zoom notation of Google Maps, such as
+# "@13.923404,101.3395163,17z"
+GOOGLE_MAPS_NOTATION = re.compile(
+    r"@(?P<lat>-?\d+(?:\.\d+)?),(?P<lon>-?\d+(?:\.\d+)?),\d+(?:\.\d+)?z",
+    re.IGNORECASE,
+)
+
+
+class OpenStreetMapProcessor(Processor):
+    """
+    Links coordinates to OpenStreetMap instead of Google Maps (issue #263),
+    which pywhat --map osm does: "52.6169586, -1.9779857" links to
+    https://www.openstreetmap.org/search?query=52.6169586,-1.9779857
+
+    The search of OpenStreetMap finds coordinates in decimal degrees, and in
+    degrees, minutes and seconds with N, S, E and W. It does not understand the
+    @latitude,longitude,zoom notation of Google Maps, so the latitude and the
+    longitude of "@13.923404,101.3395163,17z" are searched for.
+
+    The link is the "Link" of the match, which the printer shows, and the "URL"
+    of the match is the URL of the search.
+    """
+
+    names = ["Latitude & Longitude Coordinates"]
+    url = "https://www.openstreetmap.org/search?query="
+
+    def process(self, match: dict) -> Optional[dict]:
+        regex = match["Regex Pattern"]
+        regex["URL"] = self.url
+        regex["Link"] = self.url + quote(self.query(match["Matched"]), safe=",")
+        return match
+
+    @staticmethod
+    def query(coordinates: str) -> str:
+        """
+        The text to search OpenStreetMap for: "52.6169586,-1.9779857" for
+        "52.6169586, -1.9779857" and "13.923404,101.3395163" for
+        "@13.923404,101.3395163,17z". Plus signs, as in "+52.6169586", are
+        left out, a "+" in a query string can mean a space.
+        """
+        # A space is only needed between two numbers, e.g. between the minutes
+        # and the seconds of "41 deg 2 12.2 N", which is not 41 deg 21 2.2 N
+        query = " ".join(coordinates.replace("+", "").split())
+        query = re.sub(r"(?<!\d) | (?!\d)", "", query)
+        notation = GOOGLE_MAPS_NOTATION.fullmatch(query)
+        if notation:
+            return f"{notation['lat']},{notation['lon']}"
+        return query
 
 
 def google_error_reason(body: bytes) -> Optional[str]:

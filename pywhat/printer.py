@@ -7,6 +7,21 @@ from rich.console import Console
 from rich.table import Table
 
 
+def get_link(match: dict) -> Optional[str]:
+    """
+    The link to analyse a match in the browser, or None if there is none: the
+    "Link" that a processor gave the match, such as the OpenStreetMap link of
+    coordinates (issue #263), otherwise the "URL" of its regex followed by the
+    matched text without spaces.
+    """
+    regex = match["Regex Pattern"]
+    if regex.get("Link"):
+        return regex["Link"]
+    if regex.get("URL"):
+        return regex["URL"] + match["Matched"].replace(" ", "")
+    return None
+
+
 class Printing:
     def __init__(self):
         self.console = Console(highlight=False)
@@ -51,12 +66,9 @@ class Printing:
                     filename = key
                     exploit = None
 
-                    if "URL" in i["Regex Pattern"] and i["Regex Pattern"]["URL"]:
-                        description = (
-                            "Click here to analyse in the browser\n"
-                            + i["Regex Pattern"]["URL"]
-                            + matched.replace(" ", "")
-                        )
+                    link = get_link(i)
+                    if link:
+                        description = "Click here to analyse in the browser\n" + link
 
                     if i["Regex Pattern"]["Description"]:
                         if description:
@@ -140,7 +152,6 @@ class Printing:
             for key, value in text["Regexes"].items():
                 for i in value:
                     description = None
-                    matched = i["Matched"]
                     if show_files:
                         output_str += f"[bold #D7Afff]File: {key}[/bold #D7Afff]\n"
                     output_str += (
@@ -151,16 +162,9 @@ class Printing:
                         + i["Regex Pattern"]["Name"]
                     )
 
-                    link = None
-                    if "URL" in i["Regex Pattern"] and i["Regex Pattern"]["URL"]:
-                        link = (
-                            "\n[bold #D7Afff]Link: [/bold #D7Afff] "
-                            + i["Regex Pattern"]["URL"]
-                            + matched.replace(" ", "")
-                        )
-
+                    link = get_link(i)
                     if link:
-                        output_str += link
+                        output_str += "\n[bold #D7Afff]Link: [/bold #D7Afff] " + link
 
                     if i["Regex Pattern"]["Description"]:
                         description = (
@@ -219,9 +223,7 @@ class Printing:
                             "%d": match["Regex Pattern"]["Description"],
                             "%e": match["Regex Pattern"].get("Exploit"),
                             "%r": str(match["Regex Pattern"]["Rarity"]),
-                            "%l": match["Regex Pattern"]["URL"] + match["Matched"]
-                            if match["Regex Pattern"]["URL"] is not None
-                            else None,
+                            "%l": get_link(match),
                             "%t": ", ".join(match["Regex Pattern"]["Tags"]),
                         }
                         for format, value in formats.items():
