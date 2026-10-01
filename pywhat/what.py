@@ -183,7 +183,7 @@ def print_left_out(shown: int, total: int) -> None:
     "-dp",
     "--disable-processing",
     is_flag=True,
-    help="Disable the processing of matches, e.g. adding dates to Unix timestamps.",
+    help="Disable the processing of matches, e.g. adding dates to Unix timestamps or checking the checksums of Bitcoin addresses.",
 )
 @click.option(
     "--verify",
@@ -301,6 +301,8 @@ def main(**kwargs):
     Processing:
 
         Matches are processed further once a regex has found them. For example, the date of a Unix timestamp, in UTC, is added to its description: pywhat --rarity 0: --include "UNIX Timestamp" 1637093119
+
+        Bitcoin wallet addresses whose checksum is wrong, like 3F3F3F3F3F3F3F3F3F3F3F3F3F3F3F3F3F, are filtered out.
 
         '--disable-processing' flag can be used to show the matches as the regexes found them.
 

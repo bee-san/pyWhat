@@ -1888,7 +1888,7 @@
          "Bitcoin Wallet",
          "BTC Wallet"
       ],
-      "Regex": "^(([1][a-km-zA-HJ-NP-Z1-9]{25,35})|([3][a-km-zA-HJ-NP-Z1-9]{33})|(bc|tb)1(?!.*[1bio])[a-z0-9]{39,59})$",
+      "Regex": "^(([1][a-km-zA-HJ-NP-Z1-9]{25,33})|([3][a-km-zA-HJ-NP-Z1-9]{33})|(bc|tb)1[ac-hj-np-z02-9]{39,59})$",
       "plural_name": false,
       "Description": null,
       "Rarity": 0.7,
@@ -1903,9 +1903,20 @@
          "Valid": [
             "1KFHE7w8BhaENAswwryaoccDb6qcT6DbYY",
             "3EmUH8Uh9EXE7axgyAeBsCc2vdUdKkDqWK",
-            "bc1qj89046x7zv6pm4n00qgqp505nvljnfp6xfznyw"
+            "bc1qj89046x7zv6pm4n00qgqp505nvljnfp6xfznyw",
+            "bc1qrp33g0q5c5txsp9arysrx4k6zdkfs4nce4xj0gdcccefvpysxf3qccfmv3",
+            "bc1p0xlxvlhemja6c4dqv22uapctqupfhlxm9h8z3k2e72q4k9hcz7vqzk5jj0",
+            "tb1qrp33g0q5c5txsp9arysrx4k6zdkfs4nce4xj0gdcccefvpysxf3q0sl5k7"
          ],
-         "Invalid": []
+         "Invalid": [
+            "3F3F3F3F3F3F3F3F3F3F3F3F3F3F3F3F3F",
+            "1111111111111111111111111111111111",
+            "1KFHE7w8BhaENAswwryaoccDb6qcT6DbYZ",
+            "3EmUH8Uh9EXE7axgyAeBsCc2vdUdKkDqWk",
+            "bc1qj89046x7zv6pm4n00qgqp505nvljnfp6xfznyq",
+            "bc1qw508d6qejxtdg4y5r3zarvary0c5xw7kemeawh",
+            "bc1p0xlxvlhemja6c4dqv22uapctqupfhlxm9h8z3k2e72q4k9hcz7vqh2y7hd"
+         ]
       }
    },
    {

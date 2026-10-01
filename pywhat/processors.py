@@ -20,6 +20,7 @@ from urllib.error import HTTPError
 from urllib.parse import quote
 from urllib.request import Request, urlopen
 
+from pywhat.bitcoin import is_bitcoin_address
 from pywhat.filter import Filter
 
 EPOCH = datetime(1970, 1, 1, tzinfo=timezone.utc)
@@ -155,6 +156,18 @@ class UnixTimestampProcessor(Processor):
         return match
 
 
+class BitcoinAddressProcessor(Processor):
+    """
+    Filters out the matches of the Bitcoin regex whose checksum is wrong, such
+    as "3F3F3F3F3F3F3F3F3F3F3F3F3F3F3F3F3F" (issue #239).
+    """
+
+    names = ("Bitcoin (\u20bf) Wallet Address",)
+
+    def process(self, match: dict) -> Optional[dict]:
+        return match if is_bitcoin_address(match["Matched"]) else None
+
+
 def google_error_reason(body: bytes) -> Optional[str]:
     """
     The reason of the google.rpc.ErrorInfo in an error that a Google API
@@ -248,7 +261,7 @@ class GoogleAPIKeyVerifier(Processor):
 
 def default_processors() -> List[Processor]:
     """New instances of the processors that pyWhat uses by default."""
-    return [UnixTimestampProcessor()]
+    return [UnixTimestampProcessor(), BitcoinAddressProcessor()]
 
 
 def verifiers() -> List[Processor]:
