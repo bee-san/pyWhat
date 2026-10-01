@@ -100,6 +100,21 @@ def join_regexes(patterns: list) -> str:
     return prefix + "^(?:" + "|".join(bodies) + ")$"
 
 
+def join_examples(examples: dict) -> dict:
+    """
+    Join the examples of a regex that are split into a list of parts.
+
+    {"Valid": [["sk_live_", "abc"], "def"]} becomes {"Valid": ["sk_live_abc", "def"]}.
+    Fake API keys are split like this in regex.json so that secret scanners,
+    like GitHub push protection and SonarCloud, don't take them for leaked
+    secrets.
+    """
+    return {
+        kind: ["".join(value) if isinstance(value, list) else value for value in values]
+        for kind, values in examples.items()
+    }
+
+
 @lru_cache()
 def load_regexes() -> list:
     regexes = read_json("regex.json")
@@ -107,6 +122,9 @@ def load_regexes() -> list:
         # "Regex" may be a list of alternative formats (issue #227)
         if isinstance(regex["Regex"], list):
             regex["Regex"] = join_regexes(regex["Regex"])
+        # An example may be a list of parts (issue #150)
+        if "Examples" in regex:
+            regex["Examples"] = join_examples(regex["Examples"])
         regex["Boundaryless Regex"] = re.sub(
             r"(?<!\\)\^(?![^\[\]]*(?<!\\)\])", "", regex["Regex"]
         )

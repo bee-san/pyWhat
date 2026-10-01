@@ -467,3 +467,57 @@ def test_progress_is_exported():
 
     assert pywhat.Progress is identifier.Progress
     assert "Progress" in pywhat.__all__
+
+
+# API keys in text (issue #150). These are fake keys; the prefixes are separate
+# strings so that secret scanners (like GitHub push protection) don't take
+# them for leaked secrets, like the examples in regex.json.
+HEROKU_TOKEN = "HRKU-" "AALJCYR7SRzPkj9_BGqhi1jAI1J5P4WfD6ITENvdVydAPCnNcAlrMMahHrTo"
+GOOGLE_OAUTH_TOKEN = (
+    "ya29."
+    "a0AfB_byfLQXnuxmo4jJw5b1DLHqxdP8CwXJ78_tGZYMHDRWe_6_VfvZg_vzY2QqHmPs"
+    "oBi909Souesk7Vw-0DYwLc8n8CIlyk5JBcyaTBMbkVg1KhiJAXCRkqhSg4Za7hRDI8vkniTSX"
+    "fNCy8OYt8kezP4qoN2MWzboJjYi"
+)
+TEAMS_WEBHOOK = (
+    "https://contoso.webhook.office.com/webhookb2/"
+    "34168d63-fc00-4a39-aed7-6638ced561fc@24004b1a-572d-4787-8fbb-a28cfae0a100"
+    "/IncomingWebhook/dd16669a6116418dbe5ccfdfb0ff9101/"
+    "c8b3553c-a5cf-46d0-b8c1-94f0ed391ca2/V2vs6FCe1-xXO57343xJ14pSF5GIlyblrkjIePdFOFl0L"
+)
+STRIPE_KEY = (
+    "sk_live_"
+    "516KTCSv1RFuRXpVyLTLRMBtSwNI9ZfIIEJLKdtlfeXadOeBo6AfwuIetjjxxSNB9WAI"
+    "GtBvN2BiBnblUT53FXVH5VakRs4y6xa"
+)
+
+
+@pytest.mark.parametrize(
+    "text, name, matched",
+    [
+        (f"export HEROKU_API_KEY={HEROKU_TOKEN}\n", "Heroku API Key", HEROKU_TOKEN),
+        (
+            f'curl -H "Authorization: Bearer {GOOGLE_OAUTH_TOKEN}" https://example.com',
+            "Google OAuth Access Key",
+            GOOGLE_OAUTH_TOKEN,
+        ),
+        (f'webhook_url: "{TEAMS_WEBHOOK}"', "Microsoft Teams Webhook", TEAMS_WEBHOOK),
+        (f'STRIPE_KEY = "{STRIPE_KEY}";', "Stripe Standard API Token", STRIPE_KEY),
+    ],
+)
+def test_boundaryless_api_keys(text, name, matched):
+    r = identifier.Identifier(boundaryless=Filter())
+    out = r.identify(text)
+    assert any(
+        match["Regex Pattern"]["Name"] == name and match["Matched"] == matched
+        for match in out["Regexes"]["text"]
+    )
+
+
+def test_boundaryless_picatic_api_key_not_inside_longer_key():
+    r = identifier.Identifier(boundaryless=Filter())
+    out = r.identify(f'STRIPE_KEY = "{STRIPE_KEY}";')
+    assert all(
+        match["Regex Pattern"]["Name"] != "Picatic API Key"
+        for match in out["Regexes"]["text"]
+    )
