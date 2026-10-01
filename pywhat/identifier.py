@@ -1,10 +1,11 @@
 import glob
 import os.path
-from typing import Callable, Optional
+from typing import Callable, Iterable, Optional
 
 import pywhat.magic_numbers
 from pywhat.filter import Distribution, Filter
 from pywhat.helper import Keys
+from pywhat.processors import Processor
 from pywhat.regex_identifier import RegexIdentifier
 from pywhat.unicode import read_file
 
@@ -17,12 +18,14 @@ class Identifier:
         key=Keys.NONE,
         reverse=False,
         boundaryless: Optional[Filter] = None,
+        processors: Optional[Iterable[Processor]] = None,
     ):
         self.distribution = Distribution() if dist is None else dist
         self.boundaryless = (
             Filter({"Tags": []}) if boundaryless is None else boundaryless
         )
-        self._regex_id = RegexIdentifier()
+        # processors=None uses pywhat.processors.default_processors()
+        self._regex_id = RegexIdentifier(processors)
         self._key = key
         self._reverse = reverse
 
@@ -36,6 +39,7 @@ class Identifier:
         reverse: Optional[bool] = None,
         boundaryless: Optional[Filter] = None,
         include_filenames=False,
+        processors: Optional[Iterable[Processor]] = None,
     ) -> dict:
         if dist is None:
             dist = self.distribution
@@ -45,6 +49,10 @@ class Identifier:
             reverse = self._reverse
         if boundaryless is None:
             boundaryless = self.boundaryless
+        if processors is None:
+            processors = self._regex_id.processors
+        else:
+            processors = list(processors)  # used for every file of a directory
 
         identify_obj: dict = {"File Signatures": {}, "Regexes": {}}
         search = []
@@ -73,7 +81,10 @@ class Identifier:
                     contents.append(os.path.basename(string))
 
                 regex = self._regex_id.check(
-                    contents, dist=dist, boundaryless=boundaryless
+                    contents,
+                    dist=dist,
+                    boundaryless=boundaryless,
+                    processors=processors,
                 )
 
                 if not magic_numbers:
@@ -84,7 +95,10 @@ class Identifier:
             else:
                 short_name = "text"
                 regex = self._regex_id.check(
-                    search, dist=dist, boundaryless=boundaryless
+                    search,
+                    dist=dist,
+                    boundaryless=boundaryless,
+                    processors=processors,
                 )
 
             if regex:

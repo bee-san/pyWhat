@@ -2852,7 +2852,7 @@
    },
    {
       "Name": "Recent Unix Timestamp",
-      "Regex": "^([0-9]{10})$",
+      "Regex": "^([0-9]{10}(?:\\.[0-9]{1,9})?)$",
       "plural_name": false,
       "Description": "Seconds elapsed since unix epoch: 1970, between year 2001 and 2286",
       "Rarity": 0,
@@ -2864,11 +2864,13 @@
       ],
       "Examples": {
          "Valid": [
-            "1577836800"
+            "1577836800",
+            "1637093119.558717"
          ],
          "Invalid": [
             "94694400",
-            "1234567"
+            "1234567",
+            "1637093119."
          ]
       }
    },
@@ -2895,7 +2897,7 @@
    },
    {
       "Name": "Unix Timestamp",
-      "Regex": "^([0-9]{8,10})$",
+      "Regex": "^([0-9]{8,10}(?:\\.[0-9]{1,9})?)$",
       "plural_name": false,
       "Description": "Seconds elapsed since unix epoch: 1970",
       "Rarity": 0,
@@ -2908,10 +2910,14 @@
       "Examples": {
          "Valid": [
             "1577836800",
-            "94694400"
+            "94694400",
+            "1637093119.558717",
+            "94694400.5"
          ],
          "Invalid": [
-            "1234567"
+            "1234567",
+            "1637093119.",
+            "1234567.5"
          ]
       }
    },
