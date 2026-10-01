@@ -168,6 +168,8 @@ Run `pywhat --names` to see the name of every regex with its alternative names.
 
 **Verifying keys** `what --verify` asks the services whether the keys it finds are valid, and adds the answer to their description. For now it verifies Google API keys: `what --verify AIzaSyA00000000000000000000000000000000` shows `Verification: invalid, Google rejected the key (API_KEY_INVALID)`. A key that is valid but cannot use the API it was tested with (e.g. `SERVICE_DISABLED`) is reported as valid. Verification is off by default because it sends the keys to the services (over HTTPS, once per key), so only use it for keys you are allowed to test. The Exploit of a key also contains the `curl` command to verify it yourself.
 
+**Maps** Coordinates link to Google Maps. Use `what --map osm` to link them to OpenStreetMap instead: `what --map osm '52.6169586, -1.9779857'` shows `Link: https://www.openstreetmap.org/search?query=52.6169586,-1.9779857`.
+
 ### 💬 Interactive mode
 
 Analysing something big? Load it into memory once with `--interactive`, then search through what `What` found as often as you like, without scanning it again:
@@ -212,6 +214,8 @@ id.identify("https://trashurl.it/page")
 `Identifier(processors=[])` or `identify(text, processors=[])` turns processing off.
 
 To verify keys with the API, like `--verify`, add the verifiers to the processors: `Identifier(processors=[*default_processors(), *verifiers()])`, with `verifiers` from `pywhat.processors`.
+
+To link coordinates to OpenStreetMap, like `--map osm`, add `OpenStreetMapProcessor()` from `pywhat.processors` to the processors. The link of a match is then its `"Link"`, and `pywhat.printer.get_link(match)` gives the link of any match.
 
 To get the matches while a search goes on, `iter_identify()` is a generator which yields what `identify()` finds as soon as it is found, as `(kind, location, value)`: `kind` is `"File Signatures"` or `"Regexes"`, `location` is the file (or `"text"`) and `value` is the file signature or the match. `identify()`, `identify_inputs()` and `iter_identify()` also call `progress`, if it is given, with a `Progress` before every regex they search for and once a file has been searched:
 

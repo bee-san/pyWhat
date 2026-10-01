@@ -18,7 +18,12 @@ from pywhat.helper import (
 )
 from pywhat.identifier import Found, Progress
 from pywhat.interactive import InteractiveShell, query_from_options
-from pywhat.processors import Processor, default_processors, verifiers
+from pywhat.processors import (
+    OpenStreetMapProcessor,
+    Processor,
+    default_processors,
+    verifiers,
+)
 from pywhat.progress import progress_bars
 from pywhat.ranking import located_matches, parse_top, top_matches
 from pywhat.unicode import escape_unencodable, texts
@@ -192,6 +197,13 @@ def print_left_out(shown: int, total: int) -> None:
     is_flag=True,
     help="Ask the services if the keys found are valid, e.g. Google API keys. This sends the keys to the services.",
 )
+@click.option(
+    "--map",
+    type=click.Choice(["google", "osm"], case_sensitive=False),
+    default="google",
+    show_default=True,
+    help="The map that coordinates link to: Google Maps or OpenStreetMap (osm).",
+)
 @click.option("--json", is_flag=True, help="Return results in json format.")
 @click.option(
     "--interactive",
@@ -326,6 +338,14 @@ def main(**kwargs):
 
             Only use it for keys that you are allowed to test: it sends the keys to the services (over HTTPS), once per key. It works with '--disable-processing' too.
 
+    Maps:
+
+        --map google|osm
+
+            The map that the links of coordinates go to: Google Maps (the default) or OpenStreetMap. For example, pywhat --map osm '52.6169586, -1.9779857' links to https://www.openstreetmap.org/search?query=52.6169586,-1.9779857
+
+            It works with '--disable-processing' too.
+
     Formatting the output:
 
         --format format_str
@@ -449,11 +469,14 @@ def main(**kwargs):
         )
     # processors=None uses the default processors, [] disables processing
     processors: Optional[List[Processor]] = [] if kwargs["disable_processing"] else None
-    if kwargs["verify"]:
-        # Verification is asked for, so --disable-processing keeps it
+    # The processors that options ask for, which --disable-processing keeps
+    asked_for = verifiers() if kwargs["verify"] else []
+    if kwargs["map"] == "osm":
+        asked_for.append(OpenStreetMapProcessor())
+    if asked_for:
         processors = (
             [] if kwargs["disable_processing"] else default_processors()
-        ) + verifiers()
+        ) + asked_for
     what_obj = What_Object(dist, processors)
     if kwargs["key"] is None:
         key = Keys.NONE
