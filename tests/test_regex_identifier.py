@@ -70,6 +70,12 @@ def test_international_url():
         ("+1-202-555-0156", "United States"),
         ("+662025550156", "Thailand"),
         ("+356 202 555 0156", "Malta"),
+        # Amazon Web Services Access Key
+        ("AKIAIOSFODNN7EXAMPLE", "Long-term access key"),
+        ("ASIAY34FZKBOKMUTVV7A", "Temporary (AWS STS) access key"),
+        # Amazon Web Services IAM Unique Identifier
+        ("AIDACKCEVSQ6C2EXAMPLE", "IAM user"),
+        ("AROADBQP57FF2AEXAMPLE", "Role"),
     ],
 )
 def test_match_description(match: str, description: str):

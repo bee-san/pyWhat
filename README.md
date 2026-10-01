@@ -175,3 +175,5 @@ We ask contributors to join the Discord for quicker discussions, but it's not ne
 # 🙏 Thanks
 
 We would like to thank [Dora](https://github.com/sdushantha/dora) for their work on a bug bounty specific regex database which we have used.
+
+We would also like to thank [tomnomnom](https://github.com/tomnomnom) for the patterns in [gf](https://github.com/tomnomnom/gf), which some of our regexes are based on.
