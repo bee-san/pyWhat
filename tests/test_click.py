@@ -7,6 +7,7 @@ import pytest
 from click.testing import CliRunner
 
 from pywhat import pywhat_tags
+from pywhat.helper import get_names, load_regexes
 from pywhat.what import main
 
 
@@ -161,6 +162,102 @@ def test_tag_printing():
     assert result.exit_code == 0
     for tag in pywhat_tags:
         assert tag in result.output
+
+
+def test_names_printing():
+    result = CliRunner().invoke(main, ["--names"])
+    assert result.exit_code == 0
+    lines = result.output.splitlines()
+    assert "Ethereum (ETH) Wallet Address: Ethereum Wallet, ETH Wallet" in lines
+    assert "Key:Value Pair" in lines
+    # One line per regex, sorted by name, however long the line is
+    expected = []
+    for regex in sorted(load_regexes(), key=lambda regex: regex["Name"].lower()):
+        name, *alternative_names = get_names(regex)
+        if alternative_names:
+            name += ": " + ", ".join(alternative_names)
+        expected.append(name)
+    assert lines == expected
+
+
+def found_names(output):
+    return set(re.findall(r"^Name: (.*)$", output, re.MULTILINE))
+
+
+def test_include_names():
+    # Names and alternative names work like tags (issue #184)
+    runner = CliRunner()
+    result = runner.invoke(
+        main,
+        [
+            "-db",
+            "--include",
+            "DOGE Wallet, ethereum (eth) wallet address",
+            "fixtures/file",
+        ],
+    )
+    assert result.exit_code == 0
+    assert found_names(result.output) == {
+        "Dogecoin (DOGE) Wallet Address",
+        "Ethereum (ETH) Wallet Address",
+    }
+
+
+def test_exclude_names():
+    runner = CliRunner()
+    result = runner.invoke(
+        main,
+        [
+            "-db",
+            "--include",
+            "Cryptocurrency Wallet",
+            "--exclude",
+            "XRP Wallet,DOGE Wallet",
+            "fixtures/file",
+        ],
+    )
+    assert result.exit_code == 0
+    names = found_names(result.output)
+    assert "Ethereum (ETH) Wallet Address" in names
+    assert "Ripple (XRP) Wallet Address" not in names
+    assert "Dogecoin (DOGE) Wallet Address" not in names
+
+
+def test_names_with_commas():
+    # The commas in parentheses do not separate the tags and names
+    runner = CliRunner()
+    result = runner.invoke(
+        main,
+        [
+            "-db",
+            "--include",
+            "EUI-48 Identifier (Ethernet, WiFi, Bluetooth, etc),UUID",
+            "fixtures/file",
+        ],
+    )
+    assert result.exit_code == 0
+    assert found_names(result.output) == {
+        "EUI-48 Identifier (Ethernet, WiFi, Bluetooth, etc)",
+        "UUID",
+    }
+
+
+def test_boundaryless_names():
+    runner = CliRunner()
+    result = runner.invoke(main, ["-be", "IPv4 Address", "abc118.103.238.230abc"])
+    assert result.exit_code == 0
+    assert "Nothing found" in result.output
+    result = runner.invoke(main, ["-bi", "IPv4 Address", "abc118.103.238.230abc"])
+    assert result.exit_code == 0
+    assert "Internet Protocol (IP) Address Version 4" in found_names(result.output)
+
+
+@pytest.mark.parametrize("option", ["--include", "--exclude", "-bi", "-be"])
+def test_invalid_names(option):
+    result = CliRunner().invoke(main, [option, "ETH Walet", "fixtures/file"])
+    assert result.exit_code == 1
+    assert "Passed tags are not valid" in result.output
+    assert "'pywhat --names'" in result.output
 
 
 def test_json_printing():

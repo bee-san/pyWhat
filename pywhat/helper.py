@@ -4,6 +4,7 @@ import re
 from enum import Enum, auto
 from functools import lru_cache
 from pathlib import Path
+from typing import List, Set
 
 try:
     import orjson as json
@@ -25,10 +26,45 @@ class AvailableTags:
 class InvalidTag(Exception):
     """
     This exception should be raised when Distribution() gets a filter
-    containing non-existent tags.
+    containing non-existent tags (or names, see get_names()).
     """
 
     pass
+
+
+def get_names(regex: dict) -> List[str]:
+    """
+    The names of a regex (issue #184): its "Name", then its optional
+    "Alternative Names", such as "ETH Wallet" for "Ethereum (ETH) Wallet
+    Address". Filters take the names of regexes as well as tags.
+    """
+    names = [regex["Name"]] if "Name" in regex else []
+    return names + list(regex.get("Alternative Names", ()))
+
+
+def available_names() -> Set[str]:
+    """Every name and alternative name of the regexes, see get_names()."""
+    return {name for regex in load_regexes() for name in get_names(regex)}
+
+
+def split_tags(text: str) -> List[str]:
+    """
+    Split a comma separated list of tags and names like text.split(","), but
+    commas in parentheses do not separate, so that names such as "EUI-48
+    Identifier (Ethernet, WiFi, Bluetooth, etc)" can be in the list.
+    """
+    parts = []
+    depth = start = 0
+    for index, char in enumerate(text):
+        if char == "(":
+            depth += 1
+        elif char == ")" and depth:
+            depth -= 1
+        elif char == "," and not depth:
+            parts.append(text[start:index])
+            start = index + 1
+    parts.append(text[start:])
+    return parts
 
 
 @lru_cache()

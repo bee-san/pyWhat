@@ -33,7 +33,14 @@ from rich.console import Console
 from rich.markup import escape
 
 from pywhat.filter import Distribution, Filter
-from pywhat.helper import AvailableTags, CaseInsensitiveSet, Keys
+from pywhat.helper import (
+    AvailableTags,
+    CaseInsensitiveSet,
+    Keys,
+    available_names,
+    get_names,
+    split_tags,
+)
 from pywhat.identifier import Identifier
 from pywhat.printer import Printing
 from pywhat.processors import Processor
@@ -150,7 +157,10 @@ class Query:
     * exclude:TAG[,TAG...] - the match has none of the tags
     * rarity:MIN:MAX - the rarity is in the range, see parse_rarity().
       A search without a rarity uses 0.1:1, like the --rarity option.
-    * anything else is text that the matched text or the name contains
+    * anything else is text that the matched text or a name of the regex
+      contains
+
+    The names of the regexes (see pywhat.helper.get_names()) work like tags.
     """
 
     def __init__(self, query: str = ""):
@@ -177,15 +187,18 @@ class Query:
             if min_rarity != max_rarity:
                 value += f":{max_rarity:g}"
         elif key in ("include", "exclude"):
-            tags = [tag.strip() for tag in value.split(",") if tag.strip()]
+            tags = [tag.strip() for tag in split_tags(value) if tag.strip()]
             if not tags:
                 raise QueryError(f'{key}: needs a tag, e.g. {key}:"Bug Bounty"')
-            available = CaseInsensitiveSet(AvailableTags().get_tags())
+            available = CaseInsensitiveSet(
+                [*AvailableTags().get_tags(), *available_names()]
+            )
             for tag in tags:
                 if tag not in available:
                     raise QueryError(
-                        f"Unknown tag '{tag}'. Press Tab to complete tags, or run "
-                        "'pywhat --tags' to see all of them."
+                        f"Unknown tag '{tag}'. Press Tab to complete tags and "
+                        "names, or run 'pywhat --tags' and 'pywhat --names' to "
+                        "see all of them."
                     )
             option = "Tags" if key == "include" else "ExcludeTags"
             self._filters.append(Filter({option: tags, "MinRarity": 0}))
@@ -202,7 +215,8 @@ class Query:
         "Regexes" of Identifier.identify(), found in location.
         """
         regex = match["Regex Pattern"]
-        texts = (match["Matched"].lower(), regex["Name"].lower())
+        texts = [match["Matched"].lower()]
+        texts += [name.lower() for name in get_names(regex)]
         return (
             all(regex in search_filter for search_filter in self._filters)
             and self.matches_location(location)
@@ -243,8 +257,9 @@ def complete_query(
     the text from there.
 
     Search keys are completed, and the values of include: and exclude: (from
-    tags), rarity: (from rarities) and location: (from locations). Values are
-    completed with quotes, so that include:Bug becomes include:"Bug Bounty".
+    tags, which can be the names of regexes too), rarity: (from rarities) and
+    location: (from locations). Values are completed with quotes, so that
+    include:Bug becomes include:"Bug Bounty".
     """
     tokens = list(_scan(before))
     keys = [key + ":" for key in _KEY_NAMES]
@@ -270,7 +285,7 @@ def complete_query(
     # The tags before the one that is completed, "AWS," in include:"AWS,Bug
     done = ""
     if token.key in ("include", "exclude"):
-        done = typed[: typed.rfind(",") + 1]
+        done = typed[: len(typed) - len(split_tags(typed)[-1])]
         rest = typed[len(done) :]
         done += rest[: len(rest) - len(rest.lstrip())]
         typed = typed[len(done) :]
@@ -484,6 +499,21 @@ class InteractiveShell(cmd.Cmd):
         }
         return sorted(tags or AvailableTags().get_tags(), key=str.lower)
 
+    def _tags_and_names(self) -> List[str]:
+        """
+        What include and exclude complete: the tags of the loaded matches and
+        the names of their regexes, which work like tags (all of them if
+        nothing is loaded). A name that is a tag too is only completed once.
+        """
+        names = {
+            name
+            for _, match in self.matches
+            for name in get_names(match["Regex Pattern"])
+        }
+        values = {name.lower(): name for name in names or available_names()}
+        values.update((tag.lower(), tag) for tag in self._tags())
+        return sorted(values.values(), key=str.lower)
+
     def _add_to_search(self, key: str, tags: str) -> None:
         tags = tags.replace('"', "").strip()  # include "Bug Bounty" works too
         if not tags:
@@ -520,13 +550,17 @@ class InteractiveShell(cmd.Cmd):
             rarity:MIN:MAX      the rarity is in the range (0.1:1 by default).
                                 0.1 - 0.6, 0.5: and :0.5 work too, and a single
                                 number such as 0.5 is that exact rarity.
-            TEXT                the matched text or the name contains TEXT
+            TEXT                the matched text or a name of the regex
+                                contains TEXT
+
+        The names of the regexes work like tags, e.g. include:"BTC Wallet".
+        Run 'pywhat --names' to see them with their alternative names.
 
         Values with spaces need quotes, parts can be separated with commas:
 
             location:"/", include:"Bug Bounty", exclude:"Credit Card", rarity:"0.1:0.6"
 
-        Press Tab to complete search keys, tags, rarities and locations.
+        Press Tab to complete search keys, tags, names, rarities and locations.
         """
         if arg.strip():
             try:
@@ -542,7 +576,8 @@ class InteractiveShell(cmd.Cmd):
         include TAG[,TAG...]
 
         Narrow the current search down to the matches with at least one of
-        the tags, by adding include:"TAG[,TAG...]" to it.
+        the tags, by adding include:"TAG[,TAG...]" to it. The names of the
+        regexes work like tags, e.g. 'include BTC Wallet,ETH Wallet'.
         """
         self._add_to_search("include", arg)
 
@@ -551,7 +586,8 @@ class InteractiveShell(cmd.Cmd):
         exclude TAG[,TAG...]
 
         Remove the matches with any of the tags from the current search, by
-        adding exclude:"TAG[,TAG...]" to it.
+        adding exclude:"TAG[,TAG...]" to it. The names of the regexes work
+        like tags.
         """
         self._add_to_search("exclude", arg)
 
@@ -669,7 +705,7 @@ class InteractiveShell(cmd.Cmd):
     ) -> List[str]:
         start, completions = complete_query(
             line[query_start:endidx],
-            tags=self._tags(),
+            tags=self._tags_and_names(),
             rarities={match["Regex Pattern"]["Rarity"] for _, match in self.matches},
             locations={location for location, _ in self.matches},
         )
@@ -702,10 +738,14 @@ class InteractiveShell(cmd.Cmd):
         self, text: str, line: str, begidx: int, endidx: int
     ) -> List[str]:
         typed = line[:endidx]
-        start = max(_argument_start(typed), typed.rfind(",") + 1)
+        # The tag that is completed starts after the last comma, if there is
+        # one that is not in a name such as "EUI-48 Identifier (Ethernet, ..."
+        start = max(_argument_start(typed), len(typed) - len(split_tags(typed)[-1]))
         start += len(typed[start:]) - len(typed[start:].lstrip())
         found = [
-            tag for tag in self._tags() if tag.lower().startswith(typed[start:].lower())
+            tag
+            for tag in self._tags_and_names()
+            if tag.lower().startswith(typed[start:].lower())
         ]
         return _readline_matches(line, begidx, start, found)
 

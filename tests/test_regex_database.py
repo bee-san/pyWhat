@@ -3,7 +3,15 @@ import re
 
 import pytest
 
-from pywhat.helper import join_regexes, load_regexes
+from pywhat.helper import (
+    AvailableTags,
+    CaseInsensitiveSet,
+    available_names,
+    get_names,
+    join_regexes,
+    load_regexes,
+    split_tags,
+)
 
 database = load_regexes()
 
@@ -22,8 +30,8 @@ def test_if_all_tests_exist():
 
 
 def test_name_capitalization():
-    for entry in database:
-        entry_name = entry["Name"]
+    # The alternative names too
+    for entry_name in (name for entry in database for name in get_names(entry)):
         for word in entry_name.split():
             upper_and_num_count = sum(1 for c in word if c.isupper() or c.isnumeric())
             if upper_and_num_count > 0:
@@ -36,6 +44,62 @@ def test_name_capitalization():
                 f'Wrong capitalization in regex name: "{entry_name}"\n'
                 f'Expected: "{entry_name.title()}"\n'
                 "Please capitalize the first letter of each word."
+            )
+
+
+def test_alternative_names_format():
+    # "Alternative Names" is optional (issue #184)
+    for entry in database:
+        if "Alternative Names" not in entry:
+            continue
+        names = entry["Alternative Names"]
+        assert isinstance(names, list) and names, (
+            f"'Alternative Names' of {entry['Name']} should be a list of names. "
+            "Leave it out if the regex has no other names."
+        )
+        for name in names:
+            assert isinstance(name, str) and name.strip() == name != "", (
+                f"Alternative name {name!r} of {entry['Name']} should be a "
+                "non-empty string without surrounding whitespace."
+            )
+
+
+def test_names_and_tags_can_be_listed():
+    # --include and --exclude take comma separated lists of tags and names
+    values = [*AvailableTags().get_tags(), *available_names()]
+    for value in values:
+        assert split_tags(f"{value},{value}") == [value, value], (
+            f'"{value}" cannot be in a comma separated list. Commas are only '
+            "allowed in parentheses."
+        )
+
+
+def test_names_are_unique():
+    # A name or an alternative name is the name of a single regex, whatever
+    # its case
+    owners: dict = {}
+    for entry in database:
+        names = get_names(entry)
+        assert len({name.lower() for name in names}) == len(
+            names
+        ), f'"{entry["Name"]}" has the same name more than once: {names}'
+        for name in names:
+            owner = owners.setdefault(name.lower(), entry["Name"])
+            assert (
+                owner == entry["Name"]
+            ), f'"{name}" is a name of both "{owner}" and "{entry["Name"]}".'
+
+
+def test_names_that_are_tags():
+    # Names work like tags in filters. A name that is a tag too (such as
+    # "Email Address") has to be a tag of its regex, so that filtering by the
+    # tag still finds exactly the regexes with the tag.
+    tags = CaseInsensitiveSet(AvailableTags().get_tags())
+    for entry in database:
+        for name in get_names(entry):
+            assert name not in tags or name in CaseInsensitiveSet(entry["Tags"]), (
+                f'"{name}" is a name of "{entry["Name"]}" and a tag of other regexes. '
+                "Add the tag to the regex too, or choose another name."
             )
 
 
@@ -81,6 +145,37 @@ def test_join_regexes_case_sensitivity():
 def test_join_regexes_rejects_unanchored_regex():
     with pytest.raises(ValueError):
         join_regexes(["^(a)$", "(b)"])
+
+
+@pytest.mark.parametrize(
+    "text, parts",
+    [
+        ("AWS", ["AWS"]),
+        ("", [""]),
+        # Like str.split(",") without parentheses
+        ("AWS, Bug Bounty,", ["AWS", " Bug Bounty", ""]),
+        (
+            "EUI-48 Identifier (Ethernet, WiFi, Bluetooth, etc),UUID",
+            ["EUI-48 Identifier (Ethernet, WiFi, Bluetooth, etc)", "UUID"],
+        ),
+        ("a (b, (c, d)), e", ["a (b, (c, d))", " e"]),
+        ("a), b", ["a)", " b"]),
+        ("a (b, c", ["a (b, c"]),
+    ],
+)
+def test_split_tags(text, parts):
+    assert split_tags(text) == parts
+
+
+def test_get_names():
+    entry = next(e for e in database if e["Name"] == "Ethereum (ETH) Wallet Address")
+    assert get_names(entry) == [
+        "Ethereum (ETH) Wallet Address",
+        "Ethereum Wallet",
+        "ETH Wallet",
+    ]
+    # "Alternative Names" is optional
+    assert get_names({"Name": "Key:Value Pair", "Tags": []}) == ["Key:Value Pair"]
 
 
 def test_regex_list_is_joined_on_load():
