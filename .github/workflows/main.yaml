@@ -19,8 +19,9 @@ jobs:
         python-version: ${{ matrix.python-version }}
     # Pinned: Poetry 2.x removed `install --no-dev` and the bundled `export`
     # command, and recent nox releases no longer support Python 3.8/3.9.
-    - run: |
-        python -m pip install --only-binary :all: nox==2025.5.1 poetry==1.8.5
+    # (No --only-binary: cffi, which poetry needs on macOS, has no cp38
+    # arm64 wheels.)
+    - run: python -m pip install nox==2025.5.1 poetry==1.8.5
     - run: python -m nox
       env:
         OS: ${{ matrix.os }}
