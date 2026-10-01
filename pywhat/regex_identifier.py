@@ -1,5 +1,5 @@
 import re
-from typing import Iterable, List, Optional, Tuple
+from typing import Any, Callable, Iterable, Iterator, List, Optional, Tuple
 
 from pywhat.filter import Distribution, Filter
 from pywhat.processors import (
@@ -27,6 +27,27 @@ class RegexIdentifier:
         boundaryless: Optional[Filter] = None,
         processors: Optional[Iterable[Processor]] = None,
     ):
+        """The matches of the regexes of dist in every string of text."""
+        return list(
+            self.iter_check(
+                text, dist, boundaryless=boundaryless, processors=processors
+            )
+        )
+
+    def iter_check(
+        self,
+        text,
+        dist: Optional[Distribution] = None,
+        *,
+        boundaryless: Optional[Filter] = None,
+        processors: Optional[Iterable[Processor]] = None,
+        progress: Optional[Callable[[str], Any]] = None,
+    ) -> Iterator[dict]:
+        """
+        Like check(), but a generator, which yields every match as soon as it
+        is found (issue #189). progress, if given, is called with the name of
+        every regex before it is searched for in a string of text.
+        """
         if dist is None:
             dist = self.distribution
         if boundaryless is None:
@@ -34,12 +55,13 @@ class RegexIdentifier:
         if processors is None:
             processors = self.processors
         by_name = processors_by_name(processors)
-        matches: List[dict] = []
 
         for string in text:
             # The matches of string, with their spans to mark the fragments
             found: List[Tuple[dict, Span]] = []
             for reg in dist.get_regexes():
+                if progress is not None:
+                    progress(reg["Name"])
                 regex = (
                     reg["Boundaryless Regex"] if reg in boundaryless else reg["Regex"]
                 )
@@ -99,12 +121,13 @@ class RegexIdentifier:
                         processed = run_processors(match, reg_processors, dist)
                     if processed is not None:
                         found.append((processed, matched_regex.span()))
+                        yield processed
 
-            # Fragments of longer words or matches are less likely (issue #232)
+            # Fragments of longer words or matches are less likely (issue
+            # #232). That is only known once every regex has been searched
+            # for in string, so the matches that were yielded get their
+            # "Fragment" key now.
             mark_fragments(string, found)
-            matches.extend(match for match, _ in found)
-
-        return matches
 
     def clean_text(self, text):
         return re.sub(r"[\x00-\x1f\x7f-\x9f]", "", text)

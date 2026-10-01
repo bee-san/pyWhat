@@ -2,13 +2,15 @@ import io
 import json
 import os
 import re
+from contextlib import contextmanager
 
 import pytest
 from click.testing import CliRunner
 from rich.console import Console
 
+import pywhat.interactive
 from pywhat.helper import Keys
-from pywhat.identifier import Identifier
+from pywhat.identifier import Identifier, Progress
 from pywhat.interactive import (
     NOTHING_LOADED,
     InteractiveShell,
@@ -502,6 +504,39 @@ def test_load_errors(monkeypatch):
     # What was loaded before is kept
     assert shell.input == "fixtures/file"
     assert shell.matches
+
+
+@pytest.fixture
+def progress_bars(monkeypatch):
+    """Records the progress bars of interactive mode, and the progress they get."""
+    shown = []
+
+    @contextmanager
+    def record(console, enabled=True):
+        progress = []
+        shown.append((console, enabled, progress))
+        yield progress.append
+
+    monkeypatch.setattr(pywhat.interactive, "progress_bars", record)
+    return shown
+
+
+def test_load_progress(progress_bars):
+    # Progress bars while loading (issue #189), instead of "Loading..."
+    shell, _ = run_shell("load fixtures")
+    [(console, enabled, progress), (_, _, progress_directory)] = progress_bars
+    assert console is shell.console
+    assert enabled is True
+    assert progress[-1] == Progress(
+        "file", 1, 1, progress[-1].regexes, progress[-1].regexes, None
+    )
+    assert progress_directory[-1].files_done == progress_directory[-1].files == 2
+
+
+def test_no_load_progress(progress_bars):
+    run_cli(["--interactive", "--no-progress", "fixtures/file"], ["quit"])
+    [(console, enabled, progress)] = progress_bars
+    assert enabled is False
 
 
 def test_empty_line():

@@ -97,3 +97,34 @@ def test_match_description(match: str, description: str):
 )
 def test_match_exploit(match: str, exploit: str):
     assert exploit in r.check([match])[0]["Regex Pattern"]["Exploit"]
+
+
+# Matches as soon as they are found (issue #189)
+
+
+def test_iter_check_is_a_generator():
+    texts = ["THM{hello} dad@gmail.com", "nothing", "127.0.0.1"]
+    matches = r.iter_check(texts, dist=dist)
+    assert iter(matches) is matches
+    assert list(matches) == r.check(texts, dist=dist)
+
+
+def test_iter_check_yields_before_the_search_is_complete():
+    searched = []
+    matches = r.iter_check(["THM{hello}"], dist=dist, progress=searched.append)
+    first = next(matches)
+    assert first["Matched"] == "THM{hello}"
+    # The regexes after the one that found the flag have not been run yet
+    assert searched[-1] == first["Regex Pattern"]["Name"]
+    assert len(searched) < len(dist.get_regexes())
+    list(matches)
+    assert len(searched) == len(dist.get_regexes())
+
+
+def test_iter_check_progress():
+    names = [regex["Name"] for regex in dist.get_regexes()]
+    searched = []
+    r.check(["a", "b"], dist=dist)  # check() has no progress, works as before
+    list(r.iter_check(["a", "b"], dist=dist, progress=searched.append))
+    # Every regex, before it is searched for in every text
+    assert searched == names + names

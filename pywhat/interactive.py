@@ -44,6 +44,7 @@ from pywhat.helper import (
 from pywhat.identifier import Identifier
 from pywhat.printer import Printing
 from pywhat.processors import Processor
+from pywhat.progress import progress_bars
 from pywhat.ranking import (
     SUGGEST_TOP_AFTER,
     SUGGESTED_TOP,
@@ -354,7 +355,8 @@ class InteractiveShell(cmd.Cmd):
     reverse, json_output, format_str and print_tags format the matches. top
     is how many of the most likely matches of a search to show at a time,
     like the 'top' command (see pywhat.ranking.parse_top()). By default all
-    of them are shown.
+    of them are shown. progress shows progress bars while input is loaded,
+    on a terminal.
     """
 
     prompt = "pywhat> "
@@ -373,6 +375,7 @@ class InteractiveShell(cmd.Cmd):
         json_output: bool = False,
         format_str: Optional[str] = None,
         print_tags: bool = False,
+        progress: bool = True,
         console: Optional[Console] = None,
         stdin: Any = None,
         stdout: Any = None,
@@ -399,6 +402,7 @@ class InteractiveShell(cmd.Cmd):
         self.json_output = json_output
         self.format_str = format_str
         self.print_tags = print_tags
+        self.progress = progress
         self.input: Union[None, str, List[str]] = None
         self.matches: List[Tuple[str, dict]] = []  # (location, match)
         self.signatures: Dict[str, dict] = {}
@@ -425,11 +429,13 @@ class InteractiveShell(cmd.Cmd):
         """
         inputs = [text] if isinstance(text, str) else list(text)
         try:
-            with self.console.status("Loading..."):
+            # Progress bars while loading takes a while (issue #189)
+            with progress_bars(self.console, enabled=self.progress) as progress:
                 identified = self._identifier.identify_inputs(
                     inputs,
                     only_text=self.only_text,
                     include_filenames=self.include_filenames,
+                    progress=progress,
                 )
         except OSError as error:
             name = f"'{inputs[0]}'" if len(inputs) == 1 else f"the {len(inputs)} inputs"

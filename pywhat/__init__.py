@@ -1,6 +1,6 @@
 from pywhat.filter import Distribution, Filter
 from pywhat.helper import AvailableTags, Keys
-from pywhat.identifier import Identifier
+from pywhat.identifier import Identifier, Progress
 from pywhat.processors import Processor
 
 __version__ = "5.0.0"
@@ -16,6 +16,7 @@ __all__ = [
     "Keys",
     "Filter",
     "Processor",
+    "Progress",
 ]
 
 

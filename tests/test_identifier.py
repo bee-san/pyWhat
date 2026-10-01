@@ -5,7 +5,7 @@ import pytest
 
 from pywhat import identifier
 from pywhat.filter import Distribution, Filter
-from pywhat.helper import Keys
+from pywhat.helper import FRAGMENT, Keys
 from pywhat.processors import Processor
 
 r = identifier.Identifier()
@@ -305,3 +305,164 @@ def test_identify_inputs_processors():
     out = r.identify_inputs(["THM{a}", "THM{b}"], processors=(p for p in [counter]))
     assert counter.count == 2
     assert len(out["Regexes"]["text"]) == 2
+
+
+# Everything as soon as it is found, and the progress of a search (issue #189)
+
+
+def collect(found):
+    """Put what iter_identify() yields together, like identify() does."""
+    identified = {"File Signatures": {}, "Regexes": {}}
+    for kind, location, value in found:
+        if kind == "Regexes":
+            identified[kind].setdefault(location, []).append(value)
+        else:
+            identified[kind][location] = value
+    return {kind: value or None for kind, value in identified.items()}
+
+
+@pytest.mark.parametrize(
+    "text, options",
+    [
+        ("THM{hello} dad@gmail.com 127.0.0.1", {}),
+        ("fixtures/file", {}),
+        ("fixtures/file", {"only_text": False}),
+        ("fixtures", {"only_text": False}),
+        ("fixtures", {"only_text": False, "include_filenames": True}),
+        ("nothing", {}),
+        (["fixtures/file", "fixtures/test/file", "THM{hello}"], {"only_text": False}),
+        (["fixtures"], {"only_text": False}),
+        ([], {}),
+    ],
+)
+def test_iter_identify_finds_what_identify_finds(text, options):
+    identify = r.identify_inputs if isinstance(text, list) else r.identify
+    assert collect(r.iter_identify(text, **options)) == identify(text, **options)
+
+
+def test_iter_identify_yields_as_soon_as_found():
+    progress = []
+    found = r.iter_identify("THM{hello}", progress=progress.append)
+    kind, location, match = next(found)
+    assert (kind, location, match["Matched"]) == ("Regexes", "text", "THM{hello}")
+    # The search is not complete yet
+    assert progress[-1].regex == match["Regex Pattern"]["Name"]
+    assert progress[-1].regexes_done < progress[-1].regexes
+    list(found)
+    assert progress[-1].regex is None
+
+
+def test_iter_identify_fragments():
+    # Whether a match is a fragment of a longer match (issue #232) is only
+    # known once the whole text has been searched. The matches are yielded
+    # before that, and get their "Fragment" key afterwards.
+    r = identifier.Identifier(boundaryless=Filter())
+    text = "0x52908400098527886E0F7030069857D2E4169EE7"
+    found = r.iter_identify(text)
+    _, _, first = next(found)
+    assert FRAGMENT not in first
+    rest = [match for _, _, match in found]
+    assert all(FRAGMENT in match for match in [first, *rest])
+    by_name = {match["Regex Pattern"]["Name"]: match for match in [first, *rest]}
+    assert by_name["Ethereum (ETH) Wallet Address"][FRAGMENT] is False
+    assert by_name["Phone Number"][FRAGMENT] is True
+    assert [first, *rest] == r.identify(text)["Regexes"]["text"]
+
+
+def test_iter_identify_file_signature(tmp_path):
+    image = tmp_path / "image.png"
+    image.write_bytes(b"\x89PNG\r\n\x1a\nTHM{hello}\n")
+    found = list(r.iter_identify(str(image), only_text=False))
+    # The file signature first, then the matches in the file
+    kind, location, signature = found[0]
+    assert (kind, location) == ("File Signatures", "image.png")
+    assert signature["Filename Extension"] == "png"
+    assert [
+        (kind, location, match["Matched"]) for kind, location, match in found[1:]
+    ] == [("Regexes", "image.png", "THM{hello}")]
+
+
+def test_identify_progress_text():
+    progress = []
+    r.identify("THM{hello}", progress=progress.append)
+    names = [regex["Name"] for regex in r.distribution.get_regexes()]
+    regexes = len(names)
+    # Before every regex, then once the text has been searched
+    assert progress == [
+        identifier.Progress("text", 0, 1, regexes_done, regexes, name)
+        for regexes_done, name in enumerate(names)
+    ] + [identifier.Progress("text", 1, 1, regexes, regexes, None)]
+
+
+def test_identify_progress_dist():
+    dist = Distribution(Filter({"Tags": ["CTF Flag"]}))
+    progress = []
+    r.identify("THM{hello}", dist=dist, progress=progress.append)
+    names = {regex["Name"] for regex in dist.get_regexes()}
+    assert {p.regex for p in progress} == names | {None}
+    assert progress[-1].regexes == len(names)
+
+
+def test_identify_progress_directory():
+    progress = []
+    out = r.identify("fixtures", only_text=False, progress=progress.append)
+    regexes = len(r.distribution.get_regexes())
+    assert len(progress) == 2 * (regexes + 1)
+    # Once every file has been searched
+    done = [p for p in progress if p.regex is None]
+    assert [p.files_done for p in done] == [1, 2]
+    assert all(p.files == 2 and p.regexes_done == p.regexes == regexes for p in done)
+    assert {p.location for p in done} == set(out["Regexes"])
+    # Before every regex in the files
+    for p in progress:
+        if p.regex is not None:
+            assert p.files_done in (0, 1)
+            assert 0 <= p.regexes_done < p.regexes == regexes
+
+
+def test_identify_progress_texts_of_a_file():
+    # Every regex is searched for in the name of the file too
+    progress = []
+    r.identify(
+        "fixtures/test/file",
+        only_text=False,
+        include_filenames=True,
+        progress=progress.append,
+    )
+    regexes = 2 * len(r.distribution.get_regexes())
+    assert len(progress) == regexes + 1
+    assert progress[-1] == identifier.Progress("file", 1, 1, regexes, regexes, None)
+
+
+def test_identify_inputs_progress():
+    # The files of all inputs are searched one after another
+    progress = []
+    r.identify_inputs(
+        ["fixtures", "THM{hello}", "fixtures/test/file"],
+        only_text=False,
+        progress=progress.append,
+    )
+    done = [p for p in progress if p.regex is None]
+    assert [(p.files_done, p.files) for p in done] == [(1, 4), (2, 4), (3, 4), (4, 4)]
+    assert [p.location for p in done][2:] == ["text", "fixtures/test/file"]
+
+    # A single input like with identify()
+    progress_identify = []
+    r.identify("THM{hello}", progress=progress_identify.append)
+    progress.clear()
+    r.identify_inputs(["THM{hello}"], progress=progress.append)
+    assert progress == progress_identify
+
+
+def test_identify_progress_nothing_to_search(tmp_path):
+    progress = []
+    out = r.identify(str(tmp_path), only_text=False, progress=progress.append)
+    assert out == {"File Signatures": None, "Regexes": None}
+    assert progress == []
+
+
+def test_progress_is_exported():
+    import pywhat
+
+    assert pywhat.Progress is identifier.Progress
+    assert "Progress" in pywhat.__all__
