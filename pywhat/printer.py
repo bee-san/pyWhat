@@ -31,8 +31,9 @@ class Printing:
             table.add_column("Identified as", overflow="fold")
             table.add_column("Description", overflow="fold")
 
-            if self._check_if_directory(text_input):
-                # if input is a folder, add a filename column
+            show_files = self._show_files(text, text_input)
+            if show_files:
+                # if input is a folder or several inputs, add a filename column
                 table.add_column("File", overflow="fold")
 
             # Check if there are any bug bounties with exploits
@@ -82,7 +83,7 @@ class Printing:
 
                     # FIXME this is quite messy
                     if self.bug_bounty_mode:
-                        if self._check_if_directory(text_input):
+                        if show_files:
                             table.add_row(
                                 matched,
                                 name,
@@ -97,7 +98,7 @@ class Printing:
                                 description,
                                 exploit,
                             )
-                    elif self._check_if_directory(text_input):
+                    elif show_files:
                         table.add_row(
                             matched,
                             name,
@@ -136,11 +137,12 @@ class Printing:
                     output_str += "\n"
 
         if text["Regexes"]:
+            show_files = self._show_files(text, text_input)
             for key, value in text["Regexes"].items():
                 for i in value:
                     description = None
                     matched = i["Matched"]
-                    if self._check_if_directory(text_input):
+                    if show_files:
                         output_str += f"[bold #D7Afff]File: {key}[/bold #D7Afff]\n"
                     output_str += (
                         "[bold #D7Afff]Matched on: [/bold #D7Afff]" + i["Matched"]
@@ -246,3 +248,15 @@ class Printing:
 
     def _check_if_directory(self, text_input):
         return os.path.isdir(text_input)
+
+    def _show_files(self, text: dict, text_input) -> bool:
+        """
+        Whether to show the file of every match: if text_input is a directory,
+        or if it is a list or tuple of several inputs (issue #171) and some of
+        the matches are in files, not only in text.
+        """
+        if isinstance(text_input, str):
+            return self._check_if_directory(text_input)
+        if len(text_input) == 1:
+            return self._check_if_directory(text_input[0])
+        return any(location != "text" for location in text["Regexes"] or ())

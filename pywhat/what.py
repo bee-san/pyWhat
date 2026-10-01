@@ -1,4 +1,5 @@
 import sys
+from typing import Sequence, Union
 
 import click
 from rich.console import Console
@@ -58,13 +59,14 @@ def create_filter(rarity, include, exclude):
 
 
 def get_text(ctx, opts, value):
-    # In interactive mode, stdin is where the commands come from
+    # The inputs, read from stdin if there are none. In interactive mode,
+    # stdin is where the commands come from
     if (
-        not value
+        not any(value)
         and not ctx.params.get("interactive")
         and not click.get_text_stream("stdin").isatty()
     ):
-        return read_stdin()
+        return (read_stdin(),)
     return value
 
 
@@ -87,7 +89,7 @@ def read_stdin() -> str:
         ignore_unknown_options=True,
     )
 )
-@click.argument("text_input", callback=get_text, required=False)
+@click.argument("text_input", callback=get_text, nargs=-1)
 @click.option(
     "-t",
     "--tags",
@@ -302,11 +304,19 @@ def main(**kwargs):
 
         * what --interactive 'this/is/a/path'
 
+    Several inputs, files, directories or text, can be searched at once. Then the file of every match is shown, and the matches in text are under "text":
+
+        * what 'secret.txt' 'this/is/a/path' 'HTB{this is a flag}'
+
+        * find . -name '*.log' -exec what {} +
+
+    Text with spaces needs quotation marks, as every argument is an input.
+
     """
     # Print the characters that the terminal cannot show as escape sequences
     # instead of crashing, e.g. the Bitcoin sign (U+20BF) on Windows
     escape_unencodable(sys.stdout)
-    if kwargs["text_input"] is None and not kwargs["interactive"]:
+    if not kwargs["text_input"] and not kwargs["interactive"]:
         sys.exit("Text input expected. Run 'pywhat --help' for help")
     dist = Distribution(
         create_filter(kwargs["rarity"], kwargs["include"], kwargs["exclude"])
@@ -342,7 +352,7 @@ def main(**kwargs):
             json_output=kwargs["json"],
             format_str=kwargs["format"],
             print_tags=kwargs["print_tags"],
-        ).run(kwargs["text_input"])
+        ).run(kwargs["text_input"] or None)
         return
     identified_output = what_obj.what_is_this(
         kwargs["text_input"],
@@ -371,7 +381,7 @@ class What_Object:
 
     def what_is_this(
         self,
-        text: str,
+        text: Union[str, Sequence[str]],
         only_text: bool,
         key,
         reverse: bool,
@@ -379,10 +389,12 @@ class What_Object:
         include_filenames: bool,
     ) -> dict:
         """
-        Returns a Python dictionary of everything that has been identified
+        Returns a Python dictionary of everything that has been identified in
+        text, or in every input of a list or tuple of inputs (issue #171)
         """
-        return self.id.identify(
-            text,
+        inputs = [text] if isinstance(text, str) else text
+        return self.id.identify_inputs(
+            inputs,
             only_text=only_text,
             key=key,
             reverse=reverse,

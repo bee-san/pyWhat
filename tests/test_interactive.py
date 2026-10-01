@@ -358,6 +358,27 @@ def test_text():
     }
 
 
+def test_several_inputs():
+    # Issue #171
+    inputs = ["fixtures/file", "fixtures/test/file", "THM{hello}"]
+    shell, outputs = run_shell("location:test", text_input=inputs)
+    assert shell.input == inputs
+    assert f"Loaded {len(shell.matches)} matches from 3 inputs." in outputs[0]
+    assert {location for location, _ in shell.matches} == {
+        "fixtures/file",
+        "fixtures/test/file",
+        "text",
+    }
+    assert {location for location, _ in shell.search()} == {"fixtures/test/file"}
+    assert "File: fixtures/test/file" in outputs[1]
+
+
+def test_single_input_in_a_list():
+    shell, outputs = run_shell(text_input=["fixtures/file"])
+    assert shell.input == "fixtures/file"
+    assert "from file 'fixtures/file'." in outputs[0]
+
+
 def test_json():
     _, outputs = run_shell('include:"CTF Flag"', json_output=True)
     identified = json.loads(outputs[1].splitlines()[-1])
@@ -514,6 +535,21 @@ def test_cli_stdin_is_text_input_without_interactive_mode():
     result = CliRunner().invoke(main, ["-db"], input="THM{hello}")
     assert result.exit_code == 0
     assert "TryHackMe Flag Format" in result.output
+
+
+def test_cli_several_inputs():
+    # Issue #171
+    output = run_cli(
+        ["--interactive", "fixtures/file", "fixtures/test/file", "THM{hello}"],
+        ["location:test"],
+    )
+    assert "from 3 inputs." in output
+    assert "File: fixtures/test/file\nMatched on: https://google.com" in output
+
+
+def test_cli_single_input():
+    output = run_cli(["--interactive", "fixtures/file"], [])
+    assert "from file 'fixtures/file'." in output
 
 
 def test_cli_options_are_the_search_to_start_with():

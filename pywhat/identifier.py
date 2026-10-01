@@ -1,6 +1,6 @@
 import glob
 import os.path
-from typing import Callable, Iterable, Optional
+from typing import Any, Callable, Dict, Iterable, Optional
 
 import pywhat.magic_numbers
 from pywhat.filter import Distribution, Filter
@@ -104,14 +104,87 @@ class Identifier:
             if regex:
                 identify_obj["Regexes"][short_name] = regex
 
+        if key != Keys.NONE:
+            # The matches of every file of a directory, not only the last one
+            for matches in identify_obj["Regexes"].values():
+                matches.sort(key=key, reverse=reverse)
+
         for key_, value in identify_obj.items():
             # if there are zero regex or file signature matches, set it to None
             if not value:
                 identify_obj[key_] = None
 
+        return identify_obj
+
+    def identify_inputs(
+        self,
+        inputs: Iterable[str],
+        *,
+        only_text=True,
+        dist: Optional[Distribution] = None,
+        key: Optional[Callable] = None,
+        reverse: Optional[bool] = None,
+        boundaryless: Optional[Filter] = None,
+        include_filenames=False,
+        processors: Optional[Iterable[Processor]] = None,
+    ) -> dict:
+        """
+        Identify several inputs at once (issue #171). Every input is a file, a
+        directory or text, like the text of identify(), which has the same
+        options.
+
+        For a single input, this returns what identify() returns. For several
+        inputs, it returns what was found in all of them, in the same format
+        as for a directory: the matches and the file signatures of a file are
+        under the path of the file, which is the input or, for the files of a
+        directory, the path of the directory joined with the path of the file
+        in it, e.g. "fixtures/test/file". The matches in text are under "text".
+        """
+        texts = list(inputs)
+        if key is None:
+            key = self._key
+        if reverse is None:
+            reverse = self._reverse
+        if processors is not None:
+            processors = list(processors)  # used for every input
+        options: Dict[str, Any] = dict(
+            only_text=only_text,
+            dist=dist,
+            key=key,
+            reverse=reverse,
+            boundaryless=boundaryless,
+            include_filenames=include_filenames,
+            processors=processors,
+        )
+        if len(texts) == 1:
+            return self.identify(texts[0], **options)
+
+        identify_obj: dict = {"File Signatures": {}, "Regexes": {}}
+        for text in texts:
+            identified = self.identify(text, **options)
+            is_directory = not only_text and os.path.isdir(text)
+            is_file = not only_text and os.path.isfile(text)
+            for kind, found in identified.items():
+                for name, value in (found or {}).items():
+                    if is_directory:
+                        # name is the path of the file in the directory, e.g.
+                        # "/test/file"
+                        name = os.path.join(text, name.lstrip(os.sep))
+                    elif is_file:
+                        name = text  # instead of the name of the file
+                    if kind == "Regexes":
+                        identify_obj[kind].setdefault(name, []).extend(value)
+                    else:
+                        identify_obj[kind][name] = value
+
         if key != Keys.NONE:
-            identify_obj["Regexes"][short_name] = sorted(
-                identify_obj["Regexes"][short_name], key=key, reverse=reverse
-            )
+            # The matches of several texts are all under "text", and a file can
+            # be given twice (or in a directory that is given too)
+            for matches in identify_obj["Regexes"].values():
+                matches.sort(key=key, reverse=reverse)
+
+        for key_, value in identify_obj.items():
+            if not value:
+                identify_obj[key_] = None
 
         return identify_obj

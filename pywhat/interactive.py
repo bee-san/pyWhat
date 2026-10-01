@@ -23,6 +23,7 @@ from typing import (
     List,
     NamedTuple,
     Optional,
+    Sequence,
     Tuple,
     Union,
 )
@@ -368,12 +369,15 @@ class InteractiveShell(cmd.Cmd):
         self.json_output = json_output
         self.format_str = format_str
         self.print_tags = print_tags
-        self.input: Optional[str] = None
+        self.input: Union[None, str, List[str]] = None
         self.matches: List[Tuple[str, dict]] = []  # (location, match)
         self.signatures: Dict[str, dict] = {}
 
-    def run(self, text_input: Optional[str] = None) -> None:
-        """Load text_input, if given, then read commands until 'quit'."""
+    def run(self, text_input: Union[None, str, Sequence[str]] = None) -> None:
+        """
+        Load text_input, if given, then read commands until 'quit'. text_input
+        is a file, directory or text, or a list of them (see load()).
+        """
         self.console.print(INTRO)
         if text_input is None:
             self.console.print(NOTHING_LOADED)
@@ -381,19 +385,24 @@ class InteractiveShell(cmd.Cmd):
             self.load(text_input)
         self.cmdloop(intro="")
 
-    def load(self, text: str) -> None:
-        """Identify everything in a file, directory or text and keep it in memory."""
+    def load(self, text: Union[str, Sequence[str]]) -> None:
+        """
+        Identify everything in a file, directory or text, or in a list of them
+        (issue #171), and keep it in memory.
+        """
+        inputs = [text] if isinstance(text, str) else list(text)
         try:
             with self.console.status("Loading..."):
-                identified = self._identifier.identify(
-                    text,
+                identified = self._identifier.identify_inputs(
+                    inputs,
                     only_text=self.only_text,
                     include_filenames=self.include_filenames,
                 )
         except OSError as error:
-            self._error(f"Could not load '{text}': {error}")
+            name = f"'{inputs[0]}'" if len(inputs) == 1 else f"the {len(inputs)} inputs"
+            self._error(f"Could not load {name}: {error}")
             return
-        self.input = text
+        self.input = inputs[0] if len(inputs) == 1 else inputs
         self.signatures = identified["File Signatures"] or {}
         self.matches = [
             (location, match)
@@ -401,10 +410,12 @@ class InteractiveShell(cmd.Cmd):
             for match in matches
         ]
         source = "the text"
-        if not self.only_text and os.path.isdir(text):
-            source = f"directory '{text}'"
-        elif not self.only_text and os.path.isfile(text):
-            source = f"file '{text}'"
+        if len(inputs) != 1:
+            source = f"{len(inputs)} inputs"
+        elif not self.only_text and os.path.isdir(inputs[0]):
+            source = f"directory '{inputs[0]}'"
+        elif not self.only_text and os.path.isfile(inputs[0]):
+            source = f"file '{inputs[0]}'"
         self.console.print(
             f"Loaded {_count_matches(len(self.matches))} from {escape(source)}."
         )
