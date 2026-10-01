@@ -324,7 +324,10 @@
    },
    {
       "Name": "Heroku API Key",
-      "Regex": "(?i)^(heroku.{0,30}[0-9A-F]{8}-[0-9A-F]{4}-[0-9A-F]{4}-[0-9A-F]{4}-[0-9A-F]{12})$",
+      "Regex": [
+         "(?i)^(heroku.{0,30}[0-9A-F]{8}-[0-9A-F]{4}-[0-9A-F]{4}-[0-9A-F]{4}-[0-9A-F]{12})$",
+         "^(HRKU-[0-9A-Za-z_-]{60})$"
+      ],
       "plural_name": false,
       "Description": null,
       "Exploit": "Use the command below to verify that the API key is valid:\n  $ curl -X POST https://api.heroku.com/apps -H \"Accept: application/vnd.heroku+json; version=3\" -H \"Authorization: Bearer API_KEY_HERE\"\n",
@@ -335,7 +338,25 @@
          "API Keys",
          "Credentials",
          "Heroku"
-      ]
+      ],
+      "Examples": {
+         "Valid": [
+            [
+               "heroku_api_key = 6621782c-e52c-4d66",
+               "-938c-bbb4d2e5081b"
+            ],
+            "HEROKU_API_KEY=01234567-89ab-cdef-0123-456789abcdef",
+            [
+               "HRKU-",
+               "AALJCYR7SRzPkj9_BGqhi1jAI1J5P4WfD6ITENvdVydAPCnNcAlrMMahHrTo"
+            ]
+         ],
+         "Invalid": [
+            "6621782c-e52c-4d66-938c-bbb4d2e5081b",
+            "heroku_api_key = 6621782ce52c4d66938cbbb4d2e5081b",
+            "HRKU-AALJCYR7SRzPkj9_BGqhi1jAI1J5P4WfD6ITENvdVydAPCnNcAlrMMahHr"
+         ]
+      }
    },
    {
       "Name": "Slack API Key",
@@ -463,7 +484,7 @@
    },
    {
       "Name": "Square Access Token",
-      "Regex": "^(sqOatp-[0-9A-Za-z-_]{22}|EAAA[a-zA-Z0-9-_]{60})$",
+      "Regex": "^(sq0atp-[0-9A-Za-z-_]{22}|EAAA[a-zA-Z0-9-_]{60})$",
       "plural_name": false,
       "Description": null,
       "Exploit": "Use the command below to verify that the access token is valid:\n  $ curl https://connect.squareup.com/v2/locations -H \"Authorization: Bearer TOKEN_HERE\"\n",
@@ -477,14 +498,20 @@
       ],
       "Examples": {
          "Valid": [
+            [
+               "sq0atp-",
+               "M87EwK5mjYU9H04B6oWU1x"
+            ],
             "EAAAEBQZoq15Ub0PBBr_kw0zK-uIHcBPBZcfjPFT05ODfjng9GqFK9Dbgtj1ILcU"
          ],
-         "Invalid": []
+         "Invalid": [
+            "sqOatp-M87EwK5mjYU9H04B6oWU1x"
+         ]
       }
    },
    {
       "Name": "Stripe API Key",
-      "Regex": "^([srp]k_live_[0-9a-zA-Z]{24})$",
+      "Regex": "^([srp]k_live_[0-9a-zA-Z]{24,99})$",
       "plural_name": false,
       "Description": null,
       "Exploit": "Use the command below to verify that the API key is valid:\n  $ curl https://api.stripe.com/v1/charges -u \"API_KEY_HERE:\"\n",
@@ -498,9 +525,15 @@
       ],
       "Examples": {
          "Valid": [
+            "pk_live_51vDS84PQdxcvb2kUvzSxilDL0Br8laTw5TR72QRDSWFX3DgEtOQL33DA0Bs5hskXiC7Cf5eakc26SBPvqOip4TuerMPatU3ysy",
             "sk_live_vHDDrL02ioRF5vYtyqiYBKma"
          ],
-         "Invalid": []
+         "Invalid": [
+            [
+               "sk_test_",
+               "vHDDrL02ioRF5vYtyqiYBKma"
+            ]
+         ]
       }
    },
    {
@@ -563,7 +596,24 @@
          "Bug Bounty",
          "Credentials",
          "Facebook"
-      ]
+      ],
+      "Examples": {
+         "Valid": [
+            [
+               "facebook_secret = \"679f45d29a9ec144",
+               "fb29fb4013468fe0\""
+            ],
+            "FB_APP_SECRET='679f45d29a9ec144fb29fb4013468fe0'"
+         ],
+         "Invalid": [
+            "\"679f45d29a9ec144fb29fb4013468fe0\"",
+            "facebook_secret = \"679f45d29a9ec144fb29fb4013468fe\"",
+            [
+               "facebook_secret = 679f45d29a9ec144",
+               "fb29fb4013468fe0"
+            ]
+         ]
+      }
    },
    {
       "Name": "Facebook Client ID",
@@ -576,11 +626,21 @@
       "Tags": [
          "Bug Bounty",
          "Facebook"
-      ]
+      ],
+      "Examples": {
+         "Valid": [
+            "facebook_app_id = \"723047384104084\"",
+            "FB_CLIENT_ID: '1234567890123456'"
+         ],
+         "Invalid": [
+            "\"723047384104084\"",
+            "facebook_app_id = \"723047384104\""
+         ]
+      }
    },
    {
       "Name": "Twitter Secret API Key",
-      "Regex": "(?i)^(twitter(.{0,20})?['\\\"][0-9a-z]{35,44}['\\\"])$",
+      "Regex": "(?i)^(twitter(.{0,20})?['\\\"][0-9a-z]{35,50}['\\\"])$",
       "plural_name": false,
       "Description": null,
       "Exploit": "Use the command below to verify that the API key is valid:\n  $ curl -u 'API key:API_KEY_HERE' --data 'grant_type=client_credentials' 'https://api.twitter.com/oauth2/token'\n",
@@ -591,7 +651,19 @@
          "Bug Bounty",
          "Credentials",
          "Twitter"
-      ]
+      ],
+      "Examples": {
+         "Valid": [
+            "twitter_api_secret = \"L8qq9PZyRg6ieKGEKhZolGC0vJWLw8iEJ88DRdyOg\"",
+            "TWITTER_CONSUMER_SECRET=\"kAcSOqF21Fu85e7zjz7ZN2U4ZRhfV3WpwPAoE3Z7kBw\"",
+            "twitter_api_key_secret: 'Wie10hIr9KPkrDyeew7Xw2l0BQjbglrQ1U0sKRyzxi7OMSntb6'"
+         ],
+         "Invalid": [
+            "\"L8qq9PZyRg6ieKGEKhZolGC0vJWLw8iEJ88DRdyOg\"",
+            "twitter_api_secret = \"L8qq9PZyRg6ieKGEKhZol\"",
+            "twitter_api_secret = \"Wie10hIr9KPkrDyeew7Xw2l0BQjbglrQ1U0sKRyzxi7OMSntb6X\""
+         ]
+      }
    },
    {
       "Name": "Twitter Client ID",
@@ -604,7 +676,17 @@
       "Tags": [
          "Bug Bounty",
          "Twitter"
-      ]
+      ],
+      "Examples": {
+         "Valid": [
+            "twitter_api_key = \"xvz1evFS4wEEPTGEFPHBog\"",
+            "TWITTER_CONSUMER_KEY='fBdEzvshQybwzlY6HYeK1ztS1'"
+         ],
+         "Invalid": [
+            "\"xvz1evFS4wEEPTGEFPHBog\"",
+            "twitter_api_key = \"xvz1evFS4wEEPTG\""
+         ]
+      }
    },
    {
       "Name": "Node Package Manager (NPM) Token",
@@ -724,7 +806,17 @@
       "Tags": [
          "Bug Bounty",
          "LinkedIn"
-      ]
+      ],
+      "Examples": {
+         "Valid": [
+            "linkedin_client_id=cp334pjr0lxwmw",
+            "LinkedIn Client ID: 78a1b2c3d4e5f6"
+         ],
+         "Invalid": [
+            "cp334pjr0lxwmw",
+            "linkedin_client_id=cp334pjr0l"
+         ]
+      }
    },
    {
       "Name": "LinkedIn Secret Key",
@@ -739,11 +831,21 @@
          "Bug Bounty",
          "Credentials",
          "LinkedIn"
-      ]
+      ],
+      "Examples": {
+         "Valid": [
+            "linkedin_client_secret=hka9LQTaWrS4MbEJ",
+            "LINKEDIN_SECRET_KEY: hka9LQTaWrS4MbEJ"
+         ],
+         "Invalid": [
+            "hka9LQTaWrS4MbEJ",
+            "linkedin_client_secret=hka9LQTaWrS4"
+         ]
+      }
    },
    {
       "Name": "Stripe Restricted API Token",
-      "Regex": "(?i)^(rk_live_[0-9a-zA-Z]{24})$",
+      "Regex": "(?i)^(rk_live_[0-9a-zA-Z]{24,99})$",
       "plural_name": false,
       "Description": null,
       "Exploit": null,
@@ -754,11 +856,30 @@
          "Bug Bounty",
          "Credentials",
          "Stripe"
-      ]
+      ],
+      "Examples": {
+         "Valid": [
+            [
+               "rk_live_",
+               "hDapZ3SkyhTlGPKrlsW4iSE0"
+            ],
+            [
+               "rk_live_",
+               "51X5GuefTBuBOOzhPm3nEJumaCnNyidjE1D0JZJWmphxrc7dq2nVmhlB5u0DUMnCmtzCbpInJgtsIDITrBD0GXzva2cR9OImCuc"
+            ]
+         ],
+         "Invalid": [
+            [
+               "rk_test_",
+               "hDapZ3SkyhTlGPKrlsW4iSE0"
+            ],
+            "rk_live_hDapZ3SkyhTlGPKrlsW4iSE"
+         ]
+      }
    },
    {
       "Name": "Stripe Standard API Token",
-      "Regex": "(?i)^(sk_live_[0-9a-zA-Z]{24})$",
+      "Regex": "(?i)^(sk_live_[0-9a-zA-Z]{24,99})$",
       "plural_name": false,
       "Description": null,
       "Exploit": "Use the command below to verify that the Stripe Standard Live API Token is valid.\n  $ curl https://api.stripe.com/v1/charges -u TOKEN_HERE:\n\nKeep the colon at the end of the token to prevent cURL from requesting a password.\n\nThe live key can be used to extract/retrieve a lot of info ranging from the charges\nto the complete product list.\n\nKeep in mind that you will never be able to get the full credit card information since\nStripe only gives you the last 4 digits.\n",
@@ -769,11 +890,30 @@
          "Bug Bounty",
          "Credentials",
          "Stripe"
-      ]
+      ],
+      "Examples": {
+         "Valid": [
+            [
+               "sk_live_",
+               "tkOg6ekCDvaFSDfSfyQqMfA0"
+            ],
+            [
+               "sk_live_",
+               "516KTCSv1RFuRXpVyLTLRMBtSwNI9ZfIIEJLKdtlfeXadOeBo6AfwuIetjjxxSNB9WAIGtBvN2BiBnblUT53FXVH5VakRs4y6xa"
+            ]
+         ],
+         "Invalid": [
+            [
+               "sk_test_",
+               "tkOg6ekCDvaFSDfSfyQqMfA0"
+            ],
+            "pk_live_tkOg6ekCDvaFSDfSfyQqMfA0"
+         ]
+      }
    },
    {
       "Name": "Square OAuth Token",
-      "Regex": "(?i)^(sq0csp-[ 0-9A-Za-z\\-_]{43})$",
+      "Regex": "(?i)^(sq0csp-[0-9A-Za-z\\-_]{43})$",
       "plural_name": false,
       "Description": null,
       "Exploit": "Use the command below to verify that the token is valid:\n  $ curl \"https://squareup.com/oauth2/revoke\" -d '{\"access_token\":\"[RANDOM_STRING]\",\"client_id\":\"[APP_ID]\"}'  -H \"Content-Type: application/json\" -H \"Authorization: Client TOKEN_HERE\"\n",
@@ -784,7 +924,23 @@
          "Bug Bounty",
          "Credentials",
          "Square"
-      ]
+      ],
+      "Examples": {
+         "Valid": [
+            [
+               "sq0csp-",
+               "LBptIQ85io8CvbjVDvmzD1drQbOERgjlhnNrMgscFGk"
+            ],
+            [
+               "sq0csp-",
+               "wVzYr6A0o_FdBGA52w-q7e2cJMAARSvZQ720UPQ0YFL"
+            ]
+         ],
+         "Invalid": [
+            "sq0csp-LBptIQ85io8CvbjVDvmzD1drQbOERgjlhnN MgscFGk",
+            "sq0csp-LBptIQ85io8CvbjVDvmzD1drQbOERgjlhnNrMgscFG"
+         ]
+      }
    },
    {
       "Name": "PayPal/Braintree Access Token",
@@ -804,7 +960,16 @@
          "Credentials",
          "PayPal",
          "Braintree"
-      ]
+      ],
+      "Examples": {
+         "Valid": [
+            "access_token$production$i963b6ijshsf1of2$174884762b82123f8da20617d7cb9083"
+         ],
+         "Invalid": [
+            "access_token$sandbox$i963b6ijshsf1of2$174884762b82123f8da20617d7cb9083",
+            "access_token$production$i963b6ijshsf1of2$174884762b82123f8da20617d7cb908"
+         ]
+      }
    },
    {
       "Name": "MWS Auth Token",
@@ -823,11 +988,23 @@
          "Credentials",
          "Amazon",
          "MWS"
-      ]
+      ],
+      "Examples": {
+         "Valid": [
+            [
+               "amzn.mws.",
+               "030696f0-6f2b-4c02-8ad9-4d4bd00e6b7d"
+            ]
+         ],
+         "Invalid": [
+            "amzn.mws.4ea38b7b-f563-7709-4bae-87aeaEXAMPLE",
+            "amzn.mws.030696f06f2b4c028ad94d4bd00e6b7d"
+         ]
+      }
    },
    {
       "Name": "Picatic API Key",
-      "Regex": "(?i)^(sk_[live|test]_[0-9a-z]{32})$",
+      "Regex": "(?i)^(sk_(?:live|test)_[0-9a-z]{32}(?![0-9a-z]))$",
       "plural_name": false,
       "Description": null,
       "Exploit": null,
@@ -838,11 +1015,27 @@
          "Bug Bounty",
          "Credentials",
          "Picatic"
-      ]
+      ],
+      "Examples": {
+         "Valid": [
+            [
+               "sk_live_",
+               "xnnl7atoyxzepnz9vupe7rsph56lhj8q"
+            ],
+            "sk_test_1e28tiiqg4kjjg2asfcu90dg0300ocxa"
+         ],
+         "Invalid": [
+            "sk_l_xnnl7atoyxzepnz9vupe7rsph56lhj8q",
+            [
+               "sk_live_",
+               "xnnl7atoyxzepnz9vupe7rsph56lhj8"
+            ]
+         ]
+      }
    },
    {
       "Name": "Google OAuth Access Key",
-      "Regex": "(?i)^(ya29\\.[0-9A-Za-z\\-_]{64})$",
+      "Regex": "(?i)^(ya29\\.[0-9A-Za-z\\-_]{64,})$",
       "plural_name": false,
       "Description": null,
       "Exploit": null,
@@ -853,7 +1046,20 @@
          "Bug Bounty",
          "Credentials",
          "Google"
-      ]
+      ],
+      "Examples": {
+         "Valid": [
+            [
+               "ya29.",
+               "a0AfB_byfLQXnuxmo4jJw5b1DLHqxdP8CwXJ78_tGZYMHDRWe_6_VfvZg_vzY2QqHmPsoBi909Souesk7Vw-0DYwLc8n8CIlyk5JBcyaTBMbkVg1KhiJAXCRkqhSg4Za7hRDI8vkniTSXfNCy8OYt8kezP4qoN2MWzboJjYi"
+            ],
+            "ya29.sGMYoQI2mdR0-O_iAgjC47jT5QPA6JDCtGSFOBKr8s6viDG32AhN2_AFGuum3ehx"
+         ],
+         "Invalid": [
+            "ya29.a0AfB_byfLQXnuxmo4jJw5b1DLHqxdP8Cw",
+            "ya29a0AfB_byfLQXnuxmo4jJw5b1DLHqxdP8CwXJ78_tGZYMHDRWe_6_VfvZg_vzY2QqHmPsoBi90"
+         ]
+      }
    },
    {
       "Name": "Google OAuth Client ID",
@@ -912,7 +1118,19 @@
          "Bug Bounty",
          "Credentials",
          "NuGet"
-      ]
+      ],
+      "Examples": {
+         "Valid": [
+            [
+               "oy2",
+               "pf9689a7hly4r43ogw7msxwgkv5oxital097z8da8kg"
+            ]
+         ],
+         "Invalid": [
+            "oy2pf9689a7hly4r43ogw7msxwgkv5oxital097z8da8k",
+            "oy3pf9689a7hly4r43ogw7msxwgkv5oxital097z8da8kg"
+         ]
+      }
    },
    {
       "Name": "SendGrid Token",
@@ -927,7 +1145,22 @@
          "Bug Bounty",
          "Credentials",
          "SendGrid"
-      ]
+      ],
+      "Examples": {
+         "Valid": [
+            [
+               "SG.",
+               "Vh-pM75qVoyEWhDfo1HIGQ.kZpdFcjqV9XydbkRjPRB4hFd9QkWC1Y9HjI99IfAOTu"
+            ]
+         ],
+         "Invalid": [
+            [
+               "SG.",
+               "Vh-pM75qVoyEWhDfo1HIGQ.kZpdFcjqV9XydbkRjPRB4hFd9QkWC1Y9HjI99IfAOT"
+            ],
+            "SG.Vh-pM75qVoyEWhDfo1HIGQkZpdFcjqV9XydbkRjPRB4hFd9QkWC1Y9HjI99IfAOTu"
+         ]
+      }
    },
    {
       "Name": "Zoho Webhook Token",
@@ -940,7 +1173,17 @@
       "Tags": [
          "Bug Bounty",
          "Zoho"
-      ]
+      ],
+      "Examples": {
+         "Valid": [
+            "https://creator.zoho.com/api/xml/sample-app/form/Contact_Form/record/add?authtoken=34de0515ec19eb2e50afcca56fc60e60",
+            "https://creator.zoho.com/api/json/inventory/view/All_Orders?authtoken=34de0515ec19eb2e50afcca56fc60e60"
+         ],
+         "Invalid": [
+            "https://creator.zoho.com/api/json/inventory/view/All_Orders",
+            "https://creator.zoho.com/api/json/inventory/view/All_Orders?authtoken="
+         ]
+      }
    },
    {
       "Name": "Zapier Webhook Token",
@@ -976,7 +1219,16 @@
          "Bug Bounty",
          "Credentials",
          "New Relic"
-      ]
+      ],
+      "Examples": {
+         "Valid": [
+            "NRAA-ba2aa4dd67a16026c90a3213def"
+         ],
+         "Invalid": [
+            "NRAA-ba2aa4dd67a16026c90a3213de",
+            "NRAA-ba2aa4dd67a16026c90a3213dez"
+         ]
+      }
    },
    {
       "Name": "New Relic Insights API Key",
@@ -991,7 +1243,23 @@
          "Bug Bounty",
          "Credentials",
          "New Relic"
-      ]
+      ],
+      "Examples": {
+         "Valid": [
+            [
+               "NRII-",
+               "A3NA6qhUQz13i0-cAcmBHu70eF2vrqH_"
+            ],
+            [
+               "NRIQ-",
+               "T9u8EghzaPDlg67hrWRUMYziqp6H6SUa"
+            ]
+         ],
+         "Invalid": [
+            "NRIX-T9u8EghzaPDlg67hrWRUMYziqp6H6SUa",
+            "NRIQ-T9u8EghzaPDlg67hrWRUMYziqp6H6SU"
+         ]
+      }
    },
    {
       "Name": "New Relic REST API Key",
@@ -1056,7 +1324,7 @@
    },
    {
       "Name": "Microsoft Teams Webhook",
-      "Regex": "(?i)^(https://outlook\\.office\\.com/webhook/[A-Za-z0-9\\-@]{64}/IncomingWebhook/[A-Za-z0-9\\-]{64}/[A-Za-z0-9\\-]{64})$",
+      "Regex": "(?i)^(https://(?:outlook\\.office\\.com/webhook|[a-z0-9-]+\\.webhook\\.office\\.com/webhookb2)/[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}@[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}/IncomingWebhook/[0-9a-f]{32}/[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}(?:/V2[0-9a-z_-]+)?)$",
       "plural_name": false,
       "Description": null,
       "Exploit": null,
@@ -1067,7 +1335,19 @@
          "URL",
          "Microsoft Teams",
          "Microsoft"
-      ]
+      ],
+      "Examples": {
+         "Valid": [
+            "https://outlook.office.com/webhook/9fc9e5db-8b66-4887-90f3-3eab89098650@16f7cf69-a7a9-4eff-8549-2e25c27c0869/IncomingWebhook/b0ce153ca1848b470ec9e1cf5b32b77e/46a72e5f-a078-4553-81eb-49cc8cb5ad3a",
+            "https://contoso.webhook.office.com/webhookb2/34168d63-fc00-4a39-aed7-6638ced561fc@24004b1a-572d-4787-8fbb-a28cfae0a100/IncomingWebhook/dd16669a6116418dbe5ccfdfb0ff9101/c8b3553c-a5cf-46d0-b8c1-94f0ed391ca2",
+            "https://contoso.webhook.office.com/webhookb2/34168d63-fc00-4a39-aed7-6638ced561fc@24004b1a-572d-4787-8fbb-a28cfae0a100/IncomingWebhook/dd16669a6116418dbe5ccfdfb0ff9101/c8b3553c-a5cf-46d0-b8c1-94f0ed391ca2/V2vs6FCe1-xXO57343xJ14pSF5GIlyblrkjIePdFOFl0L"
+         ],
+         "Invalid": [
+            "https://contoso.webhook.office.com/webhookb2/34168d63-fc00-4a39-aed7-6638ced561fc/IncomingWebhook/dd16669a6116418dbe5ccfdfb0ff9101/c8b3553c-a5cf-46d0-b8c1-94f0ed391ca2",
+            "https://contoso.webhook.office.com/webhookb2/34168d63-fc00-4a39-aed7-6638ced561fc@24004b1a-572d-4787-8fbb-a28cfae0a100/IncomingWebhook/dd16669a6116418dbe5ccfdfb0ff910/c8b3553c-a5cf-46d0-b8c1-94f0ed391ca2",
+            "https://contoso.webhook.example.com/webhookb2/34168d63-fc00-4a39-aed7-6638ced561fc@24004b1a-572d-4787-8fbb-a28cfae0a100/IncomingWebhook/dd16669a6116418dbe5ccfdfb0ff9101/c8b3553c-a5cf-46d0-b8c1-94f0ed391ca2"
+         ]
+      }
    },
    {
       "Name": "Google FCM Server Key",
@@ -1083,7 +1363,19 @@
       "Tags": [
          "Bug Bounty",
          "Google"
-      ]
+      ],
+      "Examples": {
+         "Valid": [
+            [
+               "AAAAa5nNZFF:APA91b",
+               "MoRXuI0OdD7Il92LqiQW8wNt0m7GWmDwh04ft75-maYaEuth5Cwd__1wgqr1TMuOYKYv7Nm_YDnC30RnlFeDTtBb8J4-OPWR0bmUYN-FEif-d1iaHbjfFHjzP3FnGuqJA9JNjc"
+            ]
+         ],
+         "Invalid": [
+            "AAAAa5nNZFF:APA91bMoRXuI0OdD7Il92LqiQW8wNt0m7GWmDwh04ft75-maYaEuth5Cwd__1wgqr1TMuOYKYv7Nm_YDnC30RnlFeDTtBb8J4-OPWR0bmUYN-FEif-d1iaHbjfFHjzP3FnGuqJA9JNj",
+            "AAAAa5nNZFFAPA91bMoRXuI0OdD7Il92LqiQW8wNt0m7GWmDwh04ft75-maYaEuth5Cwd__1wgqr1TMuOYKYv7Nm_YDnC30RnlFeDTtBb8J4-OPWR0bmUYN-FEif-d1iaHbjfFHjzP3FnGuqJA9JNjc"
+         ]
+      }
    },
    {
       "Name": "Google Calendar URI",
@@ -1186,7 +1478,16 @@
          "Bug Bounty",
          "Credentials",
          "Cloudinary"
-      ]
+      ],
+      "Examples": {
+         "Valid": [
+            "cloudinary://154840400675842:eblPW8z2vkqa0MT_qNie6YtomaN@demo-cloud"
+         ],
+         "Invalid": [
+            "cloudinary://API_KEY:API_SECRET@CLOUD_NAME",
+            "https://res.cloudinary.com/demo/image/upload/sample.jpg"
+         ]
+      }
    },
    {
       "Name": "PyPI Upload Token",
@@ -1222,7 +1523,19 @@
          "Credentials",
          "API Keys",
          "Shopify"
-      ]
+      ],
+      "Examples": {
+         "Valid": [
+            [
+               "shppa_",
+               "0b44cef484c575006cd74b990d4370a8"
+            ]
+         ],
+         "Invalid": [
+            "shppa_0b44cef484c575006cd74b990d4370a",
+            "shppa_0b44cef484c575006cd74b990d4370ag"
+         ]
+      }
    },
    {
       "Name": "Shopify Custom App Access Token",
@@ -1237,7 +1550,19 @@
          "Credentials",
          "API Keys",
          "Shopify"
-      ]
+      ],
+      "Examples": {
+         "Valid": [
+            [
+               "shpca_",
+               "49aff9379e21777f8968e85d9d9c5633"
+            ]
+         ],
+         "Invalid": [
+            "shpca_49aff9379e21777f8968e85d9d9c563",
+            "shpca_49aff9379e21777f8968e85d9d9c563g"
+         ]
+      }
    },
    {
       "Name": "Shopify Access Token",
@@ -1252,7 +1577,19 @@
          "Credentials",
          "API Keys",
          "Shopify"
-      ]
+      ],
+      "Examples": {
+         "Valid": [
+            [
+               "shpat_",
+               "d07fa97cc5213b189110525a4048ea84"
+            ]
+         ],
+         "Invalid": [
+            "shpat_d07fa97cc5213b189110525a4048ea8",
+            "shpat_d07fa97cc5213b189110525a4048ea8g"
+         ]
+      }
    },
    {
       "Name": "Shopify Shared Secret",
@@ -1267,7 +1604,19 @@
          "Credentials",
          "API Keys",
          "Shopify"
-      ]
+      ],
+      "Examples": {
+         "Valid": [
+            [
+               "shpss_",
+               "975d936c4d936f7c4dc4b9a5680ff526"
+            ]
+         ],
+         "Invalid": [
+            "shpss_975d936c4d936f7c4dc4b9a5680ff52",
+            "shpss_975d936c4d936f7c4dc4b9a5680ff52g"
+         ]
+      }
    },
    {
       "Name": "Dynatrace Token",
@@ -1282,7 +1631,23 @@
          "Credentials",
          "API Keys",
          "Dynatrace"
-      ]
+      ],
+      "Examples": {
+         "Valid": [
+            [
+               "dt0s01.",
+               "ST2EY72KQINMH574WMNVI7YN.G3DFPBEJYMODIDAEX454M7YWBUVEFOWKPRVMWFASS64NFH52PX6BNDVFFM572RZM"
+            ],
+            [
+               "dt0c01.",
+               "APE04YTBJ3YEZ4KSHYYL36AG.BXMJZXMW52VBV7F9DDL4ULJ4HED01GIITN1UYOLVV5EPG7R1IOXTFKRGMG5MJXI8"
+            ]
+         ],
+         "Invalid": [
+            "dt0s01.ST2EY72KQINMH574WMNVI7YN",
+            "dt0s1.ST2EY72KQINMH574WMNVI7YN.G3DFPBEJYMODIDAEX454M7YWBUVEFOWKPRVMWFASS64NFH52PX6BNDVFFM572RZM"
+         ]
+      }
    },
    {
       "Name": "Amazon SNS Topic",
@@ -1674,7 +2039,7 @@
       "Alternative Names": [
          "GCP API Key"
       ],
-      "Regex": "(?i)^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12})$",
+      "Regex": "^(AIza[0-9A-Za-z\\-_]{35})$",
       "plural_name": false,
       "Description": null,
       "Exploit": null,
@@ -1686,7 +2051,24 @@
          "Credentials",
          "Google Cloud",
          "Google"
-      ]
+      ],
+      "Examples": {
+         "Valid": [
+            [
+               "AIza",
+               "SyGeVIIeqPGFdJ2i0kuwbYA2mccMLY56wbq"
+            ],
+            [
+               "AIza",
+               "SyD7CQl6fRhagGok6CzFGOOPne2X1u1spoA"
+            ]
+         ],
+         "Invalid": [
+            "a4db08b7-5729-4ba9-8c08-f2df493465a1",
+            "AIzaSyGeVIIeqPGFdJ2i0kuwbYA2mccMLY56wb",
+            "AIzbSyGeVIIeqPGFdJ2i0kuwbYA2mccMLY56wbq"
+         ]
+      }
    },
    {
       "Name": "Mailchimp API Key",
@@ -2588,7 +2970,19 @@
          "Finance",
          "AMEX CC",
          "Bug Bounty"
-      ]
+      ],
+      "Examples": {
+         "Valid": [
+            "378282246310005",
+            "371449635398431",
+            "340000000000009"
+         ],
+         "Invalid": [
+            "37828224631000",
+            "3782822463100055",
+            "350000000000009"
+         ]
+      }
    },
    {
       "Name": "BCGlobal Card Number",

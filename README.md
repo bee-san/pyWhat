@@ -242,6 +242,8 @@ If a regex is known by other names, such as an abbreviation, list them in its op
 
 Not sure which rarity to give your regex? `python scripts/rarity_score.py 'REGEX'` estimates it from the regex itself: the more specific characters a match has to contain, like the `ghp_` of a GitHub token, the rarer it is. `python scripts/rarity_score.py --database` compares the rarities in `regex.json` with their estimates, and `--help` explains how the estimate works.
 
+Every regex needs examples in `regex.json`, which are run as tests. See [CONTRIBUTING.md](CONTRIBUTING.md) for how to add fake API keys as examples.
+
 We ask contributors to join the Discord for quicker discussions, but it's not needed:
 <a href="http://discord.skerritt.blog"><img alt="Discord" src="https://img.shields.io/discord/754001738184392704"></a>
 

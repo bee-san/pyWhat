@@ -8,6 +8,7 @@ from pywhat.helper import (
     CaseInsensitiveSet,
     available_names,
     get_names,
+    join_examples,
     join_regexes,
     load_regexes,
     split_tags,
@@ -16,17 +17,14 @@ from pywhat.helper import (
 database = load_regexes()
 
 
-@pytest.mark.skip(
-    reason="Not all regex have tests now, check https://github.com/bee-san/pyWhat/pull/146#issuecomment-927087231 for info."
-)
 def test_if_all_tests_exist():
-    with open("tests/test_regex_identifier.py", "r", encoding="utf-8") as file:
-        tests = file.read()
-
+    # The examples are run by test_regex_valid_match / test_regex_invalid_match
+    # in 'test_regex_identifier.py'.
     for regex in database:
-        assert (
-            regex["Name"] in tests
-        ), "No test for this regex found in 'test_regex_identifier.py'. Note that a test needs to assert the whole name."
+        assert regex.get("Examples", {}).get("Valid"), (
+            f"No valid examples found for {regex['Name']!r}. "
+            "Please add some to its 'Examples' in 'regex.json'."
+        )
 
 
 def test_name_capitalization():
@@ -186,6 +184,46 @@ def test_regex_list_is_joined_on_load():
     assert re.search(entry["Boundaryless Regex"], "xx tryhackme{a} yy")
 
 
+def test_examples_format():
+    # Check the examples as written in regex.json; an example may be a list of
+    # parts, so that fake API keys don't look like leaked secrets (issue #150)
+    with open("pywhat/Data/regex.json", "r", encoding="utf-8") as file:
+        raw_database = json.load(file)
+
+    for entry in raw_database:
+        for examples in entry.get("Examples", {}).values():
+            for example in examples:
+                message = f"{example!r} in {entry['Name']!r} should be a string or a list of strings."
+                if isinstance(example, list):
+                    assert len(example) > 1, message
+                    assert all(isinstance(part, str) for part in example), message
+                else:
+                    assert isinstance(example, str), message
+
+
+@pytest.mark.parametrize(
+    "examples, joined",
+    [
+        ({"Valid": ["a"], "Invalid": []}, {"Valid": ["a"], "Invalid": []}),
+        ({"Valid": [["a", "b"], "c"]}, {"Valid": ["ab", "c"]}),
+        (
+            {"Valid": ["a"], "Invalid": [["b", "c", "d"]]},
+            {"Valid": ["a"], "Invalid": ["bcd"]},
+        ),
+    ],
+)
+def test_join_examples(examples, joined):
+    assert join_examples(examples) == joined
+
+
+def test_examples_are_joined_on_load():
+    entry = next(e for e in database if e["Name"] == "Shopify Access Token")
+    assert entry["Examples"]["Valid"] == ["shpat_" + "d07fa97cc5213b189110525a4048ea84"]
+    for entry in database:
+        for examples in entry["Examples"].values():
+            assert all(isinstance(example, str) for example in examples)
+
+
 def test_check_keys():
     for entry in database:
         for key in [
@@ -196,7 +234,7 @@ def test_check_keys():
             "Rarity",
             "URL",
             "Tags",
-            # "Examples", # TODO
+            "Examples",
         ]:
             assert key in entry, f"{key} is missing in {entry['Name']}"
 
