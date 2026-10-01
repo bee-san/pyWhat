@@ -6,17 +6,20 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        python-version: ['3.7', '3.8', '3.9', '3.10']
+        # Python 3.7 is EOL and no longer installable on the current
+        # ubuntu-latest / macos-latest (arm64) runner images.
+        python-version: ['3.8', '3.9', '3.10']
         os: [ubuntu-latest, windows-latest, macos-latest]
     runs-on: ${{ matrix.os }}
     name: Python ${{ matrix.python-version }} on ${{ matrix.os }}
     steps:
-    - uses: actions/checkout@v2
-    - uses: actions/setup-python@v1
+    - uses: actions/checkout@v5
+    - uses: actions/setup-python@v6
       with:
         python-version: ${{ matrix.python-version }}
-        architecture: x64
-    - run: python -m pip install nox poetry
+    # Pinned: Poetry 2.x removed `install --no-dev` and the bundled `export`
+    # command, and recent nox releases no longer support Python 3.8/3.9.
+    - run: python -m pip install nox==2025.5.1 poetry==1.8.5
     - run: python -m nox
       env:
         OS: ${{ matrix.os }}
