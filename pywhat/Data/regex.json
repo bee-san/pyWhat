@@ -193,8 +193,8 @@
          "THM Flag"
       ],
       "Regex": [
-         "(?i)^(thm{.*})$",
-         "(?i)^(tryhackme{.*})$"
+         "(?i)^(thm\\{.*\\})$",
+         "(?i)^(tryhackme\\{.*\\})$"
       ],
       "plural_name": false,
       "Description": "Used for Capture The Flags at https://tryhackme.com",
@@ -217,7 +217,7 @@
          "HackTheBox Flag",
          "HTB Flag"
       ],
-      "Regex": "(?i)^(hackthebox{.*}|htb{.*})$",
+      "Regex": "(?i)^(hackthebox\\{.*\\}|htb\\{.*\\})$",
       "plural_name": false,
       "Description": "Used for Capture The Flags at https://hackthebox.eu",
       "Rarity": 1,
@@ -234,7 +234,7 @@
    },
    {
       "Name": "Capture The Flag (CTF) Flag",
-      "Regex": "(?i)^(flag{.*}|ctf{.*}|ctfa{.*})$",
+      "Regex": "(?i)^(flag\\{.*\\}|ctf\\{.*\\}|ctfa\\{.*\\})$",
       "plural_name": false,
       "Description": null,
       "Rarity": 1,
@@ -1443,7 +1443,7 @@
    },
    {
       "Name": "Guilded Webhook",
-      "Regex": "(?i)^(https?:\\/\\/(?:api\\.|media\\.|(?P<web>www.))guilded\\.gg(?(web)\\/api|)\\/webhooks\\/[a-f0-9]{8}-[a-f0-9]{4}-4[a-f0-9]{3}-[89abAB][a-f0-9]{3}-[a-f0-9]{12}\\/[\\w]{86})$",
+      "Regex": "(?i)^(https?:\\/\\/(?:(?:api\\.|media\\.)guilded\\.gg|www.guilded\\.gg\\/api)\\/webhooks\\/[a-f0-9]{8}-[a-f0-9]{4}-4[a-f0-9]{3}-[89abAB][a-f0-9]{3}-[a-f0-9]{12}\\/[\\w]{86})$",
       "plural_name": false,
       "Description": null,
       "Rarity": 1,
@@ -2646,7 +2646,7 @@
          "Social Security Number",
          "SSN"
       ],
-      "Regex": "^(([0-9][0-9][0-9])(?<!666|000|9[0-9][0-9])(=|\\+|_|\\#|:|;|\\.|-|\\s){0,3}([1-9][1-9]|0[1-9]|[1-9]0)(=|\\+|_|\\#|:|;|\\.|-|\\s){0,3}([0-9][0-9][0-9][0-9])(?<!0000)(=|\\+|_|\\#|:|;|\\.|-|\\s){0,3}?)$",
+      "Regex": "^((00[1-9]|0[1-9][0-9]|[1-5][0-9][0-9]|6[0-5][0-9]|66[0-57-9]|6[7-9][0-9]|[78][0-9][0-9])(=|\\+|_|\\#|:|;|\\.|-|\\s){0,3}([1-9][1-9]|0[1-9]|[1-9]0)(=|\\+|_|\\#|:|;|\\.|-|\\s){0,3}(000[1-9]|00[1-9][0-9]|0[1-9][0-9][0-9]|[1-9][0-9][0-9][0-9])(=|\\+|_|\\#|:|;|\\.|-|\\s){0,3}?)$",
       "plural_name": false,
       "Description": "An [#CAE4F1][link=https://en.wikipedia.org/wiki/Social_Security_number]American Identification Number[/link][/#CAE4F1]",
       "Rarity": 0.5,
@@ -3552,7 +3552,7 @@
       "Alternative Names": [
          "JWT"
       ],
-      "Regex": "(?i)^((?=eyJ)(?:[a-z0-9_=\\-]{17,})\\.(?=e)(?:[a-z0-9_=\\-]{2,})\\.(?:[a-z0-9_=\\-]{43,}))$",
+      "Regex": "(?i)^(eyJ[a-z0-9_=\\-]{14,}\\.e[a-z0-9_=\\-]{1,}\\.[a-z0-9_=\\-]{43,})$",
       "plural_name": false,
       "Description": null,
       "Rarity": 0.2,

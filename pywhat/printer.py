@@ -198,7 +198,7 @@ class Printing:
             self.console.print("Nothing found!")
 
         if output_str.strip():
-            self.console.print(output_str.rstrip())
+            self.console.print(output_str.rstrip(), soft_wrap=True)
 
         return output_str
 
@@ -233,7 +233,7 @@ class Printing:
                         }
                         for format, value in formats.items():
                             value = str() if value is None else value
-                            s = re.sub(r"(?<!\\)" + format, value, s)
+                            s = re.sub(r"(?<!\\)" + format, lambda _, v=value: v, s)
                         s = re.sub(r"\\%", "%", s)
                         temp += s
                     output.append(temp)

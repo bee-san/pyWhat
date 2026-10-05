@@ -137,9 +137,11 @@ def load_regexes() -> list:
                 children["Items"] = read_json(children["path"])
             except KeyError:
                 pass
-            children["lengths"] = set()
-            for element in children["Items"]:
-                children["lengths"].add(len(element))
+            # The longest (most specific) prefix first, an order that the Rust
+            # port can reproduce (a set's order depends on hashing)
+            children["lengths"] = sorted(
+                {len(element) for element in children["Items"]}, reverse=True
+            )
     return regexes
 
 
