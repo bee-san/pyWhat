@@ -819,3 +819,26 @@ def test_print_stream_api():
             Identifier().identify("fixtures", only_text=False), text_input
         )
         assert squeeze(output) == squeeze(printer.console.file.getvalue())
+
+
+@pytest.mark.skipif(
+    os.name == "nt", reason="POSIX absolute paths can repeat in children"
+)
+def test_json_directory_preserves_colliding_path_components(tmp_path, monkeypatch):
+    monkeypatch.chdir(tmp_path)
+    root = tmp_path / "scan"
+    ordinary = root / "backup" / "item"
+    nested = root / "backup" / str(root).lstrip(os.sep) / "item"
+    ordinary.parent.mkdir(parents=True)
+    nested.parent.mkdir(parents=True)
+    ordinary.write_bytes(b"%PDF-1.7\nTHM{ordinary}")
+    nested.write_bytes(b"\x89PNG\r\n\x1a\nTHM{nested}")
+    result = CliRunner().invoke(main, ["-db", "--json", "scan"])
+    assert result.exit_code == 0
+    out = json.loads(result.output)
+    expected = {
+        os.sep + str(ordinary.relative_to(root)),
+        os.sep + str(nested.relative_to(root)),
+    }
+    assert set(out["File Signatures"]) == expected
+    assert set(out["Regexes"]) == expected

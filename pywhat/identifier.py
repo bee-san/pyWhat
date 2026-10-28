@@ -253,7 +253,7 @@ class Identifier:
                     if os.path.isfile(myfile):
                         path = os.path.abspath(myfile)
                         # The path of the file in the directory, e.g. "/test/file"
-                        name = path.replace(directory, "")
+                        name = path[len(directory) :]
                         if several:
                             # The path of the directory joined with it, e.g.
                             # "fixtures/test/file"
