@@ -249,7 +249,7 @@ class Identifier:
             if not only_text and os.path.isdir(text):
                 # if input is a directory, recursively search for all of the files
                 directory = os.path.abspath(text)
-                for myfile in glob.iglob(text + "/**", recursive=True):
+                for myfile in glob.iglob(glob.escape(text) + "/**", recursive=True):
                     if os.path.isfile(myfile):
                         path = os.path.abspath(myfile)
                         # The path of the file in the directory, e.g. "/test/file"
