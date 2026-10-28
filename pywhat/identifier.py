@@ -203,8 +203,6 @@ class Identifier:
         for files_done, (location, source, is_file) in enumerate(files):
             if is_file:
                 magic_numbers = pywhat.magic_numbers.get_magic_nums(source)
-                if not magic_numbers:
-                    magic_numbers = pywhat.magic_numbers.check_magic_nums(source)
                 if magic_numbers:
                     yield "File Signatures", location, magic_numbers
 
