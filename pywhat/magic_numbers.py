@@ -5,7 +5,17 @@ from pywhat.helper import read_json
 
 def get_magic_nums(file_loc):
     with open(file_loc, "rb") as myfile:
-        header = myfile.read(24)
+        header_size = (
+            max(
+                (
+                    len(i["Hexadecimal File Signature"])
+                    for i in read_json("file_signatures.json")
+                ),
+                default=0,
+            )
+            // 2
+        )
+        header = myfile.read(header_size)
         header = str(binascii.hexlify(header))[2:-1]
     return check_magic_nums(header)
 
