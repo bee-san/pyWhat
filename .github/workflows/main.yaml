@@ -1,6 +1,16 @@
 # .github/workflows/tests.yml
 name: Tests
-on: [push, pull_request]
+# Pull requests are tested through the pull_request event; running the same commits again on
+# every branch push doubled the work (85 push runs vs 59 PR runs in the 30 days to 2026-10-13,
+# 9 matrix jobs each, 3 of them on macOS). Superseded runs of the same PR are cancelled.
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+concurrency:
+  group: tests-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
 jobs:
   tests:
     strategy:
