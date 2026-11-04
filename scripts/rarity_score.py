@@ -65,7 +65,16 @@ if sys.version_info >= (3, 11):
 else:
     import sre_parse
 
-REGEX_JSON = Path(__file__).resolve().parent.parent / "pywhat" / "Data" / "regex.json"
+DATA = Path(__file__).resolve().parent.parent / "pywhat" / "Data"
+REGEX_JSON = DATA / "regex.json"
+# The area files, after regex.json (pywhat.helper.REGEX_AREAS)
+REGEX_FILES = [
+    REGEX_JSON,
+    *(
+        DATA / "regexes" / f"{area}.json"
+        for area in ("crypto", "cloud", "ctf", "network", "ids", "files", "social")
+    ),
+]
 
 # The number of bits of a regex with a rarity of 1: a chance of about one in a
 # million (2 ** 20)
@@ -265,12 +274,14 @@ class Row(NamedTuple):
 
 def database_rows(min_difference: float = 0.0) -> List[Row]:
     """
-    The rarity and the estimated rarity of the regexes in regex.json, in the
-    order of regex.json, whose rarity differs from the estimate by at least
-    min_difference.
+    The rarity and the estimated rarity of the regexes in regex.json and the
+    area files, in the order of the files, whose rarity differs from the
+    estimate by at least min_difference.
     """
-    with open(REGEX_JSON, encoding="utf-8") as file:
-        database = json.load(file)
+    database = []
+    for path in REGEX_FILES:
+        with open(path, encoding="utf-8") as file:
+            database += json.load(file)
     rows = []
     for entry in database:
         bits = specificity(entry["Regex"])
@@ -304,7 +315,7 @@ def main(argv: Optional[Sequence[str]] = None) -> int:
     parser.add_argument(
         "--database",
         action="store_true",
-        help="compare the rarity of every regex in regex.json with its estimate",
+        help="compare the rarity of every regex in the regex files with its estimate",
     )
     parser.add_argument(
         "--min-difference",

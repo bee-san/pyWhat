@@ -8,6 +8,22 @@ use std::collections::HashMap;
 use std::sync::OnceLock;
 
 pub(crate) const REGEX_JSON: &str = include_str!("../pywhat/Data/regex.json");
+
+/// The files of regexes in `pywhat/Data/regexes`, one per area, loaded after regex.json in
+/// this order (`REGEX_AREAS` in `pywhat/helper.py`). New regexes go into the file of their
+/// area (docs/adding-regexes.md).
+pub(crate) const REGEX_AREA_FILES: [(&str, &str); 7] = [
+    ("crypto", include_str!("../pywhat/Data/regexes/crypto.json")),
+    ("cloud", include_str!("../pywhat/Data/regexes/cloud.json")),
+    ("ctf", include_str!("../pywhat/Data/regexes/ctf.json")),
+    (
+        "network",
+        include_str!("../pywhat/Data/regexes/network.json"),
+    ),
+    ("ids", include_str!("../pywhat/Data/regexes/ids.json")),
+    ("files", include_str!("../pywhat/Data/regexes/files.json")),
+    ("social", include_str!("../pywhat/Data/regexes/social.json")),
+];
 pub(crate) const FILE_SIGNATURES_JSON: &str = include_str!("../pywhat/Data/file_signatures.json");
 
 /// The vendors of MAC address prefixes (1.6 MB), for the descriptions of EUI-48 matches.
@@ -24,6 +40,11 @@ fn data_file(path: &str) -> Option<&'static str> {
         "phone_codes.json" => include_str!("../pywhat/Data/phone_codes.json"),
         "mastercard_companies.json" => include_str!("../pywhat/Data/mastercard_companies.json"),
         "regex.json" => REGEX_JSON,
+        // The area files, by their path relative to pywhat/Data
+        path if path.starts_with("regexes/") => REGEX_AREA_FILES
+            .iter()
+            .find(|(area, _)| path == format!("regexes/{area}.json"))
+            .map(|(_, text)| *text)?,
         "file_signatures.json" => FILE_SIGNATURES_JSON,
         _ => return None,
     })
@@ -128,6 +149,8 @@ pub struct RegexEntry {
     pub tags: Vec<String>,
     /// How to use what was found, with `..._HERE` placeholders for the match.
     pub exploit: Option<String>,
+    /// The checksum that its matches must pass (see [`crate::validators`]), e.g. `luhn`.
+    pub validator: Option<String>,
     /// The valid examples (parts joined).
     pub valid_examples: Vec<String>,
     /// The invalid examples (parts joined).
@@ -144,16 +167,37 @@ impl RegexEntry {
         std::iter::once(self.name.as_str()).chain(self.alternative_names.iter().map(String::as_str))
     }
 
+    /// Whether the regex only checks which characters a text has and how long it is: more
+    /// than 1 in 1,000 random strings of some common alphabet (digits, hex, Base64, ...) and
+    /// the right length match it, after its checksum. Its tag is "Charset Only"
+    /// (`tests/charset_only.rs` checks the tags). Its matches say little on their own: decoder
+    /// output and random strings match it.
+    pub fn charset_only(&self) -> bool {
+        self.tags.iter().any(|tag| tag == CHARSET_ONLY)
+    }
+
     /// The entry as a JSON object, like the "Regex Pattern" of a match in `--json` output.
     pub fn to_json_value(&self) -> &Map<String, Value> {
         &self.json
     }
 }
 
+/// The tag of the regexes that only check which characters a text has and how long it is,
+/// see [`RegexEntry::charset_only`].
+pub const CHARSET_ONLY: &str = "Charset Only";
+
 /// The regexes of the database, in its order.
 pub fn regexes() -> &'static [RegexEntry] {
     static DATABASE: OnceLock<Vec<RegexEntry>> = OnceLock::new();
-    DATABASE.get_or_init(|| load(REGEX_JSON).expect("pywhat/Data/regex.json is valid"))
+    DATABASE.get_or_init(|| {
+        let mut files = vec![("regex.json".to_string(), REGEX_JSON)];
+        files.extend(
+            REGEX_AREA_FILES
+                .iter()
+                .map(|(area, text)| (format!("regexes/{area}.json"), *text)),
+        );
+        load(&files).expect("the regex files in pywhat/Data are valid")
+    })
 }
 
 /// The tags of the regexes (`AvailableTags().get_tags()`), sorted.
@@ -167,9 +211,19 @@ pub fn tags() -> Vec<&'static str> {
     tags
 }
 
-pub(crate) fn load(text: &str) -> Result<Vec<RegexEntry>, String> {
-    let raw: Vec<Map<String, Value>> =
-        serde_json::from_str(text).map_err(|error| format!("regex.json: {error}"))?;
+/// Loads the regexes of the files, like `load_regexes()`: all of them, sorted by rarity
+/// (the highest first, a stable sort, so that regexes with the same rarity stay in the order
+/// of the files).
+pub(crate) fn load(files: &[(String, &str)]) -> Result<Vec<RegexEntry>, String> {
+    let mut raw: Vec<Map<String, Value>> = Vec::new();
+    for (name, text) in files {
+        let entries: Vec<Map<String, Value>> =
+            serde_json::from_str(text).map_err(|error| format!("{name}: {error}"))?;
+        raw.extend(entries);
+    }
+    let rarity =
+        |entry: &Map<String, Value>| entry.get("Rarity").and_then(Value::as_f64).unwrap_or(0.0);
+    raw.sort_by(|a, b| rarity(b).total_cmp(&rarity(a)));
     raw.into_iter()
         .enumerate()
         .map(|(index, entry)| load_entry(index, entry))
@@ -258,6 +312,7 @@ fn load_entry(index: usize, mut json: Map<String, Value>) -> Result<RegexEntry, 
         url: optional("URL"),
         tags: strings("Tags"),
         exploit: optional("Exploit"),
+        validator: optional("Validator"),
         valid_examples: examples("Valid"),
         invalid_examples: examples("Invalid"),
         name,
@@ -359,6 +414,28 @@ mod tests {
     use super::*;
 
     #[test]
+    fn regexes_are_sorted_by_rarity_stably() {
+        let files = vec![
+            (
+                "a".to_string(),
+                r#"[{"Name": "A1", "Regex": "^(a)$", "Rarity": 0.5, "Tags": ["x"]},
+                    {"Name": "A2", "Regex": "^(b)$", "Rarity": 0.3, "Tags": ["x"]}]"#,
+            ),
+            (
+                "b".to_string(),
+                r#"[{"Name": "B1", "Regex": "^(c)$", "Rarity": 1, "Tags": ["x"]},
+                    {"Name": "B2", "Regex": "^(d)$", "Rarity": 0.5, "Tags": ["x"]}]"#,
+            ),
+        ];
+        let names: Vec<String> = load(&files)
+            .unwrap()
+            .into_iter()
+            .map(|entry| entry.name)
+            .collect();
+        assert_eq!(names, ["B1", "A1", "B2", "A2"]);
+    }
+
+    #[test]
     fn join_regexes_like_python() {
         // tests/test_regex_database.py::test_join_regexes
         assert_eq!(join_regexes(&["^(a)$"]).unwrap(), "^(?:(a))$");
@@ -417,6 +494,19 @@ mod tests {
                     continue;
                 }
                 assert!(!children.items().entries.is_empty(), "{}", entry.name);
+            }
+        }
+    }
+
+    #[test]
+    fn every_validator_exists() {
+        for entry in regexes() {
+            if let Some(name) = &entry.validator {
+                assert!(
+                    crate::validators::validator(name).is_some(),
+                    "{}: {name}",
+                    entry.name
+                );
             }
         }
     }

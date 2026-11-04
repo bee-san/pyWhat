@@ -29,11 +29,12 @@ pub mod json;
 pub mod processors;
 pub mod ranking;
 pub mod unicode;
+pub mod validators;
 #[cfg(feature = "wasm")]
 pub mod wasm;
 
 pub use bitcoin::is_bitcoin_address;
-pub use data::{regexes, tags, RegexEntry};
+pub use data::{regexes, tags, RegexEntry, CHARSET_ONLY};
 pub use engine::{EngineKind, MatchError};
 #[cfg(feature = "files")]
 pub use files::{Found, Identified, InputOptions};

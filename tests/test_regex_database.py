@@ -1,9 +1,11 @@
 import json
 import re
+from pathlib import Path
 
 import pytest
 
 from pywhat.helper import (
+    REGEX_AREAS,
     AvailableTags,
     CaseInsensitiveSet,
     available_names,
@@ -11,10 +13,20 @@ from pywhat.helper import (
     join_examples,
     join_regexes,
     load_regexes,
+    regex_files,
     split_tags,
 )
 
 database = load_regexes()
+
+
+def raw_database() -> list:
+    """The regexes as written in regex.json and pywhat/Data/regexes/*.json."""
+    entries = []
+    for path in regex_files():
+        with open(f"pywhat/Data/{path}", "r", encoding="utf-8") as file:
+            entries += json.load(file)
+    return entries
 
 
 def test_if_all_tests_exist():
@@ -102,11 +114,8 @@ def test_names_that_are_tags():
 
 
 def test_regex_format():
-    # Check the regexes as written in regex.json; "Regex" may be a list
-    with open("pywhat/Data/regex.json", "r", encoding="utf-8") as file:
-        raw_database = json.load(file)
-
-    for entry in raw_database:
+    # Check the regexes as written in the files; "Regex" may be a list
+    for entry in raw_database():
         patterns = entry["Regex"]
         if not isinstance(patterns, list):
             patterns = [patterns]
@@ -185,12 +194,9 @@ def test_regex_list_is_joined_on_load():
 
 
 def test_examples_format():
-    # Check the examples as written in regex.json; an example may be a list of
+    # Check the examples as written in the files; an example may be a list of
     # parts, so that fake API keys don't look like leaked secrets (issue #150)
-    with open("pywhat/Data/regex.json", "r", encoding="utf-8") as file:
-        raw_database = json.load(file)
-
-    for entry in raw_database:
+    for entry in raw_database():
         for examples in entry.get("Examples", {}).values():
             for example in examples:
                 message = f"{example!r} in {entry['Name']!r} should be a string or a list of strings."
@@ -244,7 +250,21 @@ def test_sorted_by_rarity():
 
     assert rarity_num == sorted(
         rarity_num, reverse=True
-    ), "Regexes should be sorted by rarity in 'regex.json'. Regexes with rarity '1' are at the top of the file and '0' is at the bottom."
+    ), "load_regexes() sorts the regexes by rarity, the highest first"
+    # Each file is sorted by rarity too, so that its order is the order of the database
+    for path in regex_files():
+        with open(f"pywhat/Data/{path}", "r", encoding="utf-8") as file:
+            rarities = [regex["Rarity"] for regex in json.load(file)]
+        assert rarities == sorted(rarities, reverse=True), (
+            f"Regexes should be sorted by rarity in '{path}'. Regexes with rarity '1' "
+            "are at the top of the file and '0' is at the bottom."
+        )
+
+
+def test_every_regex_file_is_a_list():
+    for path in regex_files():
+        with open(f"pywhat/Data/{path}", "r", encoding="utf-8") as file:
+            assert isinstance(json.load(file), list), path
 
 
 def test_no_duplicate_regexes():
@@ -253,3 +273,16 @@ def test_no_duplicate_regexes():
     assert duplicate_names == set(), (
         ", ".join(duplicate_names) + " present in 'regex.json' more than once."
     )
+
+
+def test_area_files_are_the_listed_areas():
+    # Every file in pywhat/Data/regexes is loaded, in the order of REGEX_AREAS, which
+    # src/data.rs repeats (REGEX_AREA_FILES)
+    directory = Path(__file__).resolve().parent.parent / "pywhat" / "Data" / "regexes"
+    on_disk = sorted(path.stem for path in directory.glob("*.json"))
+    assert on_disk == sorted(REGEX_AREAS)
+    rust = (directory.parent.parent.parent / "src" / "data.rs").read_text()
+    listed = re.findall(
+        r'include_str!\("\.\./pywhat/Data/regexes/([a-z]+)\.json"\)', rust
+    )
+    assert listed == list(REGEX_AREAS)

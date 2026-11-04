@@ -16,9 +16,55 @@ pub trait Processor: Send + Sync {
 }
 
 /// New instances of the processors that pyWhat uses by default
-/// (`default_processors()`): [`UnixTimestamp`] and [`BitcoinAddress`].
+/// (`default_processors()`): [`UnixTimestamp`], [`BitcoinAddress`] and [`Validator`].
 pub fn default_processors() -> Vec<Box<dyn Processor>> {
-    vec![Box::new(UnixTimestamp), Box::new(BitcoinAddress)]
+    vec![
+        Box::new(UnixTimestamp),
+        Box::new(BitcoinAddress),
+        Box::new(Validator::new()),
+    ]
+}
+
+/// Filters out the matches whose checksum is wrong, for the regexes that name one in their
+/// `"Validator"` (`ValidatorProcessor`): card numbers must pass the Luhn check, a Litecoin
+/// address must be Base58Check, and so on (see [`crate::validators`]).
+#[derive(Debug, Clone)]
+pub struct Validator {
+    names: Vec<&'static str>,
+}
+
+impl Validator {
+    pub fn new() -> Validator {
+        Validator {
+            names: crate::regexes()
+                .iter()
+                .filter(|entry| entry.validator.is_some())
+                .map(|entry| entry.name.as_str())
+                .collect(),
+        }
+    }
+}
+
+impl Default for Validator {
+    fn default() -> Self {
+        Validator::new()
+    }
+}
+
+impl Processor for Validator {
+    fn names(&self) -> &[&str] {
+        &self.names
+    }
+
+    fn process(&self, found: Match) -> Option<Match> {
+        let valid = found
+            .regex
+            .validator
+            .as_deref()
+            .and_then(crate::validators::validator)
+            .is_none_or(|validator| validator(&found.matched));
+        valid.then_some(found)
+    }
 }
 
 const MONTHS: [&str; 12] = [

@@ -14,6 +14,8 @@ from pathlib import Path
 
 import pytest
 
+from pywhat.helper import regex_files
+
 # scripts/ is not a package, so load the script from its file
 SCRIPT = Path(__file__).resolve().parent.parent / "scripts" / "rarity_score.py"
 _spec = importlib.util.spec_from_file_location("rarity_score", SCRIPT)
@@ -176,9 +178,15 @@ def test_estimate_rarity(regex, rarity):
 
 
 def test_database_rows_are_the_regexes_of_regex_json():
-    with open(rarity_score.REGEX_JSON, encoding="utf-8") as file:
-        database = json.load(file)
+    database = []
+    for path in rarity_score.REGEX_FILES:
+        with open(path, encoding="utf-8") as file:
+            database += json.load(file)
     rows = rarity_score.database_rows()
+    # The same files as the packages load
+    assert [
+        str(path.relative_to(rarity_score.DATA)) for path in rarity_score.REGEX_FILES
+    ] == [path.replace("/", os.sep) for path in regex_files()]
 
     assert [row.name for row in rows] == [entry["Name"] for entry in database]
     assert [row.rarity for row in rows] == [entry["Rarity"] for entry in database]
