@@ -67,12 +67,14 @@ Rust only:
 | Feature | Default | What it adds |
 |---|---|---|
 | `parallel` | yes | rayon: the regexes of a text over 4 KB are searched in parallel, and `warm_up` compiles in parallel |
-| `files` | yes | `identify_inputs`, `iter_identify`: files, directories (recursive) and file signatures |
-| `mac-vendors` | yes | the vendors of MAC address prefixes (1.6 MB) in the descriptions of EUI-48 matches |
+| `files` | yes | `identify_inputs`, `iter_identify`: files, directories (recursive) and file signatures (`file_signatures.json`, under CC BY-SA 4.0) |
+| `children` | yes | the tables that `Children` read from data files: the locations of phone numbers (`phone_codes.json`) in their descriptions |
+| `mac-vendors` | yes | `children`, and the vendors of MAC address prefixes (1.6 MB) in the descriptions of EUI-48 matches |
 | `wasm` | no | the WebAssembly API in `src/wasm.rs` (`identify(text, options_json)`, `tags()`, `version()`) |
 
 For wasm32, use `default-features = false` (no threads, no file system), and `features = ["wasm"]`
-for the JavaScript API.
+for the JavaScript API. Without `files`, a build contains none of the CC BY-SA data; without
+`children`, Phone Number and EUI-48 matches have the regex's own description.
 
 The data files and what is known about their sources are listed in
 [data-sources.md](data-sources.md).
@@ -176,10 +178,14 @@ pywhat (5 processes each). `Identifier::warm_up()` compiles all the regexes of t
 
 | | `wasm-opt -Oz` | gzip -9 |
 |---|---|---|
-| `--features wasm` | 2,030,172 bytes | 686,908 bytes |
-| `--features wasm,mac-vendors` | 3,652,574 bytes | 1,213,065 bytes |
+| `--features wasm` | 1,950,784 bytes | 671,147 bytes |
+| `--features wasm,children` | 1,956,671 bytes | 673,318 bytes |
+| `--features wasm,mac-vendors` | 3,579,077 bytes | 1,199,460 bytes |
 
-The data is most of it: `regex.json` is 154 KB and `mac_vendors.json` 1.6 MB.
+The data is most of it: `regex.json` is 154 KB and `mac_vendors.json` 1.6 MB. Before `files` and
+`children` also gated their data (and before the MasterCard bank names were removed),
+`--features wasm` was 2,053,094 bytes (693,813 gzipped) with the file signatures, the phone codes
+and the bank names in it, and `--features wasm,mac-vendors` 3,675,505 (1,220,038).
 `scripts/wasm_smoke.js` checks the build under Node.js, and `scripts/web_selftest.sh` builds
 `web/index.html`, a page that identifies text in the browser, and checks in headless Chrome that it
 identifies the README's examples.
@@ -190,8 +196,10 @@ Ciphey's LemmeKnow checker (`src/checkers/lemmeknow_checker.rs`) asks lemmeknow 
 whole text is, and filters the matches. With pywhat:
 
 1. `Cargo.toml`: replace `lemmeknow = "0.8.0"` with `pywhat = { version = "6", default-features =
-   false, features = ["parallel"] }` (no file support, no MAC vendor data: Ciphey checks text, and
-   EUI-48 descriptions don't matter for plaintext detection).
+   false, features = ["parallel"] }` (no file support, so no file signatures, and no `children`
+   tables: Ciphey checks text, and the locations of phone numbers or vendors of MAC addresses in
+   descriptions don't matter for plaintext detection). Its web build adds `wasm` instead of
+   `parallel`.
 2. `use lemmeknow::{Data, Identifier}` becomes `use pywhat::{Identifier, RegexEntry}`, and
    `use lemmeknow::Identifier` becomes `use pywhat::Identifier`, in the 15 files that use it:
    `checkers/lemmeknow_checker.rs`, `checkers/checker_type.rs`, `checkers/athena.rs`,
@@ -234,6 +242,11 @@ whole text is, and filters the matches. With pywhat:
    `include_tags` when the list is empty (an empty list includes nothing). The `const
    LEMMEKNOW_DEFAULT_CONFIG` becomes a function or a `LazyLock`.
 6. `detection.rs`'s `lemmeknow_rarity` reads `found.regex.rarity` (an `f64`).
+7. The crate's licence is `MIT AND CC-BY-SA-4.0`: its file signatures are derived from Wikipedia
+   and are under CC BY-SA 4.0, and [NOTICE](../NOTICE) lists the sources of all its data. With
+   the features of step 1, Ciphey's builds contain no file signatures and no `children` tables,
+   only the regexes (MIT, with the credits in NOTICE). Link or copy pyWhat's NOTICE in Ciphey's
+   own NOTICE for those credits.
 
 What changes for Ciphey's results:
 

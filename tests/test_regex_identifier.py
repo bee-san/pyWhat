@@ -59,9 +59,6 @@ def test_international_url():
         ("00:00:00:00:00:00", "Xerox Corp"),
         ("00-00-00-00-00-00", "Xerox Corp"),
         ("0000.0000.0000", "Xerox Corp"),
-        # MasterCard Number (passing the Luhn check)
-        ("5409010000000005", "UNION NATIONAL BANK"),
-        ("5409 0100 0000 0005", "UNION NATIONAL BANK"),
         # Phone Number
         ("+1-202-555-0156", "United States"),
         ("+662025550156", "Thailand"),
@@ -76,6 +73,17 @@ def test_international_url():
 )
 def test_match_description(match: str, description: str):
     assert description in r.check([match])[0]["Regex Pattern"]["Description"]
+
+
+@pytest.mark.parametrize("match", ["5409010000000005", "5409 0100 0000 0005"])
+def test_mastercard_number_has_no_issuer(match: str):
+    # The issuer bank names were removed in 6.0.0, as the terms of their source
+    # forbid redistribution (docs/data-sources.md); the regex still identifies
+    # the number
+    found = r.check([match])[0]["Regex Pattern"]
+    assert found["Name"] == "MasterCard Number"
+    assert found["Description"] is None
+    assert "Children" not in found
 
 
 @pytest.mark.parametrize(

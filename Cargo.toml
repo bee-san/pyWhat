@@ -5,7 +5,7 @@ resolver = "2"
 [workspace.package]
 version = "6.0.0-alpha.1"
 edition = "2021"
-license = "MIT"
+license = "MIT AND CC-BY-SA-4.0"
 repository = "https://github.com/bee-san/pyWhat"
 rust-version = "1.88"
 
@@ -25,18 +25,23 @@ keywords = ["identify", "regex", "ctf", "security", "forensics"]
 categories = ["command-line-utilities", "text-processing", "wasm"]
 # The data stays where the Python package has it: pywhat/Data is the single
 # source of truth for both.
-include = ["/src", "/pywhat/Data/*.json", "/pywhat/Data/regexes/*.json", "/LICENSE", "/README.md"]
+include = ["/src", "/pywhat/Data/*.json", "/pywhat/Data/regexes/*.json", "/LICENSE", "/NOTICE", "/README.md"]
 
 [features]
-default = ["parallel", "files", "mac-vendors"]
+default = ["parallel", "files", "children", "mac-vendors"]
 # Search the regexes of a large text, and compile them, on rayon's thread pool. Not on
 # wasm32, which has no threads.
 parallel = ["dep:rayon"]
-# Files and directories (Identifier::identify_inputs). Not for wasm32.
+# Files and directories (Identifier::identify_inputs), with the file signatures of
+# pywhat/Data/file_signatures.json (CC BY-SA 4.0, see NOTICE). Not for wasm32.
 files = ["dep:walkdir"]
+# The tables that `Children` read from data files, for more detail in descriptions: the
+# locations of phone numbers (phone_codes.json) and, with `mac-vendors`, the vendors of MAC
+# addresses. Without it, these matches have the regex's own description.
+children = []
 # The vendors of MAC address prefixes in the descriptions of EUI-48 matches: 1.6 MB of data,
 # which a web build may leave out.
-mac-vendors = []
+mac-vendors = ["children"]
 # The WebAssembly API (src/wasm.rs): cargo build --lib --target wasm32-unknown-unknown
 # --no-default-features --features wasm
 wasm = ["dep:wasm-bindgen"]

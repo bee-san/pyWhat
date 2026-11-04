@@ -3157,12 +3157,6 @@
          "Bug Bounty",
          "Charset Only"
       ],
-      "Children": {
-         "path": "mastercard_companies.json",
-         "entry": "Issuer(s): ",
-         "deletion_pattern": "\\s",
-         "method": "hashmap"
-      },
       "Examples": {
          "Valid": [
             "5409010000000005",
