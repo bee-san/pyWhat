@@ -210,7 +210,7 @@ pub(crate) const OPTIONS: &[OptionSpec] = &[
 /// The choices of `--map` (`click.Choice(["google", "osm"], case_sensitive=False)`).
 pub(crate) const MAP_CHOICES: &[&str] = &["google", "osm"];
 
-/// A usage error: click prints the usage, a hint and `Error: <message>`, and exits with 2.
+/// An error of the parser: click prints `Error: <message>` and exits with 2.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub(crate) struct UsageError(pub(crate) String);
 

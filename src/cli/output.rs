@@ -157,7 +157,8 @@ impl Printer<'_> {
     }
 
     /// `format_print()`: `format` for every match, with `%m`, `%n`, `%d`, `%e`, `%r`, `%l`
-    /// and `%t` replaced, one after another, and `\\` and `\%` for `\` and `%`.
+    /// and `%t` replaced, one after another, and `\\` and `\%` for `\` and `%`. The
+    /// output is rich markup, like in Python; its `MarkupError` is an `InvalidInput` error.
     pub(crate) fn format_print(&mut self, identified: &Identified, format: &str) -> io::Result<()> {
         if identified.regexes.is_empty() {
             return Ok(());
@@ -200,6 +201,10 @@ impl Printer<'_> {
         }
         let source = source.join("\n");
         if !python::strip(&source).is_empty() {
+            // rich stops at a closing tag that closes nothing, before printing anything
+            if let Some(error) = super::markup::error(&source) {
+                return Err(io::Error::new(io::ErrorKind::InvalidInput, error));
+            }
             let mut text = Text::new();
             text.markup(&source);
             self.print(&text)?;

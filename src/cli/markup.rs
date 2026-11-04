@@ -46,6 +46,100 @@ struct Open {
     style: Style,
 }
 
+/// rich's `STYLE_ATTRIBUTES`: the attributes of styles, with their short names.
+fn attribute(word: &str) -> Option<&'static str> {
+    Some(match word {
+        "dim" | "d" => "dim",
+        "bold" | "b" => "bold",
+        "italic" | "i" => "italic",
+        "underline" | "u" => "underline",
+        "blink" => "blink",
+        "blink2" => "blink2",
+        "reverse" | "r" => "reverse",
+        "conceal" | "c" => "conceal",
+        "strike" | "s" => "strike",
+        "underline2" | "uu" => "underline2",
+        "frame" => "frame",
+        "encircle" => "encircle",
+        "overline" | "o" => "overline",
+        _ => return None,
+    })
+}
+
+/// rich's `Style.normalize()`, which matches closing tags with opening ones: the attributes
+/// in rich's order (`[b]` is closed by `[/bold]`), the colour, the background colour and
+/// the link. A style that rich can't parse is compared as written, in lower case; this
+/// takes every other word for a colour, so it differs from rich only for unknown colours
+/// written in another order.
+fn normalize(definition: &str) -> String {
+    const ORDER: [&str; 13] = [
+        "bold",
+        "dim",
+        "italic",
+        "underline",
+        "blink",
+        "blink2",
+        "reverse",
+        "conceal",
+        "strike",
+        "underline2",
+        "frame",
+        "encircle",
+        "overline",
+    ];
+    let unparsed = || definition.trim().to_lowercase();
+    if definition.is_empty() || definition.trim() == "none" {
+        return "none".to_string();
+    }
+    let mut attributes: Vec<(&str, bool)> = Vec::new();
+    let (mut color, mut background, mut link) = (None, None, None);
+    let mut words = definition.split_whitespace();
+    while let Some(original) = words.next() {
+        let word = original.to_lowercase();
+        match word.as_str() {
+            "on" => match words.next() {
+                Some(next) => background = Some(next.to_lowercase()),
+                None => return unparsed(),
+            },
+            // The word after "not" and "link" as it is written
+            "not" => match words.next().and_then(attribute) {
+                Some(name) => attributes.push((name, false)),
+                None => return unparsed(),
+            },
+            "link" => match words.next() {
+                Some(next) => link = Some(next.to_string()),
+                None => return unparsed(),
+            },
+            _ => match attribute(&word) {
+                Some(name) => attributes.push((name, true)),
+                None => color = Some(word),
+            },
+        }
+    }
+    let mut parts: Vec<String> = Vec::new();
+    for name in ORDER {
+        if let Some(&(_, on)) = attributes.iter().rev().find(|(n, _)| *n == name) {
+            parts.push(if on {
+                name.to_string()
+            } else {
+                format!("not {name}")
+            });
+        }
+    }
+    parts.extend(color);
+    if let Some(background) = background {
+        parts.push(format!("on {background}"));
+    }
+    if let Some(link) = link {
+        parts.push(format!("link {link}"));
+    }
+    if parts.is_empty() {
+        "none".to_string()
+    } else {
+        parts.join(" ")
+    }
+}
+
 fn combined(open: &[Open]) -> Style {
     let mut style = Style::default();
     for tag in open {
@@ -61,10 +155,23 @@ fn combined(open: &[Open]) -> Style {
 }
 
 /// The text of `markup` with its styles, as `rich.markup.render()` makes it (without emoji
-/// codes, which the data doesn't have).
+/// codes, which the data doesn't have). A closing tag that closes nothing is left out.
 pub(crate) fn render(markup: &str) -> Vec<(String, Style)> {
+    match render_or_error(markup, false) {
+        Ok(spans) => spans,
+        Err(_) => unreachable!("only the strict rendering fails"),
+    }
+}
+
+/// The `MarkupError` that rich raises for `markup`, if any: a closing tag that closes
+/// nothing, such as the `[/b]` of the format string `[/b]%m`.
+pub(crate) fn error(markup: &str) -> Option<String> {
+    render_or_error(markup, true).err()
+}
+
+fn render_or_error(markup: &str, strict: bool) -> Result<Vec<(String, Style)>, String> {
     if !markup.contains('[') {
-        return vec![(markup.to_string(), Style::default())];
+        return Ok(vec![(markup.to_string(), Style::default())]);
     }
     let mut spans: Vec<(String, Style)> = Vec::new();
     let mut open: Vec<Open> = Vec::new();
@@ -97,26 +204,48 @@ pub(crate) fn render(markup: &str) -> Vec<(String, Style)> {
             None => (tag_text, None),
         };
         if let Some(closing) = name.strip_prefix('/') {
-            let closing = closing.trim().to_lowercase();
-            if closing.is_empty() {
-                open.pop();
-            } else if let Some(index) = open.iter().rposition(|tag| tag.name == closing) {
-                open.remove(index);
+            // Where rich says the tag is: in characters, after the escaped backslashes
+            let at = || markup[..whole.start()].chars().count() + escapes.len();
+            let closing = closing.trim();
+            let closed = if closing.is_empty() {
+                open.pop().is_some()
+            } else {
+                let closing = normalize(closing);
+                match open.iter().rposition(|tag| tag.name == closing) {
+                    Some(index) => {
+                        open.remove(index);
+                        true
+                    }
+                    None => false,
+                }
+            };
+            if !closed && strict {
+                return Err(if closing.is_empty() {
+                    format!(
+                        "closing tag '[/]' at position {} has nothing to close",
+                        at()
+                    )
+                } else {
+                    let markup = &whole.as_str()[escapes.len()..];
+                    format!(
+                        "closing tag '{markup}' at position {} doesn't match any open tag",
+                        at()
+                    )
+                });
             }
-            // rich raises an error for a closing tag that closes nothing; the data has none
         } else {
             let definition = match parameters {
                 Some(parameters) => format!("{name} {parameters}"),
                 None => name.to_string(),
             };
             open.push(Open {
-                name: name.trim().to_lowercase(),
+                name: normalize(name),
                 style: parse_style(&definition),
             });
         }
     }
     push(&mut spans, &markup[position..], &open);
-    spans
+    Ok(spans)
 }
 
 /// The text of `markup` without its tags.
@@ -159,6 +288,66 @@ mod tests {
         assert_eq!(spans[1].1.color, Some((0xCA, 0xE4, 0xF1)));
         assert_eq!(spans[1].1.link.as_deref(), Some("https://a.b"));
         assert_eq!(spans[2], (" z".to_string(), Style::default()));
+    }
+
+    #[test]
+    fn normalize_like_rich() {
+        // Style.normalize() in rich 12.2.0
+        for (definition, normalized) in [
+            ("b", "bold"),
+            ("B", "bold"),
+            ("bold #D7Afff", "bold #d7afff"),
+            ("#D7Afff bold", "bold #d7afff"),
+            ("red bold", "bold red"),
+            ("on blue red", "red on blue"),
+            ("link https://A.b", "link https://A.b"),
+            ("link", "link"),
+            ("not bold", "not bold"),
+            ("u r", "underline reverse"),
+            ("i", "italic"),
+            ("", "none"),
+        ] {
+            assert_eq!(normalize(definition), normalized, "{definition:?}");
+        }
+    }
+
+    #[test]
+    fn markup_errors_like_rich() {
+        // The MarkupError messages of rich 12.2.0
+        assert_eq!(
+            error("[/b]THM{x}").as_deref(),
+            Some("closing tag '[/b]' at position 0 doesn't match any open tag")
+        );
+        assert_eq!(
+            error("[b]THM{x}[/i]").as_deref(),
+            Some("closing tag '[/i]' at position 9 doesn't match any open tag")
+        );
+        assert_eq!(
+            error("x[/]y").as_deref(),
+            Some("closing tag '[/]' at position 1 has nothing to close")
+        );
+        assert_eq!(
+            error("[b]THM{x}[/b][/b]").as_deref(),
+            Some("closing tag '[/b]' at position 13 doesn't match any open tag")
+        );
+        assert_eq!(
+            error("é[/b]").as_deref(),
+            Some("closing tag '[/b]' at position 1 doesn't match any open tag")
+        );
+        for valid in [
+            "[b]x[/bold]",
+            "[bold red]x[/red bold]",
+            "\\[/b]",
+            "[link=https://a.b]x[/link]",
+            "[b]x",
+            "[/b",
+            "[@click]x[/@click]",
+            "a \\\\[b]x[/b]",
+        ] {
+            assert_eq!(error(valid), None, "{valid:?}");
+        }
+        // Rendering leaves the tag out
+        assert_eq!(plain("x[/b]y"), "xy");
     }
 
     #[test]

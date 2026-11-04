@@ -113,20 +113,40 @@ fn double_dash() {
 
 #[test]
 fn usage_errors_exit_with_2() {
+    // click's parser errors have no context: no usage line
     let (code, stdout, stderr) = what(&["--rarity"]);
     assert_eq!((code, stdout.as_str()), (2, ""));
+    assert_eq!(stderr, "Error: Option '--rarity' requires an argument.\n");
+    let (code, _, stderr) = what(&["--json=1", "x"]);
+    assert_eq!(code, 2);
+    assert_eq!(stderr, "Error: Option '--json' does not take a value.\n");
+    // An invalid value: the usage line and a hint first
+    let (code, _, stderr) = what(&["--map", "bing", "x"]);
+    assert_eq!(code, 2);
     assert_eq!(
         stderr,
         "Usage: what [OPTIONS] [TEXT_INPUT]...\nTry 'what --help' for help.\n\n\
-         Error: Option '--rarity' requires an argument.\n"
+         Error: Invalid value for '--map': 'bing' is not one of 'google', 'osm'.\n"
     );
-    let (code, _, stderr) = what(&["--json=1", "x"]);
-    assert_eq!(code, 2);
-    assert!(stderr.ends_with("Error: Option '--json' does not take a value.\n"));
-    let (code, _, stderr) = what(&["--map", "bing", "x"]);
-    assert_eq!(code, 2);
-    assert!(stderr
-        .ends_with("Error: Invalid value for '--map': 'bing' is not one of 'google', 'osm'.\n"));
+}
+
+#[test]
+fn markup_errors_in_the_format() {
+    // rich's MarkupError, where Python stops with a traceback before printing anything
+    let (code, stdout, stderr) = what(&["-db", "--format", "[b]%m[/i]", "THM{x}"]);
+    assert_eq!((code, stdout.as_str()), (1, ""));
+    assert_eq!(
+        stderr,
+        "Error: closing tag '[/i]' at position 9 doesn't match any open tag\n"
+    );
+    let (code, stdout, _) = what(&["-db", "--stream", "--format", "[/]%m", "THM{x}"]);
+    assert_eq!((code, stdout.as_str()), (1, ""));
+    // Valid markup is rendered, and nothing is checked when nothing is found
+    assert_eq!(
+        what(&["-db", "--format", "[b]%m[/bold]", "THM{x}"]).1,
+        "THM{x}\n"
+    );
+    assert_eq!(what(&["-db", "--format", "[/b]", "nothing"]).0, 0);
 }
 
 #[test]

@@ -26,8 +26,14 @@ wasm32).
 - The matched text and the file names are printed as they are. The Python CLI takes them for rich
   markup and emoji codes: `pywhat 'thm{[bold]x[/bold]}'` prints `thm{x}`, and `pywhat 'thm{[/x]}'`
   crashes with a `MarkupError` (#291, Python bug 4). The markup in the data files (some
-  descriptions) and in `--format` strings is rendered as rich renders it; emoji codes in a
-  `--format` string are not.
+  descriptions) and in `--format` strings is rendered as rich renders it. A `--format` string with
+  a closing tag that closes nothing (`[/b]%m`) prints nothing and exits with 1 in both; Rust says
+  why on stderr (`Error: closing tag '[/b]' at position 0 doesn't match any open tag`), where
+  Python shows a traceback. Emoji codes such as `:smile:` in a `--format` string are printed as
+  they are, where rich prints the emoji.
+- In `--format pretty`, a tab in a file name is shown expanded on one line; rich counts it as 0
+  columns wide when it sizes the column, and then wraps the cell. On a terminal, the links of the
+  data's markup have no `id`, where rich gives each a random one.
 - `-v` prints the version of the crate.
 - Directories are searched in the order of their names, where Python takes the order of the file
   system (#291, Python bug 5). A file that can't be read is skipped and reported on stderr, with
@@ -39,10 +45,10 @@ wasm32).
 
 ## Parity tests
 
-`scripts/parity_cli.py` runs 272 command lines with both CLIs and compares their stdout and exit
-codes: every case of `tests/test_click.py` (read from it), every option on `fixtures/file`, the
-examples of the README and of the help, and corner cases of the argument parser, of stdin and of
-files. Python runs with glob listing directories in name order, so that the output of directories
+`scripts/parity_cli.py` runs 285 command lines with both CLIs and compares their stdout, their
+stderr (unless Python stops with a traceback) and their exit codes: every case of
+`tests/test_click.py` (read from it), every option on `fixtures/file`, the examples of the README
+and of the help, and corner cases of the argument parser, of stdin, of files and of markup. Python runs with glob listing directories in name order, so that the output of directories
 can be compared byte for byte. `tests/conftest.py` runs `tests/test_click.py` against the binary
 when `PYWHAT_CLI` is set:
 

@@ -235,7 +235,16 @@ fn run(
     code
 }
 
-/// A usage error, as click shows it: the usage line, a hint and the error, exit code 2.
+/// An error of click's parser (an option without its value, or a flag with one): click shows
+/// only `Error: <message>`, as these errors have no context, and exits with 2.
+fn parse_error(message: &str, streams: &mut Streams<'_>) -> io::Result<i32> {
+    streams.stdout.flush()?;
+    writeln!(streams.stderr, "Error: {message}")?;
+    Ok(2)
+}
+
+/// An invalid value of an option (`--map`), as click shows it: the usage line, a hint and
+/// the error, exit code 2.
 fn usage_error(
     prog: &str,
     message: &str,
@@ -468,7 +477,7 @@ fn execute(
 ) -> io::Result<i32> {
     let parsed = match args::parse(args) {
         Ok(parsed) => parsed,
-        Err(args::UsageError(message)) => return usage_error(prog, &message, env, streams),
+        Err(args::UsageError(message)) => return parse_error(&message, streams),
     };
     // --help is eager: it comes first
     if parsed.flag(Param::Help) {

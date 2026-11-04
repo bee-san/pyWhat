@@ -1,9 +1,10 @@
 """
-Check that the Rust CLI prints what the Python CLI prints: the same stdout bytes and the
-same exit code, for about 270 command lines: every case of tests/test_click.py (read from
+Check that the Rust CLI prints what the Python CLI prints: the same stdout and stderr bytes
+and the same exit code, for about 290 command lines: every case of tests/test_click.py (read from
 it), every option on fixtures/file, the examples of the README and of --help, and corner
 cases of the argument parser, of stdin and of files. For --format pretty, whose table
 comfy-table draws, the text around the table and the cells of the table must be the same.
+Where Python stops with a traceback, its stderr isn't compared.
 
     cargo build --release
     python scripts/parity_cli.py [-k TEXT] [-v] [-j JOBS]
@@ -352,7 +353,20 @@ PARSER = [
     ["--format", "", "THM{x}"],
     ["--format", "   ", "THM{x}"],
     ["--format", "%m\\", "THM{x}"],
-    # rich markup in the format string and in the data is rendered, as in Python
+    # Errors of click's parser have no usage line, invalid values have one
+    ["-e"],
+    ["--json=", ETH],
+    ["-db=", "THM{x}"],
+    ["--help", "--json=1"],
+    ["--map"],
+    # rich markup in the format string and in the data is rendered, as in Python, and
+    # Python stops at a closing tag that closes nothing (rich's MarkupError)
+    ["-db", "--format", "[/b]", "THM{x}"],
+    ["-db", "--format", "[b]%m[/i]", "THM{x}", ETH],
+    ["-db", "--format", "x[/]y %m", "THM{x}"],
+    ["--stream", "-db", "--format", "[/b]%m", "THM{x}", ETH],
+    ["-db", "--format", "[b]%m[/bold] [red bold]%n[/bold red]", "THM{y}"],
+    ["-db", "--format", "[/b]", "nothing"],
     ["-db", "--format", "[b]%m[/b] [#ff0000]%n[/#ff0000]", "THM{y}"],
     ["-db", "--format", "\\[b]%m", "THM{y}"],
     ["-db", "--include", "Access-Control-Allow-Header", "Access-Control-Allow: *"],
@@ -423,6 +437,15 @@ OWN += [
         "dir",
         files=[("dir/a\tb", b"THM{tab}"), ("dir/.hidden", b"THM{hidden}")],
     ),
+    # A tab in a file name, in the File: line and in the table's File column
+    case("-db", "tab\tname.txt", "THM{x}", files=[("tab\tname.txt", b"THM{t}")]),
+    case(
+        "--format",
+        "pretty",
+        "tab\tname.txt",
+        "THM{x}",
+        files=[("tab\tname.txt", b"THM{t}")],
+    ),
     # Written out of name order, which is the order that some file systems list them in
     case(
         "--format",
@@ -457,6 +480,10 @@ KNOWN: Dict[Tuple[str, ...], str] = {
         "emoji codes in a --format string: rich prints :smile: as an emoji, Rust as it is"
     ),
 }
+KNOWN[("--format", "pretty", "tab\tname.txt", "THM{x}")] = (
+    "a tab in the table: rich counts a tab as 0 columns wide when it sizes the column, "
+    "then wraps the cell at the expanded tab; comfy-table shows the expanded tab"
+)
 for args in MARKUP:
     KNOWN[tuple(args)] = BUG_4
 KNOWN[("-db", "thm{[/x]}")] = BUG_4 + "; Python crashes with a MarkupError"
@@ -538,18 +565,27 @@ def compare(case: Case, what: str, verbose: bool) -> Tuple[str, str]:
                 path.write_bytes(data)
         python = run([sys.executable, "-c", PYTHON_CLI, *case.args], case, cwd)
         rust = run([PROG, *case.args], case, cwd, executable=what)
-    if python[:2] == rust[:2]:
+    traceback = b"Traceback (most recent call last)" in python[2]
+    same_stderr = traceback or python[2] == rust[2]
+    if python[:2] == rust[:2] and same_stderr:
         return "same", ""
     details = []
     if python[0] != rust[0]:
         details.append(f"exit code: Python {python[0]}, Rust {rust[0]}")
+    if not same_stderr:
+        details.append(
+            "stderr: "
+            + first_difference(
+                python[2].decode(errors="replace"), rust[2].decode(errors="replace")
+            )
+        )
     if python[1] != rust[1]:
         py_text = python[1].decode(errors="replace")
         rs_text = rust[1].decode(errors="replace")
         pretty = "pretty" in [arg.strip() for arg in case.args]
         if "--format" in case.args and pretty and python[0] == rust[0]:
             py_parts, rs_parts = table_parts(py_text), table_parts(rs_text)
-            if py_parts == rs_parts:
+            if py_parts == rs_parts and same_stderr:
                 return "same cells", ""
             details.append("table: " + first_difference(repr(py_parts), repr(rs_parts)))
         else:
@@ -583,7 +619,7 @@ def main() -> None:
     counts: Dict[str, int] = {}
     failures = 0
     for case_, (verdict, details) in zip(cases, results):
-        known = KNOWN.get(case_.args) if case_.files is None else None
+        known = KNOWN.get(case_.args)
         if verdict == "different" and known:
             verdict = "known difference"
         counts[verdict] = counts.get(verdict, 0) + 1
