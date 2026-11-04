@@ -1,9 +1,10 @@
 //! The golden parity test: what the Rust crate finds must be what the Python package finds.
 //!
-//!     python scripts/golden.py --out target/golden.jsonl
-//!     PYWHAT_GOLDEN=target/golden.jsonl cargo test --release --test golden -- --nocapture
+//!     python scripts/golden.py    # writes target/golden.jsonl and target/golden-files.jsonl
+//!     PYWHAT_GOLDEN=target/golden.jsonl PYWHAT_GOLDEN_FILES=target/golden-files.jsonl \
+//!         cargo test --release --test golden -- --nocapture
 //!
-//! Without PYWHAT_GOLDEN the test does nothing. See scripts/golden.py for the texts and the
+//! Without PYWHAT_GOLDEN (PYWHAT_GOLDEN_FILES) the test (the file test) does nothing. See scripts/golden.py for the texts and the
 //! option sets.
 
 use pywhat::processors::OpenStreetMap;
@@ -73,6 +74,16 @@ fn identifiers() -> BTreeMap<&'static str, Identifier> {
                 .with_filter(finance().or(&btc()))
                 .with_boundaryless_filter(with(Some(&["Identifiers"]), &[], 0.2)),
         ),
+        (
+            "and_exclude",
+            Identifier::default()
+                .with_filter(with(Some(&["AWS"]), &["Credentials"], 0.1).and(&with(
+                    Some(&["AWS"]),
+                    &[],
+                    0.1,
+                )))
+                .with_boundaryless_filter(cli.clone()),
+        ),
     ])
 }
 
@@ -141,8 +152,15 @@ fn rust_finds_what_python_finds() {
     let mut differences: BTreeMap<String, usize> = BTreeMap::new();
     let mut unicode_differences = 0;
     let mut shown = 0;
+    let mut jsons = 0;
+    let mut trailer = None;
     for line in std::io::BufReader::new(file).lines() {
         let record: Value = serde_json::from_str(&line.expect("line")).expect("JSON line");
+        if let Some(counts) = record.get("trailer") {
+            trailer = Some(counts.clone());
+            continue;
+        }
+        assert!(trailer.is_none(), "records after the trailer in {path}");
         let text = record["text"].as_str().expect("text");
         let kind = record["kind"].as_str().expect("kind");
         texts += 1;
@@ -187,6 +205,7 @@ fn rust_finds_what_python_finds() {
         }
         if let Some(json) = record.get("json").and_then(Value::as_str) {
             compared += 1;
+            jsons += 1;
             let mut actual = String::new();
             pywhat::identify::write_identify_json(
                 &mut actual,
@@ -224,6 +243,12 @@ fn rust_finds_what_python_finds() {
     );
     assert!(texts > 0, "no texts in {path}");
     assert!(compared > texts, "{compared} comparisons for {texts} texts");
+    // scripts/golden.py ends the recording with its counts: a cut recording, or one whose
+    // JSON was left out, fails here
+    let trailer = trailer.unwrap_or_else(|| panic!("{path} has no trailer: cut off?"));
+    assert_eq!(trailer["texts"], texts, "texts recorded and read");
+    assert_eq!(trailer["json"], jsons, "JSON records recorded and read");
+    assert!(jsons > 0, "no JSON records in {path}");
     assert_eq!(total, 0, "Rust and Python differ: {differences:?}");
 }
 
@@ -266,7 +291,7 @@ fn report(expected: &Value, actual: &Value) {
 }
 
 #[cfg(feature = "files")]
-/// File and directory inputs, recorded by `scripts/golden.py --files-out`. Directory
+/// File and directory inputs, recorded by `scripts/golden.py` in target/golden-files.jsonl. Directory
 /// locations are compared without regard to their order (Python's glob uses the order of
 /// the file system, Rust sorts by name).
 #[test]
@@ -278,9 +303,16 @@ fn rust_reads_files_like_python() {
     let file = std::fs::File::open(&path).expect("PYWHAT_GOLDEN_FILES file");
     let identifiers = identifiers();
     let mut cases = 0;
+    let mut jsons = 0;
+    let mut trailer = None;
     let mut differences = Vec::new();
     for line in std::io::BufReader::new(file).lines() {
         let record: Value = serde_json::from_str(&line.expect("line")).expect("JSON line");
+        if let Some(counts) = record.get("trailer") {
+            trailer = Some(counts.clone());
+            continue;
+        }
+        assert!(trailer.is_none(), "records after the trailer in {path}");
         let inputs: Vec<String> = record["inputs"]
             .as_array()
             .expect("inputs")
@@ -343,6 +375,7 @@ fn rust_reads_files_like_python() {
             }
         }
         if let Some(json) = record.get("json").and_then(Value::as_str) {
+            jsons += 1;
             let actual = identified.to_json();
             if actual != json {
                 let at = actual
@@ -366,5 +399,9 @@ fn rust_reads_files_like_python() {
         differences.len()
     );
     assert!(cases > 0);
+    let trailer = trailer.unwrap_or_else(|| panic!("{path} has no trailer: cut off?"));
+    assert_eq!(trailer["cases"], cases, "cases recorded and read");
+    assert_eq!(trailer["json"], jsons, "JSON records recorded and read");
+    assert!(jsons > 0, "no JSON records in {path}");
     assert!(differences.is_empty(), "{} differences", differences.len());
 }

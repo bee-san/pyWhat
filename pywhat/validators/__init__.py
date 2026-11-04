@@ -4,7 +4,7 @@ Checksums of the formats that have one.
 A regex can only check which characters a match has and how long it is, so it also
 matches random text with the right characters: 1 in 10 random 16-digit numbers that start
 with 4 are Visa card numbers to a regex. The formats below have a checksum, which a match
-must pass. A regex says which one in its "Validator" in regex.json, and
+must pass. A regex says which one in its "Validator" (in regex.json or its area's file), and
 pywhat.processors.ValidatorProcessor filters out the matches whose checksum is wrong.
 
 * luhn: the Luhn algorithm (ISO/IEC 7812) of payment card numbers, 1 in 10 random numbers

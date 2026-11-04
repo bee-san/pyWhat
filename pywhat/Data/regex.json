@@ -326,7 +326,8 @@
          ],
          "Invalid": [
             "bitcoincash:qzlg6uvceehgzgtz6phmvy8gtdqyt6vf359at4n3lr",
-            "qzlg6uvceehgzgtz6phmvy8gtdqyt6vf359at4n3lr"
+            "qzlg6uvceehgzgtz6phmvy8gtdqyt6vf359at4n3lr",
+            "BITCOINCASH:QPM2QSZNH\u212aS23Z7629MMS6S4CWEF74VCWVY22GDX6A"
          ]
       }
    },
@@ -3210,7 +3211,8 @@
          "Valid": [
             "4111111111111111",
             "4607 0000 0000 0009",
-            "4111\u00a01111\u00a01111\u00a01111"
+            "4111\u00a01111\u00a01111\u00a01111",
+            "4111\u30001111\u30001111\u30001111"
          ],
          "Invalid": [
             "4111111111111112"

@@ -69,8 +69,10 @@ every new regex has to pass. The tests check most of it.
     different characters in the two engines (docs/rust.md, "Differences from Python").
   - **No look-arounds or back-references** unless there is no other way. The `regex` crate
     doesn't have them; such a regex runs on fancy-regex, a backtracking engine that is slower
-    and has a backtracking limit. If one is needed, add the regex to `NOT_ON_THE_REGEX_CRATE`
-    in `tests/examples.rs`, with the engine the test reports, and say why in the pull request.
+    and has a backtracking limit. If one is needed, add the regex to your area's block of
+    `AREAS_NOT_ON_THE_REGEX_CRATE` in `tests/examples.rs`, with the engine the test reports, and
+    say why in the pull request. If `tests/charset_only.rs` can't build its DFA, decide the tag
+    in your area's block of `AREAS_BY_HAND` there, with a reason.
   - No nested quantifiers that can backtrack a lot, such as `(a+)+`.
 - **Make it specific.** A regex that only checks which characters a text has and how long it
   is (`[0-9a-f]{40}`) matches every SHA-1 hash, and Ciphey and other tools run pyWhat on
@@ -127,7 +129,9 @@ which no other area's pull request changes:
   if the regex already fixes part of the checksum, the share is higher).
 
 Validators use the Python standard library and pure Rust only: the crate builds for wasm32 and
-the wheel has no dependencies for them. (Keccak-256 for EIP-55 isn't in `hashlib`, whose
+the wheel has no dependencies for them. Don't add crates to `Cargo.toml` or Python packages for
+them without the maintainers' agreement: two areas that each add one conflict in `Cargo.toml` and
+`Cargo.lock`. (Keccak-256 for EIP-55 isn't in `hashlib`, whose
 `sha3_256` is NIST SHA-3; write it out or leave the checksum out.) Add an invalid example
 with a wrong checksum, and document the validator in its module's docstring rather than in the
 table above.
@@ -148,7 +152,8 @@ regexes with a rarity of 0.1 or more by default.
 
 `tests/charset_only.rs` computes, from each regex's DFA, the largest share of random strings of
 nine alphabets (digits, hex, HEX, lower, upper, alphanumeric, Base64, Base64url, Base58) and of
-every length up to 200 that match it, after its checksum. A regex that more than 1 in 1,000 of
+every length up to 200 (or 50 past the regex's shortest match, if that is longer) that match it,
+after its checksum. A regex that more than 1 in 1,000 of
 them match has to have the tag `Charset Only`, and only those may have it. When the test fails,
 it says which regex needs the tag added or removed. Ciphey ignores these regexes when it asks
 whether a whole text is a known format, and `pywhat --exclude "Charset Only"` leaves them out.
