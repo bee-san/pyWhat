@@ -21,9 +21,13 @@ nothing else changes.
 
 KNOWN lists the command lines whose output differs on purpose, with the reason. They run too,
 and are reported; they fail the check only if they don't differ.
+
+The text of `what --help` is src/cli/help.txt, the help of pywhat/what.py's main(). When that
+changes, `python scripts/parity_cli.py --update-help` writes the new one.
 """
 import argparse
 import ast
+import inspect
 import itertools
 import os
 import re
@@ -614,6 +618,17 @@ def compare(case: Case, what: str, verbose: bool) -> Tuple[str, str]:
     return "different", "\n    ".join(details)
 
 
+HELP_FILE = ROOT / "src" / "cli" / "help.txt"
+
+
+def python_help() -> str:
+    """The help of pywhat/what.py's main(), as click shows it (`inspect.cleandoc()`)."""
+    sys.path.insert(0, str(ROOT))
+    from pywhat.what import main as what_main
+
+    return inspect.cleandoc(what_main.help or "").partition("\f")[0]
+
+
 def program() -> str:
     """The program to test: $PYWHAT_CLI, as an absolute path (cases run elsewhere too)."""
     default = ROOT / "target" / "release" / ("what.exe" if os.name == "nt" else "what")
@@ -625,7 +640,20 @@ def main() -> None:
     parser.add_argument("-k", help="only the cases whose arguments contain this text")
     parser.add_argument("-v", "--verbose", action="store_true")
     parser.add_argument("-j", "--jobs", type=int, default=4)
+    parser.add_argument(
+        "--update-help",
+        action="store_true",
+        help="write the help of pywhat/what.py to src/cli/help.txt, then compare",
+    )
     args = parser.parse_args()
+    if args.update_help:
+        HELP_FILE.write_text(python_help(), encoding="utf-8")
+    help_is_current = HELP_FILE.read_text(encoding="utf-8") == python_help()
+    if not help_is_current:
+        print(
+            "DIFFERENT src/cli/help.txt is not the help of pywhat/what.py: run "
+            "python scripts/parity_cli.py --update-help, and build again"
+        )
     what = program()
     from_tests = click_cases()
     cases = list(dict.fromkeys(from_tests + OWN))
@@ -660,7 +688,7 @@ def main() -> None:
         f"\n{len(cases)} command lines ({len(from_tests)} from tests/test_click.py): "
         f"{summary}"
     )
-    sys.exit(1 if failures else 0)
+    sys.exit(1 if failures or not help_is_current else 0)
 
 
 if __name__ == "__main__":
