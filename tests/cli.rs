@@ -243,6 +243,9 @@ fn stdin_without_inputs() {
     }
     let (_, stdout, _) = what_with(&["-db", "", "THM{a}"], b"THM{stdin}\n", &[]);
     assert!(stdout.starts_with("Matched on: THM{a}\n"), "{stdout}");
+    // Stripped like str.strip(), which takes U+001C to U+001F too
+    let (_, stdout, _) = what_with(&["-db"], b"\x1c THM{x}\x1f", &[]);
+    assert_eq!(names(&stdout), ["TryHackMe Flag Format"]);
 }
 
 fn utf16_with_bom(text: &str) -> Vec<u8> {
@@ -278,6 +281,15 @@ fn matched_text_is_not_markup() {
         stdout.starts_with("Matched on: thm{[bold]x[/bold]}\n"),
         "{stdout}"
     );
+    // In --format strings and tables too, where the format's own markup is rendered
+    let (_, stdout, _) = what(&["-db", "--format", "[b]%m[/b]", "THM{[i]x[/i]}"]);
+    assert_eq!(stdout, "THM{[i]x[/i]}\n");
+    let (_, stdout, _) = what_with(
+        &["-db", "--format", "pretty", "THM{[b]x[/b]}"],
+        b"",
+        &[("COLUMNS", "200")],
+    );
+    assert_eq!(cells(&stdout)[1][0], "THM{[b]x[/b]}");
     // The markup of the data is rendered, like rich does
     let (_, stdout, _) = what(&["-db", "Access-Control-Allow: *"]);
     assert!(
@@ -510,6 +522,16 @@ fn pretty_table() {
         "Tags: Bug Bounty, API Keys, Credentials, Heroku"
     );
     assert!(rows[1][3].contains("curl -X POST https://api.heroku.com/apps"));
+    // A regex whose Exploit is null has the column too, empty
+    let client_id = format!("linkedin_client_id={}", "cp334pjr0lxwmw");
+    let (_, stdout, _) = what_with(
+        &["-db", "--format", "pretty", &client_id],
+        b"",
+        &[("COLUMNS", "200")],
+    );
+    let rows = cells(&stdout);
+    assert_eq!(rows[0].last().map(String::as_str), Some("Exploit"));
+    assert_eq!(rows[1].last().map(String::as_str), Some(""));
     // Nothing found
     assert_eq!(
         what(&["-db", "--format", "pretty", "nothing"]).1,
@@ -569,6 +591,18 @@ fn files_and_signatures() {
     assert!(stdout.contains("Matched on: THM{hello}"));
     let (_, streamed, _) = what(&["-db", "--stream", &image]);
     assert_eq!(streamed, stdout);
+    // A file signature without matches: raw output shows only "Nothing found!", --stream
+    // shows the signature as soon as it is found
+    let empty = dir.join("empty.png");
+    std::fs::write(&empty, b"\x89PNG\r\n\x1a\n").unwrap();
+    let empty = empty.to_string_lossy().into_owned();
+    assert_eq!(what(&["-db", &empty]).1, "Nothing found!\n");
+    let (_, streamed, _) = what(&["-db", "--stream", &empty]);
+    assert!(
+        streamed.starts_with("\nFile Identified: empty.png"),
+        "{streamed}"
+    );
+    assert!(streamed.ends_with("\nNothing found!\n"), "{streamed}");
     // -if searches the name of the file too
     let named = dir.join("THM{name}.txt");
     std::fs::write(&named, b"nothing").unwrap();

@@ -20,7 +20,7 @@ for byte on any file system, Python runs with glob listing every directory in na
 nothing else changes.
 
 KNOWN lists the command lines whose output differs on purpose, with the reason. They run too,
-and are reported, but they don't fail the check.
+and are reported; they fail the check only if they don't differ.
 """
 import argparse
 import ast
@@ -353,6 +353,14 @@ PARSER = [
     ["--format", "", "THM{x}"],
     ["--format", "   ", "THM{x}"],
     ["--format", "%m\\", "THM{x}"],
+    # Values after "=", which may be empty or contain "=", unknown options with a value,
+    # and the callbacks of options in the order of their first appearance
+    ["--format=%m=%n", "THM{x}"],
+    ["--format=", "THM{x}"],
+    ["--rarity=", "THM{x}"],
+    ["--nope=1", "THM{x}"],
+    ["--tags", "--names", "--tags"],
+    ["--names", "--tags", "--names"],
     # Errors of click's parser have no usage line, invalid values have one
     ["-e"],
     ["--json=", ETH],
@@ -367,6 +375,7 @@ PARSER = [
     ["--stream", "-db", "--format", "[/b]%m", "THM{x}", ETH],
     ["-db", "--format", "[b]%m[/bold] [red bold]%n[/bold red]", "THM{y}"],
     ["-db", "--format", "[/b]", "nothing"],
+    ["-db", "--format", "[@click]%m[/@click]", "THM{x}"],
     ["-db", "--format", "[b]%m[/b] [#ff0000]%n[/#ff0000]", "THM{y}"],
     ["-db", "--format", "\\[b]%m", "THM{y}"],
     ["-db", "--include", "Access-Control-Allow-Header", "Access-Control-Allow: *"],
@@ -388,7 +397,11 @@ MARKUP = [
 OWN: List[Case] = [case(*args) for args in OPTIONS + README + PARSER + MARKUP]
 OWN += [
     case("-db", "--format", ":smile: %m", "THM{y}"),
-    # stdin, when there are no inputs, or only empty ones
+    # A regex whose Exploit is null: the table has an Exploit column (in parts, so that
+    # secret scanners don't take it for a key)
+    case("-db", "--format", "pretty", "linkedin_client_id=" + "cp334pjr0lxwmw"),
+    # stdin, when there are no inputs, or only empty ones; stripped like str.strip()
+    case("-db", stdin=b"\x1c THM{x}\x1f"),
     case(stdin=b""),
     case("-db", "", stdin=b"THM{stdin}\n"),
     case("-db", "", "", stdin=b"THM{stdin}\n"),
@@ -419,6 +432,7 @@ OWN += [
         files=[("image.png", PNG), ("page.html", b"https://google.com\n")],
     ),
     case("image.png", files=[("image.png", PNG)]),
+    case("image.png", files=[("image.png", b"\x89PNG\r\n\x1a\n")]),
     case("--stream", "image.png", files=[("image.png", PNG)]),
     case("--stream", "image.png", files=[("image.png", b"\x89PNG\r\n\x1a\n")]),
     case("--stream", "--format", "json", "image.png", files=[("image.png", PNG)]),
@@ -625,6 +639,10 @@ def main() -> None:
         known = KNOWN.get(case_.args)
         if verdict == "different" and known:
             verdict = "known difference"
+        elif known:
+            # The difference is on purpose: Rust doesn't behave like Python here
+            verdict = "different"
+            details = f"expected the known difference: {known}"
         counts[verdict] = counts.get(verdict, 0) + 1
         if verdict == "different":
             failures += 1

@@ -348,6 +348,8 @@ mod tests {
         }
         // Rendering leaves the tag out
         assert_eq!(plain("x[/b]y"), "xy");
+        // Meta tags (@) are tags too
+        assert_eq!(plain("[@click]x[/@click] [@click=f()]y[/]"), "x y");
     }
 
     #[test]

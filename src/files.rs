@@ -626,6 +626,45 @@ mod tests {
     }
 
     #[test]
+    fn progress_counts_every_text_of_a_file() {
+        // The contents, the UTF-16 strings in them and, with include_filenames, the name:
+        // every regex is searched for in each (`len(dist.get_regexes()) * len(contents)`)
+        let dir = std::env::temp_dir().join(format!("pywhat-progress-{}", std::process::id()));
+        std::fs::create_dir_all(&dir).unwrap();
+        let file = dir.join("THM{name}.bin");
+        let mut data = b"THM{a}\n\x00".to_vec();
+        data.extend("THM{wide}".encode_utf16().flat_map(u16::to_le_bytes));
+        std::fs::write(&file, &data).unwrap();
+        let regexes = default_regexes().len();
+        let identifier = Identifier::default();
+        let reported = std::sync::Mutex::new(Vec::new());
+        let options = InputOptions {
+            only_text: false,
+            include_filenames: true,
+        };
+        identifier.iter_identify_with_progress(
+            &[file.to_string_lossy().into_owned()],
+            options,
+            &mut |_| true,
+            &mut |_, _| {},
+            &|progress| {
+                reported.lock().unwrap().push((
+                    progress.regexes_done,
+                    progress.regexes,
+                    progress.regex,
+                ))
+            },
+        );
+        std::fs::remove_dir_all(&dir).unwrap();
+        let reported = reported.into_inner().unwrap();
+        assert_eq!(reported.last(), Some(&(3 * regexes, 3 * regexes, None)));
+        assert_eq!(
+            reported.iter().filter(|r| r.2.is_some()).count(),
+            3 * regexes
+        );
+    }
+
+    #[test]
     fn join_like_os_path() {
         let sep = MAIN_SEPARATOR;
         assert_eq!(

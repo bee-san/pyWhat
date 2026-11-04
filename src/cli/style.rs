@@ -417,6 +417,60 @@ mod tests {
     }
 
     #[test]
+    fn colour_systems_like_rich() {
+        // Console._detect_color_system() of rich 12.2.0, on a terminal
+        let detect = |vars: &[(&str, &str)], terminal: bool| {
+            let vars: Vec<(String, String)> = vars
+                .iter()
+                .map(|(name, value)| (name.to_string(), value.to_string()))
+                .collect();
+            Colors::detect(terminal, &|name| {
+                vars.iter().find(|(n, _)| n == name).map(|(_, v)| v.clone())
+            })
+        };
+        let system = |vars: &[(&str, &str)]| detect(vars, true).system;
+        if cfg!(windows) {
+            return; // Windows terminals get 24-bit colours once they are enabled
+        }
+        assert_eq!(system(&[("TERM", "xterm-256color")]), ColorSystem::EightBit);
+        assert_eq!(
+            system(&[("TERM", "xterm-256color"), ("COLORTERM", "truecolor")]),
+            ColorSystem::TrueColor
+        );
+        assert_eq!(
+            system(&[("TERM", "xterm"), ("COLORTERM", "24bit")]),
+            ColorSystem::TrueColor
+        );
+        assert_eq!(system(&[("TERM", "xterm")]), ColorSystem::Standard);
+        assert_eq!(system(&[("TERM", "xterm-16color")]), ColorSystem::Standard);
+        assert_eq!(system(&[]), ColorSystem::Standard);
+        for dumb in ["dumb", "unknown", "DUMB"] {
+            assert_eq!(system(&[("TERM", dumb)]), ColorSystem::None, "{dumb}");
+        }
+        // Not a terminal: no escape sequences
+        assert_eq!(detect(&[("TERM", "xterm-256color")], false), Colors::PLAIN);
+        // NO_COLOR, even empty, keeps bold and links
+        let no_color = detect(&[("TERM", "xterm-256color"), ("NO_COLOR", "")], true);
+        assert!(no_color.no_color);
+        assert_eq!(no_color.system, ColorSystem::EightBit);
+    }
+
+    #[test]
+    fn control_codes_like_rich() {
+        // strip_control_codes() removes backspace, vertical tab, form feed and carriage
+        // return; other control characters stay
+        assert_eq!(
+            sanitized("a\x08b\x0bc\x0cd\re\x07f\x1bg"),
+            "abcde\x07f\x1bg"
+        );
+        // Tabs expand to the next multiple of 8 on the line
+        assert_eq!(
+            sanitized("\tx\n1234567\tx\n12345678\tx"),
+            "        x\n1234567 x\n12345678        x"
+        );
+    }
+
+    #[test]
     fn rstrip_strips_the_source() {
         let mut text = Text::new();
         text.plain("a").markup("b [https://x y]").plain("\n\n");

@@ -185,6 +185,19 @@ fn lines(state: &State, seconds: u64, width: usize, colors: Colors) -> Vec<Strin
 impl Bars {
     /// Bars on `target`, for a terminal `width` columns wide, shown after [`DELAY`].
     pub(crate) fn start(target: Target, width: usize, colors: Colors) -> Bars {
+        let draw_target = move || match target {
+            Target::Stdout => ProgressDrawTarget::stdout(),
+            Target::Stderr => ProgressDrawTarget::stderr(),
+        };
+        Bars::start_on(draw_target, width, colors)
+    }
+
+    /// Bars drawn on the target that `draw_target` makes once they appear.
+    fn start_on(
+        draw_target: impl FnOnce() -> ProgressDrawTarget + Send + 'static,
+        width: usize,
+        colors: Colors,
+    ) -> Bars {
         let state = Arc::new(Mutex::new(State::default()));
         let done = Arc::new((Mutex::new(false), Condvar::new()));
         let multi = MultiProgress::with_draw_target(ProgressDrawTarget::hidden());
@@ -203,10 +216,7 @@ impl Bars {
                 if wait(DELAY) {
                     return;
                 }
-                multi.set_draw_target(match target {
-                    Target::Stdout => ProgressDrawTarget::stdout(),
-                    Target::Stderr => ProgressDrawTarget::stderr(),
-                });
+                multi.set_draw_target(draw_target());
                 let style = ProgressStyle::with_template("{msg}").expect("valid template");
                 let mut shown: Vec<ProgressBar> = Vec::new();
                 loop {
@@ -350,6 +360,74 @@ mod tests {
         );
         assert_eq!(bar(3, 8, 4, colors).matches('╸').count(), 1);
         assert_eq!(bar(4, 4, 4, colors), "\x1b[38;2;114;156;31m━━━━\x1b[0m");
+    }
+
+    /// A terminal that records what is written on it.
+    #[derive(Debug, Clone, Default)]
+    struct Recorder(Arc<Mutex<String>>);
+
+    impl indicatif::TermLike for Recorder {
+        fn width(&self) -> u16 {
+            80
+        }
+        fn move_cursor_up(&self, _: usize) -> std::io::Result<()> {
+            Ok(())
+        }
+        fn move_cursor_down(&self, _: usize) -> std::io::Result<()> {
+            Ok(())
+        }
+        fn move_cursor_right(&self, _: usize) -> std::io::Result<()> {
+            Ok(())
+        }
+        fn move_cursor_left(&self, _: usize) -> std::io::Result<()> {
+            Ok(())
+        }
+        fn write_line(&self, line: &str) -> std::io::Result<()> {
+            self.0.lock().unwrap().push_str(&format!("{line}\n"));
+            Ok(())
+        }
+        fn write_str(&self, text: &str) -> std::io::Result<()> {
+            self.0.lock().unwrap().push_str(text);
+            Ok(())
+        }
+        fn clear_line(&self) -> std::io::Result<()> {
+            Ok(())
+        }
+        fn flush(&self) -> std::io::Result<()> {
+            Ok(())
+        }
+    }
+
+    #[test]
+    fn bars_appear_after_half_a_second() {
+        let terminal = Recorder::default();
+        let target = terminal.clone();
+        let started = Instant::now();
+        let bars = Bars::start_on(
+            move || ProgressDrawTarget::term_like(Box::new(target)),
+            80,
+            Colors::PLAIN,
+        );
+        bars.update(Progress {
+            location: "big.log",
+            files_done: 0,
+            files: 1,
+            regexes_done: 3,
+            regexes: 10,
+            regex: Some("Uniform Resource Locator (URL)"),
+        });
+        std::thread::sleep(Duration::from_millis(300));
+        assert_eq!(*terminal.0.lock().unwrap(), "", "nothing before {DELAY:?}");
+        while started.elapsed() < DELAY + Duration::from_millis(400) {
+            std::thread::sleep(Duration::from_millis(50));
+        }
+        let drawn = terminal.0.lock().unwrap().clone();
+        assert!(drawn.contains("Regexes"), "{drawn:?}");
+        assert!(
+            drawn.contains("30% 0:00:00 Uniform Resource Locator (URL)"),
+            "{drawn:?}"
+        );
+        bars.finish();
     }
 
     #[test]

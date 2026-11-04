@@ -836,6 +836,101 @@ mod tests {
     }
 
     #[test]
+    fn any_2xx_is_valid() {
+        // urlopen() only raises HTTPError outside 200 to 299
+        for status in [200, 204, 299] {
+            let verifier =
+                GoogleApiKeyVerifier::with_http(Box::new(move |_| Ok((status, Vec::new()))));
+            assert_eq!(
+                verifier.verify("k"),
+                "valid, Google accepted the key",
+                "{status}"
+            );
+        }
+        let verifier = GoogleApiKeyVerifier::with_http(Box::new(|_| Ok((300, Vec::new()))));
+        assert_eq!(verifier.verify("k"), "unknown, Google answered HTTP 300");
+    }
+
+    /// A local HTTP server that answers each request with the response of its path, and
+    /// records the requests.
+    #[cfg(feature = "verify")]
+    fn serve(responses: Vec<(&'static str, String)>) -> (String, Arc<Mutex<Vec<String>>>) {
+        use std::io::{BufRead, BufReader, Write};
+        let listener = std::net::TcpListener::bind("127.0.0.1:0").unwrap();
+        let base = format!("http://{}", listener.local_addr().unwrap());
+        let requests = Arc::new(Mutex::new(Vec::new()));
+        let seen = requests.clone();
+        std::thread::spawn(move || {
+            for stream in listener.incoming() {
+                let Ok(mut stream) = stream else { break };
+                let mut reader = BufReader::new(stream.try_clone().unwrap());
+                let mut request = String::new();
+                loop {
+                    let mut line = String::new();
+                    if reader.read_line(&mut line).unwrap_or(0) == 0 || line == "\r\n" {
+                        break;
+                    }
+                    request.push_str(&line);
+                }
+                let path = request.split_whitespace().nth(1).unwrap_or("").to_string();
+                seen.lock().unwrap().push(request);
+                let response = responses
+                    .iter()
+                    .find(|(prefix, _)| path.starts_with(prefix))
+                    .map_or_else(
+                        || "HTTP/1.1 404 Not Found\r\nContent-Length: 0\r\n\r\n".to_string(),
+                        |(_, r)| r.clone(),
+                    );
+                let _ = stream.write_all(response.as_bytes());
+            }
+        });
+        (base, requests)
+    }
+
+    #[test]
+    #[cfg(feature = "verify")]
+    fn requests_like_urlopen() {
+        let invalid = String::from_utf8(google_error("API_KEY_INVALID")).unwrap();
+        let (base, requests) = serve(vec![
+            ("/invalid", format!("HTTP/1.1 400 Bad Request\r\nContent-Length: {}\r\nConnection: close\r\n\r\n{invalid}", invalid.len())),
+            ("/moved", "HTTP/1.1 301 Moved\r\nLocation: /valid?key=K\r\nContent-Length: 0\r\nConnection: close\r\n\r\n".to_string()),
+            ("/nowhere", "HTTP/1.1 302 Found\r\nContent-Length: 5\r\nConnection: close\r\n\r\nmoved".to_string()),
+            ("/valid", "HTTP/1.1 200 OK\r\nContent-Length: 2\r\nConnection: close\r\n\r\n{}".to_string()),
+        ]);
+        let answer = get(&format!("{base}/invalid?key=K")).unwrap();
+        assert_eq!(answer, (400, invalid.into_bytes()));
+        // The User-Agent of the Python package
+        let first = requests.lock().unwrap()[0].clone();
+        assert!(
+            first.starts_with("GET /invalid?key=K HTTP/1.1\r\n"),
+            "{first}"
+        );
+        assert!(
+            first.to_lowercase().contains("\r\nuser-agent: pywhat\r\n"),
+            "{first}"
+        );
+        // A redirect is followed, a redirect without a Location is the answer
+        assert_eq!(
+            get(&format!("{base}/moved?key=K")).unwrap(),
+            (200, b"{}".to_vec())
+        );
+        assert_eq!(
+            get(&format!("{base}/nowhere?key=K")).unwrap(),
+            (302, b"moved".to_vec())
+        );
+        // Nothing listening: urllib's description of the error
+        let closed = std::net::TcpListener::bind("127.0.0.1:0").unwrap();
+        let port = closed.local_addr().unwrap().port();
+        drop(closed);
+        let error = get(&format!("http://127.0.0.1:{port}/x")).unwrap_err();
+        assert!(error.starts_with("<urlopen error [Errno "), "{error}");
+        assert!(
+            error.ends_with("] Connection refused>") || cfg!(windows),
+            "{error}"
+        );
+    }
+
+    #[test]
     #[cfg(feature = "verify")]
     fn redirect_targets() {
         // urllib.parse.urljoin(base, location)

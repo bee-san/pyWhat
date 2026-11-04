@@ -435,6 +435,33 @@ mod tests {
     }
 
     #[test]
+    fn explicit_values() {
+        // The value is everything after the first "=", and may be empty
+        let parsed = parse_args(&["--format=%m=%n", "--rarity=", "x"]).unwrap();
+        assert_eq!(parsed.value(Param::Format), Some("%m=%n"));
+        assert_eq!(parsed.value(Param::Rarity), Some(""));
+        assert_eq!(parsed.inputs, ["x"]);
+        // An unknown long option is an input, with its "=value"
+        let parsed = parse_args(&["--nope=1", "--nope=a=b"]).unwrap();
+        assert_eq!(parsed.inputs, ["--nope=1", "--nope=a=b"]);
+    }
+
+    #[test]
+    fn callbacks_in_the_order_of_first_appearance() {
+        // click's iter_params_for_processing(): the index of the first appearance
+        let parsed = parse_args(&["--tags", "--names", "--tags"]).unwrap();
+        assert_eq!(parsed.invoked(), [Param::Tags, Param::Names]);
+        let parsed = parse_args(&["--names", "-t", "--names", "-v"]).unwrap();
+        assert_eq!(
+            parsed.invoked(),
+            [Param::Names, Param::Tags, Param::Version]
+        );
+        // The last value counts
+        let parsed = parse_args(&["-k", "name", "-k", "rarity"]).unwrap();
+        assert_eq!(parsed.value(Param::Key), Some("rarity"));
+    }
+
+    #[test]
     fn double_dash() {
         let parsed = parse_args(&["-db", "--", "-db", "--", "x"]).unwrap();
         assert_eq!(parsed.inputs, ["-db", "--", "x"]);
