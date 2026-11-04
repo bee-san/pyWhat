@@ -17,8 +17,11 @@ wasm32).
   Progress bars follow the Python CLI's rules: only on a terminal, after half a second, on stderr
   if stdout is a file, never into a pipe, and `--no-progress` turns them off.
 - `--verify` sends each Google API key to Google once, like `GoogleAPIKeyVerifier`, with the same
-  messages. The verifier is `pywhat::cli::verify::GoogleApiKeyVerifier`, a `Processor` whose
-  `with_http` takes the HTTP call, so that tests don't send anything.
+  messages. It reads Google's answer as Python's `json.loads()` does, and connects like
+  `urlopen(..., timeout=10)`: 10 s to connect and for every read, redirects (301, 302, 303 and 307)
+  followed, and the common network errors described the same way (`timed out`, `<urlopen error
+  [Errno 111] Connection refused>`). The verifier is `pywhat::cli::verify::GoogleApiKeyVerifier`, a
+  `Processor` whose `with_http` takes the HTTP call, so that tests don't send anything.
 - `--interactive` is only in the Python package: `what --interactive` says so and exits with 2.
 
 ## Differences from the Python CLI
@@ -32,8 +35,15 @@ wasm32).
   Python shows a traceback. Emoji codes such as `:smile:` in a `--format` string are printed as
   they are, where rich prints the emoji.
 - In `--format pretty`, a tab in a file name is shown expanded on one line; rich counts it as 0
-  columns wide when it sizes the column, and then wraps the cell. On a terminal, the links of the
-  data's markup have no `id`, where rich gives each a random one.
+  columns wide when it sizes the column, and then wraps the cell.
+- The width of the terminal (or `COLUMNS`) only changes the table of `--format pretty` and the
+  help. rich also wraps the lines that pyWhat doesn't print with `soft_wrap` (the tags of `--tags`,
+  `Nothing found!`, the file lines above the table) when they are wider than the terminal, removes
+  spaces at the end of lines that are wider than it, and prints nothing at all with `COLUMNS=0`.
+  These are the wrapping problems of #291's Python bug 3, which Rust doesn't have.
+- On a terminal, the colours of raw and custom output are written as rich writes them. The table
+  has comfy-table's escape sequences; rich gives the links in the data's markup a random `id`, and
+  colours the numbers of the tags of `--tags` separately.
 - `-v` prints the version of the crate.
 - Directories are searched in the order of their names, where Python takes the order of the file
   system (#291, Python bug 5). A file that can't be read is skipped and reported on stderr, with
@@ -45,7 +55,7 @@ wasm32).
 
 ## Parity tests
 
-`scripts/parity_cli.py` runs 285 command lines with both CLIs and compares their stdout, their
+`scripts/parity_cli.py` runs 288 command lines with both CLIs and compares their stdout, their
 stderr (unless Python stops with a traceback) and their exit codes: every case of
 `tests/test_click.py` (read from it), every option on `fixtures/file`, the examples of the README
 and of the help, and corner cases of the argument parser, of stdin, of files and of markup. Python runs with glob listing directories in name order, so that the output of directories

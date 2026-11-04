@@ -236,6 +236,13 @@ fn stdin_without_inputs() {
     assert!(stdout.contains(r#""Matched": "THM{wide}""#), "{stdout}");
     let (code, stdout, _) = what_with(&[], b"", &[]);
     assert_eq!((code, stdout.as_str()), (0, "Nothing found!\n"));
+    // Only empty inputs are no inputs too (get_text()'s `not any(value)`)
+    for args in [&["-db", ""][..], &["-db", "", ""]] {
+        let (_, stdout, _) = what_with(args, b"THM{stdin}\n", &[]);
+        assert_eq!(names(&stdout), ["TryHackMe Flag Format"], "{args:?}");
+    }
+    let (_, stdout, _) = what_with(&["-db", "", "THM{a}"], b"THM{stdin}\n", &[]);
+    assert!(stdout.starts_with("Matched on: THM{a}\n"), "{stdout}");
 }
 
 fn utf16_with_bom(text: &str) -> Vec<u8> {

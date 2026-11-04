@@ -388,8 +388,11 @@ MARKUP = [
 OWN: List[Case] = [case(*args) for args in OPTIONS + README + PARSER + MARKUP]
 OWN += [
     case("-db", "--format", ":smile: %m", "THM{y}"),
-    # stdin, when there are no inputs
+    # stdin, when there are no inputs, or only empty ones
     case(stdin=b""),
+    case("-db", "", stdin=b"THM{stdin}\n"),
+    case("-db", "", "", stdin=b"THM{stdin}\n"),
+    case("-db", "", "THM{a}", stdin=b"THM{stdin}\n"),
     case("-db", stdin=b"fixtures/file\n"),
     case("--json", stdin="\ufeffTHM{bom}\r\n".encode("utf-16")),
     case("--json", stdin=b"\x00\x01" + "THM{wide}".encode("utf-16-le") + b"\xff\xfe"),

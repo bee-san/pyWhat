@@ -511,9 +511,13 @@ fn execute(
             _ => {}
         }
     }
-    // get_text(): stdin is the input if there is none, unless it is a terminal
+    // get_text(): stdin is the input if there is none, or only empty ones (`not
+    // any(value)`), unless it is a terminal
     let mut inputs = parsed.inputs.clone();
-    if inputs.is_empty() && !parsed.flag(Param::Interactive) && !env.stdin.terminal {
+    if inputs.iter().all(String::is_empty)
+        && !parsed.flag(Param::Interactive)
+        && !env.stdin.terminal
+    {
         inputs = vec![read_stdin(streams.stdin)?];
     }
     let command = Command {
