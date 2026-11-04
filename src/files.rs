@@ -410,7 +410,9 @@ impl Identifier {
                 std::sync::Mutex::new((Vec::new(), 0));
             let on_regex = |entry: &'static crate::data::RegexEntry, done: bool| {
                 let Some(progress) = progress else { return };
-                let mut running = running.lock().unwrap_or_else(|e| e.into_inner());
+                let mut running = running
+                    .lock()
+                    .unwrap_or_else(std::sync::PoisonError::into_inner);
                 let (names, finished) = &mut *running;
                 if done {
                     if let Some(index) = names.iter().position(|name| *name == entry.name) {

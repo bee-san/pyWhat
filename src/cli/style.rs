@@ -60,10 +60,10 @@ impl Colors {
 
     /// rich's `Console._detect_color_system()` for a stream that is a terminal (or not).
     pub(crate) fn detect(is_terminal: bool, env: &dyn Fn(&str) -> Option<String>) -> Colors {
-        let term = env("TERM").unwrap_or_default().trim().to_lowercase();
-        if !is_terminal || term == "dumb" || term == "unknown" {
+        if !is_terminal || is_dumb(env("TERM").as_deref()) {
             return Colors::PLAIN;
         }
+        let term = env("TERM").unwrap_or_default().trim().to_lowercase();
         let system = if cfg!(windows) {
             // Windows 10 and later understand the escape sequences of 24-bit colours once
             // they are enabled; older consoles get none
@@ -81,7 +81,8 @@ impl Colors {
             if color_term == "truecolor" || color_term == "24bit" {
                 ColorSystem::TrueColor
             } else {
-                match term.rsplit_once('-').map_or("", |(_, colors)| colors) {
+                // term.rpartition("-")[2]: after the last "-", or all of it
+                match term.rsplit('-').next().unwrap_or("") {
                     "256color" => ColorSystem::EightBit,
                     _ => ColorSystem::Standard,
                 }
@@ -96,6 +97,13 @@ impl Colors {
     pub(crate) fn is_plain(self) -> bool {
         self.system == ColorSystem::None
     }
+}
+
+/// rich's `is_dumb_terminal` for a terminal: `TERM` is "dumb" or "unknown", in any case,
+/// without stripping it.
+pub(crate) fn is_dumb(term: Option<&str>) -> bool {
+    let term = term.unwrap_or("").to_lowercase();
+    term == "dumb" || term == "unknown"
 }
 
 /// rich's `rgb_to_hls()` saturation and lightness (`colorsys`).
@@ -447,6 +455,15 @@ mod tests {
         for dumb in ["dumb", "unknown", "DUMB"] {
             assert_eq!(system(&[("TERM", dumb)]), ColorSystem::None, "{dumb}");
         }
+        // rich checks for a dumb terminal before it strips TERM, and takes what follows
+        // the last "-", or all of TERM
+        assert_eq!(system(&[("TERM", " dumb")]), ColorSystem::Standard);
+        assert_eq!(system(&[("TERM", "256color")]), ColorSystem::EightBit);
+        assert_eq!(system(&[("TERM", "a-b-256color")]), ColorSystem::EightBit);
+        assert_eq!(
+            system(&[("TERM", "xterm-truecolor")]),
+            ColorSystem::Standard
+        );
         // Not a terminal: no escape sequences
         assert_eq!(detect(&[("TERM", "xterm-256color")], false), Colors::PLAIN);
         // NO_COLOR, even empty, keeps bold and links

@@ -78,6 +78,67 @@ pub(crate) fn raw_signature(location: &str, signature: &Map<String, Value>) -> T
     text
 }
 
+/// A match as raw output shows it: "Matched on:", "Name:", "Link:", "Description:",
+/// "Exploit:" and "Tags:" lines, then an empty line.
+fn raw_match(found: &Match, print_tags: bool) -> Text {
+    let mut output = Text::new();
+    output.label("Matched on: ").plain(&found.matched);
+    output.plain("\n").label("Name: ").markup(&found.regex.name);
+    if let Some(link) = found.link() {
+        output.plain("\n").label("Link: ").plain(" ").plain(&link);
+    }
+    if let Some(description) = non_empty(&found.description) {
+        output
+            .plain("\n")
+            .label("Description: ")
+            .markup(description);
+    }
+    if let Some(exploit) = non_empty(&found.exploit) {
+        output.plain("\n").label("Exploit: ").plain(exploit);
+    }
+    if print_tags {
+        output
+            .plain("\n")
+            .label("Tags: ")
+            .markup(&found.tags.join(", "));
+    }
+    output.plain("\n\n");
+    output
+}
+
+/// The Description cell of the table: the link, the description and the tags, each on
+/// a line, or "None".
+fn description_cell(found: &Match, print_tags: bool) -> String {
+    let mut lines: Vec<Text> = Vec::new();
+    if let Some(link) = found.link() {
+        let mut text = Text::new();
+        text.plain("Click here to analyse in the browser\n")
+            .plain(&link);
+        lines.push(text);
+    }
+    if let Some(description) = non_empty(&found.description) {
+        let mut text = Text::new();
+        text.markup(description);
+        lines.push(text);
+    }
+    if print_tags {
+        let mut text = Text::new();
+        text.plain("Tags: ").markup(&found.tags.join(", "));
+        lines.push(text);
+    }
+    if lines.is_empty() {
+        return "None".to_string();
+    }
+    let mut cell = Text::new();
+    for (index, line) in lines.into_iter().enumerate() {
+        if index > 0 {
+            cell.plain("\n");
+        }
+        cell.append(line);
+    }
+    cell.to_plain()
+}
+
 /// Where the output goes, and how its styles are written.
 pub(crate) struct Printer<'a> {
     pub(crate) out: &'a mut dyn Write,
@@ -121,27 +182,7 @@ impl Printer<'_> {
                         // One span, as in Python's "[bold #D7Afff]File: {key}[/bold #D7Afff]"
                         output.label(&format!("File: {location}")).plain("\n");
                     }
-                    output.label("Matched on: ").plain(&found.matched);
-                    output.plain("\n").label("Name: ").markup(&found.regex.name);
-                    if let Some(link) = found.link() {
-                        output.plain("\n").label("Link: ").plain(" ").plain(&link);
-                    }
-                    if let Some(description) = non_empty(&found.description) {
-                        output
-                            .plain("\n")
-                            .label("Description: ")
-                            .markup(description);
-                    }
-                    if let Some(exploit) = non_empty(&found.exploit) {
-                        output.plain("\n").label("Exploit: ").plain(exploit);
-                    }
-                    if print_tags {
-                        output
-                            .plain("\n")
-                            .label("Tags: ")
-                            .markup(&found.tags.join(", "));
-                    }
-                    output.plain("\n\n");
+                    output.append(raw_match(found, print_tags));
                 }
             }
         }
@@ -291,33 +332,10 @@ impl Printer<'_> {
         let mut rows: Vec<Vec<String>> = Vec::new();
         for (location, matches) in &identified.regexes {
             for found in matches {
-                let mut description = Text::new();
-                if let Some(link) = found.link() {
-                    description
-                        .plain("Click here to analyse in the browser\n")
-                        .plain(&link);
-                }
-                if let Some(text) = non_empty(&found.description) {
-                    if !description.source().is_empty() {
-                        description.plain("\n");
-                    }
-                    description.markup(text);
-                }
-                if print_tags {
-                    if !description.source().is_empty() {
-                        description.plain("\n");
-                    }
-                    description.plain("Tags: ").markup(&found.tags.join(", "));
-                }
-                let description = if description.source().is_empty() {
-                    "None".to_string()
-                } else {
-                    description.to_plain()
-                };
                 let mut row = vec![
                     sanitized(&found.matched),
                     sanitized(&super::markup::plain(&found.regex.name)),
-                    sanitized(&description),
+                    sanitized(&description_cell(found, print_tags)),
                 ];
                 if show_files {
                     row.push(sanitized(location));

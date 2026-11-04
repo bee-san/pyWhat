@@ -22,7 +22,7 @@ mod style;
 mod table;
 pub mod verify;
 
-use crate::files::{Found, Identified, InputOptions, Progress};
+use crate::files::{Found, Identified, InputOptions};
 use crate::filter::{split_tags, Filter};
 use crate::processors::{default_processors, OpenStreetMap, Processor};
 use crate::ranking::{Key, Top};
@@ -173,12 +173,22 @@ impl Environment {
         }
     }
 
-    /// The width of a rich `Console`: `COLUMNS` if it is a number, else the width of the
-    /// terminal of stdin or (on Windows: only) stdout, else 80.
+    /// The width of a rich `Console` on stdout: `COLUMNS` if it is a number, else the width
+    /// of the terminal of stdin or (on Windows: only) stdout, else 80. On a dumb terminal,
+    /// 80 unless `COLUMNS` and `LINES` are both numbers.
     fn rich_width(&self) -> usize {
-        let columns = self.var("COLUMNS").filter(|columns| {
-            !columns.is_empty() && columns.chars().all(|c| python::decimal_value(c).is_some())
-        });
+        let number = |name: &str| {
+            self.var(name).filter(|value| {
+                !value.is_empty() && value.chars().all(|c| python::decimal_value(c).is_some())
+            })
+        };
+        let columns = number("COLUMNS");
+        if self.stdout.terminal
+            && style::is_dumb(self.var("TERM").as_deref())
+            && (columns.is_none() || number("LINES").is_none())
+        {
+            return 80;
+        }
         let width = match columns.and_then(|columns| python::int(&columns)) {
             Some(columns) => usize::try_from(columns).unwrap_or(usize::MAX),
             None if cfg!(windows) => self.stdout.columns.unwrap_or(0),
@@ -431,8 +441,7 @@ fn bars_target(env: &Environment, enabled: bool) -> Option<(progress::Target, &S
     } else {
         (progress::Target::Stdout, &env.stdout)
     };
-    let term = env.var("TERM").unwrap_or_default().to_lowercase();
-    if !stream.terminal || term == "dumb" || term == "unknown" {
+    if !stream.terminal || style::is_dumb(env.var("TERM").as_deref()) {
         return None;
     }
     Some((target, stream))
@@ -635,151 +644,248 @@ fn main_command(
         return Ok(2);
     }
 
-    let identifier = Identifier::new(dist, boundaryless, processors);
-    let options = InputOptions {
-        only_text: command.flag(Param::OnlyText),
-        include_filenames: command.flag(Param::IncludeFilenames),
+    let search = SearchRun {
+        identifier: Identifier::new(dist, boundaryless, processors),
+        inputs: &command.inputs,
+        options: InputOptions {
+            only_text: command.flag(Param::OnlyText),
+            include_filenames: command.flag(Param::IncludeFilenames),
+        },
+        print_tags: command.flag(Param::PrintTags),
+        bars: progress_bars(env, !command.flag(Param::NoProgress)),
+        colors,
     };
-    let reverse = command.flag(Param::Reverse);
-    let print_tags = command.flag(Param::PrintTags);
-    let bars = progress_bars(env, !command.flag(Param::NoProgress));
-    let mut unreadable: Vec<String> = Vec::new();
-    let mut report = |location: &str, error: io::Error| {
-        unreadable.push(format!("Could not read {location}: {error}"));
-    };
-    let on_progress = |progress: Progress<'_>| {
-        if let Some((bars, _)) = &bars {
-            bars.update(progress);
-        }
-    };
-
     if stream {
         // The matches are printed as soon as they are found (issue #189)
         let format = if json_output { None } else { format };
-        let show_files = output::show_files_of_inputs(&command.inputs);
-        let bars_on_stdout = matches!(&bars, Some((_, progress::Target::Stdout)));
-        let mut previous: Option<(bool, String)> = None;
-        let mut found_matches = false;
-        let mut failure: Option<io::Error> = None;
-        let mut printer = Printer {
-            out: &mut *streams.stdout,
-            colors,
-        };
-        let mut print_found = |found: Found| -> io::Result<()> {
-            if json_output {
-                printer.stream_json(&found)?;
-                return printer.out.flush();
-            }
+        return stream_search(search, json_output, format, streams);
+    }
+    let output = OutputOptions {
+        json: json_output,
+        pretty: format_name == "pretty",
+        format,
+        key,
+        reverse: command.flag(Param::Reverse),
+        top,
+        width: env.rich_width(),
+    };
+    complete_search(search, &output, streams)
+}
+
+/// A search of the inputs, with its progress bars.
+struct SearchRun<'a> {
+    identifier: Identifier,
+    inputs: &'a [String],
+    options: InputOptions,
+    print_tags: bool,
+    bars: Option<(progress::Bars, progress::Target)>,
+    colors: Colors,
+}
+
+impl SearchRun<'_> {
+    /// Searches the inputs, calling `found` for everything found (it returns `false` to
+    /// stop), and returns the messages for the files that couldn't be read.
+    fn run(&self, found: &mut dyn FnMut(Found) -> bool) -> Vec<String> {
+        let mut unreadable = Vec::new();
+        self.identifier.iter_identify_with_progress(
+            self.inputs,
+            self.options,
+            found,
+            &mut |location, error| unreadable.push(format!("Could not read {location}: {error}")),
+            &|progress| {
+                if let Some((bars, _)) = &self.bars {
+                    bars.update(progress);
+                }
+            },
+        );
+        unreadable
+    }
+
+    /// Removes the progress bars.
+    fn finish_bars(&mut self) {
+        if let Some((bars, _)) = self.bars.take() {
+            bars.finish();
+        }
+    }
+}
+
+/// `print_stream()`: prints everything as soon as it is found.
+struct StreamPrinter<'a, 'b> {
+    printer: Printer<'a>,
+    inputs: &'b [String],
+    json: bool,
+    format: Option<&'b str>,
+    print_tags: bool,
+    show_files: bool,
+    /// Whether what was printed last was a file signature, and its location
+    previous: Option<(bool, String)>,
+    found_matches: bool,
+}
+
+impl StreamPrinter<'_, '_> {
+    fn print(&mut self, found: Found) -> io::Result<()> {
+        if self.json {
+            self.printer.stream_json(&found)?;
+        } else {
             match found {
                 Found::FileSignature {
                     location,
                     signature,
-                } => {
-                    if format.is_none() {
-                        let mut text = output::raw_signature(&location, signature);
-                        text.rstrip();
-                        printer.print(&text)?;
-                        previous = Some((true, location));
-                    }
-                }
-                Found::Match { location, found } => {
-                    found_matches = true;
-                    let one = Identified {
-                        signatures: Vec::new(),
-                        regexes: vec![(location.clone(), vec![found])],
-                    };
-                    match format {
-                        Some(format) => printer.format_print(&one, format)?,
-                        None => {
-                            // An empty line between the matches, but not between a file
-                            // signature and the matches in its file
-                            if previous.is_some()
-                                && previous.as_ref() != Some(&(true, location.clone()))
-                            {
-                                printer.print_plain("")?;
-                            }
-                            printer.print_raw(
-                                &one,
-                                &command.inputs,
-                                print_tags,
-                                Some(show_files),
-                            )?;
-                        }
-                    }
-                    previous = Some((false, location));
-                }
+                } => self.signature(location, signature)?,
+                Found::Match { location, found } => self.found(location, found)?,
             }
-            printer.out.flush()
-        };
-        identifier.iter_identify_with_progress(
-            &command.inputs,
-            options,
-            &mut |found| {
-                let printed = match &bars {
-                    Some((bars, _)) if bars_on_stdout => bars.suspend(|| print_found(found)),
-                    _ => print_found(found),
-                };
-                match printed {
-                    Ok(()) => true,
-                    Err(error) => {
-                        failure = Some(error);
-                        false
-                    }
-                }
-            },
-            &mut report,
-            &on_progress,
-        );
-        if let Some((bars, _)) = bars {
-            bars.finish();
         }
-        if let Some(error) = failure {
-            return Err(error);
-        }
-        if !json_output && !found_matches && format.is_none() {
-            Printer {
-                out: streams.stdout,
-                colors,
-            }
-            .print_plain("Nothing found!")?;
-        }
-        return finish(streams, &unreadable);
+        self.printer.out.flush()
     }
 
-    let mut identified = Identified::default();
-    identifier.iter_identify_with_progress(
-        &command.inputs,
-        options,
-        &mut |found| {
-            collect(&mut identified, found);
-            true
-        },
-        &mut report,
-        &on_progress,
-    );
-    if let Some((bars, _)) = bars {
-        bars.finish();
+    /// A file signature, printed like raw output prints it (not with a format).
+    fn signature(
+        &mut self,
+        location: String,
+        signature: &serde_json::Map<String, serde_json::Value>,
+    ) -> io::Result<()> {
+        if self.format.is_none() {
+            let mut text = output::raw_signature(&location, signature);
+            text.rstrip();
+            self.printer.print(&text)?;
+            self.previous = Some((true, location));
+        }
+        Ok(())
     }
+
+    /// A match, printed like raw output or the format prints it.
+    fn found(&mut self, location: String, found: crate::Match) -> io::Result<()> {
+        self.found_matches = true;
+        let one = Identified {
+            signatures: Vec::new(),
+            regexes: vec![(location.clone(), vec![found])],
+        };
+        match self.format {
+            Some(format) => self.printer.format_print(&one, format)?,
+            None => {
+                // An empty line between the matches, but not between a file signature and
+                // the matches in its file
+                let after_its_signature = self.previous.as_ref() == Some(&(true, location.clone()));
+                if self.previous.is_some() && !after_its_signature {
+                    self.printer.print_plain("")?;
+                }
+                self.printer.print_raw(
+                    &one,
+                    self.inputs,
+                    self.print_tags,
+                    Some(self.show_files),
+                )?;
+            }
+        }
+        self.previous = Some((false, location));
+        Ok(())
+    }
+}
+
+/// `--stream`: everything printed as soon as it is found, the progress bars hidden while
+/// it is printed on their terminal.
+fn stream_search(
+    mut search: SearchRun<'_>,
+    json: bool,
+    format: Option<&str>,
+    streams: &mut Streams<'_>,
+) -> io::Result<i32> {
+    let bars_on_stdout = matches!(&search.bars, Some((_, progress::Target::Stdout)));
+    let mut printer = StreamPrinter {
+        printer: Printer {
+            out: &mut *streams.stdout,
+            colors: search.colors,
+        },
+        inputs: search.inputs,
+        json,
+        format,
+        print_tags: search.print_tags,
+        show_files: output::show_files_of_inputs(search.inputs),
+        previous: None,
+        found_matches: false,
+    };
+    let mut failure: Option<io::Error> = None;
+    let unreadable = search.run(&mut |found| {
+        let printed = match &search.bars {
+            Some((bars, _)) if bars_on_stdout => bars.suspend(|| printer.print(found)),
+            _ => printer.print(found),
+        };
+        printed.map_err(|error| failure = Some(error)).is_ok()
+    });
+    let found_matches = printer.found_matches;
+    search.finish_bars();
+    if let Some(error) = failure {
+        return Err(error);
+    }
+    if !json && !found_matches && format.is_none() {
+        Printer {
+            out: streams.stdout,
+            colors: search.colors,
+        }
+        .print_plain("Nothing found!")?;
+    }
+    finish(streams, &unreadable)
+}
+
+/// How the matches of a complete search are printed.
+struct OutputOptions<'a> {
+    json: bool,
+    pretty: bool,
+    format: Option<&'a str>,
+    key: Key,
+    reverse: bool,
+    top: Option<Top>,
+    /// The width of the terminal, for the table
+    width: usize,
+}
+
+/// The number of matches found.
+fn count(identified: &Identified) -> usize {
+    identified
+        .regexes
+        .iter()
+        .map(|(_, matches)| matches.len())
+        .sum()
+}
+
+/// A search, printed once it is complete: sorted, the most likely matches with `--top`
+/// (and a note on stderr about the others), in the output format.
+fn complete_search(
+    mut search: SearchRun<'_>,
+    output: &OutputOptions<'_>,
+    streams: &mut Streams<'_>,
+) -> io::Result<i32> {
+    let mut identified = Identified::default();
+    let unreadable = search.run(&mut |found| {
+        collect(&mut identified, found);
+        true
+    });
+    search.finish_bars();
     // top_matches() sorts the top ones itself
-    identified.sort(if top.is_none() { key } else { Key::None }, reverse);
-    let total = identified.located_matches().len();
-    if let Some(top) = &top {
-        identified = identified.top(top, key, reverse);
+    let key = if output.top.is_none() {
+        output.key
+    } else {
+        Key::None
+    };
+    identified.sort(key, output.reverse);
+    let total = count(&identified);
+    if let Some(top) = &output.top {
+        identified = identified.top(top, output.key, output.reverse);
     }
     let mut printer = Printer {
         out: streams.stdout,
-        colors,
+        colors: search.colors,
     };
-    if json_output {
+    if output.json {
         printer.print_json(&identified)?;
-    } else if format_name == "pretty" {
-        printer.pretty_print(&identified, &command.inputs, print_tags, env.rich_width())?;
-    } else if let Some(format) = format {
+    } else if output.pretty {
+        printer.pretty_print(&identified, search.inputs, search.print_tags, output.width)?;
+    } else if let Some(format) = output.format {
         printer.format_print(&identified, format)?;
     } else {
-        printer.print_raw(&identified, &command.inputs, print_tags, None)?;
+        printer.print_raw(&identified, search.inputs, search.print_tags, None)?;
     }
-    let shown = identified.located_matches().len();
+    let shown = count(&identified);
     if shown < total {
         // On stderr, so that the output (e.g. JSON) is the same as without --top
         streams.stdout.flush()?;
@@ -862,6 +968,11 @@ mod tests {
         assert_eq!((env.click_columns(), env.rich_width()), (40, 120));
         env.vars.insert("COLUMNS", "200".into());
         assert_eq!((env.click_columns(), env.rich_width()), (200, 200));
+        // A dumb terminal is 80 columns wide for rich, unless COLUMNS and LINES are set
+        env.vars.insert("TERM", "dumb".into());
+        assert_eq!(env.rich_width(), 80);
+        env.vars.insert("LINES", "50".into());
+        assert_eq!(env.rich_width(), 200);
         assert_eq!(program_name("/usr/local/bin/what"), "what");
     }
 

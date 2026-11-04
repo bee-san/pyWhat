@@ -20,7 +20,8 @@ wasm32).
   messages. It reads Google's answer as Python's `json.loads()` does, and connects like
   `urlopen(..., timeout=10)`: 10 s to connect and for every read, redirects (301, 302, 303 and 307)
   followed, and the common network errors described the same way (`timed out`, `<urlopen error
-  [Errno 111] Connection refused>`). The verifier is `pywhat::cli::verify::GoogleApiKeyVerifier`, a
+  [Errno 111] Connection refused>`). It trusts the root certificates of Mozilla's list built into
+  the binary (webpki-roots), where Python trusts the operating system's. The verifier is `pywhat::cli::verify::GoogleApiKeyVerifier`, a
   `Processor` whose `with_http` takes the HTTP call, so that tests don't send anything.
 - `--interactive` is only in the Python package: `what --interactive` says so and exits with 2.
 
@@ -41,16 +42,20 @@ wasm32).
   `Nothing found!`, the file lines above the table) when they are wider than the terminal, removes
   spaces at the end of lines that are wider than it, and prints nothing at all with `COLUMNS=0`.
   These are the wrapping problems of #291's Python bug 3, which Rust doesn't have.
-- On a terminal, the colours of raw and custom output are written as rich writes them. The table
-  has comfy-table's escape sequences; rich gives the links in the data's markup a random `id`, and
-  colours the numbers of the tags of `--tags` separately.
+- On a terminal, the colours of raw and custom output are written as rich writes them, for the same
+  `TERM`, `COLORTERM` and `NO_COLOR`. The table has comfy-table's escape sequences; rich gives the
+  links in the data's markup a random `id`, and colours the numbers of the tags of `--tags`
+  separately.
 - `-v` prints the version of the crate.
 - Directories are searched in the order of their names, where Python takes the order of the file
   system (#291, Python bug 5). A file that can't be read is skipped and reported on stderr, with
   exit code 1, where Python stops with a traceback.
-- On Windows, output redirected to a file is UTF-8, where Python writes the ANSI code page with
-  escapes such as `\u20bf` for what it can't encode. Arguments that aren't valid UTF-8 get U+FFFD
-  for the invalid bytes.
+- The output is always UTF-8. Where stdout's encoding can't encode a character (output redirected
+  to a file on Windows, or `PYTHONIOENCODING=latin-1`), Python writes an escape such as `\u20bf`.
+  Arguments and the names of files in directories that aren't valid UTF-8 get U+FFFD for the
+  invalid bytes, where Python keeps them as surrogate escapes (`\udcff`).
+- Ctrl-C ends the command at once (exit code 130), and can leave the last line of the progress
+  bars on the terminal; Python prints `Aborted!` and exits with 1.
 - Without arguments, `what` reads stdin, as `pywhat` does; `python -m pywhat` shows the help.
 
 ## Parity tests

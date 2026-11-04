@@ -206,10 +206,12 @@ impl Bars {
             std::thread::spawn(move || {
                 let (lock, condvar) = &*done;
                 let wait = |timeout| {
-                    let finished = lock.lock().unwrap_or_else(|e| e.into_inner());
+                    let finished = lock
+                        .lock()
+                        .unwrap_or_else(std::sync::PoisonError::into_inner);
                     let (finished, _) = condvar
                         .wait_timeout_while(finished, timeout, |finished| !*finished)
-                        .unwrap_or_else(|e| e.into_inner());
+                        .unwrap_or_else(std::sync::PoisonError::into_inner);
                     *finished
                 };
                 let started = Instant::now();
@@ -220,7 +222,10 @@ impl Bars {
                 let style = ProgressStyle::with_template("{msg}").expect("valid template");
                 let mut shown: Vec<ProgressBar> = Vec::new();
                 loop {
-                    let latest = state.lock().unwrap_or_else(|e| e.into_inner()).clone();
+                    let latest = state
+                        .lock()
+                        .unwrap_or_else(std::sync::PoisonError::into_inner)
+                        .clone();
                     let lines = lines(&latest, started.elapsed().as_secs(), width, colors);
                     while shown.len() < lines.len() {
                         // A files bar appears above the regexes bar
@@ -257,7 +262,10 @@ impl Bars {
 
     /// The progress callback: keeps the latest progress, which is drawn 10 times a second.
     pub(crate) fn update(&self, progress: Progress<'_>) {
-        let mut state = self.state.lock().unwrap_or_else(|e| e.into_inner());
+        let mut state = self
+            .state
+            .lock()
+            .unwrap_or_else(std::sync::PoisonError::into_inner);
         state.seen = true;
         if state.location != progress.location {
             state.location = progress.location.to_string();
@@ -281,7 +289,9 @@ impl Bars {
 
     fn stop(&mut self) {
         let (lock, condvar) = &*self.done;
-        *lock.lock().unwrap_or_else(|e| e.into_inner()) = true;
+        *lock
+            .lock()
+            .unwrap_or_else(std::sync::PoisonError::into_inner) = true;
         condvar.notify_all();
         if let Some(ticker) = self.ticker.take() {
             let _ = ticker.join();

@@ -24,12 +24,11 @@ pub struct GoogleApiKeyVerifier {
 impl GoogleApiKeyVerifier {
     /// The request: an API that costs nothing (the languages of the YouTube Data API, one
     /// unit of quota), with the key.
-    pub const URL: &'static str =
-        "https://www.googleapis.com/youtube/v3/i18nLanguages?part=snippet&key=";
+    pub const URL: &str = "https://www.googleapis.com/youtube/v3/i18nLanguages?part=snippet&key=";
 
     /// The reasons of the `google.rpc.ErrorInfo` of the errors that Google answers when the
     /// key is valid but can't be used for the request.
-    pub const VALID_KEY_REASONS: [&'static str; 9] = [
+    pub const VALID_KEY_REASONS: [&str; 9] = [
         "API_KEY_ANDROID_APP_BLOCKED",
         "API_KEY_HTTP_REFERRER_BLOCKED",
         "API_KEY_IOS_APP_BLOCKED",
@@ -98,7 +97,10 @@ impl Processor for GoogleApiKeyVerifier {
 
     fn process(&self, mut found: Match) -> Option<Match> {
         let result = {
-            let mut results = self.results.lock().unwrap_or_else(|e| e.into_inner());
+            let mut results = self
+                .results
+                .lock()
+                .unwrap_or_else(std::sync::PoisonError::into_inner);
             results
                 .entry(found.matched.clone())
                 .or_insert_with(|| self.verify(&found.matched))
