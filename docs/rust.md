@@ -71,6 +71,8 @@ Rust only:
 | `files` | yes | `identify_inputs`, `iter_identify`: files, directories (recursive) and file signatures (`file_signatures.json`, under CC BY-SA 4.0) |
 | `children` | yes | the tables that `Children` read from data files: the locations of phone numbers (`phone_codes.json`) in their descriptions |
 | `mac-vendors` | yes | `children`, and the vendors of MAC address prefixes (1.6 MB) in the descriptions of EUI-48 matches |
+| `cli` | yes | the `what` and `pywhat` commands and `pywhat::cli::main`, see [cli.md](cli.md); it needs `files` and `mac-vendors`, for the output of the Python CLI (not on wasm32) |
+| `verify` | yes | `what --verify`: asks Google whether Google API keys are valid (not on wasm32) |
 | `wasm` | no | the WebAssembly API in `src/wasm.rs` (`identify(text, options_json)`, `tags()`, `version()`) |
 
 For wasm32, use `default-features = false` (no threads, no file system), and `features = ["wasm"]`
