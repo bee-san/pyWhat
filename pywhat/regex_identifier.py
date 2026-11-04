@@ -76,7 +76,7 @@ class RegexIdentifier:
                     ):
                         # Replace anything like XXXXX_XXXXXX_HERE with the match
                         reg_match["Exploit"] = re.sub(
-                            r"[A-Z_]+_HERE", matched, reg_match["Exploit"]
+                            r"[A-Z_]+_HERE", lambda _: matched, reg_match["Exploit"]
                         )
 
                     children = reg_match.get("Children")
