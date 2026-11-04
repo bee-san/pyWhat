@@ -71,7 +71,10 @@ def _run_on_a_terminal(
     command: Sequence[str], data: bytes, env: Mapping[str, str], stderr: Any
 ) -> "subprocess.CompletedProcess[bytes]":
     """Run command with a terminal (a pseudo-terminal) as stdin, holding data."""
-    import pty  # Unix only
+    # A check of sys.platform, so that mypy doesn't check the Unix part on Windows
+    if sys.platform == "win32":
+        pytest.skip("PYWHAT_CLI: no pseudo-terminal for stdin on Windows")
+    import pty
 
     leader, follower = pty.openpty()
     try:
@@ -115,8 +118,6 @@ def invoke(
     data = _input_bytes(input, self.charset)
     isatty = getattr(input, "isatty", None)
     if callable(isatty) and isatty():
-        if sys.platform == "win32":
-            pytest.skip("PYWHAT_CLI: no pseudo-terminal for stdin on Windows")
         completed = _run_on_a_terminal(command, data, environment, stderr)
     else:
         completed = subprocess.run(
