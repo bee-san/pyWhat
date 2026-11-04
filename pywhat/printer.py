@@ -242,7 +242,7 @@ class Printing:
 
             str_output = "\n".join(output)
             if str_output.strip():
-                self.console.print(str_output)
+                self.console.print(str_output, soft_wrap=True)
 
     def print_stream(
         self,
@@ -288,7 +288,9 @@ class Printing:
             if kind == "File Signatures":
                 if format_str is None:
                     # With an empty line before it, like print_raw()
-                    self.console.print(self._raw_signature(location, value).rstrip())
+                    self.console.print(
+                        self._raw_signature(location, value).rstrip(), soft_wrap=True
+                    )
                     previous = (kind, location)
                 continue
             found_matches = True
