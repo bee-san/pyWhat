@@ -2,7 +2,7 @@
 //! table, custom `--format` strings, `--json`, and `--stream`.
 
 use super::python;
-use super::style::{sanitized, Colors, Text, BOLD, LABEL};
+use super::style::{sanitized, Colors, Text, BOLD};
 use crate::files::{Found, Identified};
 use crate::identify::Match;
 use crate::json::dumps;
@@ -118,7 +118,8 @@ impl Printer<'_> {
             for (location, matches) in &identified.regexes {
                 for found in matches {
                     if show_files {
-                        output.label("File: ").styled(location, LABEL).plain("\n");
+                        // One span, as in Python's "[bold #D7Afff]File: {key}[/bold #D7Afff]"
+                        output.label(&format!("File: {location}")).plain("\n");
                     }
                     output.label("Matched on: ").plain(&found.matched);
                     output.plain("\n").label("Name: ").markup(&found.regex.name);
