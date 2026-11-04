@@ -172,3 +172,5 @@ Thumbs.db
 # Code editor files
 .vscode
 .idea
+# The WebAssembly build of web/index.html
+/web/pkg/

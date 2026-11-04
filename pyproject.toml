@@ -51,3 +51,6 @@ ignore_missing_imports = true
 
 [tool.pytest.ini_options]
 addopts = "--black --isort --flake8 --mypy"
+# pytest's defaults, and target/, where cargo builds the Rust crate (and scripts/golden.py
+# copies the repository)
+norecursedirs = ["*.egg", ".*", "_darcs", "build", "CVS", "dist", "node_modules", "venv", "{arch}", "target"]
