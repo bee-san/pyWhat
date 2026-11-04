@@ -19,6 +19,8 @@
 
 mod bitcoin;
 mod charclass;
+#[cfg(all(feature = "cli", not(target_arch = "wasm32")))]
+pub mod cli;
 pub mod data;
 pub mod engine;
 #[cfg(feature = "files")]

@@ -1,0 +1,207 @@
+pyWhat - Identify what something is.
+
+Made by Bee https://twitter.com/bee_sec_san
+
+https://github.com/bee-san
+
+Filtration:
+
+    --rarity min:max
+
+        Rarity is how unlikely something is to be a false-positive. The higher the number, the more unlikely.
+
+        Only print entries with rarity in range [min,max]. min and max can be omitted.
+
+        Note: PyWhat by default has a rarity of 0.1. To see all matches, with many potential false positives use `0:`. For example, a YouTube video ID on its own, such as 'dQw4w9WgXcQ', is only shown with `--rarity 0:`.
+
+    --include list
+
+        Only include entries containing at least one tag in a list. List is a comma separated list.
+
+    --exclude list
+
+        Exclude specified tags. List is a comma separated list.
+
+    The names of the regexes work like tags. Many regexes have alternative names too, such as 'ETH Wallet' for 'Ethereum (ETH) Wallet Address', so --include 'BTC Wallet,ETH Wallet' only shows Bitcoin and Ethereum wallets.
+
+    --names
+
+        Show the name of every regex, followed by its alternative names.
+
+Sorting:
+
+    --key key_name
+
+        Sort by the given key.
+
+    --reverse
+
+        Sort in reverse order.
+
+    Available keys:
+
+        name - Sort by the name of regex pattern
+
+        rarity - Sort by rarity
+
+        matched - Sort by a matched string
+
+        likely - Sort the most likely matches first, see Top matches
+
+        none - No sorting is done (the default)
+
+Top matches:
+
+    --top N
+
+        Only show the N most likely matches, e.g. --top 10. --top N% shows the most likely N percent of them, e.g. --top 5%. For a directory or several inputs, these are the most likely matches of all of them.
+
+        The most likely matches are shown first, unless --key sorts them. They have the highest rarity, but fragments of a longer word or match, which boundaryless mode finds, are less likely unless their rarity is 1. For example, the card and social security numbers in '0x52908400098527886E0F7030069857D2E4169EE7' are fragments of the Ethereum address, which is the most likely match.
+
+        How many matches were left out is shown on stderr. Use --interactive to page through all of them.
+
+Exporting:
+
+    --json
+
+        Return results in json format, on one line, so that it can be piped to other programs such as jq: pywhat --json 'abc@example.com' | jq
+
+Boundaryless mode:
+
+    CLI tool matches strings like 'abcdTHM{hello}plze' by default because the boundaryless mode is enabled for regexes with a rarity of 0.1 and higher.
+
+    Since boundaryless mode may produce a lot of false-positive matches, it is possible to disable it, either fully or partially.
+
+    '--disable-boundaryless' flag can be used to fully disable this mode.
+
+    In addition, '-br', '-bi', and '-be' options can be used to tweak which regexes should be in boundaryless mode.
+
+    Refer to the Filtration section for more information.
+
+Processing:
+
+    Matches are processed further once a regex has found them. For example, the date of a Unix timestamp, in UTC, is added to its description: pywhat --rarity 0: --include "UNIX Timestamp" 1637093119
+
+    Bitcoin wallet addresses whose checksum is wrong, like 3F3F3F3F3F3F3F3F3F3F3F3F3F3F3F3F3F, are filtered out.
+
+    '--disable-processing' flag can be used to show the matches as the regexes found them.
+
+Verification:
+
+    --verify
+
+        Ask the services if the keys that are found are valid, and add the answer to the description, e.g. 'Verification: invalid, Google rejected the key (API_KEY_INVALID)'. Currently Google API keys are verified: pywhat --verify 'AIzaSyA00000000000000000000000000000000'
+
+        Only use it for keys that you are allowed to test: it sends the keys to the services (over HTTPS), once per key. It works with '--disable-processing' too.
+
+Maps:
+
+    --map google|osm
+
+        The map that the links of coordinates go to: Google Maps (the default) or OpenStreetMap. For example, pywhat --map osm '52.6169586, -1.9779857' links to https://www.openstreetmap.org/search?query=52.6169586,-1.9779857
+
+        It works with '--disable-processing' too.
+
+Formatting the output:
+
+    --format format_str
+
+        format_str can be equal to:
+
+            pretty - Output data in the table
+
+            json - Output data in json format
+
+            CUSTOM_STRING - Print data in the way you want. For every match CUSTOM_STRING will be printed and '%x' (See below for possible x values) will be substituted with a match value.
+
+            For example:
+
+                pywhat --format '%m - %n' 'google.com htb{flag}'
+
+                will print:
+
+                htb{flag} - HackTheBox Flag Format
+                google.com - Uniform Resource Locator (URL)
+
+            Possible '%x' values:
+
+                %m - matched text
+
+                %n - name of regex
+
+                %d - description (will not output if absent)
+
+                %e - exploit (will not output if absent)
+
+                %r - rarity
+
+                %l - link (will not output if absent)
+
+                %t - tags (in 'tag1, tag2 ...' format)
+
+            If you want to print '%' or '\' character - escape it: '\%', '\\'.
+
+Interactive mode:
+
+    --interactive
+
+        Identify the input once, keep the matches in memory and search through them as often as you like, with searches such as 'include:"Bug Bounty", rarity:"0.5:"'.
+
+        The --rarity, --include and --exclude options are the search to start with, the other options work as usual. The input is optional, the 'load' command loads a file, directory or text. Type 'help' in interactive mode to see all commands.
+
+        With --top N or the 'top N' command, searches show the N most likely matches and the 'more' command the next N.
+
+Progress and streaming:
+
+    When a search takes a while, progress bars show how far it is: one for the regexes that are searched for in a file, with the regex that is searched for now, and one for the files of a directory or of several inputs. They are only shown on a terminal (on stderr if the output is redirected to a file), and they are removed once the search is complete.
+
+    --no-progress
+
+        Do not show the progress bars.
+
+    --stream
+
+        Print every match as soon as it is found, instead of once the search is complete. With --json, every match is a JSON object of its own, on one line, without the "Fragment" key, as whether a match is a fragment is only known once its file has been searched. --stream cannot sort the matches (--key), show only the most likely ones (--top) or print a table (--format pretty), as these need all the matches.
+
+Unicode:
+
+    Files and text piped to pyWhat can be UTF-8, or UTF-16 or UTF-32 with a byte order mark (BOM). The UTF-16 strings in binary files, which 'strings -el' shows, are searched too.
+
+    Characters that the terminal cannot show are printed as escape sequences such as '\u20bf'.
+
+Examples:
+
+    * what 'HTB{this is a flag}'
+
+    * what '0x52908400098527886E0F7030069857D2E4169EE7'
+
+    * what -- '52.6169586, -1.9779857'
+
+    * what --rarity 0.6: 'myEmail@host.org'
+
+    * what --rarity 0: --include "credentials" --exclude "aws" 'James:SecretPassword'
+
+    * what -br 0.6: -be URL '123myEmail@host.org456'
+
+    * what --top 1 '0x52908400098527886E0F7030069857D2E4169EE7'
+
+Your text must either be in quotation marks, or use the POSIX standard of "--" to mean "anything after -- is textual input".
+
+
+pyWhat can also search files or even a whole directory with recursion:
+
+    * what 'secret.txt'
+
+    * what 'this/is/a/path'
+
+    * what --interactive 'this/is/a/path'
+
+    * what --stream 'big.log'
+
+Several inputs, files, directories or text, can be searched at once. Then the file of every match is shown, and the matches in text are under "text":
+
+    * what 'secret.txt' 'this/is/a/path' 'HTB{this is a flag}'
+
+    * find . -name '*.log' -exec what {} +
+
+Text with spaces needs quotation marks, as every argument is an input.
