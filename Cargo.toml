@@ -5,7 +5,7 @@ resolver = "2"
 [workspace.package]
 version = "6.0.0-alpha.1"
 edition = "2021"
-license = "MIT"
+license = "MIT AND CC-BY-SA-4.0"
 repository = "https://github.com/bee-san/pyWhat"
 rust-version = "1.88"
 
@@ -25,7 +25,7 @@ keywords = ["identify", "regex", "ctf", "security", "forensics"]
 categories = ["command-line-utilities", "text-processing", "wasm"]
 # The data stays where the Python package has it: pywhat/Data is the single
 # source of truth for both.
-include = ["/src", "/pywhat/Data/*.json", "/pywhat/Data/regexes/*.json", "/LICENSE", "/README.md"]
+include = ["/src", "/pywhat/Data/*.json", "/pywhat/Data/regexes/*.json", "/LICENSE", "/NOTICE", "/README.md"]
 
 [features]
 default = ["parallel", "files", "mac-vendors"]

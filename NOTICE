@@ -1,0 +1,88 @@
+pyWhat
+Copyright (c) 2021 - Present @bee-san
+
+pyWhat is under the MIT License (LICENSE), except for the material below that is under
+another licence. This file lists the material from other sources that pyWhat ships in its
+Python package, in its Rust crate (pywhat) and in the crate's WebAssembly build, with the
+source and licence of each. docs/data-sources.md and docs/regex-sources.md have the details,
+and https://github.com/bee-san/pyWhat/issues/302 the open questions.
+
+
+pywhat/Data/file_signatures.json
+--------------------------------
+Derived from the Wikipedia article "List of file signatures" by its contributors:
+  https://en.wikipedia.org/wiki/List_of_file_signatures
+  revision 1021969603 of 2021-05-07:
+  https://en.wikipedia.org/w/index.php?title=List_of_file_signatures&oldid=1021969603
+  authors: https://en.wikipedia.org/w/index.php?title=List_of_file_signatures&action=history
+Changes: scripts/get_file_sigs.py converted the article's table to JSON on 2021-05-09
+(commit 9a7d21d). An earlier YAML version (2021-04-01, commit 125d654) was converted from
+revision 1011793547 of 2021-03-12. In 2026 (#275), the byte order marks of big-endian UTF-16
+and UTF-32 were added and the descriptions of the little-endian ones were corrected.
+
+Licence: the revision is under the Creative Commons Attribution-ShareAlike 3.0 Unported
+licence (CC BY-SA 3.0, https://creativecommons.org/licenses/by-sa/3.0/) and the GFDL.
+pyWhat's adaptation, this file, is under the Creative Commons Attribution-ShareAlike 4.0
+International licence (CC BY-SA 4.0, https://creativecommons.org/licenses/by-sa/4.0/), as
+section 4(b) of CC BY-SA 3.0 allows. This file, and adaptations of it, are under CC BY-SA 4.0,
+not under pyWhat's MIT License. It is provided as is, without warranties (see also
+https://en.wikipedia.org/wiki/Wikipedia:General_disclaimer).
+
+
+pywhat/Data/mac_vendors.json
+----------------------------
+MAC address prefixes (MA-L, MA-M, MA-S and IAB) and the organisations they are assigned to, as
+registered with the IEEE Registration Authority
+(https://standards.ieee.org/products-programs/regauth/). Added in 2021 (commit e589732). The
+list it was copied from is not recorded.
+
+Licence: not recorded.
+
+
+pywhat/Data/phone_codes.json
+----------------------------
+Country calling codes (ITU-T E.164) and their countries. 226 of the 228 entries are those of
+the GitHub gist "CountryCodes.json" by anubhavshrimal (2016,
+https://gist.github.com/anubhavshrimal/75f6183458db8c453306f93521e93d37), a fork of the gist
+"Country and Dial or Phone codes in JSON format" by Goles (2012,
+https://gist.github.com/Goles/3196253). Added in 2021 (commits 71cdefb and f1c993d).
+
+Licence: not recorded; neither gist states one.
+
+
+Regexes in pywhat/Data/regex.json
+---------------------------------
+Five regexes are based on entries of the regex101 community library
+(https://regex101.com/library), rewritten for pyWhat in #276. regex101 states no licence for
+library entries.
+  Browser User Agent            "Parsing browser User Agents" by OnlineCop
+                                https://regex101.com/r/aL8lD7/2
+  Regex101 Permalink            "regex101.com permalink id grabber" by chris mccoy
+                                https://regex101.com/r/wY0rM7/3
+  ISO 8601 Timestamp            "RFC3339 DateTime" (no author given)
+                                https://regex101.com/r/qH0sU7/1
+  United Kingdom (UK) Postcode  "UK Postcode Checker" by MaffooBristol
+                                https://regex101.com/r/tH9mQ1/1
+  Cron Schedule                 "Cron schedule" (no author given)
+                                https://regex101.com/r/vY5eL1/1
+
+Some of the bug bounty regexes and their "Exploit" texts are based on the regex database of
+Dora (https://github.com/sdushantha/dora, #146):
+  Copyright (c) 2021 Siddharth Dushantha, under the MIT License.
+Dora's README says that many of its regexes were taken from truffleHogRegexes (GPL-3.0),
+secretx (GPL-3.0), gitGraber, shhgit, w13scan, SecretFinder, nuclei-templates,
+AdvancedKeyHacks, pentest-tools, gitleaks and dalfox, and most of its exploitation methods from
+keyhacks (https://github.com/streaak/keyhacks). More "Exploit" texts were written from
+keyhacks' README in #162. keyhacks states no licence.
+
+Some regexes are based on the patterns of gf (https://github.com/tomnomnom/gf):
+  Copyright (c) 2018 Tom Hudson, under the MIT License.
+Three are based on patterns proposed in pull requests to gf (#273): IPv4 CIDR Block (#25 by
+nikitastupin), Log4Shell (Log4j JNDI Lookup) Payload (#61 by jreisinger) and Tox ID (#84 by
+johndoe-sh).
+
+The Uniform Resource Locator (URL) regex contains the list of top-level domains that IANA
+publishes (https://data.iana.org/TLD/tlds-alpha-by-domain.txt, fetched by
+scripts/get_tlds.py). IANA states no licence for this list.
+
+The text of the MIT License is the one in LICENSE.

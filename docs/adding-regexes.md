@@ -80,10 +80,14 @@ every new regex has to pass. The tests check most of it.
 ## Where a regex comes from
 
 Write a regex from the format's documentation. A regex adapted from another project must come
-from one under MIT, BSD, Apache-2.0, CC0 or a public-domain dedication (not GPL, AGPL, LGPL or
-CC BY-SA; CC BY needs the owner's agreement), and gets a row in its area's section of
-[regex-sources.md](regex-sources.md), with the project's version or commit. Examples are made
-up: never a real key.
+from one under MIT, BSD, Apache-2.0, CC0, CC BY or a public-domain dedication, not GPL, AGPL,
+LGPL, MPL or CC BY-SA, and not from one without a licence. It gets a row in its area's section of
+[regex-sources.md](regex-sources.md), with the project's version or commit, and unless the
+project is public domain or CC0, an entry in [NOTICE](../NOTICE) with its copyright line and
+licence. A new data file in `pywhat/Data/`, like the lists that `Children` look up, follows the
+same rules, with a row in [data-sources.md](data-sources.md) that gives its URL, its version or
+the date it was fetched, its sha256 and its licence. Examples are made up: never a real
+key.
 
 ## Examples
 

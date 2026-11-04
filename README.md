@@ -257,4 +257,6 @@ We would like to thank [Dora](https://github.com/sdushantha/dora) for their work
 
 We would also like to thank [tomnomnom](https://github.com/tomnomnom) for the patterns in [gf](https://github.com/tomnomnom/gf), which some of our regexes are based on.
 
-Some of our regexes, like cron schedules, browser user agents, ISO 8601 timestamps, UK postcodes and regex101 permalinks, are based on the community library of [regex101](https://regex101.com/library).
+Some of our regexes are based on entries of the community library of [regex101](https://regex101.com/library): [cron schedules](https://regex101.com/r/vY5eL1/1), [browser user agents](https://regex101.com/r/aL8lD7/2), [ISO 8601 timestamps](https://regex101.com/r/qH0sU7/1), [UK postcodes](https://regex101.com/r/tH9mQ1/1) and [regex101 permalinks](https://regex101.com/r/wY0rM7/3).
+
+The file signatures are derived from Wikipedia's [List of file signatures](https://en.wikipedia.org/wiki/List_of_file_signatures) and are under [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/). [NOTICE](https://github.com/bee-san/pyWhat/blob/main/NOTICE) lists the source and licence of all the data that pyWhat ships.

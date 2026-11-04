@@ -234,6 +234,10 @@ whole text is, and filters the matches. With pywhat:
    `include_tags` when the list is empty (an empty list includes nothing). The `const
    LEMMEKNOW_DEFAULT_CONFIG` becomes a function or a `LazyLock`.
 6. `detection.rs`'s `lemmeknow_rarity` reads `found.regex.rarity` (an `f64`).
+7. The crate's licence is `MIT AND CC-BY-SA-4.0`: its file signatures are derived from Wikipedia
+   and are under CC BY-SA 4.0, and [NOTICE](../NOTICE) lists the sources of all its data. A
+   build of Ciphey that contains the crate, including its web page, carries those credits, for
+   example by linking or copying pyWhat's NOTICE.
 
 What changes for Ciphey's results:
 

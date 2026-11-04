@@ -38,7 +38,6 @@ fn data_file(path: &str) -> Option<&'static str> {
     Some(match path {
         "mac_vendors.json" => MAC_VENDORS_JSON,
         "phone_codes.json" => include_str!("../pywhat/Data/phone_codes.json"),
-        "mastercard_companies.json" => include_str!("../pywhat/Data/mastercard_companies.json"),
         "regex.json" => REGEX_JSON,
         // The area files, by their path relative to pywhat/Data
         path if path.starts_with("regexes/") => REGEX_AREA_FILES
