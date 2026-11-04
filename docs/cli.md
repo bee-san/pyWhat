@@ -20,8 +20,8 @@ wasm32).
   messages. It reads Google's answer as Python's `json.loads()` does, and connects like
   `urlopen(..., timeout=10)`: 10 s to connect and for every read, redirects (301, 302, 303 and 307)
   followed, and the common network errors described the same way (`timed out`, `<urlopen error
-  [Errno 111] Connection refused>`). It trusts the root certificates of Mozilla's list built into
-  the binary (webpki-roots), where Python trusts the operating system's. The verifier is `pywhat::cli::verify::GoogleApiKeyVerifier`, a
+  [Errno 111] Connection refused>`). It trusts the operating system's root certificates, as Python
+  does (rustls-platform-verifier), and has no list of its own. The verifier is `pywhat::cli::verify::GoogleApiKeyVerifier`, a
   `Processor` whose `with_http` takes the HTTP call, so that tests don't send anything.
 - `--interactive` is only in the Python package: `what --interactive` says so and exits with 2.
 

@@ -40,8 +40,9 @@ impl GoogleApiKeyVerifier {
         "SERVICE_DISABLED",
     ];
 
-    /// A verifier that asks Google over HTTPS, with the timeouts of Python's `urlopen(...,
-    /// timeout=10)`: 10 s to connect and for every read and write.
+    /// A verifier that asks Google over HTTPS, trusting the operating system's root
+    /// certificates, with the timeouts of Python's `urlopen(..., timeout=10)`: 10 s to connect
+    /// and for every read and write.
     pub fn new() -> Self {
         Self::with_http(Box::new(get))
     }
@@ -560,15 +561,22 @@ fn quote(text: &str) -> String {
 }
 
 /// A GET request, like Python's `urlopen(Request(url, headers={"User-Agent": "pywhat"}),
-/// timeout=10)`: 10 s to connect and for every read and write (not for the whole request),
-/// redirects followed for 301, 302, 303 and 307 (up to 10), and errors described the way
-/// `urllib` describes the common ones (`timed out`, `<urlopen error [Errno 111] Connection
-/// refused>`).
+/// timeout=10)`: the operating system's root certificates, 10 s to connect and for every read
+/// and write (not for the whole request), redirects followed for 301, 302, 303 and 307 (up to
+/// 10), and errors described the way `urllib` describes the common ones (`timed out`,
+/// `<urlopen error [Errno 111] Connection refused>`).
 #[cfg(feature = "verify")]
 fn get(url: &str) -> Answer {
     use std::time::Duration;
+    // rustls with ring, and the root certificates of the operating system, which Python's
+    // urllib trusts too (OpenSSL's store on Linux)
+    let _ = rustls::crypto::ring::default_provider().install_default();
+    let tls = ureq::tls::TlsConfig::builder()
+        .root_certs(ureq::tls::RootCerts::PlatformVerifier)
+        .build();
     let ten = Some(Duration::from_secs(10));
     let agent: ureq::Agent = ureq::Agent::config_builder()
+        .tls_config(tls)
         .timeout_connect(ten)
         .timeout_per_read(ten)
         .timeout_per_write(ten)
