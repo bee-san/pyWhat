@@ -30,6 +30,11 @@ jobs:
           - os: ubuntu-latest
             python-version: '3.9'
             runner: ubuntu-24.04
+          # macOS arm64 runners (macos-latest) are short of capacity: since 2026-11-04,
+          # most jobs are cancelled because no runner takes them. The macOS jobs run on
+          # Intel runners instead, under the same names.
+          - os: macos-latest
+            runner: macos-15-intel
     runs-on: ${{ matrix.runner || matrix.os }}
     name: Python ${{ matrix.python-version }} on ${{ matrix.os }}
     steps:
