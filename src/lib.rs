@@ -37,7 +37,7 @@ pub use bitcoin::is_bitcoin_address;
 pub use data::{regexes, tags, RegexEntry, CHARSET_ONLY};
 pub use engine::{EngineKind, MatchError};
 #[cfg(feature = "files")]
-pub use files::{Found, Identified, InputOptions};
+pub use files::{Found, Identified, InputOptions, Progress};
 pub use filter::{split_tags, Filter, InvalidTag};
 pub use identify::{compile_all, engine_of, Identifier, Match};
 pub use processors::{default_processors, Processor};

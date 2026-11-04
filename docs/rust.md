@@ -43,6 +43,7 @@ assert!(found.iter().any(|m| m.matched == "bee@skerritt.blog" && m.regex.name ==
 | `identifier.identify(text)` | `identify(text)["Regexes"]["text"]` |
 | `identifier.identify_inputs(&inputs, options, key, reverse)` (feature `files`) | `identify_inputs(inputs, only_text=..., include_filenames=..., key=..., reverse=...)` |
 | `identifier.iter_identify(&inputs, options, found, error)` (feature `files`) | `iter_identify(...)` |
+| `identifier.iter_identify_with_progress(&inputs, options, found, error, progress)` and `Progress` (feature `files`) | `iter_identify(..., progress=...)` and `Progress`: `progress` gets the file, how many of the files and of the file's regex searches are done, and a regex that is searched for. For texts over 4 KB the regexes are searched for in parallel, so it is called from rayon's threads, one call at a time |
 | `Identified::to_json()` | `json.dumps(identify(...))`, byte for byte |
 | `Filter::new(tags, exclude_tags, min_rarity, max_rarity)`, `Filter::default()`, `Filter::none()`, `.and()`, `.or()` | `Filter({...})`, `&`, `\|` |
 | `Processor` (trait), `default_processors()`, `processors::OpenStreetMap`, `processors::Validator` | `Processor`, `default_processors()`, `OpenStreetMapProcessor`, `ValidatorProcessor` |
