@@ -20,7 +20,17 @@ jobs:
         # ubuntu-latest / macos-latest (arm64) runner images.
         python-version: ['3.8', '3.9', '3.10']
         os: [ubuntu-latest, windows-latest, macos-latest]
-    runs-on: ${{ matrix.os }}
+        # ubuntu-latest is Ubuntu 26.04, for which actions/setup-python has no
+        # Python 3.8 or 3.9 builds. These jobs run on Ubuntu 24.04 instead,
+        # under the same names, which branch protection requires.
+        include:
+          - os: ubuntu-latest
+            python-version: '3.8'
+            runner: ubuntu-24.04
+          - os: ubuntu-latest
+            python-version: '3.9'
+            runner: ubuntu-24.04
+    runs-on: ${{ matrix.runner || matrix.os }}
     name: Python ${{ matrix.python-version }} on ${{ matrix.os }}
     steps:
     - uses: actions/checkout@v5
