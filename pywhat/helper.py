@@ -115,9 +115,25 @@ def join_examples(examples: dict) -> dict:
     }
 
 
+# The files of regexes in pywhat/Data/regexes, one per area, after regex.json. New regexes
+# go into the file of their area, so that pull requests for different areas don't change
+# the same lines (docs/adding-regexes.md).
+REGEX_AREAS = ("crypto", "cloud", "ctf", "network", "ids", "files", "social")
+
+
+def regex_files() -> List[str]:
+    """The files of the regexes, relative to pywhat/Data, in the order they are loaded."""
+    return ["regex.json", *(f"regexes/{area}.json" for area in REGEX_AREAS)]
+
+
 @lru_cache()
 def load_regexes() -> list:
-    regexes = read_json("regex.json")
+    # Sorted by rarity, the highest first; regexes with the same rarity stay in the order
+    # of the files
+    regexes = sorted(
+        (regex for path in regex_files() for regex in read_json(path)),
+        key=lambda regex: -regex["Rarity"],
+    )
     for regex in regexes:
         # "Regex" may be a list of alternative formats (issue #227)
         if isinstance(regex["Regex"], list):

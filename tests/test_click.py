@@ -105,8 +105,8 @@ def run_cli_command(command_args, expected_pattern):
         (["--rarity", "0:", "fixtures/file"], "Turkish Tax Number"),
         # date of birth
         (["-db", "fixtures/file"], "Date of Birth"),
-        # Turkish ID #
-        (["-db", "fixtures/file"], "Turkish Identification Number"),
+        # Turkish ID # (12345678902 in fixtures/file fails its check digits)
+        (["-db", "10000000146"], "Turkish Identification Number"),
         # arg parsing #1
         (["-db", "1KFHE7w8BhaENAswwryaoccDb6qcT6DbYY"], "blockchain"),
         # arg parsing #2

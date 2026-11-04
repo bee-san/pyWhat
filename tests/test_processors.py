@@ -20,6 +20,7 @@ from pywhat.processors import (
     EPOCH,
     BitcoinAddressProcessor,
     UnixTimestampProcessor,
+    ValidatorProcessor,
     default_processors,
     format_datetime,
     processors_by_name,
@@ -316,6 +317,7 @@ def test_default_processors_are_new_instances():
     assert [type(p) for p in default_processors()] == [
         UnixTimestampProcessor,
         BitcoinAddressProcessor,
+        ValidatorProcessor,
     ]
     assert default_processors()[0] is not default_processors()[0]
 

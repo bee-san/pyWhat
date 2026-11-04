@@ -28,6 +28,10 @@ fn reference(
             regex.is_match(text).expect("no backtracking error")
                 && (entry.name != "Bitcoin (\u{20bf}) Wallet Address"
                     || pywhat::is_bitcoin_address(text))
+                && entry
+                    .validator
+                    .as_deref()
+                    .is_none_or(|name| pywhat::validators::validator(name).expect("exists")(text))
         })
         .map(|(entry, _)| entry.name.clone())
         .collect()

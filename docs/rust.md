@@ -2,8 +2,9 @@
 
 The crate at the root of this repository is pyWhat's identification in Rust: the same regexes,
 filters, processors and output as the Python package. It reads the data files of the Python
-package, `pywhat/Data/*.json`, at compile time (`include_str!`), so both always use the same
-regexes. Adding a regex is still a change to `regex.json` only. Issue #291 is the plan.
+package, `pywhat/Data/*.json` and `pywhat/Data/regexes/*.json`, at compile time (`include_str!`),
+so both always use the same regexes. Adding a regex is still a change to the data only
+([adding-regexes.md](adding-regexes.md)). Issue #291 is the plan.
 
 ```toml
 [dependencies]
@@ -14,7 +15,8 @@ pywhat = "6"
 use pywhat::{Filter, Identifier};
 
 // Like `Identifier()` in Python: rarity 0.1 to 1, regexes with their boundaries (`^...$`
-// match whole lines), the default processors (Unix timestamp dates, Bitcoin checksums)
+// match whole lines), the default processors (Unix timestamp dates, Bitcoin checksums, and the
+// other checksums: card numbers, wallets, Turkish IDs)
 let identifier = Identifier::default();
 for found in identifier.identify("bee@skerritt.blog\nthm{a_flag}") {
     println!("{} is a {}", found.matched, found.regex.name);
@@ -43,10 +45,11 @@ assert!(found.iter().any(|m| m.matched == "bee@skerritt.blog" && m.regex.name ==
 | `identifier.iter_identify(&inputs, options, found, error)` (feature `files`) | `iter_identify(...)` |
 | `Identified::to_json()` | `json.dumps(identify(...))`, byte for byte |
 | `Filter::new(tags, exclude_tags, min_rarity, max_rarity)`, `Filter::default()`, `Filter::none()`, `.and()`, `.or()` | `Filter({...})`, `&`, `\|` |
-| `Processor` (trait), `default_processors()`, `processors::OpenStreetMap` | `Processor`, `default_processors()`, `OpenStreetMapProcessor` |
+| `Processor` (trait), `default_processors()`, `processors::OpenStreetMap`, `processors::Validator` | `Processor`, `default_processors()`, `OpenStreetMapProcessor`, `ValidatorProcessor` |
+| `validators::validator(name)`, `validators::luhn`, ... | `pywhat.validators.VALIDATORS`, `luhn`, ... |
 | `ranking::sort_matches`, `Key`, `Top::parse`, `ranking::top_matches`, `Identified::top` | `Keys`, `parse_top`, `top_matches` |
 | `Match` (`matched`, `regex`, `description`, `exploit`, `link()`, `rarity`, `tags`, `fragment`, `start`, `end`) | a match dict |
-| `regexes()`, `tags()`, `RegexEntry` | `load_regexes()`, `AvailableTags()` |
+| `regexes()`, `tags()`, `RegexEntry` (with `validator` and `charset_only()`), `CHARSET_ONLY` | `load_regexes()`, `AvailableTags()`, the tag `"Charset Only"` |
 
 Rust only:
 
@@ -241,6 +244,16 @@ What changes for Ciphey's results:
 - Bitcoin addresses must have a valid checksum (the default processors), so the Bitcoin regex no
   longer takes random Base58.
 - The CTF flag regexes now escape `{`, as Python's do, and match the same texts as before.
-- The checker's `EXCLUDED_NAMES` and `EXCLUDED_TAGS` still work by name. The false-positive work
-  (#1031, #1104) adds a per-regex property for regexes that only check which characters a text has
-  and how long it is, and checksum validators, so that Ciphey can filter by property instead.
+- Card numbers, Dogecoin, Litecoin, XRP and Bitcoin Cash addresses and Turkish IDs must pass
+  their checksums, and Facebook access tokens must mix cases and digits (#1104).
+- **The `EXCLUDED_NAMES` and `EXCLUDED_TAGS` lists can go:** the regexes that only check which
+  characters a text has and how long it is have the tag `Charset Only` (29 of them, computed by
+  `tests/charset_only.rs`). Ciphey's checker leaves them out with
+  `Identifier::default().min_rarity(MIN_RARITY).exclude_tags(&[pywhat::CHARSET_ONLY])`, or keeps
+  the identifier and skips `found.regex.charset_only()` in `is_trusted_match`. On Ciphey's
+  plaintext data this leaves 1 false positive in 5,726 search candidates and none in 40,000
+  random strings of each of nine alphabets, while 136 of Ciphey's 146 samples of formats are
+  still found (the 10 others are SSNs, dates of birth and a Monero address, which are tagged).
+  Phone Number isn't tagged, because pyWhat's regex needs a `+`, parentheses or separators,
+  where lemmeknow's took any 10 to 13 digits: `18005551234` is no longer a phone number, which
+  changes Ciphey's `is_phone_number` (DTMF) and its test `phone_numbers_are_recognised_but_not_identified`.

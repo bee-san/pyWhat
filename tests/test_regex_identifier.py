@@ -59,9 +59,9 @@ def test_international_url():
         ("00:00:00:00:00:00", "Xerox Corp"),
         ("00-00-00-00-00-00", "Xerox Corp"),
         ("0000.0000.0000", "Xerox Corp"),
-        # MasterCard Number
-        ("5409010000000004", "UNION NATIONAL BANK"),
-        ("5409 0100 0000 0004", "UNION NATIONAL BANK"),
+        # MasterCard Number (passing the Luhn check)
+        ("5409010000000005", "UNION NATIONAL BANK"),
+        ("5409 0100 0000 0005", "UNION NATIONAL BANK"),
         # Phone Number
         ("+1-202-555-0156", "United States"),
         ("+662025550156", "Thailand"),

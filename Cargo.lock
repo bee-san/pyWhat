@@ -241,6 +241,7 @@ dependencies = [
  "lemmeknow",
  "rayon",
  "regex",
+ "regex-automata",
  "regex-syntax",
  "serde_json",
  "sha2",

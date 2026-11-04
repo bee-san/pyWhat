@@ -25,7 +25,7 @@ keywords = ["identify", "regex", "ctf", "security", "forensics"]
 categories = ["command-line-utilities", "text-processing", "wasm"]
 # The data stays where the Python package has it: pywhat/Data is the single
 # source of truth for both.
-include = ["/src", "/pywhat/Data/*.json", "/LICENSE", "/README.md"]
+include = ["/src", "/pywhat/Data/*.json", "/pywhat/Data/regexes/*.json", "/LICENSE", "/README.md"]
 
 [features]
 default = ["parallel", "files", "mac-vendors"]
@@ -57,6 +57,8 @@ serde_json = { version = "1.0.154", features = ["preserve_order"] }
 # Only for benches/whole.rs, which compares the speed with lemmeknow, the crate that Ciphey
 # used before.
 lemmeknow = { version = "=0.8.0", default-features = false }
+# tests/charset_only.rs builds the DFA of every regex
+regex-automata = { version = "0.4.18", features = ["dfa-build"] }
 
 [[example]]
 name = "bench_file"
@@ -64,6 +66,10 @@ required-features = ["files"]
 
 [[bench]]
 name = "whole"
+harness = false
+
+[[bench]]
+name = "false_positives"
 harness = false
 
 [profile.release]

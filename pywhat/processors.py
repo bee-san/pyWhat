@@ -26,6 +26,8 @@ from urllib.request import Request, urlopen
 
 from pywhat.bitcoin import is_bitcoin_address
 from pywhat.filter import Filter
+from pywhat.helper import load_regexes
+from pywhat.validators import VALIDATORS
 
 EPOCH = datetime(1970, 1, 1, tzinfo=timezone.utc)
 # Not calendar.month_name, which depends on the locale
@@ -172,6 +174,21 @@ class BitcoinAddressProcessor(Processor):
         return match if is_bitcoin_address(match["Matched"]) else None
 
 
+class ValidatorProcessor(Processor):
+    """
+    Filters out the matches whose checksum is wrong, for the regexes that name a checksum in
+    their "Validator" (see pywhat.validators): card numbers must pass the Luhn check, a
+    Litecoin address must be Base58Check, and so on.
+    """
+
+    def __init__(self):
+        self.names = [regex["Name"] for regex in load_regexes() if "Validator" in regex]
+
+    def process(self, match: dict) -> Optional[dict]:
+        validator = VALIDATORS[match["Regex Pattern"]["Validator"]]
+        return match if validator(match["Matched"]) else None
+
+
 # The @latitude,longitude,zoom notation of Google Maps, such as
 # "@13.923404,101.3395163,17z"
 GOOGLE_MAPS_NOTATION = re.compile(
@@ -315,7 +332,7 @@ class GoogleAPIKeyVerifier(Processor):
 
 def default_processors() -> List[Processor]:
     """New instances of the processors that pyWhat uses by default."""
-    return [UnixTimestampProcessor(), BitcoinAddressProcessor()]
+    return [UnixTimestampProcessor(), BitcoinAddressProcessor(), ValidatorProcessor()]
 
 
 def verifiers() -> List[Processor]:
