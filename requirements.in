@@ -1,9 +1,10 @@
-# The development tools. requirements-dev.txt pins them and everything they need, for
-# every Python version from 3.8 (the newest release that supports each version):
+# The development tools (the package's own dependencies are in pyproject.toml).
+# requirements.txt pins them and everything they need, for every Python version from 3.8
+# (the newest release that supports each version):
 #
-#   uv pip compile --universal --python-version 3.8 requirements-dev.in -o requirements-dev.txt
+#   uv pip compile --universal --python-version 3.8 requirements.in -o requirements.txt
 #
-# The test session in noxfile.py installs requirements-dev.txt, then the package itself.
+# The test session in noxfile.py installs requirements.txt, then the package itself.
 
 # The versions of the package's own dependencies that the tests run with
 click==8.1.2

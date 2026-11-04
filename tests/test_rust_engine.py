@@ -1,5 +1,7 @@
 """The Rust engine of RegexIdentifier (pywhat._pywhat) and its fallback to re."""
+import importlib
 import re
+import sys
 from importlib.metadata import version
 
 import pytest
@@ -111,3 +113,43 @@ def test_patterns_the_engine_cant_compile_fall_back_to_re(re_searches):
 
 def test_version_is_the_installed_one():
     assert pywhat.__version__ == version("pywhat")
+
+
+class _Extension:
+    """A finder of pywhat._pywhat that fails to find it, or to load it."""
+
+    def __init__(self, error: ImportError):
+        self.error = error
+
+    def find_spec(self, name, path=None, target=None):
+        if name == "pywhat._pywhat":
+            raise self.error
+        return None
+
+
+@pytest.mark.parametrize(
+    "error, falls_back",
+    [
+        # A checkout in which the extension isn't built: Python's re searches
+        (ModuleNotFoundError("No module named 'pywhat._pywhat'"), True),
+        # An extension that is there but can't be loaded is an error
+        (ImportError("Error loading shared library libgcc_s.so.1"), False),
+    ],
+)
+def test_without_the_extension(monkeypatch, error, falls_back):
+    monkeypatch.delitem(sys.modules, "pywhat._pywhat")
+    monkeypatch.delattr(pywhat, "_pywhat")
+    monkeypatch.setattr(sys, "meta_path", [_Extension(error), *sys.meta_path])
+    try:
+        if falls_back:
+            importlib.reload(regex_identifier)
+            assert regex_identifier._pywhat is None
+            found = RegexIdentifier().check(["thm{a}"])
+            assert [match["Matched"] for match in found] == ["thm{a}"]
+        else:
+            with pytest.raises(ImportError, match="libgcc"):
+                importlib.reload(regex_identifier)
+    finally:
+        monkeypatch.undo()
+        importlib.reload(regex_identifier)
+    assert regex_identifier._pywhat is not None

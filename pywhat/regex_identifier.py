@@ -12,9 +12,10 @@ from pywhat.ranking import Span, mark_fragments
 
 try:
     # The regex engine of the Rust crate (py/ in the repository), which the wheel
-    # contains
-    from pywhat import _pywhat
-except ImportError:  # pragma: no cover
+    # contains. An extension that is there but can't be loaded (a missing system
+    # library, say) is an error, not a reason to search with re.
+    import pywhat._pywhat as _pywhat
+except ModuleNotFoundError:  # pragma: no cover
     # A checkout in which the extension isn't built (pip install -e . builds it)
     _pywhat = None  # type: ignore[assignment]
 

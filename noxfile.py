@@ -12,8 +12,8 @@ if environ.get("CI", None) == "true":
 @nox.session
 def tests(session: Session) -> None:
     """Run the test suite, on the Rust engine."""
-    # The tools, at the versions in requirements-dev.txt (see requirements-dev.in)
-    session.install("-r", "requirements-dev.txt")
+    # The tools, at the versions in requirements.txt (see requirements.in)
+    session.install("-r", "requirements.txt")
     # Builds the extension module pywhat._pywhat with maturin, which needs a Rust
     # toolchain (cargo). pytest imports pywhat from the checkout, which comes first on
     # sys.path, so the install is editable: maturin puts the extension into pywhat/,
@@ -25,5 +25,5 @@ def tests(session: Session) -> None:
 @nox.session
 def coverage(session: Session) -> None:
     """Upload coverage data."""
-    session.install("--constraint=requirements-dev.txt", "codecov")
+    session.install("--constraint=requirements.txt", "codecov")
     session.run("codecov", "--env", "OS", "PYTHON")

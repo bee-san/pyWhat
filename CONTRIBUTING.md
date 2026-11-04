@@ -26,7 +26,7 @@ Secret scanners take fake API keys, like a Stripe or Shopify key, for leaked sec
 The Python package searches with the regex engine of the Rust crate at the root of the repository, through its extension module `pywhat._pywhat` (`py/`). Building it needs [Rust](https://rustup.rs):
 
 ```console
-$ pip install -r requirements-dev.txt
+$ pip install -r requirements.txt
 $ pip install -e .     # builds the extension into pywhat/; run it again after changing Rust code
 $ pytest
 ```
