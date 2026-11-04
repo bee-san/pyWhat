@@ -1,0 +1,71 @@
+[workspace]
+members = ["."]
+resolver = "2"
+
+[workspace.package]
+version = "6.0.0-alpha.1"
+edition = "2021"
+license = "MIT"
+repository = "https://github.com/bee-san/pyWhat"
+rust-version = "1.88"
+
+[package]
+name = "pywhat"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+repository.workspace = true
+rust-version.workspace = true
+authors = ["Bee <github@skerritt.blog>"]
+description = "Identify anything: emails, IP addresses, API keys, cryptocurrency wallets, CTF flags and more"
+homepage = "https://github.com/bee-san/pyWhat"
+documentation = "https://docs.rs/pywhat"
+readme = "README.md"
+keywords = ["identify", "regex", "ctf", "security", "forensics"]
+categories = ["command-line-utilities", "text-processing", "wasm"]
+# The data stays where the Python package has it: pywhat/Data is the single
+# source of truth for both.
+include = ["/src", "/pywhat/Data/*.json", "/LICENSE", "/README.md"]
+
+[features]
+default = ["parallel", "files", "mac-vendors"]
+# Search the regexes of a large text, and compile them, on rayon's thread pool. Not on
+# wasm32, which has no threads.
+parallel = ["dep:rayon"]
+# Files and directories (Identifier::identify_inputs). Not for wasm32.
+files = ["dep:walkdir"]
+# The vendors of MAC address prefixes in the descriptions of EUI-48 matches: 1.6 MB of data,
+# which a web build may leave out.
+mac-vendors = []
+# The WebAssembly API (src/wasm.rs): cargo build --lib --target wasm32-unknown-unknown
+# --no-default-features --features wasm
+wasm = ["dep:wasm-bindgen"]
+
+[dependencies]
+regex = "1.13.1"
+regex-syntax = "0.8.11"
+fancy-regex = "0.20.0"
+serde_json = { version = "1.0.154", features = ["preserve_order"] }
+# Bitcoin's Base58Check checksums
+sha2 = "0.11.1"
+rayon = { version = "1.12.0", optional = true }
+walkdir = { version = "2.5.0", optional = true }
+wasm-bindgen = { version = "=0.2.130", optional = true }
+
+[dev-dependencies]
+serde_json = { version = "1.0.154", features = ["preserve_order"] }
+# Only for benches/whole.rs, which compares the speed with lemmeknow, the crate that Ciphey
+# used before.
+lemmeknow = { version = "=0.8.0", default-features = false }
+
+[[example]]
+name = "bench_file"
+required-features = ["files"]
+
+[[bench]]
+name = "whole"
+harness = false
+
+[profile.release]
+lto = "thin"
+codegen-units = 4

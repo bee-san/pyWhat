@@ -1,0 +1,100 @@
+name: Rust
+# The pywhat crate at the root of the repository: formatting, lints, tests on the three OSes,
+# the WebAssembly build, and the golden test, which checks that the crate finds exactly what
+# the Python package finds (scripts/golden.py, tests/golden.rs).
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+concurrency:
+  group: rust-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+env:
+  CARGO_TERM_COLOR: always
+  CARGO_PROFILE_DEV_DEBUG: 0
+  CARGO_PROFILE_TEST_DEBUG: 0
+jobs:
+  lint:
+    name: Rust fmt and clippy
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
+      - uses: dtolnay/rust-toolchain@b725eda525362e7cf34af9a7243cac1e3f01a7ec # stable
+        with:
+          components: rustfmt, clippy
+      - uses: Swatinem/rust-cache@d1527c8f67ef9af357290475d4af4b0fab8f12e0 # v2
+      - run: cargo fmt --all -- --check
+      - run: cargo clippy --locked --all-targets -- -D warnings
+      - run: cargo clippy --locked --all-targets --no-default-features -- -D warnings
+      - run: cargo clippy --locked --lib --no-default-features --features wasm -- -D warnings
+
+  test:
+    name: Rust tests on ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        # Not macOS: its hosted runners are short of capacity (jobs are cancelled when no
+        # runner takes them), and the Python jobs and the wheel builds run there
+        os: [ubuntu-latest, windows-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
+      - uses: dtolnay/rust-toolchain@b725eda525362e7cf34af9a7243cac1e3f01a7ec # stable
+      - uses: Swatinem/rust-cache@d1527c8f67ef9af357290475d4af4b0fab8f12e0 # v2
+      - run: cargo test --locked
+      - run: cargo test --locked --no-default-features
+
+  msrv:
+    name: Rust 1.88 (MSRV)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
+      - uses: dtolnay/rust-toolchain@b725eda525362e7cf34af9a7243cac1e3f01a7ec # stable
+        with:
+          toolchain: '1.88'
+      - uses: Swatinem/rust-cache@d1527c8f67ef9af357290475d4af4b0fab8f12e0 # v2
+      - run: cargo check --lib --locked
+
+  wasm:
+    name: Rust wasm32
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
+      - uses: dtolnay/rust-toolchain@b725eda525362e7cf34af9a7243cac1e3f01a7ec # stable
+        with:
+          targets: wasm32-unknown-unknown
+      - uses: Swatinem/rust-cache@d1527c8f67ef9af357290475d4af4b0fab8f12e0 # v2
+      - uses: actions/setup-node@a0853c24544627f65ddf259abe73b1d18a591444 # v5
+        with:
+          node-version: '24'
+      - run: cargo build --locked --lib --target wasm32-unknown-unknown --no-default-features
+      - run: >-
+          cargo rustc --locked --lib --release --target wasm32-unknown-unknown
+          --no-default-features --features wasm --crate-type cdylib
+      # The wasm-bindgen CLI must be the version of the wasm-bindgen crate (Cargo.lock)
+      - run: cargo install --locked wasm-bindgen-cli --version 0.2.130
+      - run: >-
+          wasm-bindgen --target nodejs --out-dir target/wasm-node
+          target/wasm32-unknown-unknown/release/pywhat.wasm
+      - run: node scripts/wasm_smoke.js target/wasm-node/pywhat.js
+      # web/index.html identifies the README's examples in headless Chrome
+      - run: CHROME=$(command -v google-chrome) scripts/web_selftest.sh
+
+  golden:
+    name: Rust finds what Python finds (golden)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
+      - uses: dtolnay/rust-toolchain@b725eda525362e7cf34af9a7243cac1e3f01a7ec # stable
+      - uses: Swatinem/rust-cache@d1527c8f67ef9af357290475d4af4b0fab8f12e0 # v2
+      - uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1 # v6
+        with:
+          python-version: '3.10'
+      # The versions in poetry.lock
+      - run: 'python -m pip install --only-binary :all: click==8.1.2 rich==12.2.0'
+      - run: python scripts/golden.py
+      - run: cargo test --locked --release --test golden -- --nocapture
+        env:
+          PYWHAT_GOLDEN: target/golden.jsonl
+          PYWHAT_GOLDEN_FILES: target/golden-files.jsonl

@@ -1,0 +1,106 @@
+<!doctype html>
+<!--
+  pyWhat in the browser, on the WebAssembly build of the pywhat crate. Build it with:
+
+    cargo rustc --lib --release --target wasm32-unknown-unknown --no-default-features \
+        --features wasm --crate-type cdylib
+    wasm-bindgen --target web --out-dir web/pkg target/wasm32-unknown-unknown/release/pywhat.wasm
+
+  and serve this directory (python -m http.server -d web). Everything runs in the browser.
+  With ?selftest in the URL, the page identifies the examples of the README and writes
+  "SELFTEST OK" or "SELFTEST FAILED" into #status (scripts/web_selftest.sh).
+-->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>pyWhat</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+  body { font: 16px/1.5 system-ui, sans-serif; max-width: 60rem; margin: 2rem auto; padding: 0 1rem; }
+  textarea { width: 100%; height: 6rem; font: 14px monospace; }
+  table { border-collapse: collapse; width: 100%; margin-top: 1rem; }
+  td, th { border: 1px solid #ccc; padding: .3rem .5rem; text-align: left; vertical-align: top; }
+  td:first-child { font-family: monospace; word-break: break-all; }
+</style>
+</head>
+<body>
+<h1>pyWhat</h1>
+<p>Identify anything: paste text, and pyWhat finds the email addresses, IP addresses, API keys,
+cryptocurrency wallets, CTF flags and more in it.</p>
+<label for="text">Text to identify</label>
+<textarea id="text" spellcheck="false">0x52908400098527886E0F7030069857D2E4169EE7 HTB{this is a flag} myEmail@host.org</textarea>
+<p>
+  <label><input type="checkbox" id="boundaryless" checked> Find matches inside longer text</label>
+  <label>Rarity from <input type="number" id="rarity" value="0.1" min="0" max="1" step="0.1"></label>
+</p>
+<p id="status">Loading…</p>
+<table>
+  <thead><tr><th>Matched text</th><th>Identified as</th><th>Description</th></tr></thead>
+  <tbody id="results"></tbody>
+</table>
+<script type="module">
+import init, { identify, version } from "./pkg/pywhat.js";
+
+// The examples of the README, and what pyWhat finds in each
+const README = [
+  ["0x52908400098527886E0F7030069857D2E4169EE7", '{"boundaryless": true}', "Ethereum (ETH) Wallet Address"],
+  ["dQw4w9WgXcQ", '{"min_rarity": 0}', "YouTube Video ID"],
+  ["HTB{this is a flag}", "{}", "HackTheBox Flag Format"],
+  ["52.6169586, -1.9779857", "{}", "Latitude & Longitude Coordinates"],
+  // what --rarity 0.6: 'myEmail@host.org' (email addresses have a rarity of 0.5)
+  ["myEmail@host.org", '{"min_rarity": 0.6, "boundaryless": true}', "Uniform Resource Locator (URL)"],
+  // what -br 0.6: -be URL '123myEmail@host.org456': nothing is boundaryless at 0.6+
+  ["123myEmail@host.org456", '{"boundaryless": {"min_rarity": 0.6, "exclude": ["URL"]}}', null],
+  ["123myEmail@host.org456", '{"boundaryless": true, "include": ["Identifiers"]}', "Email Address"],
+  ["https://skerritt.blog", "{}", "Uniform Resource Locator (URL)"],
+  ["1KFHE7w8BhaENAswwryaoccDb6qcT6DbYY", "{}", "Bitcoin (\u20bf) Wallet Address"],
+  ["3F3F3F3F3F3F3F3F3F3F3F3F3F3F3F3F3F", "{}", null],
+  ["AIzaSyA00000000000000000000000000000000", "{}", "Google API Key"],
+];
+
+const names = (json) =>
+  Object.values(JSON.parse(json).Regexes || {}).flat().map((m) => m["Regex Pattern"].Name);
+
+function show() {
+  const options = JSON.stringify({
+    boundaryless: document.getElementById("boundaryless").checked,
+    min_rarity: Number(document.getElementById("rarity").value),
+  });
+  const result = JSON.parse(identify(document.getElementById("text").value, options));
+  const table = document.getElementById("results");
+  table.replaceChildren();
+  if (result.error) {
+    document.getElementById("status").textContent = result.error;
+    return;
+  }
+  const matches = Object.values(result.Regexes || {}).flat();
+  document.getElementById("status").textContent =
+    matches.length ? `${matches.length} found (pywhat ${version()})` : "Nothing found!";
+  for (const match of matches) {
+    const row = table.insertRow();
+    row.insertCell().textContent = match.Matched;
+    row.insertCell().textContent = match["Regex Pattern"].Name;
+    row.insertCell().textContent = match["Regex Pattern"].Description || "";
+  }
+}
+
+await init();
+if (new URLSearchParams(location.search).has("selftest")) {
+  const failures = [];
+  for (const [text, options, expected] of README) {
+    const found = names(identify(text, options));
+    const ok = expected === null ? found.length === 0 : found.includes(expected);
+    if (!ok) failures.push(`${text}: ${JSON.stringify(found)}`);
+  }
+  document.getElementById("status").textContent = failures.length
+    ? "SELFTEST FAILED " + failures.join("; ")
+    : `SELFTEST OK ${README.length} examples, pywhat ${version()}`;
+} else {
+  for (const id of ["text", "boundaryless", "rarity"]) {
+    document.getElementById(id).addEventListener("input", show);
+  }
+  show();
+}
+</script>
+</body>
+</html>
