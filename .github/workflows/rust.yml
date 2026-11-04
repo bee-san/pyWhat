@@ -27,6 +27,7 @@ jobs:
       - run: cargo fmt --all -- --check
       - run: cargo clippy --locked --all-targets -- -D warnings
       - run: cargo clippy --locked --all-targets --no-default-features -- -D warnings
+      - run: cargo clippy --locked --all-targets --no-default-features --features children -- -D warnings
       - run: cargo clippy --locked --lib --no-default-features --features wasm -- -D warnings
 
   test:
@@ -44,6 +45,7 @@ jobs:
       - uses: Swatinem/rust-cache@d1527c8f67ef9af357290475d4af4b0fab8f12e0 # v2
       - run: cargo test --locked
       - run: cargo test --locked --no-default-features
+      - run: cargo test --locked --no-default-features --features children
 
   msrv:
     name: Rust 1.88 (MSRV)

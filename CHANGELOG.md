@@ -24,6 +24,11 @@ Rust CLI and the Python wheel built on it follow before 6.0.0.
   text a known format), lemmeknow's builder names (`min_rarity`, `max_rarity`, `include_tags`,
   `exclude_tags`, `boundaryless`), and `warm_up`. docs/rust.md has the migration.
 - A WebAssembly build (feature `wasm`) and a web page on it (`web/`).
+- Features: `parallel`, `files` (files and directories, with the file signatures, which are under
+  CC BY-SA 4.0), `children` (the locations of phone numbers in descriptions) and `mac-vendors`
+  (the vendors of MAC addresses, 1.6 MB) are on by default. With `default-features = false`, a
+  build has only the regexes: the WebAssembly build with `--features wasm` is 1,950,784 bytes
+  after `wasm-opt -Oz` (671,147 gzipped).
 - Where the crate differs from Python (docs/rust.md, "Differences from Python"): the Unicode
   classes of `\s`, `\w`, `\b`, `(?i)` and `\d`, and combining marks next to a match;
   directories are read in name order instead of the file system's; unreadable files are

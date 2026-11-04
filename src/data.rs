@@ -24,6 +24,9 @@ pub(crate) const REGEX_AREA_FILES: [(&str, &str); 7] = [
     ("files", include_str!("../pywhat/Data/regexes/files.json")),
     ("social", include_str!("../pywhat/Data/regexes/social.json")),
 ];
+/// The file signatures (CC BY-SA 4.0, see NOTICE), only with the `files` feature, which
+/// identifies files by them.
+#[cfg(feature = "files")]
 pub(crate) const FILE_SIGNATURES_JSON: &str = include_str!("../pywhat/Data/file_signatures.json");
 
 /// The vendors of MAC address prefixes (1.6 MB), for the descriptions of EUI-48 matches.
@@ -33,17 +36,25 @@ const MAC_VENDORS_JSON: &str = include_str!("../pywhat/Data/mac_vendors.json");
 #[cfg(not(feature = "mac-vendors"))]
 const MAC_VENDORS_JSON: &str = "{}";
 
+/// The locations of phone numbers by country code. Without the `children` feature, Phone
+/// Number matches have the regex's own description.
+#[cfg(feature = "children")]
+const PHONE_CODES_JSON: &str = include_str!("../pywhat/Data/phone_codes.json");
+#[cfg(not(feature = "children"))]
+const PHONE_CODES_JSON: &str = "{}";
+
 /// The data files that a `Children` entry can name in its `"path"`.
 fn data_file(path: &str) -> Option<&'static str> {
     Some(match path {
         "mac_vendors.json" => MAC_VENDORS_JSON,
-        "phone_codes.json" => include_str!("../pywhat/Data/phone_codes.json"),
+        "phone_codes.json" => PHONE_CODES_JSON,
         "regex.json" => REGEX_JSON,
         // The area files, by their path relative to pywhat/Data
         path if path.starts_with("regexes/") => REGEX_AREA_FILES
             .iter()
             .find(|(area, _)| path == format!("regexes/{area}.json"))
             .map(|(_, text)| *text)?,
+        #[cfg(feature = "files")]
         "file_signatures.json" => FILE_SIGNATURES_JSON,
         _ => return None,
     })
@@ -489,7 +500,9 @@ mod tests {
     fn every_children_path_is_embedded() {
         for entry in regexes() {
             if let Some(children) = &entry.children {
-                if !cfg!(feature = "mac-vendors") && entry.name.starts_with("EUI-48") {
+                if !cfg!(feature = "mac-vendors") && entry.name.starts_with("EUI-48")
+                    || !cfg!(feature = "children") && entry.name == "Phone Number"
+                {
                     continue;
                 }
                 assert!(!children.items().entries.is_empty(), "{}", entry.name);
