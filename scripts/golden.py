@@ -24,12 +24,16 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT))
 
-from pywhat import Identifier  # noqa: E402
+from pywhat import Identifier, regex_identifier  # noqa: E402
 from pywhat.filter import Distribution, Filter  # noqa: E402
 from pywhat.helper import Keys, load_regexes  # noqa: E402
 from pywhat.printer import get_link  # noqa: E402
 from pywhat.processors import OpenStreetMapProcessor, default_processors  # noqa: E402
 from pywhat.ranking import located_matches, top_matches  # noqa: E402
+
+# What Python's re finds, which the Rust crate is compared with: not the Rust engine,
+# which the package searches with once its extension is built (pip install -e .)
+regex_identifier._pywhat = None  # type: ignore[assignment]
 
 AFFIXES = [
     "a",

@@ -41,6 +41,61 @@ impl std::fmt::Display for MatchError {
 
 impl std::error::Error for MatchError {}
 
+/// A pattern that neither the `regex` crate nor fancy-regex can compile.
+#[derive(Debug, Clone, PartialEq, Eq)]
+pub struct PatternError(pub String);
+
+impl std::fmt::Display for PatternError {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        f.write_str(&self.0)
+    }
+}
+
+impl std::error::Error for PatternError {}
+
+/// A regex compiled the way [`crate::Identifier`] compiles the regexes of regex.json, for
+/// code that searches with the patterns itself (the Python package's `re.finditer`): in
+/// multi-line mode (`^` and `$` match at line breaks, like `re.MULTILINE`), on the `regex`
+/// crate if it can be, else guarded or on fancy-regex with its backtracking limit (see the
+/// module docs).
+///
+/// ```
+/// use pywhat::engine::Pattern;
+///
+/// let pattern = Pattern::new(r"(?<![0-9])[0-9]{3}(?![0-9])").unwrap();
+/// let mut spans = Vec::new();
+/// pattern
+///     .find_iter("12 345 6789\n987", |start, end| spans.push((start, end)))
+///     .unwrap();
+/// assert_eq!(spans, [(3, 6), (12, 15)]);
+/// ```
+#[derive(Debug)]
+pub struct Pattern(Compiled);
+
+impl Pattern {
+    pub fn new(pattern: &str) -> Result<Pattern, PatternError> {
+        Compiled::new(pattern, true)
+            .map(Pattern)
+            .map_err(PatternError)
+    }
+
+    /// Which engine the pattern runs on.
+    pub fn engine(&self) -> EngineKind {
+        self.0.engine()
+    }
+
+    /// Calls `found(start, end)` with the byte offsets of every match in `text`, in order,
+    /// like `re.finditer(pattern, text, re.MULTILINE)`. Returns fancy-regex's error if it
+    /// gives up (it backtracked more than 100,000,000 times), after the matches before it.
+    pub fn find_iter(
+        &self,
+        text: &str,
+        mut found: impl FnMut(usize, usize),
+    ) -> Result<(), MatchError> {
+        self.0.find_iter(text, &mut found)
+    }
+}
+
 /// Which engine a pattern runs on.
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
 pub enum EngineKind {
@@ -843,5 +898,29 @@ mod tests {
         assert_eq!(compiled.engine(), EngineKind::Fancy);
         // Like Python, a back-reference to a group that did not take part fails
         assert_eq!(spans(&compiled, "1-2-\n12\n1-2"), vec![(0, 4)]);
+    }
+
+    #[test]
+    fn patterns_compile_like_the_regexes_of_identify() {
+        for entry in crate::regexes() {
+            for (pattern, boundaryless) in
+                [(&entry.regex, false), (&entry.boundaryless_regex, true)]
+            {
+                let compiled = Pattern::new(pattern).unwrap();
+                assert_eq!(
+                    Ok(compiled.engine()),
+                    crate::engine_of(entry, boundaryless),
+                    "{}",
+                    entry.name
+                );
+            }
+        }
+    }
+
+    #[test]
+    fn patterns_that_dont_compile() {
+        assert!(Pattern::new("(").is_err());
+        // Python's ASCII flag
+        assert!(Pattern::new(r"(?a)\w").is_err());
     }
 }

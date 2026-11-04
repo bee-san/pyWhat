@@ -1,5 +1,8 @@
 [workspace]
-members = ["."]
+# py/ is the Python extension module, which maturin builds (pyproject.toml); cargo commands
+# at the root leave it out
+members = [".", "py"]
+default-members = ["."]
 resolver = "2"
 
 [workspace.package]
