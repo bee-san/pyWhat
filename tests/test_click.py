@@ -819,3 +819,14 @@ def test_print_stream_api():
             Identifier().identify("fixtures", only_text=False), text_input
         )
         assert squeeze(output) == squeeze(printer.console.file.getvalue())
+
+
+def test_json_file_signature_does_not_use_hex_filename(tmp_path, monkeypatch):
+    monkeypatch.chdir(tmp_path)
+    name = "89504E470D0A1A0A"
+    (tmp_path / name).write_text("THM{hello}")
+    result = CliRunner().invoke(main, ["-db", "--json", name])
+    assert result.exit_code == 0
+    identified = json.loads(result.output)
+    assert identified["File Signatures"] is None
+    assert identified["Regexes"][name][0]["Matched"] == "THM{hello}"

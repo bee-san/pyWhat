@@ -193,8 +193,8 @@
          "THM Flag"
       ],
       "Regex": [
-         "(?i)^(thm{.*})$",
-         "(?i)^(tryhackme{.*})$"
+         "(?i)^(thm\\{.*\\})$",
+         "(?i)^(tryhackme\\{.*\\})$"
       ],
       "plural_name": false,
       "Description": "Used for Capture The Flags at https://tryhackme.com",
@@ -206,7 +206,8 @@
       "Examples": {
          "Valid": [
             "thm{hello}",
-            "tryhackme{hello}"
+            "tryhackme{hello}",
+            "thm{}"
          ],
          "Invalid": []
       }
@@ -217,7 +218,7 @@
          "HackTheBox Flag",
          "HTB Flag"
       ],
-      "Regex": "(?i)^(hackthebox{.*}|htb{.*})$",
+      "Regex": "(?i)^(hackthebox\\{.*\\}|htb\\{.*\\})$",
       "plural_name": false,
       "Description": "Used for Capture The Flags at https://hackthebox.eu",
       "Rarity": 1,
@@ -234,7 +235,7 @@
    },
    {
       "Name": "Capture The Flag (CTF) Flag",
-      "Regex": "(?i)^(flag{.*}|ctf{.*}|ctfa{.*})$",
+      "Regex": "(?i)^(flag\\{.*\\}|ctf\\{.*\\}|ctfa\\{.*\\})$",
       "plural_name": false,
       "Description": null,
       "Rarity": 1,
@@ -1443,7 +1444,7 @@
    },
    {
       "Name": "Guilded Webhook",
-      "Regex": "(?i)^(https?:\\/\\/(?:api\\.|media\\.|(?P<web>www.))guilded\\.gg(?(web)\\/api|)\\/webhooks\\/[a-f0-9]{8}-[a-f0-9]{4}-4[a-f0-9]{3}-[89abAB][a-f0-9]{3}-[a-f0-9]{12}\\/[\\w]{86})$",
+      "Regex": "(?i)^(https?:\\/\\/(?:(?:api\\.|media\\.)guilded\\.gg|www.guilded\\.gg\\/api)\\/webhooks\\/[a-f0-9]{8}-[a-f0-9]{4}-4[a-f0-9]{3}-[89abAB][a-f0-9]{3}-[a-f0-9]{12}\\/[\\w]{86})$",
       "plural_name": false,
       "Description": null,
       "Rarity": 1,
@@ -2646,7 +2647,7 @@
          "Social Security Number",
          "SSN"
       ],
-      "Regex": "^(([0-9][0-9][0-9])(?<!666|000|9[0-9][0-9])(=|\\+|_|\\#|:|;|\\.|-|\\s){0,3}([1-9][1-9]|0[1-9]|[1-9]0)(=|\\+|_|\\#|:|;|\\.|-|\\s){0,3}([0-9][0-9][0-9][0-9])(?<!0000)(=|\\+|_|\\#|:|;|\\.|-|\\s){0,3}?)$",
+      "Regex": "^((00[1-9]|0[1-9][0-9]|[1-5][0-9][0-9]|6[0-5][0-9]|66[0-57-9]|6[7-9][0-9]|[78][0-9][0-9])(=|\\+|_|\\#|:|;|\\.|-|\\s){0,3}([1-9][1-9]|0[1-9]|[1-9]0)(=|\\+|_|\\#|:|;|\\.|-|\\s){0,3}(000[1-9]|00[1-9][0-9]|0[1-9][0-9][0-9]|[1-9][0-9][0-9][0-9])(=|\\+|_|\\#|:|;|\\.|-|\\s){0,3}?)$",
       "plural_name": false,
       "Description": "An [#CAE4F1][link=https://en.wikipedia.org/wiki/Social_Security_number]American Identification Number[/link][/#CAE4F1]",
       "Rarity": 0.5,
@@ -3552,7 +3553,7 @@
       "Alternative Names": [
          "JWT"
       ],
-      "Regex": "(?i)^((?=eyJ)(?:[a-z0-9_=\\-]{17,})\\.(?=e)(?:[a-z0-9_=\\-]{2,})\\.(?:[a-z0-9_=\\-]{43,}))$",
+      "Regex": "(?i)^(eyJ[a-z0-9_=\\-]{14,}\\.e[a-z0-9_=\\-]{1,}\\.[a-z0-9_=\\-]{43,})$",
       "plural_name": false,
       "Description": null,
       "Rarity": 0.2,
@@ -3568,12 +3569,15 @@
             "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c",
             "eyJhbGciOiJIUzI1NiJ9.e30.4E_Bsx-pJi3kOW9wVXN8CgbATwP09D9V5gxh9-9zSZ0",
             "eyJhbGciOiJIUzM4NCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiYWRtaW4iOnRydWUsImlhdCI6MTUxNjIzOTAyMn0.PyaQAiuwn6CTGq4ZQCTbXIs4GnRT7bBBFohNBlNdwTJQvGEIxKjecJITFjaPuxEG",
-            "eyJhbGciOiJSUzI1NiJ9.e30.FjtlcmF6eO07ju98u-Q2ATYiKzeIeY_uqQNOdEcuDH4gnatGms_DzBmrFfnZh0qsS_kPZmmyEfpj3gYPCblwLLNIRjYTWNyWh9IUfxKSkdcU9rlnDzhjF8ygt5fQ2PS9o37Lf-b69i68u3VZPxSce9jsmhzLk3k8G8-LNAa2umfn2ScwmD5IR_OsmlrBCN2e0MjQOJJ8eciQrflsdLm04eAWBGV2fb0kyRwqqZpTmPl723rZs9Wz_B5rvg67-W4GsTydS23IYfg9poqlaOXbZB7X-m7Qp_vbVHYIx4LgrHEjjrepgiYs-l9my-BiRfQHEoZZDXjs_EwH2xDWVNN0Bg"
+            "eyJhbGciOiJSUzI1NiJ9.e30.FjtlcmF6eO07ju98u-Q2ATYiKzeIeY_uqQNOdEcuDH4gnatGms_DzBmrFfnZh0qsS_kPZmmyEfpj3gYPCblwLLNIRjYTWNyWh9IUfxKSkdcU9rlnDzhjF8ygt5fQ2PS9o37Lf-b69i68u3VZPxSce9jsmhzLk3k8G8-LNAa2umfn2ScwmD5IR_OsmlrBCN2e0MjQOJJ8eciQrflsdLm04eAWBGV2fb0kyRwqqZpTmPl723rZs9Wz_B5rvg67-W4GsTydS23IYfg9poqlaOXbZB7X-m7Qp_vbVHYIx4LgrHEjjrepgiYs-l9my-BiRfQHEoZZDXjs_EwH2xDWVNN0Bg",
+            "eyJaaaaaaaaaaaaaa.eb.ccccccccccccccccccccccccccccccccccccccccccc"
          ],
          "Invalid": [
             "C8.M.",
             "yaJhbGciOiJIUzI1NiJ9.e30.4E_Bsx-pJi3kOW9wVXN8CgbATwP09D9V5gxh9-9zSZ0",
-            "eyJhbGciOiJIUzI1NiJ+9.e3/0.4E_Bsx-pJi3kOW9wVXN8CgbATwP09D9V5gxh9-9zSZ0"
+            "eyJhbGciOiJIUzI1NiJ+9.e3/0.4E_Bsx-pJi3kOW9wVXN8CgbATwP09D9V5gxh9-9zSZ0",
+            "eyJaaaaaaaaaaaaa.eb.ccccccccccccccccccccccccccccccccccccccccccc",
+            "eyJaaaaaaaaaaaaaa.e.ccccccccccccccccccccccccccccccccccccccccccc"
          ]
       }
    },

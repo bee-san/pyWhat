@@ -203,8 +203,6 @@ class Identifier:
         for files_done, (location, source, is_file) in enumerate(files):
             if is_file:
                 magic_numbers = pywhat.magic_numbers.get_magic_nums(source)
-                if not magic_numbers:
-                    magic_numbers = pywhat.magic_numbers.check_magic_nums(source)
                 if magic_numbers:
                     yield "File Signatures", location, magic_numbers
 
@@ -249,11 +247,11 @@ class Identifier:
             if not only_text and os.path.isdir(text):
                 # if input is a directory, recursively search for all of the files
                 directory = os.path.abspath(text)
-                for myfile in glob.iglob(text + "/**", recursive=True):
+                for myfile in glob.iglob(glob.escape(text) + "/**", recursive=True):
                     if os.path.isfile(myfile):
                         path = os.path.abspath(myfile)
                         # The path of the file in the directory, e.g. "/test/file"
-                        name = path.replace(directory, "")
+                        name = path[len(directory) :]
                         if several:
                             # The path of the directory joined with it, e.g.
                             # "fixtures/test/file"

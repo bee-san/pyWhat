@@ -198,7 +198,7 @@ class Printing:
             self.console.print("Nothing found!")
 
         if output_str.strip():
-            self.console.print(output_str.rstrip())
+            self.console.print(output_str.rstrip(), soft_wrap=True)
 
         return output_str
 
@@ -233,14 +233,16 @@ class Printing:
                         }
                         for format, value in formats.items():
                             value = str() if value is None else value
-                            s = re.sub(r"(?<!\\)" + format, value, s)
+                            s = re.sub(
+                                r"(?<!\\)" + format, value.replace("\\", r"\\"), s
+                            )
                         s = re.sub(r"\\%", "%", s)
                         temp += s
                     output.append(temp)
 
             str_output = "\n".join(output)
             if str_output.strip():
-                self.console.print(str_output)
+                self.console.print(str_output, soft_wrap=True)
 
     def print_stream(
         self,
@@ -286,7 +288,9 @@ class Printing:
             if kind == "File Signatures":
                 if format_str is None:
                     # With an empty line before it, like print_raw()
-                    self.console.print(self._raw_signature(location, value).rstrip())
+                    self.console.print(
+                        self._raw_signature(location, value).rstrip(), soft_wrap=True
+                    )
                     previous = (kind, location)
                 continue
             found_matches = True

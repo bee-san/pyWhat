@@ -521,3 +521,30 @@ def test_boundaryless_picatic_api_key_not_inside_longer_key():
         match["Regex Pattern"]["Name"] != "Picatic API Key"
         for match in out["Regexes"]["text"]
     )
+
+
+@pytest.mark.parametrize("include_filenames", [False, True])
+def test_file_signature_uses_contents_not_relative_path(
+    tmp_path, monkeypatch, include_filenames
+):
+    monkeypatch.chdir(tmp_path)
+    name = "89504E470D0A1A0A"
+    (tmp_path / name).write_text("ordinary text")
+    relative = r.identify(name, only_text=False, include_filenames=include_filenames)
+    absolute = r.identify(
+        str(tmp_path / name), only_text=False, include_filenames=include_filenames
+    )
+    assert relative["File Signatures"] is None
+    assert relative == absolute
+
+
+def test_file_signature_uses_real_header_despite_hex_filename(tmp_path, monkeypatch):
+    monkeypatch.chdir(tmp_path)
+    name = "89504E470D0A1A0A"
+    (tmp_path / name).write_bytes(b"%PDF-1.7\n")
+    result = r.identify(name, only_text=False)
+    assert result["File Signatures"][name]["Filename Extension"] == "pdf"
+
+
+def test_hex_text_is_not_interpreted_as_a_file_signature():
+    assert r.identify("89504E470D0A1A0A")["File Signatures"] is None
