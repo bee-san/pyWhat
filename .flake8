@@ -1,3 +1,7 @@
 [flake8]
 max-line-length = 88
 ignore = E501, E203, W503
+# Exact type comparisons on purpose (pycodestyle 2.11, which Python 3.12 needs, reports them)
+per-file-ignores =
+    pywhat/filter.py: E721
+    tests/test_regex_identifier.py: E721

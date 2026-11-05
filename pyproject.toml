@@ -1,41 +1,56 @@
-[tool.poetry]
-name = "pywhat"
-version = "5.1.0"
-description = "What is that thing?"
-authors = ["Bee <github@skerritt.blog>"]
-license = "MIT"
-documentation = "https://github.com/bee-san/pyWhat/wiki"
-readme = "README.md"
-
-[tool.poetry.dependencies]
-python = "^3.7"
-click = "^8.0.0"
-rich = ">=11.0.0"
-orjson = {version = "^3.6.1", optional = true}
-
-[tool.poetry.dev-dependencies]
-pytest = "^7.0"
-black = "^22.1.0"
-isort = "^5.9.3"
-flake8 = "^4.0"
-requests = "^2.26.0"
-pytest-black = "^0.3.12"
-pytest-isort = "^2.0.0"
-pytest-flake8 = "^1.0.7"
-pytest-mypy = "^0.8.1"
-types-requests = "^2.25.9"
-types-orjson = "^3.6.0"
-
-[tool.poetry.extras]
-optimize = ["orjson"]
-
 [build-system]
-requires = ["poetry-core>=1.0.0"]
-build-backend = "poetry.core.masonry.api"
+requires = ["maturin>=1.15,<2"]
+build-backend = "maturin"
 
-[tool.poetry.scripts]
+[project]
+name = "pywhat"
+# The version of the Rust workspace (Cargo.toml): 6.0.0-alpha.1 there is 6.0.0a1 here
+dynamic = ["version"]
+description = "What is that thing?"
+authors = [{ name = "Bee", email = "github@skerritt.blog" }]
+# file_signatures.json is derived from Wikipedia: CC BY-SA 4.0 (NOTICE, issue #302)
+license = "MIT AND CC-BY-SA-4.0"
+license-files = ["LICENSE", "NOTICE"]
+readme = "README.md"
+requires-python = ">=3.8"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Programming Language :: Python :: 3.14",
+    "Programming Language :: Rust",
+]
+dependencies = [
+    "click>=8.0.0,<9.0.0",
+    "rich>=11.0.0",
+]
+
+[project.optional-dependencies]
+optimize = ["orjson>=3.6.1,<4.0.0"]
+
+[project.scripts]
 pywhat = "pywhat.what:main"
 what = "pywhat.what:main"
+
+[project.urls]
+Documentation = "https://github.com/bee-san/pyWhat/wiki"
+
+[tool.maturin]
+# The extension module pywhat._pywhat (py/), in the Python package pywhat/
+manifest-path = "py/Cargo.toml"
+python-source = "."
+module-name = "pywhat._pywhat"
+strip = true
+# Cargo.toml names the crate's benches and examples, and cargo can't read it without their
+# files (cargo package leaves them out of the crate, but the sdist builds from Cargo.toml)
+include = [
+    { path = "benches/**/*.rs", format = "sdist" },
+    { path = "examples/**/*.rs", format = "sdist" },
+]
 
 [tool.isort]
 profile = "black"
@@ -48,6 +63,15 @@ line_length = 88
 
 [tool.mypy]
 ignore_missing_imports = true
+# mypy 0.990 stopped making the arguments whose default is None Optional, which the
+# code relies on (identifier.py)
+implicit_optional = true
+
+[[tool.mypy.overrides]]
+# Cmd.default() returns what onecmd() returns, a flag that stops the shell, but typeshed
+# says it returns None
+module = "pywhat.interactive"
+disable_error_code = ["override"]
 
 [tool.pytest.ini_options]
 addopts = "--black --isort --flake8 --mypy"

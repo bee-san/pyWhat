@@ -24,8 +24,9 @@ __pycache__/
 *$py.class
 tests/__pycache__/
 
-# C extensions
+# C extensions (and the Rust one, pywhat/_pywhat.*, which pip install -e . builds)
 *.so
+*.pyd
 
 # Distribution / packaging
 .Python

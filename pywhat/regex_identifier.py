@@ -10,6 +10,51 @@ from pywhat.processors import (
 )
 from pywhat.ranking import Span, mark_fragments
 
+try:
+    # The regex engine of the Rust crate (py/ in the repository), which the wheel
+    # contains. An extension that is there but can't be loaded (a missing system
+    # library, say) is an error, not a reason to search with re.
+    import pywhat._pywhat as _pywhat
+except ModuleNotFoundError:  # pragma: no cover
+    # A checkout in which the extension isn't built (pip install -e . builds it)
+    _pywhat = None  # type: ignore[assignment]
+
+
+def _re_spans(regex: str, string: str) -> Iterator[Span]:
+    """The spans of the matches of regex in string, found by Python's re."""
+    return (match.span() for match in re.finditer(regex, string, re.MULTILINE))
+
+
+def _text(string: str) -> Optional["_pywhat.Text"]:
+    """
+    string, encoded once for the searches of the Rust engine, or None if Python's
+    re searches it: without the engine, or if UTF-8 can't encode string, as it
+    has lone surrogates (surrogateescape makes them of the bytes of command-line
+    arguments that aren't UTF-8).
+    """
+    if _pywhat is None:
+        return None
+    try:
+        return _pywhat.Text(string)
+    except UnicodeEncodeError:
+        return None
+
+
+def _spans(regex: str, string: str, text: Optional["_pywhat.Text"]) -> Iterable[Span]:
+    """
+    The spans of the matches of regex in string, like re.finditer(regex, string,
+    re.MULTILINE), found by the Rust engine in text, the string encoded by
+    _text(). Python's re searches instead if text is None, if the engine can't
+    compile regex, or if it gives up on the search (fancy-regex's limit of
+    100,000,000 backtracking steps), so that nothing is lost.
+    """
+    if text is not None:
+        try:
+            return _pywhat.finditer(regex, text)
+        except (ValueError, _pywhat.MatchError):
+            pass
+    return _re_spans(regex, string)
+
 
 class RegexIdentifier:
     def __init__(self, processors: Optional[Iterable[Processor]] = None):
@@ -59,6 +104,7 @@ class RegexIdentifier:
         for string in text:
             # The matches of string, with their spans to mark the fragments
             found: List[Tuple[dict, Span]] = []
+            encoded = _text(string)
             for reg in dist.get_regexes():
                 if progress is not None:
                     progress(reg["Name"])
@@ -66,9 +112,9 @@ class RegexIdentifier:
                     reg["Boundaryless Regex"] if reg in boundaryless else reg["Regex"]
                 )
                 reg_processors = by_name.get(reg["Name"])
-                for matched_regex in re.finditer(regex, string, re.MULTILINE):
+                for start, end in _spans(regex, string, encoded):
                     reg_match = dict(reg)
-                    matched = self.clean_text(matched_regex.group(0))
+                    matched = self.clean_text(string[start:end])
 
                     if (
                         reg_match.get("Exploit") is not None
@@ -120,7 +166,7 @@ class RegexIdentifier:
                     if reg_processors:
                         processed = run_processors(match, reg_processors, dist)
                     if processed is not None:
-                        found.append((processed, matched_regex.span()))
+                        found.append((processed, (start, end)))
                         yield processed
 
             # Fragments of longer words or matches are less likely (issue

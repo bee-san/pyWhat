@@ -43,17 +43,19 @@ jobs:
       id: python
       with:
         python-version: ${{ matrix.python-version }}
-    # The CI tooling runs on a current Python so it can be installed from
-    # wheels only (cffi, which Poetry needs on macOS, has no Python 3.8 arm64
-    # wheels). The nox sessions still use the matrix Python (--force-python).
+    # nox runs on a current Python, and its sessions on the matrix Python
+    # (--force-python).
     - uses: actions/setup-python@v6
       with:
         python-version: '3.12'
-    # Pinned: Poetry 2.x removed `install --no-dev` and the bundled `export`
-    # command. packaging 26.3+ no longer imports on Python 3.8, and Poetry
-    # loads its own copy inside the session's Python 3.8 environment.
+    # The package's extension module (py/) is Rust, which pip builds with
+    # maturin when the session installs the package
+    - uses: dtolnay/rust-toolchain@b725eda525362e7cf34af9a7243cac1e3f01a7ec # stable
+    - uses: Swatinem/rust-cache@d1527c8f67ef9af357290475d4af4b0fab8f12e0 # v2
+    # virtualenv 21, which nox creates the sessions' environments with, no
+    # longer creates Python 3.8 ones
     - run: |
-        python -m pip install --only-binary :all: nox==2025.5.1 poetry==1.8.5 packaging==26.2
+        python -m pip install --only-binary :all: nox==2025.5.1 virtualenv==20.39.1
     - run: python -m nox --force-python "${{ steps.python.outputs.python-path }}"
       env:
         OS: ${{ matrix.os }}
