@@ -100,3 +100,23 @@ jobs:
         env:
           PYWHAT_GOLDEN: target/golden.jsonl
           PYWHAT_GOLDEN_FILES: target/golden-files.jsonl
+
+  cli:
+    name: Rust CLI prints what Python prints (parity)
+    runs-on: ubuntu-latest
+    env:
+      PYWHAT_CLI: target/release/what
+    steps:
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
+      - uses: dtolnay/rust-toolchain@b725eda525362e7cf34af9a7243cac1e3f01a7ec # stable
+      - uses: Swatinem/rust-cache@d1527c8f67ef9af357290475d4af4b0fab8f12e0 # v2
+      - uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1 # v6
+        with:
+          python-version: '3.10'
+      # The versions in poetry.lock
+      - run: 'python -m pip install --only-binary :all: click==8.1.2 rich==12.2.0 pytest==7.1.2'
+      - run: cargo build --locked --release --bin what
+      # The stdout bytes and exit codes of ~270 command lines, against python -m pywhat
+      - run: python scripts/parity_cli.py
+      # pyWhat's CLI tests, run against the binary
+      - run: python -m pytest -o addopts="" tests/test_click.py

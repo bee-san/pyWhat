@@ -43,6 +43,7 @@ assert!(found.iter().any(|m| m.matched == "bee@skerritt.blog" && m.regex.name ==
 | `identifier.identify(text)` | `identify(text)["Regexes"]["text"]` |
 | `identifier.identify_inputs(&inputs, options, key, reverse)` (feature `files`) | `identify_inputs(inputs, only_text=..., include_filenames=..., key=..., reverse=...)` |
 | `identifier.iter_identify(&inputs, options, found, error)` (feature `files`) | `iter_identify(...)` |
+| `identifier.iter_identify_with_progress(&inputs, options, found, error, progress)` and `Progress` (feature `files`) | `iter_identify(..., progress=...)` and `Progress`: `progress` gets the file, how many of the files and of the file's regex searches are done, and a regex that is searched for. For texts over 4 KB the regexes are searched for in parallel, so it is called from rayon's threads, one call at a time |
 | `Identified::to_json()` | `json.dumps(identify(...))`, byte for byte |
 | `Filter::new(tags, exclude_tags, min_rarity, max_rarity)`, `Filter::default()`, `Filter::none()`, `.and()`, `.or()` | `Filter({...})`, `&`, `\|` |
 | `Processor` (trait), `default_processors()`, `processors::OpenStreetMap`, `processors::Validator` | `Processor`, `default_processors()`, `OpenStreetMapProcessor`, `ValidatorProcessor` |
@@ -70,6 +71,8 @@ Rust only:
 | `files` | yes | `identify_inputs`, `iter_identify`: files, directories (recursive) and file signatures (`file_signatures.json`, under CC BY-SA 4.0) |
 | `children` | yes | the tables that `Children` read from data files: the locations of phone numbers (`phone_codes.json`) in their descriptions |
 | `mac-vendors` | yes | `children`, and the vendors of MAC address prefixes (1.6 MB) in the descriptions of EUI-48 matches |
+| `cli` | yes | the `what` and `pywhat` commands and `pywhat::cli::main`, see [cli.md](cli.md); it needs `files` and `mac-vendors`, for the output of the Python CLI (not on wasm32) |
+| `verify` | yes | `what --verify`: asks Google whether Google API keys are valid (not on wasm32) |
 | `wasm` | no | the WebAssembly API in `src/wasm.rs` (`identify(text, options_json)`, `tags()`, `version()`) |
 
 For wasm32, use `default-features = false` (no threads, no file system), and `features = ["wasm"]`
