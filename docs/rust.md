@@ -152,7 +152,7 @@ it to `target/bench.txt`: 4.2 MB, 115,270 lines), with the CLI's defaults:
 
 | | Wall time | CPU time | JSON |
 |---|---|---|---|
-| `pywhat --json --no-progress target/bench.txt` (Python) | 25.0 s | 19.2 s user | 296,955,557 bytes |
+| `pywhat --json --no-progress target/bench.txt` (Python) | 25.0 s | 19.2 s user | 296,955,554 bytes |
 | `cargo run --release --example bench_file -- target/bench.txt --json out.json` (Rust) | 4.8–8.5 s | 3.2–3.4 s user | the same bytes (`cmp`) |
 
 `cargo run --release --example bench_file -- FILE` prints the time per regex. Most of the Rust
@@ -201,12 +201,13 @@ whole text is, and filters the matches. With pywhat:
    descriptions don't matter for plaintext detection). Its web build adds `wasm` instead of
    `parallel`.
 2. `use lemmeknow::{Data, Identifier}` becomes `use pywhat::{Identifier, RegexEntry}`, and
-   `use lemmeknow::Identifier` becomes `use pywhat::Identifier`, in the 15 files that use it:
-   `checkers/lemmeknow_checker.rs`, `checkers/checker_type.rs`, `checkers/athena.rs`,
-   `checkers/code_checker.rs`, `checkers/default_checker.rs`, `checkers/english.rs`,
-   `checkers/json_checker.rs`, `checkers/password.rs`, `checkers/regex_checker.rs`,
-   `checkers/wait_athena.rs`, `checkers/wordlist.rs`, `decoders/jwt_decoder.rs`,
-   `config/mod.rs`, `api_library_input_struct.rs` and `detection.rs` (`grep -rln lemmeknow src`).
+   `use lemmeknow::Identifier` becomes `use pywhat::Identifier`, in the 14 files that use it
+   (`grep -rl 'lemmeknow::' src`): `checkers/lemmeknow_checker.rs`, `checkers/checker_type.rs`,
+   `checkers/athena.rs`, `checkers/code_checker.rs`, `checkers/default_checker.rs`,
+   `checkers/english.rs`, `checkers/json_checker.rs`, `checkers/password.rs`,
+   `checkers/regex_checker.rs`, `checkers/wait_athena.rs`, `checkers/wordlist.rs`,
+   `decoders/jwt_decoder.rs`, `config/mod.rs` and `api_library_input_struct.rs`. `detection.rs`
+   has no `use lemmeknow` line; its change is step 6.
    `Checker::lemmeknow_config` keeps its name and holds a `pywhat::Identifier`, which is
    `Clone + Send + Sync`; the checkers that don't identify anything keep
    `lemmeknow_config: Identifier::default()`.

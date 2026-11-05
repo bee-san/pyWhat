@@ -8,8 +8,8 @@
 //! the regex's DFA: for every length up to 200 (or 50 past the regex's shortest match), the
 //! share of the strings of that length that end in a match state. Regexes the DFA can't be built for are in `BY_HAND`, with a reason.
 //!
-//! When this test fails for a new or changed regex, add or remove the tag in regex.json, as the
-//! message says. See docs/adding-regexes.md.
+//! When this test fails for a new or changed regex, add or remove the tag in the regex's file
+//! (regex.json or its area's file), as the message says. See docs/adding-regexes.md.
 
 use regex_automata::dfa::{dense, Automaton, StartKind};
 use regex_automata::util::primitives::StateID;
@@ -64,6 +64,25 @@ const BY_HAND: &[(&str, bool, &str)] = &[
         "its look-aheads require 9 to 14 digits after a + or between separators, which random \
          strings of these alphabets don't have",
     ),
+];
+
+/// The same for the regexes of the area files, each area in its own block, so that pull
+/// requests for different areas don't change the same lines.
+const AREAS_BY_HAND: &[(&str, bool, &str)] = &[
+    // --- crypto ---
+    // --- end crypto ---
+    // --- cloud ---
+    // --- end cloud ---
+    // --- ctf ---
+    // --- end ctf ---
+    // --- network ---
+    // --- end network ---
+    // --- ids ---
+    // --- end ids ---
+    // --- files ---
+    // --- end files ---
+    // --- social ---
+    // --- end social ---
 ];
 
 /// The chance that random strings over `alphabet` of each length up to `max_length` match
@@ -224,7 +243,11 @@ fn charset_only_tags_are_the_regexes_random_strings_match() {
     for entry in pywhat::regexes() {
         let has_tag = entry.tags.iter().any(|tag| tag == TAG);
         tagged += usize::from(has_tag);
-        let (charset_only, why) = match BY_HAND.iter().find(|(name, _, _)| *name == entry.name) {
+        let (charset_only, why) = match BY_HAND
+            .iter()
+            .chain(AREAS_BY_HAND)
+            .find(|(name, _, _)| *name == entry.name)
+        {
             Some((_, charset_only, reason)) => {
                 (*charset_only, format!("decided by hand: {reason}"))
             }
@@ -235,7 +258,7 @@ fn charset_only_tags_are_the_regexes_random_strings_match() {
                 ),
                 Err(error) => {
                     wrong.push(format!(
-                        "{}: no DFA ({error}); decide by hand in BY_HAND",
+                        "{}: no DFA ({error}); decide by hand in BY_HAND or your area's block of AREAS_BY_HAND",
                         entry.name
                     ));
                     continue;
@@ -263,10 +286,10 @@ fn charset_only_tags_are_the_regexes_random_strings_match() {
 
 #[test]
 fn every_by_hand_decision_is_for_a_regex_that_exists() {
-    for (name, _, _) in BY_HAND {
+    for (name, _, _) in BY_HAND.iter().chain(AREAS_BY_HAND) {
         assert!(
             pywhat::regexes().iter().any(|entry| entry.name == *name),
-            "{name} is not in regex.json"
+            "{name} is not a regex of pywhat/Data"
         );
     }
 }

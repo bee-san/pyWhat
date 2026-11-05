@@ -2,6 +2,7 @@
 //! `pywhat/ranking.py`.
 
 use crate::identify::Match;
+use crate::validators::is_python_space;
 use std::cmp::Ordering;
 
 /// What to sort the matches by (`pywhat.Keys`).
@@ -77,14 +78,16 @@ pub enum Top {
     #[default]
     All,
     Number(usize),
-    /// A percentage, as written (digits with an optional decimal point).
+    /// A percentage, as written (digits with an optional decimal point), as [`Top::parse`]
+    /// returns it. [`Top::of`] shows all matches for a text that isn't such a number.
     Percent(String),
 }
 
 impl Top {
     /// `parse_top()`: "10", "5%", "1.5 %" or "all". `Err` holds Python's message.
     pub fn parse(text: &str) -> Result<Top, String> {
-        let text = text.trim();
+        // str.strip() and \s: Python's whitespace, which includes U+001C to U+001F
+        let text = text.trim_matches(is_python_space);
         let error = || {
             format!(
                 "Invalid top '{text}', use a number of matches such as 10, a percentage of them \
@@ -107,7 +110,7 @@ impl Top {
         let Some(number) = text.strip_suffix('%') else {
             return Err(error());
         };
-        let number = number.trim_end();
+        let number = number.trim_end_matches(is_python_space);
         let valid = match number.split_once('.') {
             Some((whole, fraction)) => {
                 whole.bytes().all(|b| b.is_ascii_digit())
@@ -131,39 +134,75 @@ impl Top {
         match self {
             Top::All => total,
             Top::Number(number) => (*number).min(total),
-            Top::Percent(percent) => {
-                // ceil(total * percent / 100), exact: with the first 30 significant digits
-                // of the percentage, the error is below 1 match for any usize total, and
-                // a nonzero rest still rounds up
-                let (numerator, scale, rest) = decimal(percent);
-                let denominator = 100 * 10u128.pow(scale);
-                let product = (total as u128) * numerator;
-                let mut shown = product.div_ceil(denominator);
-                if rest && product.is_multiple_of(denominator) {
-                    shown += 1;
-                }
-                usize::try_from(shown).unwrap_or(usize::MAX).min(total)
-            }
+            Top::Percent(percent) => percent_of(total, percent),
         }
     }
 }
 
-/// A percentage such as "1.25" as (125, 2, false): its digits up to the 30th significant
-/// one, the number of them after the point, and whether nonzero digits were cut off.
-/// Percentages are at most 100, so 3 digits before the point and 27 after fit in a u128
-/// whatever `total` is multiplied in.
-fn decimal(text: &str) -> (u128, u32, bool) {
-    let (whole, fraction) = text.split_once('.').unwrap_or((text, ""));
-    let whole = whole.trim_start_matches('0');
-    let kept = fraction.len().min(27);
-    let digits = format!("{whole}{}", &fraction[..kept]);
-    let numerator = if digits.is_empty() {
-        0
-    } else {
-        digits.parse::<u128>().unwrap_or(u128::MAX)
+/// `min(total, math.ceil(total * percent / 100))` as Python computes it: `Decimal` rounds the
+/// product to 28 significant digits (its default context, half to even), and the division by
+/// 100 and the ceiling are exact. A `percent` that isn't digits with an optional point shows
+/// all matches.
+fn percent_of(total: usize, percent: &str) -> usize {
+    let (whole, fraction) = percent.split_once('.').unwrap_or((percent, ""));
+    let is_digits = |part: &str| part.bytes().all(|b| b.is_ascii_digit());
+    if whole.is_empty() && fraction.is_empty() || !is_digits(whole) || !is_digits(fraction) {
+        return total;
+    }
+    // total × percent × 10^scale, exactly, as decimal digits
+    let product = times(&format!("{whole}{fraction}"), total as u64);
+    let product = product.trim_start_matches('0');
+    if product.is_empty() {
+        return 0;
+    }
+    let (kept, dropped) = product.split_at(product.len().min(28));
+    let mut coefficient: u128 = kept.parse().expect("at most 28 digits");
+    let half = match dropped.as_bytes().first() {
+        None => Ordering::Less,
+        Some(&first) => match first.cmp(&b'5') {
+            Ordering::Equal if dropped[1..].bytes().any(|b| b != b'0') => Ordering::Greater,
+            order => order,
+        },
     };
-    let rest = fraction[kept..].bytes().any(|b| b != b'0');
-    (numerator, kept as u32, rest)
+    if half == Ordering::Greater || half == Ordering::Equal && coefficient % 2 == 1 {
+        coefficient += 1;
+    }
+    // The rounded product is coefficient × 10^(dropped − scale); divided by 100, rounded up
+    let exponent = dropped.len() as i64 - fraction.len() as i64 - 2;
+    let shown = if exponent >= 0 {
+        u32::try_from(exponent)
+            .ok()
+            .and_then(|e| 10u128.checked_pow(e))
+            .and_then(|power| coefficient.checked_mul(power))
+            .unwrap_or(u128::MAX)
+    } else {
+        match u32::try_from(-exponent)
+            .ok()
+            .and_then(|e| 10u128.checked_pow(e))
+        {
+            Some(power) => coefficient.div_ceil(power),
+            // 10^39 or more: above the coefficient, which is not 0
+            None => 1,
+        }
+    };
+    usize::try_from(shown).unwrap_or(usize::MAX).min(total)
+}
+
+/// The decimal digits of `digits × by`.
+fn times(digits: &str, by: u64) -> String {
+    let mut out = Vec::with_capacity(digits.len() + 20);
+    let mut carry: u128 = 0;
+    for digit in digits.bytes().rev() {
+        let value = u128::from(digit - b'0') * u128::from(by) + carry;
+        out.push(b'0' + (value % 10) as u8);
+        carry = value / 10;
+    }
+    while carry > 0 {
+        out.push(b'0' + (carry % 10) as u8);
+        carry /= 10;
+    }
+    out.reverse();
+    String::from_utf8(out).expect("digits")
 }
 
 /// Whether a decimal number (digits, an optional point and digits) is above 0 and at most
@@ -224,7 +263,8 @@ mod tests {
 
     #[test]
     fn long_tops_like_python() {
-        // Python's Decimal has no limit on the digits
+        // Python parses a percentage of any length; Top.of() rounds total × percent to 28
+        // significant digits (Decimal's default context)
         let tiny = format!(".{}1%", "0".repeat(38));
         assert!(Top::parse(&tiny).is_ok());
         assert_eq!(Top::parse(&tiny).unwrap().of(1000), 1);
@@ -242,6 +282,32 @@ mod tests {
             Top::Percent("0.5".into()).of(usize::MAX),
             usize::MAX / 200 + 1
         );
+    }
+
+    #[test]
+    fn percentages_of_like_python() {
+        let of = |percent: &str, total| Top::parse(percent).unwrap().of(total);
+        // Exact where 28 digits are enough, also for the largest totals
+        assert_eq!(of("50.000000000000000000%", usize::MAX), usize::MAX / 2 + 1);
+        assert_eq!(of("1.5000000000000000000000000001%", 999), 15);
+        assert_eq!(of("33.333333333333333333334%", 3), 2);
+        // Where they aren't, Python's rounding: 3 × 33.33…334 = 100.00…002 has 31 digits,
+        // and rounds to 100
+        assert_eq!(of("33.3333333333333333333333333334%", 3), 1);
+        assert_eq!(of("1.0000000000000000000000000001%", 100), 1);
+        assert_eq!(of("1.0000000000000000000000000001%", 1_000_000), 10_000);
+        // Ties round to even: 100 × 1.00…005 keeps 28 digits, 100.0…00 (even), and
+        // 100 × 1.00…015 becomes 100.0…02 (from the odd …01)
+        assert_eq!(of("1.0000000000000000000000000005%", 100), 1);
+        assert_eq!(of("1.0000000000000000000000000015%", 100), 2);
+        // str.strip() and \s are Python's whitespace, U+001C to U+001F included
+        assert_eq!(Top::parse("\u{1c}5%"), Ok(Top::Percent("5".into())));
+        assert_eq!(Top::parse("5\u{1f}%"), Ok(Top::Percent("5".into())));
+        assert_eq!(Top::parse("5\u{3000}%"), Ok(Top::Percent("5".into())));
+        // A Percent that parse() doesn't return shows everything, without a panic
+        for odd in ["\u{e9}5", "", ".", "5..5", "x"] {
+            assert_eq!(Top::Percent(odd.into()).of(10), 10, "{odd:?}");
+        }
     }
 
     #[test]

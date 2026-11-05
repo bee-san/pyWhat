@@ -78,7 +78,7 @@ pub fn luhn(number: &str) -> bool {
 }
 
 /// Python's `str.isspace()`.
-fn is_python_space(c: char) -> bool {
+pub(crate) fn is_python_space(c: char) -> bool {
     matches!(
         c,
         '\t' | '\n'
@@ -181,7 +181,8 @@ pub fn tc_kimlik(number: &str) -> bool {
 /// letter, an uppercase letter and a digit, as 190 or more random letters and digits have.
 /// Decoder output is often all one case.
 pub fn facebook_access_token(token: &str) -> bool {
-    let rest = token.get(2..).unwrap_or("");
+    // Python's token[2:]: after two characters, not two bytes
+    let rest = token.char_indices().nth(2).map_or("", |(i, _)| &token[i..]);
     rest.bytes().any(|b| b.is_ascii_lowercase())
         && rest.bytes().any(|b| b.is_ascii_uppercase())
         && rest.bytes().any(|b| b.is_ascii_digit())
@@ -190,6 +191,16 @@ pub fn facebook_access_token(token: &str) -> bool {
 #[cfg(test)]
 mod tests {
     use super::*;
+
+    #[test]
+    fn facebook_access_token_skips_two_characters() {
+        // As Python's token[2:]: the first two characters, whatever their length in bytes
+        assert!(facebook_access_token("\u{20ac}AAb1C"));
+        assert!(facebook_access_token("\u{e9}\u{e9}Ab1"));
+        assert!(!facebook_access_token("Ab1"));
+        assert!(!facebook_access_token("\u{20ac}"));
+        assert!(!facebook_access_token("EAab1\u{20ac}"));
+    }
 
     #[test]
     fn validators() {

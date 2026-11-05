@@ -67,8 +67,10 @@ def names(text, identifier=ALL):
         ),
         (
             facebook_access_token,
-            ["EAARE0ZATe"],
-            ["EAHCHERBOTIC", "EA0123ABCDEF", "EAabcdef0123", "EA"],
+            # The first two characters are skipped, whatever their length in bytes (the
+            # same in Rust)
+            ["EAARE0ZATe", "\u20acAAb1C", "\u00e9\u00e9Ab1"],
+            ["EAHCHERBOTIC", "EA0123ABCDEF", "EAabcdef0123", "EA", "Ab1", "\u20ac"],
         ),
     ],
 )

@@ -1,10 +1,10 @@
-Please read our wiki here:
-https://github.com/bee-san/pyWhat/wiki/Adding-your-own-Regex
-
 New regexes go into the file of their area in `pywhat/Data/regexes/`, and must work the same in
 Python and in Rust: [docs/adding-regexes.md](docs/adding-regexes.md) is the checklist (test the
 regex in regex101's Rust flavour, examples, checksums, rarity, the `Charset Only` tag, false
 positives), and its tests run in CI.
+
+The wiki (https://github.com/bee-san/pyWhat/wiki/Adding-your-own-Regex) predates the area files
+and the Rust crate: where it differs, follow docs/adding-regexes.md.
 
 To pick the rarity of a new regex, `python scripts/rarity_score.py 'REGEX'` estimates it from the regex.
 

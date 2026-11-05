@@ -153,6 +153,15 @@ def options():
             "dist": Distribution(FINANCE | BTC),
             "boundaryless": Filter({"Tags": ["Identifiers"], "MinRarity": 0.2}),
         },
+        # & excludes only what both sides exclude (_intersection): all 9 AWS regexes.
+        # Excluding what either side excludes would drop the 2 that are Credentials too.
+        "and_exclude": {
+            "dist": Distribution(
+                Filter({"Tags": ["AWS"], "ExcludeTags": ["Credentials"]})
+                & Filter({"Tags": ["AWS"]})
+            ),
+            "boundaryless": cli_boundaryless,
+        },
     }
 
 
@@ -281,6 +290,7 @@ def file_stage(out, files_dir: str, repo_dir: str):
         ([f"{files_dir}/binary.png", f"{files_dir}/utf16le-bom.txt"], False),
         ([repo_dir], False),
     ]
+    cases_written = jsons = 0
     for inputs, include_filenames in cases:
         for name, identifier in identifiers.items():
             identified = identifier.identify_inputs(
@@ -304,7 +314,11 @@ def file_stage(out, files_dir: str, repo_dir: str):
             # Byte for byte, where the order of the files is not the file system's
             if not any(os.path.isdir(i) for i in inputs):
                 record["json"] = json.dumps(identified)
+                jsons += 1
             out.write(json.dumps(record) + "\n")
+            cases_written += 1
+    # What was written, so that tests/golden.rs notices a cut or partial recording
+    out.write(json.dumps({"trailer": {"cases": cases_written, "json": jsons}}) + "\n")
 
 
 # Where the recordings go: target/, which cargo and git ignore
@@ -365,6 +379,7 @@ def main():
                     full += 1
             out.write(json.dumps(record) + "\n")
             count += 1
+        out.write(json.dumps({"trailer": {"texts": count, "json": full}}) + "\n")
     print(f"golden: {count} texts in {OUT} ({os.path.getsize(OUT)} bytes)")
 
 

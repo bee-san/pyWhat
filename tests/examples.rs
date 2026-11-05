@@ -135,6 +135,26 @@ const NOT_ON_THE_REGEX_CRATE: &[(&str, EngineKind, EngineKind)] = &[
     ("YouTube Video ID", EngineKind::Guarded, EngineKind::Guarded),
 ];
 
+/// The same for the regexes of the area files (`pywhat/Data/regexes/`), each area in its own
+/// block, so that pull requests for different areas don't change the same lines. The order
+/// within and between the lists doesn't matter.
+const AREAS_NOT_ON_THE_REGEX_CRATE: &[(&str, EngineKind, EngineKind)] = &[
+    // --- crypto ---
+    // --- end crypto ---
+    // --- cloud ---
+    // --- end cloud ---
+    // --- ctf ---
+    // --- end ctf ---
+    // --- network ---
+    // --- end network ---
+    // --- ids ---
+    // --- end ids ---
+    // --- files ---
+    // --- end files ---
+    // --- social ---
+    // --- end social ---
+];
+
 #[test]
 fn only_the_allowlisted_regexes_need_more_than_the_regex_crate() {
     let mut actual = Vec::new();
@@ -145,9 +165,17 @@ fn only_the_allowlisted_regexes_need_more_than_the_regex_crate() {
             actual.push((entry.name.as_str(), anchored, boundaryless));
         }
     }
-    let expected: Vec<(&str, EngineKind, EngineKind)> = NOT_ON_THE_REGEX_CRATE.to_vec();
+    let mut expected: Vec<(&str, EngineKind, EngineKind)> = NOT_ON_THE_REGEX_CRATE
+        .iter()
+        .chain(AREAS_NOT_ON_THE_REGEX_CRATE)
+        .copied()
+        .collect();
+    // Compared by name, so that an entry's place doesn't depend on the regex's rarity
+    actual.sort_by_key(|(name, _, _)| *name);
+    expected.sort_by_key(|(name, _, _)| *name);
     assert_eq!(
         actual, expected,
-        "regexes that don't run on the regex crate (update NOT_ON_THE_REGEX_CRATE on purpose)"
+        "regexes that don't run on the regex crate (update NOT_ON_THE_REGEX_CRATE, or your \
+         area's block of AREAS_NOT_ON_THE_REGEX_CRATE, on purpose)"
     );
 }
