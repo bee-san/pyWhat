@@ -31,7 +31,21 @@ categories = ["command-line-utilities", "text-processing", "wasm"]
 include = ["/src", "/pywhat/Data/*.json", "/pywhat/Data/regexes/*.json", "/LICENSE", "/NOTICE", "/README.md"]
 
 [features]
-default = ["parallel", "files", "children", "mac-vendors"]
+default = ["parallel", "files", "children", "mac-vendors", "cli", "verify"]
+# The `what` and `pywhat` commands (src/cli/), with the options and the output of the
+# Python package's CLI: tables, colours and progress bars. pywhat::cli::main is what they
+# run, and what the Python package's `pywhat` and `what` commands call. They need the file
+# signatures and every Children table to print what the Python CLI prints.
+cli = [
+    "files",
+    "mac-vendors",
+    "dep:comfy-table",
+    "dep:indicatif",
+    "dep:anstyle-query",
+    "dep:terminal_size",
+]
+# `what --verify`: asks Google whether the Google API keys found are valid (over HTTPS).
+verify = ["cli", "dep:ureq", "dep:rustls"]
 # Search the regexes of a large text, and compile them, on rayon's thread pool. Not on
 # wasm32, which has no threads.
 parallel = ["dep:rayon"]
@@ -60,6 +74,20 @@ rayon = { version = "1.12.0", optional = true }
 walkdir = { version = "2.5.0", optional = true }
 wasm-bindgen = { version = "=0.2.130", optional = true }
 
+# The CLI (feature `cli`): the --format pretty table, progress bars, colours on Windows
+# consoles, and the terminal sizes that rich and click use. Not on wasm32, which has no
+# terminal: there the features build the library only.
+[target.'cfg(not(target_arch = "wasm32"))'.dependencies]
+comfy-table = { version = "8.0.1", optional = true }
+indicatif = { version = "0.18.6", optional = true, default-features = false, features = ["unicode-width"] }
+anstyle-query = { version = "1.1.5", optional = true }
+terminal_size = { version = "0.4.4", optional = true }
+# --verify (feature `verify`), without gzip, as Python's urllib. TLS with rustls and ring,
+# trusting the operating system's root certificates as Python does (platform-verifier), with
+# no list of root certificates of its own
+ureq = { version = "3.5.1", optional = true, default-features = false, features = ["rustls-no-provider", "platform-verifier"] }
+rustls = { version = "0.23.46", optional = true, default-features = false, features = ["ring", "std", "tls12"] }
+
 [dev-dependencies]
 serde_json = { version = "1.0.154", features = ["preserve_order"] }
 # Only for benches/whole.rs, which compares the speed with lemmeknow, the crate that Ciphey
@@ -67,6 +95,20 @@ serde_json = { version = "1.0.154", features = ["preserve_order"] }
 lemmeknow = { version = "=0.8.0", default-features = false }
 # tests/charset_only.rs builds the DFA of every regex
 regex-automata = { version = "0.4.18", features = ["dfa-build"] }
+
+[[bin]]
+name = "what"
+path = "src/bin/what.rs"
+required-features = ["cli"]
+
+[[bin]]
+name = "pywhat"
+path = "src/bin/pywhat.rs"
+required-features = ["cli"]
+
+[[test]]
+name = "cli"
+required-features = ["cli"]
 
 [[example]]
 name = "bench_file"

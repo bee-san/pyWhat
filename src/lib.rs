@@ -19,6 +19,8 @@
 
 mod bitcoin;
 mod charclass;
+#[cfg(all(feature = "cli", not(target_arch = "wasm32")))]
+pub mod cli;
 pub mod data;
 pub mod engine;
 #[cfg(feature = "files")]
@@ -37,7 +39,7 @@ pub use bitcoin::is_bitcoin_address;
 pub use data::{regexes, tags, RegexEntry, CHARSET_ONLY};
 pub use engine::{EngineKind, MatchError};
 #[cfg(feature = "files")]
-pub use files::{Found, Identified, InputOptions};
+pub use files::{Found, Identified, InputOptions, Progress};
 pub use filter::{split_tags, Filter, InvalidTag};
 pub use identify::{compile_all, engine_of, Identifier, Match};
 pub use processors::{default_processors, Processor};

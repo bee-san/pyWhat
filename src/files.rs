@@ -2,7 +2,7 @@
 //! `Identifier._files()`, `Identifier._collect()` and `pywhat/magic_numbers.py`.
 
 use crate::data::FILE_SIGNATURES_JSON;
-use crate::identify::{check, to_identify_json, Identifier, Match};
+use crate::identify::{check_with, to_identify_json, Identifier, Match};
 use crate::ranking::{sort_matches, Key};
 use crate::unicode;
 use serde_json::{Map, Value};
@@ -201,6 +201,27 @@ pub struct InputOptions {
     pub include_filenames: bool,
 }
 
+/// How far [`Identifier::iter_identify_with_progress`] is, like `Progress` in Python. The
+/// files (a text is a file too) are searched one after another, and every regex is
+/// searched for in every text of a file: its contents, the UTF-16 strings in it and, with
+/// `include_filenames`, its name. The regexes of a large text are searched for in
+/// parallel.
+#[derive(Debug, Clone, Copy, PartialEq, Eq)]
+pub struct Progress<'a> {
+    /// The file that is searched, or "text", like the locations of the matches.
+    pub location: &'a str,
+    /// How many files have been searched, of how many.
+    pub files_done: usize,
+    pub files: usize,
+    /// How many of the regex searches of the file are done, of how many (the number of
+    /// regexes times the number of texts in the file).
+    pub regexes_done: usize,
+    pub regexes: usize,
+    /// The name of a regex that is searched for now (the one searched for the longest),
+    /// `None` once the file has been searched.
+    pub regex: Option<&'static str>,
+}
+
 /// What [`Identifier::identify_inputs`] found, like the dict that Python returns.
 #[derive(Debug, Clone, Default)]
 pub struct Identified {
@@ -329,8 +350,37 @@ impl Identifier {
         found: &mut dyn FnMut(Found) -> bool,
         error: &mut dyn FnMut(&str, std::io::Error),
     ) {
+        self.identify_sources(inputs, options, found, error, None);
+    }
+
+    /// [`Identifier::iter_identify`], calling `progress` when a regex search starts in a
+    /// file (and when one ends while others still run), and once the file has been
+    /// searched, like the `progress` callback of Python's `iter_identify()`. For a large
+    /// text the regexes are searched for in parallel, so `progress` is called from rayon's
+    /// threads.
+    pub fn iter_identify_with_progress(
+        &self,
+        inputs: &[String],
+        options: InputOptions,
+        found: &mut dyn FnMut(Found) -> bool,
+        error: &mut dyn FnMut(&str, std::io::Error),
+        progress: &(dyn Fn(Progress<'_>) + Sync),
+    ) {
+        self.identify_sources(inputs, options, found, error, Some(progress));
+    }
+
+    fn identify_sources(
+        &self,
+        inputs: &[String],
+        options: InputOptions,
+        found: &mut dyn FnMut(Found) -> bool,
+        error: &mut dyn FnMut(&str, std::io::Error),
+        progress: Option<&(dyn Fn(Progress<'_>) + Sync)>,
+    ) {
         let search = self.search();
-        for source in sources(inputs, options.only_text) {
+        let sources = sources(inputs, options.only_text);
+        let files = sources.len();
+        for (files_done, source) in sources.into_iter().enumerate() {
             let (location, texts) = match source {
                 Source::Text(text) => ("text".to_string(), vec![text]),
                 Source::File { location, path } => {
@@ -353,8 +403,41 @@ impl Identifier {
                     }
                 }
             };
+            let regexes = search.regexes.len() * texts.len();
+            // The regexes whose search has started and isn't done, oldest first, and how
+            // many searches are done
+            let running: std::sync::Mutex<(Vec<&'static str>, usize)> =
+                std::sync::Mutex::new((Vec::new(), 0));
+            let on_regex = |entry: &'static crate::data::RegexEntry, done: bool| {
+                let Some(progress) = progress else { return };
+                let mut running = running
+                    .lock()
+                    .unwrap_or_else(std::sync::PoisonError::into_inner);
+                let (names, finished) = &mut *running;
+                if done {
+                    if let Some(index) = names.iter().position(|name| *name == entry.name) {
+                        names.remove(index);
+                    }
+                    *finished += 1;
+                    if names.is_empty() {
+                        return; // the next regex reports when it starts
+                    }
+                } else {
+                    names.push(&entry.name);
+                }
+                progress(Progress {
+                    location: &location,
+                    files_done,
+                    files,
+                    regexes_done: *finished,
+                    regexes,
+                    regex: names.first().copied(),
+                });
+            };
+            let on_regex: Option<crate::identify::OnRegex<'_>> =
+                progress.is_some().then_some(&on_regex);
             for text in &texts {
-                let matches = match check(text, &search) {
+                let matches = match check_with(text, &search, on_regex) {
                     Ok(matches) => matches,
                     Err(_) => self.identify(text),
                 };
@@ -366,6 +449,16 @@ impl Identifier {
                         return;
                     }
                 }
+            }
+            if let Some(progress) = progress {
+                progress(Progress {
+                    location: &location,
+                    files_done: files_done + 1,
+                    files,
+                    regexes_done: regexes,
+                    regexes,
+                    regex: None,
+                });
             }
         }
     }
@@ -412,6 +505,164 @@ mod tests {
         assert_eq!(
             magic_numbers(b"SIMPLE  =                    T\n").unwrap()["Filename Extension"],
             "fits"
+        );
+    }
+
+    /// A [`Progress`] that was reported.
+    #[derive(Debug, Clone, PartialEq, Eq)]
+    struct Reported {
+        location: String,
+        files_done: usize,
+        files: usize,
+        regexes_done: usize,
+        regexes: usize,
+        regex: Option<&'static str>,
+    }
+
+    /// What `iter_identify_with_progress` found in `inputs`, and the progress it reported.
+    fn with_progress(inputs: &[String]) -> (Vec<String>, Vec<Reported>) {
+        let reported = std::sync::Mutex::new(Vec::new());
+        let mut found = Vec::new();
+        Identifier::default().iter_identify_with_progress(
+            inputs,
+            InputOptions::default(),
+            &mut |item| {
+                found.push(format!("{item:?}"));
+                true
+            },
+            &mut |_, _| {},
+            &|progress| {
+                reported.lock().unwrap().push(Reported {
+                    location: progress.location.to_string(),
+                    files_done: progress.files_done,
+                    files: progress.files,
+                    regexes_done: progress.regexes_done,
+                    regexes: progress.regexes,
+                    regex: progress.regex,
+                })
+            },
+        );
+        (found, reported.into_inner().unwrap())
+    }
+
+    /// The names of the regexes that `Identifier::default()` searches for, in order.
+    fn default_regexes() -> Vec<&'static str> {
+        Identifier::default()
+            .search()
+            .regexes
+            .iter()
+            .map(|&entry| entry.name.as_str())
+            .collect()
+    }
+
+    #[test]
+    fn progress_of_a_search() {
+        let inputs = vec!["THM{a}".to_string(), "bee@skerritt.blog".to_string()];
+        let mut without = Vec::new();
+        Identifier::default().iter_identify(
+            &inputs,
+            InputOptions::default(),
+            &mut |item| {
+                without.push(format!("{item:?}"));
+                true
+            },
+            &mut |_, _| {},
+        );
+        let (found, reported) = with_progress(&inputs);
+        // Progress doesn't change what is found
+        assert_eq!(found, without);
+        assert!(!found.is_empty());
+        // Short texts: every regex in database order, then the text is done
+        let names = default_regexes();
+        let regexes = names.len();
+        let mut expected = Vec::new();
+        for file in 0..2 {
+            for (regexes_done, &name) in names.iter().enumerate() {
+                expected.push(Reported {
+                    location: "text".to_string(),
+                    files_done: file,
+                    files: 2,
+                    regexes_done,
+                    regexes,
+                    regex: Some(name),
+                });
+            }
+            expected.push(Reported {
+                location: "text".to_string(),
+                files_done: file + 1,
+                files: 2,
+                regexes_done: regexes,
+                regexes,
+                regex: None,
+            });
+        }
+        assert_eq!(reported, expected);
+    }
+
+    #[test]
+    fn progress_of_a_large_text() {
+        // Over 4 KB, the regexes are searched for in parallel: the progress comes from
+        // several threads, one report at a time, and its counts only go up
+        let text = "THM{a} bee@skerritt.blog\n".repeat(400);
+        let (_, reported) = with_progress(&[text]);
+        let regexes = default_regexes().len();
+        let searching = reported.iter().filter(|r| r.regex.is_some()).count();
+        assert!(
+            searching >= regexes,
+            "{searching} reports, {regexes} regexes"
+        );
+        assert!(reported
+            .windows(2)
+            .all(|pair| pair[0].regexes_done <= pair[1].regexes_done));
+        assert_eq!(
+            reported.last(),
+            Some(&Reported {
+                location: "text".to_string(),
+                files_done: 1,
+                files: 1,
+                regexes_done: regexes,
+                regexes,
+                regex: None,
+            })
+        );
+    }
+
+    #[test]
+    fn progress_counts_every_text_of_a_file() {
+        // The contents, the UTF-16 strings in them and, with include_filenames, the name:
+        // every regex is searched for in each (`len(dist.get_regexes()) * len(contents)`)
+        let dir = std::env::temp_dir().join(format!("pywhat-progress-{}", std::process::id()));
+        std::fs::create_dir_all(&dir).unwrap();
+        let file = dir.join("THM{name}.bin");
+        let mut data = b"THM{a}\n\x00".to_vec();
+        data.extend("THM{wide}".encode_utf16().flat_map(u16::to_le_bytes));
+        std::fs::write(&file, &data).unwrap();
+        let regexes = default_regexes().len();
+        let identifier = Identifier::default();
+        let reported = std::sync::Mutex::new(Vec::new());
+        let options = InputOptions {
+            only_text: false,
+            include_filenames: true,
+        };
+        identifier.iter_identify_with_progress(
+            &[file.to_string_lossy().into_owned()],
+            options,
+            &mut |_| true,
+            &mut |_, _| {},
+            &|progress| {
+                reported.lock().unwrap().push((
+                    progress.regexes_done,
+                    progress.regexes,
+                    progress.regex,
+                ))
+            },
+        );
+        std::fs::remove_dir_all(&dir).unwrap();
+        let reported = reported.into_inner().unwrap();
+        assert_eq!(reported.last(), Some(&(3 * regexes, 3 * regexes, None)));
+        assert_eq!(
+            reported.iter().filter(|r| r.2.is_some()).count(),
+            3 * regexes
         );
     }
 

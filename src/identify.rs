@@ -429,7 +429,21 @@ pub(crate) struct Search<'a> {
 /// The matches of every regex of `search` in `text`, in database order and then in the
 /// order of the text, with their fragments marked (`iter_check()` for one string).
 pub(crate) fn check(text: &str, search: &Search<'_>) -> Result<Vec<Match>, MatchError> {
-    let spans = find_spans(text, search)?;
+    check_with(text, search, None)
+}
+
+/// Called with each regex when its search starts (`false`) and when it is done (`true`),
+/// for progress bars. For a large text the regexes are searched for in parallel, so it is
+/// called from rayon's threads.
+pub(crate) type OnRegex<'a> = &'a (dyn Fn(&'static RegexEntry, bool) + Sync);
+
+/// [`check`], calling `on_regex` when each regex search starts and ends.
+pub(crate) fn check_with(
+    text: &str,
+    search: &Search<'_>,
+    on_regex: Option<OnRegex<'_>>,
+) -> Result<Vec<Match>, MatchError> {
+    let spans = find_spans(text, search, on_regex)?;
     let mut found = Vec::new();
     for (entry, entry_spans) in search.regexes.iter().zip(spans) {
         if entry_spans.is_empty() {
@@ -451,17 +465,31 @@ pub(crate) fn check(text: &str, search: &Search<'_>) -> Result<Vec<Match>, Match
 }
 
 /// The spans of the matches of each regex of `search` in `text`.
-fn find_spans(text: &str, search: &Search<'_>) -> Result<Vec<Vec<(usize, usize)>>, MatchError> {
+fn find_spans(
+    text: &str,
+    search: &Search<'_>,
+    on_regex: Option<OnRegex<'_>>,
+) -> Result<Vec<Vec<(usize, usize)>>, MatchError> {
     let spans_of = |(entry, &boundaryless): (&&'static RegexEntry, &bool)| {
+        if let Some(on_regex) = on_regex {
+            on_regex(entry, false);
+        }
         let form = if boundaryless {
             Form::Boundaryless
         } else {
             Form::Anchored
         };
-        let compiled = compiled(entry, form).map_err(MatchError)?;
-        let mut spans = Vec::new();
-        compiled.find_iter(text, &mut |start, end| spans.push((start, end)))?;
-        Ok(spans)
+        let search = || -> Result<Vec<(usize, usize)>, MatchError> {
+            let compiled = compiled(entry, form).map_err(MatchError)?;
+            let mut spans = Vec::new();
+            compiled.find_iter(text, &mut |start, end| spans.push((start, end)))?;
+            Ok(spans)
+        };
+        let spans = search();
+        if let Some(on_regex) = on_regex {
+            on_regex(entry, true);
+        }
+        spans
     };
     #[cfg(feature = "parallel")]
     if text.len() > 4096 {
