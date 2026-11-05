@@ -45,11 +45,13 @@ manifest-path = "py/Cargo.toml"
 python-source = "."
 module-name = "pywhat._pywhat"
 strip = true
-# Cargo.toml names the crate's benches and examples, and cargo can't read it without their
-# files (cargo package leaves them out of the crate, but the sdist builds from Cargo.toml)
+# Cargo.toml names some of the crate's benches, examples and tests, and cargo can't read it
+# without their files (cargo package leaves them out of the crate, but the sdist builds from
+# Cargo.toml)
 include = [
     { path = "benches/**/*.rs", format = "sdist" },
     { path = "examples/**/*.rs", format = "sdist" },
+    { path = "tests/**/*.rs", format = "sdist" },
 ]
 
 [tool.isort]
