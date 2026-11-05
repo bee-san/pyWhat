@@ -1,6 +1,11 @@
 //! Tests of the `what` command: its argument parser and its output formats. They run the
 //! binary that cargo built, without a terminal, so there are no colours and no progress
 //! bars. `scripts/parity_cli.py` compares the output with the Python CLI's.
+//!
+//! Without the `cli` feature there is no binary, and nothing to test. (A `[[test]]` entry with
+//! `required-features` would do the same, but the sdist of the Python package has no `tests/`,
+//! and cargo can't read a manifest whose test file is missing.)
+#![cfg(feature = "cli")]
 
 use std::io::Write;
 use std::path::Path;

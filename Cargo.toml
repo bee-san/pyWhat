@@ -103,10 +103,6 @@ name = "pywhat"
 path = "src/bin/pywhat.rs"
 required-features = ["cli"]
 
-[[test]]
-name = "cli"
-required-features = ["cli"]
-
 [[example]]
 name = "bench_file"
 required-features = ["files"]
