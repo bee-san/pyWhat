@@ -89,12 +89,12 @@ Here are some examples 👇
 
 ### 🐙 GitHub Repository API Key Leaks
 
-1. Download all GitHub repositories of an organisation
+1. Download all public repositories of a GitHub user
 2. Search for anything that you can submit as a bounty, like API keys
 
 ```shell
 # Download all repositories
-GHUSER=CHANGEME; curl "https://api.github.com/users/$GHUSER/repos?per_page=1000" | grep -o 'git@[^"]*' | xargs -L1 git clone
+GHUSER=CHANGEME; gh api --paginate "users/$GHUSER/repos?per_page=100" --jq '.[].ssh_url' | xargs -L1 git clone
 
 # Will print when it finds things.
 # Loops over all files in current directory.
