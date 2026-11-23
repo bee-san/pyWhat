@@ -49,7 +49,7 @@ def _decode_bom(data: bytes) -> Optional[str]:
     for bom, encoding in _BOMS:
         if data.startswith(bom):
             try:
-                return data[len(bom) :].decode(encoding)
+                return codecs.decode(memoryview(data)[len(bom) :], encoding)
             except UnicodeDecodeError:
                 continue  # FF FE 00 00 can be UTF-16LE text, too
     return None
