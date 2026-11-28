@@ -99,10 +99,14 @@ def create_filter(rarity, include, exclude):
 def get_text(ctx, opts, value):
     # The inputs, read from stdin if there are none. In interactive mode,
     # stdin is where the commands come from
+    stdin = click.get_text_stream("stdin")
     if (
         not any(value)
         and not ctx.params.get("interactive")
-        and not click.get_text_stream("stdin").isatty()
+        # sys.stdin is None when fd 0 is closed, and then there is nothing to
+        # read: main() reports the missing text like it does for a terminal
+        and stdin is not None
+        and not stdin.isatty()
     ):
         return (read_stdin(),)
     return value
